@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Static Sites with Ruby on Heroku/Cedar</title>
+  <script type="text/javascript" src="js/foo.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/bar.css" />
+</head>
+<body>
+  <h1>Static Sites with Ruby on Heroku/Cedar</h1>
+  <p>Read the <a href="https://gist.github.com/3157115">gist</a>; explore the <a href="https://github.com/leereilly/static-site-heroku-cedar-example">repo</a>.</p>
+  <img src="images/dodgeball.jpg">
+</body>
+</html>
