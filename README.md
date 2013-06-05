@@ -1,6 +1,11 @@
-# Translation of the Ruby on Rails Tutorial, 2nd Edition
+# Ruby on Rails Tutorial (第２版) - 日本語訳
 
-This repository contains the HTML source for the [Ruby on Rails Tutorial, 2nd edition](http://railstutorial.org/), with the goal of allowing translation of the tutorial to languages other than the [*lingua franca*](http://en.wikipedia.org/wiki/Lingua_franca). 
+## はじめに
+
+このリポジトリには、[Ruby on Rails Tutorial, 2nd edition](http://railstutorial.org/) の翻訳をするために必要なHTMLおよびCSSが含まれています。現在、Google Translator Toolkit と Facebook グループを用いて、同書の日本語版を翻訳しています。もし翻訳に興味ある方は、お気軽に次のグループにご参加下さい :D
+
+- [Ruby on Rails Tutorial 翻訳グループ - Facebook](https://www.facebook.com/groups/japanese.railstutorial.org/)
+- [Ruby on Rails Tutorial 第２版 - 日本語](http://railstutorial-ja.herokuapp.com/)
 
 ## Getting started
 
