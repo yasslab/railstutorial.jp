@@ -2,10 +2,22 @@
 
 ## はじめに
 
-このリポジトリには、[Ruby on Rails Tutorial, 2nd edition](http://railstutorial.org/) の翻訳をするために必要なHTMLおよびCSSが含まれています。現在、Google Translator Toolkit と Facebook グループを用いて、同書の日本語版を翻訳しています。もし翻訳に興味ある方は、お気軽に次のグループにご参加下さい :D
+このリポジトリには、[Ruby on Rails Tutorial, 2nd edition](http://railstutorial.org/) を
+翻訳するために必要なHTMLおよびCSSが含まれています。
+現在、[Google Translator Toolkit](http://translate.google.com/toolkit/) と
+[Facebook グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) を用いて、
+同書の日本語版を作成しています。
 
-- [Ruby on Rails Tutorial 翻訳グループ - Facebook](https://www.facebook.com/groups/japanese.railstutorial.org/)
+もし「翻訳手伝ってもいいよ！」って方がいれば、お気軽に次のグループにご参加下さい :D
+
+- [Ruby on Rails Tutorial 翻訳グループ - Facebook]
+
+なお、各章のラフな翻訳が終わり次第、随時次のページに反映させています。
+もし誤字／脱字、誤訳などを見つけましたら、[@yasulab](http://twitter.com/yasulab) までご報告して頂けると幸いです。
+
 - [Ruby on Rails Tutorial 第２版 - 日本語](http://railstutorial-ja.herokuapp.com/)
+
+よろしくお願いします。
 
 ## Getting started
 
