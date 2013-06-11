@@ -2167,11 +2167,11 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 <h2><a id="sec-9_5" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#sec-updating_and_deleting_users_conclusion" class="heading"><span class="number">9.5</span>最後に</a></h2>
 
 
-<p>We’ve come a long way since introducing the Users controller way back in <a class="ref" href="http://railstutorial-ja.herokuapp.com/filling-in-the-layout.html#sec-user_signup">Section 5.4</a>. Those users couldn’t even sign up; now users can sign up, sign in, sign out, view their profiles, edit their settings, and see an index of all users—and some can even destroy other users.</p>
+<p><a class="ref" href="http://railstutorial-ja.herokuapp.com/filling-in-the-layout.html#sec-user_signup">5.4</a>でUsersコントローラをご紹介して以来、長い道のりでした。あの頃はユーザー登録すらありませんでしたが、今は登録もサインインもサインアウトもできます。プロファイルの表示も、設定の編集も、すべてのユーザーのインデックスページもあります。一部のユーザーは他のユーザーを削除することすらできるようになりました。</p>
 
-<p>The rest of this book builds on the foundation of the Users resource (and associated authorization system) to make a site with Twitter-like microposts (<a class="ref" href="http://railstutorial-ja.herokuapp.com/user-microposts.html#top">Chapter 10</a>) and a status feed of posts from followed users (<a class="ref" href="http://railstutorial-ja.herokuapp.com/following-users.html#top">Chapter 11</a>). These chapters will introduce some of the most powerful features of Rails, including data modeling with <code>has_many</code> and <code>has_many through</code>.</p>
+<p>本書の以後の章では、これまでUsersリソース (と関連する認証/認可システム) で学んだ基礎を元に、Twitterのようなマイクロポスト機能をWebサイトに作成します (<a class="ref" href="http://railstutorial-ja.herokuapp.com/user-microposts.html#top">第10章</a>)。続いて、自分がフォローしているユーザーのステータスフィードを作成します (<a class="ref" href="http://railstutorial-ja.herokuapp.com/following-users.html#top">第11章</a>)。これらの章では、<code>has_many</code>や<code>has_many through</code>を使用したデータモデルなど、Railsの最も強力な機能をいくつも紹介します。</p>
 
-<p>Before moving on, be sure to merge all the changes into the master branch:</p>
+<p>次の章に進む前に、すべての変更をmasterブランチにマージしておきましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
 <span class="gp">$</span> git commit -m <span class="s2">&quot;Finish user edit, update, index, and destroy actions&quot;</span>
@@ -2181,7 +2181,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 </div>
 
 
-<p>You can also deploy the application and even populate the production database with sample users (using the <code>pg:reset</code> task to reset the production database):</p>
+<p>アプリケーションを本番展開したり、サンプルデータを本番データとして作成することもできます (本番データベースをリセットするには<code>pg:reset</code>タスクを使用します)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push heroku
 <span class="gp">$</span> heroku pg:reset DATABASE
@@ -2191,7 +2191,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 </div>
 
 
-<p>You may have to redeploy to Heroku to force an app restart. Here’s a hack that will force Heroku to restart the application:</p>
+<p>アプリケーションを強制的に再起動するには、Herokuに再度展開する必要があります。以下は、Herokuでアプリケーションを強制再起動するためのちょっとしたハックです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> touch foo
 <span class="gp">$</span> git add foo
@@ -2201,13 +2201,13 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 </div>
 
 
-<p>It’s also worth noting that this chapter saw the last of the necessary gem installations. For reference, the final <code>Gemfile</code> is shown in <a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-final_gemfile">Listing 9.49</a>. (Optional gems may be system-dependent and are commented out. You can uncomment them to see if they work on your system.)</p>
+<p>なお、必要なgemはここまでですべてインストールしたので、今後の章では新たなgemは追加しません。参考までに、最終状態の<code>Gemfile</code>を<a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-final_gemfile">リスト9.49</a>に示します。(システム環境に依存する可能性のあるgemはコメントアウトされています。自分の環境で動作するのであれば、それらのgemの行をコメント解除しても構いません。)</p>
 
 <div class="label" id="code-final_gemfile"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 9.49.</span> <span class="description">The final <code>Gemfile</code> for the sample application.</span> </div>
+<div class="listing"><span class="header">リスト9.49</span> <span class="description">サンプルアプリケーションの最終<code>Gemfile</code>。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.13&#39;</span>
@@ -2222,12 +2222,12 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
   <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.5&#39;</span>
   <span class="n">gem</span> <span class="s1">&#39;rspec-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.11.0&#39;</span>
   <span class="c1"># gem &#39;guard-rspec&#39;, &#39;1.2.1&#39;</span>
-  <span class="c1"># gem &#39;guard-spork&#39;, &#39;1.2.0&#39;  </span>
+  <span class="c1"># gem &#39;guard-spork&#39;, &#39;1.2.0&#39; </span>
   <span class="c1"># gem &#39;spork&#39;, &#39;0.9.2&#39;</span>
 <span class="k">end</span>
 
-<span class="c1"># Gems used only for assets and not required</span>
-<span class="c1"># in production environments by default.</span>
+<span class="c1"># assets でのみ使用され、</span>
+<span class="c1"># デフォルトのプロダクション環境では必要のないGem</span>
 <span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span>   <span class="s1">&#39;3.2.5&#39;</span>
   <span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.2&#39;</span>
@@ -2263,23 +2263,23 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 
 <ol>
 
-<li>Following the model in <a class="ref" href="http://railstutorial-ja.herokuapp.com/user-microposts.html#code-micropost_belongs_to_user_spec">Listing 10.8</a>, add a test to verify that the User <code>admin</code> attribute isn’t accessible. Be sure to get first to Red, and then to Green. (<em>Hint</em>: Your first step should be to <em>add</em> <code>admin</code> to the accessible list.)</li>
+<li><a class="ref" href="http://railstutorial-ja.herokuapp.com/user-microposts.html#code-micropost_belongs_to_user_spec">リスト10.8</a>のモデルに従い、Userの<code>admin</code>属性にアクセスできないことを確認するテストを追加してください。最初は赤信号、次に青信号になるようにしてください (<em>ヒント</em>: 最初に行う必要があるのは、<code>admin</code>をアクセス可能リストに<em>追加</em>することです)。</li>
 
-<li>Arrange for the Gravatar “change” link in <a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-user_edit_view">Listing 9.3</a> to open in a new window (or tab). <em>Hint:</em> Search the web; you should find one particularly robust method involving something called <code>_blank</code>. </li>
+<li><a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-user_edit_view">リスト9.3</a>の Gravatarの [change] リンクを改造し、別ウィンドウ (または別タブ) で開くようにしてください。<em>ヒント:</em> Webを検索してみましょう。この目的にピッタリの堅牢なメソッドが見つかるはずです。<code>_blank</code>という文字も一緒に検索してみてください。</li>
 
-<li>The current authentication tests check that navigation links such as “Profile” and “Settings” appear when a user is signed in. Add tests to make sure that these links <em>don’t</em> appear when a user isn’t signed in.</li>
+<li>現状の認証テストでは、ユーザーがサインインすると [Profile] や [Settings] などのリンクが表示されることをチェックしています。その逆に、ユーザーがサインインしていないときはこれらのリンクが表示<em>されない</em>ことを確認するテストも追加してください。</li>
 
-<li>Use the <code>sign_in</code> test helper from <a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-sign_in_helper">Listing 9.6</a> in as many places as you can find.</li>
+<li><a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-sign_in_helper">リスト9.6</a>の<code>sign_in</code>テストヘルパーを、なるべく多くの場所で使ってください。</li>
 
-<li>Remove the duplicated form code by refactoring the <code>new.html.erb</code> and <code>edit.html.erb</code> views to use the partial in <a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-new_edit_partial">Listing 9.50</a>. Note that you will have to pass the form variable <code>f</code> explicitly as a local variable, as shown in <a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-new_user_with_partial">Listing 9.51</a>. You will also have to update the tests, as the forms aren’t currently <em>exactly</em> the same; identify the slight difference and update the tests accordingly.</li>
+<li><a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-new_edit_partial">リスト9.50</a>のパーシャルを使用して、<code>new.html.erb</code>ビューと<code>edit.html.erb</code>ビューをリファクタリングし、コードの重複を取り除いてください。  このとき、<a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-new_user_with_partial">リスト9.51</a>のようにフォーム変数<code>f</code>を明示的にローカル変数として渡す必要があることに注意してください。また、それぞれのフォームは<em>完全に同じではない</em>ため、テストも更新の必要があります。フォームのわずかな違いを見つけ出し、テストの更新にそれを反映してください。</li>
 
-<li>Signed-in users have no reason to access the <code>new</code> and <code>create</code> actions in the Users controller. Arrange for such users to be redirected to the root URL if they do try to hit those pages.</li>
+<li>サインインしたユーザーは、もはやUsersコントローラの<code>new</code>アクションや <code>create</code>アクションにアクセスする必要はありません。サインインしたユーザーがこれらのアクションをブラウザで開こうとしたら、ルートURLにリダイレクトするようにしてください。</li>
 
-<li>Learn about the <code>request</code> object by inserting some of the methods listed in the <a href="http://api.rubyonrails.org/v3.2.0/classes/ActionDispatch/Request.html">Rails API</a><sup class="footnote" id="fnref-9_8"><a href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fn-9_8">8</a></sup> into the site layout. (Refer to <a class="ref" href="http://railstutorial-ja.herokuapp.com/sign-up.html#code-rails_debug">Listing 7.1</a> if you get stuck.)</li>
+<li><code>request</code>オブジェクトについて調べてください。具体的には、<a href="http://api.rubyonrails.org/v3.2.0/classes/ActionDispatch/Request.html">Rails API</a><sup class="footnote" id="fnref-9_8"><a href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fn-9_8">8</a></sup>の一覧に記載されているメソッドのうちいくつかをサイトのレイアウトに挿入することによってこれを調べます (やり方がわからない場合は<a class="ref" href="http://railstutorial-ja.herokuapp.com/sign-up.html#code-rails_debug">リスト7.1</a>を参照してください)。</li>
 
-<li>Write a test to make sure that the friendly forwarding only forwards to the given URI the first time. On subsequent signin attempts, the forwarding URI should revert to the default (i.e., the profile page). See <a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-friendly_forgetting_test">Listing 9.52</a> for a hint (and, by a hint, I mean the solution).</li>
+<li>フレンドリーフォワーディングで、最初に与えられたURIにのみ確実に転送されていることを確認するテストを作成してください。続けてサインインを行った後、転送先のURIはデフォルト (ユーザープロファイルページ) に戻る必要もありますので、これもテストで確認してください。<a class="ref" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#code-friendly_forgetting_test">リスト9.52</a>がヒントです (と言いつつそこで全部やってしまってますが)。</li>
 
-<li>Modify the <code>destroy</code> action to prevent admin users from destroying themselves. (Write a test first.)</li>
+<li><code>destroy</code>アクションを改造し、管理者が自分自身を削除できないようにしてください。(最初にテストを作成してからにしてください。)</li>
 
 </ol>
 
@@ -2290,7 +2290,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 9.50.</span> <span class="description">A partial for the new and edit form fields. </span><br /><span class="description"> <code>app/views/users/_fields.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト9.50</span> <span class="description">newフォームとeditフォームのフィールドに使用するパーシャル。</span><br /><span class="description"> <code>app/views/users/_fields.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">&#39;shared/error_messages&#39;</span> <span class="cp">%&gt;</span>
 
 <span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:name</span> <span class="cp">%&gt;</span>
@@ -2314,7 +2314,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 9.51.</span> <span class="description">The new user view with partial. </span><br /><span class="description"> <code>app/views/users/new.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト9.51</span> <span class="description">パーシャルを使用したnewユーザービュー。</span><br /><span class="description"> <code>app/views/users/new.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Sign up&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>Sign up<span class="nt">&lt;/h1&gt;</span>
 
@@ -2323,7 +2323,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
     <span class="cp">&lt;%=</span> <span class="n">form_for</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
       <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">&#39;fields&#39;</span><span class="p">,</span> <span class="ss">f:</span> <span class="n">f</span> <span class="cp">%&gt;</span>
       <span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="s2">&quot;Create my account&quot;</span><span class="p">,</span> <span class="ss">class:</span> <span class="s2">&quot;btn btn-large btn-primary&quot;</span> <span class="cp">%&gt;</span>
-    end
+    <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
   <span class="nt">&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
 </pre></div>
@@ -2336,7 +2336,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 9.52.</span> <span class="description">A test for forwarding to the default page after friendly forwarding. </span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.52</span> <span class="description">フレンドリーフォワーディングの後、転送先がデフォルトページに変わることを確認するテスト。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Authentication&quot;</span> <span class="k">do</span>
@@ -2396,13 +2396,13 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 </a><a class="next_page" href="http://railstutorial-ja.herokuapp.com/user-microposts.html#top">    <span class="number">第10章</span>ユーザーのマイクロポスト</a><a class="next_page" href="http://railstutorial-ja.herokuapp.com/user-microposts.html#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-9_1">Image from <a href="http://www.flickr.com/photos/sashawolff/4598355045/">http://www.flickr.com/photos/sashawolff/4598355045/</a>. <a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_1">↑</a></li>
-<li id="fn-9_2">The Gravatar site actually redirects this to <a href="http://en.gravatar.com/emails">http://en.gravatar.com/emails</a>, which is for English language users, but I’ve omitted the <tt>en</tt> part to account for the use of other languages. <a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_2">↑</a></li>
-<li id="fn-9_3">Don’t worry about how this works; the details are of interest to developers of the Rails framework itself, and by design are not important for Rails application developers. <a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_3">↑</a></li>
-<li id="fn-9_4">The code in this section is adapted from the <a href="http://github.com/thoughtbot/clearance">Clearance</a> gem by <a href="http://thoughtbot.com/">thoughtbot</a>. <a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_4">↑</a></li>
-<li id="fn-9_5">Baby photo from <a href="http://www.flickr.com/photos/glasgows/338937124/">http://www.flickr.com/photos/glasgows/338937124/</a>. <a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_5">↑</a></li>
-<li id="fn-9_6">The name <code>user</code> is immaterial—we could have written <code>@users.each do |foobar|</code> and then used <code>render foobar</code>. The key is the <em>class</em> of the object—in this case, <code>User</code>. <a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_6">↑</a></li>
-<li id="fn-9_7">Command-line tools such as <tt>curl</tt> can issue <tt>PUT</tt> requests of this form. <a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_7">↑</a></li>
+<li id="fn-9_1">画像は<a href="http://www.flickr.com/photos/sashawolff/4598355045/">http://www.flickr.com/photos/sashawolff/4598355045/</a>より引用しました。<a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_1">↑</a></li>
+<li id="fn-9_2">Gravatarサイトにアクセスすると、実際には<a href="http://en.gravatar.com/emails">http://en.gravatar.com/emails</a>にリダイレクトされます。ここは英語ユーザー向けですが、他の言語を考慮し、<tt>en</tt>をURIに含めませんでした。<a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_2">↑</a></li>
+<li id="fn-9_3">この動作の詳細を気にする必要はありません (悪いことをしているわけでもありません)。この詳細に関心を抱くのはRailsフレームワークそのものの開発者ぐらいであり、Railsでアプリケーションを開発する人にとっては重要ではありません。<a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_3">↑</a></li>
+<li id="fn-9_4">この節のコードは、<a href="http://thoughtbot.com/">thoughtbot</a>が作成した<a href="http://github.com/thoughtbot/clearance">Clearance</a> gemに合わせたものです。<a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_4">↑</a></li>
+<li id="fn-9_5">赤ちゃんの写真は<a href="http://www.flickr.com/photos/glasgows/338937124/">http://www.flickr.com/photos/glasgows/338937124/</a>より引用しました。<a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_5">↑</a></li>
+<li id="fn-9_6">この<code>user</code>という名前そのものはまったく重要ではないことにご注意ください。たとえばuserをfoobarに置き換え、<code>@users.each do |foobar|</code>と書いてから<code>render foobar</code>と呼び出しても問題なく動作します。重要なのは、そのオブジェクトそのものではなく、そのオブジェクトが属している<em>クラス</em> (この場合は<code>User</code>クラス) の方です。<a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_6">↑</a></li>
+<li id="fn-9_7"><tt>curl</tt>などのコマンドラインツールを使用すると、<tt>PUT</tt>リクエストをこの形式で送信することができます。<a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_7">↑</a></li>
 <li id="fn-9_8">http://api.rubyonrails.org/v3.2.0/classes/ActionDispatch/Request.html <a class="arrow" href="http://railstutorial-ja.herokuapp.com/updating-showing-and-deleting-users.html#fnref-9_8">↑</a></li>
 </ol>
 </div>
