@@ -6,6 +6,6 @@ get '/' do
 end
 
 get '/index.html' do
-  redirect '/'
+  redirect 'http://railstutorial.jp/'
 end
 
