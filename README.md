@@ -10,7 +10,7 @@
 
 もし「翻訳手伝ってもいいよ！」って方がいれば、お気軽に次のグループにご参加下さい :D
 
-- [Ruby on Rails Tutorial 翻訳グループ - Facebook]
+- [Ruby on Rails Tutorial 翻訳グループ - Facebook](https://www.facebook.com/groups/japanese.railstutorial.org/)
 
 なお、各章のラフな翻訳が終わり次第、随時次のページに反映させています。
 もし誤字／脱字、誤訳などを見つけましたら、[@yasulab](http://twitter.com/yasulab) までご報告して頂けると幸いです。
