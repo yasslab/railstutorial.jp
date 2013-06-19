@@ -13,5 +13,7 @@ cd ../../
 rm -rf archive
 echo "Finished updating html files."
 
-
+# Convert HTML to PDF files
+#cd ./public
+#./html2pdf.sh
 
