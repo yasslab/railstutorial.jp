@@ -1,6 +1,7 @@
 .dropbox
 Icon
 *.swp
+*.pdf
 *~
 *.pyc
 #*
