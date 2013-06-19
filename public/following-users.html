@@ -2370,7 +2370,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h4><a id="sec-11_4_1_1" href="http://railstutorial.jp/following-users.html#sec-replies" class="heading">返信機能</a></h4>
 
 
-<p>Twitterには、ユーザーのログイン名に<tt>@</tt>記号を付けたものをマイクロポストの冒頭に置くことでそのユーザーに返信できる機能があります。このポストは、宛先のユーザーのフィードと、自分をフォローしているユーザーにのみ表示されます。この返信機能の簡単なバージョンを実装してみましょう。具体的には、@replyは受信者のフィードと送信者のフィードにのみ表示されるようにします。これを行うには、<code>microposts</code>テーブルの<code>in_reply_to</code>カラムと、追加の<code>including_replies</code>スコープをMicropostモデルに追加する必要があると思います。</p>
+<p>Twitterには、マイクロポスト入力中に<tt>@</tt>記号に続けてユーザーのログイン名を入力するとそのユーザーに返信できる機能があります。このポストは、宛先のユーザーのフィードと、自分をフォローしているユーザーにのみ表示されます。この返信機能の簡単なバージョンを実装してみましょう。具体的には、@replyは受信者のフィードと送信者のフィードにのみ表示されるようにします。これを行うには、<code>microposts</code>テーブルの<code>in_reply_to</code>カラムと、追加の<code>including_replies</code>スコープをMicropostモデルに追加する必要があると思います。</p>
 
 <p>このサンプルアプリケーションには独自のユーザーログインがないので、ユーザーを一意に表す方法も考えなければならないでしょう。1つの方法は、idと名前を組み合わせて<code>@1-michael-hartl</code>のようにすることです。もう1つの方法は、ユーザー登録の項目に一意のユーザー名を<em>追加</em>し、@repliesで使えるようにすることです。</p>
 
@@ -2380,7 +2380,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h4><a id="sec-11_4_1_2" href="http://railstutorial.jp/following-users.html#sec-messaging" class="heading">メッセージ機能</a></h4>
 
 
-<p>Twitterではダイレクト (プライベート) メッセージ機能がサポートされており、マイクロポストの冒頭に “d” という文字を置くことでImplement this feature for the sample application. The solution will probably involve a Message model and a regular expression match on new microposts.</p>
+<p>Twitterでは、マイクロポストの入力時に最初に “d” キーを押すとダイレクト (プライベート) メッセージを行える機能がサポートされています。この機能をサンプルアプリケーションに実装してみましょう。ヒントは、Messageモデルと、新規マイクロポストにマッチする正規表現です。</p>
 
 <div class="label" id="sec-follower_notifications"></div>
 
@@ -2388,7 +2388,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h4><a id="sec-11_4_1_3" href="http://railstutorial.jp/following-users.html#sec-follower_notifications" class="heading">フォロワーの通知</a></h4>
 
 
-<p>Implement a feature to send each user an email notification when they gain a new follower. Then make the notification optional, so that users can opt out if desired. Among other things, adding this feature requires learning how to send mail with Rails. To get started, I suggest viewing the <a href="http://railscasts.com/episodes/206-action-mailer-in-rails-3">RailsCast on Action Mailer in Rails 3</a>.</p>
+<p>ユーザーに新しくフォロワーが増えたときにメールで通知する機能を実装してみましょう。続いて、メールでの通知機能をオプションとして選択可能にし、不要な場合は通知をオフにできるようにしてみましょう。この機能を追加するには、Railsからメールを送信する機能を追加する必要があります。最初にRailsCast「<a href="http://railscasts.com/episodes/206-action-mailer-in-rails-3">Rails 3のAction Mailer</a>」を参照してください。</p>
 
 <div class="label" id="sec-password_reminders"></div>
 
@@ -2396,7 +2396,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h4><a id="sec-11_4_1_4" href="http://railstutorial.jp/following-users.html#sec-password_reminders" class="heading">パスワードリマインダー</a></h4>
 
 
-<p>Currently, if our application’s users forget their passwords, they have no way to retrieve them. Because of the one-way secure password hashing in <a class="ref" href="http://railstutorial.jp/modeling-users.html#top">Chapter 6</a>, our application can’t email the user’s password, but it can send a link to a reset form. Follow the steps in the <a href="http://railscasts.com/episodes/274-remember-me-reset-password">RailsCast on Remember Me &amp; Reset Password</a> to fix this omission.</p>
+<p>現状のサンプルアプリケーションには、ユーザーがパスワードを忘れてしまったときの復旧手段がありません。<a class="ref" href="http://railstutorial.jp/modeling-users.html#top">第6章</a>で一方向セキュアパスワードハッシュを実装したため、パスワードをメールで送信することは不可能ですが、パスワードをリセットするリンクをメールで送信することなら可能です。必要な知識については、RailsCast「<a href="http://railscasts.com/episodes/274-remember-me-reset-password">パスワード保存機能とパスワードリセット機能について</a>」を参照してください。</p>
 
 <div class="label" id="sec-signup_confirmation"></div>
 

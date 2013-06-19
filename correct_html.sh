@@ -11,8 +11,9 @@ do
     cat $file.modified_1 | sed -e "s/,FITNESS/,<\/br>FITNESS/g" > $file.modified_2
     cat $file.modified_2 | sed -e "s/WHETHER/<\/br>WHETHER/g" > $file.modified_3
     cat $file.modified_3 | sed -e "s/IN CONNECTION WITH/<\/br>IN CONNECTION WITH/g" > $file.modified_4
+    cat $file.modified_4 | sed -e "s/フルサイズ/拡大/g" > $file.modified_5
     echo "corrected $file"
     if [ $? -eq 0 ]; then
-	mv $file.modified_4 $file
+	mv $file.modified_5 $file
     fi
 done

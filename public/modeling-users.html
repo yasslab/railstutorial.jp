@@ -961,15 +961,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-6_2_3" href="http://railstutorial.jp/modeling-users.html#sec-length_validation" class="heading"><span class="number">6.2.3</span>長さを検証する</a></h3>
 
 
-<p>We’ve constrained our User model to require a name for each user, but we should go further: the user’s names will be displayed on the sample site, so we should enforce some limit on their length. With all the work we did in <a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-presence_validation">Section 6.2.2</a>, this step is easy.</p>
+<p>各ユーザーは、Userモデルにnameを持つよう強制されます。しかし、これでは十分ではありません。ユーザーの名前はサンプルサイトに表示されるでしょう。なので、長さにも制限を持たせるべきです。<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-presence_validation">6.2.2</a>で行った作業があるので、このステップは簡単です。</p>
 
-<p>We start with a test. There’s no science to picking a maximum length; we’ll just pull <code>50</code> out of thin air as a reasonable upper bound, which means verifying that names of <code>51</code> characters are too long   (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-length_validation_test">Listing 6.14</a>).</p>
+<p>まずはテストから始めます。最長のユーザー名の長さを取り出す科学はありません。なので、単純に<code>50</code>という上限として手頃な値を使います。すなわち、<code>51</code>文字の名前は長すぎることを検証します (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-length_validation_test">リスト6.14</a>)。</p>
 
 <div class="label" id="code-length_validation_test"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 6.14.</span> <span class="description">A test for <code>name</code> length validation. </span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.14.</span> <span class="description"><code>name</code>の長さ検証のテスト</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
@@ -989,7 +989,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>For convenience, we’ve used “string multiplication” in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-length_validation_test">Listing 6.14</a> to make a string 51 characters long. We can see how this works using the console:</p>
+<p>利便性のため、<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-length_validation_test">リスト6.14</a>では51文字の文字列を作るために“文字列のかけ算”を使いました。コンソールを使って、それを確認することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;a&quot;</span> <span class="o">*</span> <span class="mi">51</span>
 <span class="go">=&gt; &quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;</span>
@@ -999,13 +999,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>The test in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-length_validation_test">Listing 6.14</a> should fail. To get it to pass, we need to know about the validation argument to constrain length, <code>:length</code>, along with the <code>:maximum</code> parameter to enforce the upper bound (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-length_validation">Listing 6.15</a>).</p>
+<p><a class="ref" href="http://railstutorial.jp/modeling-users.html#code-length_validation_test">リスト6.14</a>のテストは失敗します。これをパスさせるためには、長さを強制するためのバリデーション引数について知る必要があります。<code>:maximum</code>パラメータと共に用いられる<code>:length</code>は、長さの上限を強制します (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-length_validation">リスト6.15</a>)。</p>
 
 <div class="label" id="code-length_validation"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 6.15.</span> <span class="description">Adding a length validation for the <code>name</code> attribute. </span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.15.</span> <span class="description"><code>name</code>属性のための長さのバリデーションの追加</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span> 
   <span class="n">attr_accessible</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
 
@@ -1016,7 +1016,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>Now the tests should pass. With our test suite passing again, we can move on to a more challenging validation: email format.</p>
+<p>これでテストは通るはずです。テストに通るこのテストスイートを使って、emailフォーマットというよりやりがいのあるバリデーションに移りましょう。</p>
 
 <div class="label" id="sec-format_validation"></div>
 
@@ -1024,9 +1024,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-6_2_4" href="http://railstutorial.jp/modeling-users.html#sec-format_validation" class="heading"><span class="number">6.2.4</span>フォーマットを検証する</a></h3>
 
 
-<p>Our validations for the <code>name</code> attribute enforce only minimal constraints—any non-blank name under 51 characters will do—but of course the <code>email</code> attribute must satisfy more stringent requirements. So far we’ve only rejected blank email addresses; in this section, we’ll require email addresses to conform to the familiar pattern <code>user@example.com</code>.</p>
+<p><code>name</code>属性のバリデーションには最小限の制約しか課しませんでした。それは、空文字でない、51文字未満の名前です。もちろん、<code>email</code>属性はもっと厳重な要求を満たさなければなりません。これまでは空のメールアドレスのみを拒否してきました。ここでは、メールアドレスにおなじみのパターン<code>user@example.com</code>を確認することを要求します。</p>
 
-<p>Neither the tests nor the validation will be exhaustive, just good enough to accept most valid email addresses and reject most invalid ones. We’ll start with a couple tests involving collections of valid and invalid addresses. To make these collections, it’s worth knowing about the useful  <code>%w[]</code> technique for making arrays of strings, as seen in this console session:</p>
+<p>テストもバリデーションも、ほとんどの有効なメールアドレスを受け入れ、ほとんどの無効なものを拒否するのに十分なだけで、徹底してはいません。We’ll start with a couple tests involving collections of valid and invalid addresses. To make these collections, it’s worth knowing about the useful  <code>%w[]</code> technique for making arrays of strings, as seen in this console session:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="sx">%w[foo bar baz]</span>
 <span class="go">=&gt; [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]</span>
