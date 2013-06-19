@@ -1,4 +1,4 @@
-# Ruby on Rails Tutorial (第２版) - 日本語訳
+# Ruby on Rails チュートリアル (第２版)
 
 ## はじめに
 
@@ -15,7 +15,7 @@
 なお、各章のラフな翻訳が終わり次第、随時次のページに反映させています。
 もし誤字／脱字、誤訳などを見つけましたら、[@yasulab](http://twitter.com/yasulab) までご報告して頂けると幸いです。
 
-- [Ruby on Rails Tutorial 第２版 - 日本語](http://railstutorial-ja.herokuapp.com/)
+- [Ruby on Rails チュートリアル (第２版)](http://railstutorial-ja.herokuapp.com/)
 
 よろしくお願いします。
 
