@@ -6,8 +6,8 @@
 
 unzip ./archive.zip
 cd archive/ja
-sh ../../correct_name.sh
-sh ../../correct_html.sh
+sh ../../correct_filenames.sh
+sh ../../correct_htmls.sh
 sh ../../update_htmls.sh
 cd ../../
 rm -rf archive
