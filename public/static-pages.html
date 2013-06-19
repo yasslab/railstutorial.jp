@@ -80,12 +80,8 @@ The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISINGOUT OF OR
-IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
-</pre></div>
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY, </br>WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISINGOUT OF OR </br>IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.</pre></div>
 </div>
 
 
@@ -996,9 +992,10 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h2><a id="sec-3_3" href="http://railstutorial.jp/static-pages.html#sec-slightly_dynamic_pages" class="heading"><span class="number">3.3</span>ちょっとだけ動的ページ</a></h2>
 
 
-<p>Now that we’ve created the actions and views for some static pages, we’ll make them <em>very slightly</em> dynamic by adding some content that changes on a per-page basis: we’ll have the title of each page change to reflect its content. Whether a changing title represents <em>truly</em> dynamic content is debatable, but in any case it lays the necessary foundation for unambiguously dynamic content in <a class="ref" href="http://railstutorial.jp/sign-up.html#top">Chapter 7</a>.</p>
+<p>静的ページのアクションとviewを作ってきましたが、それぞれのページの内容をタイトルに反映されるような、ページ毎に内容が変化する、<em>少し</em>だけ動的なページを作っていきましょう。
+タイトルを変えることが<em>本当に</em>動的コンテンツかどうかは議論の余地がありますので、明白な動的コンテンツの根拠の必要性は<a class="ref" href="http://railstutorial.jp/sign-up.html#top">Chapter 7</a>で議論します。</p>
 
-<p>If you skipped the TDD material in <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-first_tests">Section 3.2</a>, be sure to create an About page at this point using the code from <a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_route">Listing 3.14</a>, <a class="ref" href="http://railstutorial.jp/static-pages.html#code-adding_the_about_page">Listing 3.15</a>, and <a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_view">Listing 3.16</a>.</p>
+<p>もし、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-first_tests">セクション3.2</a>のテスト駆動開発のお話を飛ばしているのであれば、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_route">リスト3.14</a>、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-adding_the_about_page">リスト3.15</a>、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_view">リスト3.16</a>のコードを使ってAboutページを必ず作成しておいてください。</p>
 
 <div class="label" id="sec-testing_a_title_change"></div>
 
@@ -1006,16 +1003,16 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h3><a id="sec-3_3_1" href="http://railstutorial.jp/static-pages.html#sec-testing_a_title_change" class="heading"><span class="number">3.3.1</span>タイトル変更をテストする</a></h3>
 
 
-<p>Our plan is to edit the Home, Help, and About pages to make page titles that change on each page. This will involve using the <code>&lt;title&gt;</code> tag in our page views. Most browsers display the contents of the title tag at the top of the browser window (Google Chrome is an odd exception), and it is also important for search-engine optimization. We’ll start by writing tests for the titles, then add the titles themselves, and then use a <em>layout</em> file to refactor the resulting pages and eliminate duplication.</p>
+<p>Home、Help、Aboutのページでタイトルが変わるように、それぞれのページを編集します。 これはviewで<code>&lt;title&gt;</code>タグを使うことを含みます。タイトルタグはほとんどのブラウザでブラウザウィンドウの上に表示されます。(Google Chromeは例外ですが)。タイトルタグは、検索エンジン最適化(SEO)において重要になってきます。まずタイトルのテストを書き、その後にタイトルの機能を追加し、さらに<em>レイアウト</em>ファイルを使ってリファクタリングと重複の排除をしていきましょう。</p>
 
-<p>You may have noticed that the <code>rails new</code> command already created a layout file. We’ll learn its purpose shortly, but for now you should rename it before proceeding:</p>
+<p><code>rails new</code>}コマンドを使って既にレイアウトファイルを作成している場合は注意がいります。早くこの目的と達成したいですが、まず作業に入る前にレイアウトファイルの名前を変更します。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">$</span> mv app/views/layouts/application.html.erb foobar   <span class="c"># temporary change</span>
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> mv app/views/layouts/application.html.erb foobar   <span class="c"># 一時的な対応</span>
 </pre></div>
 </div>
 
 
-<p>(<code>mv</code> is a Unix command; on Windows you may need to rename the file using the file browser or the <code>rename</code> command.) You wouldn’t normally do this in a real application, but it’s easier to understand the purpose of the layout file if we start by disabling it.</p>
+<p>(<code>mv</code>はUnixのコマンドです。Windowsを使用している場合、ファイルの名前を変更するには、ファイルブラウザから行うか、<code>rename</code>コマンドを使ってください。実際アプリケーションでは上記のようなことはしないでください。ただ、レイアウトファイルの役割をより理解しやすくするために、レイアウトファイルを無効にすることから始めました。</p>
 
 <div class="label" id="table-static_pages"></div>
 
@@ -1024,7 +1021,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <table class="tabular"><tr><th class="align_center"><strong>Page</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_left"><strong>Base title</strong></th><th class="align_left"><strong>Variable title</strong></th></tr><tr class="top_bar"><td class="align_center">Home</td><td class="align_left">/static_pages/home</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;Home&quot;</code></td></tr><tr><td class="align_center">Help</td><td class="align_left">/static_pages/help</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;Help&quot;</code></td></tr><tr><td class="align_center">About</td><td class="align_left">/static_pages/about</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;About&quot;</code></td></tr></table></div><div class="caption"><span class="header">Table 3.1: </span><span class="description">The (mostly) static pages for the sample app.</span></div></div>
 
 
-<p>By the end of this section, all three of our static pages will have titles of the form “Ruby on Rails Tutorial Sample App | Home”, where the last part of the title will vary depending on the page (<a class="ref" href="http://railstutorial.jp/static-pages.html#table-static_pages">Table 3.1</a>). We’ll build on the tests in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_page_content_spec">Listing 3.13</a>, adding title tests following the model in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-title_test">Listing 3.17</a>.</p>
+<p>このセクションの終わりには、3つ静的ページ全てのタイトルが、最後の部分のみ<a class="ref" href="http://railstutorial.jp/static-pages.html#table-static_pages">テーブル 3.1</a>ように、ページによって出し分けされた“Ruby on Rails Tutorial Sample App | Home”になります。We’ll build on the tests in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_page_content_spec">Listing 3.13</a>, adding title tests following the model in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-title_test">Listing 3.17</a>.</p>
 
 <div class="label" id="code-title_test"></div>
 
@@ -2236,7 +2233,7 @@ bundler_stubs/
 <li id="fn-3_5">実際 Rails では、静的ファイルに対するリクエストが Rails 内のスタックに届くことはなく、（もし該当する静的ファイルが ./public ディレクトリ以下にあれば）ファイルシステム内の静的ファイルが直接参照される。(詳しくは <a href="http://www.amazon.com/gp/product/0321601661"><em>The Rails 3 Way</em></a> を参照) <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_5">↑</a></li>
 <li id="fn-3_6">いつもと同じように、<code>subl</code> コマンドを、テキストエディタを呼び出すコマンド (e.g. vim, emacs) に置換するだけで良い。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_6">↑</a></li>
 <li id="fn-3_7">HTML は刻々と変化しています。したがって、doctype と明示的に宣言することで、今後もブラウザが正しくページを描画してくれる可能性が高まります。とてもシンプルな doctype である <code>&lt;!DOCTYPE html&gt;</code> は、最新の標準HTML (HTML5) であることを示しています。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_7">↑</a></li>
-<li id="fn-3_8">私達が採用している静的なページを作る方法は、恐らく最もシンプルな方法です。しかし、ただ１つの方法という訳ではありません。最適な方法はケースバイケースであることが多いです。例えば、<em>非常に多く</em>の静的なページを作る必要がある場合では、１つの StaticPages コントローラだけでは重荷になるでしょう。 しかし、今回の場合は、いくつかの静的なページを作るだけですむので、重荷にはなりません。Rails で静的なページを作るときのテクニックについて詳しく知りたい場合は、この <a href="http://blog.hasmanythrough.com/2008/4/2/simple-pages">simple pages at <tt>has_many :through</tt></a> というブログ記事を読むとよいでしょう。<em>注意:</em> この議論は少し応用的な話なので、あとで読んで方が良いかもしれません。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_8">↑</a></li>
+<li id="fn-3_8">私達が採用している静的なページを作る方法は、恐らく最もシンプルな方法です。しかし、ただ１つの方法という訳ではありません。最適な方法はケースバイケースであることが多いです。例えば、<em>非常に多く</em>の静的なページを作る必要がある場合では、１つの StaticPages コントローラだけでは重荷になるでしょう。 しかし、今回の場合は、いくつかの静的なページを作るだけですむので、重荷にはなりません。Rails で静的なページを作るときのテクニックについて詳しく知りたい場合は、 ブログ<a href="http://blog.hasmanythrough.com/2008/4/2/simple-pages">「<tt>has_many :through</tt>」の simple pages という記事</a> を読むとよいでしょう。<em>注意:</em> この議論は少し応用的な話なので、あとで読んで方が良いかもしれません。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_8">↑</a></li>
 <li id="fn-3_9">毎回 <code>bundle exec</code> と実行するのは少し面倒ですが、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-advanced_setup">3.6</a> にあるオプションを使うと楽になります。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_9">↑</a></li>
 <li id="fn-3_10">筆者は普段、端末やテキストエディタの背景は黒色にしています。ただ、明るい色の背景の方がスクリーンショットの見栄えが良くなるので、（一時的に）明るい背景を使用しています。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_10">↑</a></li>
 <li id="fn-3_11">A newline is what comes at the end of a line, thereby starting a new line. In code, it is represented by the character <tt class="verb">\n</tt>. <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_11">↑</a></li>
