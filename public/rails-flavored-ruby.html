@@ -80,12 +80,8 @@ The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISINGOUT OF OR
-IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
-</pre></div>
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY, </br>WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISINGOUT OF OR </br>IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.</pre></div>
 </div>
 
 
@@ -107,7 +103,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 <h1 class="chapter"><a id="sec-4" href="http://railstutorial.jp/rails-flavored-ruby.html#top" class="heading"><span class="number">第4章</span> Rails風味のRuby</a></h1>
 
 
-<p><a class="ref" href="http://railstutorial.jp/static-pages.html#top">第3章</a>での例を基に、この章では Rails のための重要な Ruby の要素について探っていきます。Ruby は大きな言語ですが、幸運なことに生産性ある Rails 開発者として必要な知識は比較的少ないです。さらに、この知識は通常の Ruby を学ぶ過程とは <em>異なり</em> 、そのため、もしあなたの目的が 動的な Web アプリを作ることならば、私はあなたにRails を最初に学び、この先 Ruby の一部分のみを 取り上げることをお勧めします。Rails の <em>エキスパート</em> になるためには、あなたは Ruby をより深く理解する必要があり、そしてこの本はあなたが開発技術の基礎を築く助けになるでしょう。<a class="ref" href="http://railstutorial.jp/beginning.html#sec-comments_for_various_readers">1.1.1</a>で示したように、<em>Rails Tutorial</em> を終えた後には <a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>、<a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a>、<a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a> などの純粋な Ruby についての本を読むことをお勧めします。</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#top">3章</a> での例を基に、この章では Rails のための重要な Ruby の要素について探っていきます。Ruby は大きな言語ですが、幸運なことに生産性ある Rails 開発者として必要な知識は比較的少ないです。さらに、この知識は通常の Ruby を学ぶ過程とは<em>異なる</em>ため、もしあなたの目的が動的な Web アプリを作ることならば、私はあなたに Rails を最初に学び、この先 Ruby の一部分のみを取り上げることをお勧めします。Rails の<em>エキスパート</em> になるためには、あなたは Ruby をより深く理解する必要があり、そしてこの本はあなたが開発技術の基礎を築く助けになるでしょう。<a class="ref" href="http://railstutorial.jp/beginning.html#sec-comments_for_various_readers">1.1.1</a>で示したように、<em>Rails チュートリアル</em> を終えた後には <a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>、<a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a>、<a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a> などの純粋な Ruby についての本を読むことをお勧めします。</p>
 
 <p>この章ではたくさんの事について触れていますが、一度に全てを覚える必要はありません。この章の先でも度々戻って参照することになります。</p>
 
@@ -117,15 +113,15 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 <h2><a id="sec-4_1" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-motivation" class="heading"><span class="number">4.1</span>動機</a></h2>
 
 
-<p>前章で見たように、本質的には Ruby の基礎知識がなくても、Rails アプリの骨組みを作り、それのテストを始めることができました。私たちはこれをチュートリアルによるテストコードを頼り、テストが通るまでエラーメッセージを発しながら行いました。この状況は常には続きませんが、とりあえず、本章では私たちの Ruby の限界に向き合うこととします。</p>
+<p>前章で見たように、本質的には Ruby の基礎知識がなくても、Rails アプリの骨組みを作り、それのテストを始めることができました。私たちはこれをチュートリアルによるテストコードを頼り、テストが通るまでエラーメッセージを発しながら行いました。この状況がずっと続くわけではありませんが、とりあえず本章では私たちの Ruby の限界に向き合うこととしましょう。</p>
 
-<p>前章の終わりでは、静的ページの大部分において Rails の layout を使うことで view での重複を排除しました(<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-application_layout_redux">Listing 4.1</a>)。</p>
+<p>前章の終わりでは、静的ページの大部分において Rails の レイアウト を使うことで ビュー での重複を排除しました(<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-application_layout_redux">Listing 4.1</a>)。</p>
 
 <div class="label" id="code-application_layout_redux"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.1.</span> <span class="description">The sample application site layout. </span><br /><span class="description"> <code>app/views/layouts/application.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 4.1.</span> <span class="description">サンプルアプリケーションのサイトレイアウトです。</span><br /><span class="description"> <code>app/views/layouts/application.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -142,14 +138,14 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-application_layout_redux">Listing 4.1</a>: での特定行に注目します。</p>
+<p><a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-application_layout_redux">リスト 4.1</a>: でのこの行に注目します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">:media</span> <span class="o">=&gt;</span> <span class="s2">&quot;all&quot;</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>これは Rails のビルトイン関数である、 <code>stylesheet_link_tag</code> (詳細については、<a href="http://api.rubyonrails.org/v3.2.0/classes/ActionView/Helpers/AssetTagHelper/StylesheetTagHelpers.html#method-i-stylesheet_link_tag">Rails API</a>を見てください) を <code>application.css</code> を全ての<a href="http://www.w3.org/TR/CSS2/media.html">メディアタイプ</a> (コンピュータの画面や印刷画面を含みます) に含めるために使っています。Rails 開発経験者にとっては、この行はとても単純に見えますが、しかし少なくとも4つの混乱させかねない Ruby のアイデアがあります: Rails のビルトイン関数、括弧なしでの関数呼び出し、シンボル、そしてハッシュです。この章ではこれらアイデアの全てを説明します。</p>
+<p>これは Rails の組み込み関数である、 <code>stylesheet_link_tag</code> (詳細については、<a href="http://api.rubyonrails.org/v3.2.0/classes/ActionView/Helpers/AssetTagHelper/StylesheetTagHelpers.html#method-i-stylesheet_link_tag">Rails API</a>を見てください) を <code>application.css</code> を全ての<a href="http://www.w3.org/TR/CSS2/media.html">メディアタイプ</a> (コンピュータの画面や印刷画面を含みます) に含めるために使っています。Rails 開発経験者にとっては、この行はとても単純に見えますが、しかし少なくとも4つの混乱させかねない Ruby のアイデアがあります: Rails の組み込み関数、括弧なしでの関数呼び出し、シンボル、そしてハッシュです。この章ではこれらアイデアの全てを説明します。</p>
 
 <p>view の中で使える多くのビルトイン関数に加えて、Rails は新しく関数を作ることも可能にします。そのような関数は、 <em>ヘルパ</em>と呼ばれます; ヘルパを自作する方法を知るために、まずは<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-application_layout_redux">Listing 4.1</a>のタイトルについての行の調査から始めましょう。</p>
 
@@ -1399,7 +1395,7 @@ end
 <h3><a id="sec-4_4_4" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-a_controller_class" class="heading"><span class="number">4.4.4</span>コントローラクラス</a></h3>
 
 
-<p>All this talk about classes and inheritance may have triggered a flash of recognition, because we have seen both before, in the StaticPages controller (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-adding_the_about_page">Listing 3.15</a>):</p>
+<p>クラスや継承についての話についての全ては見覚えがあるかもしれません、なぜなら両方とも以前、StaticPages コントローラで見たのですから (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-adding_the_about_page">リスト 3.15</a>):</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">StaticPagesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
 
@@ -1416,7 +1412,7 @@ end
 </div>
 
 
-<p>You’re now in a position to appreciate, at least vaguely, what this code means: <code>StaticPagesController</code> is a class that inherits from <code>ApplicationController</code>, and comes equipped with <code>home</code>, <code>help</code>, and <code>about</code> methods. Since each Rails console session loads the local Rails environment, we can even create a controller explicitly and examine its class hierarchy:<sup class="footnote" id="fnref-4_13"><a href="http://railstutorial.jp/rails-flavored-ruby.html#fn-4_13">13</a></sup></p>
+<p>あなたは今なら十分に、少なくとも漠然と、このコードが何を意味しているかを理解することができます: <code>StaticPagesController</code> は <code>ApplicationController</code>を継承したクラスで、<code>home</code>、<code>help</code>や <code>about</code> メソッドを備えています。 それぞれの Rails コンソールのセッションはローカルの Rails 環境を読み込むので、明示的にコントローラを作ったり、それのクラス階層を調べたりすることができます: <sup class="footnote" id="fnref-4_13"><a href="http://railstutorial.jp/rails-flavored-ruby.html#fn-4_13">13</a></sup></p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">controller</span> <span class="o">=</span> <span class="no">StaticPagesController</span><span class="o">.</span><span class="n">new</span>
 <span class="go">=&gt; #&lt;StaticPagesController:0x22855d0&gt;</span>
@@ -1436,15 +1432,15 @@ end
 </div>
 
 
-<p>A diagram of this hierarchy appears in <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#fig-static_pages_controller_inheritance">Figure 4.3</a>.</p>
+<p>継承の一覧を <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#fig-static_pages_controller_inheritance">図 4.3</a>に示します。</p>
 
 <div class="label" id="fig-static_pages_controller_inheritance"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/static_pages_controller_inheritance.png" alt="static_pages_controller_inheritance" /></span></div><div class="caption"><span class="header">Figure 4.3: </span><span class="description">The inheritance hierarchy for the StaticPages controller.</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/static_pages_controller_inheritance.png" alt="static_pages_controller_inheritance" /></span></div><div class="caption"><span class="header">図 4.3: </span><span class="description"> StaticPages コントローラの継承階層</span></div></div>
 
 
-<p>We can even call the controller actions inside the console, which are just methods:</p>
+<p>コンソールの中から、コントローラのアクションですら呼ぶことができます、これはただのメソッドです:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">controller</span><span class="o">.</span><span class="n">home</span>
 <span class="go">=&gt; nil</span>
@@ -1452,11 +1448,11 @@ end
 </div>
 
 
-<p>Here the return value is <code>nil</code> because the <code>home</code> action is blank.</p>
+<p>ここでは<code>home</code> アクションは空なので<code>nil</code>が返されています。</p>
 
-<p>But wait—actions don’t have return values, at least not ones that matter. The point of the <code>home</code> action, as we saw in <a class="ref" href="http://railstutorial.jp/static-pages.html#top">Chapter 3</a>, is to render a web page, not to return a value. And I sure don’t remember ever calling <code>StaticPagesController.new</code> anywhere. What’s going on?</p>
+<p>しかし待ってください—アクションは戻り値を持ちません、少なくとも重要な1つのものがないです。<code>home</code> アクションにおけるポイントは、<a class="ref" href="http://railstutorial.jp/static-pages.html#top">3章</a>で見たように、Webページを表示するのに、値を返しません。そして <code>StaticPagesController.new</code> はどこからも呼ばれていません。何が起きているのでしょう?</p>
 
-<p>What’s going on is that Rails is <em>written in</em> Ruby, but Rails isn’t Ruby. Some Rails classes are used like ordinary Ruby objects, but some are just <a href="http://www.answers.com/grist">grist</a> for Rails’ magic mill. Rails is <a href="http://en.wikipedia.org/wiki/Sui_generis"><em>sui generis</em></a>, and should be studied and understood separately from Ruby. This is why, if your principal programming interest is writing web applications, I recommend learning Rails first, then learning Ruby, then looping back to Rails.</p>
+<p>何が起きているかというと、 Rails は Ruby で <em>書かれて</em> いますが、Rails は Ruby ではないということです。いくつかの Rails のクラスは普通の Ruby のオブジェクトのように使われますが、またいくつかは<a href="http://www.answers.com/grist">grist</a> for Rails’ magic mill. Rails は <a href="http://en.wikipedia.org/wiki/Sui_generis"><em>独特(sui generis)</em></a> なので、 Ruby とは離れて学び、理解されるべきです。この理由で、もしあなたの主な興味が Web アプリを書くことならば、最初に Rails を学び、その後 Ruby を学び、また Rails に戻ってくることをおすすめします。</p>
 
 <div class="label" id="sec-a_user_class"></div>
 
@@ -1464,15 +1460,15 @@ end
 <h3><a id="sec-4_4_5" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-a_user_class" class="heading"><span class="number">4.4.5</span>ユーザークラス</a></h3>
 
 
-<p>We end our tour of Ruby with a complete class of our own, a <code>User</code> class that anticipates the User model coming up in <a class="ref" href="http://railstutorial.jp/modeling-users.html#top">Chapter 6</a>.</p>
+<p>Ruby のツアーを、完全に自分で作ったクラス、 <code>User</code> クラスで終わらせます、これは<a class="ref" href="http://railstutorial.jp/modeling-users.html#top">6章</a> で出てくる予定です。</p>
 
-<p>So far we’ve entered class definitions at the console, but this quickly becomes tiresome; instead, create the file <code>example_user.rb</code> in your application root directory and fill it with the contents of <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-example_user">Listing 4.9</a>.</p>
+<p>これまでのところコンソールからクラス定義をしてきましたが、これは急速に面倒になります; それよりも、アプリケーションルートディレクトリに <code>example_user.rb</code> を作って<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-example_user">リスト4.9</a> のように書きましょう。</p>
 
 <div class="label" id="code-example_user"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.9.</span> <span class="description">Code for an example user. </span><br /><span class="description"> <code>example_user.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 4.9.</span> <span class="description">ユーザの例のコードです。</span><br /><span class="description"> <code>example_user.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span>
   <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
 
@@ -1489,16 +1485,16 @@ end
 </div></div>
 
 
-<p>There’s quite a bit going on here, so let’s take it step by step. The first line,</p>
+<p>これは全く大きくはないので、段階的に見て行きましょう。最初の行、</p>
 
 <div class="code"><div class="highlight"><pre>  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
 </pre></div>
 </div>
 
 
-<p>creates <em>attribute accessors</em> corresponding to a user’s name and email address. This creates “getter” and “setter” methods that allow us to retrieve (get) and assign (set) <code>@name</code> and <code>@email</code> <em>instance variables</em>, which were mentioned briefly in <a class="ref" href="http://railstutorial.jp/a-demo-app.html#sec-mvc_in_action">Section 2.2.2</a>. In Rails, the principal importance of instance variables is that they are automatically available in the views, but in general they are used for variables that need to be available throughout a Ruby class. (We’ll have more to say about this in a moment.) Instance variables always begin with an <code>@</code> sign, and are <code>nil</code> when undefined.</p>
+<p>ユーザの名前とメールアドレスに応答する <em>アトリビュート アクセサ</em> を作ります。これは <a class="ref" href="http://railstutorial.jp/a-demo-app.html#sec-mvc_in_action">2.2.2</a> で述べたように、<code>@name</code> と<code>@email</code> という <em>インスタンス変数</em>を取り出し(get) 割り当てる(set)  &quot;ゲッター&quot; と &quot;セッター&quot; というメソッドを作ります。Rails では、インスタンス変数の主な重要性はビューで自動的に使えるということですが、一般的にはこれらは Ruby のクラスの全体にわたって利用可能である必要がある変数に使われます。(この瞬間にもう少し言うことがあります。) インスタンス変数はいつも <code>@</code> 記号で始まり、定義されていない場合は<code>nil</code>です。</p>
 
-<p>The first method, <code>initialize</code>, is special in Ruby: it’s the method called when we execute <code>User.new</code>. This particular <code>initialize</code> takes one argument, <code>attributes</code>:</p>
+<p>最初のメソッド、 <code>initialize</code> はRuby では特殊です: これは <code>User.new</code> を実行した際に呼ばれるメソッドです。この特定の <code>initialize</code> は<code>attributes</code>という引数を1つ取ります:</p>
 
 <div class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">attributes</span> <span class="o">=</span> <span class="p">{})</span>
     <span class="vi">@name</span>  <span class="o">=</span> <span class="n">attributes</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span>
@@ -1508,9 +1504,9 @@ end
 </div>
 
 
-<p>Here the <code>attributes</code> variable has a <em>default value</em> equal to the empty hash, so that we can define a user with no name or email address (recall from <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-hashes_and_symbols">Section 4.3.3</a> that hashes return <code>nil</code> for nonexistent keys, so <code>attributes[:name]</code> will be <code>nil</code> if there is no <code>:name</code> key, and similarly for <code>attributes[:email]</code>).</p>
+<p>ここでは <code>attributes</code> 変数は空のハッシュを <em>デフォルトの値</em> として持つため、名前やメールアドレスのないユーザを作ることができます (<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-hashes_and_symbols">4.3.3</a> を思い出してください。存在しないキーに対してハッシュは <code>nil</code> を返すので、  <code>:name</code> キーがなければ<code>attributes[:name]</code> は <code>nil</code> になり、同じことが <code>attributes[:email]</code> にも言えます)。</p>
 
-<p>Finally, our class defines a method called <code>formatted_email</code> that uses the values of the assigned <code>@name</code> and <code>@email</code> variables to build up a nicely formatted version of the user’s email address using string interpolation (<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-strings">Section 4.2.2</a>):</p>
+<p>最後に、割り当てられた<code>@name</code> と <code>@email</code> の値を使った文字列の挿入によってうまく構成されたユーザのメールアドレスを組み立てる<code>formatted_email</code> メソッドを定義しましょう (<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-strings">4.2.2</a>):</p>
 
 <div class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">formatted_email</span>
     <span class="s2">&quot;</span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2"> &lt;</span><span class="si">#{</span><span class="vi">@email</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
@@ -1519,9 +1515,9 @@ end
 </div>
 
 
-<p>Because <code>@name</code> and <code>@email</code> are both instance variables (as indicated with the <code>@</code> sign), they are automatically available in the <code>formatted_email</code> method.</p>
+<p><code>@name</code> と <code>@email</code> は両方ともインスタンス変数 ( <code>@</code> 記号によって示されています)で、自動的に <code>formatted_email</code> メソッドで使えるようになります。</p>
 
-<p>Let’s fire up the console, <code>require</code> the example user code, and take our User class out for a spin:</p>
+<p>コンソールを起動し、example user のコードを<code>require</code>して、自作したクラスを試しに使ってみましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="nb">require</span> <span class="s1">&#39;./example_user&#39;</span>     <span class="c1"># This is how you load the example_user code.</span>
 <span class="go">=&gt; [&quot;User&quot;]</span>
@@ -1539,16 +1535,16 @@ end
 </div>
 
 
-<p>Here the <code>’.’</code> is Unix for “current directory”, and <code>’./example_user’</code> tells Ruby to look for an example user file relative to that location. The subsequent code creates an empty example user and then fills in the name and email address by assigning directly to the corresponding attributes (assignments made possible by the <code>attr_accessor</code> line in <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-example_user">Listing 4.9</a>). When we write</p>
+<p>この <code>’.’</code> は Unix の “カレントディレクトリ”のことで、<code>’./example_user’</code> は Ruby に相対パスで example user ファイルを探すように伝えています。その後、コードは空の example user を作り、そして属性に直接代入することで名前とメールアドレスに書き込みをしています (<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-example_user">リスト 4.9</a>の<code>attr_accessor</code>によって代入ができるようになっています)。下記のように書いたとき</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">example</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Example User&quot;</span>
 </pre></div>
 </div>
 
 
-<p>Ruby is setting the <code>@name</code> variable to <code>&quot;Example User&quot;</code> (and similarly for the <code>email</code> attribute), which we then use in the <code>formatted_email</code> method.</p>
+<p>Ruby は <code>@name</code> 変数 に <code>&quot;Example User&quot;</code> (そして同じく<code>email</code> 属性にも) を設定しており、これは<code>formatted_email</code> メソッドで使われます。</p>
 
-<p>Recalling from <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-css_revisited">Section 4.3.4</a> we can omit the curly braces for final hash arguments, we can create another user by passing a hash to the <code>initialize</code> method to create a user with pre-defined attributes:</p>
+<p><a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-css_revisited">4.3.4</a> を思い出すと、最後のハッシュ引数の波括弧を省略でき、前もって定義された属性を持つユーザを作るために<code>initialize</code> メソッドにハッシュを渡すことで他のユーザを作ることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
 <span class="go">=&gt; #&lt;User:0x225167c @email=&quot;mhartl@example.com&quot;, @name=&quot;Michael Hartl&quot;&gt;</span>
@@ -1558,7 +1554,7 @@ end
 </div>
 
 
-<p>We will see starting in <a class="ref" href="http://railstutorial.jp/sign-up.html#top">Chapter 7</a> that initializing objects using a hash argument, a technique known as <em>mass assignment</em>, is common in Rails applications.</p>
+<p><a class="ref" href="http://railstutorial.jp/sign-up.html#top">7章</a> では、 Rails アプリケーションで一般的な <em>mass assignment</em>として知られるテクニックであるハッシュ引数によるオブジェクトの初期化について知ることになります。</p>
 
 <div class="label" id="sec-conclusion"></div>
 
@@ -1566,16 +1562,16 @@ end
 <h2><a id="sec-4_5" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-conclusion" class="heading"><span class="number">4.5</span>最後に</a></h2>
 
 
-<p>This concludes our overview of the Ruby language. In <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#top">Chapter 5</a>, we’ll start putting it to good use in developing the sample application.</p>
+<p>ここで、Ruby 言語の概要について終わりにします。<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#top">5章</a>では、サンプルアプリケーションの開発において学んだ内容を生かしていきます。</p>
 
-<p>We won’t be using the <code>example_user.rb</code> file from <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-a_user_class">Section 4.4.5</a>, so I suggest removing it:</p>
+<p><a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>での<code>example_user.rb</code> ファイルを使うことはないので、これを削除することをお勧めします:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rm example_user.rb
 </pre></div>
 </div>
 
 
-<p>Then commit the other changes to the main source code repository:</p>
+<p>そしてその他の変更をリポジトリにコミットしましょう:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
 <span class="gp">$</span> git commit -m <span class="s2">&quot;Add a full_title helper&quot;</span>
@@ -1595,15 +1591,15 @@ end
 
 <ol>
 
-<li>By replacing the question marks in <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-string_shuffle">Listing 4.10</a> with the appropriate methods, combine <code>split</code>, <code>shuffle</code>, and <code>join</code> to write a function that shuffles the letters in a given string.</li>
+<li>与えられた文字列をシャッフルする関数を書くために、<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-string_shuffle">リスト 4.10</a> でのクエスチョンマークを適切なメソッドに置換することで<code>split</code>、<code>shuffle</code>、<code>join</code>を組み合わせてみましょう。</li>
 
-<li>Using <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-string_shuffle_two">Listing 4.11</a> as a guide, add a <code>shuffle</code> method to the <code>String</code> class.</li>
+<li><a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-string_shuffle_two">リスト 4.11</a>のようにして<code>shuffle</code> メソッドを <code>String</code> クラスに追加してみましょう。</li>
 
-<li>Create three hashes called <code>person1</code>, <code>person2</code>, and <code>person3</code>, with first and last names under the keys <code>:first</code> and <code>:last</code>. Then create a <code>params</code> hash so that <code>params[:father]</code> is <code>person1</code>, <code>params[:mother]</code> is <code>person2</code>, and <code>params[:child]</code> is <code>person3</code>. Verify that, for example, <code>params[:father][:first]</code> has the right value.</li>
+<li><code>:first</code> と <code>:last</code> のキーの下に名前と名字を持つ、<code>person1</code>、<code>person2</code>、<code>person3</code>という3つのハッシュを作りましょう。そして <code>params</code> ハッシュを作って、 <code>params[:father]</code> は <code>person1</code>、 <code>params[:mother]</code> は <code>person2</code>、そして<code>params[:child]</code> は <code>person3</code>にしてください。そして、例えば、<code>params[:father][:first]</code> が正しい値を持っていることを確認してください。</li>
 
-<li>Find an online version of the Ruby API and read about the <code>Hash</code> method <code>merge</code>.</li>
+<li>Ruby API のオンラインマニュアルを見つけて、<code>Hash</code> の <code>merge</code>メソッドについて読んでみてください。</li>
 
-<li>Follow the <a href="http://rubykoans.com/">Ruby Koans</a><sup class="footnote" id="fnref-4_14"><a href="http://railstutorial.jp/rails-flavored-ruby.html#fn-4_14">14</a></sup> to reach Ruby enlightenment.</li>
+<li>Ruby の悟りに到るために<a href="http://rubykoans.com/">Ruby Koans</a><sup class="footnote" id="fnref-4_14"><a href="http://railstutorial.jp/rails-flavored-ruby.html#fn-4_14">14</a></sup> に従ってみてください。</li>
 </ol>
 
 
@@ -1613,7 +1609,7 @@ end
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.10.</span> <span class="description">Skeleton for a string shuffle function.</span> </div>
+<div class="listing"><span class="header">Listing 4.10.</span> <span class="description">文字列をシャッフルする関数の骨組み</span> </div>
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">def</span> <span class="nf">string_shuffle</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="gp">&gt;&gt; </span>  <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="sc">?.</span><span class="p">?</span>
 end
@@ -1629,7 +1625,7 @@ end
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.11.</span> <span class="description">Skeleton for a <code>shuffle</code> method attached to the <code>String</code> class.</span> </div>
+<div class="listing"><span class="header">Listing 4.11.</span> <span class="description"><code>shuffle</code> メソッドを<code>String</code> クラスに追加するための骨組み</span> </div>
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">class</span> <span class="nc">String</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">def</span> <span class="nf">shuffle</span>
 <span class="gp">&gt;&gt; </span>    <span class="nb">self</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="sc">?.</span><span class="p">?</span>
@@ -1649,19 +1645,19 @@ end
 </a><a class="next_page" href="http://railstutorial.jp/filling-in-the-layout.html#top">    <span class="number">第5章</span>レイアウトを作成する</a><a class="next_page" href="http://railstutorial.jp/filling-in-the-layout.html#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-4_1">If a helper is specific to a particular controller, you should put it in the corresponding helper file; for example, helpers for the StaticPages controller generally go in <code>app/helpers/static_pages_helper.rb</code>. In our case, we expect the <code>full_title</code> helper to be used on all the site’s pages, and Rails has a special helper file for this case: <code>app/helpers/application_helper.rb</code>. <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_1">↑</a></li>
-<li id="fn-4_2">For more on the origins of “foo” and “bar”—and, in particular, the possible <em>non</em>-relation of “foobar” to “FUBAR”—see the <a href="http://www.catb.org/jargon/html/F/foo.html">Jargon File entry on “foo”</a>. <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_2">↑</a></li>
-<li id="fn-4_3">Programmers familiar with Perl or PHP should compare this to the automatic interpolation of dollar sign variables in expressions like <code>&quot;foo $bar&quot;</code>. <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_3">↑</a></li>
-<li id="fn-4_4">Apologies in advance for switching haphazardly between <em>function</em> and <em>method</em> throughout this chapter; in Ruby, they’re the same thing: all methods are functions, and all functions are methods, because everything is an object. <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_4">↑</a></li>
-<li id="fn-4_5">Well, there will still be <em>one</em> thing left that we don’t understand, which is how Rails ties this all together: mapping URIs to actions, making the <code>full_title</code> helper available in views, etc. This is an interesting subject, and I encourage you to investigate it further, but knowing exactly <em>how</em> Rails works is not necessary when <em>using</em> Rails. (For a deeper understanding, I recommend <a href="http://www.amazon.com/gp/product/0321601661"><em>The Rails 3 Way</em></a> by Obie Fernandez.) <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_5">↑</a></li>
-<li id="fn-4_6">The <code>second</code> method used here isn’t currently part of Ruby itself, but rather is added by Rails. It works in this case because the Rails console automatically includes the Rails extensions to Ruby. <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_6">↑</a></li>
-<li id="fn-4_7">Programming experts, on the other hand, might benefit from knowing that blocks are <em>closures</em>, which are one-shot anonymous functions with data attached. <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_7">↑</a></li>
-<li id="fn-4_8">Ruby 1.9 actually guarantees that hashes keep their elements in the same order entered, but it would be unwise ever to count on a particular ordering. <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_8">↑</a></li>
-<li id="fn-4_9">As a result of having less baggage, symbols are easier to compare to each other; strings need to be compared character by character, while symbols can be compared all in one go. This makes them ideal for use as hash keys. <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_9">↑</a></li>
-<li id="fn-4_10">These results will vary based on the version of Ruby you are using. This example assumes you are using Ruby 1.9.3. <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_10">↑</a></li>
-<li id="fn-4_11">For more on Ruby classes and the <code>self</code> keyword, see the <a href="http://railstips.org/">RailsTips</a> post “<a href="http://railstips.org/blog/archives/2006/11/18/class-and-instance-variables-in-ruby/">Class and Instance Variables in Ruby</a>”. <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_11">↑</a></li>
-<li id="fn-4_12">For those familiar with JavaScript, this functionality is comparable to using a built-in class prototype object to augment the class. (Thanks to reader <a href="http://getsatisfaction.com/railstutorial/topics/adding_methods_to_built_in_classes_comparable_to_using_javascripts_prototype_object">Erik Eldridge</a> for pointing this out.) <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_12">↑</a></li>
-<li id="fn-4_13">You don’t have to know what each class in this hierarchy does. <em>I</em> don’t know what they all do, and I’ve been programming in Ruby on Rails since 2005. This means either that (a) I’m grossly incompetent or (b) you can be a skilled Rails developer without knowing all its innards. I hope for both our sakes that it’s the latter. <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_13">↑</a></li>
+<li id="fn-4_1">もしもヘルパが特定のコントローラのためのものであったら、一致したヘルパファイルに置くべきです; 例えば、StaticPages コントローラのためのヘルパは通常は<code>app/helpers/static_pages_helper.rb</code> になります。今回の場合では、<code>full_title</code> ヘルパをサイトの全てのページで使うと予想されて、 Rails はこのような場合のための特別なヘルパファイルを持っています: <code>app/helpers/application_helper.rb</code>です。<a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_1">↑</a></li>
+<li id="fn-4_2">“foo” と “bar”についてのより詳細な起源について—そして、特に、“foobar” と “FUBAR”が<em>無</em>関係だと思われることについて— <a href="http://www.catb.org/jargon/html/F/foo.html">Jargon File entry on “foo”</a> を見てください。<a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_2">↑</a></li>
+<li id="fn-4_3">Perl や PHP に精通したプログラマはこれを<code>&quot;foo $bar&quot;</code>の例のようなドル記号による自動的な挿入と比較することができるでしょう。<a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_3">↑</a></li>
+<li id="fn-4_4">前もって、この章を通してのやみくもな<em>関数</em> と <em>メソッド</em> の混在を謝罪します; Rubyでは、これらは同じものです: 全てのメソッドは関数で、そして全ての関数はメソッドです。これは全てがオブジェクトだからです。<a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_4">↑</a></li>
+<li id="fn-4_5">さて、そこにはまだ <em>1つ</em> 理解していないことがあります、つまり、Rails がどうやってこれら全てを結びつけているかということです: URIをアクションへのマッピングや、 <code>full_title</code> ヘルパをビューで利用できるようにすることなどについてです。 これはおもしろい題材で、追加的な調査をすることを奨励しますが、<em>どのように</em> Rails が動いているかを正確に知ることは Rails を<em>使う</em> 際には必要ありません。 (深い理解のために、Obie Fernandez による<a href="http://www.amazon.com/gp/product/0321601661"><em>The Rails 3 Way</em></a> をお勧めします。) <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_5">↑</a></li>
+<li id="fn-4_6">ここで使っている<code>second</code> メソッドは今のところ Ruby 自身の一部ではなく、Rails によって追加されています。この場合これが動作したのは、 Rails コンソールは自動的に Rails の Ruby への拡張を含めるからです。<a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_6">↑</a></li>
+<li id="fn-4_7">プログラミングの熟練者は、一方では、ブロックは <em>クロージャ</em>であるということが理解する助けになるかもしれません。これはデータが付属された一度限りの無名関数です。<a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_7">↑</a></li>
+<li id="fn-4_8">Ruby 1.9 は実はハッシュが要素を入力順と同じ順番でいることを保証していますが、特定の順番で数えることは賢いとは言えません。<a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_8">↑</a></li>
+<li id="fn-4_9">少ない手荷物の結果として、シンボルは互いに比較し易いです; 文字列は1文字ずつ比較する必要がありますが、一方でシンボルは一度に全てを比較できます。これはハッシュのキーとして使うために理想的です。<a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_9">↑</a></li>
+<li id="fn-4_10">これらの結果はあなたが使っている Ruby のバージョンによって変わるでしょう。この例ではあなたが Ruby 1.9.3 を使っていることを想定しています。<a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_10">↑</a></li>
+<li id="fn-4_11">Ruby のクラスや <code>self</code> キーワードについての詳細は、<a href="http://railstips.org/">RailsTips</a> の “<a href="http://railstips.org/blog/archives/2006/11/18/class-and-instance-variables-in-ruby/">Ruby におけるクラスとインスタンス変数</a>” を見てください。<a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_11">↑</a></li>
+<li id="fn-4_12">JavaScript に精通している人のために、この機能性はクラスを増やすために組み込みクラスのプロトタイプオブジェクトを使うことに匹敵します。(これを指摘してくださった読者の<a href="http://getsatisfaction.com/railstutorial/topics/adding_methods_to_built_in_classes_comparable_to_using_javascripts_prototype_object">Erik Eldridge</a> に感謝します。) <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_12">↑</a></li>
+<li id="fn-4_13">この階層における各々のクラスが何をするかについて知らなくてもよいです。<em>私は</em> それらが何をしているか全ては知りませんし、そして2005年から Ruby on Rails でプログラミングしてきています。これは (a) 私がひどく無能であるか、(b) あなたは熟練した Rails 開発者に内部について全て知らなくてもなれる、ということのどちらかを意味します。私たち両方のために、後者であることを祈ります。<a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_13">↑</a></li>
 <li id="fn-4_14">http://rubykoans.com/ <a class="arrow" href="http://railstutorial.jp/rails-flavored-ruby.html#fnref-4_14">↑</a></li>
 </ol>
 </div>
