@@ -1026,7 +1026,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p><code>name</code>属性のバリデーションには最小限の制約しか課しませんでした。それは、空文字でない、51文字未満の名前です。もちろん、<code>email</code>属性はもっと厳重な要求を満たさなければなりません。これまでは空のメールアドレスのみを拒否してきました。ここでは、メールアドレスにおなじみのパターン<code>user@example.com</code>を確認することを要求します。</p>
 
-<p>テストもバリデーションも、ほとんどの有効なメールアドレスを受け入れ、ほとんどの無効なものを拒否するのに十分なだけで、徹底してはいません。We’ll start with a couple tests involving collections of valid and invalid addresses. To make these collections, it’s worth knowing about the useful  <code>%w[]</code> technique for making arrays of strings, as seen in this console session:</p>
+<p>テストもバリデーションも、ほとんどの有効なメールアドレスを受け入れ、ほとんどの無効なものを拒否するのに十分なだけで、徹底してはいません。有効なメールアドレスと無効なメールアドレスのコレクションを持ったテストから始めましょう。このコレクションを作るために、次のコンソールセッションに見られるような、文字列の配列を作る<code>%w[]</code>という便利なテクニックを知っておくと良いです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="sx">%w[foo bar baz]</span>
 <span class="go">=&gt; [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]</span>
@@ -1042,13 +1042,13 @@ end
 </div>
 
 
-<p>Here we’ve iterated over the elements of the <code>addresses</code> array using the <code>each</code> method (<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-blocks">Section 4.3.2</a>). With this technique in hand, we’re ready to write some basic email format validation tests (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_format_validation_tests">Listing 6.16</a>).</p>
+<p><code>メールアドレス</code>の配列の各要素を、<code>each</code>メソッドを使って繰り返し取り出しました (<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-blocks">4.3.2</a>)。このテクニックを手にしたら、基礎のメールフォーマットバリデーションのテストを書く準備は整いました (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_format_validation_tests">リスト6.16</a>)。</p>
 
 <div class="label" id="code-email_format_validation_tests"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 6.16.</span> <span class="description">Tests for email format validation. </span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.16.</span> <span class="description">メールフォーマットバリデーションのテスト</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
@@ -1084,15 +1084,15 @@ end
 </div></div>
 
 
-<p>As noted above, these are far from exhaustive, but we do check the common valid email forms <code>user@foo.COM</code>, <code>THE_US-ER@foo.bar.org </code> (uppercase, underscores, and compound domains), and <code>first.last@foo.jp</code> (the standard corporate username <code>first.last</code>, with a two-letter top-level domain <code>jp</code>), along with several invalid forms.</p>
+<p>上で示したものは網羅的とは言いがたいですが、一般的に有効なメールの形式である<code>user@foo.COM</code>、<code>THE_US-ER@foo.bar.org </code> (大文字、アンダースコア、compound domains) 、<code>first.last@foo.jp</code> (一般的な企業のユーザー名<code>名.姓</code>と、2文字のトップレベルドメイン<code>jp</code>) を、いくつかの無効な形式と共に確認しました。</p>
 
-<p>The application code for email format validation uses a <em>regular expression</em> (or <em>regex</em>) to define the format, along with the <code>:format</code> argument to the <code>validates</code> method (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_format_of_email">Listing 6.17</a>).</p>
+<p>メールフォーマットバリデーションのアプリのコードは、<code>validates</code>メソッドの<code>:format</code>引数と共に、フォーマットを定義するために<em>正規表現 (regular expression)</em> (または<em>regex</em>) を使います (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_format_of_email">リスト6.17</a>)。</p>
 
 <div class="label" id="code-validates_format_of_email"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 6.17.</span> <span class="description">Validating the email format with a regular expression. </span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.17.</span> <span class="description">正規表現を使ったメールフォーマットの検査</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
   <span class="n">attr_accessible</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
 
@@ -1104,7 +1104,7 @@ end
 </div></div>
 
 
-<p>Here the regex <code>VALID_EMAIL_REGEX</code> is a <em>constant</em>, indicated in Ruby by a name starting with a capital letter. The code</p>
+<p>正規表現<code>VALID_EMAIL_REGEX</code>は<em>定数</em>です。大文字で始まる名前はRubyでは定数を意味します。次のコード</p>
 
 <div class="code"><div class="highlight"><pre>  <span class="no">VALID_EMAIL_REGEX</span> <span class="o">=</span> <span class="sr">/\A[\w+\-.]+@[a-z\d\-.]</span><span class="sr">+\.[a-z]+\z/i</span>
   <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="p">{</span> <span class="ss">with:</span> <span class="no">VALID_EMAIL_REGEX</span> <span class="p">}</span>
@@ -1112,26 +1112,26 @@ end
 </div>
 
 
-<p>ensures that only email addresses that match the pattern will be considered valid. (Because it starts with a capital letter, <code>VALID_EMAIL_REGEX</code> is a Ruby <em>constant</em>, so its value can’t change.)</p>
+<p>は、パターンに一致するメールアドレスだけが有効であることを保証します (大文字で始まるので<code>VALID_EMAIL_REGEX</code>はRubyの<em>定数</em>で、その値は変更できません)。</p>
 
-<p>So, where does the pattern come from? Regular expressions consist of a terse (some would say <a href="http://catb.org/jargon/html/L/line-noise.html">unreadable</a>) language for matching text patterns; learning to construct regexes is an art, and to get you started I’ve broken <code>VALID_EMAIL_REGEX</code> into bite-sized pieces (<a class="ref" href="http://railstutorial.jp/modeling-users.html#table-valid_email_regex">Table 6.1</a>).<sup class="footnote" id="fnref-6_10"><a href="http://railstutorial.jp/modeling-users.html#fn-6_10">10</a></sup> To really learn about regular expressions, though, I consider the amazing <a href="http://www.rubular.com/">Rubular</a> regular expression editor (<a class="ref" href="http://railstutorial.jp/modeling-users.html#fig-rubular">Figure 6.4</a>) to be simply essential.<sup class="footnote" id="fnref-6_11"><a href="http://railstutorial.jp/modeling-users.html#fn-6_11">11</a></sup> The Rubular website has a beautiful interactive interface for making regular expressions, along with a handy regex quick reference. I encourage you to study <a class="ref" href="http://railstutorial.jp/modeling-users.html#table-valid_email_regex">Table 6.1</a> with a browser window open to Rubular—no amount of reading about regular expressions can replace a couple of hours playing with Rubular. (Note: If you use the regex from <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_format_of_email">Listing 6.17</a> in Rubular, you should leave off the <tt class="verb">\A</tt> and <tt class="verb">\z</tt> characters.)</p>
+<p>では、このパターンはどこから来たのでしょうか。正規表現は簡潔な (ある人は<a href="http://catb.org/jargon/html/L/line-noise.html">読めない</a>という) テキストパターンマッチング言語から成ります。正規表現を組み立てることを学ぶのは芸術であり、それを始めるには<code>VALID_EMAIL_REGEX</code>をビットサイズの破片に分解します (<a class="ref" href="http://railstutorial.jp/modeling-users.html#table-valid_email_regex">表6.1</a>)。<sup class="footnote" id="fnref-6_10"><a href="http://railstutorial.jp/modeling-users.html#fn-6_10">10</a></sup> 本当に正規表現を学びたいなら、素晴らしい正規表現エディタである<a href="http://www.rubular.com/">Rubular</a> (<a class="ref" href="http://railstutorial.jp/modeling-users.html#fig-rubular">図6.4</a>) が必要不可欠です。<sup class="footnote" id="fnref-6_11"><a href="http://railstutorial.jp/modeling-users.html#fn-6_11">11</a></sup> Rubularのウェブサイトは、正規表現を作るための美しく対話的なインターフェイスを持っています。また、手軽な正規表現のクイックリファレンスもあります。Rubularのサイトをブラウザで開いて<a class="ref" href="http://railstutorial.jp/modeling-users.html#table-valid_email_regex">表6.1</a>を学ぶことをお勧めします。正規表現について学んだことがなくても、Rubularを使えば数時間で慣れることができます (注: <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_format_of_email">リスト6.17</a>の正規表現をRubularで使う場合、<tt class="verb">\A</tt>と<tt class="verb">\z</tt>の文字は外してください)。</p>
 
 <div class="label" id="table-valid_email_regex"></div>
 
 
 <div class="table"><div class="center">
-<table class="tabular"><tr><th class="align_left"><strong>Expression</strong></th><th class="align_left"><strong>Meaning</strong></th></tr><tr class="top_bar"><td class="align_left"><tt class="verb">/\A[\w+\-.]+@[a-z\d\-.]</tt><tt class="verb">+\.[a-z]+\z/i</tt></td><td class="align_left">full regex</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">start of regex</td></tr><tr><td class="align_left"><tt class="verb">\A</tt></td><td class="align_left">match start of a string</td></tr><tr><td class="align_left"><tt class="verb">[\w+\-.]</tt><tt class="verb">+</tt></td><td class="align_left">at least one word character, plus, hyphen, or dot</td></tr><tr><td class="align_left"><tt class="verb">@</tt></td><td class="align_left">literal “at sign”</td></tr><tr><td class="align_left"><tt class="verb">[a-z\d\-.]</tt><tt class="verb">+</tt></td><td class="align_left">at least one letter, digit, hyphen, or dot</td></tr><tr><td class="align_left"><tt class="verb">\.</tt></td><td class="align_left">literal dot</td></tr><tr><td class="align_left"><tt class="verb">[a-z]+</tt></td><td class="align_left">at least one letter</td></tr><tr><td class="align_left"><tt class="verb">\z</tt></td><td class="align_left">match end of a string</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">end of regex</td></tr><tr><td class="align_left"><tt class="verb">i</tt></td><td class="align_left">case insensitive</td></tr></table></div><div class="caption"><span class="header">Table 6.1: </span><span class="description">Breaking down the email regex from <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_format_of_email">Listing 6.17</a>.</span></div></div>
+<table class="tabular"><tr><th class="align_left"><strong>表現</strong></th><th class="align_left"><strong>意味</strong></th></tr><tr class="top_bar"><td class="align_left"><tt class="verb">/\A[\w+\-.]+@[a-z\d\-.]</tt><tt class="verb">+\.[a-z]+\z/i</tt></td><td class="align_left">完全な正規表現</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">正規表現の始まり</td></tr><tr><td class="align_left"><tt class="verb">\A</tt></td><td class="align_left">文字列の先頭</td></tr><tr><td class="align_left"><tt class="verb">[\w+\-.]</tt><tt class="verb">+</tt></td><td class="align_left">英数字、プラス、ハイフン、ドットから成る少なくとも1文字</td></tr><tr><td class="align_left"><tt class="verb">@</tt></td><td class="align_left">アットマーク</td></tr><tr><td class="align_left"><tt class="verb">[a-z\d\-.]</tt><tt class="verb">+</tt></td><td class="align_left">英小文字、数字、ハイフン、ドットから成る少なくとも1文字</td></tr><tr><td class="align_left"><tt class="verb">\.</tt></td><td class="align_left">ドット</td></tr><tr><td class="align_left"><tt class="verb">[a-z]+</tt></td><td class="align_left">英小文字の少なくとも1文字</td></tr><tr><td class="align_left"><tt class="verb">\z</tt></td><td class="align_left">文字列の末尾</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">正規表現の終わり</td></tr><tr><td class="align_left"><tt class="verb">i</tt></td><td class="align_left">大文字小文字を無視する</td></tr></table></div><div class="caption"><span class="header">表6.1</span><span class="description"><a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_format_of_email">リスト6.17</a>のメールの正規表現の分解</span></div></div>
 
 
-<p>By the way, there actually exists a full regex for matching email addresses according to the official standard, but it’s really not worth the trouble. The one in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_format_of_email">Listing 6.17</a> is fine, maybe even better than the official one.<sup class="footnote" id="fnref-6_12"><a href="http://railstutorial.jp/modeling-users.html#fn-6_12">12</a></sup></p>
+<p>ところで、公式標準によるとメールアドレスに完全に一致する正規表現は存在します。しかし、骨折り甲斐はありません。<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_format_of_email">リスト6.17</a>の例は問題ありません。おそらく、公式のものより良いでしょう。<sup class="footnote" id="fnref-6_12"><a href="http://railstutorial.jp/modeling-users.html#fn-6_12">12</a></sup></p>
 
 <div class="label" id="fig-rubular"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/rubular.png" alt="rubular" /></span></div><div class="caption"><span class="header">Figure 6.4: </span><span class="description">The awesome  <a href="http://www.rubular.com/">Rubular</a> regular expression editor. <a href="http://railstutorial.org/images/figures/rubular-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/rubular.png" alt="rubular" /></span></div><div class="caption"><span class="header">図6.4</span><span class="description">素晴らしい<a href="http://www.rubular.com/">Rubular</a>という正規表現エディタ<a href="http://railstutorial.org/images/figures/rubular-full.png">(拡大)</a></span></div></div>
 
 
-<p>The tests should all be passing now. (In fact, the tests for valid email addresses should have been passing all along; since regexes are notoriously error-prone, the valid email tests are there mainly as a sanity check on <code>VALID_EMAIL_REGEX</code>.) This means that there’s only one constraint left: enforcing the email addresses to be unique.</p>
+<p>テストはすべて通っていると思います (実際、有効なメールアドレスのテストはずっと通ってきたし、正規表現は悪名高いほど誤りがちなので、有効なメールのテストは<code>VALID_EMAIL_REGEX</code>の上での簡単な確認でしかありません)。残り1つの制約は、メールアドレスが一意であることを強制するものです。</p>
 
 <div class="label" id="sec-uniqueness_validation"></div>
 
