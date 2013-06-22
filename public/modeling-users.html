@@ -1139,15 +1139,15 @@ end
 <h3><a id="sec-6_2_5" href="http://railstutorial.jp/modeling-users.html#sec-uniqueness_validation" class="heading"><span class="number">6.2.5</span>一意性を検証する</a></h3>
 
 
-<p>To enforce uniqueness of email addresses (so that we can use them as usernames), we’ll be using the <code>:unique</code> option to the <code>validates</code> method. But be warned: there’s a <em>major</em> caveat, so don’t just skim this section—read it carefully.</p>
+<p>メールアドレスの一意性を強制するために (ユーザー名として使うために)、<code>validates</code>メソッドの<code>:unique</code>オプションを使います。ただし<em>重大な</em>警告があります。流し読みはせず、注意深く読んでください。</p>
 
-<p>We’ll start, as usual, with our tests. In our previous model tests, we’ve mainly used <code>User.new</code>, which just creates a Ruby object in memory, but for uniqueness tests we actually need to put a record into the database.<sup class="footnote" id="fnref-6_13"><a href="http://railstutorial.jp/modeling-users.html#fn-6_13">13</a></sup> The (first) duplicate email test appears in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email_test">Listing 6.18</a>.</p>
+<p>いつも通りテストから始めます。モデルのテストではこれまで、主に<code>User.new</code>を使ってきました。これは単にメモリ上にRubyのオブジェクトを作るだけです。しかし、一意性のテストのために実際にレコードをデータベースに登録する必要があります。<sup class="footnote" id="fnref-6_13"><a href="http://railstutorial.jp/modeling-users.html#fn-6_13">13</a></sup> (最初の)重複メールアドレスのテストは<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email_test">リスト6.18</a>を見てください。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email_test"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 6.18.</span> <span class="description">A test for the rejection of duplicate email addresses. </span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.18.</span> <span class="description">重複するメールアドレスの拒否のテスト</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
@@ -1171,15 +1171,15 @@ end
 </div></div>
 
 
-<p>The method here is to make a user with the same email address as <code>@user</code>, which we accomplish using <code>@user.dup</code>, which creates a duplicate user with the same attributes. Since we then save that user, the original <code>@user</code> has an email address that already exists in the database, and hence should not be valid.</p>
+<p>ここのメソッドでは<code>@user</code>と同じメールアドレスでユーザーを作ります。そのために、同じ属性の重複ユーザーを作るための<code>@user.dup</code>を使います。その後そのユーザーを保存しようとすると、元の<code>@user</code>のメールアドレスが既にデータベースに存在するため、検査が有効にはなりません。</p>
 
-<p>We can get the new test in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email_test">Listing 6.18</a> to pass with the code in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email">Listing 6.19</a>.</p>
+<p><a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email">リスト6.19</a>のコードで通る新しいテストが<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email_test">リスト6.18</a>にあります。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 6.19.</span> <span class="description">Validating the uniqueness of email addresses. </span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.19.</span> <span class="description">メールアドレスの一意性の検査</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -1191,13 +1191,13 @@ end
 </div></div>
 
 
-<p>We’re not quite done, though. Email addresses are typically processed as if they were case-insensitive—i.e., <code>foo@bar.com</code> is treated the same as <code>FOO@BAR.COM</code> or <code>FoO@BAr.coM</code>—so our validation should incorporate this as well.<sup class="footnote" id="fnref-6_14"><a href="http://railstutorial.jp/modeling-users.html#fn-6_14">14</a></sup> We test for case-insensitivity with the code in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email_case_insensitive_test">Listing 6.20</a>.</p>
+<p>ほとんど何もしていないけれど、メールアドレスは典型的に大文字小文字を区別しないように扱われます。すなわち、<code>foo@bar.com</code>は<code>FOO@BAR.COM</code>や<code>FoO@BAr.coM</code>と同じように扱われます。従って、バリデーションはこのようなケースも考慮すべきです。<sup class="footnote" id="fnref-6_14"><a href="http://railstutorial.jp/modeling-users.html#fn-6_14">14</a></sup> <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email_case_insensitive_test">リスト6.20</a>のコードで大文字小文字を区別しないものをテストしています。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email_case_insensitive_test"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 6.20.</span> <span class="description">A test for the rejection of duplicate email addresses, insensitive to case. </span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.20.</span> <span class="description">大文字小文字を区別しない場合に重複するメールアドレスの拒否のテスト</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>

@@ -326,7 +326,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p><a href="http://railstutorial.jp/sign-up.html#top" class="ref">第7章</a>で、サイトにユーザーを追加するのに備えて、最初の<code>link_to</code> はスタブリンクのひな型を作成します。</p>
+<p><a href="http://railstutorial.jp/sign-up.html#top" class="ref">第7章</a>で、サイトにユーザーを追加するのに備えて、最初の<code>link_to</code> は仮のリンクを作成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">class=</span><span class="s">&quot;btn btn-large btn-primary&quot;</span><span class="nt">&gt;</span>Sign up now!<span class="nt">&lt;/a&gt;</span>
 </pre></div>
@@ -362,7 +362,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-5_1_2" href="http://railstutorial.jp/filling-in-the-layout.html#sec-custom_css" class="heading"><span class="number">5.1.2</span>BootstrapとカスタムCSS</a></h3>
 
 
-<p>In <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-adding_to_the_layout">Section 5.1.1</a>, we associated many of the HTML elements with CSS classes, which gives us considerable flexibility in constructing a layout based on CSS. As noted in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-adding_to_the_layout">Section 5.1.1</a>, many of these classes are specific to <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>, a framework from Twitter that makes it easy to add nice web design and user interface elements to an HTML5 application. In this section, we’ll combine Bootstrap with some custom CSS rules to start adding some style to the sample application.</p>
+<p><a href="http://railstutorial.jp/filling-in-the-layout.html#sec-adding_to_the_layout" class="ref">5.1.1</a>では、たくさんのHTML要素にCSSクラスを関連付けました。それは、CSSベースでレイアウトを構成する上で、大きな柔軟性を与えてくれます。<a href="http://railstutorial.jp/filling-in-the-layout.html#sec-adding_to_the_layout" class="ref">5.1.1</a>で述べたように、これらのクラスの内の多くは、HTML5アプリケーションにナイスなウェブデザインとユーザーインターフェース要素を簡単に追加できるようにするTwitterが作成したフレームワークである<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>特有のものです。このセクションでは、サンプルアプリケーションにスタイルを追加するために、カスタムCSSルールとBootstrapを組み合わせます。</p>
 
 <p>Our first step is to add Bootstrap, which in Rails applications can be accomplished with the <tt>bootstrap-sass</tt> gem, as shown in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-bootstrap_sass">Listing 5.3</a>. The Bootstrap framework natively uses the <a href="http://lesscss.org/">LESS CSS</a> language for making dynamic stylesheets, but the Rails asset pipeline supports the (very similar) Sass language by default (<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-sass_and_the_asset_pipeline">Section 5.2</a>), so <tt>bootstrap-sass</tt> converts LESS to Sass and makes all the necessary Bootstrap files available to the current application.<sup class="footnote" id="fnref-5_5"><a href="http://railstutorial.jp/filling-in-the-layout.html#fn-5_5">5</a></sup></p>
 
@@ -1238,13 +1238,13 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 
 <p>この方法でコードはよりわかりやすい意味を持ち、また、<code>about_path</code>の定義を変えることで<code>about_path</code>が使用されている全てのURIを変更できるため、より柔軟性を持ちます。</p>
 
-<p>計画しているリンクの全てのリストは、URIとルートのマッピングと共に<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#table-url_mapping">表5.1</a>にあります。この章の終わりまでに、最後のリンクを除き全て実装します。(最後のリンクは<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#top">第8章</a>で作成します。)</p>
+<p>計画しているリンクの全てのリストは、URIとルート(route)のマッピングと共に<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#table-url_mapping">表5.1</a>にあります。この章の終わりまでに、最後のリンクを除き全て実装します。(最後のリンクは<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#top">第8章</a>で作成します。)</p>
 
 <div class="label" id="table-url_mapping"></div>
 
 
 <div class="table"><div class="center">
-<table class="tabular"><tr><th class="align_left"><strong>Page</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_right"><strong>Named route</strong></th></tr><tr class="top_bar"><td class="align_left">Home</td><td class="align_left">/</td><td class="align_right"><code>root_path</code></td></tr><tr><td class="align_left">About</td><td class="align_left">/about</td><td class="align_right"><code>about_path</code></td></tr><tr><td class="align_left">Help</td><td class="align_left">/help</td><td class="align_right"><code>help_path</code></td></tr><tr><td class="align_left">Contact</td><td class="align_left">/contact</td><td class="align_right"><code>contact_path</code></td></tr><tr><td class="align_left">Sign up</td><td class="align_left">/signup</td><td class="align_right"><code>signup_path</code></td></tr><tr><td class="align_left">Sign in</td><td class="align_left">/signin</td><td class="align_right"><code>signin_path</code></td></tr></table></div><div class="caption"><span class="header">表 5.1 </span><span class="description">サイトリンクのルートとURIのマッピング。</span></div></div>
+<table class="tabular"><tr><th class="align_left"><strong>Page</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_right"><strong>Named route</strong></th></tr><tr class="top_bar"><td class="align_left">Home</td><td class="align_left">/</td><td class="align_right"><code>root_path</code></td></tr><tr><td class="align_left">About</td><td class="align_left">/about</td><td class="align_right"><code>about_path</code></td></tr><tr><td class="align_left">Help</td><td class="align_left">/help</td><td class="align_right"><code>help_path</code></td></tr><tr><td class="align_left">Contact</td><td class="align_left">/contact</td><td class="align_right"><code>contact_path</code></td></tr><tr><td class="align_left">Sign up</td><td class="align_left">/signup</td><td class="align_right"><code>signup_path</code></td></tr><tr><td class="align_left">Sign in</td><td class="align_left">/signin</td><td class="align_right"><code>signin_path</code></td></tr></table></div><div class="caption"><span class="header">表 5.1 </span><span class="description">サイトリンクのルート(route)とURIのマッピング。</span></div></div>
 
 
 <p>先に進む前にContactページを追加しましょう。(<a class="ref" href="http://railstutorial.jp/static-pages.html#top">第3章</a>の演習として残されています). テストは<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-contact_page_test">リストL5.16</a>に載せており、単に<a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_title">リスト3.18</a>に登場したモデルにしたがっています。<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-contact_page_test">リスト5.16</a>のアプリケーションコードでは、Ruby 1.9スタイルのハッシュに変更していることに注意してください。</p>
@@ -1460,7 +1460,7 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 <h3><a id="sec-5_3_2" href="http://railstutorial.jp/filling-in-the-layout.html#sec-rails_routes" class="heading"><span class="number">5.3.2</span> Railsのルート</a></h3>
 
 
-<p>我々が望むURIに対するテストがあるので、それらを実際に利用できるようにします。<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-static_pages_with_rails">3.1.2</a>で述べたように、RailsがURIマッピングに使用するファイルは<code>config/routes.rb</code>です。もしデフォルトのルートファイルを見ると、そこは凄く乱雑でしょう。しかし、それは全てコメントアウトされたルートマッピングの例であり、必要な乱雑さなのです。いつかそれらを読んでみることをお勧めします。また、ルートのより詳細な扱い方について<a href="http://guides.rubyonrails.org/routing.html">Rails GuidesのRails Routing from the outside in</a>を見ることをお勧めします。</p>
+<p>我々が望むURIに対するテストがあるので、それらを実際に利用できるようにします。<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-static_pages_with_rails">3.1.2</a>で述べたように、RailsがURIマッピングに使用するファイルは<code>config/routes.rb</code>です。もしデフォルトのルートファイルを見ると、そこは凄く乱雑でしょう。しかし、それは全てコメントアウトされたルートマッピングの例であり、必要な乱雑さなのです。いつかそれらを読んでみることをお勧めします。また、ルートのより詳細な扱い方について<a href="http://guides.rubyonrails.org/routing.html">Rails GuidesのRails Routing from the outside in</a>をご覧になることをお勧めします。</p>
 
 <p>名前付きルートを定義するため、以下のようなルールは</p>
 
@@ -1537,13 +1537,13 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 </div>
 
 
-<p>しかしながらこれは不必要です。Railsはファイル(<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-root_route_hint">リスト5.22</a>)の下側にルートURI / (“スラッシュ”)に対する特別なメソッドがあります。</p>
+<p>しかしながらこれは不必要です。Railsはファイル(<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-root_route_hint">リスト5.22</a>)の下側にルート(root)URI / (“スラッシュ”)に対する特別なメソッドがあります。</p>
 
 <div class="label" id="code-root_route_hint"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト5.22</span> <span class="description">ルートへのルーティングを定義するコメントアウトされたヒント。</span><br /><span class="description"> <code>config/routes.rb</code></span> </div>
+<div class="listing"><span class="header">リスト5.22</span> <span class="description">ルート(root)へのルーティングを定義するコメントアウトされたヒント。</span><br /><span class="description"> <code>config/routes.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -1559,13 +1559,13 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-root_route_hint">リストL5.22</a>を参考に、ルートURI / をHomeページへルーティングをするところ<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-root_route">リスト5.23</a>までたどり着きました。</p>
+<p><a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-root_route_hint">リストL5.22</a>を参考に、ルート(root)URI / をHomeページへルーティングをするところ<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-root_route">リスト5.23</a>までたどり着きました。</p>
 
 <div class="label" id="code-root_route"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト5.23</span> <span class="description">ルートへのルーティングのためのマッピングを追加。</span><br /><span class="description"> <code>config/routes.rb</code></span> </div>
+<div class="listing"><span class="header">リスト5.23</span> <span class="description">ルート(root)へのルーティングのためのマッピングを追加。</span><br /><span class="description"> <code>config/routes.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
   <span class="n">root</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#home&#39;</span>
 
@@ -1580,7 +1580,7 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 </div></div>
 
 
-<p>このコードはルートURIを /static_pages/home へ、そしてURIヘルパーへ下記の設定を与えます。</p>
+<p>このコードはルート(root)URIを /static_pages/home へ、そしてURIヘルパーへ下記の設定を与えます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">root_path</span> <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span>
 <span class="n">root_url</span>  <span class="o">=&gt;</span> <span class="s1">&#39;http://localhost:3000/&#39;</span>
@@ -1684,7 +1684,7 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 <div class="label" id="fig-about_page"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/about_page_styled.png" alt="about_page_styled" /></span></div><div class="caption"><span class="header">図5.8: </span><span class="description"><a href="http://localhost:3000/about">/about</a>で表示されるAboutページ。<a href="http://railstutorial.org/images/figures/about_page_styled-full.png">(拡大表示)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/about_page_styled.png" alt="about_page_styled" /></span></div><div class="caption"><span class="header">図5.8: </span><span class="description"><a href="http://localhost:3000/about">/about</a>で表示されるAboutページ。<a href="http://railstutorial.org/images/figures/about_page_styled-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -2101,7 +2101,7 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 <div class="label" id="fig-new_signup_page"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/new_signup_page_bootstrap.png" alt="new_signup_page_bootstrap" /></span></div><div class="caption"><span class="header">図5.9: </span><span class="description"><a href="http://localhost:3000/signup">/signup</a>で表示される新しいサインアップページ 。<a href="http://railstutorial.org/images/figures/new_signup_page_bootstrap-full.png">(拡大表示)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/new_signup_page_bootstrap.png" alt="new_signup_page_bootstrap" /></span></div><div class="caption"><span class="header">図5.9: </span><span class="description"><a href="http://localhost:3000/signup">/signup</a>で表示される新しいサインアップページ 。<a href="http://railstutorial.org/images/figures/new_signup_page_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 <p>この段階でテストはパスするはずです。At this point the tests should pass:</p>

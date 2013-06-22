@@ -1021,13 +1021,13 @@ by [Michael Hartl](http://michaelhartl.com/).
 <table class="tabular"><tr><th class="align_center"><strong>Page</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_left"><strong>Base title</strong></th><th class="align_left"><strong>Variable title</strong></th></tr><tr class="top_bar"><td class="align_center">Home</td><td class="align_left">/static_pages/home</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;Home&quot;</code></td></tr><tr><td class="align_center">Help</td><td class="align_left">/static_pages/help</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;Help&quot;</code></td></tr><tr><td class="align_center">About</td><td class="align_left">/static_pages/about</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;About&quot;</code></td></tr></table></div><div class="caption"><span class="header">Table 3.1: </span><span class="description">The (mostly) static pages for the sample app.</span></div></div>
 
 
-<p>このセクションの終わりには、3つ静的ページ全てのタイトルが、最後の部分のみ<a class="ref" href="http://railstutorial.jp/static-pages.html#table-static_pages">テーブル 3.1</a>ように、ページによって出し分けされた“Ruby on Rails Tutorial Sample App | Home”になります。We’ll build on the tests in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_page_content_spec">Listing 3.13</a>, adding title tests following the model in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-title_test">Listing 3.17</a>.</p>
+<p>このセクションの終わりには、3つ静的ページ全てのタイトルが、最後の部分のみ<a class="ref" href="http://railstutorial.jp/static-pages.html#table-static_pages">テーブル 3.1</a>ように、ページによって出し分けされた“Ruby on Rails Tutorial Sample App | Home”になります。まず、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_page_content_spec">リスト 3.13</a>のようにテストを作成し、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-title_test">リスト 3.17</a>モデルに沿ってタイトルのテストを追加しましょう。</p>
 
 <div class="label" id="code-title_test"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.17.</span> <span class="description">A title test.</span> </div>
+<div class="listing"><span class="header">リスト 3.17.</span> <span class="description">タイトルのテスト</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should have the right title&quot;</span> <span class="k">do</span>
   <span class="n">visit</span> <span class="s1">&#39;/static_pages/home&#39;</span>
   <span class="n">page</span><span class="o">.</span><span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span>
@@ -1037,7 +1037,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>This uses the <code>have_selector</code> method, which checks for an HTML element (the “selector”) with the given content. In other words, the code</p>
+<p>このテストでは<code>have_selector</code>メソッドを使っています。これは与えられたHTMLの中にHTML要素(セレクタ)があることをチェックしています。なので、このコードは</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">page</span><span class="o">.</span><span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span>
                   <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">&quot;Ruby on Rails Tutorial Sample App | Home&quot;</span><span class="p">)</span>
@@ -1045,31 +1045,31 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>checks to see that the content inside the <code>title</code> tag is</p>
+<p><code>タイトル</code>タグがあることを確認しています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="s2">&quot;Ruby on Rails Tutorial Sample App | Home&quot;</span>
 </pre></div>
 </div>
 
 
-<p>(We’ll learn in <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-hashes_and_symbols">Section 4.3.3</a> that the <code>:text =&gt; &quot;…&quot;</code> syntax is a <em>hash</em> using a <em>symbol</em> as the key.) It’s worth mentioning that the content need not be an exact match; any substring works as well, so that</p>
+<p>(<code>:text =&gt; &quot;…&quot;</code>のように<em>、ハッシュ</em>のキーに<em>シンボル</em>を使う書き方は<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-hashes_and_symbols">セクション 4.3.3</a>で学びます。)気を付けなければならないのは、この内容では完全一致でなくても良いことです。下記のような部分文字列であっても、</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">page</span><span class="o">.</span><span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="ss">:text</span> <span class="o">=&gt;</span> <span class="s2">&quot; | Home&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>will also match the full title.</p>
+<p>タイトル全体とマッチしてしまいます。</p>
 
-<p>Note that in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-title_test">Listing 3.17</a> we’ve broken the material inside <code>have_selector</code> into two lines; this tells you something important about Ruby syntax: Ruby doesn’t care about newlines.<sup class="footnote" id="fnref-3_11"><a href="http://railstutorial.jp/static-pages.html#fn-3_11">11</a></sup> The <em>reason</em> I chose to break the code into pieces is that I prefer to keep lines of source code under 80 characters for legibility.<sup class="footnote" id="fnref-3_12"><a href="http://railstutorial.jp/static-pages.html#fn-3_12">12</a></sup> As it stands, this code formatting is still rather ugly; <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-static_pages_exercises">Section 3.5</a> has a refactoring exercise that makes them prettier, and <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-pretty_rspec">Section 5.3.4</a> completely rewrites the StaticPages tests to take advantage of the latest features in RSpec.</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#code-title_test">リスト 3.17</a>ではRubyは改行を無視しているというRubyの基本的な書き方を使って<code>have_selector</code>の中を2つの行に分けています。<sup class="footnote" id="fnref-3_11"><a href="http://railstutorial.jp/static-pages.html#fn-3_11">11</a></sup><em>その理由</em>は、私がソースコードの読みやすさを考えて1行を80字以内に収めるのを好んでおり、それによりこのコードを細かく分けたからです。<sup class="footnote" id="fnref-3_12"><a href="http://railstutorial.jp/static-pages.html#fn-3_12">12</a></sup>このままでは、このコードの見た目はまだ汚いままですが、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-static_pages_exercises">セクション 3.5</a>でより見やすいようにリファクタリングをします。また、<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-pretty_rspec">セクション 5.3.4</a>で最新版のRspecの機能を使って静的ページの完全な書き換えを行います。</p>
 
-<p>Adding new tests for each of our three static pages, following the model of <a class="ref" href="http://railstutorial.jp/static-pages.html#code-title_test">Listing 3.17</a>, gives us our new StaticPages test (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_title">Listing 3.18</a>).</p>
+<p>3つの静的ページのテストをそれぞれ追加したら、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-title_test">リスト 3.17</a>のモデルの沿って、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_title">リスト 3.18</a>のように新しい静的ページのテストを追加します。</p>
 
 <div class="label" id="code-pages_controller_spec_title"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.18.</span> <span class="description">The StaticPages controller spec with title tests. </span><br /><span class="description"> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.18.</span> <span class="description">タイトルのテストを含んだ静的ページのコントローラのspecファイル</span><br /><span class="description"> <code>spec/requests/static_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
@@ -1120,16 +1120,16 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>Note that we’ve changed <code>have_content</code> to the more specific <code>have_selector(’h1’, …)</code>. See if you can figure out why. (<em>Hint:</em> What would happen if the title contained, say, ‘Help’, but the content inside <code>h1</code> tag had ‘Helf’ instead?)</p>
+<p><code>have_content</code>から<code>have_selector(’h1’, …)</code>に変更をしています。なぜこうしたかを理解したい場合はヒントを見てみてください。((<em>ヒント:</em> もしタイトルが&#39;Help&#39;で、<code>h1</code>のタグの内容が&#39;Helf&#39;だったらどうなっていたでしょう?)</p>
 
-<p>With the tests from <a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_title">Listing 3.18</a> in place, you should run</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_title">リスト 3.18</a>からテストに適切に追いたら、下記を実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
 </pre></div>
 </div>
 
 
-<p>to verify that our code is now Red (failing tests).</p>
+<p>今はテストがRed(テストが失敗している)ことを確認してください。</p>
 
 <div class="label" id="sec-passing_title_tests"></div>
 
@@ -1137,13 +1137,13 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h3><a id="sec-3_3_2" href="http://railstutorial.jp/static-pages.html#sec-passing_title_tests" class="heading"><span class="number">3.3.2</span>タイトルのテストをパスさせる</a></h3>
 
 
-<p>Now we’ll get our title tests to pass, and at the same time add the full HTML structure needed to make valid web pages. Let’s start with the Home page (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_full_html">Listing 3.19</a>), using the same basic HTML skeleton as in the “hello” page from <a class="ref" href="http://railstutorial.jp/static-pages.html#code-hello_world">Listing 3.3</a>.</p>
+<p>では、タイトルのテストをパスさせ、それと同時にウェブページを表示させるためのHTML構造を全て追加しましょう。<a class="ref" href="http://railstutorial.jp/static-pages.html#code-hello_world">リスト 3.3</a>の&quot;hellp&quot;ページにあるような基本的なHTMLの骨組みを使って、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_full_html">リスト 3.19</a>にあるようなHomeページのを作るところから始めましょう。</p>
 
 <div class="label" id="code-home_view_full_html"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.19.</span> <span class="description">The view for the Home page with full HTML structure. </span><br /><span class="description"> <code>app/views/static_pages/home.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.19.</span> <span class="description">全てのHTML構造が入ったHomeページのビュー</span><br /><span class="description"> <code>app/views/static_pages/home.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -1162,20 +1162,20 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_full_html">Listing 3.19</a> uses the title tested for in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_title">Listing 3.18</a>:</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_full_html">リスト 3.19</a>では<a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_title">リスト 3.18</a>にあるテスト済みのタイトルを使います。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;title&gt;</span>Ruby on Rails Tutorial Sample App | Home<span class="nt">&lt;/title&gt;</span>
 </pre></div>
 </div>
 
 
-<p>As a result, the tests for the Home page should now pass. We’re still Red because of the failing Help and About tests, and we can get to Green with the code in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-help_view_full_html">Listing 3.20</a> and <a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_view_full_html">Listing 3.21</a>.</p>
+<p>As a result, the tests for the Home page should now pass. まだ、HelpとAboutのテストが失敗しているためまだテストがRedの状態なので、テストをGreenにするためコードを<a class="ref" href="http://railstutorial.jp/static-pages.html#code-help_view_full_html">リスト 3.20</a>と<a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_view_full_html">リスト 3.21</a>のように修正します。</p>
 
 <div class="label" id="code-help_view_full_html"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.20.</span> <span class="description">The view for the Help page with full HTML structure. </span><br /><span class="description"> <code>app/views/static_pages/help.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.20.</span> <span class="description">全てのHTML構造が入ったHelpページのビュー</span><br /><span class="description"> <code>app/views/static_pages/help.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -1201,7 +1201,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.21.</span> <span class="description">The view for the About page with full HTML structure. </span><br /><span class="description"> <code>app/views/static_pages/about.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.21.</span> <span class="description">全てのHTML構造が入ったAboutページのビュー</span><br /><span class="description"> <code>app/views/static_pages/about.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -1226,29 +1226,29 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sec-embedded_ruby"></div>
 
 
-<h3><a id="sec-3_3_3" href="http://railstutorial.jp/static-pages.html#sec-embedded_ruby" class="heading"><span class="number">3.3.3</span>組込みRuby</a></h3>
+<h3><a id="sec-3_3_3" href="http://railstutorial.jp/static-pages.html#sec-embedded_ruby" class="heading"><span class="number">3.3.3</span>Rubyのコードの埋め込み</a></h3>
 
 
-<p>We’ve achieved a lot already in this section, generating three valid pages using Rails controllers and actions, but they are purely static HTML and hence don’t show off the power of Rails. Moreover, they suffer from terrible duplication:</p>
+<p>このセクションでは、3つのRailsのコントローラとアクションを使った3つの有効なページを生成することで、多くの事をすでにやってきました。ただ、それらは単純な静的ページであり、またRailsのパワーを十分に発揮できていません。さらに、ひどい重複が含まれています。</p>
 
 <ul>
-<li>The page titles are almost (but not quite) exactly the same.</li>
-<li>“Ruby on Rails Tutorial Sample App” is common to all three titles.</li>
-<li>The entire HTML skeleton structure is repeated on each page.</li>
+<li>ページのタイトルが全部ではないがほとんどが同じである。</li>
+<li>“Ruby on Rails Tutorial Sample App” が3つのタイトルに共通である。</li>
+<li>それぞれのページで、HTMLの全体の構造が重複している。</li>
 </ul>
 
 
-<p>This repeated code is a violation of the important “Don’t Repeat Yourself” (DRY) principle; in this section and the next we’ll “DRY out our code” by removing the repetition.</p>
+<p>このようなコードの重複は、“Don’t Repeat Yourself” (DRY)という重要な原則に反しています。このセクションと次のセクションでは、重複を除くことで私達のコードをDRYにしていきます。</p>
 
-<p>Paradoxically, we’ll take the first step toward eliminating duplication by first adding some more: we’ll make the titles of the pages, which are currently quite similar, match <em>exactly</em>. This will make it much simpler to remove all the repetition at a stroke.</p>
+<p>逆説的ではありますが、まず最初のステップとして、今のほとんど同じページのタイトルを<em>完全に</em>一致させるコードを追加していきます。これにより、一度に全ての重複を排除することがより簡単になります。</p>
 
-<p>The technique involves using <em>Embedded Ruby</em> in our views. Since the Home, Help, and About page titles have a variable component, we’ll use a special Rails function called <code>provide</code> to set a different title on each page. We can see how this works by replacing the literal title “Home” in the <code>home.html.erb</code> view with the code in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_erb_title">Listing 3.22</a>.</p>
+<p>重複を排除するテクニックの一つとして、ビューの中に<em>Rubyのコードの埋め込み</em>があります。Home、Help、Aboutページには可変の要素があるので、それぞれのページ毎に異なるタイトルにするために、<code>provide</code>というRailsの関数を使います。それでは、<code>home.html.erb</code>ビューのコードを<a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_erb_title">リスト 3.22</a>にあるように、&quot;Home&quot;という文字のタイトルを置き換えをすることで動作を確認していきましょう。</p>
 
 <div class="label" id="code-home_view_erb_title"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.22.</span> <span class="description">The view for the Home page with an Embedded Ruby title. </span><br /><span class="description"> <code>app/views/static_pages/home.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.22.</span> <span class="description">タイトルにRubyを埋め込んだHomeページのビュー</span><br /><span class="description"> <code>app/views/static_pages/home.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Home&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
@@ -1268,36 +1268,36 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_erb_title">Listing 3.22</a> is our first example of Embedded Ruby, also called <em>ERb</em>. (Now you know why HTML views have the file extension <code>.html.erb</code>.) ERb is the primary template system for including dynamic content in web pages.<sup class="footnote" id="fnref-3_13"><a href="http://railstutorial.jp/static-pages.html#fn-3_13">13</a></sup> The code</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_erb_title">リスト 3.22</a>では、<em>1ERb</em>と呼ばれている、Rubyの埋め込みの最初の例です。(これで、HTMLビューのファイルの拡張子が<code>.html.erb</code>となっている理由が分かったのではないでしょうか。) ERbはウェブページに動的な要素を入れるときに使うテンプレートシステムです。<sup class="footnote" id="fnref-3_13"><a href="http://railstutorial.jp/static-pages.html#fn-3_13">13</a></sup></p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Home&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>indicates using <tt class="verb">&lt;% ... %&gt;</tt> that Rails should call the <code>provide</code> function and associate the string <code>’Home’</code> with the label <code>:title</code>.<sup class="footnote" id="fnref-3_14"><a href="http://railstutorial.jp/static-pages.html#fn-3_14">14</a></sup> Then, in the title, we use the closely related notation <tt class="verb">&lt;%= ... %&gt;</tt> to insert the title into the template using Ruby’s <code>yield</code> function:<sup class="footnote" id="fnref-3_15"><a href="http://railstutorial.jp/static-pages.html#fn-3_15">15</a></sup></p>
+<p>上記のコードで<tt class="verb">&lt;% ... %&gt;</tt>と書かれていますが、ここでRailsは<code>provide</code>関数を呼び出し、<code>’Home’</code>という文字列を<code>:title</code>のラベルに紐付けます。<sup class="footnote" id="fnref-3_14"><a href="http://railstutorial.jp/static-pages.html#fn-3_14">14</a></sup>そして、近くの<tt class="verb">&lt;%= ... %&gt;</tt>表記で、Rubyの<code>yield</code>関数使い、テンプレートにタイトルを入れます。<sup class="footnote" id="fnref-3_15"><a href="http://railstutorial.jp/static-pages.html#fn-3_15">15</a></sup></p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;title&gt;</span>Ruby on Rails Tutorial Sample App | <span class="cp">&lt;%=</span> <span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
 </pre></div>
 </div>
 
 
-<p>(The distinction between the two types of embedded Ruby is that  <tt class="verb">&lt;% ... %&gt;</tt> <em>executes</em> the code inside, while <tt class="verb">&lt;%= ... %&gt;</tt> executes it and <em>inserts</em> the result into the template.) The resulting page is exactly the same as before, only now the variable part of the title is generated dynamically by ERb.</p>
+<p>(この2つのRubyの埋め込みの違いは、<tt class="verb">&lt;% ... %&gt;</tt>と書くと中に書かれたコードを<em>実行するだけ</em>ですが、<tt class="verb">&lt;%= ... %&gt;</tt>と書くと、中のコードが実行されその結果がテンプレートの中に<em>挿入され</em>ます。)可変になったタイトルの部分はERbによって動的に生成されていますが、結果前と全く同じページになります。</p>
 
-<p>We can verify that all this works by running the tests from <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-testing_a_title_change">Section 3.3.1</a> and see that they still pass:</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#sec-testing_a_title_change">セクション 3.3.1</a>のテストを走らせることで、変更が正しく行われたか確認できます。テストがパスするのを確認しましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
 </pre></div>
 </div>
 
 
-<p>Then we can make the corresponding replacements for the Help and About pages (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-help_view_erb_title">Listing 3.23</a> and <a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_view_erb_title">Listing 3.24</a>).</p>
+<p>引き続き、HelpとAboutページについても同じように変更していきます。(<a class="ref" href="http://railstutorial.jp/static-pages.html#code-help_view_erb_title">リスト 3.23</a>、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_view_erb_title">リスト 3.24</a>).</p>
 
 <div class="label" id="code-help_view_erb_title"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.23.</span> <span class="description">The view for the Help page with an Embedded Ruby title. </span><br /><span class="description"> <code>app/views/static_pages/help.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト3.23.</span> <span class="description">タイトルにRubyを埋め込んだHelpページのビュー</span><br /><span class="description"> <code>app/views/static_pages/help.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Help&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
@@ -1324,7 +1324,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.24.</span> <span class="description">The view for the About page with an Embedded Ruby title. </span><br /><span class="description"> <code>app/views/static_pages/about.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.24.</span> <span class="description">タイトルにRubyを埋め込んだAboutページのビュー</span><br /><span class="description"> <code>app/views/static_pages/about.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;About Us&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
@@ -1353,7 +1353,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h3><a id="sec-3_3_4" href="http://railstutorial.jp/static-pages.html#sec-layouts" class="heading"><span class="number">3.3.4</span>レイアウトを使って重複を解消する</a></h3>
 
 
-<p>Now that we’ve replaced the variable part of the page titles with ERb, each of our pages looks something like this:</p>
+<p>タイトルの可変部分をERbを使って置き換えたので、今はそれぞれのページは下記のようになっていると思います。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Foo&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
@@ -1368,29 +1368,29 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>In other words, <em>all</em> our pages are identical in structure, including the contents of the title tag, with the sole exception of the material inside the <code>body</code> tag.</p>
+<p>これは、唯一の例外である<code>body</code>タグの内容を除き、<em>全ての</em>ページにおいて、titleタグの内容を含め同じ構造になっていると言えます。</p>
 
-<p>In order to factor out this common structure, Rails comes with a special <em>layout</em> file called <code>application.html.erb</code>, which we renamed in <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-testing_a_title_change">Section 3.3.1</a> and which we’ll now restore:</p>
+<p>共通の構造を取り除くため、Railsは<code>application.html.erb</code>という特別な<em>レイアウト</em>ファイルを持っています。<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-testing_a_title_change">セクション 3.3.1</a>でリネームリネームしてあったので、それを復旧させます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> mv foobar app/views/layouts/application.html.erb
 </pre></div>
 </div>
 
 
-<p>To get the layout to work, we have to replace the default title with the Embedded Ruby from the examples above:</p>
+<p>リイアウトファイルが動くようになったので、Rubyが埋め込まれたデフォルトのタイトルの部分を入れ替えます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;title&gt;</span>Ruby on Rails Tutorial Sample App | <span class="cp">&lt;%=</span> <span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
 </pre></div>
 </div>
 
 
-<p>The resulting layout appears in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-application_layout">Listing 3.25</a>.</p>
+<p>その結果、レイアウトファイルは<a class="ref" href="http://railstutorial.jp/static-pages.html#code-application_layout">リスト 3.25</a>のようになります。</p>
 
 <div class="label" id="code-application_layout"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.25.</span> <span class="description">The sample application site layout. </span><br /><span class="description"> <code>app/views/layouts/application.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.25.</span> <span class="description">sampleアプリケーションのレイアウトファイル </span><br /><span class="description"> <code>app/views/layouts/application.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -1407,16 +1407,16 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>Note here the special line</p>
+<p>下記の行は特別です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>This code is responsible for inserting the contents of each page into the layout. It’s not important to know exactly how this works; what matters is that using this layout ensures that, for example, visiting the page /static_pages/home converts the contents of <code>home.html.erb</code> to HTML and then inserts it in place of <tt class="verb">&lt;%= yield %&gt;</tt>.</p>
+<p>このコードは、各ページの内容をレイアウトに入れるためのものです。このコードがどのように動いているかを正確に理解することは重要では無いです。レイアウトファイルを使うことの重要な点は、/static_pages/homeにアクセスしたときを考えると、<code>home.html.erb</code>の内容をHTMLに変換し、<tt class="verb">&lt;%= yield %&gt;</tt>に挿入してくれることです。</p>
 
-<p>It’s also worth noting that the default Rails layout includes several additional lines:</p>
+<p>また、Railsのデフォルトのレイアウトファイルには、特に重要ではない幾つかの行が追加されています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span>    <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">:media</span> <span class="o">=&gt;</span> <span class="s2">&quot;all&quot;</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">javascript_include_tag</span> <span class="s2">&quot;application&quot;</span> <span class="cp">%&gt;</span>
@@ -1425,15 +1425,15 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>This code arranges to include the application stylesheet and JavaScript, which are part of the asset pipeline (<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-the_asset_pipeline">Section 5.2.1</a>), together with the Rails method <code>csrf_meta_tags</code>, which prevents <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">cross-site request forgery</a> (CSRF), a type of malicious web attack.</p>
+<p>このコードは、アセットパイプラインの一部(<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-the_asset_pipeline">セクション 5.2.1　参照</a>)のスタイルシートとJavaScriptと、ウェブにおける攻撃手法の一つの<a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">クロスサイトリクエストフォージェリ</a> (cross-site request forgery, CSRF)を防ぐために使われるRailsの<code>csrf_meta_tags</code>メソッドを配置しています。</p>
 
-<p>Of course, the views in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_erb_title">Listing 3.22</a>, <a class="ref" href="http://railstutorial.jp/static-pages.html#code-help_view_erb_title">Listing 3.23</a>, and <a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_view_erb_title">Listing 3.24</a> are still filled with all the HTML structure included in the layout, so we have to remove it, leaving only the interior contents. The resulting cleaned-up views appear in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_interior">Listing 3.26</a>, <a class="ref" href="http://railstutorial.jp/static-pages.html#code-help_view_interior">Listing 3.27</a>, and <a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_view_interior">Listing 3.28</a>.</p>
+<p>もちろん、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_erb_title">リスト 3.22</a>、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-help_view_erb_title">リスト 3.23</a>、 <a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_view_erb_title">リスト 3.24</a>のビューには、レイアウトに含まれるHTMLがまだ残っているので、それらを削除して、内部のコンテツだけ残すようにしましょう。その結果、 <a class="ref" href="http://railstutorial.jp/static-pages.html#code-home_view_interior">リスト 3.26</a>、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-help_view_interior">リスト 3.27</a>、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-about_view_interior">リスト 3.28</a>にあるようにビューが綺麗になると思います。</p>
 
 <div class="label" id="code-home_view_interior"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.26.</span> <span class="description">The Home page with HTML structure removed. </span><br /><span class="description"> <code>app/views/static_pages/home.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.26.</span> <span class="description">HTMLを削除したHomeページ</span><br /><span class="description"> <code>app/views/static_pages/home.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Home&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>Sample App<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
@@ -1451,7 +1451,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.27.</span> <span class="description">The Help page with HTML structure removed. </span><br /><span class="description"> <code>app/views/static_pages/help.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.27.</span> <span class="description">HTMLを削除したHelpページ</span><br /><span class="description"> <code>app/views/static_pages/help.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Help&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>Help<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
@@ -1470,7 +1470,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.28.</span> <span class="description">The About page with HTML structure removed. </span><br /><span class="description"> <code>app/views/static_pages/about.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.28.</span> <span class="description">HTMLを削除したAboutページ</span><br /><span class="description"> <code>app/views/static_pages/about.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;About Us&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>About Us<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
@@ -1483,7 +1483,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>With these views defined, the Home, Help, and About pages are the same as before, but they have much less duplication. Verifying that the test suite still passes gives us confidence that this code refactoring was successful:</p>
+<p>これらのビューができると、Home、Help、Aboutページは前と同じようにみえますが、コードの重複が大分減りました。最後にこのリファクタリングが上手く行っているかを確認するために、依然としてテストが通ることを確認しましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
 </pre></div>
@@ -1498,9 +1498,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h2><a id="sec-3_4" href="http://railstutorial.jp/static-pages.html#sec-static_pages_conclusion" class="heading"><span class="number">3.4</span>最後に</a></h2>
 
 
-<p>Seen from the outside, this chapter hardly accomplished anything: we started with static pages, and ended with… <em>mostly</em> static pages. But appearances are deceiving: by developing in terms of Rails controllers, actions, and views, we are now in a position to add arbitrary amounts of dynamic content to our site. Seeing exactly how this plays out is the task for the rest of this tutorial.</p>
+<p>傍から見ると、この章では、静的ページを<em>おおよそ</em>静的ページに変えただけで、ほとんど何もしていないと見えるでしょう。しかし、見た目に反して、Railsのコントローラ、アクション、ビューの観点では改善しており、自分達のサイトに動的なコンテンツを自由に追加することができるようになりました。このチュートリアルで残っているタスクは、どのようにこのチュートリアルを最後までやり切るかだけです。早速見て行きましょう。</p>
 
-<p>Before moving on, let’s take a minute to commit our changes and merge them into the master branch. Back in <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-static_pages_with_rails">Section 3.1.2</a> we created a Git branch for the development of static pages. If you haven’t been making commits as we’ve been moving along, first make a commit indicating that we’ve reached a stopping point:</p>
+<p>次に移る前に、少し時間をとって、差分をコミットしてマスターブランチにマージしておきましょう。<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-static_pages_with_rails">セクション 3.1.2</a>では、静的ページの開発のためのGitブランチを用意しました。次に行く前にコミットしていなければ、まず中継点までたどり着いたとが分かるようにコミットします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
 <span class="gp">$</span> git commit -m <span class="s2">&quot;Finish static pages&quot;</span>
@@ -1508,7 +1508,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>Then merge the changes back into the master branch using the same technique as in <a class="ref" href="http://railstutorial.jp/beginning.html#sec-git_commands">Section 1.3.5</a>:</p>
+<p>そして、masterブランチに移動して、<a class="ref" href="http://railstutorial.jp/beginning.html#sec-git_commands">セクション 1.3.5</a>と同じように差分をマージします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout master
 <span class="gp">$</span> git merge static-pages
@@ -1516,14 +1516,14 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>Once you reach a stopping point like this, it’s usually a good idea to push your code up to a remote repository (which, if you followed the steps in <a class="ref" href="http://railstutorial.jp/beginning.html#sec-github">Section 1.3.4</a>, will be GitHub):</p>
+<p>このように一度中継点まできたら、コードをリモートリポジトリに上げておくとよいでしょう。(<a class="ref" href="http://railstutorial.jp/beginning.html#sec-github">セクション 1.3.4</a>の手順を踏んでいる場合、GitHubになるでしょう。)</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push
 </pre></div>
 </div>
 
 
-<p>If you like, at this point you can even deploy the updated application to Heroku:</p>
+<p>もし、問題なければ、ここでアップデートしたアプリケーションをHerokuにデプロイしておいてもよいでしょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push heroku
 </pre></div>
@@ -1542,11 +1542,11 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <ol>
 
-<li>Make a Contact page for the sample app. Following the model in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_title">Listing 3.18</a>, first write a test for the existence of a page at the URI /static_pages/contact by testing for the right <code>h1</code> content, and then write a second test for the title “Ruby on Rails Tutorial Sample App | Contact”. Get your tests to pass, and then fill in the Contact page with the content from <a class="ref" href="http://railstutorial.jp/static-pages.html#code-proposed_contact_page">Listing 3.29</a>. (This exercise is solved as part of <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-layout_links">Section 5.3</a>.)</li>
+<li>sampleアプリケーションのContactページをつくりなさい。<a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_title">リスト 3.18</a>にあるモデルに沿って、まず、<code>h1</code>の内容をテストすることで、URIが/static_pages/contactのページが存在するテストを作って下さい。その後、タイトルが “Ruby on Rails Tutorial Sample App | Contact”であるテストを作って下さい。テストを通すために、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-proposed_contact_page">リスト 3.29</a>の内容をContactページに反映させて下さい。(この演習は <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-layout_links">セクション 5.3</a>で説明があります。)</li>
 
-<li>You may have noticed some repetition in the StaticPages controller spec (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_title">Listing 3.18</a>). In particular, the base title, “Ruby on Rails Tutorial Sample App”, is the same for every title test. Using the RSpec <code>let</code> function, which creates a variable corresponding to its argument, verify that the tests in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_exercise">Listing 3.30</a> still pass. <a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_exercise">Listing 3.30</a> introduces <em>string interpolation</em>, which is covered further in <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-strings">Section 4.2.2</a>. </li>
+<li><a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_title">リスト 3.18</a>のStaticPagesコントローラのスペックに幾つかの重複があることに気付くかと思います。特に、“Ruby on Rails Tutorial Sample App”というタイトルはそれぞれのタイトルのテストで同じ記述があります。引数として渡されたシンボルと同名の変数にブロックの評価値を格納する、RSpecの<code>let</code>関数を使い、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_exercise">リスト 3.30</a>のようにテストを変更し、テストを通しましょう。<a class="ref" href="http://railstutorial.jp/static-pages.html#code-pages_controller_spec_exercise">リスト 3.30</a>では文字列の挿入が行われていますが、これは<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-strings">セクション 4.2.2</a>で紹介します。</li>
 
-<li><strong>(advanced)</strong> As noted on the <a href="http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development">Heroku page on using <tt>sqlite3</tt> for development</a>, it’s a good idea to use the same database in development, test, and production environments to minimize the possibility of subtle incompatibilities. Follow the <a href="http://devcenter.heroku.com/articles/local-postgresql">Heroku instructions for local PostgreSQL installation</a> to install the PostgreSQL database on your local system. Update your <code>Gemfile</code> to eliminate the <tt>sqlite3</tt> gem and use the <tt>pg</tt> gem exclusively, as shown in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-Gemfile_pg_gem">Listing 3.31</a>. You will also have to learn about the <code>config/database.yml</code> file and how to run PostgreSQL locally. Your goal should be to create and configure both the development database and the test database to use PostgreSQL. <strong>Warning:</strong> You may find this exercise challenging, and I recommend it only for advanced users. If you get stuck, don’t hesitate to skip it; as noted previously, the sample application developed in this tutorial is fully compatible with both SQLite and PostgreSQL. </li>
+<li><strong>(上級者向け)</strong><a href="http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development">Heroku page on using <tt>sqlite3</tt> for development</a>のページにあるように、非互換性によるエラーを最小限することができるので、develpment、test、production環境で共通のデータベースを使うことは良いことです。<a href="http://devcenter.heroku.com/articles/local-postgresql">Heroku instructions for local PostgreSQL installation</a>には、PostgreSQLをローカル環境にインストールする手順が紹介されてます。PostgreSQLを使う場合は、 <a class="ref" href="http://railstutorial.jp/static-pages.html#code-Gemfile_pg_gem">リスト 3.31</a>にあるように、<code>Gemfile</code>から<tt>sqlite3</tt>gemを消し、<tt>pg</tt>gemのみを使うようにしてください。<code>config/database.yml</code>ファイルと、PostgreSQLをローカル環境で動かす方法を知る必要があります。PostgreSQLを使ってdevelopmentとtestのデータベースを作り、設定を行うことがゴールです。<strong>Warning:</strong>この演習はとても興味がそそられるかとおもいますが、上級者にのみに勧めます。もし、作業に詰まったら、すぐに飛ばして次の作業に移りましょう。前述した通り、このチュートリアルで開発しているサンプルアプリケーションは、SQLiteとPostgreSQLで完全に互換性があります。</li>
 
 </ol>
 
@@ -1557,7 +1557,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.29.</span> <span class="description">Code for a proposed Contact page. </span><br /><span class="description"> <code>app/views/static_pages/contact.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.29.</span> <span class="description">Contactページのコード作成の方針</span><br /><span class="description"> <code>app/views/static_pages/contact.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Contact&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>Contact<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
@@ -1574,7 +1574,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.30.</span> <span class="description">The StaticPages controller spec with a base title. </span><br /><span class="description"> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.30.</span> <span class="description">共通のタイトルを含むStaticPagesコントローラのスペック</span><br /><span class="description"> <code>spec/requests/static_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
@@ -1643,7 +1643,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.31.</span> <span class="description">The <code>Gemfile</code> needed to use PostgreSQL instead of SQLite.</span> </div>
+<div class="listing"><span class="header">リスト 3.31.</span> <span class="description">SQLiteの代わりにPostgreSQLを使う場合の<code>Gemfile</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.13&#39;</span>
@@ -1678,9 +1678,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h2><a id="sec-3_6" href="http://railstutorial.jp/static-pages.html#sec-advanced_setup" class="heading"><span class="number">3.6</span>高度なセットアップ</a></h2>
 
 
-<p>As mentioned briefly in <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-first_tests">Section 3.2</a>, using the <code>rspec</code> command directly is not ideal. In this section, we’ll first discuss a method to eliminate the necessity of typing <code>bundle exec</code>, and then set up testing to automate the running of the test suite using Guard (<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-guard">Section 3.6.2</a>) and, optionally, Spork (<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-spork">Section 3.6.3</a>). Finally, we’ll mention a method for running tests directly inside Sublime Text, a technique especially useful when used in concert with Spork.</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#sec-first_tests">セクション 3.2</a>でも少し紹介しましたが、<code>rspec</code>コマンドを直接使うことは実用的はありません。このセクションでは、まず<code>bundle exec</code>を書かなくて済むような方法を紹介し、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-guard">Section 3.6.2</a>でGuardを使ったテストスイートの実行の自動化のセッティングを、そしてさらに追加で<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-spork">Section 3.6.3</a>でSporkを紹介します。最後に、Sublime Textから直接テストを走らせる方法を紹介します。特にSporkと一緒に使うととても便利なテクニックです。</p>
 
-<p>This section should only be attempted by fairly advanced users and can be skipped without loss of continuity. Among other things, this material is likely to go out of date faster than the rest of the tutorial, so you shouldn’t expect everything on your system to match the examples exactly, and you may have to Google around to get everything to work.</p>
+<p>このセクションでは、ほとんどが上級者向けの内容になっており、この章を飛ばしても次の章以降に何も影響はありません。残りのチュートリアルに比べて廃れていく速度が早いものなので、自分のシステムで動かす場合、例の全てが合っているとは限りません。もし、全てを動かそうとするためにはGoogleで調べて見て下さい。</p>
 
 <div class="label" id="sec-eliminating_bundle_exec"></div>
 
@@ -1688,7 +1688,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h3><a id="sec-3_6_1" href="http://railstutorial.jp/static-pages.html#sec-eliminating_bundle_exec" class="heading"><span class="number">3.6.1</span><tt>bundle exec</tt>を追放する</a></h3>
 
 
-<p>As mentioned briefly in <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-TDD">Section 3.2.1</a>, it is necessary in general to prefix commands such as <code>rake</code> or <code>rspec</code> with <code>bundle exec</code> so that the programs run in the exact gem environment specified by the <code>Gemfile</code>. (For technical reasons, the only exception to this is the <code>rails</code> command itself.) This practice is rather cumbersome, and in this section we discuss two ways to eliminate its necessity.</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#sec-TDD">Section 3.2.1</a>で簡単に紹介しましたが、<code>rake</code>や<code>rspec</code>の実行には、<code>Gemfile</code>から環境依存のgemを読み込んでプログラムを走らせるために、 <code>bundle exec</code>が必ず前に付いていました。(技術的な理由により、<code>rails</code>コマンドだけは例外です。)この演習は色々と厄介なので、このセクションでは2つの方法でbundle execが必要ないことを議論していきます。</p>
 
 <div class="label" id="sec-rvm_bundler_integration"></div>
 
@@ -1696,7 +1696,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h4><a id="sec-3_6_1_1" href="http://railstutorial.jp/static-pages.html#sec-rvm_bundler_integration" class="heading">RVM Bundler の統合</a></h4>
 
 
-<p>The first and preferred method is to use RVM, which includes Bundler integration as of version 1.11. You can verify that you have a sufficiently up-to-date version of RVM as follows:</p>
+<p>最初に、よりオススメの方法としてRVMを使う方法を紹介します。RVMはバージョン1.11以降からBundlerとの統合が含まれています。まず、下記に従って、RVMのバージョンを最新にしましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm get head <span class="o">&amp;&amp;</span> rvm reload
 <span class="gp">$</span> rvm -v
@@ -1706,16 +1706,17 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>As long as the version number is 1.11.x or greater, installed gems will automatically be executed in the proper Bundler environment, so that you can write (for example)</p>
+<p>バージョンが1.11.x以降であれば、インストールされたgemは自動的に適切なBundlerの環境で実行されます。例えば、下記のように書けます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rspec spec/
 </pre></div>
 </div>
 
 
-<p>and omit the leading <code>bundle exec</code>. If this is the case, you should skip the rest of this section.</p>
+<p><code>bundle exec</code>を除くことができました。 もし、これで上手く行っていれば、このセクションの残りはスキップして下さい。</p>
 
-<p>If for any reason you are restricted to an earlier version of RVM, you can still eliminate <code>bundle exec</code> by using <a href="http://rvm.io/integration/bundler/">RVM Bundler integration</a><sup class="footnote" id="fnref-3_16"><a href="http://railstutorial.jp/static-pages.html#fn-3_16">16</a></sup> to configure the Ruby Version Manager to include the proper executables automatically in the local environment. The steps are simple if somewhat mysterious. First, run these two commands:</p>
+<p>新しいバージョンのRVMを使うことができない場合は、<a href="http://rvm.io/integration/bundler/">RVM Bundler integration</a>を使うことで<code>bundle exec</code>を削除することができます。<sup class="footnote" id="fnref-3_16"><a href="http://railstutorial.jp/static-pages.html#fn-3_16">16</a></sup>
+If for any reason you are restricted to an earlier version of RVM, you can still eliminate <code>bundle exec</code> by using <a href="http://rvm.io/integration/bundler/">RVM Bundler integration</a><sup class="footnote" id="fnref-3_16"><a href="http://railstutorial.jp/static-pages.html#fn-3_16">16</a></sup> to configure the Ruby Version Manager to include the proper executables automatically in the local environment. The steps are simple if somewhat mysterious. First, run these two commands:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm get head <span class="o">&amp;&amp;</span> rvm reload
 <span class="gp">$</span> chmod +x <span class="nv">$rvm_path</span>/hooks/after_cd_bundler

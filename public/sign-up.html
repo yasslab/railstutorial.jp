@@ -103,9 +103,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h1 class="chapter"><a id="sec-7" href="http://railstutorial.jp/sign-up.html#top" class="heading"><span class="number">第7章</span>ユーザー登録</a></h1>
 
 
-<p>Userモデルができあがったので、いよいよWebサイトになくてはならないユーザー登録機能を追加しましょう。<a class="ref" href="http://railstutorial.jp/sign-up.html#sec-signup_form">7.2</a>ではHTML<em>フォーム</em>を使用して登録情報をWebアプリケーションに送信します。続いて<a class="ref" href="http://railstutorial.jp/sign-up.html#sec-signup_success">7.4</a>ではユーザーを新規作成して情報をデータベースに保存します。ユーザー登録手続きの最後には、作成されたユーザーの新しいプロファイルを表示できるようにするために、ユーザーを<em>表示する</em>ためのページを作成し、ユーザー用のRESTアーキテクチャを実装する第一歩を踏み出します (<a class="ref" href="http://railstutorial.jp/a-demo-app.html#sec-mvc_in_action">2.2.2</a>)。これまでと同様、開発と同時にテストも作成します。RSpecとCapybaraの利用範囲を拡大し、簡潔かつ表現力豊かな統合テストを作成します。</p>
+<p>Userモデルができあがったので、いよいよWebサイトになくてはならないユーザー登録機能を追加しましょう。<a class="ref" href="http://railstutorial.jp/sign-up.html#sec-signup_form">7.2</a>ではHTML<em>フォーム</em>を使用して登録情報をWebアプリケーションに送信します。続いて<a class="ref" href="http://railstutorial.jp/sign-up.html#sec-signup_success">7.4</a>ではユーザーを新規作成して情報をデータベースに保存します。ユーザー登録手続きの最後には、作成されたユーザーの新しいプロファイルを表示できるようにするために、ユーザーを<em>表示する</em>ためのページを作成し、ユーザー用のRESTアーキテクチャを実装する第一歩を踏み出します (<a class="ref" href="http://railstutorial.jp/a-demo-app.html#sec-mvc_in_action">2.2.2</a>)。これまでと同様、開発と同時にテストも作成します。RSpecとCapybaraの適用範囲を拡大し、簡潔かつ表現力豊かな統合テストを作成します。</p>
 
-<p>ユーザープロファイルページを作成するには、その前にデータベースにユーザーが登録されている必要があります。これはいわゆる「卵が先か鶏が先か」問題です。このWebサイトでは、登録ページがない状態でどうやってユーザーを登録しておけばよいでしょうか。幸い、この問題は既に解決されています。<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-creating_a_user">6.3.5</a>でRails consoleを使用してユーザーレコードを登録してありました。登録していない場合は、上記を参照して登録しておいてください。</p>
+<p>ユーザープロファイルページを作成するには、その前にデータベースにユーザーが登録されている必要があります。これはいわゆる「卵が先か鶏が先か」問題です。このWebサイトでは、登録ページがない状態でどうやってユーザーを登録しておけばよいでしょうか。幸い、この問題は既に解決されています。<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-creating_a_user">6.3.5</a>でRailsコンソールを使用してユーザーレコードを登録してありました。登録していない場合は、上記を参照して登録しておいてください。</p>
 
 <p>バージョン管理を使用している場合は、いつもと同じようにトピックブランチを作成します。</p>
 
