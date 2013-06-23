@@ -8,3 +8,4 @@ Icon
 *.out
 .DS_Store
 config.json
+archive.zip
