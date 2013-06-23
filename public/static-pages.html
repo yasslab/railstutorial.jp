@@ -1715,8 +1715,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p><code>bundle exec</code>を除くことができました。 もし、これで上手く行っていれば、このセクションの残りはスキップして下さい。</p>
 
-<p>新しいバージョンのRVMを使うことができない場合は、<a href="http://rvm.io/integration/bundler/">RVM Bundler integration</a>を使うことで<code>bundle exec</code>を削除することができます。<sup class="footnote" id="fnref-3_16"><a href="http://railstutorial.jp/static-pages.html#fn-3_16">16</a></sup>
-If for any reason you are restricted to an earlier version of RVM, you can still eliminate <code>bundle exec</code> by using <a href="http://rvm.io/integration/bundler/">RVM Bundler integration</a><sup class="footnote" id="fnref-3_16"><a href="http://railstutorial.jp/static-pages.html#fn-3_16">16</a></sup> to configure the Ruby Version Manager to include the proper executables automatically in the local environment. The steps are simple if somewhat mysterious. First, run these two commands:</p>
+<p>新しいバージョンのRVMを使うことができない場合は、Ruby Version Managerがローカル環境で自動的に設定される適切な実行ファイルがあれば、<a href="http://rvm.io/integration/bundler/">RVM Bundler integration</a><sup class="footnote" id="fnref-3_16"><a href="http://railstutorial.jp/static-pages.html#fn-3_16">16</a></sup>で<code>bundle exec</code>を削除することができます。ちょっと奇妙に見えますが、下記のステップが簡単です。まず、下記の2つのコマンドを実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm get head <span class="o">&amp;&amp;</span> rvm reload
 <span class="gp">$</span> chmod +x <span class="nv">$rvm_path</span>/hooks/after_cd_bundler
@@ -1724,7 +1723,7 @@ If for any reason you are restricted to an earlier version of RVM, you can still
 </div>
 
 
-<p>Then run these:</p>
+<p>続いて下記を実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/rails_projects/sample_app
 <span class="gp">$</span> bundle install --without production --binstubs<span class="o">=</span>./bundler_stubs
@@ -1732,13 +1731,13 @@ If for any reason you are restricted to an earlier version of RVM, you can still
 </div>
 
 
-<p>Together, these commands combine RVM and Bundler magic to ensure that commands such as <code>rake</code> and <code>rspec</code> are automatically executed in the right environment. Since these files are specific to your local setup, you should add the <code>bundler_stubs</code> directory to your <code>.gitignore</code> file (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-bundler_stubs_gitignore">Listing 3.32</a>).</p>
+<p>魔法のように見えますが、これらのコマンドはRVMとBundlerを紐付けます。そして、<code>rake</code>や<code>rspec</code>のようなコマンドを正しい環境で自動的に実行してくれます。これらのファイルをローカル環境でセットアップできたら、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-bundler_stubs_gitignore">リスト 3.32</a>にあるように<code>bundler_stubs</code>ディレクトリを<code>.gitignore</code>ファイルに追加します。</p>
 
 <div class="label" id="code-bundler_stubs_gitignore"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.32.</span> <span class="description">Adding <code>bundler_stubs</code> to the <code>.gitignore</code> file.</span> </div>
+<div class="listing"><span class="header">リスト 3.32.</span> <span class="description"><code>.gitignore</code>ファイルに<code>bundler_stubs</code>を追加</span> </div>
 <div class="code"><div class="highlight"><pre># Ignore bundler config
 /.bundle
 
@@ -1760,7 +1759,7 @@ bundler_stubs/
 </div></div>
 
 
-<p>If you add another executable (such as <code>guard</code> in <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-guard">Section 3.6.2</a>), you should re-run the <code>bundle install</code> command:</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#sec-guard">セクション 3.6.2</a>にあるように<code>guard</code>などの他の実行ファイルを追加する場合、<code>bundle install</code>コマンドを再度実行して下さい。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install --binstubs<span class="o">=</span>./bundler_stubs
 </pre></div>
@@ -1775,30 +1774,30 @@ bundler_stubs/
 <h4><a id="sec-3_6_1_2" href="http://railstutorial.jp/static-pages.html#sec-binstubs" class="heading">binstubオプション</a></h4>
 
 
-<p>If you’re not using RVM, you can still avoid typing <code>bundle exec</code>.  Bundler allows the creation of the associated binaries as follows:</p>
+<p>もしRVMを使っていない場合でも、<code>bundle exec</code>を省略することができます。下記のように、Bundlerは関連するバイナリを作ることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle --binstubs
 </pre></div>
 </div>
 
 
-<p>(In fact, this step, with a different target directory, is also used when using RVM.) This command creates all the necessary executables in the <code>bin/</code> directory of the application, so that we can now run the test suite as follows:</p>
+<p>(RVMを使っている場合、異なるターゲットのディレクトであっても、このステップを実行できます。)このコマンドは、アプリケーションの<code>bin/</code>ディレクトリに全ての必要な実行ファイルを作ります。そうしたら、下記のようにテストスイートを実行出来ます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bin/rspec spec/
 </pre></div>
 </div>
 
 
-<p>The same goes for <code>rake</code>, etc.:</p>
+<p><code>rake</code>も同様に実行できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bin/rake db:migrate
 </pre></div>
 </div>
 
 
-<p>If you add another executable (such as <code>guard</code> in <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-guard">Section 3.6.2</a>), you should re-run the <tt class="verb">bundle</tt> <tt class="verb">--binstubs</tt> command.</p>
+<p>　<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-guard">セクション 3.6.2</a>の<code>guard</code>のように他の実行ファイルを追加する場合、<tt class="verb">bundle</tt> <tt class="verb">--binstubs</tt>コマンドを再実行してください。</p>
 
-<p>For the sake of readers who skip this section, the rest of this tutorial will err on the side of caution and explicitly use <code>bundle exec</code>, but of course you should feel free to use the more compact version if your system is properly configured.</p>
+<p>このセクションをスキップした人のために、このチュートリアルの残りは慎重過ぎるぐらい慎重になって、 <code>bundle exec</code>をしっかり使いましょう。しかし、もし、あなたのシステムが適切に設定されていれば、コンパクトになったバージョンを遠慮なく使って下さい。</p>
 
 <div class="label" id="sec-guard"></div>
 
@@ -1806,15 +1805,15 @@ bundler_stubs/
 <h3><a id="sec-3_6_2" href="http://railstutorial.jp/static-pages.html#sec-guard" class="heading"><span class="number">3.6.2</span>Guardによるテストの自動化</a></h3>
 
 
-<p>One annoyance associated with using the <code>rspec</code> command is having to switch to the command line and run the tests by hand. (A second annoyance, the slow start-up time of the test suite, is addressed in <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-spork">Section 3.6.3</a>.) In this section, we’ll show how to use <a href="https://github.com/guard/guard">Guard</a> to automate the running of the tests. Guard monitors changes in the filesystem so that, for example, when we change the <code>static_pages_spec.rb</code> file only those tests get run. Even better, we can configure Guard so that when, say, the <code>home.html.erb</code> file is modified, the <code>static_pages_spec.rb</code> automatically runs.</p>
+<p><code>rspec</code>コマンドを使う煩わしさの一つは、コマンドラインに戻って、手でテストを実行していることです。(2つ目の煩わしさは、テストスイートの立ち上げが遅いことですが、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-spork">Section 3.6.3</a>で対応します。)このセクションでは、テストを自動的に実行する<a href="https://github.com/guard/guard">Guard</a>の使い方を紹介します。例えば、<code>static_pages_spec.rb</code>ファイルを変更すると、Guardはファイルシステムの変更を監視していて、テストを走らせます。より素晴らしいことに、<code>home.html.erb</code>ファイルが変更されると <code>static_pages_spec.rb</code>が自動的に走るようにGuardを設定することができます。</p>
 
-<p>First we add <code>guard-rspec</code> to the <code>Gemfile</code> (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-gemfile_guard">Listing 3.33</a>).</p>
+<p>まず、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-gemfile_guard">Listing 3.33</a>のように、<code>Gemfile</code>を<code>guard-rspec</code>を追加します。</p>
 
 <div class="label" id="code-gemfile_guard"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.33.</span> <span class="description">A <code>Gemfile</code> for the sample app, including Guard.</span> </div>
+<div class="listing"><span class="header">リスト 3.33.</span> <span class="description">Guardを追加したサンプルアプリケーションの<code>Gemfile</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.13&#39;</span>
@@ -1847,7 +1846,7 @@ bundler_stubs/
 </div></div>
 
 
-<p>Then we have to replace the comment at the end of the test group with some system-dependent gems (OS X users may have to install <a href="http://growl.info/downloads#generaldownloads">Growl and growlnotify</a> as well):</p>
+<p>システム依存のgemを幾つかtestグループの最後に入れます。(OS Xユーザーでは同様に<a href="http://growl.info/downloads#generaldownloads">Growl と growlnotify</a>をインストールする必要があります。)</p>
 
 <div class="code"><div class="highlight"><pre><span class="c1"># Test gems on Macintosh OS X</span>
 <span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
@@ -1880,14 +1879,14 @@ bundler_stubs/
 </div>
 
 
-<p>We next install the gems by running <code>bundle install</code>:</p>
+<p>次に<code>bundle install</code>を実行してgemをインストールします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install
 </pre></div>
 </div>
 
 
-<p>Then initialize Guard so that it works with RSpec:</p>
+<p>RSpecと一緒に動かすためにGuardの初期化を行います。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>guard init rspec
 <span class="go">Writing new Guardfile to /Users/mhartl/rails_projects/sample_app/Guardfile</span>
@@ -1896,13 +1895,13 @@ bundler_stubs/
 </div>
 
 
-<p>Now edit the resulting <code>Guardfile</code> so that Guard will run the right tests when the integration tests and views are updated (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-guardfile">Listing 3.34</a>).</p>
+<p>結合テストとビューが更新されたら適切なテストが実行されるように、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-guardfile">リスト 3.34</a>のように生成された<code>Guardfile</code>を編集しましょう。</p>
 
 <div class="label" id="code-guardfile"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.34.</span> <span class="description">Additions to the default <code>Guardfile</code>.</span> </div>
+<div class="listing"><span class="header">リスト 3.34.</span> <span class="description">標準の<code>Guardfile</code>に追記</span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;active_support/core_ext&#39;</span>
 
 <span class="n">guard</span> <span class="s1">&#39;rspec&#39;</span><span class="p">,</span> <span class="ss">:version</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">:all_after_pass</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="k">do</span>
@@ -1928,25 +1927,25 @@ bundler_stubs/
 </div></div>
 
 
-<p>Here the line</p>
+<p>下記の行は失敗したテストを通った後、他のテストを実行するのを防ぐためです。(Red-Green-Refactorのサイクルを高速に回すためです。)</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">guard</span> <span class="s1">&#39;rspec&#39;</span><span class="p">,</span> <span class="ss">:version</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">:all_after_pass</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="k">do</span>
 </pre></div>
 </div>
 
 
-<p>ensures that Guard doesn’t run all the tests after a failing test passes (to speed up the Red-Green-Refactor cycle).</p>
+<p></p>
 
-<p>We can now start <code>guard</code> as follows:</p>
+<p>それでは<code>guard</code>を下記で実行しましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>guard
 </pre></div>
 </div>
 
 
-<p>To eliminate the need to prefix the command with <code>bundle exec</code>, re-follow the steps in <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-eliminating_bundle_exec">Section 3.6.1</a>.</p>
+<p><code>bundle exec</code>を取り除くために、再度<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-eliminating_bundle_exec">セクション 3.6.1</a>のステップを行なって下さい。</p>
 
-<p>By the way, if you get a Guard error complaining about the absence of a <code>spec/routing</code> directory, you can fix it by creating an empty one:</p>
+<p>もし、<code>spec/routing</code>ディレクトリが無いとGuardがエラーを出した場合、空のディレクトリを作ることで回避できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> mkdir spec/routing
 </pre></div>
@@ -1961,15 +1960,15 @@ bundler_stubs/
 <h3><a id="sec-3_6_3" href="http://railstutorial.jp/static-pages.html#sec-spork" class="heading"><span class="number">3.6.3</span>Spork を使ったテストの高速化</a></h3>
 
 
-<p>When running <code>bundle exec rspec</code>, you may have noticed that it takes several seconds just to start running the tests, but once they start running they finish quickly. This is because each time RSpec runs the tests it has to reload the entire Rails environment. The <a href="http://github.com/sporkrb/spork">Spork test server</a><sup class="footnote" id="fnref-3_17"><a href="http://railstutorial.jp/static-pages.html#fn-3_17">17</a></sup> aims to solve this problem. Spork loads the environment <em>once</em>, and then maintains a pool of processes for running future tests. Spork is particularly useful when combined with Guard (<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-guard">Section 3.6.2</a>).</p>
+<p><code>bundle exec rspec</code>を走らせている時、テストを走らせようとしているときに始まるまで何秒か掛かることがあることの気付いたかと思います。しかし、一度テストが走り始めれば、素早く終わると思います。これは、RSpecを走らせる毎に、Railsの環境全体を読み込み直す必要があるためです。<a href="http://github.com/sporkrb/spork">Sporkテストサーバー</a><sup class="footnote" id="fnref-3_17"><a href="http://railstutorial.jp/static-pages.html#fn-3_17">17</a></sup>はこの問題を解決するのが目的です。Sporkは環境を<em>一回だけ</em>読み込み、これから走らせるテストのためにプロセスを管理しています。Sporkは<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-guard">Section 3.6.2</a>のGuardと組み合わせる更に便利になります。</p>
 
-<p>The first step is to add the <code>spork</code> gem dependency to the <code>Gemfile</code> (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-gemfile_spork">Listing 3.35</a>).</p>
+<p>まず最初に、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-gemfile_spork">リスト 3.35</a>にあるように、<code>Gemfile</code>に<code>spork</code>に依存するgemを追加します。</p>
 
 <div class="label" id="code-gemfile_spork"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.35.</span> <span class="description">A <code>Gemfile</code> for the sample app.</span> </div>
+<div class="listing"><span class="header">リスト 3.35.</span> <span class="description">サンプルアプリケーションの<code>Gemfile</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.13&#39;</span>
@@ -1990,27 +1989,27 @@ bundler_stubs/
 </div></div>
 
 
-<p>Then install Spork using <code>bundle install</code>:</p>
+<p>そして、<code>bundle install</code>でSporkをインストールします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install
 </pre></div>
 </div>
 
 
-<p>Next, bootstrap the Spork configuration:</p>
+<p>次にブートストラップでSporkの設定の設定を作ります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>spork --bootstrap
 </pre></div>
 </div>
 
 
-<p>Now we need to edit the RSpec configuration file, located in <code>spec/spec_helper.rb</code>, so that the environment gets loaded in a <em>prefork</em> block, which arranges for it to be loaded only once (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-spork_spec_helper">Listing 3.36</a>).</p>
+<p>そして、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-spork_spec_helper">リスト 3.36</a>のように、環境の読み込みを一回で済ますため、<code>spec/spec_helper.rb</code>の中で環境を<em>prefork</em>のブロックで読み込むように、RSpecの設定を変更する必要があります。</p>
 
 <div class="label" id="code-spork_spec_helper"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.36.</span> <span class="description">Adding environment loading to the <code>Spork.prefork</code> block. </span><br /><span class="description"> <code>spec/spec_helper.rb</code></span> </div>
+<div class="listing"><span class="header">リスト 3.36.</span> <span class="description">環境を読み込む<code>Spork.prefork</code>のブロックを追加</span><br /><span class="description"> <code>spec/spec_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 <span class="nb">require</span> <span class="s1">&#39;spork&#39;</span>
 
@@ -2061,7 +2060,7 @@ bundler_stubs/
 </div></div>
 
 
-<p>Before running Spork, we can get a baseline for the testing overhead by timing our test suite as follows:</p>
+<p>Sporkを走らせる前に、今のテストスイートを実行して、基準となる時間を測りましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">time </span>bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
 <span class="go">......</span>
@@ -2075,7 +2074,7 @@ bundler_stubs/
 </div>
 
 
-<p>Here the test suite takes more than seven seconds to run even though the actual tests run in under a tenth of a second. To speed this up, we can open a dedicated terminal window, navigate to the application root directory, and then start a Spork server:</p>
+<p>ここでは、実際のテストは10分の1秒以下で実行されますが、テストスイートは数秒以上かかっています。実行時間のスピートアップのため、別のターミナルウィンドウを開き、アプリケーションののルートディレクトリに移動し、Sporkサーバーをスタートさせて下さい。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>spork
 <span class="go">Using RSpec</span>
@@ -2085,7 +2084,7 @@ bundler_stubs/
 </div>
 
 
-<p>(To eliminate the need to prefix the command with <code>bundle exec</code>, re-follow the steps in <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-eliminating_bundle_exec">Section 3.6.1</a>.) In another terminal window, we can now run our test suite with the <tt class="verb">--drb</tt> (“distributed Ruby”) option and verify that the environment-loading overhead is greatly reduced:</p>
+<p>(<code>bundle exec</code>を取り除くためには、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-eliminating_bundle_exec">Section 3.6.1</a>のステップを再度行なって下さい)別のターミナルウィンドウでは、テストスイートを<tt class="verb">--drb</tt>(“distributed Ruby”)オプションを付けて実行すると、環境読み込みのオーバーヘッドが大幅に減少しているのが確認できると思います。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">time </span>bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb --drb
 <span class="go">......</span>
@@ -2099,20 +2098,20 @@ bundler_stubs/
 </div>
 
 
-<p>It’s inconvenient to have to include the <tt class="verb">--drb</tt> option every time we run <code>rspec</code>, so I recommend adding it to the <code>.rspec</code> file in the application’s root directory, as shown in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-rspec_drb">Listing 3.37</a>.</p>
+<p><code>rspec</code>を実行する度に<tt class="verb">--drb</tt>オプションをつけるのは不便なので、アプリケーションのルートディレクトリにある<code>.rspec</code>ファイルに<a class="ref" href="http://railstutorial.jp/static-pages.html#code-rspec_drb">リスト 3.37</a>の内容を記載することをお勧めします。</p>
 
 <div class="label" id="code-rspec_drb"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.37.</span> <span class="description">Configuring RSpec to automatically use Spork. </span><br /><span class="description"> <code>.rspec</code></span> </div>
+<div class="listing"><span class="header">リスト 3.37.</span> <span class="description">自動的にSporkを使うためのRSpecの設定</span><br /><span class="description"> <code>.rspec</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="o">--</span><span class="n">colour</span>
 <span class="o">--</span><span class="n">drb</span>
 </pre></div>
 </div></div>
 
 
-<p>One word of advice when using Spork: after changing a file included in the prefork loading (such as <code>routes.rb</code>), you will have to restart the Spork server to load the new Rails environment. If your tests are failing when you think they should be passing, quit the Spork server with <tt>Ctrl-C</tt> and restart it:</p>
+<p>Sporkを使う上で一つ注意があります。preforkで読み込むファイル(例えば<code>routes.rb</code>)に変更が合った場合、新しいRailsの環境を再度読み込むためSporkを再起動する必要があります。もし、通るはずのテストが失敗した場合は、<tt>Ctrl-C</tt>でSporkサバーを止めて再起動しましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>spork
 <span class="go">Using RSpec</span>
@@ -2130,20 +2129,20 @@ bundler_stubs/
 <h4><a id="sec-3_6_3_1" href="http://railstutorial.jp/static-pages.html#sec-spork_and_guard" class="heading">GuardにSporkを導入する</a></h4>
 
 
-<p>Spork is especially useful when used with Guard, which we can arrange as follows:</p>
+<p>SporkはGuardと一緒に使うととても便利になります。Guardは下記のように変更してみます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>guard init spork
 </pre></div>
 </div>
 
 
-<p>We then need to change the <code>Guardfile</code> as in <a class="ref" href="http://railstutorial.jp/static-pages.html#code-spork_guardfile">Listing 3.38</a>.</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#code-spork_guardfile">リスト 3.38</a>にあるように<code>Guardfile</code>を変更する必要があります。</p>
 
 <div class="label" id="code-spork_guardfile"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.38.</span> <span class="description">The <code>Guardfile</code> updated for Spork.</span> </div>
+<div class="listing"><span class="header">リスト 3.38.</span> <span class="description">Sporkを使うための<code>Guardfile</code>の更新</span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;active_support/core_ext&#39;</span>
 
 <span class="n">guard</span> <span class="s1">&#39;spork&#39;</span><span class="p">,</span> <span class="ss">:rspec_env</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s1">&#39;RAILS_ENV&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span> <span class="p">}</span> <span class="k">do</span>
@@ -2167,19 +2166,19 @@ bundler_stubs/
 </div></div>
 
 
-<p>Note that we’ve updated the arguments to <code>guard</code> to include
-<tt class="verb">:cli =&gt; --drb</tt>, which ensures that Guard uses the command-line interface (cli) to the Spork server. We’ve also added a command to watch the <code>spec/support/</code> directory, which we’ll start modifying in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#top">Chapter 5</a>.</p>
+<p><code>guard</code>の変数に<tt class="verb">:cli =&gt; --drb</tt>が追加されましたが、これは、GuardがコマンドラインインタフェースからSpork serverを使うようになります。<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#top">チャプター 5</a>で使い始める、<code>spec/support/</code>ディレクトリを監視するようなコマンドを追加しました。</p>
 
-<p>With that configuration in place, we can start Guard and Spork at the same time with the <code>guard</code> command:</p>
+<p>適切に設定が完了したら、<code>guard</code>コマンドでGuardとSporkを同時にスタートさせましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>guard
 </pre></div>
 </div>
 
 
-<p>Guard automatically starts a Spork server, dramatically reducing the overhead each time a test gets run.</p>
+<p>Guardは自動的にSporkサーバーを立ち上げるため、テストを走らせる度のオーバヘッドを劇的に削減できます。</p>
 
-<p>A well-configured testing environment with Guard, Spork, and (optionally) test notifications makes test-driven development positively addictive. See the <a href="http://railstutorial.org/screencasts">Rails Tutorial screencasts</a><sup class="footnote" id="fnref-3_18"><a href="http://railstutorial.jp/static-pages.html#fn-3_18">18</a></sup> for more information.</p>
+<p>Guard、Spork、テストの通知(オプションですが)を使ったテスト環境の構築は、テスト駆動開発をより楽しいものにしてくれるでしょう。
+A well-configured testing environment with Guard, Spork, and (optionally) test notifications makes test-driven development positively addictive. さらに情報が欲しい方は<a href="http://railstutorial.org/screencasts">Rails Tutorial screencasts</a><sup class="footnote" id="fnref-3_18"><a href="http://railstutorial.jp/static-pages.html#fn-3_18">18</a></sup>を参照してください。</p>
 
 <div class="label" id="sec-tests_inside_sublime_text"></div>
 
@@ -2187,7 +2186,7 @@ bundler_stubs/
 <h3><a id="sec-3_6_4" href="http://railstutorial.jp/static-pages.html#sec-tests_inside_sublime_text" class="heading"><span class="number">3.6.4</span>Sublime Text上でテストする</a></h3>
 
 
-<p>If you’re using Sublime Text, there is a powerful set of helper commands to run tests directly inside the editor. To get them working, follow the instructions for your platform at <a href="https://github.com/maltize/sublime-text-2-ruby-tests">Sublime Text 2 Ruby Tests</a>.<sup class="footnote" id="fnref-3_19"><a href="http://railstutorial.jp/static-pages.html#fn-3_19">19</a></sup> On my platform (Macintosh OS X), I can install the commands as follows:</p>
+<p>もしSublime Textユーザーであれば、エディターの中から直接テストが実行できる強力なヘルパーコマンドがあります。これを動かすために、あなたの環境で<a href="https://github.com/maltize/sublime-text-2-ruby-tests">Sublime Text 2 Ruby Tests</a>.<sup class="footnote" id="fnref-3_19"><a href="http://railstutorial.jp/static-pages.html#fn-3_19">19</a></sup>にある説明に沿って設定を行なって下さい。私の環境(Macintosh OS X)では、下記のようにコマンドをインストールすることになります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/Library/Application<span class="se">\ </span>Support/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2/Packages
 <span class="gp">$</span> git clone https://github.com/maltize/sublime-text-2-ruby-tests.git RubyTest
@@ -2195,31 +2194,32 @@ bundler_stubs/
 </div>
 
 
-<p>You may also want to follow the setup instructions for <a href="https://github.com/mhartl/rails_tutorial_sublime_text">Rails Tutorial Sublime Text</a> at this time.<sup class="footnote" id="fnref-3_20"><a href="http://railstutorial.jp/static-pages.html#fn-3_20">20</a></sup></p>
+<p>引き続き、<a href="https://github.com/mhartl/rails_tutorial_sublime_text">Rails Tutorial Sublime Text</a><sup class="footnote" id="fnref-3_20"><a href="http://railstutorial.jp/static-pages.html#fn-3_20">20</a></sup>にある説明の通りにセットアップをしましょう。</p>
 
-<p>After restarting Sublime Text, the RubyTest package supplies the following commands:</p>
+<p>Sublime Textを再起動した後に、RubyTestパッケージは下記のようなコマンドを提供しています。</p>
 
 <ul>
-<li><strong>Command-Shift-R</strong>: run a single test (if run on an <code>it</code> block) or group of tests (if run on a <code>describe</code> block)</li>
-<li><strong>Command-Shift-E</strong>: run the last test(s)</li>
-<li><strong>Command-Shift-T</strong>: run all the tests in current file</li>
+<li><strong>Command-Shift-R</strong>: テストを一つだけ(<code>it</code>ブロック内で実行した場合) または複数のテスト (<code>describe</code>ブロックで実行した場合)を実行します。</li>
+<li><strong>Command-Shift-E</strong>: 最後に走らせたテストを実行します。</li>
+<li><strong>Command-Shift-T</strong>: ファイルにあるすべてのテストを実行します。</li>
 </ul>
 
 
-<p>Because test suites can become quite slow even for relatively small projects, being able to run one test (or a small group of tests) at a time can be a huge win. Even a single test requires the same Rails environment overhead, of course, which is why these commands are perfectly complemented by Spork: running a single test eliminates the overhead of running the entire test file, while running Spork eliminates the overhead of starting the test environment. Here is the sequence I recommend:</p>
+<p>比較的小さいプロジェクトであってもテストスイートの実行は遅いので、テストを一つだけ(もしくは幾つかのテスト)を一回に走らせることができるのはとても大きなメリットになります。もちろん、テストを１つだけ実行するには同じRailsの環境を読み込むオーバーヘッドがありますが、これはSporkによって完全に補完されています。テスト環境を動かすためのオーバーヘッドを取り除くSporkが動き続けている間は、一つのテストを走らせることは、テストファイル全部を走らせるオーバーヘッドを削除できます。
+(Even a single test requires the same Rails environment overhead, of course, which is why these commands are perfectly complemented by Spork: running a single test eliminates the overhead of running the entire test file, while running Spork eliminates the overhead of starting the test environment. )ですので、下記手順をお勧めします。</p>
 
 <ol>
-<li>Start Spork in a terminal window.</li>
-<li>Write a single test or small group of tests.</li>
-<li>Run Command-Shift-R to verify that the test or test group is red.</li>
-<li>Write the corresponding application code.</li>
-<li>Run Command-Shift-E to run the same test/group again, verifying that it’s green.</li>
-<li>Repeat steps 2–5 as necessary.</li>
-<li>When reaching a natural stopping point (such as before a commit), run <code>rspec spec/</code> at the command line to confirm that the entire test suite is still green.</li>
+<li>ターミナルウィンドウでSporkを起動</li>
+<li>一つもしくは複数のテストを書く</li>
+<li>Command-Shift-Rコマンドでテストが失敗するのを確認</li>
+<li>対応するアプリケーションコードを書く</li>
+<li>Command-Shift-Eコマンドで先程のテストと同じテストを走らせ成功することを確認する</li>
+<li>2-5のステップを繰り返す</li>
+<li>中継点(例えばコミットの直前)まできたら、 コマンドラインから<code>rspec spec/</code>を実行してテストスイートを実行して成功することを確認</li>
 </ol>
 
 
-<p>Even with the ability to run tests inside of Sublime Text, I still sometimes prefer using Guard, but at this point my bread-and-butter TDD technique is the one enumerated above.</p>
+<p>Sublime Textの中からテストが実行できることは、Guardを使うことより幾分優位性があると思いますが、現時点での私のよく使うTDDのテクニックの一つとして挙げておきます。</p>
 
 <div class="navigation">  <a class="prev_page" href="http://railstutorial.jp/a-demo-app.html#top">
 </a><a class="prev_page" href="http://railstutorial.jp/a-demo-app.html#top"><span class="number">第2章</span>デモアプリケーション»</a><a class="prev_page" href="http://railstutorial.jp/a-demo-app.html#top">  </a>
@@ -2237,13 +2237,13 @@ bundler_stubs/
 <li id="fn-3_8">私達が採用している静的なページを作る方法は、恐らく最もシンプルな方法です。しかし、ただ１つの方法という訳ではありません。最適な方法はケースバイケースであることが多いです。例えば、<em>非常に多く</em>の静的なページを作る必要がある場合では、１つの StaticPages コントローラだけでは重荷になるでしょう。 しかし、今回の場合は、いくつかの静的なページを作るだけですむので、重荷にはなりません。Rails で静的なページを作るときのテクニックについて詳しく知りたい場合は、 ブログ<a href="http://blog.hasmanythrough.com/2008/4/2/simple-pages">「<tt>has_many :through</tt>」の simple pages という記事</a> を読むとよいでしょう。<em>注意:</em> この議論は少し応用的な話なので、あとで読んで方が良いかもしれません。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_8">↑</a></li>
 <li id="fn-3_9">毎回 <code>bundle exec</code> と実行するのは少し面倒ですが、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-advanced_setup">3.6</a> にあるオプションを使うと楽になります。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_9">↑</a></li>
 <li id="fn-3_10">筆者は普段、端末やテキストエディタの背景は黒色にしています。ただ、明るい色の背景の方がスクリーンショットの見栄えが良くなるので、（一時的に）明るい背景を使用しています。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_10">↑</a></li>
-<li id="fn-3_11">A newline is what comes at the end of a line, thereby starting a new line. In code, it is represented by the character <tt class="verb">\n</tt>. <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_11">↑</a></li>
-<li id="fn-3_12">Actually <em>counting</em> columns could drive you crazy, which is why many text editors have a visual aid to help you. For example, if you take a look back at <a class="ref" href="http://railstutorial.jp/beginning.html#fig-editor_shell">Figure 1.1</a>, you’ll see a small vertical line on the right to help keep code under 80 characters. (It’s actually at 78 columns, which gives you a little margin for error.) If you use TextMate, you can find this feature under <tt>View &gt; Wrap Column &gt; 78</tt>. In Sublime Text, you can use <tt>View &gt; Ruler &gt; 78</tt> or <tt>View &gt; Ruler &gt; 80</tt>. <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_12">↑</a></li>
-<li id="fn-3_13">There is a second popular template system called <a href="http://haml-lang.com/">Haml</a>, which I personally love, but it’s not <em>quite</em> standard enough yet for use in an introductory tutorial. <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_13">↑</a></li>
-<li id="fn-3_14">Experienced Rails developers might have expected the use of <code>content_for</code> at this point, but it doesn’t work well with the asset pipeline. The <code>provide</code> function is its replacement. <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_14">↑</a></li>
-<li id="fn-3_15">If you’ve studied Ruby before, you might suspect that Rails is <em>yielding</em> the contents to a block, and your suspicion would be correct. But you don’t need to know this to develop applications with Rails. <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_15">↑</a></li>
+<li id="fn-3_11">改行は行の最後に来たこと、そして新しい行の始まりを示しています。コードでは、<tt class="verb">\n</tt>の文字列がそれを表しています。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_11">↑</a></li>
+<li id="fn-3_12">多くのエディターが列の数を示してくれているので、実際には列を<em>数える</em>のは馬鹿げたことです。例えば、<a class="ref" href="http://railstutorial.jp/beginning.html#fig-editor_shell">図 1.1</a>を見なおしてみると、コードを80文字以下に抑えるために、右に小さな縦線があるのが見えると思います。(実際にエラーにより少し余裕があるように78列になっています。) もしTextMateを使っていれば、<tt>View &gt; Wrap Column &gt; 78</tt>で設定できます。Sublime Textを使っていれば、<tt>View &gt; Ruler &gt; 78</tt>もしくは<tt>View &gt; Ruler &gt; 80</tt>で設定できます。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_12">↑</a></li>
+<li id="fn-3_13"><a href="http://haml-lang.com/">Haml</a>という二番目によく使われているテンプレートシステムがあります。Hamlは個人的にはとても好きですが、初心者向けのチュートリアルで使うには、少し標準から外れています。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_13">↑</a></li>
+<li id="fn-3_14">この時点で、Railsでの開発経験者は<code>content_for</code>を使うことを考えると思いますが、アセットパイプラインと一緒だと上手く動きません。<code>provide</code>関数はその代替です。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_14">↑</a></li>
+<li id="fn-3_15">もし以前にRubyを勉強していれば、Railsがブロック無いの内容を<em>yield</em>していると予想すると思いますし、その予想は正しいと思われます。But you don’t need to know this to develop applications with Rails. <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_15">↑</a></li>
 <li id="fn-3_16">http://rvm.io/integration/bundler/ <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_16">↑</a></li>
-<li id="fn-3_17">A <em>spork</em> is a combination spoon-fork. The project’s name is a pun on Spork’s use of <a href="http://en.wikipedia.org/wiki/POSIX">POSIX</a> <a href="http://en.wikipedia.org/wiki/Fork_(software_development)">forks</a>. <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_17">↑</a></li>
+<li id="fn-3_17"><em>spork</em>はspoon-forkの組み合わせです。このプロジェクトの名前は<a href="http://en.wikipedia.org/wiki/POSIX">POSIX</a> <a href="http://en.wikipedia.org/wiki/Fork_(software_development)">forks</a>を使っているSporkのダジャレです。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_17">↑</a></li>
 <li id="fn-3_18">http://railstutorial.org/screencasts <a class="arrow" href="http://www.google.com/url?q=http%3A%2F%2Frailstutorial.jp%2Fstatic-pages.html%23fnref-3_18&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF6L_E__jieUMdeN8vpTS-UCYufzQ">↑</a></li>
 <li id="fn-3_19">https://github.com/maltize/sublime-text-2-ruby-tests <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_19">↑</a></li>
 <li id="fn-3_20">https://github.com/mhartl/rails_tutorial_sublime_text <a class="arrow" href="http://www.google.com/url?q=http%3A%2F%2Frailstutorial.jp%2Fstatic-pages.html%23fnref-3_20&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF5-tS5ZHTbAXfv3wflBGvGC2ToIg">↑</a></li>

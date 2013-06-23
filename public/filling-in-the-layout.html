@@ -208,7 +208,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>Microsoft Internet Explorer (IE) のバージョンが、9より小さい場合 (<code>if lt IE 9</code>)、囲われている行を実行します。このおかしな文法<code>[if lt IE 9]</code>は、Railsの一部<em>ではありません</em>。これは実は、<a href="http://en.wikipedia.org/wiki/Conditional_comment">条件付きコメント</a>といい、今回のような状況のために Internet Explorer でサポートされています。これは、Firefox、Chrome、Safariなど他のブラウザに影響を与えずに、IEのバージョン9未満に<em>だけ</em>HTML5 shimをインクルードすることができるため、非常に都合が良い考えです。</p>
+<p>Microsoft Internet Explorer (IE) のバージョンが、9より小さい場合 (<code>if lt IE 9</code>)、囲われている行を実行します。この風変わりな文法<code>[if lt IE 9]</code>は、Railsの一部<em>ではありません</em>。これは実は、<a href="http://en.wikipedia.org/wiki/Conditional_comment">条件付きコメント</a>といい、今回のような状況のために Internet Explorer でサポートされています。これは、Firefox、Chrome、Safariなど他のブラウザに影響を与えずに、IEのバージョン9未満に<em>だけ</em>HTML5 shimをインクルードすることができるため、非常に都合が良い考えです。</p>
 
 <p>次のセクションは、サイトのロゴのための<code>header</code>、(<code>div</code>タグによる) いくつかの領域、ナビゲーションリンクのリストを含みます。</p>
 
@@ -364,13 +364,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p><a href="http://railstutorial.jp/filling-in-the-layout.html#sec-adding_to_the_layout" class="ref">5.1.1</a>では、たくさんのHTML要素にCSSクラスを関連付けました。それは、CSSベースでレイアウトを構成する上で、大きな柔軟性を与えてくれます。<a href="http://railstutorial.jp/filling-in-the-layout.html#sec-adding_to_the_layout" class="ref">5.1.1</a>で述べたように、これらのクラスの内の多くは、HTML5アプリケーションにナイスなウェブデザインとユーザーインターフェース要素を簡単に追加できるようにするTwitterが作成したフレームワークである<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>特有のものです。このセクションでは、サンプルアプリケーションにスタイルを追加するために、カスタムCSSルールとBootstrapを組み合わせます。</p>
 
-<p>Our first step is to add Bootstrap, which in Rails applications can be accomplished with the <tt>bootstrap-sass</tt> gem, as shown in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-bootstrap_sass">Listing 5.3</a>. The Bootstrap framework natively uses the <a href="http://lesscss.org/">LESS CSS</a> language for making dynamic stylesheets, but the Rails asset pipeline supports the (very similar) Sass language by default (<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-sass_and_the_asset_pipeline">Section 5.2</a>), so <tt>bootstrap-sass</tt> converts LESS to Sass and makes all the necessary Bootstrap files available to the current application.<sup class="footnote" id="fnref-5_5"><a href="http://railstutorial.jp/filling-in-the-layout.html#fn-5_5">5</a></sup></p>
+<p>最初のステップは、<a href="http://railstutorial.jp/filling-in-the-layout.html#code-bootstrap_sass" class="ref">リスト5.3</a>で示しているようにBootstrapを追加することです。これは、Railsアプリケーションでは、<tt>bootstrap-sass</tt> gem により可能となります。Bootstrapフレームワークは、動的なスタイルシートを生成するために<a href="http://lesscss.org/">LESS CSS</a>言語を使用しますが、Railsのアセットパイプラインはデフォルトでは (非常によく似た) Sass言語をサポートします (<a href="http://railstutorial.jp/filling-in-the-layout.html#sec-sass_and_the_asset_pipeline" class="ref">5.2</a>)。そのため、<tt>bootstrap-sass</tt>は、LESSからSassへ変換し、すべての必要なBootstrapのファイルが現在のアプリケーションで利用可能なようにします。<sup id="fnref-5_5" class="footnote"><a href="http://railstutorial.jp/filling-in-the-layout.html#fn-5_5">5</a></sup></p>
 
 <div class="label" id="code-bootstrap_sass"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 5.3.</span> <span class="description">Adding the <tt>bootstrap-sass</tt> gem to the <code>Gemfile</code>.</span> </div>
+<div class="listing"><span class="header">リスト5.3.</span> <span class="description"><code>Gemfile</code>へ<tt>bootstrap-sass</tt>を追加する。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.13&#39;</span>
@@ -382,49 +382,49 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>To install Bootstrap, we run <code>bundle install</code> as usual:</p>
+<p>Bootstrapをインストールするために、いつものように<code>bundle install</code>を実行しましょう:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install
 </pre></div>
 </div>
 
 
-<p>Then restart the web server to incorporate the changes into the development application. (On most systems, restarting the server will involve pressing <tt>Ctrl-C</tt> and then running <code>rails server</code>.)</p>
+<p>その後、開発中のアプリケーションに変更を取り込むために、ウェブサーバーを再起動します。(ほとんどのシステムでは、サーバーの再起動は<tt>Ctrl-C</tt>の押下、そして<code>rails server</code>を実行することで行います。)</p>
 
-<p>The first step in adding custom CSS to our application is to create a file to contain it:</p>
+<p>アプリケーションにカスタムCSSを追加するための最初のステップは、それを格納するためのファイルを作成することです:</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">app/assets/stylesheets/custom.css.scss</span>
 </pre></div>
 </div>
 
 
-<p>(Use your text editor or IDE to create the new file.) Here both the directory name and filename are important. The directory</p>
+<p>(新しいファイルを作成するためには、テキストエディタかIDEを使いましょう。) ここで、ディレクトリ名とファイル名は共に重要です。このディレクトリ、</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">app/assets/stylesheets</span>
 </pre></div>
 </div>
 
 
-<p>is part of the asset pipeline (<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-sass_and_the_asset_pipeline">Section 5.2</a>), and any stylesheets in this directory will automatically be included as part of the <code>application.css</code> file included in the site layout. Furthermore, the filename <code>custom.css.scss</code> includes the <code>.css</code> extension, which indicates a CSS file, and the <code>.scss</code> extension, which indicates a “Sassy CSS” file and arranges for the asset pipeline to process the file using Sass. (We won’t be using Sass until <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-sass">Section 5.2.2</a>, but it’s needed now for the <tt>bootstrap-sass</tt> gem to work its magic.)</p>
+<p>は、アセットパイプライン(<a href="http://railstutorial.jp/filling-in-the-layout.html#sec-sass_and_the_asset_pipeline" class="ref">5.2</a>)の一部で、このディレクトリ内のスタイルシートは<code>application.css</code>の一部としてサイトレイアウトに自動的に含められます。さらに、ファイル名<code>custom.css.scss</code>が含んでいる拡張子<code>.css</code>はCSSファイルを示し、拡張子<code>.scss</code>は &quot;Sassy CSS&quot; とアセットパイプラインがこのファイルをSassで処理するように準備することを意味しています。(<a href="http://railstutorial.jp/filling-in-the-layout.html#sec-sass" class="ref">5.2.2</a>までSassを使っていませんが、<tt>bootstrap-sass</tt> gemが動作するためのおまじないとして必要です。)</p>
 
-<p>After creating the file for custom CSS, we can use the <code>@import</code> function to include Bootstrap, as shown in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-bootstrap_css">Listing 5.4</a>.</p>
+<p>カスタムCSS用のファイルを作成したら、<a href="http://railstutorial.jp/filling-in-the-layout.html#code-bootstrap_css" class="ref">リスト5.4</a>のように<code>@import</code>を使用してBootstrapをインクルードします。</p>
 
 <div class="label" id="code-bootstrap_css"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 5.4.</span> <span class="description">Adding Bootstrap CSS. </span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="listing"><span class="header">リスト5.4.</span> <span class="description">Bootstrap CSSの追加。</span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">@import</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
 </pre></div>
 </div></div>
 
 
-<p>This one line includes the entire Bootstrap CSS framework, with the result shown in in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#fig-sample_app_only_bootstrap">Figure 5.3</a>. (You may have to use <tt>Ctrl-C</tt> restart the local web server. It’s also worth noting that the screenshots use Bootstrap 2.0, whereas the tutorial currently uses Bootstrap 2.1, so there may be minor differences in appearance. These are not cause for concern.) The placement of the text isn’t good and the logo doesn’t have any style, but the colors and signup button look promising.</p>
+<p>この一行は、<a href="http://railstutorial.jp/filling-in-the-layout.html#fig-sample_app_only_bootstrap" class="ref">図5.3</a>の結果で示されるように、Bootstrapフレームワーク全体を含んでいます。(ローカルのウェブサーバーを再起動するために<tt>Ctrl-C</tt>を使用しないといけないかもしれません。スクリーンショットはBootstrap 2.0を使用していますが、現在、このチュートリアルではBootstrap 2.1を使用しているために、おそらく多少見た目に違いがあることもまたお伝えしておくべきでしょう。これらは、懸念材料ではありません。) テキストの配置はイマイチでロゴにはスタイルがありません、しかし、配色と signupボタンはいい感じです。</p>
 
 <div class="label" id="fig-sample_app_only_bootstrap"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sample_app_only_bootstrap.png" alt="sample_app_only_bootstrap" /></span></div><div class="caption"><span class="header">Figure 5.3: </span><span class="description">The sample application with Bootstrap CSS. <a href="http://railstutorial.org/images/figures/sample_app_only_bootstrap-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sample_app_only_bootstrap.png" alt="sample_app_only_bootstrap" /></span></div><div class="caption"><span class="header">図5.3: </span><span class="description">Bootstrap CSSとサンプルアプリケーション。<a href="http://railstutorial.org/images/figures/sample_app_only_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 <p>Next we’ll add some CSS that will be used site-wide for styling the layout and each individual page, as shown in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-universal_css">Listing 5.5</a>. There are quite a few rules in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-universal_css">Listing 5.5</a>; to get a sense of what a CSS rule does, it’s often helpful to comment it out using CSS comments, i.e., by putting it inside <code>/* … */</code>, and seeing what changes.

@@ -387,7 +387,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p>評価の結果は、<code>&quot;foo&quot;</code> と <code>&quot;bar&quot;</code> を足した<code>&quot;foobar&quot;</code>になりました<sup class="footnote" id="fnref-4_2"><a href="http://railstutorial.jp/rails-flavored-ruby.html#fn-4_2">2</a></sup>。</p>
 
-<p>文字列を組み立てる他の方法として<em>補間子 (interpolation)</em>というものがあり、<code>#{}</code>という特殊な構文を使用します<sup class="footnote" id="fnref-4_3"><a href="http://railstutorial.jp/rails-flavored-ruby.html#fn-4_3">3</a></sup>。</p>
+<p>文字列を組み立てる他の方法として<em>補間子による式展開 (interpolation)</em>というものがあり、<code>#{}</code>という特殊な構文を使用します<sup class="footnote" id="fnref-4_3"><a href="http://railstutorial.jp/rails-flavored-ruby.html#fn-4_3">3</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">first_name</span> <span class="o">=</span> <span class="s2">&quot;Michael&quot;</span>    <span class="c1">#変数割り当て</span>
 <span class="go">=&gt; &quot;Michael&quot;</span>
@@ -1301,7 +1301,7 @@ end
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/static-pages.html#sec-static_pages_with_rails">3.1.2</a>でも簡単に説明しましたが、上のコードの<code>Word &lt; String</code>は継承のためのRubyの記法です。こうすることで、新しい<code>palindrome?</code>メソッドだけではなく、Stringsクラスで使用できるすべてのメソッドをWordクラスに対しても使用できるようになります。</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#sec-static_pages_with_rails">3.1.2</a>でも簡単に説明しましたが、上のコードの<code>Word &lt; String</code>は継承のためのRubyの記法です。こうすることで、新しい<code>palindrome?</code>メソッドだけではなく、Stringsクラスで使用できるすべてのメソッドをWordクラスに対しても使用できるようになります。10</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="no">Word</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;level&quot;</span><span class="p">)</span>    <span class="c1"># 新しいWordを作成し、&quot;level&quot; で初期化する</span>
 <span class="go">=&gt; &quot;level&quot;</span>
