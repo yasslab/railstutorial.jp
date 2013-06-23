@@ -2177,8 +2177,7 @@ bundler_stubs/
 
 <p>Guardは自動的にSporkサーバーを立ち上げるため、テストを走らせる度のオーバヘッドを劇的に削減できます。</p>
 
-<p>Guard、Spork、テストの通知(オプションですが)を使ったテスト環境の構築は、テスト駆動開発をより楽しいものにしてくれるでしょう。
-A well-configured testing environment with Guard, Spork, and (optionally) test notifications makes test-driven development positively addictive. さらに情報が欲しい方は<a href="http://railstutorial.org/screencasts">Rails Tutorial screencasts</a><sup class="footnote" id="fnref-3_18"><a href="http://railstutorial.jp/static-pages.html#fn-3_18">18</a></sup>を参照してください。</p>
+<p>Guard、Spork、テストの通知(オプションですが)を使ったテスト環境の構築は、テスト駆動開発をより楽しいものにしてくれるでしょう。さらに情報が欲しい方は<a href="http://railstutorial.org/screencasts">Rails Tutorial screencasts</a><sup class="footnote" id="fnref-3_18"><a href="http://railstutorial.jp/static-pages.html#fn-3_18">18</a></sup>を参照してください。</p>
 
 <div class="label" id="sec-tests_inside_sublime_text"></div>
 
@@ -2205,8 +2204,8 @@ A well-configured testing environment with Guard, Spork, and (optionally) test n
 </ul>
 
 
-<p>比較的小さいプロジェクトであってもテストスイートの実行は遅いので、テストを一つだけ(もしくは幾つかのテスト)を一回に走らせることができるのはとても大きなメリットになります。もちろん、テストを１つだけ実行するには同じRailsの環境を読み込むオーバーヘッドがありますが、これはSporkによって完全に補完されています。テスト環境を動かすためのオーバーヘッドを取り除くSporkが動き続けている間は、一つのテストを走らせることは、テストファイル全部を走らせるオーバーヘッドを削除できます。
-(Even a single test requires the same Rails environment overhead, of course, which is why these commands are perfectly complemented by Spork: running a single test eliminates the overhead of running the entire test file, while running Spork eliminates the overhead of starting the test environment. )ですので、下記手順をお勧めします。</p>
+<p>比較的小さいプロジェクトであってもテストスイートの実行は遅いので、テストを一つだけ(もしくは幾つかのテスト)を一回に走らせることができるのはとても大きなメリットになります。一方で、たった１つのテストを実行するだけでも、同じRailsの環境であれば、同じ量のオーバーヘッドが発生してしまいます。このため、上述したコマンドとSporkの組み合わせは、非常に相性が良いのです。具体的には、全てのテストを実行するよりかは、（上記コマンドを使って）関心のあるテストだけを実行させた方が効率的ですし、また、テストを実行する度に発生してしまうオーバーヘッドは、Sporkが取り除いてくれるからです。
+ですので、下記手順をお勧めします。</p>
 
 <ol>
 <li>ターミナルウィンドウでSporkを起動</li>
