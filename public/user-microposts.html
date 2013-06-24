@@ -103,7 +103,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h1 class="chapter"><a id="sec-10" href="http://railstutorial.jp/user-microposts.html#top" class="heading"><span class="number">第10章</span>ユーザーのマイクロポスト</a></h1>
 
 
-<p><a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">第9章</a>ではユーザーリソース用のRESTアクションを完成させました。次は<a class="ref" href="http://railstutorial.jp/a-demo-app.html#top">第2章</a>で見た、特定のユーザに関連付けられたショートメッセージを表現する、ユーザーの<em>マイクロポスト</em><sup class="footnote" id="fnref-10_1"><a href="http://railstutorial.jp/user-microposts.html#fn-10_1">1</a></sup> リソースを追加します。この章では、<a class="ref" href="http://railstutorial.jp/a-demo-app.html#sec-microposts_resource">2.3</a>で記述したマイクロポストデータモデルを作成し、ユーザー モデルと<code>has_many</code>および<code>belongs_to</code>メソッドを使って関連づけ、さらに、結果を処理し表示するために必要なフォームとその部品を作成します。 <a class="ref" href="http://railstutorial.jp/following-users.html#top">第11章</a>では、マイクロポストの<em>フィード</em>を受け取るために、ユーザーを<em>フォロー</em>するという概念を導入し、Twitterのミニクローンを完成させます。</p>
+<p><a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">第9章</a>ではユーザーリソース用のRESTアクションを完成させました。次は<a class="ref" href="http://railstutorial.jp/a-demo-app.html#top">第2章</a>で見た、特定のユーザに関連付けられたショートメッセージを表現する、ユーザーの<em>マイクロポスト</em>リソースを追加します<sup class="footnote" id="fnref-10_1"><a href="http://railstutorial.jp/user-microposts.html#fn-10_1">1</a></sup>。この章では、<a class="ref" href="http://railstutorial.jp/a-demo-app.html#sec-microposts_resource">2.3</a>で記述したマイクロポストデータモデルを作成し、ユーザー モデルと<code>has_many</code>および<code>belongs_to</code>メソッドを使って関連づけ、さらに、結果を処理し表示するために必要なフォームとその部品を作成します。 <a class="ref" href="http://railstutorial.jp/following-users.html#top">第11章</a>では、マイクロポストの<em>フィード</em>を受け取るために、ユーザーを<em>フォロー</em>するという概念を導入し、Twitterのミニクローンを完成させます。</p>
 
 <p>Git をバージョン管理に使っている場合は、いつものようにトピックブランチを作成しておきましょう。</p>
 
@@ -128,7 +128,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-10_1_1" href="http://railstutorial.jp/user-microposts.html#sec-the_basic_model" class="heading"><span class="number">10.1.1</span>基本的なモデル</a></h3>
 
 
-<p>Micropostモデルはマイクロポストの内容を保存する<code>content</code><sup class="footnote" id="fnref-10_2"><a href="http://railstutorial.jp/user-microposts.html#fn-10_2">2</a></sup>属性と特定のユーザとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に(リスト <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-generate_user_model">6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
+<p>Micropostモデルはマイクロポストの内容を保存する<code>content</code><sup class="footnote" id="fnref-10_2"><a href="http://railstutorial.jp/user-microposts.html#fn-10_2">2</a></sup>属性と特定のユーザとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に(リスト<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-generate_user_model">6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate model Micropost content:string user_id:integer
 </pre></div>
@@ -234,7 +234,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-10_1_2" href="http://railstutorial.jp/user-microposts.html#sec-accessible_attribute" class="heading"><span class="number">10.1.2</span>Accessible属性と最初の検証</a></h3>
 
 
-<p>上の解答を見る前に、<code>before</code>ブロックのコードが誤っている理由を確認するために、まずMicropostモデルに対する検証 (validation) テストを作成してみましょう (<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_validity_test">リスト10.3</a>) (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-failing_validates_name_spec">リスト 6.11</a>でのUserモデルのテストと比較してみてください)。</p>
+<p>上の解答を見る前に、<code>before</code>ブロックのコードが誤っている理由を確認するために、まずMicropostモデルに対する検証 (validation) テストを作成してみましょう (<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_validity_test">リスト10.3</a>) (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-failing_validates_name_spec">リスト6.11</a>でのUserモデルのテストと比較してみてください)。</p>
 
 <div class="label" id="code-micropost_validity_test"></div>
 
@@ -624,7 +624,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p>(<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#sidebar-time_helpers">囲み8.1</a>で説明した時間指定用ヘルパーメソッドを使うことで) 2番目のポストの作成時刻がより新しく (<code>1時間前</code>)、最初のポストの作成日時が<code>1日前</code>になります。Factory Girlを使用すると、<code>attr_accessible</code>をバイパスすることによってマスアサインメントを使ってユーザーを設定することもできますし、Active Recordがアクセスを許可しないような<code>created_at</code>属性も手動で設定できるので大変便利です (<code>created_at</code>や<code>updated_at</code>などは通常のカラムと異なる “マジック”カラムであり、これらの作成タイムスタンプや更新タイムスタンプは自動的に設定されてしまうため、明示的に値を設定しても上書きされてしまうことを思い出してください)。</p>
 
-<p>(SQLiteを含む) ほとんどのデータベースアダプターは、マイクロポストを id順で返すため、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_ordering_test">リスト 10.13</a>のようなテストはほぼ確実に失敗することになります。このコードでは<code>let</code>メソッドの代わりに<code>let!</code> (“let バン”と読みます) メソッドを使っています。これは、<code>let</code> 変数は「<em>lazy</em>」、つまり実際に参照されるまで初期化されない性質 (遅延) を持っており、そのことで不都合が生じるためです。ここでは、マイクロポストを遅延することなく即座に作成する必要があります。そのことにより、マイクロポストのタイムスタンプが常に正しい順序で作成されるように、かつ<code>@user.microposts</code>が空の状態が生じることのないようにしたいからです。<code>let!</code>を使用すれば、対応する変数を強制的に即座に作成できます。</p>
+<p>(SQLiteを含む) ほとんどのデータベースアダプターは、マイクロポストを id順で返すため、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_ordering_test">リスト10.13</a>のようなテストはほぼ確実に失敗することになります。このコードでは<code>let</code>メソッドの代わりに<code>let!</code> (“let バン”と読みます) メソッドを使っています。これは、<code>let</code> 変数は「<em>lazy</em>」、つまり実際に参照されるまで初期化されない性質 (遅延) を持っており、そのことで不都合が生じるためです。ここでは、マイクロポストを遅延することなく即座に作成する必要があります。そのことにより、マイクロポストのタイムスタンプが常に正しい順序で作成されるように、かつ<code>@user.microposts</code>が空の状態が生じることのないようにしたいからです。<code>let!</code>を使用すれば、対応する変数を強制的に即座に作成できます。</p>
 
 <div class="label" id="code-micropost_ordering_test"></div>
 
@@ -825,7 +825,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p>これでfindの場合のテストを実施できます。)</p>
 
-<p><a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_dependency_test">リスト 10.15</a>をパスするためのアプリケーションコードは1行に満たないほどの量しかなく、事実それは<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_dependency">リスト10.16</a>に示す<code> has_many</code>関連付けメソッドのオプションにすぎません。
+<p><a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_dependency_test">リスト10.15</a>をパスするためのアプリケーションコードは1行に満たないほどの量しかなく、事実それは<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_dependency">リスト10.16</a>に示す<code> has_many</code>関連付けメソッドのオプションにすぎません。
 </p>
 
 <div class="label" id="code-micropost_dependency"></div>
@@ -875,7 +875,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト 10.17</span> <span class="description">Micropostモデルの検証のテスト。</span><br /><span class="description"> <code>spec/models/micropost_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.17</span> <span class="description">Micropostモデルの検証のテスト。</span><br /><span class="description"> <code>spec/models/micropost_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">Micropost</span> <span class="k">do</span>
@@ -1108,7 +1108,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>まったく同じことをマイクロポストで行います。つまり、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_partial">リスト 10.21</a>に示すように、<code>_micropost.html.erb</code>パーシャルを (<code>micropost</code>用のビューのディレクトリの中に) 定義しなければならないことを意味します。</p>
+<p>まったく同じことをマイクロポストで行います。つまり、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_partial">リスト10.21</a>に示すように、<code>_micropost.html.erb</code>パーシャルを (<code>micropost</code>用のビューのディレクトリの中に) 定義しなければならないことを意味します。</p>
 
 <div class="label" id="code-micropost_partial"></div>
 
@@ -1172,7 +1172,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>その後、各ユーザーに50のマイクロポスト (ページネーションが切り替わる30を超える数) を作成し、Faker gem の便利な <tt>Lorem.sentence</tt><a href="http://faker.rubyforge.org/rdoc/classes/Faker/Lorem.html"></a>メソッドを使って各マイクロポストのサンプルコンテンツを生成します (<code>Faker::Lorem.sentence</code>は、いわゆる<em>lorem ipsum</em>ダミーテキストを返します。<a class="ref" href="http://railstutorial.jp/modeling-users.html#top">第6章</a>で述べたように、<em>lorem ipsum</em>には面白い<a href="http://www.straightdope.com/columns/read/2290/what-does-the-filler-text-lorem-ipsum-mean">裏話</a>があります)。 変更の結果は、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-sample_microposts">リスト 10.23</a>のようなサンプルデータ生成になります。</p>
+<p>その後、各ユーザーに50のマイクロポスト (ページネーションが切り替わる30を超える数) を作成し、Faker gem の便利な <tt>Lorem.sentence</tt><a href="http://faker.rubyforge.org/rdoc/classes/Faker/Lorem.html"></a>メソッドを使って各マイクロポストのサンプルコンテンツを生成します (<code>Faker::Lorem.sentence</code>は、いわゆる<em>lorem ipsum</em>ダミーテキストを返します。<a class="ref" href="http://railstutorial.jp/modeling-users.html#top">第6章</a>で述べたように、<em>lorem ipsum</em>には面白い<a href="http://www.straightdope.com/columns/read/2290/what-does-the-filler-text-lorem-ipsum-mean">裏話</a>があります)。 変更の結果は、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-sample_microposts">リスト10.23</a>のようなサンプルデータ生成になります。</p>
 
 <div class="label" id="code-sample_microposts"></div>
 
@@ -1407,7 +1407,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト 10.28.</span> <span class="description">Micropostsコントローラのアクションに認証を追加する。</span><br /><span class="description"> <code>app/controllers/microposts_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.28</span> <span class="description">Micropostsコントローラのアクションに認証を追加する。</span><br /><span class="description"> <code>app/controllers/microposts_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MicropostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_filter</span> <span class="ss">:signed_in_user</span>
 
@@ -1469,7 +1469,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>従って、マイクロポスト作成のテストは、<a class="ref" href="http://railstutorial.jp/sign-up.html#code-basic_signup_tests">リスト 7.16</a>のユーザー作成用テストと似ています。このテストを<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-microposts_create_tests">リスト10.29</a>に示します。</p>
+<p>従って、マイクロポスト作成のテストは、<a class="ref" href="http://railstutorial.jp/sign-up.html#code-basic_signup_tests">リスト7.16</a>のユーザー作成用テストと似ています。このテストを<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-microposts_create_tests">リスト10.29</a>に示します。</p>
 
 <div class="label" id="code-microposts_create_tests"></div>
 
@@ -1604,7 +1604,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p><a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-user_index_view">リスト9.25</a>と同様、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-user_info">リスト10.32</a>のコードでも<a class="ref" href="http://railstutorial.jp/sign-up.html#code-gravatar_option">リスト7.29</a>で定義した<code>gravatar_for</code>ヘルパーを使用します。</p>
 
-<p>プロファイルサイドバー (<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-user_show_microposts">リスト 10.20</a>) のときと同様、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-user_info">リスト10.32</a>のユーザー情報にも、そのユーザーが投稿したマイクロポストの総数が表示されていることにご注目ください。ただし少し表示に違いがあります。プロファイルサイドバーでは “Microposts” がラベルで、“Microposts (1)” と表示することは問題ありません。しかし今回のように “1 microposts” と表示してしまうと英語の文法上誤りになってしまうので、<code>pluralize</code>メソッドを使用して “1 micropost” や “2 microposts” と表示するように調整します。</p>
+<p>プロファイルサイドバー (<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-user_show_microposts">リスト10.20</a>) のときと同様、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-user_info">リスト10.32</a>のユーザー情報にも、そのユーザーが投稿したマイクロポストの総数が表示されていることにご注目ください。ただし少し表示に違いがあります。プロファイルサイドバーでは “Microposts” がラベルで、“Microposts (1)” と表示することは問題ありません。しかし今回のように “1 microposts” と表示してしまうと英語の文法上誤りになってしまうので、<code>pluralize</code>メソッドを使用して “1 micropost” や “2 microposts” と表示するように調整します。</p>
 
 <p>次はマイクロポスト作成フォームを定義します (<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_form">リスト10.33</a>)。これはユーザー登録フォームに似ています (<a class="ref" href="http://railstutorial.jp/sign-up.html#code-signup_form">リスト7.17</a>)。</p>
 
@@ -1624,7 +1624,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_form">リスト 10.33</a>のフォームが動くようにするためには、2箇所の変更が必要です。1つは、(以前と同様) 関連付けを使用して以下のように<code>@micropost</code>を定義することです。</p>
+<p><a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_form">リスト10.33</a>のフォームが動くようにするためには、2箇所の変更が必要です。1つは、(以前と同様) 関連付けを使用して以下のように<code>@micropost</code>を定義することです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@micropost</span> <span class="o">=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">build</span>
 </pre></div>
@@ -1660,7 +1660,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/sign-up.html#code-f_error_messages">リスト 7.22</a>ではエラーメッセージパーシャルが<code>@user</code>変数を直接参照していたことを思い出してください。今回は代わりに<code>@micropost</code>変数を使う必要があります。どのような種類のオブジェクトが渡されてもエラーメッセージパーシャルが動くようにする必要があります。幸い、フォーム変数<code>f</code>は<code>f.object</code>とすることによって、関連付けられたオブジェクトにアクセスすることができます。従って、以下のコードの場合</p>
+<p><a class="ref" href="http://railstutorial.jp/sign-up.html#code-f_error_messages">リスト7.22</a>ではエラーメッセージパーシャルが<code>@user</code>変数を直接参照していたことを思い出してください。今回は代わりに<code>@micropost</code>変数を使う必要があります。どのような種類のオブジェクトが渡されてもエラーメッセージパーシャルが動くようにする必要があります。幸い、フォーム変数<code>f</code>は<code>f.object</code>とすることによって、関連付けられたオブジェクトにアクセスすることができます。従って、以下のコードの場合</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">form_for</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
 </pre></div>
@@ -1683,7 +1683,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>言い換えると、<code>object: f.object</code>は<code>error_messages</code>パーシャルの中で<code>object</code>という変数名を作成します。<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-updated_error_messages_partial">リスト 10.35</a>に示すように、このobject変数を使用してカスタマイズエラーメッセージを作成できます。</p>
+<p>言い換えると、<code>object: f.object</code>は<code>error_messages</code>パーシャルの中で<code>object</code>という変数名を作成します。<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-updated_error_messages_partial">リスト10.35</a>に示すように、このobject変数を使用してカスタマイズエラーメッセージを作成できます。</p>
 
 <div class="label" id="code-updated_error_messages_partial"></div>
 
@@ -1713,7 +1713,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>運悪く、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-signup_errors_updated">リスト10.36</a>および<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-edit_errors_updated">リスト10.37</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>メモ</em>: もし<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>の演習のコードを「<a href="http://en.wikipedia.org/wiki/Mutatis_mutandis"><em>必要に応じて流用 (Mutatis mutandis)</em></a>」して<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-new_edit_partial">リスト 9.50</a>および<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-new_user_with_partial">リスト9.51</a>のコードを実装していた場合、コードは異なるものになるでしょう。)</p>
+<p>運悪く、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-signup_errors_updated">リスト10.36</a>および<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-edit_errors_updated">リスト10.37</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>メモ</em>: もし<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>の演習のコードを「<a href="http://en.wikipedia.org/wiki/Mutatis_mutandis"><em>必要に応じて流用 (Mutatis mutandis)</em></a>」して<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-new_edit_partial">リスト9.50</a>および<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-new_user_with_partial">リスト9.51</a>のコードを実装していた場合、コードは異なるものになるでしょう。)</p>
 
 <div class="label" id="code-signup_errors_updated"></div>
 
@@ -1848,7 +1848,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>このテストでは、与えられた要素が配列に含まれでいるかどうかをチェックする<code>include?</code>メソッドを使用しています<sup class="footnote" id="fnref-10_10"><a href="http://railstutorial.jp/user-microposts.html#fn-10_10">10</a></sup>。</p>
+<p>このテストでは、与えられた要素が配列に含まれているかどうかをチェックする<code>include?</code>メソッドを使用しています<sup class="footnote" id="fnref-10_10"><a href="http://railstutorial.jp/user-microposts.html#fn-10_10">10</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="ss">:bar</span><span class="o">]</span>
@@ -1948,7 +1948,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/user-microposts.html#code-home_page_feed_test">リスト 10.40</a>のコードでは、以下のように各フィード項目が固有のCSS idを持つことを前提にしています。</p>
+<p><a class="ref" href="http://railstutorial.jp/user-microposts.html#code-home_page_feed_test">リスト10.40</a>のコードでは、以下のように各フィード項目が固有のCSS idを持つことを前提にしています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">page</span><span class="o">.</span><span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s2">&quot;li#</span><span class="si">#{</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="ss">text:</span> <span class="n">item</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </pre></div>
@@ -2004,7 +2004,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>ここでは、フィードアイテムとして<code>:collection</code>パラメーターを渡しているので、<code>render</code>はコレクションの各アイテムを表示するために与えられたパーシャル (この場合は<code>’feed_item’</code>)を使用してくれます。(以前の表示では、<code>render ’shared/micropost’</code>のように<code>:partial</code>パラメーターを省略していましたが、<code>:collection</code>パラメーターがある場合はこの記法では正常に動作しません。) フィードアイテムのパーシャルを<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-feed_item_partial">リスト 10.43</a>に示します。</p>
+<p>ここでは、フィードアイテムとして<code>:collection</code>パラメーターを渡しているので、<code>render</code>はコレクションの各アイテムを表示するために与えられたパーシャル (この場合は<code>’feed_item’</code>)を使用してくれます。(以前の表示では、<code>render ’shared/micropost’</code>のように<code>:partial</code>パラメーターを省略していましたが、<code>:collection</code>パラメーターがある場合はこの記法では正常に動作しません。) フィードアイテムのパーシャルを<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-feed_item_partial">リスト10.43</a>に示します。</p>
 
 <div class="label" id="code-feed_item_partial"></div>
 
@@ -2120,21 +2120,21 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-10_3_4" href="http://railstutorial.jp/user-microposts.html#sec-destroying_microposts" class="heading"><span class="number">10.3.4</span>マイクロポストを削除する</a></h3>
 
 
-<p>最後の機能として、マイクロポストリソースにポストを削除する機能を追加します。これはユーザ削除と同様に(<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#sec-the_destroy_action">9.4.2</a>)、&quot;delete&quot; リンクで実現します (<a class="ref" href="http://railstutorial.jp/user-microposts.html#fig-micropost_delete_links_mockup">図10.16</a>)。管理者ユーザのみがユーザを削除できるように制限されていたのと異なり、今回の場合はカレントユーザーが作成したマイクロポストに対してのみ削除リンクが動作するようにします。</p>
+<p>最後の機能として、マイクロポストリソースにポストを削除する機能を追加します。これはユーザ削除と同様に(<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#sec-the_destroy_action">9.4.2</a>)、&quot;delete&quot; リンクで実現します (<a class="ref" href="http://railstutorial.jp/user-microposts.html#fig-micropost_delete_links_mockup">図10.16</a>)。ユーザーの削除は管理者ユーザのみが行えるように制限されていたのに対し、今回の場合はカレントユーザーが作成したマイクロポストに対してのみ削除リンクが動作するようにします。</p>
 
 <div class="label" id="fig-micropost_delete_links_mockup"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/micropost_delete_links_mockup_bootstrap.png" alt="micropost_delete_links_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図 10.16: </span><span class="description"> マイクロポストの削除リンクと(プロト)フィードのモックアップ<a href="http://railstutorial.org/images/figures/micropost_delete_links_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/micropost_delete_links_mockup_bootstrap.png" alt="micropost_delete_links_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.16</span><span class="description">マイクロポストの削除リンクと (プロト) フィードのモックアップ。<a href="http://railstutorial.org/images/figures/micropost_delete_links_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>最初のステップとして<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-feed_item_partial">リスト 10.43</a>のマイクロポストパーシャルに削除リンクを追加します。同様に、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-feed_item_partial">リスト 10.43</a>のフィードアイテムパーシャルにリンクを追加します。結果を<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_partial_with_delete">リスト 10.46</a> および <a class="ref" href="http://railstutorial.jp/user-microposts.html#code-feed_item_partial_with_delete">リスト 10.47</a>に載せます。(２つはほとんど同一です。重複の削除は演習として残します(<a class="ref" href="http://railstutorial.jp/user-microposts.html#sec-micropost_exercises">10.5</a>).)</p>
+<p>最初のステップとして、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-feed_item_partial">リスト10.43</a>のマイクロポストパーシャルに削除リンクを追加します。同様に、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-feed_item_partial">リスト10.43</a>のフィードアイテムパーシャルにリンクを追加します。追加の結果を<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_partial_with_delete">リスト10.46</a>および<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-feed_item_partial_with_delete">リスト10.47</a>に示します (これら2つはほとんど同一です。重複コードの削除は演習に回すことにします (<a class="ref" href="http://railstutorial.jp/user-microposts.html#sec-micropost_exercises">10.5</a>))。</p>
 
 <div class="label" id="code-micropost_partial_with_delete"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト 10.46.</span> <span class="description">マイクロポストパーシャルに削除リンクを追加</span><br /><span class="description"> <code>app/views/microposts/_micropost.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト10.46</span> <span class="description">マイクロポストパーシャルに削除リンクを追加する。</span><br /><span class="description"> <code>app/views/microposts/_micropost.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;li&gt;</span>
   <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;content&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">micropost</span><span class="o">.</span><span class="n">content</span> <span class="cp">%&gt;</span><span class="nt">&lt;/span&gt;</span>
   <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;timestamp&quot;</span><span class="nt">&gt;</span>
@@ -2144,7 +2144,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
     <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span> <span class="n">micropost</span><span class="p">,</span> <span class="nb">method</span><span class="p">:</span> <span class="ss">:delete</span><span class="p">,</span>
                                      <span class="ss">data:</span> <span class="p">{</span> <span class="ss">confirm:</span> <span class="s2">&quot;You sure?&quot;</span> <span class="p">},</span>
                                      <span class="ss">title:</span> <span class="n">micropost</span><span class="o">.</span><span class="n">content</span> <span class="cp">%&gt;</span>
-  end
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;/li&gt;</span>
 </pre></div>
 </div></div>
@@ -2156,7 +2156,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト 10.47.</span> <span class="description">フィードアイテムパーシャルに削除リンクを追加</span><br /><span class="description"> <code>app/views/shared/_feed_item.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト10.47</span> <span class="description">フィードアイテムパーシャルに削除リンクを追加する。</span><br /><span class="description"> <code>app/views/shared/_feed_item.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;</span><span class="cp">&lt;%=</span> <span class="n">feed_item</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="s">&quot;</span><span class="nt">&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">gravatar_for</span><span class="p">(</span><span class="n">feed_item</span><span class="o">.</span><span class="n">user</span><span class="p">),</span> <span class="n">feed_item</span><span class="o">.</span><span class="n">user</span> <span class="cp">%&gt;</span>
     <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;user&quot;</span><span class="nt">&gt;</span>
@@ -2170,19 +2170,19 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
     <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;delete&quot;</span><span class="p">,</span> <span class="n">feed_item</span><span class="p">,</span> <span class="nb">method</span><span class="p">:</span> <span class="ss">:delete</span><span class="p">,</span>
                                      <span class="ss">data:</span> <span class="p">{</span> <span class="ss">confirm:</span> <span class="s2">&quot;You sure?&quot;</span> <span class="p">},</span>
                                      <span class="ss">title:</span> <span class="n">feed_item</span><span class="o">.</span><span class="n">content</span> <span class="cp">%&gt;</span>
-  end
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;/li&gt;</span>
 </pre></div>
 </div></div>
 
 
-<p>マイクロポスト削除のテストには、Capybara を使って &quot;delete&quot; リンクをクリックし、マイクロポストのカウントが１減っていることをテストします(<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_destroy_specs">リスト 10.48</a>)。</p>
+<p>マイクロポスト削除をテストするには、Capybaraを使用して &quot;delete&quot; リンクをクリックし、マイクロポストのカウントが1減っていることを確認します (<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_destroy_specs">リスト10.48</a>)。</p>
 
 <div class="label" id="code-micropost_destroy_specs"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト 10.48.</span> <span class="description">マイクロポストコントローラの <code>destroy</code> アクションのテスト </span><br /><span class="description"> <code>spec/requests/micropost_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.48</span> <span class="description">Micropostsコントローラの<code>destroy</code>アクションをテストする。</span><br /><span class="description"> <code>spec/requests/micropost_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Micropost pages&quot;</span> <span class="k">do</span>
@@ -2205,13 +2205,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト 9.48</a>でのユーザーの場合のアプリケーションコードと似ていますが、 １番の違いは、<code>admin_user</code> before filter を使うのではなく、マイクロポストの場合は <code>correct_user</code> before filter を使ってカレントユーザーが実際に指定の id のマイクロポストを持っているのかチェックしている所です。<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-microposts_destroy_action">リスト 10.49</a>にコードを示します。<a class="ref" href="http://railstutorial.jp/user-microposts.html#fig-home_post_delete">図 10.17</a>に２番目に最新のポストを削除した場合の結果を示します。</p>
+<p><a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト9.48</a>のユーザー用アプリケーションコードと似ていますが、最も大きく異なるのは、マイクロポストの場合は、カレントユーザーが実際に指定のidのマイクロポストを持っているのかをチェックするのに<code>admin_user</code> before_filterではなく、 <code>correct_user</code> before_filterを使用している点です。コードを<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-microposts_destroy_action">リスト10.49</a>に示します。2番目に新しいポストを削除した場合の結果を<a class="ref" href="http://railstutorial.jp/user-microposts.html#fig-home_post_delete">図10.17</a>に示します。</p>
 
 <div class="label" id="code-microposts_destroy_action"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト 10.49.</span> <span class="description">マイクロポストコントローラの <code>destroy</code> アクション</span><br /><span class="description"> <code>app/controllers/microposts_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.49</span> <span class="description">マイクロポストコントローラの<code>destroy</code>アクション。</span><br /><span class="description"> <code>app/controllers/microposts_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MicropostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_filter</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
   <span class="n">before_filter</span> <span class="ss">:correct_user</span><span class="p">,</span>   <span class="ss">only:</span> <span class="ss">:destroy</span>
@@ -2234,7 +2234,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p><code>correct_user</code> before filter において、マイクロポストを以下のように関連を<em>通して</em>見つけていることに注目してください。
+<p><code>correct_user</code> before_filterでは、マイクロポストを以下のように関連付けを<em>経由して</em>見つけていることにご注目ください。
 
 </p>
 
@@ -2243,7 +2243,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>これによって自動的にカレントユーザーに所属するマイクロポストだけが見つかることが保証されます。この場合、  <code>find</code> の代わりに <code>find_by_id</code> を使用します。なぜなら前者の場合マイクロポストがない場合、例外が投げられますが、後者の場合は <code>nil</code> が返されるためです。ところで、もしあなたが Ruby の例外が得意なら、<code>correct_user</code> フィールターを以下のように書く事もできます。</p>
+<p>これによって、カレントユーザーに所属するマイクロポストだけが自動的に見つかることが保証されます。この場合、  <code>find</code>ではなく<code>find_by_id</code>を使用します。これは、前者ではマイクロポストがない場合に例外が発生しますが、後者は<code>nil</code>を返すためです。ところで、Rubyの例外処理に慣れている方なら、<code>correct_user</code>のフィルタを以下のように書くこともできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">correct_user</span>
   <span class="vi">@micropost</span> <span class="o">=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
@@ -2254,7 +2254,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p><code>correct_user</code> フィルターを <code>Micropost</code> モデルを以下のように直接使って実装することもできます。</p>
+<p><code>Micropost</code>モデルを以下のように直接使用して<code>correct_user</code>フィルタを実装することもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@micropost</span> <span class="o">=</span> <span class="no">Micropost</span><span class="o">.</span><span class="n">find_by_id</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
 <span class="n">redirect_to</span> <span class="n">root_url</span> <span class="k">unless</span> <span class="n">current_user?</span><span class="p">(</span><span class="vi">@micropost</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
@@ -2262,15 +2262,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>これは<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-microposts_destroy_action">リスト 10.49</a>のコードと同じだと思うかもしれませんが、<a href="http://www.rubyfocus.biz/">Wolfram Arnold</a> がブログ記事 <a href="http://www.rubyfocus.biz/blog/2011/06/15/access_control_101_in_rails_and_the_citibank-hack.html">Access Control 101 in Rails and the Citibank Hack</a> で解説しているように、常に関連を通して見つけるのがセキュリティのために良い実践であります。</p>
+<p>上のコードは<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-microposts_destroy_action">リスト10.49</a>のコードと同等だと思うかもしれませんが、<a href="http://www.rubyfocus.biz/">Wolfram Arnold</a>がブログ記事「<a href="http://www.rubyfocus.biz/blog/2011/06/15/access_control_101_in_rails_and_the_citibank-hack.html">RailsにおけるAccess Control 101とシティバンクでのハッキング事件</a> (英語)」で解説しているように、対象を探しだすときには常に関連付けを経由することをセキュリティの観点から強くお勧めいたします。</p>
 
 <div class="label" id="fig-home_post_delete"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/home_post_delete_bootstrap.png" alt="home_post_delete_bootstrap" /></span></div><div class="caption"><span class="header">図 10.17: </span><span class="description">２番目に最新のマイクロポストを削除したあとのユーザーホームページ <a href="http://railstutorial.org/images/figures/home_post_delete_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/home_post_delete_bootstrap.png" alt="home_post_delete_bootstrap" /></span></div><div class="caption"><span class="header">図10.17</span><span class="description">2番目に新しいマイクロポストを削除した後のユーザーHomeページ。<a href="http://railstutorial.org/images/figures/home_post_delete_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>この章のコードを持って、マイクロポストモデルとインターフェースが完成しました。全てのテストが通るはずです。</p>
+<p>この節のコードで、Micropostモデルとインターフェイスが完成しました。すべてのテストがパスするはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
@@ -2282,9 +2282,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h2><a id="sec-10_4" href="http://railstutorial.jp/user-microposts.html#sec-10_4" class="heading"><span class="number">10.4</span>最後に</a></h2>
 
 
-<p>マイクロポストリソースの追加によって、サンプルアプリケーションはもうほとんど終了です。残すところは、ユーザーをお互いにフォローさせるソーシャルレイヤーのみとなりました。<a class="ref" href="http://railstutorial.jp/following-users.html#top">第11章</a>で、そのようなユーザーの関係をどのようにモデリングするのか学び、ステータスフィードへの影響をみます。</p>
+<p>Micropostsリソースの追加によって、サンプルアプリケーションはほぼ完成に近づきました。残すところは、ユーザーをお互いにフォローするソーシャルレイヤーのみとなりました。<a class="ref" href="http://railstutorial.jp/following-users.html#top">第11章</a>では、そのようなユーザー同士の関係 (リレーションシップ) をモデリングする方法を学び、それがステータスフィードにどのように関連するかを学びます。</p>
 
-<p>次に進む前に、変更をマージしてコミットすることを忘れないでください。</p>
+<p>Gitバージョン管理を使用している方は、次に進む前に変更をマージしてコミットすることを忘れないでください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
 <span class="gp">$</span> git commit -m <span class="s2">&quot;Add user microposts&quot;</span>
@@ -2295,7 +2295,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>この時点で Heroku にアプリを push するのも良いでしょう。<code>microposts</code> テーブルを加えるにあたってデータモデルが変更になったので、プロダクションデータベースをマイグレートさせる必要があります。</p>
+<p>この時点でHerokuにアプリをプッシュしてもよいでしょう。<code>microposts</code>テーブルを追加するためにデータモデルを変更したので、本番データベースをマイグレートする必要があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push heroku
 <span class="gp">$</span> heroku pg:reset DATABASE
@@ -2311,16 +2311,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h2><a id="sec-10_5" href="http://railstutorial.jp/user-microposts.html#sec-micropost_exercises" class="heading"><span class="number">10.5</span>演習</a></h2>
 
 
-<p>十分な題材をカバーした今、アプリに対して余りある拡張機能が存在します。以下はそのうちのほんのいくつかのものたちです。</p>
+<p>ここまでに数多くの題材を取り上げてきましたので、今やアプリケーションを拡張する方法は山ほどあります。以下は、その中のごくわずかに過ぎません。</p>
 
 <ol>
-<li>サイドバーのマイクロポストカウントに対するテストを追加せよ(正しい複数形を用いて)</li>
-<li>マイクロポストのページネーションのためのテストを追加せよ。</li>
-<li><code>if</code>-<code>else</code> ステートメントの２つのブランチに対してそれぞれ別のパーシャルを使用するようにホームページをリファクタリングせよ。</li>
-<li>削除リンクが、現在のユーザーによって作成されていないマイクロポストには表示されないことを確認するためのテストを書け。</li>
-<li>パーシャルを使って、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_partial_with_delete">リスト 10.46</a> および <a class="ref" href="http://railstutorial.jp/user-microposts.html#code-feed_item_partial_with_delete">リスト 10.47</a>から削除リンクの重複を削除せよ。</li>
-<li><a class="ref" href="http://railstutorial.jp/user-microposts.html#fig-long_word_micropost">図 10.18</a>に示すように、現在とても長い単語を入力するとレイアウトが壊れてしまう。<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-wrap">リスト 10.50</a>で定義した <code>wrap</code> ヘルパーを使ってこの問題を修正せよ。Railsが結果のHTMLをエスケープしてしまうのを防ぐために <code>raw</code> メソッドが使える事、クロスサイトスクリプティング(XSS)を防ぐために <code>sanitize</code> メソッドを使用できる。このコードには、奇妙に見えるかもしれないがとても便利な <em>3項演算子</em> (<a class="ref" href="http://railstutorial.jp/user-microposts.html#sidebar-ternary_operator">囲み 10.1</a>)を使う事も可能。</li>
-<li><strong>(チャレンジ)</strong> 140 文字からカウントダウンするための Javascript をホームページに追加せよ。</li>
+<li>サイドバーのマイクロポストカウントのテストを追加してください。このとき、表示に単数形と複数形が正しく表示されているかどうかもテストしてください。</li>
+<li>マイクロポストのページネーションのテストを追加してください。</li>
+<li><code>if</code>-<code>else</code>文の2つの分岐に対して、それぞれ異なるパーシャルを使用するようにホームページをリファクタリングしてください。</li>
+<li>削除リンクが、現在のユーザーによって作成されていないマイクロポストには表示されないことを確認するためのテストを作成してください。</li>
+<li>パーシャルを使用して、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_partial_with_delete">リスト10.46</a>および<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-feed_item_partial_with_delete">リスト10.47</a>から削除リンクの重複を削除してください。</li>
+<li><a class="ref" href="http://railstutorial.jp/user-microposts.html#fig-long_word_micropost">図10.18</a>に示すように、非常に長い単語を入力するとレイアウトが崩れてしまいます。<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-wrap">リスト10.50</a>で定義した<code>wrap</code>ヘルパーを使用して、この問題を修正してください。このとき、出力されたHTMLがRailsによってエスケープされるのを防ぐために<code>raw</code>メソッドを使用してください。また、クロスサイトスクリプティング (XSS) を防ぐために<code>sanitize</code>メソッドも使用してください。さらに、このコードでは<em>3項演算子</em> (<a class="ref" href="http://railstutorial.jp/user-microposts.html#sidebar-ternary_operator">囲み 10.1</a>) も使用してください。3項演算子は一見奇妙ですが、きわめて便利なものです。</li>
+<li><strong>(チャレンジ)</strong> 入力できる残り文字数を140 文字からカウントダウンするためのJavaScriptをHomeページに追加してください。</li>
 </ol>
 
 
@@ -2329,24 +2329,24 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="sidebar-ternary_operator"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み 10.1.</span><span class="description">10種類の人々</span></span>
-<p>この世には10種類の人々がいます: 3項演算子を好きな人と、嫌いな人と、それが何かを知らない人です。(もしあなたが３番目のカテゴリに属す人でも心配しないでください。もうすぐそのカテゴリの人ではなくなります。)</p>
+<div class="sidebar"><span class="title"><span class="header">囲み10.1</span><span class="description">10種類の人々</span></span>
+<p>この世には10種類の人々がいます。3項演算子を好きな人、嫌いな人、3項演算子を知らない人です。(もし3番目に該当したとしても、すぐそのカテゴリの人ではなくなりますので心配ご無用です。)</p>
 
-<p>あなたがプログラミングの多くを行う時は、すぐに制御フローの最も一般的なものの１つは、次のように書く事だとすぐに学びます。</p>
+<p>プログラミング経験を重ねるうちに、以下のような制御フローが最もよく使用される、ありふれたものであることはすぐにわかると思います。</p>
 
 <pre class="verbatim">  if boolean? 
-    do_one_thing 
+    何かをする
   else 
-    do_something_else 
+    別のことをする
 end</pre>
 
 
-<p>Ruby や他の言語 (C/C++, Perl, PHP, and Javaを含む) では、これをよりコンパクトな<em>3項演算子</em>と呼ばれる表現で置き換えることができます (3つのパートで構成されるためそのように呼ばれます)。</p>
+<p>Rubyや他の言語 (C/C++、Perl、PHP、Javaなど) では、上のようなフローをよりコンパクトな<em>3項演算子</em>と呼ばれる表現で置き換えることができます (3つの部分から構成されるためそのように呼ばれます)。</p>
 
-<pre class="verbatim">  boolean? ? do_one_thing : do_something_else </pre>
+<pre class="verbatim">  boolean? ? 何かをする : 別のことをする</pre>
 
 
-<p>また、代入を置き換えるために参考演算子を使用することもできます。</p>
+<p>また、3項演算子で代入文を置き換えることもできます。</p>
 
 <pre class="verbatim">  if boolean?
     var = foo
@@ -2355,12 +2355,12 @@ end</pre>
 end</pre>
 
 
-<p>は以下のように書けます。</p>
+<p>上のコードは以下のように1行で書けます。</p>
 
 <pre class="verbatim">  var = boolean? ? foo : bar</pre>
 
 
-<p>別の一般的な用途は、関数の戻り値として使用することです。</p>
+<p>他に、関数の戻り値で使用することもよくあります。</p>
 
 <pre class="verbatim">  def foo
     do_stuff
@@ -2368,7 +2368,7 @@ end</pre>
 end</pre>
 
 
-<p>Ruby は暗黙的に関数の最後の式の値を返すので、ここでは <tt>foo</tt> メソッドは <tt>boolean?</tt> の値によって <tt>&quot;bar&quot;</tt> または <tt>&quot;baz&quot;</tt> を返します。これは<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-wrap">リスト 10.50</a>に現れた最終的な構成です。</p>
+<p>Rubyは暗黙的に関数の最後の式の値を返すので、ここでは<tt>foo</tt>メソッドは<tt>boolean?</tt>の値によって<tt>&quot;bar&quot;</tt>または<tt>&quot;baz&quot;</tt>を返します。この手法は<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-wrap">リスト10.50</a>の最後の部分でも使用しています。</p>
 </div>
 
 
@@ -2377,7 +2377,7 @@ end</pre>
 <div class="label" id="fig-long_word_micropost"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/long_word_micropost_bootstrap.png" alt="long_word_micropost_bootstrap" /></span></div><div class="caption"><span class="header">図 10.18: </span><span class="description">非常に長い単語によって崩れたレイアウト <a href="http://railstutorial.org/images/figures/long_word_micropost_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/long_word_micropost_bootstrap.png" alt="long_word_micropost_bootstrap" /></span></div><div class="caption"><span class="header">図10.18</span><span class="description">非常に長い単語によって崩れたレイアウト。<a href="http://railstutorial.org/images/figures/long_word_micropost_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -2386,7 +2386,7 @@ end</pre>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト 10.50.</span> <span class="description">長い単語をラップさせるヘルパー</span><br /><span class="description"> <code>app/helpers/microposts_helper.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.50</span> <span class="description">長い単語をラップさせるヘルパー。</span><br /><span class="description"> <code>app/helpers/microposts_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">MicropostsHelper</span>
 
   <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
@@ -2414,18 +2414,18 @@ end</pre>
 </a><a class="next_page" href="http://railstutorial.jp/following-users.html#top">    <span class="number">第11章</span>ユーザーをフォローする</a><a class="next_page" href="http://railstutorial.jp/following-users.html#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-10_1">技術的には、<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#top">第8章</a>でセッションをリソースとして扱かったが、セッションはユーザーやマイクロポストのようにデータベースには保存されていない。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_1">↑</a></li>
-<li id="fn-10_2"><code>content</code> 属性は <code>string</code> になるが、 <a class="ref" href="http://railstutorial.jp/a-demo-app.html#sec-modeling_demo_microposts">2.1.2</a>で簡単に述べたように、より長いテキストフィールドには <code>text</code> データタイプを使用すべきです。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_2">↑</a></li>
-<li id="fn-10_3">当初、マイクロポストを適切に複製することを忘れており、事実以前のバージョンのチュートリアルにはバグがあった。セーフティチェックを入れていればエラーが明らかになっていたかもしれない。バグを見つけてくれて、注意を喚起してくれた読者 Jacob Turino に感謝します。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_3">↑</a></li>
-<li id="fn-10_4">(すなわち、カスタムGravatarを持った５人のユーザーと、デフォルトGravatarを持った１人のユーザー) <a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_4">↑</a></li>
-<li id="fn-10_5">もしこのメソッドが生成するSQLに興味があるなら <code>log/development.log</code> を tail してみてください。 <a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_5">↑</a></li>
-<li id="fn-10_6">意図的に、Faker gemの <em>lorem ipsum</em> テキストはランダムになっているので、あなたのサンプルマイクロポストの内容は違っているはずです。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_6">↑</a></li>
-<li id="fn-10_7">便宜上、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_css">リスト 10.24</a> はこの章で必要な<em>すべての</em>CSSを含んでいます。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_7">↑</a></li>
-<li id="fn-10_8">他の２つのリソースとは、<a class="ref" href="http://railstutorial.jp/sign-up.html#sec-signup_form">リスト 7.2</a>のユーザーと<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#sec-signin_failure">8.1</a>のセッションです。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_8">↑</a></li>
-<li id="fn-10_9"><a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#sec-remember_me">8.2.1</a>でデフォルトではヘルパーメソッドは<em>views</em>でのみ利用可能であると注釈しましたが、<code>include SessionsHelper</code>をアプリケーションコントローラに加えることでコントローラでも利用可能にしました(<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-sessions_helper_include">リスト 8.14</a>)。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_9">↑</a></li>
-<li id="fn-10_10"><code>include?</code>のようなメソッドを学ぶことが、 <a class="ref" href="http://railstutorial.jp/beginning.html#sec-comments_for_various_readers">1.1.1</a>で述べたように、これを読み終わったら次に純粋なRubyの本を読む事を薦めた理由です。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_10">↑</a></li>
-<li id="fn-10_11"><code>where</code> や like についてより詳しくは、Rails Guide の<a href="http://guides.rubyonrails.org/active_record_querying.html">Active Record Query Interface</a> を読んでください。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_11">↑</a></li>
-<li id="fn-10_12">不運にも、この場合はページ分割されたフィードを返してもうまく動きません。なぜダメなのか確認するには、実装してページネーションリンクをクリックしてみてください。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_12">↑</a></li>
+<li id="fn-10_1">技術的には、<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#top">第8章</a>でセッションをリソースとして扱いましたが、セッションはユーザーやマイクロポストと異なり、データベースには保存されません。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_1">↑</a></li>
+<li id="fn-10_2"><code>content</code>属性は<code>string</code>型になりますが、 <a class="ref" href="http://railstutorial.jp/a-demo-app.html#sec-modeling_demo_microposts">2.1.2</a>で簡単に述べたように、長文用のテキストフィールドには<code>text</code>型を使用してください。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_2">↑</a></li>
+<li id="fn-10_3">実は私自身、当初マイクロポストを適切に複製することを忘れており、以前のバージョンのチュートリアルで使用していたテストにはバグもありました。このようなセフティチェックを最初から行なっていれば、エラーを未然に防げたことでしょう。バグを発見して知らせてくれた読者Jacob Turinoに感謝します。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_3">↑</a></li>
+<li id="fn-10_4">(ここではカスタムGravatarを持つ5人のユーザーと、デフォルトGravatarを持つ1人のユーザー) <a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_4">↑</a></li>
+<li id="fn-10_5">もしこのメソッドが生成するSQLに興味があるのであれば、<code>log/development.log</code>をtailしてみてください (コマンドラインでファイルにtailコマンドを実行するという意味)。 <a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_5">↑</a></li>
+<li id="fn-10_6">Faker gemの<em>lorem ipsum</em>サンプルテキストはランダムに生成される仕様になっているため、サンプルマイクロポストの内容はこの図と違っているはずです。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_6">↑</a></li>
+<li id="fn-10_7">便宜上、<a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_css">リスト10.24</a>はこの章で必要なCSSを<em>すべて</em>含んでいます。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_7">↑</a></li>
+<li id="fn-10_8">他の2つのリソースとは、<a class="ref" href="http://railstutorial.jp/sign-up.html#sec-signup_form">リスト7.2</a>のユーザーと<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#sec-signin_failure">8.1</a>のセッションです。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_8">↑</a></li>
+<li id="fn-10_9"><a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#sec-remember_me">8.2.1</a>で、ヘルパーメソッドはデフォルトでは<em>ビュー</em>でのみ利用可能であると説明しましたが、<code>include SessionsHelper</code>をApplicationコントローラに追加してコントローラでも利用できるようににしました (<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-sessions_helper_include">リスト8.14</a>)。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_9">↑</a></li>
+<li id="fn-10_10"><a class="ref" href="http://railstutorial.jp/beginning.html#sec-comments_for_various_readers">1.1.1</a>で、本書を読み終わったら次に純粋なRubyの本を読む事を薦めましたが、これは、<code>include?</code>のようなメソッドを学んでいただきたいからというのが理由の一つです。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_10">↑</a></li>
+<li id="fn-10_11"><code>where</code>やlikeの詳細については、Rails Guideの「<a href="http://guides.rubyonrails.org/active_record_querying.html">Active Record Query Interface</a> (英語)」を参照してください。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_11">↑</a></li>
+<li id="fn-10_12">残念ですが、この場合はページ分割されたフィードを返してもうまく動きません。動かない理由を確認したい方は、実際に実装してページネーションリンクをクリックしてみてください。<a class="arrow" href="http://railstutorial.jp/user-microposts.html#fnref-10_12">↑</a></li>
 </ol>
 </div>
 

@@ -427,14 +427,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sample_app_only_bootstrap.png" alt="sample_app_only_bootstrap" /></span></div><div class="caption"><span class="header">図5.3: </span><span class="description">Bootstrap CSSとサンプルアプリケーション。<a href="http://railstutorial.org/images/figures/sample_app_only_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>Next we’ll add some CSS that will be used site-wide for styling the layout and each individual page, as shown in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-universal_css">Listing 5.5</a>. There are quite a few rules in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-universal_css">Listing 5.5</a>; to get a sense of what a CSS rule does, it’s often helpful to comment it out using CSS comments, i.e., by putting it inside <code>/* … */</code>, and seeing what changes.
-The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-universal_css">Listing 5.5</a> is shown in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#fig-sample_app_universal">Figure 5.4</a>.</p>
+<p>次に、<a href="http://railstutorial.jp/filling-in-the-layout.html#code-universal_css" class="ref">リスト5.5</a>のような、サイトの多くの部分とそれぞれ個別のページレイアウトのスタイリング用CSSを追加します。<a href="http://railstutorial.jp/filling-in-the-layout.html#code-universal_css" class="ref">リスト5.5</a>には、ほんの少しだけのルールがあります。あるCSSルールが何をするのか判別するために、CSSコメントを使用してコメントすることは、しばしば有益です。例) <code>/* … */</code>の内側にそれを記入し何が変わるのかを見る。<a href="http://railstutorial.jp/filling-in-the-layout.html#code-universal_css" class="ref">リスト5.5</a>の結果は<a href="http://railstutorial.jp/filling-in-the-layout.html#fig-sample_app_universal" class="ref">図5.4</a>で示されています。</p>
 
 <div class="label" id="code-universal_css"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 5.5.</span> <span class="description">Adding CSS for some universal styling applying to all pages. </span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="listing"><span class="header">リスト5.5.</span> <span class="description">すべてのページに適用される共通的なスタイルをCSSに追加。</span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">@import</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
 
 <span class="cm">/* universal */</span>
@@ -471,10 +470,10 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 <div class="label" id="fig-sample_app_universal"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sample_app_universal.png" alt="sample_app_universal" /></span></div><div class="caption"><span class="header">Figure 5.4: </span><span class="description">Adding some spacing and other universal styling. <a href="http://railstutorial.org/images/figures/sample_app_universal-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sample_app_universal.png" alt="sample_app_universal" /></span></div><div class="caption"><span class="header">図5.4: </span><span class="description">空間とその他共通スタイルの追加。<a href="http://railstutorial.org/images/figures/sample_app_universal-full.png">(拡大)</a></span></div></div>
 
 
-<p>Note that the CSS in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-universal_css">Listing 5.5</a> has a consistent form. In general, CSS rules refer either to a class, an id, an HTML tag, or some combination thereof, followed by a list of styling commands. For example,</p>
+<p><a href="http://railstutorial.jp/filling-in-the-layout.html#code-universal_css" class="ref">リスト5.5</a>のCSSの形式は一貫しています。一般的に、CSSルールはクラス、id、HTMLタグ、またはスタイリングコマンドのリストが続くそれら組み合わせの何れかを参照します。例えば、</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">body</span> <span class="p">{</span>
   <span class="na">padding-top</span><span class="o">:</span> <span class="mi">60</span><span class="kt">px</span><span class="p">;</span>
@@ -483,7 +482,7 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 </div>
 
 
-<p>puts 60 pixels of padding at the top of the page. Because of the <code>navbar-fixed-top</code> class in the <code>header</code> tag, Bootstrap fixes the navigation bar to the top of the page, so the padding serves to separate the main text from the navigation. (Because the default navbar color changed between Boostrap 2.0 and 2.1, we need the <code>navbar-inverse</code> class to make it dark instead of light.) Meanwhile, the CSS in the rule</p>
+<p>は、ページ上部に60ピクセルの余白を追加します。<code>header</code>タグの<code>navbar-fixed-top</code>クラスにより、Bootstrapはナビゲーションバーをページ上部に固定し、余白は主要部分をナビゲーションから分離する役割を果たします。(デフォルトのnavbarの色は、Bootstrap 2.0と2.1で変更されたため、淡色の代わりにダークな色調にするには<code>navbar-inverse</code>クラスを使用する必要があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nc">.center</span> <span class="p">{</span>
   <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
@@ -492,15 +491,15 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 </div>
 
 
-<p>associates the <code>center</code> class with the <code>text-align: center</code> property. In other words, the dot <code>.</code> in <code>.center</code> indicates that the rule styles a class. (As we’ll see in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-logo_css">Listing 5.7</a>, the pound sign <code>#</code> identifies a rule to style a CSS <em>id</em>.) This means that elements inside any tag (such as a <code>div</code>) with class <code>center</code> will be centered on the page. (We saw an example of this class in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-signup_button">Listing 5.2</a>.)</p>
+<p>このルールにあるCSSは、<code>center</code>クラスに<code>text-align: center</code>プロパティを結びつけています。言い換えれば、<code>.center</code>の<code>.</code>は、このルールがクラスであることを示しています。(<a href="http://railstutorial.jp/filling-in-the-layout.html#code-logo_css" class="ref">リスト5.7</a>で分かるように、ポンド記号<code>#</code>はルールがCSS<em>id</em>であることを明確にしています。これは、<code>center</code>クラスを伴う (<code>div</code>のような) タグの内側の要素は、ページ中でセンタリングされることを意味しています。(このクラスの例は<a href="http://railstutorial.jp/filling-in-the-layout.html#code-signup_button" class="ref">リスト5.2</a>で見ることができます。)</p>
 
-<p>Although Bootstrap comes with CSS rules for nice typography, we’ll also add some custom rules for the appearance of the text on our site, as shown in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-typography_css">Listing 5.6</a>. (Not all of these rules apply to the Home page, but each rule here will be used at some point in the sample application.) The result of <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-typography_css">Listing 5.6</a> is shown in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#fig-sample_app_typography">Figure 5.5</a>.</p>
+<p>Bootstrapは素敵なタイポグラフィーのためのCSSルールを持っていますが、<a href="http://railstutorial.jp/filling-in-the-layout.html#code-typography_css" class="ref">リスト5.6</a>のような、サイトのテキストの見栄えのためのカスタムCSSルールを追加しましょう。(これらすべてのルールはHomeページには適用されませんが、ここのルールはサンプルアプリケーションの何ヶ所かで使用されます。<a href="http://railstutorial.jp/filling-in-the-layout.html#code-typography_css" class="ref">リスト5.6</a>の結果は<a href="http://railstutorial.jp/filling-in-the-layout.html#fig-sample_app_typography" class="ref">図5.5</a>で確認することができます。</p>
 
 <div class="label" id="code-typography_css"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 5.6.</span> <span class="description">Adding CSS for nice typography. </span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="listing"><span class="header">リスト5.6.</span> <span class="description">素敵なタイポグラフィー用のCSSを追加する。</span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">@import</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
 <span class="nc">.</span>
 <span class="nc">.</span>
@@ -541,16 +540,16 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 <div class="label" id="fig-sample_app_typography"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sample_app_typography.png" alt="sample_app_typography" /></span></div><div class="caption"><span class="header">Figure 5.5: </span><span class="description">Adding some typographic styling. <a href="http://railstutorial.org/images/figures/sample_app_typography-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sample_app_typography.png" alt="sample_app_typography" /></span></div><div class="caption"><span class="header">図5.5: </span><span class="description">タイポグラフィースタイルを追加。<a href="http://railstutorial.org/images/figures/sample_app_typography-full.png">(拡大)</a></span></div></div>
 
 
-<p>Finally, we’ll add some rules to style the site’s logo, which simply consists of the text “sample app”. The CSS in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-logo_css">Listing 5.7</a> converts the text to uppercase and modifies its size, color, and placement. (We’ve used a CSS id because we expect the site logo to appear on the page only once, but you could use a class instead.)</p>
+<p>最終的には、単にテキスト『sample app』だけを含むサイトロゴをデザインするために、いくつかのルールを追加します。<a href="http://railstutorial.jp/filling-in-the-layout.html#code-logo_css" class="ref">リストLi5.7</a>のCSSは、テキストを大文字に変換し、サイズ、色、配置を変更します。(サイトロゴが一度だけページに登場すると予想しているためCSS idを使用していますが、代わりにクラスを使用することができます。)</p>
 
 <div class="label" id="code-logo_css"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 5.7.</span> <span class="description">Adding CSS for the site logo. </span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="listing"><span class="header">リスト5.7.</span> <span class="description">サイトロゴにCSSを追加する。</span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">@import</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
 <span class="nc">.</span>
 <span class="nc">.</span>
@@ -578,12 +577,12 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 </div></div>
 
 
-<p>Here <code>color: #fff</code> changes the color of the logo to white. HTML colors can be coded with three pairs of base-16 (hexadecimal) numbers, one each for the primary colors red, green, and blue (in that order). The code <code>#ffffff</code> maxes out all three colors, yielding pure white, and <code>#fff</code> is a shorthand for the full <code>#ffffff</code>. The CSS standard also defines a large number of synonyms for common <a href="http://www.w3schools.com/html/html_colornames.asp">HTML colors</a>, including <code>white</code> for <code>#fff</code>. The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-logo_css">Listing 5.7</a> is shown in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#fig-sample_app_logo">Figure 5.6</a>.</p>
+<p>この<code>color: #fff</code>は、ロゴの色を白に変更します。HTMLの色は、base-16 (16進数) の三対の数値で、赤、緑、青の三原色に (この順番で) コード化することができます。このコード<code>#ffffff</code>は、全三色が限度まで達しており、純白を生成します。また、<code>#fff</code>は、完全な<code>#ffffff</code>の簡略した書き方です。CSS標準は、<code>#fff</code>に対する<code>white</code>を含む、大量の共通<a href="http://www.w3schools.com/html/html_colornames.asp">HTMLカラー</a>の別名も定義しています。<a href="http://railstutorial.jp/filling-in-the-layout.html#code-logo_css" class="ref">リスト5.7</a>のCSSの結果は<a href="http://railstutorial.jp/filling-in-the-layout.html#fig-sample_app_logo" class="ref">図5.6</a>で確認できます。</p>
 
 <div class="label" id="fig-sample_app_logo"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sample_app_logo.png" alt="sample_app_logo" /></span></div><div class="caption"><span class="header">Figure 5.6: </span><span class="description">The sample app with nicely styled logo. <a href="http://railstutorial.org/images/figures/sample_app_logo-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sample_app_logo.png" alt="sample_app_logo" /></span></div><div class="caption"><span class="header">図5.6: </span><span class="description">デザインされたロゴとサンプルアプリ<a href="http://railstutorial.org/images/figures/sample_app_logo-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -594,13 +593,13 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 <h3><a id="sec-5_1_3" href="http://railstutorial.jp/filling-in-the-layout.html#sec-partials" class="heading"><span class="number">5.1.3</span>パーシャル (partial)</a></h3>
 
 
-<p>Although the layout in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-layout_new_structure">Listing 5.1</a> serves its purpose, it’s getting a little cluttered. The HTML shim takes up three lines and uses weird IE-specific syntax, so it would be nice to tuck it away somewhere on its own. In addition, the header HTML forms a logical unit, so it should all be packaged up in one place. The way to achieve this in Rails is to use a facility called <em>partials</em>. Let’s first take a look at what the layout looks like after the partials are defined (<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-layout_with_partials">Listing 5.8</a>).</p>
+<p><a href="http://railstutorial.jp/filling-in-the-layout.html#code-layout_new_structure" class="ref">リスト5.1</a>のレイアウトは、その目的を果たしていますが少々散らかっています。HTML shimは、3行を占有し風変わりなIE特有の文法を使用するため、いい感じにそれ自身をどこかにしまい込んでいます。また、HTMLヘッダは論理的な単位を形成するため、すべて一ヶ所にまとめられるべきです。Railsでこれをするには<em>パーシャル (partials)</em> と呼ばれる機能を使用します。最初に、パーシャルが定義された後のレイアウトがどのようになるか見てみましょう (<a href="http://railstutorial.jp/filling-in-the-layout.html#code-layout_with_partials" class="ref">リスト5.8</a>)。</p>
 
 <div class="label" id="code-layout_with_partials"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 5.8.</span> <span class="description">The site layout with partials for the stylesheets and header. </span><br /><span class="description"> <code>app/views/layouts/application.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト5.8.</span> <span class="description">スタイルシートとヘッダーのための、レイアウトとパーシャル。</span><br /><span class="description"> <code>app/views/layouts/application.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -621,7 +620,7 @@ The result of the CSS in <a class="ref" href="http://railstutorial.jp/filling-in
 </div></div>
 
 
-<p>In <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-layout_with_partials">Listing 5.8</a>, we’ve replaced the HTML shim stylesheet lines with a single call to a Rails helper called <code>render</code>:</p>
+<p><a href="http://railstutorial.jp/filling-in-the-layout.html#code-layout_with_partials" class="ref">リスト5.8</a>では、<code>レンダー (render)</code>と呼ばれる単一のRailsヘルパー呼び出しで、HTML shimのスタイルシート行を置換しました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">&#39;layouts/shim&#39;</span> <span class="cp">%&gt;</span>
 </pre></div>

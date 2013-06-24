@@ -103,13 +103,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h1 class="chapter"><a id="sec-3" href="http://railstutorial.jp/static-pages.html#top" class="heading"><span class="number">第3章</span>ほぼ静的なページの作成</a></h1>
 
 
-<p>本章では、今後のチュートリアルの理解が楽になるように、簡単なサンプルアプリケーションを開発してみます。本書を通して開発するアプリケーションは、最終的にはユーザやマイクロポスト、ログイン／ログアウトなどの認証機能を持ちますが、まずは簡単なトピックである「静的なページの作成」から始めます。非常にシンプルなページではありますが、静的なページを作成することは良い経験になり、また、良い示唆を生みます。私達がこれから開発するアプリケーションにとって、最も良いスタート地点といえるでしょう。</p>
+<p>本章では、今後のチュートリアルを楽に理解できるように、簡単なサンプルアプリケーションを開発してみます。本書を通して開発するアプリケーションは、最終的にはユーザやマイクロポスト、ログイン／ログアウトなどの認証機能を持ちますが、まずは簡単なトピックである「静的なページの作成」から始めます。非常にシンプルなページではありますが、静的なページを作成することは良い経験になり、また、多くの示唆も得られます。私達がこれから開発するアプリケーションにとって、最高のスタート地点といえるでしょう。</p>
 
-<p>Rails はデータベースと連携して動的なウェブサイトを開発するように設計されていますが、HTMLファイルだけで構成されている静的なページを作ることもできます。実際、静的なページをRailsで作ることのメリットもあります。例えば、あとで<em>ほんの少しの</em>動的なコンテンツを追加することができます。本章では、このような静的なページの作成について学んでいきます。まずは、<em>自動化テスト</em>の雰囲気を掴んでいきます。自動化テストは、私達のコードが正しく動いているという自信を与えてくれますさらに、良いテストを書くことで、自信をもって<em>リファクタリング</em>を行うことができます。例えば、フォームの振る舞いを変更せずに、フォーム内で使われている関数を書き換えたいときに便利です。</p>
+<p>Rails はデータベースと連携して動的なウェブサイトを開発するように設計されていますが、HTMLファイルだけで構成されている静的なページを作ることもできます。実際、静的なページをRailsで作ることのメリットもあります。たとえば、あとで<em>ほんの少し</em>動的なコンテンツを追加することができます。本章では、このような静的なページの作成について学んでいきます。まずは、<em>自動化テスト</em>の雰囲気を掴んでいきます。自動化テストは、私達のコードが正しく動いているという自信を与えてくれます。さらに、良いテストを書くことで、自信をもって<em>リファクタリング</em>を行うことができます。たとえば、フォームの振る舞いを変更せずに、フォーム内で使われている関数を書き換えたいときに便利です。</p>
 
-<p>本章には多くのサンプルコードがあります。特に <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-first_tests">3.2</a> や <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-slightly_dynamic_pages">3.3</a> で多くのコードを紹介しているので、もし Ruby が初めてでも、そこまで心配する必要はありません。<a class="ref" href="http://railstutorial.jp/beginning.html#sec-comments_for_various_readers">1.1.1</a> で紹介したように、まずはテストをコピー＆ペーストしてみて、アプリケーションがうまく動くかどうか検証してみると良いでしょう。この時点では、テストどのようにして動くかは気にしなくても大丈夫です。また、<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#top">第４章</a>では Ruby について解説します。そこでは、Ruby の書き方やコンセプトについて学びます。最後に、本チュートリアルでは RSpec を使ったテストを何度も繰り返し実施していきます。なので、もし途中でよく分からないテストがあったとしても、読み飛ばして先に進むことをオススメします。1, 2章先を読み進めた後に読み返してみると、先ほどはよく分からなかったテストが、実はとてもシンプルであることを理解できるはずです。</p>
+<p>本章には多くのサンプルコードがあります。特に <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-first_tests">3.2</a> や <a class="ref" href="http://railstutorial.jp/static-pages.html#sec-slightly_dynamic_pages">3.3</a> で多くのコードを紹介していますが、Rubyが初めての方は、コードを隅々まで理解しなければならないのだろうかと心配する必要はありません。<a class="ref" href="http://railstutorial.jp/beginning.html#sec-comments_for_various_readers">1.1.1</a> で紹介したように、まずはテストをコピー＆ペーストしてみて、アプリケーションがうまく動くかどうか検証してみると良いでしょう。この時点では、テストどのようにして動くかは気にしなくても大丈夫です。また、<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#top">第4章</a>では Ruby について解説します。そこでは、Ruby の書き方やコンセプトについて学びます。最後に、本書では RSpec を使ったテストを繰り返し実施していきます。ですから、もし途中でよく分からないテストがあったとしても、読み飛ばして先に進むことをお勧めします。1、2章先を読み進めた後に読み返してみると、あのときはよく分からなかったテストが、実はとてもシンプルであることを理解できるはずです。</p>
 
-<p>では、<a class="ref" href="http://railstutorial.jp/a-demo-app.html#top">第２章</a>でもやったように、まずは Rails プロジェクトを作りましょう。今回は <code>sample_app</code> というプロジェクトを作ります。</p>
+<p>では、<a class="ref" href="http://railstutorial.jp/a-demo-app.html#top">第2章</a>でもやったように、まずは Rails プロジェクトを作りましょう。今回は<code>sample_app</code>というプロジェクトを作ります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>rails_projects
 <span class="gp">$</span> rails new sample_app --skip-test-unit
@@ -118,15 +118,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>ここで使った <code>rails</code> の <tt class="verb">--skip-test-unit</tt> というオプションは、<code>Test::Unit</code> フレームワークと関連している <code>test</code> ディレクトリを作成しないようにするオプションです。これは「テストを書かないから」という理由ではありません。そうではなく、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-first_tests">3.2</a> 以降では、もう１つのテストフレームワークである <em>RSpec</em> を使ってテストを書くからです。</p>
+<p>ここで使った<code>rails</code>の<tt class="verb">--skip-test-unit</tt>というオプションは、<code>Test::Unit</code>フレームワークと関連している<code>test</code>ディレクトリを作成しないようにするオプションです。これは「テストを書かないから」という理由ではありません。そうではなく、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-first_tests">3.2</a>以降では、もう1つのテストフレームワークである<em>RSpec</em>を使ってテストを書くからです。</p>
 
-<p>次は、<a class="ref" href="http://railstutorial.jp/a-demo-app.html#sec-planning_the_application">2.1</a> と同じように、テキストエディタを使って <code>Gemfile</code> に必要な gem を書き足していきます。今回は、２つの新しい gem を使います。RSpec のための gem と、RSpec のライブラリのための gem です。これらの gem を Gemfile に追加すると、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-gemfile_rspec">リスト 3.1</a> のようになります(<em>ノート</em>: もしサンプルアプリケーションの開発で必要になる<em>全て</em>の gem を知りたい場合は、<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-final_gemfile">リスト9.49</a> を見てください。この Gemfile が、最終的な Gemfile になります)。</p>
+<p>次は、<a class="ref" href="http://railstutorial.jp/a-demo-app.html#sec-planning_the_application">2.1</a>と同じように、テキストエディタを使って<code>Gemfile</code>に必要なgemを書き足していきます。今回は、2つの新しいgemを使います。RSpecのためのgem と、RSpecのライブラリのためのgemです。これらのgemをGemfileに追加すると、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-gemfile_rspec">リスト3.1</a>のようになります(<em>注</em>: もしサンプルアプリケーションの開発で必要になるgemを<em>すべて</em>知りたい場合は、<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-final_gemfile">リスト9.49</a>を参照してください。これが最終的なGemfileになります)。</p>
 
 <div class="label" id="code-gemfile_rspec"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト 3.1.</span> <span class="description">サンプルアプリケーションで使う <code>Gemfile</code></span> </div>
+<div class="listing"><span class="header">リスト 3.1</span> <span class="description">サンプルアプリケーションで使う<code>Gemfile</code>。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.13&#39;</span>
@@ -136,8 +136,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
   <span class="n">gem</span> <span class="s1">&#39;rspec-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.11.0&#39;</span>
 <span class="k">end</span>
 
-<span class="c1"># assets では使うが、</span>
-<span class="c1"># デフォルトのプロダクション環境では必要のない Gem</span>
+<span class="c1"># assetsでは使うが、</span>
+<span class="c1"># 本番環境ではデフォルトで不要なGem</span>
 <span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span>   <span class="s1">&#39;3.2.5&#39;</span>
   <span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.2&#39;</span>
@@ -157,7 +157,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>この Gemfilde では、開発環境とテスト環境で <tt>rspec-rails</tt> を使うようにしています。このため、開発環境では RSpec 特有のジェネレーターにアクセスすることができます。同様に、テスト環境では RSpec のテストを走らせることが出来るようになります。結果として、Gemfile に記述した <tt>rspec-rails</tt> が依存性を解決してくれるため、 個々の環境に RSpec をインストールする必要がなくなります。同様の理由で、<a href="https://github.com/jnicklas/capybara">Capybara</a> も Gemfile に記述しています。これは、英語のような文法を使って、ユーザーインタラクションをシミュレーションできる Gem です。<sup class="footnote" id="fnref-3_1"><a href="http://railstutorial.jp/static-pages.html#fn-3_1">1</a></sup>また、<a class="ref" href="http://railstutorial.jp/a-demo-app.html#top">第２章</a>でも扱ったように、Heroku にデプロイするために PostgreSQL の gem をプロダクション環境に追加します。</p>
+<p>このGemfileでは、開発環境とテスト環境で<tt>rspec-rails</tt>を使うようにしています。このため、開発環境ではRSpec固有のジェネレーターにアクセスすることができます。同様に、テスト環境ではRSpecを使用してテストを実行できるようになります。結果として、Gemfile に記述した <tt>rspec-rails</tt> が依存性を解決してくれるため、 個々の環境に RSpec をインストールする必要がなくなります。同様の理由で、<a href="https://github.com/jnicklas/capybara">Capybara</a> も Gemfile に記述しています。これは、英語のような文法を使って、ユーザーインタラクションをシミュレーションできる Gem です。<sup class="footnote" id="fnref-3_1"><a href="http://railstutorial.jp/static-pages.html#fn-3_1">1</a></sup>また、<a class="ref" href="http://railstutorial.jp/a-demo-app.html#top">第２章</a>でも扱ったように、Heroku にデプロイするために PostgreSQL の gem をプロダクション環境に追加します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.12.2&#39;</span>
@@ -281,7 +281,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>例えば、Sublime Text でサンプルアプリケーションを開く場合は、次のようなコマンドを使います。</p>
+<p>たとえば、Sublime Text でサンプルアプリケーションを開く場合は、次のようなコマンドを使います。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> subl .
 </pre></div>
@@ -304,7 +304,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/public_index_rails_3.png" alt="public_index_rails_3" /></span></div><div class="caption"><span class="header">図 3.2: </span><span class="description"><code>public/index.html</code> ファイルの内容。<a href="http://railstutorial.org/images/figures/public_index_rails_3-full.png">(拡大)</a></span></div></div>
 
 
-<p>このページがどこから来ているかを学ぶためには、<code>public/index.html</code> (<a class="ref" href="http://railstutorial.jp/static-pages.html#fig-public_index_rails_3">図 3.2</a>) ファイルを見てみると良いでしょう。このファイルはスタイルシートの情報を含んでいるので少し煩雑です。一方で、このファイルだけで、ページを描画することができています。これは、Rails はデフォルトでは、<code>public</code> ディレクトリ内にあるファイルを直接ブラウザに送っているからです。<sup class="footnote" id="fnref-3_5"><a href="http://railstutorial.jp/static-pages.html#fn-3_5">5</a></sup> また、デフォルトでは、今回使われている <code>index.html</code> ファイルにおいては、URL で <code>index.html</code> と指定する必要はありません。例えば、 URL に http://localhost:3000/ と打ち込んでも、http://localhost:3000/index.html と打ち込んでも、表示される内容は同じです。</p>
+<p>このページがどこから来ているかを学ぶためには、<code>public/index.html</code> (<a class="ref" href="http://railstutorial.jp/static-pages.html#fig-public_index_rails_3">図 3.2</a>) ファイルを見てみると良いでしょう。このファイルはスタイルシートの情報を含んでいるので少し煩雑です。一方で、このファイルだけで、ページを描画することができています。これは、Rails はデフォルトでは、<code>public</code> ディレクトリ内にあるファイルを直接ブラウザに送っているからです。<sup class="footnote" id="fnref-3_5"><a href="http://railstutorial.jp/static-pages.html#fn-3_5">5</a></sup> また、デフォルトでは、今回使われている <code>index.html</code> ファイルにおいては、URL で <code>index.html</code> と指定する必要はありません。たとえば、 URL に http://localhost:3000/ と打ち込んでも、http://localhost:3000/index.html と打ち込んでも、表示される内容は同じです。</p>
 
 <p>もうお気づきかもしれませんが、静的な HTML ファイルを作成し、<code>public</code> ディレクトリ内に置くことで、<code>index.html</code> と同じように表示することができます。まずは、&quot;Hello, world!&quot; と表示するファイル (<a class="ref" href="http://railstutorial.jp/static-pages.html#code-hello_world">リスト 3.3</a>) を作ってみましょう。<sup class="footnote" id="fnref-3_6"><a href="http://railstutorial.jp/static-pages.html#fn-3_6">6</a></sup></p>
 
@@ -331,7 +331,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/static-pages.html#code-hello_world">リスト 3.3</a> は、典型的な HTML ドキュメントの構造です。例えば、１行目の <em>document type</em> (doctype とも呼ぶ)  は、どのバージョンの HTML を使っているかをブラウザに宣言するもので、今回の例では、<a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a> を使っていることを宣言しています。<sup class="footnote" id="fnref-3_7"><a href="http://railstutorial.jp/static-pages.html#fn-3_7">7</a></sup> また、<code>head</code> セクションでは、<code>title</code> タグで &quot;Greeting&quot; と表示しています。最後に、<code>body</code> セクションでは、<code>p</code> (paragraph) タグを使って、 “Hello, world!” と表示するようにしています。(なお、HTML は空白スペースやタブスペースを無視してくれるので、インデントはあってもなくても大丈夫です。ただし、インデントがあると、HTML のデータ構造を理解しやすくなります。)</p>
+<p><a class="ref" href="http://railstutorial.jp/static-pages.html#code-hello_world">リスト 3.3</a> は、典型的な HTML ドキュメントの構造です。たとえば、１行目の <em>document type</em> (doctype とも呼ぶ)  は、どのバージョンの HTML を使っているかをブラウザに宣言するもので、今回の例では、<a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a> を使っていることを宣言しています。<sup class="footnote" id="fnref-3_7"><a href="http://railstutorial.jp/static-pages.html#fn-3_7">7</a></sup> また、<code>head</code> セクションでは、<code>title</code> タグで &quot;Greeting&quot; と表示しています。最後に、<code>body</code> セクションでは、<code>p</code> (paragraph) タグを使って、 “Hello, world!” と表示するようにしています。(なお、HTML は空白スペースやタブスペースを無視してくれるので、インデントはあってもなくても大丈夫です。ただし、インデントがあると、HTML のデータ構造を理解しやすくなります。)</p>
 
 <p>では、次のコマンドを入力して、ローカル環境でサーバを立ち上げてみましょう。</p>
 
@@ -424,7 +424,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="sidebar"><span class="title"><span class="header">囲み 3.1.</span></span><span class="title"><span class="description">元に戻す方法</span></span>
 <p>あなたが十分に気をつけていたとしても、Rails アプリケーションを開発している際に失敗をしてしまうことは起こりえます。しかし幸運なことに、Rails ではそのような失敗をカバーするいくつかの機能があります。</p>
 
-<p>一般的なシナリオの１つは、生成したコードを元に戻したい場合です。例えば、より良いコントローラ名をあとで思いついたケースが考えられます。<a class="ref" href="http://railstutorial.jp/static-pages.html#code-generating_pages">リスト 3.4</a>を見ても分かるように、コントローラを生成すると、Rails はコントローラファイル以外にもたくさんのファイルを作成します。自動生成されたコードを元に戻すためには、ただ新規作成されたファイルを削除するだけではなく、既存のファイルに挿入されたコードも削除する必要があります。(実際、元に戻すためには、<tt>routes.rb</tt> ファイルに自動的に追加されたコードのみを削除する必要があります。) このようなとき Rails では、<tt>rails destroy</tt> コマンドを実行することで、元に戻すことができます。例えば次の２つのコマンドは、それぞれ自動生成と、それに対応した元に戻す処理の例です。</p>
+<p>一般的なシナリオの１つは、生成したコードを元に戻したい場合です。たとえば、より良いコントローラ名をあとで思いついたケースが考えられます。<a class="ref" href="http://railstutorial.jp/static-pages.html#code-generating_pages">リスト 3.4</a>を見ても分かるように、コントローラを生成すると、Rails はコントローラファイル以外にもたくさんのファイルを作成します。自動生成されたコードを元に戻すためには、ただ新規作成されたファイルを削除するだけではなく、既存のファイルに挿入されたコードも削除する必要があります。(実際、元に戻すためには、<tt>routes.rb</tt> ファイルに自動的に追加されたコードのみを削除する必要があります。) このようなとき Rails では、<tt>rails destroy</tt> コマンドを実行することで、元に戻すことができます。たとえば次の２つのコマンドは、それぞれ自動生成と、それに対応した元に戻す処理の例です。</p>
 
 <pre class="verbatim">  $ rails generate controller FooBars baz quux
   $ rails destroy  controller FooBars baz quux</pre>
@@ -510,9 +510,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 
 <div class="sidebar"><span class="title"><span class="header">囲み 3.2.</span></span><span class="title"><span class="description"><tt>GET</tt> や、その他の HTTP メソッドについて</span></span>
-<p>HyperText Transfer Protocol (<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP</a>) には４つの基本的な操作があり、それぞれの操作を <em>get</em>、<em>post</em>、<em>put</em>、<em>delete</em> という４つの動詞に対応づけています。<em>クライアント</em> (例えば Firefox や Safari のようなウェブブラウザ) と<em>サーバ</em> (例えば Apache や Nginx のようなウェブサーバ) 側では、それぞれ先ほどの４つの操作をお互いに認識できるようになっています。(ローカル環境で Rails アプリケーションを開発しているときは、クライアントとサーバが同じマシン上で動いていますが、一般的には、それぞれ別のマシンで動いている点に注意してください。) Rails を含め多くのウェブフレームワークは、HTTP の各操作をうまく扱った <em>REST アーキテクチャ</em> の影響を受けています。<a class="ref" href="http://railstutorial.jp/a-demo-app.html#top">第２章</a> でも少し触れましたが、<a class="ref" href="http://railstutorial.jp/sign-up.html#top">第７章</a> では、より深い内容について学びます。</p>
+<p>HyperText Transfer Protocol (<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP</a>) には４つの基本的な操作があり、それぞれの操作を <em>get</em>、<em>post</em>、<em>put</em>、<em>delete</em> という４つの動詞に対応づけています。<em>クライアント</em> (たとえば Firefox や Safari のようなウェブブラウザ) と<em>サーバ</em> (たとえば Apache や Nginx のようなウェブサーバ) 側では、それぞれ先ほどの４つの操作をお互いに認識できるようになっています。(ローカル環境で Rails アプリケーションを開発しているときは、クライアントとサーバが同じマシン上で動いていますが、一般的には、それぞれ別のマシンで動いている点に注意してください。) Rails を含め多くのウェブフレームワークは、HTTP の各操作をうまく扱った <em>REST アーキテクチャ</em> の影響を受けています。<a class="ref" href="http://railstutorial.jp/a-demo-app.html#top">第２章</a> でも少し触れましたが、<a class="ref" href="http://railstutorial.jp/sign-up.html#top">第７章</a> では、より深い内容について学びます。</p>
 
-<p><tt>GET</tt> は、HTTP の操作の中でも最も有名な操作で、主にウェブ上のデータを<em>読み取る</em>際に使われます。“ページを取得する”という意味のとおり、ウェブブラウザで google.com や wikipedia.org に訪れる時は、毎回 <tt>GET</tt> リクエストを送信しています。<tt>POST</tt> は、GET に次いで２番目に有名な操作で、ページ上のフォームに入力した値を、ウェブブラウザから送信する時に送られるリクエストです。Rails アプリケーションでは、<tt>POST</tt> リクエストは何かを<em>作成する</em>ときに使われることが多いです。(一方、本来の HTTP では、何かを更新する時に <tt>POST</tt> を使ってもよいとしています。) 例えば、ユーザ登録フォームで新しいユーザを作成するときは、<tt>POST</tt> リクエストを送ります。他にも、<tt>PUT</tt> と <tt>DELETE</tt> という２つの操作があり、サーバ上の何かを<em>更新</em>したり<em>削除</em>したりするときに使われます。これらの２つの操作は、<tt>GET</tt> や <tt>POST</tt> ほど有名ではありません。というのも、ウェブブラウザが PUT と DELETE という操作に対応していないからです。しかし、Ruby on Rails を含むいくつかのウェブフレームワークは、ウェブブラウザがこれらの操作のリクエストを<em>送っているかのように見せる</em>技術を駆使して、PUT と DELETE という操作を実現しています。</p>
+<p><tt>GET</tt> は、HTTP の操作の中でも最も有名な操作で、主にウェブ上のデータを<em>読み取る</em>際に使われます。“ページを取得する”という意味のとおり、ウェブブラウザで google.com や wikipedia.org に訪れる時は、毎回 <tt>GET</tt> リクエストを送信しています。<tt>POST</tt> は、GET に次いで２番目に有名な操作で、ページ上のフォームに入力した値を、ウェブブラウザから送信する時に送られるリクエストです。Rails アプリケーションでは、<tt>POST</tt> リクエストは何かを<em>作成する</em>ときに使われることが多いです。(一方、本来の HTTP では、何かを更新する時に <tt>POST</tt> を使ってもよいとしています。) たとえば、ユーザ登録フォームで新しいユーザを作成するときは、<tt>POST</tt> リクエストを送ります。他にも、<tt>PUT</tt> と <tt>DELETE</tt> という２つの操作があり、サーバ上の何かを<em>更新</em>したり<em>削除</em>したりするときに使われます。これらの２つの操作は、<tt>GET</tt> や <tt>POST</tt> ほど有名ではありません。というのも、ウェブブラウザが PUT と DELETE という操作に対応していないからです。しかし、Ruby on Rails を含むいくつかのウェブフレームワークは、ウェブブラウザがこれらの操作のリクエストを<em>送っているかのように見せる</em>技術を駆使して、PUT と DELETE という操作を実現しています。</p>
 </div>
 
 
@@ -600,7 +600,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>テスト駆動開発の定義は、アプリケーションのテストを<em>最初に</em>書き、その後でアプリケーションのコードを書くことです。この開発手法に慣れるまでには多少時間がかかるかもしれませんが、しかし一度慣れてしまうと、そのメリットは非常に大きいです。最初に<em>失敗する</em>テストを書き、あとでテストを通るコードを実装することで、そのテストが然るべき振る舞いを正しく検証してくれている、という自信を持てるようになります。さらに、この「失敗-実装-通過」という開発サイクルは、<a href="http://en.wikipedia.org/wiki/Flow_(psychology)">開発の流れ</a>を作り出します。そしてこの開発の流れは、コーディングを楽しくしたり、開発の生産性を高めたりする効果があります。また、テストはアプリケーションのコードの<em>ユーザ</em>として振る舞ってくれるので、結果として、より良いソフトウェア設計に繋がることがしばしばあります。</p>
 
-<p>一方で、テスト駆動開発がどんな仕事に対しても常に正しい手法であるとは限りません。「テストを最初に書くべきだ」、「テストは常に１つの機能を網羅するべきだ」、「あらゆる全ての箇所にテストが必要である」といった独善的な主張をできる理由は一切ありません。例えば、どうやって与えられた課題を解決すべきか確信が持てないときは、（テストを書かずに）まずは試しにアプリケーションコードだけを書いてみて、どんな解決方法があるのか模索してみた方が良いケースもあります。(<a href="http://en.wikipedia.org/wiki/Extreme_Programming">エクストリームプログラミング (Extreme Programming, XP)</a> という分野では、この模索的なステップを <em>スパイク(spike)</em> と呼びます。) そして、解決策が明確になったら、テスト駆動開発で綺麗なコードを清書する、といったケースも考えられます。</p>
+<p>一方で、テスト駆動開発がどんな仕事に対しても常に正しい手法であるとは限りません。「テストを最初に書くべきだ」、「テストは常に１つの機能を網羅するべきだ」、「あらゆる全ての箇所にテストが必要である」といった独善的な主張をできる理由は一切ありません。たとえば、どうやって与えられた課題を解決すべきか確信が持てないときは、（テストを書かずに）まずは試しにアプリケーションコードだけを書いてみて、どんな解決方法があるのか模索してみた方が良いケースもあります。(<a href="http://en.wikipedia.org/wiki/Extreme_Programming">エクストリームプログラミング (Extreme Programming, XP)</a> という分野では、この模索的なステップを <em>スパイク(spike)</em> と呼びます。) そして、解決策が明確になったら、テスト駆動開発で綺麗なコードを清書する、といったケースも考えられます。</p>
 
 <p>本セクションでは、RSpec の gem を入れたことにより <code>rspec</code> コマンドが使えるようになっているので、このコマンドを使ってテストを走らせていきます。また、本セクションの演習には無駄な寄り道はありませんが、しかし、誰にとっても理想的な演習というわけではありません。もし既に開発に慣れている方であれば、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-advanced_setup">3.6</a> を読んでセットアップを済ませてしまうことをオススメします。</p>
 
@@ -610,7 +610,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h3><a id="sec-3_2_1" href="http://railstutorial.jp/static-pages.html#sec-TDD" class="heading"><span class="number">3.2.1</span>テスト駆動開発</a></h3>
 
 
-<p>テスト駆動開発で最初に書く<em>失敗する</em>テストは、一般的なテストツールでは「赤」と表現します。そして次に書くテストを通るコードのことを、「緑」と表現します。最後に、もし必要であれば、そのコードをリファクタリングします。例えば、内部の振る舞いを変えずに、フォームで使用されている冗長なコードを削除したり、などです。このサイクルのことを、「赤、緑、リファクタリング」と呼びます。</p>
+<p>テスト駆動開発で最初に書く<em>失敗する</em>テストは、一般的なテストツールでは「赤」と表現します。そして次に書くテストを通るコードのことを、「緑」と表現します。最後に、もし必要であれば、そのコードをリファクタリングします。たとえば、内部の振る舞いを変えずに、フォームで使用されている冗長なコードを削除したり、などです。このサイクルのことを、「赤、緑、リファクタリング」と呼びます。</p>
 
 <p>では、テスト駆動開発でいくつかのコンテンツを Home ページに追加してみましょう。また、トップレベルの見出し (<code>&lt;h1&gt;</code>) である <code>Sample App</code> にも、同様に追加します。 最初のステップは、静的なページに対するインテグレーションテスト (request spec) を生成するところから始めます。</p>
 
@@ -1706,7 +1706,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>バージョンが1.11.x以降であれば、インストールされたgemは自動的に適切なBundlerの環境で実行されます。例えば、下記のように書けます。</p>
+<p>バージョンが1.11.x以降であれば、インストールされたgemは自動的に適切なBundlerの環境で実行されます。たとえば、下記のように書けます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rspec spec/
 </pre></div>
@@ -1805,7 +1805,7 @@ bundler_stubs/
 <h3><a id="sec-3_6_2" href="http://railstutorial.jp/static-pages.html#sec-guard" class="heading"><span class="number">3.6.2</span>Guardによるテストの自動化</a></h3>
 
 
-<p><code>rspec</code>コマンドを使う煩わしさの一つは、コマンドラインに戻って、手でテストを実行していることです。(2つ目の煩わしさは、テストスイートの立ち上げが遅いことですが、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-spork">Section 3.6.3</a>で対応します。)このセクションでは、テストを自動的に実行する<a href="https://github.com/guard/guard">Guard</a>の使い方を紹介します。例えば、<code>static_pages_spec.rb</code>ファイルを変更すると、Guardはファイルシステムの変更を監視していて、テストを走らせます。より素晴らしいことに、<code>home.html.erb</code>ファイルが変更されると <code>static_pages_spec.rb</code>が自動的に走るようにGuardを設定することができます。</p>
+<p><code>rspec</code>コマンドを使う煩わしさの一つは、コマンドラインに戻って、手でテストを実行していることです。(2つ目の煩わしさは、テストスイートの立ち上げが遅いことですが、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-spork">Section 3.6.3</a>で対応します。)このセクションでは、テストを自動的に実行する<a href="https://github.com/guard/guard">Guard</a>の使い方を紹介します。たとえば、<code>static_pages_spec.rb</code>ファイルを変更すると、Guardはファイルシステムの変更を監視していて、テストを走らせます。より素晴らしいことに、<code>home.html.erb</code>ファイルが変更されると <code>static_pages_spec.rb</code>が自動的に走るようにGuardを設定することができます。</p>
 
 <p>まず、<a class="ref" href="http://railstutorial.jp/static-pages.html#code-gemfile_guard">Listing 3.33</a>のように、<code>Gemfile</code>を<code>guard-rspec</code>を追加します。</p>
 
@@ -2111,7 +2111,7 @@ bundler_stubs/
 </div></div>
 
 
-<p>Sporkを使う上で一つ注意があります。preforkで読み込むファイル(例えば<code>routes.rb</code>)に変更が合った場合、新しいRailsの環境を再度読み込むためSporkを再起動する必要があります。もし、通るはずのテストが失敗した場合は、<tt>Ctrl-C</tt>でSporkサバーを止めて再起動しましょう。</p>
+<p>Sporkを使う上で一つ注意があります。preforkで読み込むファイル(たとえば<code>routes.rb</code>)に変更が合った場合、新しいRailsの環境を再度読み込むためSporkを再起動する必要があります。もし、通るはずのテストが失敗した場合は、<tt>Ctrl-C</tt>でSporkサバーを止めて再起動しましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>spork
 <span class="go">Using RSpec</span>
@@ -2214,7 +2214,7 @@ bundler_stubs/
 <li>対応するアプリケーションコードを書く</li>
 <li>Command-Shift-Eコマンドで先程のテストと同じテストを走らせ成功することを確認する</li>
 <li>2-5のステップを繰り返す</li>
-<li>中継点(例えばコミットの直前)まできたら、 コマンドラインから<code>rspec spec/</code>を実行してテストスイートを実行して成功することを確認</li>
+<li>中継点(たとえばコミットの直前)まできたら、 コマンドラインから<code>rspec spec/</code>を実行してテストスイートを実行して成功することを確認</li>
 </ol>
 
 
@@ -2233,11 +2233,11 @@ bundler_stubs/
 <li id="fn-3_5">実際 Rails では、静的ファイルに対するリクエストが Rails 内のスタックに届くことはなく、（もし該当する静的ファイルが ./public ディレクトリ以下にあれば）ファイルシステム内の静的ファイルが直接参照される。(詳しくは <a href="http://www.amazon.com/gp/product/0321601661"><em>The Rails 3 Way</em></a> を参照) <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_5">↑</a></li>
 <li id="fn-3_6">いつもと同じように、<code>subl</code> コマンドを、テキストエディタを呼び出すコマンド (e.g. vim, emacs) に置換するだけで良い。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_6">↑</a></li>
 <li id="fn-3_7">HTML は刻々と変化しています。したがって、doctype と明示的に宣言することで、今後もブラウザが正しくページを描画してくれる可能性が高まります。とてもシンプルな doctype である <code>&lt;!DOCTYPE html&gt;</code> は、最新の標準HTML (HTML5) であることを示しています。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_7">↑</a></li>
-<li id="fn-3_8">私達が採用している静的なページを作る方法は、恐らく最もシンプルな方法です。しかし、ただ１つの方法という訳ではありません。最適な方法はケースバイケースであることが多いです。例えば、<em>非常に多く</em>の静的なページを作る必要がある場合では、１つの StaticPages コントローラだけでは重荷になるでしょう。 しかし、今回の場合は、いくつかの静的なページを作るだけですむので、重荷にはなりません。Rails で静的なページを作るときのテクニックについて詳しく知りたい場合は、 ブログ<a href="http://blog.hasmanythrough.com/2008/4/2/simple-pages">「<tt>has_many :through</tt>」の simple pages という記事</a> を読むとよいでしょう。<em>注意:</em> この議論は少し応用的な話なので、あとで読んで方が良いかもしれません。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_8">↑</a></li>
+<li id="fn-3_8">私達が採用している静的なページを作る方法は、恐らく最もシンプルな方法です。しかし、ただ１つの方法という訳ではありません。最適な方法はケースバイケースであることが多いです。たとえば、<em>非常に多く</em>の静的なページを作る必要がある場合では、１つの StaticPages コントローラだけでは重荷になるでしょう。 しかし、今回の場合は、いくつかの静的なページを作るだけですむので、重荷にはなりません。Rails で静的なページを作るときのテクニックについて詳しく知りたい場合は、 ブログ<a href="http://blog.hasmanythrough.com/2008/4/2/simple-pages">「<tt>has_many :through</tt>」の simple pages という記事</a> を読むとよいでしょう。<em>注意:</em> この議論は少し応用的な話なので、あとで読んで方が良いかもしれません。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_8">↑</a></li>
 <li id="fn-3_9">毎回 <code>bundle exec</code> と実行するのは少し面倒ですが、<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-advanced_setup">3.6</a> にあるオプションを使うと楽になります。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_9">↑</a></li>
 <li id="fn-3_10">筆者は普段、端末やテキストエディタの背景は黒色にしています。ただ、明るい色の背景の方がスクリーンショットの見栄えが良くなるので、（一時的に）明るい背景を使用しています。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_10">↑</a></li>
 <li id="fn-3_11">改行は行の最後に来たこと、そして新しい行の始まりを示しています。コードでは、<tt class="verb">\n</tt>の文字列がそれを表しています。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_11">↑</a></li>
-<li id="fn-3_12">多くのエディターが列の数を示してくれているので、実際には列を<em>数える</em>のは馬鹿げたことです。例えば、<a class="ref" href="http://railstutorial.jp/beginning.html#fig-editor_shell">図 1.1</a>を見なおしてみると、コードを80文字以下に抑えるために、右に小さな縦線があるのが見えると思います。(実際にエラーにより少し余裕があるように78列になっています。) もしTextMateを使っていれば、<tt>View &gt; Wrap Column &gt; 78</tt>で設定できます。Sublime Textを使っていれば、<tt>View &gt; Ruler &gt; 78</tt>もしくは<tt>View &gt; Ruler &gt; 80</tt>で設定できます。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_12">↑</a></li>
+<li id="fn-3_12">多くのエディターが列の数を示してくれているので、実際には列を<em>数える</em>のは馬鹿げたことです。たとえば、<a class="ref" href="http://railstutorial.jp/beginning.html#fig-editor_shell">図 1.1</a>を見なおしてみると、コードを80文字以下に抑えるために、右に小さな縦線があるのが見えると思います。(実際にエラーにより少し余裕があるように78列になっています。) もしTextMateを使っていれば、<tt>View &gt; Wrap Column &gt; 78</tt>で設定できます。Sublime Textを使っていれば、<tt>View &gt; Ruler &gt; 78</tt>もしくは<tt>View &gt; Ruler &gt; 80</tt>で設定できます。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_12">↑</a></li>
 <li id="fn-3_13"><a href="http://haml-lang.com/">Haml</a>という二番目によく使われているテンプレートシステムがあります。Hamlは個人的にはとても好きですが、初心者向けのチュートリアルで使うには、少し標準から外れています。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_13">↑</a></li>
 <li id="fn-3_14">この時点で、Railsでの開発経験者は<code>content_for</code>を使うことを考えると思いますが、アセットパイプラインと一緒だと上手く動きません。<code>provide</code>関数はその代替です。<a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_14">↑</a></li>
 <li id="fn-3_15">もし以前にRubyを勉強していれば、Railsがブロック無いの内容を<em>yield</em>していると予想すると思いますし、その予想は正しいと思われます。But you don’t need to know this to develop applications with Rails. <a class="arrow" href="http://railstutorial.jp/static-pages.html#fnref-3_15">↑</a></li>
