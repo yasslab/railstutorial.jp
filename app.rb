@@ -12,3 +12,6 @@ get '/index.html' do
   redirect '/'
 end
 
+get '/chapters/*' do
+  redirect '/'
+end
