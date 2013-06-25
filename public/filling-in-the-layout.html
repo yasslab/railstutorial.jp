@@ -627,15 +627,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>The effect of this line is to look for a file called  <code>app/views/layouts/_shim.html.erb</code>, evaluate its contents, and insert the results into the view.<sup class="footnote" id="fnref-5_6"><a href="http://railstutorial.jp/filling-in-the-layout.html#fn-5_6">6</a></sup> (Recall that <tt class="verb">&lt;%= ... %&gt;</tt> is the embedded Ruby syntax needed to evaluate a Ruby expression and then insert the results into the template.) Note the leading underscore on the filename <code>_shim.html.erb</code>; this underscore is the universal convention for naming partials, and among other things makes it possible to identify all the partials in a directory at a glance.</p>
+<p>この行は、<code>app/views/layouts/_shim.html.erb</code>というファイルを探し、その内容を評価し、結果をビューに挿入します。<sup id="fnref-5_6" class="footnote"><a href="http://railstutorial.jp/filling-in-the-layout.html#fn-5_6">6</a></sup> (<tt class="verb">&lt;%= ... %&gt;</tt>が、Rubyの式を評価するために必要な埋め込まれたRubyの構文で、テンプレートに結果を挿入する
+ ことを思い出してください。)ファイル名<code>_shim.html.erb</code>の前のアンダースコアに注目してください。このアンダースコアは、普遍的なパーシャルの命名規約であり、また、一目見ただけでディレクトリ中のすべてのパーシャルを識別することが可能になります。</p>
 
-<p>Of course, to get the partial to work, we have to fill it with some content; in the case of the shim partial, this is just the three lines of shim code from <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-layout_new_structure">Listing 5.1</a>; the result appears in <a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-stylesheets_partial">Listing 5.9</a>.</p>
+<p>もちろん、パーシャルが動作するためには、コンテンツを記述しなければなりません。このshimパーシャルの場合は、<a href="http://railstutorial.jp/filling-in-the-layout.html#code-layout_new_structure" class="ref">リスト5.1</a>のたった3行のshimコードだけです。その結果は、<a href="http://railstutorial.jp/filling-in-the-layout.html#code-stylesheets_partial" class="ref">リスト5.9</a>で確認できます。</p>
 
 <div class="label" id="code-stylesheets_partial"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 5.9.</span> <span class="description">A partial for the HTML shim. </span><br /><span class="description"> <code>app/views/layouts/_shim.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト5.9.</span> <span class="description">HTML shimのためのパーシャル</span><br /><span class="description"> <code>app/views/layouts/_shim.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="c">&lt;!--[if lt IE 9]&gt;</span>
 <span class="c">&lt;script src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;</span>
 <span class="c">&lt;![endif]</span><span class="c">--&gt;</span>

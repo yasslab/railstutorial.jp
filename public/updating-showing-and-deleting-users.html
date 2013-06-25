@@ -548,7 +548,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p>上のコードに変更したことにより、編集を行った後には必ずパスワードの再確認が要求されるようになりました (<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#fig-edit_page">図9.2</a>にある空欄のパスワード確認用フィールドでそのことが示されています)。ユーザーにとっては少々わずらわしいですが、これによって更新をさらにセキュアにすることができます。</p>
 
-<p>この節のコードを使用することで、ユーザー編集ページは動作するはずです。テストスイートをダブルクリックして実行してみれば、今度は青信号になるでしょう。</p>
+<p>この節のコードを使用することで、ユーザー編集ページは動作するはずです。テストスイートをダブルクリックして実行してみれば、今度は「Green」になるでしょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
@@ -1024,7 +1024,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p>(<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#top">第8章</a>の最初の演習が終わっている場合は、必ず<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-friendly_session_create">リスト9.20</a>の正しい<code>params</code> ハッシュを使用してください。)</p>
 
-<p>これで、<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-friendly_forwarding_test">リスト9.17</a>のフレンドリーフォワーディング用統合テストはパスするはずです。そうなれば、基本ユーザー認証機能とページ保護機能の実装は完了です。いつものように、以下を実行してテストスイートが青信号になることを確認してから先に進みましょう。</p>
+<p>これで、<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-friendly_forwarding_test">リスト9.17</a>のフレンドリーフォワーディング用統合テストはパスするはずです。そうなれば、基本ユーザー認証機能とページ保護機能の実装は完了です。いつものように、以下を実行してテストスイートが「Green」になることを確認してから先に進みましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
@@ -1717,7 +1717,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>Railsは<code>@users</code>を<code>User</code>オブジェクトのリストであると推測します。さらに、ユーザーのコレクションを与えて呼び出すと、Railsは自動的にユーザーのコレクションを列挙し、それぞれのユーザーを<code>_user.html.erb</code>パーシャルで出力します (訳注: each doで囲む必要がなくなります)。これにより、<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-index_final_refactoring">リスト9.38</a>のコードはきわめてコンパクトになります。これに限らず、リファクタリングを行う場合には、アプリケーションのコードを変更する前と後で必ずテストを実行し、いずれも青信号になることを確認するようにしてください。</p>
+<p>Railsは<code>@users</code>を<code>User</code>オブジェクトのリストであると推測します。さらに、ユーザーのコレクションを与えて呼び出すと、Railsは自動的にユーザーのコレクションを列挙し、それぞれのユーザーを<code>_user.html.erb</code>パーシャルで出力します (訳注: each doで囲む必要がなくなります)。これにより、<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-index_final_refactoring">リスト9.38</a>のコードはきわめてコンパクトになります。これに限らず、リファクタリングを行う場合には、アプリケーションのコードを変更する前と後で必ずテストを実行し、いずれも「Green」になることを確認するようにしてください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
@@ -2259,7 +2259,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <ol>
 
-<li><a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_belongs_to_user_spec">リスト10.8</a>のモデルに従い、Userの<code>admin</code>属性にアクセスできないことを確認するテストを追加してください。最初は赤信号、次に青信号になるようにしてください (<em>ヒント</em>: 最初に行う必要があるのは、<code>admin</code>をアクセス可能リストに<em>追加</em>することです)。</li>
+<li><a class="ref" href="http://railstutorial.jp/user-microposts.html#code-micropost_belongs_to_user_spec">リスト10.8</a>のモデルに従い、Userの<code>admin</code>属性にアクセスできないことを確認するテストを追加してください。最初は「Red」、次に「Green」になるようにしてください (<em>ヒント</em>: 最初に行う必要があるのは、<code>admin</code>をアクセス可能リストに<em>追加</em>することです)。</li>
 
 <li><a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#code-user_edit_view">リスト9.3</a>の Gravatarの [change] リンクを改造し、別ウィンドウ (または別タブ) で開くようにしてください。<em>ヒント:</em> Webを検索してみましょう。この目的にピッタリの堅牢なメソッドが見つかるはずです。<code>_blank</code>という文字も一緒に検索してみてください。</li>
 

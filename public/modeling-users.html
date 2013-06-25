@@ -111,7 +111,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 
 <div class="sidebar"><span class="title"><span class="header">囲み6.1</span></span><span class="title"><span class="description">自分で認証システムを作ってみる</span></span>
-<p>事実上、すべてのアプリは何らかのログイン/認証システムを必要とします。そのため、多くのWebフレームワークではこのようなログイン/認証システムを実装するための選択肢が多数提供されています。Railsもまた例外ではありません。認証 (authentication) と認可 (authorization) のシステムの例だと、<a href="http://github.com/thoughtbot/clearance">Clearance</a>、<a href="http://github.com/binarylogic/authlogic">Authlogic</a>、<a href="http://github.com/plataformatec/devise">Devise</a>、<a href="http://railscasts.com/episodes/192-authorization-with-cancan">CanCan</a>などがあります (Railsに限らなければ<a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a>や<a href="http://en.wikipedia.org/wiki/Oauth">OAuth</a>の上に構築する方法もあります)。 なぜ車輪の再発明をするのか、という質問があるのも当然です。自分でわざわざ作らなくても、いつでも使える方法をただ利用するだけではいけないのでしょうか。</p>
+<p>事実上、すべてのアプリは何らかのログイン/認証システムを必要とします。そのため、多くのWebフレームワークではこのようなログイン/認証システムを実装するための選択肢が多数提供されています。Railsもまた例外ではありません。認証 (authentication) と認可 (authorization) のシステムの例だと、<a href="http://github.com/thoughtbot/clearance">Clearance</a>、<a href="http://github.com/binarylogic/authlogic">Authlogic</a>、<a href="http://github.com/plataformatec/devise">Devise</a>、<a href="http://railscasts.com/episodes/192-authorization-with-cancan">CanCan</a>などがあります (Railsに限らなければ<a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a>や<a href="http://en.wikipedia.org/wiki/Oauth">OAuth</a>の上に構築する方法もあります)。 なぜ車輪の再発明をするのか、という質問があるのも当然です。自分でわざわざ作らなくても、いつも使える方法をただ利用するだけではいけないのでしょうか。</p>
 
 <p>ある実践的な実験によると、多くのサイトの認証システムは膨大なカスタマイズを必要とするため、サードパーティ製品を変更して導入する場合にはシステムをゼロから作成するよりも多くの仕事を要するという結果が出ています。加えて、既成品のシステムは内部がわかりづらいことが多く、ブラックボックスになっています。自分で作成したシステムであれば、それをとてもよく理解しているはずです。さらに言えば、最近のRailsへの変更 (<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-adding_a_secure_password">6.3</a>) により、カスタム認証システムを容易に作成できるようになりました。最後に、<em>あえて</em>最終的にサードパーティの認証システムを導入することになったとしても、自分自身で認証システムを構築した経験があれば、サードパーティ製品を理解して変更することがずっと容易になるはずです。</p>
 </div>
@@ -125,7 +125,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>(最初の行はmasterブランチから作業を始めることを確認するためのものです。そして、<code>modeling-users</code>トピックブランチは<code>master</code>ブランチを基に作成します。もしすでにmasterブランチにいる場合は、このコマンドは実行する必要はありません)。</p>
+<p>(最初の行はmasterブランチから作業を始めることを確認するためのものです。そして、<code>modeling-users</code>トピックブランチは<code>master</code>ブランチを基に作成します。もしすでにmasterブランチにいる場合は、このコマンドを実行する必要はありません)。</p>
 
 <div class="label" id="sec-user_model"></div>
 
@@ -621,7 +621,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <pre class="verbatim">--no-test-framework</pre>
 
 
-<p>(<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-generate_users_controller">リスト5.28</a>の例とは異なり) Userモデルを作成したときに渡さなかったからです。<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-generate_user_model">リスト6.1</a>のコマンドは、ユーザーをテストするための初期のspecを作成します。しかし今回の場合、spec実質的には空です (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-default_user_spec">リスト6.7</a>)。</p>
+<p>(<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-generate_users_controller">リスト5.28</a>の例とは異なり) Userモデルを作成したときに渡さなかったからです。<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-generate_user_model">リスト6.1</a>のコマンドは、ユーザーをテストするための初期のspecを作成します。しかし今回の場合、specは実質的には空です (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-default_user_spec">リスト6.7</a>)。</p>
 
 <div class="label" id="code-default_user_spec"></div>
 
@@ -1171,7 +1171,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>上のコードのメソッドは、<code>@user</code>と同じメールアドレスでユーザーを作成します。そのために、<code>@user.dup</code>を使用して同じ属性を持つ重複ユーザーを作ります。次にそのユーザーを保存しようとすると、元の<code>@user</code>のメールアドレスが既にデータベースに存在するため、この重複メールアドレスは無効になるはずです</p>
+<p>上のコードのメソッドは、<code>@user</code>と同じメールアドレスでユーザーを作成します。そのために、<code>@user.dup</code>を使用して同じ属性を持つ重複ユーザーを作ります。次にそのユーザーを保存しようとすると、元の<code>@user</code>のメールアドレスが既にデータベースに存在するため、この重複メールアドレスは無効になるはずです。</p>
 
 <p><a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email">リスト6.19</a>のコードをパスする、新しいテストを<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email_test">リスト6.18</a>に示します。</p>
 
@@ -1276,7 +1276,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </ol>
 
 
-<p>もし上の結果が正しそうに見えなかったとしても、私を信じてください。Railsのウェブサイトでは、トラフィックが多いときに起こり得る問題です。幸運なことに解決策は、簡単に実装できます。データベースレベルでも一意性を強制するだけです。その方法は、emailカラムにデータベースの<em>インデックス</em>を作ることです。そして、インデックスが一意であることを要求します。</p>
+<p>もし上の結果が正しそうに見えなかったとしても、私を信じてください。RailsのWebサイトでは、トラフィックが多いときに起こり得る問題です。幸運なことに解決策は、簡単に実装できます。データベースレベルでも一意性を強制するだけです。その方法は、emailカラムにデータベースの<em>インデックス</em>を作ることです。そして、インデックスが一意であることを要求します。</p>
 
 <p>emailのインデックスは、データモデリングへの変更要求を意味します。これは (<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-database_migrations">6.1.1</a>で見たように) Railsではマイグレーションを使います。<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-database_migrations">6.1.1</a>で、Userモデルを作ることで自動的に新しいマイグレーションが作られるのを見ました (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-users_migration">リスト6.2</a>)。今回の場合は、既に存在するモデルに構造を追加します。なので、<code>マイグレーション</code>ジェネレーターを使ってマイグレーションを直接作る必要があります。</p>
 
@@ -1301,29 +1301,29 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>This uses a Rails method called <code>add_index</code> to add an index on the <code>email</code> column of the <code>users</code> table.The index by itself doesn’t enforce uniqueness, but the option <code>unique: true</code> does.</p>
+<p>これは<code>users</code>テーブルの<code>email</code>カラムにインデックスを追加するために、<code>add_index</code>というRailsのメソッドを使います。インデックス自体は一意性を強制しません。しかし、オプションで<code>unique: true</code>とすることで強制します。</p>
 
-<p>The final step is to migrate the database:</p>
+<p>最後のステップはデータベースをマイグレートすることです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
 </pre></div>
 </div>
 
 
-<p>(If this fails, try exiting any running sandbox console sessions, which can lock the database and prevent migrations.) If you’re interested in seeing the practical effect of this, take a look at the file <code>db/schema.rb</code>, which should now include a line like this:</p>
+<p>(もしこれが失敗した場合は、実行中のサンドボックスのコンソールセッションを終了してみてください。それがデータベースをロックしてマイグレーションの妨げになっている可能性があります)。もしこれが実際に何をやっているか知りたければ、<code>db/schema.rb</code>を見てください。以下のような行を含んでいるはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">add_index</span> <span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;email&quot;</span><span class="o">]</span><span class="p">,</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;index_users_on_email&quot;</span><span class="p">,</span> <span class="ss">:unique</span> <span class="o">=&gt;</span> <span class="kp">true</span>
 </pre></div>
 </div>
 
 
-<p>Unfortunately, there’s one more change we need to make to be assured of email uniqueness, which is to make sure that the email address is all lower-case before it gets saved to the database. The reason is that not all database adapters use case-sensitive indices.<sup class="footnote" id="fnref-6_16"><a href="http://railstutorial.jp/modeling-users.html#fn-6_16">16</a></sup> The way to do this is with a <a href="http://en.wikipedia.org/wiki/Callback_(computer_science)"><em>callback</em></a>, which is a method that gets invoked at a particular point in the lifetime of an Active Record object (see the <a href="http://api.rubyonrails.org/v3.2.0/classes/ActiveRecord/Callbacks.html">Rails API entry on callbacks</a>). In the present case, we’ll use a <code>before_save</code> callback to force Rails to downcase the email attribute before saving the user to the database, as shown in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase">Listing 6.23</a>.</p>
+<p>残念なことに、メールアドレスの一意性を保証するためにやらなければならないことがもう1つあります。それは、メールアドレスがデータベースに保存される前にすべてが小文字になっていることを確認することです。その理由は、すべてのデータベースのアダプタが大文字小文字を意識したインデックスを使っているとは限らないからです。<sup class="footnote" id="fnref-6_16"><a href="http://railstutorial.jp/modeling-users.html#fn-6_16">16</a></sup> これをやる方法は、Active Recordオブジェクトのライフタイムのある時点で発動されるメソッドである<a href="http://en.wikipedia.org/wiki/Callback_(computer_science)"><em>コールバック</em></a>を使うことです (<a href="http://api.rubyonrails.org/v3.2.0/classes/ActiveRecord/Callbacks.html">Rails APIのコールバックの登録ポイント</a>を見てください)。今回のケースでは、<code>before_save</code>コールバックを使います。<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase">リスト6.23</a>に見られるように、ユーザーをデータベースに保存する前にRailsにemail属性を小文字に強制させます。</p>
 
 <div class="label" id="code-email_downcase"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 6.23.</span> <span class="description">Ensuring email uniqueness by downcasing the email attribute. </span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.23.</span> <span class="description">email属性を小文字にしてメールアドレスの一意性を保証</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span> 
   <span class="n">attr_accessible</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
 
@@ -1336,17 +1336,17 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>The code in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase">Listing 6.23</a> passes a block to the <code>before_save</code> callback and sets the user’s email address to a lower-case version of its current value using the <code>downcase</code> string method. This code is a little advanced, and at this point I suggest you simply trust that it works; if you’re skeptical, comment out the uniqueness validation from <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email">Listing 6.19</a> and try to create users with identical email addresses to see the error that results. (We’ll see this technique again in <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#sec-remember_me">Section 8.2.1</a>.)</p>
+<p><a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase">リスト6.23</a>のコードは、<code>before_save</code>コールバックにブロックを渡してユーザーのメールアドレスを設定します。設定されるアドレスは、現在の値をStringの<code>downcase</code>メソッドを使って小文字バージョンにしたものです。このコードは少し上級者向けなので、この時点では単に動作することを信じるようお勧めします。もしあなたが疑り深いのであれば、<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_uniqueness_of_email">リスト6.19</a>から一意性のバリデーションをコメントアウトして、同じメールアドレスでユーザーを作ろうとしてみてください。その結果としてエラーが見えるでしょう (この技術を<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#sec-remember_me">8.2.1</a>でもう一度見ます)。</p>
 
-<p>Now the Alice scenario above will work fine: the database will save a user record based on the first request, and will reject the second save for violating the uniqueness constraint. (An error will appear in the Rails log, but that doesn’t do any harm. You can actually catch the <code>ActiveRecord::StatementInvalid</code> exception that gets raised—see <a href="http://github.com/insoshi/insoshi/blob/master/app/controllers/people_controller.rb">Insoshi</a> for an example—but in this tutorial we won’t bother with this step.) Adding this index on the email attribute accomplishes a second goal, alluded to briefly in <a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-finding_user_objects">Section 6.1.4</a>: it fixes an efficiency problem in <code>find_by_email</code> (<a class="ref" href="http://railstutorial.jp/modeling-users.html#sidebar-database_indices">Box 6.2</a>).</p>
+<p>これで上に挙げたアリスのシナリオはうまくいきます。データベースはユーザーのレコードを最初のリクエストに基づいて保存します。そして、2つ目の保存は一意性の制約に反するので拒否します (Railsのログにエラーが表示されます。しかし、何も害は及ぼしません。発生した<code>ActiveRecord::StatementInvalid</code>例外を実際にキャッチできるでしょう。例えば<a href="http://github.com/insoshi/insoshi/blob/master/app/controllers/people_controller.rb">Insoshi</a>を見てください。ただし、このチュートリアルでは説明しません)。<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-finding_user_objects">6.1.4</a>で簡潔に示したように、このインデックスをemail属性に追加することで、2つ目のゴールを達成しました。これは、<code>find_by_email</code>の効率の問題を解決します (<a class="ref" href="http://railstutorial.jp/modeling-users.html#sidebar-database_indices">囲い6.2</a>)。</p>
 
 <div class="label" id="sidebar-database_indices"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">Box 6.2.</span></span><span class="title"><span class="description">Database indices</span></span>
-<p>When creating a column in a database, it is important to consider whether we will need to <em>find</em> records by that column. Consider, for example, the <tt>email</tt> attribute created by the migration in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-users_migration">Listing 6.2</a>. When we allow users to sign in to the sample app starting in <a class="ref" href="http://railstutorial.jp/sign-up.html#top">Chapter 7</a>, we will need to find the user record corresponding to the submitted email address; unfortunately, based on the naïve data model, the only way to find a user by email address is to look through <em>each</em> user row in the database and compare its email attribute to the given email. This is known in the database business as a <em>full-table scan</em>, and for a real site with thousands of users it is a <a href="http://catb.org/jargon/html/B/Bad-Thing.html">Bad Thing</a>.</p>
+<div class="sidebar"><span class="title"><span class="header">囲い6.2.</span></span><span class="title"><span class="description">データベースのインデックス</span></span>
+<p>データベースにカラムを作成するとき、そのカラムでレコードを<em>find</em>する必要があるか考えることは重要です。例えば、<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-users_migration">リスト6.2</a>のマイグレーションによって作られた<tt>email</tt>属性を考えてください。<a class="ref" href="http://railstutorial.jp/sign-up.html#top">第7章</a>で始めますが、ユーザーをサンプルアプリにログインさせるとき、送信されたのと一致するメールアドレスのユーザーのレコードを探す必要があります。残念なことに、素朴なデータモデルに基づくと、メールアドレスでユーザーを探す唯一の方法が、データベースの<em>ひとりひとりの</em>ユーザーの行を順番に見ていき、そのemail属性と与えられたメールアドレスを比較するものになります。これはデータベースの世界では<em>全表スキャン</em>として知られます。そして、数千のユーザーがいる実際のサイトでは<a href="http://catb.org/jargon/html/B/Bad-Thing.html">良くないこと</a>です。</p>
 
-<p>Putting an index on the email column fixes the problem. To understand a database index, it’s helpful to consider the analogy of a book index. In a book, to find all the occurrences of a given string, say “foobar”, you would have to scan each page for “foobar”. With a book index, on the other hand, you can just look up “foobar” in the index to see all the pages containing “foobar”. A database index works essentially the same way.</p>
+<p>emailカラムにインデックスを置くことでこの問題を解決することができます。データベースのインデックスを理解するためには、本の索引との類似性を考えると良いかもしれません。本の中で、与えられた言葉 (例えば、“foobar”) が出てくる箇所をすべて見つけるためには、ページをひとつひとつ見ていく必要があります。一方で本の索引を使うと、“foobar”を含むすべてのページを、ただ索引の中から探すだけです。データベースのインデックスも本質的には同じように動作します。</p>
 </div>
 
 

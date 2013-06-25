@@ -912,7 +912,7 @@ This means that</p>
 </div>
 
 
-<p>At this point the User model specs should be passing:</p>
+<p>ここで User model spec を通しておきます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/models/user_spec.rb
 </pre></div>
@@ -921,7 +921,7 @@ This means that</p>
 
 <p>さて、 remember token として何を使うか決めなければななりません。同等に有力な候補がたくさんあります。—基本的には、長くてランダムな文字列ならどんなものでも良いでしょう。原則として、ユーザパスワードは安全に暗号化されており、ユーザの <code>password_hash</code> 属性は使用可能ですが、不必要にユーザパスワードを晒すのは攻撃を受ける可能性を考えると望ましいことではありません。We’ll err on the side of caution and make a custom remember token using the <code>urlsafe_base64</code> method from the <code>SecureRandom</code> module in the Ruby standard library, which creates a <a href="http://en.wikipedia.org/wiki/Base64">Base64</a> string safe for use in URIs (and hence safe for use in cookies as well).<sup class="footnote" id="fnref-8_3"><a href="http://railstutorial.jp/sign-in-sign-out.html#fn-8_3">3</a></sup> As of this writing, <code>SecureRandom.urlsafe_base64</code> returns a random string of length 16 composed of the characters A–Z, a–z, 0–9, “-”, and “_” (for a total of 64 possibilities). This means that the probability of two remember tokens being the same is $1/64^{16} = 2^{-96} \approx 10^{-29}$, which is negligible.</p>
 
-<p>We’ll create a remember token using a <em>callback</em>, a technique introduced in <a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-uniqueness_validation">Section 6.2.5</a> in the context of email uniqueness. As in that section, we’ll use a <code>before_save</code> callback, this time to create the attribute <code>remember_token</code> just before the user is saved. A second option would be to use a <code>before_create</code> callback<sup class="footnote" id="fnref-8_4"><a href="http://railstutorial.jp/sign-in-sign-out.html#fn-8_4">4</a></sup> to set the remember token <em>once</em>, when the user is first created. This would work fine, but it has the downside that any <a href="http://en.wikipedia.org/wiki/Session_hijacking">hijacked sessions</a> (which involves copying the remember token and using it to sign in as the corresponding user) would never expire. The <code>before_save</code> callback, in contrast, ensures that the token changes every time the user updates his information (<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#sec-successful_edits">Section 9.1.3</a>), so it’s slightly more secure. (Session hijacking was widely publicized by the <a href="http://codebutler.com/firesheep">Firesheep</a> application, which showed that remember tokens at many high-profile sites were visible when connected to public Wi-Fi networks. The solution is to use site-wide SSL, as described in <a class="ref" href="http://railstutorial.jp/sign-up.html#sec-deploying_to_production_with_ssl">Section 7.4.4</a>. Occasionally changing the remember token is still a security feature, though, since your remember token could still be obtained if the attacker has physical access to a computer where you are signed in.)</p>
+<p>remember token を <em>callback</em> を使って作りましょう、このテクニックは <a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-uniqueness_validation">6.2.5</a> でemailの一意性の文脈で紹介したものです。あのセクションの通り、<code>before_save</code> callback を使いますが、今回は <code>remember_token</code> 属性を生成するのをユーザが保存される直前に行います。A second option would be to use a <code>before_create</code> callback<sup class="footnote" id="fnref-8_4"><a href="http://railstutorial.jp/sign-in-sign-out.html#fn-8_4">4</a></sup> to set the remember token <em>once</em>, when the user is first created. This would work fine, but it has the downside that any <a href="http://en.wikipedia.org/wiki/Session_hijacking">hijacked sessions</a> (which involves copying the remember token and using it to sign in as the corresponding user) would never expire. The <code>before_save</code> callback, in contrast, ensures that the token changes every time the user updates his information (<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#sec-successful_edits">Section 9.1.3</a>), so it’s slightly more secure. (Session hijacking was widely publicized by the <a href="http://codebutler.com/firesheep">Firesheep</a> application, which showed that remember tokens at many high-profile sites were visible when connected to public Wi-Fi networks. The solution is to use site-wide SSL, as described in <a class="ref" href="http://railstutorial.jp/sign-up.html#sec-deploying_to_production_with_ssl">Section 7.4.4</a>. Occasionally changing the remember token is still a security feature, though, since your remember token could still be obtained if the attacker has physical access to a computer where you are signed in.)</p>
 
 <p>To test the remember token, we first save the test user and then check that the user’s <code>remember_token</code> attribute isn’t blank. This gives us sufficient flexibility to change the random string if we ever need to. The result appears in <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-remember_token_should_not_be_blank">Listing 8.17</a>.</p>
 
@@ -929,7 +929,7 @@ This means that</p>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 8.17.</span> <span class="description">A test for a valid (nonblank) remember token. </span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 8.17.</span> <span class="description">正しい(空欄のない) remember token のテスト</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
@@ -952,7 +952,7 @@ This means that</p>
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-remember_token_should_not_be_blank">Listing 8.17</a> introduces the <code>its</code> method, which is like <code>it</code> but applies the subsequent test to the given attribute rather than the subject of the test. In other words,</p>
+<p><a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-remember_token_should_not_be_blank">Listing 8.17</a> で紹介している <code>its</code> メソッドは、<code>it</code> に似ていますがテストの目的よりも与えられた属性向けに、続くテストに当てはまります。言い換えると、</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">its</span><span class="p">(</span><span class="ss">:remember_token</span><span class="p">)</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_blank</span> <span class="p">}</span>
 </pre></div>
@@ -966,7 +966,7 @@ This means that</p>
 </div>
 
 
-<p>The application code introduces several new elements. First, we add a callback method to create the remember token:</p>
+<p>このアプリケーションコードでいくつか新しい要素をご紹介します。初めに、callback method を加えて remember token を生成しています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">before_save</span> <span class="ss">:create_remember_token</span>
 </pre></div>
