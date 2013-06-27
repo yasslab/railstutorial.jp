@@ -151,7 +151,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p><a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>で扱ったカスタムビルドクラスの<code>User</code>を思い出してください。このクラスは、<code>name</code>と<code>email</code>を属性に持つユーザーオブジェクトでした。このクラスは役に立つ例として提供されましたが、Railsにとってきわめて重要な部分である<em>永続性</em>という要素が欠けていました。RailsコンソールでUserクラスのオブジェクトを作っても、コンソールからexitするとそのオブジェクトはすぐに消えてしまいました。この節での私たちの目的は、簡単に消えることのないユーザーのモデルを構築することです。</p>
 
-<p><a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>のユーザークラスと同様に、<code>name</code>と<code>email</code>の2つの属性からなるユーザーをモデリングするところから始めましょう。後者のemailをユニークなユーザー名として使用します<sup class="footnote" id="fnref-6_3"><a href="http://railstutorial.jp/modeling-users.html#fn-6_3">3</a></sup> (パスワードのための属性は<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-adding_a_secure_password">6.3</a>で扱います) 。<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-example_user">リスト4.9</a>では、以下のようにRubyの<code>attr_accessor</code>メソッドを使用しました。</p>
+<p><a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>のユーザークラスと同様に、<code>name</code>と<code>email</code>の2つの属性からなるユーザーをモデリングするところから始めましょう。後者のemailを一意のユーザー名として使用します<sup class="footnote" id="fnref-6_3"><a href="http://railstutorial.jp/modeling-users.html#fn-6_3">3</a></sup> (パスワードのための属性は<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-adding_a_secure_password">6.3</a>で扱います) 。<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-example_user">リスト4.9</a>では、以下のようにRubyの<code>attr_accessor</code>メソッドを使用しました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span>
   <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
@@ -1907,7 +1907,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sqlite_user_row_with_password.png" alt="sqlite_user_row_with_password" /></span></div><div class="caption"><span class="header">図6.6</span><span class="description">SQLiteデータベース<code>db/development.sqlite3</code>に登録されたユーザーの行。<a href="http://railstutorial.org/images/figures/sqlite_user_row_with_password-full.png">(拡大)</a></span></div></div>
 
 
-<p>Returning to the console, we can see the effect of <code>has_secure_password</code> from <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-password_implementation">Listing 6.30</a> by looking at the <code>password_digest</code> attribute:</p>
+<p>コンソールに戻って<code>password_digest</code>属性を参照してみると、<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-password_implementation">リスト6.30</a>の<code>has_secure_password</code>の効果を確認できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_email</span><span class="p">(</span><span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">password_digest</span>
@@ -1916,7 +1916,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>This is the encrypted version of the password (<code>&quot;foobar&quot;</code>) used to initialize the user object. We can also verify that the <code>authenticate</code> command is working by first using an invalid password and then a valid one:</p>
+<p>上の文字列は、パスワード (<code>&quot;foobar&quot;</code>) を暗号化したものであり、ユーザーオブジェクトを初期化するのに使用されました。また、最初に無効なパスワード、次に有効なパスワードを与えることで<code>authenticate</code>の動作を確認することもできます。 </p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s2">&quot;invalid&quot;</span><span class="p">)</span>
 <span class="go">=&gt; false</span>
@@ -1928,16 +1928,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>As required, <code>authenticate</code> returns <code>false</code> if the password is invalid and the user itself if the password is valid.</p>
+<p>要求に沿って、<code>authenticate</code>メソッドはパスワードが無効なときは<code>false</code>を返し。パスワードが有効なときはユーザー自身を返しています。</p>
 
 <h2><a id="sec-6_4" href="http://railstutorial.jp/modeling-users.html#sec-6_4" class="heading"><span class="number">6.4</span>最後に</a></h2>
 
 
-<p>Starting from scratch, in this chapter we created a working User model with <code>name</code>, <code>email</code>, and various password attributes, together with validations enforcing several important constraints on their values. In addition, we can securely authenticate users using a given password. In previous versions of Rails, such a feat would have taken more than twice as much code, but because of the compact <code>validates</code> method and <code>has_secure_password</code>, we were able to build a complete User model in only ten source lines of code.</p>
+<p>この章では、まったく最初からUserモデルを作成し、それに<code>name</code>属性と<code>email</code>属性を与え、さまざまなパスワード属性も与え、値を制限する多くの重要な検証も追加しました。さらに、与えられたパスワードをセキュアに認証できるようにしました。以前のバージョンのRailsであれば、このような実装を行うためのコードは現在の倍以上になっていたことでしょう。現在はコンパクトな<code>validates</code>メソッドや<code>has_secure_password</code>メソッドがあるおかげで、わずか10行程度のソースコードでUserモデルを完成させることができました。</p>
 
-<p>In the next chapter, <a class="ref" href="http://railstutorial.jp/sign-up.html#top">Chapter 7</a>, we’ll make a working signup form to create new users, together with a page to display each user’s information. In <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#top">Chapter 8</a>, we’ll use the authentication machinery from <a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-adding_a_secure_password">Section 6.3</a> to let users sign into the site.</p>
+<p>次の<a class="ref" href="http://railstutorial.jp/sign-up.html#top">第7章</a>では、ユーザーを作成するためのユーザー登録フォームを作成し、各ユーザーの情報を表示するためのページも作成します。<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#top">第8章</a>では、<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-adding_a_secure_password">6.3</a>の認証システムを利用して、ユーザーが実際にWebサイトにサインインできるようにします。</p>
 
-<p>If you’re using Git, now would be a good time to commit if you haven’t done so in a while:</p>
+<p>Gitを使用している方は、しばらくコミットしていなかったのであれば、この時点でコミットしておくのがよいでしょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
 <span class="gp">$</span> git commit -m <span class="s2">&quot;Make a basic User model (including secure passwords)&quot;</span>
@@ -1945,7 +1945,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>Then merge back into the master branch:</p>
+<p>次にmasterブランチにマージバックします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout master
 <span class="gp">$</span> git merge modeling-users
@@ -1960,13 +1960,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <ol>
 
-<li>Add a test for the email downcasing from <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase">Listing 6.23</a>, as shown in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase_test">Listing 6.31</a>. By commenting out the <code>before_save</code> line, verify that <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase_test">Listing 6.31</a> tests the right thing.</li>
+<li><a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase">リスト6.23</a>の、メールアドレスを小文字に変換するコードに対するテストを、<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase_test">リスト6.31</a>のように作成してください。<code>before_save</code>の行をコメントアウトすることで、<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase_test">リスト6.31</a>が正しい対象をテストしていることを確認してください。</li>
 
-<li>By running the test suite, verify that the <code>before_save</code> callback can be written as shown in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-downcase_bang">Listing 6.32</a>.</li>
+<li><code>before_save</code>コールバックを<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-downcase_bang">リスト6.32</a>のように書いてもよいことを、テストスイートを実行して確認してください。</li>
 
-<li>Read through the Rails API entry for <code>ActiveRecord::Base</code> to get a sense of its capabilities.</li>
-<li>Study the entry in the Rails API for the <code>validates</code> method to learn more about its capabilities and options.</li>
-<li>Spend a couple of hours playing with <a href="http://www.rubular.com/">Rubular</a>.</li>
+<li>Rails APIサイトの<code>ActiveRecord::Base</code>の項を読み通し、どんなことができるかを把握してください。</li>
+<li>Rails APIサイトで<code>validates</code>メソッドを調べ、どんなことができるか、どんなオプションがあるかを調べてください。</li>
+<li><a href="http://www.rubular.com/">Rubular</a>で数時間ほど遊んでみてください。</li>
 
 </ol>
 
@@ -1977,7 +1977,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 6.31.</span> <span class="description">A test for the email downcasing from <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase">Listing 6.23</a>. </span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.31</span> <span class="description"><a class="ref" href="http://railstutorial.jp/modeling-users.html#code-email_downcase">リスト6.23</a>のメールアドレス小文字変換をテストする。</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
@@ -2007,7 +2007,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 6.32.</span> <span class="description">An alternate implementation of the <code>before_save</code> callback. </span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.32</span> <span class="description"><code>before_save</code>コールバックの別の実装。</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span> 
   <span class="n">attr_accessible</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:password_confirmation</span>
   <span class="n">has_secure_password</span>
@@ -2027,22 +2027,22 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </a><a class="next_page" href="http://railstutorial.jp/sign-up.html#top">    <span class="number">第7章</span>ユーザー登録</a><a class="next_page" href="http://railstutorial.jp/sign-up.html#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-6_1">The name comes from the “<a href="http://en.wikipedia.org/wiki/Active_record_pattern">active record pattern</a>”, identified and named in <em>Patterns of Enterprise Application Architecture</em> by Martin Fowler. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_1">↑</a></li>
-<li id="fn-6_2">Pronounced “ess-cue-ell”, though the alternate pronunciation “sequel” is also common. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_2">↑</a></li>
-<li id="fn-6_3">By using an email address as the username, we open the theoretical possibility of communicating with our users at a future date. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_3">↑</a></li>
-<li id="fn-6_4">Don’t worry about exactly how the <code>t</code> object manages to do this; the beauty of <em>abstraction layers</em> is that we don’t have to know. We can just trust the <code>t</code> object to do its job. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_4">↑</a></li>
-<li id="fn-6_5">Officially pronounced “ess-cue-ell-ite”, although the (mis)pronunciation “sequel-ite” is also common. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_5">↑</a></li>
-<li id="fn-6_6">In case you’re curious about <code>&quot;2011-12-05 00:57:46&quot;</code>, I’m not writing this after midnight; the timestamps are recorded in <a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">Coordinated Universal Time</a> (UTC), which for most practical purposes is the same as <a href="http://en.wikipedia.org/wiki/Greenwich_Mean_Time">Greenwich Mean Time</a>. From the <a href="http://tf.nist.gov/general/misc.htm">NIST Time and Frequency FAQ</a>:   <strong>Q:</strong> Why is UTC used as the acronym for Coordinated Universal Time instead of CUT? <strong>A:</strong> In 1970 the Coordinated Universal Time system was devised by an international advisory group of technical experts within the International Telecommunication Union (ITU). The ITU felt it was best to designate a single abbreviation for use in all languages in order to minimize confusion. Since unanimous agreement could not be achieved on using either the English word order, CUT, or the French word order, TUC, the acronym UTC was chosen as a compromise. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_6">↑</a></li>
-<li id="fn-6_7">Note the value of <code>user.updated_at</code>. Told you the timestamp was in UTC. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_7">↑</a></li>
-<li id="fn-6_8">Exceptions and exception handling are somewhat advanced Ruby subjects, and we won’t need them much in this book. They are important, though, and I suggest learning about them using one of the Ruby books recommended in <a class="ref" href="http://railstutorial.jp/beginning.html#sec-comments_for_various_readers">Section 1.1.1</a>. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_8">↑</a></li>
-<li id="fn-6_9">I’ll omit the output of console commands when they are not particularly instructive—for example, the results of <code>User.new</code>. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_9">↑</a></li>
-<li id="fn-6_10">Note that, in <a class="ref" href="http://railstutorial.jp/modeling-users.html#table-valid_email_regex">Table 6.1</a>, “letter” really means “lower-case letter”, but the <code>i</code> at the end of the regex enforces case-insensitive matching. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_10">↑</a></li>
-<li id="fn-6_11">If you find it as useful as I do, I encourage you to <a href="http://bit.ly/donate-to-rubular">donate to Rubular</a> to reward developer <a href="http://lovitt.net/">Michael Lovitt</a> for his wonderful work. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_11">↑</a></li>
-<li id="fn-6_12">Did you know that <code>&quot;Michael Hartl&quot;@example.com</code>, with quotation marks and a space in the middle, is a valid email address according to the standard? Incredibly, it is—but it’s absurd. If you don’t have an email address that contains only letters, numbers, underscores, and dots, then I recommend getting one. N.B. The regex in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_format_of_email">Listing 6.17</a> allows plus signs, too, because Gmail (and possibly other email services) does something useful with them: to filter email from example.com, you can use <tt>username+example@gmail.com</tt>, which will go to the Gmail address <tt>username@gmail.com</tt>, allowing you to filter on the string <tt>example</tt>. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_12">↑</a></li>
-<li id="fn-6_13">As noted briefly in the introduction to this section, there is a dedicated test database, <code>db/test.sqlite3</code>, for this purpose. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_13">↑</a></li>
-<li id="fn-6_14">Technically, only the domain part of the email address is case-insensitive: foo@bar.com is actually different from Foo@bar.com. In practice, though, it is a bad idea to rely on this fact; as noted at <a href="http://email.about.com/od/emailbehindthescenes/f/email_case_sens.htm">about.com</a>, “Since the case sensitivity of email addresses can create a lot of confusion, interoperability problems and widespread headaches, it would be foolish to require email addresses to be typed with the correct case. Hardly any email service or ISP does enforce case sensitive email addresses, returning messages whose recipient’s email address was not typed correctly (in all upper case, for example). ” Thanks to reader Riley Moses for pointing this out. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_14">↑</a></li>
-<li id="fn-6_15">Of course, we could just edit the migration file for the <code>users</code> table in <a class="ref" href="http://railstutorial.jp/modeling-users.html#code-users_migration">Listing 6.2</a> but that would require rolling back and then migrating back up. The Rails Way is to use migrations every time we discover that our data model needs to change. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_15">↑</a></li>
-<li id="fn-6_16">Direct experimentation with SQLite on my system and PostgreSQL on Heroku show that this step is, in fact, necessary. <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_16">↑</a></li>
+<li id="fn-6_1">この名前の由来は “<a href="http://en.wikipedia.org/wiki/Active_record_pattern">active record pattern</a>” です。Martin Fowler著「<em>エンタープライズ アプリケーションアーキテクチャパターン </em>」で特定および命名されました。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_1">↑</a></li>
+<li id="fn-6_2">「エスキューエル」と発音しますが、「スィークゥエル」もよく使われます。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_2">↑</a></li>
+<li id="fn-6_3">メールアドレスをユーザー名にしたことで、理屈の上では将来ユーザー同士で通信できるように拡張できる可能性が開かれます。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_3">↑</a></li>
+<li id="fn-6_4"><code>t</code>オブジェクトが具体的に何をしているのかを正確に知る必要はありませんので、どうか心配しないでください。<em>抽象化レイヤ</em>の素晴らしい点は、それが何であるかを知る必要がないという点です。安心して<code>t</code>オブジェクトに仕事を任せればよいのです。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_4">↑</a></li>
+<li id="fn-6_5">公式には「エスキューエライト」と発音しますが、(本来は誤りとされている)「スィークゥエライト」もよく使われています。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_5">↑</a></li>
+<li id="fn-6_6"><code>&quot;2011-12-05 00:57:46&quot;</code>というタイムスタンプが気になった方もいると思いますが、著者はこの箇所を真夜中過ぎに書いたわけではありません。実はこのタイムスタンプは<a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">協定世界時</a> (UTC) に合わせてあります。これは<a href="http://en.wikipedia.org/wiki/Greenwich_Mean_Time">グリニッジ標準時</a> (GMT) と同様、標準時間として使用されます。「<a href="http://tf.nist.gov/general/misc.htm">NIST時刻と周波数FAQ</a>」によると、<strong>問:</strong> 協定世界時 (Coordinated Universal Time) の略称がCUTではなくUTCなのはなぜですか。<strong>答え:</strong> 協定世界時システムは、1970年に国際電気通信連合 (ITU) の技術専門家の国際諮問グループによって考案されました。このときITUは、混乱を最小限にとどめるために、略称を1つだけにしたいと考えました。このとき、英語式のCUTもフランス式のTUCも満場一致とならず、両者の妥協案としてUTCという略語が採用されました。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_6">↑</a></li>
+<li id="fn-6_7"><code>user.updated_at</code>の値にご注目ください。上の脚注にも書いたとおり、このタイムスタンプはUTCベースです。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_7">↑</a></li>
+<li id="fn-6_8">例外と例外ハンドリングは、ある意味でRubyの高度なテーマです。本書では例外についてこれ以上言及しません。しかし例外が重要なものであることも確かなので、<a class="ref" href="http://railstutorial.jp/beginning.html#sec-comments_for_various_readers">1.1.1</a>で推薦したRuby本で例外について詳しく学ぶことをお勧めします。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_8">↑</a></li>
+<li id="fn-6_9">今後、コンソールコマンドの出力は、特に教育的効果が高いと思える場合 (ここでの<code>User.new</code>の場合など) を除いて省略いたします。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_9">↑</a></li>
+<li id="fn-6_10"><a class="ref" href="http://railstutorial.jp/modeling-users.html#table-valid_email_regex">表6.1</a>の正規表現の説明における「文字」は、実は「小文字のみ」が対象になっていることにご注意ください。ただし、正規表現の末尾に<code>i</code>オプションを追加してあるので、大文字小文字が区別されずにマッチするようになっています。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_10">↑</a></li>
+<li id="fn-6_11">著者同様このツールを便利だと思ってくださる方は、<a href="http://lovitt.net/">Michael Lovitt</a>の素晴らしい成果に報いるために、どうか<a href="http://bit.ly/donate-to-rubular">Rubularへの寄付</a>をお願いいたします。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_11">↑</a></li>
+<li id="fn-6_12">驚いたことに、公式標準によると<code>&quot;Michael Hartl&quot;@example.com</code>のようなクォートとスペースを使用したメールアドレスも有効なのだそうです。まったく馬鹿げています。今あなたが使用しているメールアドレスが、英文字、数字、アンダースコア、ドット以外の文字を含んでいるのであれば、そういう文字を含まないメールアドレスに変えることをお勧めします。ただしここで注意すべきことがあります。<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_format_of_email">リスト6.17</a>の正規表現では、プラス記号の使用を許していることにご注目ください。これは、Gmail (他のメールサービスにもあるかもしれません) ではプラス記号を使用すると便利なことがあるためです。Gmailでは、example.comからのメールをフィルタするために<tt>username+example@gmail.com</tt>を使用することができます。こうすると、Gmailの<tt>username@gmail.com</tt>というアドレスに転送され、<tt>example</tt>という文字をフィルタできるようになります。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_12">↑</a></li>
+<li id="fn-6_13">この節の冒頭で簡単に紹介したように、この目的に使用できる専用のテストデータベース<code>db/test.sqlite3</code>があります。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_13">↑</a></li>
+<li id="fn-6_14">技術的には、メールアドレスのうちドメイン名部分だけが (本当は) 大文字小文字を区別しません。foo@bar.comは、本来はdifferent from Foo@bar.comとは別のアドレスです。ただし現実的には、<a href="http://email.about.com/od/emailbehindthescenes/f/email_case_sens.htm">about.com</a>でも指摘されているように、メールアドレスの大文字小文字を区別することを前提にするのはまずい方法です。「メールアドレスの大文字小文字を区別すると、果てしない混乱と相互運用性の問題とひどい頭痛が発生する。メールアドレスの入力時に大文字小文字の区別を要求するのは賢い方法とは言えない。現実には、メールアドレスの大文字小文字の区別を強制するメールサービスやISPはめったに存在しない。メールアドレスのすべての文字を大文字にするなど、受信者のメールアドレスが誤って入力されていれば、メールは返送されるだけだ。」Riley Mosesによるご指摘に感謝いたします。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_14">↑</a></li>
+<li id="fn-6_15">もちろん、<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-users_migration">リスト6.2</a>の<code>users</code>テーブル用のマイグレーションファイルを単に編集することも可能なのですが、その場合ロールバックが必要となり、マイグレーションが戻ってしまいます。データモデルの変更が必要になったらその都度マイグレーションを行うのがRails流です。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_15">↑</a></li>
+<li id="fn-6_16">著者のシステム上のSQLiteとHeroku上のPostgreSQLで直接実験してみたところ、この手順は実際に必要であることがわかりました。<a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_16">↑</a></li>
 <li id="fn-6_17">http://railstutorial.org/book?version=3.0 <a class="arrow" href="http://railstutorial.jp/modeling-users.html#fnref-6_17">↑</a></li>
 </ol>
 </div>

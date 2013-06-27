@@ -494,15 +494,15 @@ end
 <h3><a id="sec-8_1_4" href="http://railstutorial.jp/sign-in-sign-out.html#sec-reviewing_form_submission" class="heading"><span class="number">8.1.4</span>確認フォームを送信する</a></h3>
 
 
-<p>ユーザーを作成する場合 (サインアップ) と同様に、セッションを作成する場合（サインイン）に、最初にやることは <em>正しくない</em> 入力をどうするかです. 私たちはサインアップのテストをすでに作りました (<a href="http://railstutorial.jp/sign-in-sign-out.html#code-initial_failing_signin_test" class="ref">リスト 8.5</a>)。そしてアプリケーションのコードは２つの点で微妙に異なるだけです。We’ll start by reviewing what happens when a form gets submitted, and then arrange for helpful error messages to appear in the case of signin failure (as mocked up in <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#fig-signin_failure_mockup">Figure 8.2</a>.) Then we’ll lay the foundation for successful signin (<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#sec-signin_success">Section 8.2</a>) by evaluating each signin submission based on the validity of its email/password combination.</p>
+<p>ユーザーを作成する場合 (サインアップ) と同様に、セッションを作成する場合（サインイン）に、最初にやることは <em>正しくない</em> 入力をどうするかです. 私たちはサインアップのテストをすでに作りました (<a href="http://railstutorial.jp/sign-in-sign-out.html#code-initial_failing_signin_test" class="ref">リスト 8.5</a>)。そしてアプリケーションのコードは２つの点で微妙に異なるだけです。まず、フォームが送信されたとき何が起こるかを考えましょう。そして、まずサインインが失敗した場合に表示されるエラーメッセージを配置します（モックアップは <a href="http://railstutorial.jp/sign-in-sign-out.html#fig-signin_failure_mockup" class="ref">図 8.2</a> をご覧ください）。次に、パスワードとメールアドレスの組み合わせが正しいかどうか、それぞれのサインインを判定して成功したとき (<a href="http://railstutorial.jp/sign-in-sign-out.html#sec-signin_success" class="ref">Section 8.2</a>) の土台をつくります。</p>
 
-<p>Let’s start by defining a minimalist <code>create</code> action for the Sessions controller (<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-initial_create_session">Listing 8.9</a>), which does nothing but render the <code>new</code> view. Submitting the <a href="http://localhost:3000/sessions/new">/sessions/new</a> form with blank fields then yields the result shown in <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#fig-initial_failed_signin_rails_3">Figure 8.5</a>.</p>
+<p>ここで、最小限のアクションとして <code>create</code> を セッション・コントローラに定義します (<a href="http://railstutorial.jp/sign-in-sign-out.html#code-initial_create_session" class="ref">リスト 8.9</a>) 。それはなにも実行しませんが、<code>new</code> ビューを表示します。 <a href="http://localhost:3000/sessions/new">/sessions/new</a> フォームを空白のまま送信したとき、どうなるかは <a href="http://railstutorial.jp/sign-in-sign-out.html#fig-initial_failed_signin_rails_3" class="ref">図 8.5</a> をご覧ください</p>
 
 <div class="label" id="code-initial_create_session"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 8.9.</span> <span class="description">A preliminary version of the Sessions <code>create</code> action. </span><br /><span class="description"> <code>app/controllers/sessions_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト 8.9.</span> <span class="description">セッション・コントローラの <code>create</code> アクションの試作バージョン</span><br /><span class="description"> <code>app/controllers/sessions_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">SessionsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -523,10 +523,11 @@ end
 <div class="label" id="fig-initial_failed_signin_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/initial_failed_signin_rails_3_bootstrap.png" alt="initial_failed_signin_rails_3_bootstrap" /></span></div><div class="caption"><span class="header">Figure 8.5: </span><span class="description">The initial failed signin, with <code>create</code> as in <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-initial_create_session">Listing 8.9</a>. <a href="http://railstutorial.org/images/figures/initial_failed_signin_rails_3_bootstrap-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/initial_failed_signin_rails_3_bootstrap.png" alt="initial_failed_signin_rails_3_bootstrap" /></span></div><div class="caption"><span class="header">図 8.5: </span><span class="description"><a href="http://railstutorial.jp/sign-in-sign-out.html#code-initial_create_session" class="ref">リスト 8.9</a>の<code>create</code> に対するサインイン失敗結果 <a href="http://railstutorial.org/images/figures/initial_failed_signin_rails_3_bootstrap-full.png">(full size)</a></span>
+</div></div>
 
 
-<p>Carefully inspecting the debug information in <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#fig-initial_failed_signin_rails_3">Figure 8.5</a> shows that, as hinted at the end of <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#sec-signin_form">Section 8.1.3</a>, the submission results in a <code>params</code> hash containing the email and password under the key <code>:session</code>:</p>
+<p><a href="http://railstutorial.jp/sign-in-sign-out.html#fig-initial_failed_signin_rails_3" class="ref">Figure 8.5</a> にあるデバッグ情報に注意してください。<a href="http://railstutorial.jp/sign-in-sign-out.html#sec-signin_form" class="ref">8.1.3 節</a> の終わりにあるように、 <code>params</code> ハッシュはメールアドレスとパスワードを <code>:session</code> キー以下に持ちます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nn">---</span>
 <span class="l-Scalar-Plain">session</span><span class="p-Indicator">:</span>
