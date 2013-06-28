@@ -149,7 +149,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-6_1_1" href="http://railstutorial.jp/modeling-users.html#sec-database_migrations" class="heading"><span class="number">6.1.1</span>データベースの移行</a></h3>
 
 
-<p><a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>で扱ったカスタムビルドクラスの<code>User</code>を思い出してください。このクラスは、<code>name</code>と<code>email</code>を属性に持つユーザーオブジェクトでした。このクラスは役に立つ例として提供されましたが、Railsにとってきわめて重要な部分である<em>永続性</em>という要素が欠けていました。RailsコンソールでUserクラスのオブジェクトを作っても、コンソールからexitするとそのオブジェクトはすぐに消えてしまいました。この節での私たちの目的は、簡単に消えることのないユーザーのモデルを構築することです。</p>
+<p><a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>で扱ったカスタムビルドクラスの<code>User</code>を思い出してください。このクラスは、<code>name</code>と<code>email</code>を属性に持つユーザーオブジェクトでした。このクラスは役に立つ例として提供されましたが、Railsにとってきわめて重要な部分である<em>永続性</em>という要素が欠けていました。RailsコンソールでUserクラスのオブジェクトを作っても、コンソールからexitするとそのオブジェクトはすぐに消えてしまいました。この節での目的は、簡単に消えることのないユーザーのモデルを構築することです。</p>
 
 <p><a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>のユーザークラスと同様に、<code>name</code>と<code>email</code>の2つの属性からなるユーザーをモデリングするところから始めましょう。後者のemailを一意のユーザー名として使用します<sup class="footnote" id="fnref-6_3"><a href="http://railstutorial.jp/modeling-users.html#fn-6_3">3</a></sup> (パスワードのための属性は<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-adding_a_secure_password">6.3</a>で扱います) 。<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-example_user">リスト4.9</a>では、以下のようにRubyの<code>attr_accessor</code>メソッドを使用しました。</p>
 
@@ -163,9 +163,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>それとは対照的に、Railsでユーザーをモデリングするときは、属性を明示的に識別する必要がありません。上で簡潔に述べたように、Railsはデータを保存する際にデフォルトでリレーショナルデータベースを使用します。リレーショナルデータベースは、データ<em>行</em>で構成される<em>テーブル</em>からなり、各行はデータ属性の<em>カラム</em> (列) を持ちます。たとえば、nameとemailを持つユーザーを保存するのであれば、<code>name</code>と<code>email</code>のカラムを持つ<code>users</code>テーブルを作成します (各行はひとりのユーザーを表します)。このようにカラムを名付けることによって、私たちはActive RecordにUserオブジェクトの属性を探させることができます。</p>
+<p>それとは対照的に、Railsでユーザーをモデリングするときは、属性を明示的に識別する必要がありません。上で簡潔に述べたように、Railsはデータを保存する際にデフォルトでリレーショナルデータベースを使用します。リレーショナルデータベースは、データ<em>行</em>で構成される<em>テーブル</em>からなり、各行はデータ属性の<em>カラム</em> (列) を持ちます。たとえば、nameとemailを持つユーザーを保存するのであれば、<code>name</code>と<code>email</code>のカラムを持つ<code>users</code>テーブルを作成します (各行はひとりのユーザーを表します)。カラムをこのように名付けることによって、Active RecordでUserオブジェクトの属性を利用できるようになります。</p>
 
-<p>それでは実際どのように動作するのか見てみましょう (ここまでのやりとりが抽象的でわかりにくいかもしれませんが、少しだけご辛抱願います。<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-creating_user_objects">6.1.3</a>から使用しているコンソールの例と、<a class="ref" href="http://railstutorial.jp/modeling-users.html#fig-sqlite_database_browser">図6.3</a>と<a class="ref" href="http://railstutorial.jp/modeling-users.html#fig-sqlite_user_row">図6.6</a>にあるデータベースブラウザのスクリーンショットが理解を助けてくれるでしょう)。<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-generate_users_controller">リスト5.28</a>で、ユーザーコントローラ (と<code>new</code>アクション) を作ったときに使った以下のコマンドを思い出してみてください。</p>
+<p>それでは実際どのように動作するのか見てみましょう (ここまでの説明が抽象的でわかりにくいかもしれませんが、少しだけご辛抱願います。<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-creating_user_objects">6.1.3</a>から使用しているコンソールの例と、<a class="ref" href="http://railstutorial.jp/modeling-users.html#fig-sqlite_database_browser">図6.3</a>と<a class="ref" href="http://railstutorial.jp/modeling-users.html#fig-sqlite_user_row">図6.6</a>にあるデータベースブラウザのスクリーンショットが理解を助けてくれるでしょう)。<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#code-generate_users_controller">リスト5.28</a>で、ユーザーコントローラ (と<code>new</code>アクション) を作ったときに使った以下のコマンドを思い出してみてください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate controller Users new --no-test-framework
 </pre></div>
@@ -222,7 +222,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_model_initial.png" alt="user_model_initial" /></span></div><div class="caption"><span class="header">図6.2</span><span class="description"><a class="ref" href="http://railstutorial.jp/modeling-users.html#code-users_migration">リスト6.2</a>によるユーザーデータモデル</span></div></div>
 
 
-<p>私たちはマイグレーションを、以下のとおり<code>rake</code>コマンド (<a class="ref" href="http://railstutorial.jp/a-demo-app.html#sidebar-rake">囲み2.1</a>) を使って実行することができます。これを“マイグレーションの適用 (migrating up)”と呼びます。</p>
+<p>マイグレーションは、以下のように<code>rake</code>コマンド (<a class="ref" href="http://railstutorial.jp/a-demo-app.html#sidebar-rake">囲み2.1</a>) を使って実行することができます。これを“マイグレーションの適用 (migrating up)”と呼びます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
 </pre></div>
@@ -355,7 +355,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>データモデルをモデルファイルの中にコメントとして残しておくと、モデルにどんな属性があるかを楽に思い出せます。なお、本書で今後使用するコードには簡潔さのためにこの注釈は付けません (もし注釈を最新の状態に保ちたいのであれば、データモデルが変わるたびに<code>annotate</code>を実行しなければならないことにご注意ください)。</p>
+<p>データモデルをモデルファイルの中にコメントとして残しておくと、モデルにどんな属性があるかを楽に思い出せます。なお簡潔さのため、本書で今後使用するコードにはこの注釈を付けません (もし注釈を最新の状態に保ちたいのであれば、データモデルが変わるたびに<code>annotate</code>を実行しなければならないことにご注意ください)。</p>
 
 <div class="label" id="sec-accessible_attributes"></div>
 
@@ -377,7 +377,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/modeling-users.html#code-attr_accessible">リスト6.6</a>のコードの動作は若干わかりにくいところがあるので注意が必要です。モデルにattr_accessibleを書かない場合は、デフォルトで「モデルの<em>すべての</em>属性がアクセス可能」になります。<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-attr_accessible">リスト6.6</a>は、<code>name</code>と<code>email</code>属性が外部のユーザーからアクセス可能であることを指定すると同時に、「 明示的に指定された<code>name</code>と<code>email</code>属性<em>以外の</em>属性はすべてアクセス不可能とする」ことを暗黙に指定します。この動作を理解することが重要な理由については、<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">第9章</a>で説明します。<em>マスアサインメント</em>の脆弱性から守るためには、<code>attr_accessible</code>を必ず使用することが重要です。マスアサインメント脆弱性は大変発生しやすく、多くのRailsアプリケーションで重大なセキュリティホールの原因となりました。</p>
+<p><a class="ref" href="http://railstutorial.jp/modeling-users.html#code-attr_accessible">リスト6.6</a>のコードの動作は若干わかりにくいところがあるので注意が必要です。モデルにattr_accessibleを書かない場合は、デフォルトで「モデルの<em>すべての</em>属性がアクセス可能」になります。<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-attr_accessible">リスト6.6</a>は、<code>name</code>と<code>email</code>属性が外部のユーザーからアクセス可能であることを指定すると同時に、「 明示的に指定された<code>name</code>と<code>email</code>属性<em>以外の</em>属性はすべてアクセス不可能とする」ことを暗黙に指定します。この動作を理解することが重要な理由については、<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">第9章</a>で説明します。<em>マスアサインメント</em>の脆弱性から守るためには、<code>attr_accessible</code>を必ず使用することが重要です。マスアサインメント脆弱性は非常によくあるセキュリティ問題で、多くのRailsアプリケーションで重大なセキュリティホールの原因となりました。</p>
 
 <div class="label" id="sec-creating_user_objects"></div>
 
@@ -385,7 +385,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-6_1_3" href="http://railstutorial.jp/modeling-users.html#sec-creating_user_objects" class="heading"><span class="number">6.1.3</span>ユーザーオブジェクトを作成する</a></h3>
 
 
-<p>これまでさまざまな準備を行ってきましたので、いよいよActive Recordについて学ぶことにしましょう。先ほど作成したUserモデルを使用します。<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#top">第4章</a>と同じく、Railsコンソールを使います。(この時点では) データベースを変更したくないので、コンソールを<em>サンドボックス</em>モードで起動します。</p>
+<p>準備が完了しましたので、いよいよActive Recordについて学ぶことにしましょう。先ほど作成したUserモデルを使用します。<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#top">第4章</a>と同じく、Railsコンソールを使います。(この時点では) データベースを変更したくないので、コンソールを<em>サンドボックス</em>モードで起動します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console --sandbox</span>
 <span class="go">Loading development environment in sandbox</span>
@@ -418,7 +418,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p>上のように、nameとemail属性が期待どおり設定されていることがわかります。</p>
 
-<p>開発ログをtailしたまま上を実行していた場合、実行後に新しい行が何も表示されないことに気付いた方もいると思います。これは、<code>User.new</code>を実行しても単にRubyオブジェクトをメモリ上に作成するだけで、データベースに何もアクセスしないためです。このユーザーオブジェクトをデータベースに実際に保存するには、<code>user</code>変数に対して<code>save</code>メソッドを呼びます。</p>
+<p>開発ログをtailしたまま上を実行していた場合、実行後に新しい行が何も表示されないことに気付いた方もいると思います。これは、<code>User.new</code>を実行しても単にRubyオブジェクトをメモリ上に作成するだけで、データベースにはアクセスしないためです。このユーザーオブジェクトをデータベースに実際に保存するには、<code>user</code>変数に対して<code>save</code>メソッドを呼びます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">save</span>
 <span class="go">=&gt; true</span>
@@ -521,7 +521,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p><code>find_by_email</code>は、<code>users</code>テーブルの<code>email</code>属性に基づいてActive Recordが自動的に生成するメソッドです (ご想像どおり、Active Recordは<code>find_by_name</code>というメソッドも自動的に生成します)。 私たちはメールアドレスをユーザー名として使用してきたので、このような<code>find</code>は、ユーザーをサイトにログインさせる方法を学ぶときに役に立ちます (<a class="ref" href="http://railstutorial.jp/sign-up.html#top">第7章</a>)。ユーザー数が膨大になると<code>find_by_email</code>では検索効率が低下するのではないかと心配する方もいるかもしれませんが、焦る必要はありません。この問題およびデータベースのインデックスを使った解決策については<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-uniqueness_validation">6.2.5</a>で扱います。</p>
+<p><code>find_by_email</code>は、<code>users</code>テーブルの<code>email</code>属性に基づいてActive Recordが自動的に生成するメソッドです (ご想像どおり、Active Recordは<code>find_by_name</code>というメソッドも自動的に生成します)。 これまでメールアドレスをユーザー名として使用してきたので、このような<code>find</code>は、ユーザーをサイトにログインさせる方法を学ぶときに役に立ちます (<a class="ref" href="http://railstutorial.jp/sign-up.html#top">第7章</a>)。ユーザー数が膨大になると<code>find_by_email</code>では検索効率が低下するのではないかと心配する方もいるかもしれませんが、焦る必要はありません。この問題およびデータベースのインデックスを使った解決策については<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-uniqueness_validation">6.2.5</a>で扱います。</p>
 
 <p>ユーザーを検索する一般的な方法をあと少しだけご紹介して、この節を終わりにすることにしましょう。まず初めに<code>first</code>メソッドです。</p>
 
@@ -754,7 +754,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p>おそらく最も基本的な検証 (validation) は<em>プレゼンス (存在性) </em>です。これは単に、与えられた属性が存在することを検証します。たとえばこの節では、ユーザーがデータベースに保存される前にnameとemailフィールドの両方が存在することを保証します。<a class="ref" href="http://railstutorial.jp/sign-up.html#sec-signup_error_messages">7.3.2</a>では、この要求を新しいユーザーを作るためのユーザー登録フォームにまで徹底させる方法を確認します。</p>
 
-<p>最初に<code>name</code>属性の存在を確認するテストを行いましょう。テスト駆動開発の最初のステップは<em>失敗する</em>テスト (<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-TDD">3.2.1</a>) を書くことですが、今回は適切なテストを書くための検証機能についてまだ十分に理解していないので、まず最初に検証を書きます。検証についてはコンソールを使って理解することにします。次に、検証部分をコメントアウトし、失敗するテストを書いて、最後にコメントアウトを解除した検証でテストがパスするかどうかを確認します。この手続きは、このような単純なテストでは大げさで気取ったものに感じられるかもしれませんが、私はこれまでに、テストそのものが間違っている “単純な” テストを山ほど見てきました。テスト駆動開発を慎重に進めることは、テストが正しく進められているという自信を得る<em>唯一の</em>方法です (上で紹介したコメントアウトのテクニックは、コードはあってもテストがどこにもないような<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>ひどい</em></a>アプリケーションを救出するときにも役に立ちます)。</p>
+<p>最初に<code>name</code>属性の存在を確認するテストを行いましょう。テスト駆動開発の最初のステップは<em>失敗する</em>テスト (<a class="ref" href="http://railstutorial.jp/static-pages.html#sec-TDD">3.2.1</a>) を書くことですが、今回は適切なテストを書くための検証機能についてまだ十分に理解していないので、まず最初に検証を書きます。検証についてはコンソールを使って理解することにします。次に、検証部分をコメントアウトし、失敗するテストを書いて、最後にコメントアウトを解除した検証でテストがパスするかどうかを確認します。この手続きは、このような単純なテストでは大げさで気取ったものに感じられるかもしれませんが、著者はこれまでにテストそのものが間違っている “単純な” テストを山ほど見てきました。テスト駆動開発を慎重に進めることは、テストが正しく進められているという自信を得る<em>唯一の</em>方法です (上で紹介したコメントアウトのテクニックは、コードはあってもテストがどこにもないような<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>ひどい</em></a>アプリケーションを急いで救出するときにも役に立ちます)。</p>
 
 <p>name属性の存在を検査する方法は、<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-validates_presence_of_name">リスト6.9</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波かっこを付けなくても問題ありません (<a class="ref" href="http://railstutorial.jp/filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
 
@@ -1254,7 +1254,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>上のコードでは、単に<code>true</code>を<code>case_sensitive: false</code>で置き換えただけであることにご注目ください。Railsはこの場合、<code>:uniqueness</code>を<code>true</code>と判断します。この時点で、私たちのアプリケーションは、重要な警告と共にメールアドレスの一意性を強制し、テストスイートもパスするはずです。</p>
+<p>上のコードでは、単に<code>true</code>を<code>case_sensitive: false</code>で置き換えただけであることにご注目ください。Railsはこの場合、<code>:uniqueness</code>を<code>true</code>と判断します。この時点で、アプリケーションは重要な警告と共にメールアドレスの一意性を強制し、テストスイートもパスするはずです。</p>
 
 <div class="label" id="sec-the_caveat"></div>
 
@@ -1276,7 +1276,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </ol>
 
 
-<p>上のシナリオが信じがたいもののように思えるかもしれませんが、どうか私を信じてください。RailsのWebサイトでは、トラフィックが多いときにこのような問題が発生する可能性があるのです。幸い、解決策の実装は簡単です。実は、データベースレベルでも一意性を強制するだけでこの問題は解決します。具体的には、emailカラムにデータベースの<em>インデックス</em>を作成し、そのインデックスが一意であることを要求します。</p>
+<p>上のシナリオが信じがたいもののように思えるかもしれませんが、どうか信じてください。RailsのWebサイトでは、トラフィックが多いときにこのような問題が発生する可能性があるのです。幸い、解決策の実装は簡単です。実は、データベースレベルでも一意性を強制するだけでこの問題は解決します。具体的には、emailカラムにデータベースの<em>インデックス</em>を作成し、そのインデックスが一意であることを要求します。</p>
 
 <p>emailインデックスを追加すると、データモデリングの変更が必要になります。Railsでは (<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-database_migrations">6.1.1</a>で見たように) マイグレーションでインデックスを追加します。<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-database_migrations">6.1.1</a>で、Userモデルを生成すると自動的に新しいマイグレーションが作成されたことを思い出してください (<a class="ref" href="http://railstutorial.jp/modeling-users.html#code-users_migration">リスト6.2</a>)。今回の場合は、既に存在するモデルに構造を追加するので、以下のように<code>migration</code>ジェネレーターを使用してマイグレーションを直接作成する必要があります。</p>
 

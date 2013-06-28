@@ -103,11 +103,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h1 class="chapter"><a id="sec-8" href="http://railstutorial.jp/sign-in-sign-out.html#top" class="heading"><span class="number">第8章</span>サインイン、サインアウト</a></h1>
 
 
-<p><a href="http://railstutorial.jp/sign-up.html#top" class="ref">Chapter 7</a>で、我々のサイトは新規ユーザーが登録できるようになっています。次はユーザーがサインインとサインアウトが出来るようにしましょう。現在のユーザーの認証やサインインステータスによる、変化をアプリに加えることができます。例として、この章では、サイトのヘッダー部分に、サインイン／サインアウトのリンクとプロフィールへのリンクを表示するようにします。<a href="http://railstutorial.jp/user-microposts.html#top" class="ref">Chapter 10</a>では、私達はサインインしたユーザーの認証を用いて、そのユーザーに関連したマイクロポストを作成します。また<a href="http://railstutorial.jp/following-users.html#top" class="ref">Chapter 11</a>では現在のユーザーが他のユーザーをフォローして、マイクロポストのフィードを受け取ることが出来るようにします。</p>
+<p><a class="ref" href="http://railstutorial.jp/sign-up.html#top">第7章</a>でWebサイトでの新規ユーザー登録が行えるようになりましたので、今度はユーザーがサインインとサインアウトを行えるようにしましょう。これにより、サインインの状態と現在のユーザーidに応じて動作を変更できるようになります。たとえば、この章では、サイトのヘッダー部分にサインイン／サインアウトのリンクとプロファイルへのリンクを表示するようにします。<a class="ref" href="http://railstutorial.jp/user-microposts.html#top">第10章</a>では、サインインしたユーザーidを使用して、そのユーザーに関連付けられたマイクロポストを作成します。また<a class="ref" href="http://railstutorial.jp/following-users.html#top">第11章</a>では、現在のユーザーが他のユーザーをフォローして、マイクロポストのフィードを受け取ることができるようにします。</p>
 
-<p>ユーザーがサインインすることでセキュリティモデルを実装し、サインインしているユーザーの認証に基づいて、特定のページへのアクセスを制限することができます。たとえば、<a href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top" class="ref">Chapter 9</a>でも出てきますが、サインインしたユーザーのみがユーザー情報編集ページにアクセスすることが出来るようにします。サインインの仕組みは、また、特別な権限を管理者ユーザーに与えることもできます。例えば  (<a href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top" class="ref">Chapter 9</a>で導入する) データベースからユーザーを削除する機能が挙げられます。</p>
+<p>ユーザーがサインインすることでセキュリティモデルも実装され、サインインしているユーザーidに基づいて、特定のページへのアクセスを制限することもできます。<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">第9章</a>でも説明しますが、たとえばサインインしたユーザーのみがユーザー情報編集ページにアクセスできるようにします。サインインシステムを使用して、管理者ユーザーに特別な権限を与えることもできます。たとえば  (<a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">第9章</a>で導入する) データベースからユーザーを削除する機能があります。</p>
 
-<p>コアとなる認証機能を実装した後は、ちょっと遠回りして、ビヘヴィア駆動開発 (<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#sec-cucumber">8.3</a>) で有名なツールの<em>Cucumber</em>を試してみましょう。特に、2つの手法の比較を確認するために、RSpecによる統合テストの組み合わせをCucumberで再実装します。</p>
+<p>コアとなる認証機能を実装した後は、少々回り道して、振舞駆動開発 (<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#sec-cucumber">8.3</a>) で有名な<em>Cucumber</em>というツールを試してみます。特に、2つの開発手法を比較するために、RSpecによる統合テストの組み合わせをCucumberで再実装します。</p>
 
 <p>前章同様に、トピックブランチで作業してから、最後に更新をマージします。</p>
 
@@ -122,7 +122,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h2><a id="sec-8_1" href="http://railstutorial.jp/sign-in-sign-out.html#sec-signin_failure" class="heading"><span class="number">8.1</span>セッション、サインインの失敗</a></h2>
 
 
-<p><a href="http://en.wikipedia.org/wiki/Session_(computer_science)"><em>セッション</em></a>は、２つのコンピュータの間、たとえばクライアント側のブラウザとサーバーで稼働しているRailsとの間の、半永続的な接続です。ここでは”サインイン”の共通パターンを実装するためにセッションを用います。さて、Webの世界ではセッションの振る舞いを表現するためのいくつかの異なったモデルがあります。“forgetting” the session on browser close, using an optional “remember me” checkbox for persistent sessions, and automatically remembering sessions until the user explicitly signs out.<sup id="fnref-8_1" class="footnote"><a href="http://railstutorial.jp/sign-in-sign-out.html#fn-8_1">1</a></sup> または、次のようにすることもできます。ユーザーがサインインしたとき、ユーザーのステータスを”永久に”記憶しておいて、ユーザーが明示的にサインアウトしたときのみ、セッションを消去するようにします。(<a href="http://railstutorial.jp/sign-in-sign-out.html#sec-remember_me" class="ref">Section 8.2.1</a> では “永久に” が実際どれくらいなのかをお見せします。)</p>
+<p><a href="http://en.wikipedia.org/wiki/Session_(computer_science)"><em>セッション</em></a>とは、2つのコンピュータの間、たとえばクライアント側のブラウザとサーバーで動作しているRailsとの間の、半永続的な接続のことです。ここでは ”サインイン” の共通パターンを実装するためにセッションを使用します。ここで、Webの世界にはセッションの振る舞いを表現するためのいくつかの異なったモデルがあります。“forgetting” the session on browser close, using an optional “remember me” checkbox for persistent sessions, and automatically remembering sessions until the user explicitly signs out.<sup class="footnote" id="fnref-8_1"><a href="http://railstutorial.jp/sign-in-sign-out.html#fn-8_1">1</a></sup> または、次のようにすることもできます。ユーザーがサインインしたとき、ユーザーのステータスを”永久に”記憶しておいて、ユーザーが明示的にサインアウトしたときのみ、セッションを消去するようにします。(<a href="http://railstutorial.jp/sign-in-sign-out.html#sec-remember_me" class="ref">Section 8.2.1</a> では “永久に” が実際どれくらいなのかをお見せします。)</p>
 
 <p>セッションはRESTfulなリソースとして作成することで使いやすくなります。それは、<em>新しい</em>セッションを生成するためのサインインページや、セッションを生成するサインイン・アクション、セッションを破棄するサインアウト・アクションなどです。Usersのようなデータベースを用いるリソースとは異なり、セッションはクッキーを使います。クッキーとはユーザーのブラウザに保管される小さなテキストデータです。サインインに関連する作業の大半は、このクッキー・ベースの認証の仕組みを構築することになります。このパートと次のパートでは、セッション機能を作成する準備として、セッション・コントローラ、サインインのためのフォーム、および関連したコントローラのアクションを作成します。次に<a href="http://railstutorial.jp/sign-in-sign-out.html#sec-signin_success" class="ref">Section 8.2</a>では、クッキー管理のために必要なコードを追加して、ユーザーがサインインするための仕組みを完成させます。 </p>
 
@@ -527,7 +527,7 @@ end
 </div></div>
 
 
-<p><a href="http://railstutorial.jp/sign-in-sign-out.html#fig-initial_failed_signin_rails_3" class="ref">Figure 8.5</a> にあるデバッグ情報に注意してください。<a href="http://railstutorial.jp/sign-in-sign-out.html#sec-signin_form" class="ref">8.1.3 節</a> の終わりにあるように、 <code>params</code> ハッシュはメールアドレスとパスワードを <code>:session</code> キー以下に持ちます。</p>
+<p><a href="http://railstutorial.jp/sign-in-sign-out.html#fig-initial_failed_signin_rails_3" class="ref">Figure 8.5</a> にあるデバッグ情報に注意してください。<a href="http://railstutorial.jp/sign-in-sign-out.html#sec-signin_form" class="ref">8.1.3 節</a> の終わりにもヒントがありましたが、 <code>params</code> ハッシュはメールアドレスとパスワードを <code>:session</code> キー以下に持ちます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nn">---</span>
 <span class="l-Scalar-Plain">session</span><span class="p-Indicator">:</span>
@@ -540,7 +540,7 @@ end
 </div>
 
 
-<p>As with the case of user signup (<a class="ref" href="http://railstutorial.jp/sign-up.html#fig-signup_failure_rails_3">Figure 7.15</a>) these parameters form a <em>nested</em> hash like the one we saw in <a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#code-nested_hashes">Listing 4.6</a>. In particular, <code>params</code> contains a nested hash of the form</p>
+<p>ユーザー・サインアップの場合と同様 (<a href="http://railstutorial.jp/sign-up.html#fig-signup_failure_rails_3" class="ref">Figure 7.15</a>) これらのパラメータは、<a href="http://railstutorial.jp/rails-flavored-ruby.html#code-nested_hashes" class="ref">リスト 4.6</a>にあるように、<em></em>入れ子になったハッシュからなります。とくに、<code>params</code> は以下のような入れ子ハッシュで、</p>
 
 <div class="code"><div class="highlight"><pre><span class="p">{</span> <span class="ss">session:</span> <span class="p">{</span> <span class="ss">password:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;&quot;</span> <span class="p">}</span> <span class="p">}</span>
 </pre></div>
@@ -548,37 +548,37 @@ end
 
 
 <p>
-This means that</p>
+上の意味するところは、</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">]</span>
 </pre></div>
 </div>
 
 
-<p>is itself a hash:</p>
+<p>はそれ自体がハッシュで、以下の要素を含んでいるということです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="p">{</span> <span class="ss">password:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;&quot;</span> <span class="p">}</span>
 </pre></div>
 </div>
 
 
-<p>As a result,</p>
+<p>つまり、</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:email</span><span class="o">]</span>
 </pre></div>
 </div>
 
 
-<p>is the submitted email address and</p>
+<p>はフォームから送信されたメールアドレスです。また、</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:password</span><span class="o">]</span>
 </pre></div>
 </div>
 
 
-<p>is the submitted password.</p>
+<p>は送信されたパスワードです。</p>
 
-<p>In other words, inside the <code>create</code> action the <code>params</code> hash has all the information needed to authenticate users by email and password. Not coincidentally, we already have exactly the methods we need: the <code>User.find_by_email</code> method provided by Active Record (<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-finding_user_objects">Section 6.1.4</a>) and the  <code>authenticate</code> method provided by <code>has_secure_password</code> (<a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-user_authentication">Section 6.3.3</a>). Recalling that <code>authenticate</code> returns <code>false</code> for an invalid authentication, our strategy for user signin can be summarized as follows:</p>
+<p>そうすると、 <code>create</code> アクションの <code>params</code> ハッシュはユーザーの認証に必要な全ての情報を含んでいることになります。ここまでに、私たちはすでに必要なメソッドを手にしています。 アクティブレコードは <code>User.find_by_email</code> を提供していますし (<a href="http://railstutorial.jp/modeling-users.html#sec-finding_user_objects" class="ref">Section 6.1.4</a>) 、 <code>has_secure_password</code> は <code>authenticate</code> メソッドを提供しています  (<a href="http://railstutorial.jp/modeling-users.html#sec-user_authentication" class="ref">Section 6.3.3</a>). 認証に失敗したとき、 <code>authenticate</code> の返り値は <code>false</code> となることを思い出してください。ユーザー・サインインにおいての私達の方針をまとめると以下になります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">create</span>
   <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_email</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:email</span><span class="o">].</span><span class="n">downcase</span><span class="p">)</span>
@@ -592,20 +592,20 @@ This means that</p>
 </div>
 
 
-<p>The first line here pulls the user out of the database using the submitted email address. (Recall from <a class="ref" href="http://railstutorial.jp/modeling-users.html#sec-uniqueness_validation">Section 6.2.5</a> that email addresses are saved as all lower-case, so here we use the <code>downcase</code> method to ensure a match when the submitted address is valid.) The next line can be a bit confusing but is fairly common in idiomatic Rails programming:</p>
+<p>最初の行は送信されたメールアドレスをつかって、データベースからユーザーを取り出しています。(<a href="http://railstutorial.jp/modeling-users.html#sec-uniqueness_validation" class="ref">節 6.2.5</a> ではメールアドレスはすべて小文字で保存されていたことを思い出してください。ですので、ここでは <code>downcase</code> メソッドを使って、正しいメールアドレスが入力されたとき、確実にマッチするようにしています。)次の行はちょっと分かりにくいですが、Rails プログラミングではよく見かけるやり方です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:password</span><span class="o">]</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>This uses <code>&amp;&amp;</code> (logical <em>and</em>) to determine if the resulting user is valid. Taking into account that any object other than <code>nil</code> and <code>false</code> itself is <code>true</code> in a boolean context (<a class="ref" href="http://railstutorial.jp/rails-flavored-ruby.html#sec-objects_and_message_passing">Section 4.2.3</a>), the possibilities appear as in <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#table-user_and_and">Table 8.2</a>. We see from <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#table-user_and_and">Table 8.2</a> that the <code>if</code> statement is <code>true</code> only if a user with the given email both exists in the database and has the given password, exactly as required.</p>
+<p><code>&amp;&amp;</code> (<em>論理積</em>) は取得したユーザーが有効かどうかを決定するために使います。<code>nil</code> と <code>false</code> 以外の全てのオブジェクトは真偽値では <code>true</code> となりますから (<a href="http://railstutorial.jp/rails-flavored-ruby.html#sec-objects_and_message_passing" class="ref">4.2.3 節</a>) 、 組み合わせは <a href="http://railstutorial.jp/sign-in-sign-out.html#table-user_and_and" class="ref">表 8.2</a> となります。 <a href="http://railstutorial.jp/sign-in-sign-out.html#table-user_and_and" class="ref">表 8.2</a> を見れば、 入力されたメールアドレスをもつユーザーがデータベースに存在していて、かつ入力されたパスワードがそのユーザーのパスワードである場合のみ、<code>if</code> 文が <code>true</code> になることが分かります。</p>
 
 <div class="label" id="table-user_and_and"></div>
 
 
 <div class="table"><div class="center">
-<table class="tabular"><tr><th class="align_left"><strong>User</strong></th><th class="align_left"><strong>Password</strong></th><th class="align_left"><strong>a &amp;&amp; b</strong></th></tr><tr class="top_bar"><td class="align_left">nonexistent</td><td class="align_left"><em>anything</em></td><td class="align_left"><code>nil &amp;&amp; [anything] == false</code></td></tr><tr><td class="align_left">valid user</td><td class="align_left">wrong password</td><td class="align_left"><code>true &amp;&amp; false == false</code></td></tr><tr><td class="align_left">valid user</td><td class="align_left">right password</td><td class="align_left"><code>true &amp;&amp; true == true</code></td></tr></table></div><div class="caption"><span class="header">Table 8.2: </span><span class="description">Possible results of <code>user &amp;&amp; user.authenticate(…)</code>.</span></div></div>
+<table class="tabular"><tr><th class="align_left"><strong>User</strong></th><th class="align_left"><strong>Password</strong></th><th class="align_left"><strong>a &amp;&amp; b</strong></th></tr><tr class="top_bar"><td class="align_left">nonexistent</td><td class="align_left"><em>anything</em></td><td class="align_left"><code>nil &amp;&amp; [anything] == false</code></td></tr><tr><td class="align_left">valid user</td><td class="align_left">wrong password</td><td class="align_left"><code>true &amp;&amp; false == false</code></td></tr><tr><td class="align_left">valid user</td><td class="align_left">right password</td><td class="align_left"><code>true &amp;&amp; true == true</code></td></tr></table></div><div class="caption"><span class="header">表 8.2: </span><span class="description"><code>user &amp;&amp; user.authenticate(…)</code>の結果の組み合わせ</span></div></div>
 
 
 
@@ -771,7 +771,7 @@ This means that</p>
 
 <p> サインイン失敗を扱ったので、次は実際にユーザをサインインさせましょう。これからこのチュートリアル中、これまでで最も難関のRubyプログラミングに向かいますので、終わりまで頑張ってちょっとリフティングの準備をしましょう。幸運なことに、第一歩は簡単です。—セッションコントローラを完成させる <code>create</code> アクションは嵌め込みです。 不幸なことに、これはズルでもあります。</p>
 
-<p>今回のサインインコメントで満たされた記述 (<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-correct_signin_failure">Listing 8.12</a>) はシンプルです: サインインに成功すると、 ユーザを <code>sign_in</code> で記録して、 プロフィールページに飛ばします (<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-sign_in_success_not_yet_working">Listing 8.13</a>). なぜこれがズルなのかというと、なんと <code>sign_in</code> はこの時点で存在していないのです。このセクションの残りの部分で書いていきます。</p>
+<p>今回のサインインコメントで満たされた記述 (<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-correct_signin_failure">Listing 8.12</a>) はシンプルです: サインインに成功すると、 ユーザを <code>sign_in</code> で記録して、 プロファイルページに飛ばします (<a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-sign_in_success_not_yet_working">Listing 8.13</a>). なぜこれがズルなのかというと、なんと <code>sign_in</code> はこの時点で存在していないのです。このセクションの残りの部分で書いていきます。</p>
 
 <div class="label" id="code-sign_in_success_not_yet_working"></div>
 
@@ -1329,7 +1329,7 @@ To avoid this problem, we can find the user corresponding to the remember token 
 <h3><a id="sec-8_2_4" href="http://railstutorial.jp/sign-in-sign-out.html#sec-changing_the_layout_links" class="heading"><span class="number">8.2.4</span>レイアウトリンクを変更する</a></h3>
 
 
-<p>We come finally to a practical application of all our signin/out work: we’ll change the layout links based on signin status. In particular, as seen in the <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#fig-signin_success_mockup">Figure 8.3</a> mockup, we’ll arrange for the links to change when users sign in or sign out, and we’ll also add links for listing all users and user settings (to be completed in <a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">Chapter 9</a>) and one for the current user’s profile page. In doing so, we’ll get the tests in <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-signin_success_tests">Listing 8.6</a> to pass, which means our test suite will be green for the first time since the beginning of the chapter.</p>
+<p>We come finally to a practical application of all our signin/out work: we’ll change the layout links based on signin status. In particular, as seen in the <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#fig-signin_success_mockup">Figure 8.3</a> mockup, we’ll arrange for the links to change when users sign in or sign out, and we’ll also add links for listing all users and user settings (to be completed in <a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">第9章</a>) and one for the current user’s profile page. In doing so, we’ll get the tests in <a class="ref" href="http://railstutorial.jp/sign-in-sign-out.html#code-signin_success_tests">Listing 8.6</a> to pass, which means our test suite will be green for the first time since the beginning of the chapter.</p>
 
 <p>The way to change the links in the site layout involves using an
 if-else branching structure inside of Embedded Ruby:</p>
@@ -1370,7 +1370,7 @@ end
 </div></div>
 
 
-<p>With the <code>signed_in?</code> method in hand, we’re ready to finish the layout links. There are four new links, two of which are stubbed out (to be completed in <a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">Chapter 9</a>):</p>
+<p>With the <code>signed_in?</code> method in hand, we’re ready to finish the layout links. There are four new links, two of which are stubbed out (to be completed in <a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">第9章</a>):</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Users&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Settings&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span>
@@ -2051,7 +2051,7 @@ end
 <h2><a id="sec-8_4" href="http://railstutorial.jp/sign-in-sign-out.html#sec-8_4" class="heading"><span class="number">8.4</span>最後に</a></h2>
 
 
-<p>We’ve covered a lot of ground in this chapter, transforming our promising but unformed application into a site capable of the full suite of registration and login behaviors. All that is needed to complete the authentication functionality is to restrict access to pages based on signin status and user identity. We’ll accomplish this task en route to giving users the ability to edit their information and giving administrators the ability to remove users from the system, which are the main goals of <a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">Chapter 9</a>.</p>
+<p>We’ve covered a lot of ground in this chapter, transforming our promising but unformed application into a site capable of the full suite of registration and login behaviors. All that is needed to complete the authentication functionality is to restrict access to pages based on signin status and user identity. We’ll accomplish this task en route to giving users the ability to edit their information and giving administrators the ability to remove users from the system, which are the main goals of <a class="ref" href="http://railstutorial.jp/updating-showing-and-deleting-users.html#top">第9章</a>.</p>
 
 <p>Before moving on, merge your changes back into the master branch:</p>
 
