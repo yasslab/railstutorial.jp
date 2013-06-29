@@ -1,0 +1,899 @@
+
+<h1 class="title">The Tau Manifesto</h1>
+
+
+<h2 class="author">Michael Hartl</h2>
+
+
+<h3 class="date"><a href="http://tauday.com/">Tau Day</a>, 2010<br /><span class="small">updated Pi Day, 2013</span></h3>
+
+
+<p> pdf_share_partial</p>
+
+<div class="label" id="sec-the_circle_constant"></div>
+
+
+<h2><a id="sec-1" href="#sec-the_circle_constant" class="heading"><span class="number">1</span> The circle constant</a></h2>
+
+
+<p><em>The Tau Manifesto</em> is dedicated to one of the most important numbers in mathematics, perhaps <em>the</em> most important: the <em>circle constant</em> relating the circumference of a circle to its linear dimension. For millennia, the circle has been considered the most perfect of shapes, and the circle constant captures the geometry of the circle in a single number. Of course, the traditional choice for the circle constant is $\pi$&mdash;but, as mathematician <a href="http://www.math.utah.edu/~palais">Bob Palais</a> notes in his delightful article &ldquo;$\pi$ Is Wrong!&rdquo;,<sup class="footnote" id="fnref-0_1"><a href="#fn-0_1">1</a></sup> $\pi$ <em>is wrong</em>. It&rsquo;s time to set things right.</p>
+
+<div class="label" id="sec-an_immodest_proposal"></div>
+
+
+<h3><a id="sec-1_1" href="#sec-an_immodest_proposal" class="heading"><span class="number">1.1</span> An immodest proposal</a></h3>
+
+
+<p>We begin repairing the damage wrought by $\pi$ by first understanding the notorious number itself. The traditional definition for the circle constant sets $\pi$ (pi) equal to the ratio of a circle&rsquo;s circumference to its diameter:<sup class="footnote" id="fnref-0_2"><a href="#fn-0_2">2</a></sup>
+\[
+  \pi \equiv \frac{C}{D} = 3.14159265\ldots
+\]
+The number $\pi$ has many remarkable properties&mdash;among other things, it is <a href="http://en.wikipedia.org/wiki/Irrational_number"><em>irrational</em></a> and indeed <a href="http://en.wikipedia.org/wiki/Transcendental_number"><em>transcendental</em></a>&mdash;and its presence in mathematical formulas is widespread.</p>
+
+<p>It should be obvious that $\pi$ is not &ldquo;wrong&rdquo; in the sense of being factually incorrect; the number $\pi$ is perfectly well-defined, and it has all the properties normally ascribed to it by mathematicians. When we say that &ldquo;$\pi$ is wrong&rdquo;, we mean that <em>$\pi$ is a confusing and unnatural choice for the circle constant</em>. In particular, since a circle is defined as the set of points a fixed distance&mdash;the <em>radius</em>&mdash;from a given point, a more natural definition for the circle constant uses $r$ in place of $D$:
+\[
+  \mathrm{circle\ constant} \equiv \frac{C}{r}.
+\]
+Because the diameter of a circle is twice its radius, this number is numerically equal to $2\pi$. Like $\pi$, it is transcendental and hence irrational, and (as we&rsquo;ll see in <a class="ref" href="#sec-the_number_tau">Section&nbsp;2</a>) its use in mathematics is similarly widespread.</p>
+
+<p>In &ldquo;$\pi$ Is Wrong!&rdquo;, Bob Palais argues persuasively in favor of the second of these two definitions for the circle constant, and in my view he deserves principal credit for identifying this issue and bringing it to a broad audience. He calls the true circle constant &ldquo;one turn&rdquo;, and he also introduces a new symbol to represent it (<a class="ref" href="#fig-palais_tau">Figure&nbsp;1</a>). As we&rsquo;ll see, the description is prescient, but unfortunately the symbol is rather strange, and (as discussed in <a class="ref" href="#sec-conflict_and_resistance">Section&nbsp;4</a>) it seems unlikely to gain wide adoption.</p>
+
+<div class="label" id="fig-palais_tau"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/palais-tau.png" alt="palais-tau" /></span></div><div class="caption"><span class="header">Figure 1: </span><span class="description">The strange symbol for the circle constant from &ldquo;$\pi$ Is Wrong!&rdquo;.</span></div></div>
+
+
+<p><em>The Tau Manifesto</em> is dedicated to the proposition that the proper response to &ldquo;$\pi$ is wrong&rdquo; is &ldquo;No, <em>really</em>.&rdquo; And the true circle constant deserves a proper name. As you may have guessed by now, <em>The Tau Manifesto</em> proposes that this name should be the Greek letter $\tau$ (tau):
+\[
+  \tau \equiv \frac{C}{r} = 6.283185307179586\ldots
+\]
+Throughout the rest of this manifesto, we will see that the <em>number</em> $\tau$ is the correct choice, and we will show through usage (<a class="ref" href="#sec-the_number_tau">Section&nbsp;2</a> and <a class="ref" href="#sec-circular_area">Section&nbsp;3</a>) and by direct argumentation (<a class="ref" href="#sec-conflict_and_resistance">Section&nbsp;4</a>) that the <em>letter</em> $\tau$ is a natural choice as well.</p>
+
+<div class="label" id="sec-a_powerful_enemy"></div>
+
+
+<h3><a id="sec-1_2" href="#sec-a_powerful_enemy" class="heading"><span class="number">1.2</span> A powerful enemy</a></h3>
+
+
+<p>Before proceeding with the demonstration that $\tau$ is the natural choice for the circle constant, let us first acknowledge what we are up against&mdash;for there is a powerful conspiracy, centuries old, determined to propagate pro-$\pi$ propaganda. Entire <a href="http://www.amazon.com/exec/obidos/ISBN=0802713327/parallaxproductiA/">books</a> <a href="http://www.amazon.com/Pi-Sky-Counting-Thinking-Being/dp/0198539568">are</a> <a href="http://www.amazon.com/exec/obidos/ISBN=0312381859/parallaxproductiA/">written</a> extolling the virtues of $\pi$. (I mean, <a href="http://www.amazon.com/exec/obidos/ISBN=0387989463/parallaxproductiA/"><em>books</em></a><em>!</em>) And irrational devotion to $\pi$ has spread even to the highest levels of geekdom; for example, on &ldquo;Pi Day&rdquo; 2010 <a href="http://www.google.com/">Google</a> <em>changed its logo</em> to honor $\pi$  (<a class="ref" href="#fig-google_pi_day_">Figure&nbsp;2</a>).</p>
+
+<div class="label" id="fig-google_pi_day_"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/google-pi-day.png" alt="google-pi-day" /></span></div><div class="caption"><span class="header">Figure 2: </span><span class="description">The Google logo on March 14 (3/14), 2010 (&ldquo;Pi Day&rdquo;).</span></div></div>
+
+
+<p>Meanwhile, some people memorize dozens, hundreds, even <a href="http://en.wikipedia.org/wiki/Lu_Chao"><em>thousands</em></a> of digits of this mystical number. What kind of sad sack memorizes even 40 digits of $\pi$ (<a class="ref" href="#fig-futurama_video">Figure&nbsp;3</a>)?<sup class="footnote" id="fnref-0_3"><a href="#fn-0_3">3</a></sup></p>
+
+<div class="label" id="fig-futurama_video"></div>
+
+
+<div class="figure"><div class="center"> insert_futurama_video</div><div class="caption"><span class="header">Figure 3: </span><span class="description"><a href="#sec:about_the_author">Michael Hartl</a> proves <a href="http://en.wikipedia.org/wiki/Matt_Groening">Matt Groening</a> wrong by reciting $\pi$ to 40 decimal places.</span></div></div>
+
+
+<p>Truly, proponents of $\tau$ face a mighty opponent. And yet, we have a powerful ally&mdash;for the truth is on our side.</p>
+
+<div class="label" id="sec-the_number_tau"></div>
+
+
+<h2><a id="sec-2" href="#sec-the_number_tau" class="heading"><span class="number">2</span> The number tau</a></h2>
+
+
+<p>We saw in <a class="ref" href="#sec-an_immodest_proposal">Section&nbsp;1.1</a> that the number $\tau$ can also be written as $2\pi$. As noted in &ldquo;$\pi$ Is Wrong!&rdquo;, it is therefore of great interest to discover that the combination $2\pi$ occurs with astonishing frequency throughout mathematics. For example, consider integrals over all space in polar coordinates:
+\[
+  \int_0^{2\pi}\int_0^\infty f(r, \theta)\, r\, dr\, d\theta.
+\]
+The upper limit of the $\theta$ integration is always $2\pi$. The same factor appears in the definition of the <a href="http://en.wikipedia.org/wiki/Normal_distribution">Gaussian (normal) distribution</a>,
+\[
+  \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},
+\]
+and again in the <a href="http://mathworld.wolfram.com/FourierTransform.html">Fourier transform</a>,
+\[
+  f(x) = \int_{-\infty}^\infty F(k)\, e^{2\pi ikx}\,dk 
+\]
+\[
+    F(k) = \int_{-\infty}^\infty f(x)\, e^{-2\pi ikx}\,dx.
+\]
+It recurs in <a href="http://en.wikipedia.org/wiki/Cauchy's_integral_formula">Cauchy&rsquo;s integral formula</a>,
+\[
+  f(a) = \frac{1}{2\pi i}\oint_\gamma\frac{f(z)}{z-a}\,dz,
+\]
+in the $n$th <a href="http://en.wikipedia.org/wiki/Root_of_unity">roots of unity</a>,
+\[
+  z^n = 1 \Rightarrow z = e^{2\pi i/n},
+\]
+and in the values of the <a href="http://en.wikipedia.org/wiki/Riemann_zeta_function">Riemann zeta function</a> for positive even integers:<sup class="footnote" id="fnref-0_4"><a href="#fn-0_4">4</a></sup>
+\[
+  \zeta(2n) = \sum_{k=1}^\infty \frac{1}{k^{2n}} = \frac{B_n}{2(2n)!}\,(2\pi)^{2n}.\qquad n = 1, 2, 3, \ldots
+\]
+These formulas are not cherry-picked&mdash;crack open your favorite physics or mathematics text and try it yourself. There are <a href="http://www.harremoes.dk/Peter/Undervis/Turnpage/Turnpage1.html">many more examples</a>, and the conclusion is clear: there is something special about&nbsp;$2\pi$.</p>
+
+<p>To get to the bottom of this mystery, we must return to first principles by considering the nature of circles, and especially the nature of <em>angles</em>. Although it&rsquo;s likely that much of this material will be familiar, it pays to revisit it, for this is where the true understanding of $\tau$ begins.</p>
+
+<div class="label" id="sec-circles_and_angles"></div>
+
+
+<h3><a id="sec-2_1" href="#sec-circles_and_angles" class="heading"><span class="number">2.1</span> Circles and angles</a></h3>
+
+
+<p>There is an intimate relationship between circles and angles, as shown in <a class="ref" href="#fig-angle_arclength">Figure&nbsp;4</a>. Since the concentric circles in <a class="ref" href="#fig-angle_arclength">Figure&nbsp;4</a> have different radii, the lines in the figure cut off different lengths of arc (or <em>arc lengths</em>), but the angle&nbsp;$\theta$ (theta) is the same in each case. In other words, the size of the angle does not depend on the radius of the circle used to define the arc. The principal task of angle measurement is to create a system that captures this radius-invariance.</p>
+
+<div class="label" id="fig-angle_arclength"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/angle-arclength.png" alt="angle-arclength" /></span></div><div class="caption"><span class="header">Figure 4: </span><span class="description">An angle $\theta$ with two concentric circles.</span></div></div>
+
+
+<p>Perhaps the most elementary angle system is <em>degrees</em>, which breaks a circle into <a href="http://www.wonderquest.com/circle.htm">360 equal parts</a>. One result of this system is the set of special angles (familiar to students of trigonometry) shown in <a class="ref" href="#fig-degree_angles">Figure&nbsp;5</a>.</p>
+
+<div class="label" id="fig-degree_angles"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/degree-angles.png" alt="degree-angles" /></span></div><div class="caption"><span class="header">Figure 5: </span><span class="description">Some special angles, in degrees.</span></div></div>
+
+
+<p>A more fundamental system of angle measure involves a direct comparison of the arc length $s$ with the radius $r$. Although the lengths in <a class="ref" href="#fig-angle_arclength">Figure&nbsp;4</a> differ, the arc length grows in proportion to the radius, so the <em>ratio</em> of the arc length to the radius is the same in each case:
+\[
+s\propto r \Rightarrow \frac{s_1}{r_1} = \frac{s_2}{r_2}.
+\]
+This suggests the following definition of <em>radian angle measure</em>:
+\[ \theta \equiv \frac{s}{r}. \]
+This definition has the required property of radius-invariance, and since both $s$ and $r$ have units of length, radians are <a href="http://en.wikipedia.org/wiki/Dimensionless_quantity"><em>dimensionless</em></a> by construction. The use of radian angle measure leads to succinct and elegant formulas throughout mathematics; for example, the usual formula for the derivative of $\sin\theta$ is true only when $\theta$ is expressed in radians:
+\[
+  \frac{d}{d\theta}\sin\theta = \cos\theta. \mathrm{\ \ \ \ (true\ only\ when\ } \theta\mathrm{\ is\ in\ radians)}
+\]
+Naturally, the special angles in <a class="ref" href="#fig-degree_angles">Figure&nbsp;5</a> can be expressed in radians, and when you took high-school trigonometry you probably memorized the special values shown in <a class="ref" href="#fig-pi_angles">Figure&nbsp;6</a>. (I call this system of measure $\pi$-radians to emphasize that they are written in terms of $\pi$.)</p>
+
+<div class="label" id="fig-pi_angles"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/pi-angles.png" alt="pi-angles" /></span></div><div class="caption"><span class="header">Figure 6: </span><span class="description">Some special angles, in $\pi$-radians.</span></div></div>
+
+
+
+
+<div class="label" id="fig-angle_fractions"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/angle-fractions.png" alt="angle-fractions" /></span></div><div class="caption"><span class="header">Figure 7: </span><span class="description">The &ldquo;special&rdquo; angles are fractions of a full circle.</span></div></div>
+
+
+<p>Now, a moment&rsquo;s reflection shows that the so-called &ldquo;special&rdquo; angles are just particularly simple <em>rational fractions</em> of a full circle, as shown in <a class="ref" href="#fig-angle_fractions">Figure&nbsp;7</a>. This suggests revisiting the definition of radian angle measure, rewriting the arc length&nbsp;$s$ in terms of the fraction&nbsp;$f$ of the full circumference&nbsp;$C$, i.e., $s = f C$:
+\[ \theta = \frac{s}{r} = \frac{fC}{r} =  f\left(\frac{C}{r}\right) \equiv f\tau. \]
+Notice how naturally $\tau$ falls out of this analysis. If you are a believer in $\pi$, I fear that the resulting diagram of special angles&mdash;shown in <a class="ref" href="#fig-tau_angles">Figure&nbsp;8</a>&mdash;will shake your faith to its very core.</p>
+
+<div class="label" id="fig-tau_angles"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/tau-angles.png" alt="tau-angles" /></span></div><div class="caption"><span class="header">Figure 8: </span><span class="description">Some special angles, in radians.</span></div></div>
+
+
+<p>Although there are many other arguments in $\tau$&rsquo;s favor, <a class="ref" href="#fig-tau_angles">Figure&nbsp;8</a> may be the most striking. We also see from <a class="ref" href="#fig-tau_angles">Figure&nbsp;8</a> the genius of Bob Palais&rsquo; identification of the circle constant as &ldquo;<a href="http://en.wikipedia.org/wiki/Turn_(geometry)">one turn</a>&rdquo;: $\tau$ is the radian angle measure for one <em>turn</em> of a circle. Moreover, note that with $\tau$ there is <em>nothing to memorize</em>: a twelfth of a turn is $\tau/12$, an eighth of a turn is $\tau/8$, and so on. Using $\tau$ gives us the best of both worlds by combining conceptual clarity with all the concrete benefits of radians; the abstract meaning of, say, $\tau/12$ is obvious, but it is also just a number:
+\[
+  \mathrm{a\ twelfth\ of\ a\ turn} = \frac{\tau}{12} \approx \frac{6.283185}{12} = 0.5235988.
+\]
+Finally, by comparing <a class="ref" href="#fig-pi_angles">Figure&nbsp;6</a> with <a class="ref" href="#fig-tau_angles">Figure&nbsp;8</a>, we see where those pesky factors of $2\pi$ come from: one turn of a circle is $1\tau$, but $2\pi$. Numerically they are equal, but conceptually they are quite distinct.</p>
+
+<div class="label" id="sec-the_ramifications"></div>
+
+
+<h4><a id="sec-2_1_1" href="#sec-the_ramifications" class="heading">The ramifications</a></h4>
+
+
+<p>The unnecessary factors of $2$ arising from the use of $\pi$ are annoying enough by themselves, but far more serious is their tendency to <em>cancel</em> when divided by any even number. The absurd results, such as a <em>half</em> $\pi$ for a <em>quarter</em> turn, obscure the underlying relationship between angle measure and the circle constant. To those who maintain that it &ldquo;doesn&rsquo;t matter&rdquo; whether we use $\pi$ or $\tau$ when teaching trigonometry, I simply ask you to view <a class="ref" href="#fig-pi_angles">Figure&nbsp;6</a>, <a class="ref" href="#fig-angle_fractions">Figure&nbsp;7</a>, and <a class="ref" href="#fig-tau_angles">Figure&nbsp;8</a> through the eyes of a child. You will see that, from the perspective of a beginner, <a href="http://tauday.com/a-tau-testimonial"><em>using $\pi$ instead of $\tau$ is a pedagogical disaster</em></a>.</p>
+
+<div class="label" id="sec-the_circle_functions"></div>
+
+
+<h3><a id="sec-2_2" href="#sec-the_circle_functions" class="heading"><span class="number">2.2</span> The circle functions</a></h3>
+
+
+<p>Although radian angle measure provides some of the most compelling arguments for the true circle constant, it&rsquo;s worth comparing the virtues of $\pi$ and $\tau$ in some other contexts as well. We begin by considering the important elementary functions $\sin\theta$ and $\cos\theta$. Known as the &ldquo;circle functions&rdquo;  because they give the coordinates of a point on the <em>unit circle</em> (i.e., a circle with radius&nbsp;$1$), sine and cosine are the fundamental functions of trigonometry (<a class="ref" href="#fig-circle_functions">Figure&nbsp;9</a>).</p>
+
+<div class="label" id="fig-circle_functions"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/circle-functions.png" alt="circle-functions" /></span></div><div class="caption"><span class="header">Figure 9: </span><span class="description">The circle functions are coordinates on the unit circle.</span></div></div>
+
+
+<p>Let&rsquo;s examine the graphs of the circle functions to better understand their behavior.<sup class="footnote" id="fnref-0_5"><a href="#fn-0_5">5</a></sup> You&rsquo;ll notice from <a class="ref" href="#fig-sine_with_tau">Figure&nbsp;10</a> and <a class="ref" href="#fig-cosine_with_tau">Figure&nbsp;11</a> that both functions are <em>periodic</em> with period $T$. As shown in <a class="ref" href="#fig-sine_with_tau">Figure&nbsp;10</a>, the sine function $\sin\theta$ starts at zero, reaches a maximum at a quarter period, passes through zero at a half period, reaches a minimum at three-quarters of a period, and returns to zero after one full period. Meanwhile, the cosine function $\cos\theta$ starts at a maximum, has a minimum at a half period, and passes through zero at one-quarter and three-quarters of a period  (<a class="ref" href="#fig-cosine_with_tau">Figure&nbsp;11</a>). For reference, both figures show the value of $\theta$ (in radians) at each special point.</p>
+
+<div class="label" id="fig-sine_with_tau"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/sine-with-tau.png" alt="sine-with-tau" /></span></div><div class="caption"><span class="header">Figure 10: </span><span class="description">Important points for $\sin\theta$ in terms of the period $T$.</span></div></div>
+
+
+
+
+<div class="label" id="fig-cosine_with_tau"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/cosine-with-tau.png" alt="cosine-with-tau" /></span></div><div class="caption"><span class="header">Figure 11: </span><span class="description">Important points for $\cos\theta$ in terms of the period $T$.</span></div></div>
+
+
+<p>Of course, since sine and cosine both go through one full cycle during one turn of the circle, we have $T = \tau$; i.e., the circle functions have periods equal to the circle constant. As a result, the &ldquo;special&rdquo; values of $\theta$ are utterly natural: a quarter-period is $\tau/4$, a half-period is $\tau/2$, etc. In fact, when making <a class="ref" href="#fig-sine_with_tau">Figure&nbsp;10</a>, at one point I found myself wondering about the numerical value of $\theta$ for the zero of the sine function. Since the zero occurs after half a period, and since $\tau \approx 6.28$, a quick mental calculation led to the following result:
+\[
+  \theta_\mathrm{zero} = \frac{\tau}{2} \approx 3.14.
+\]
+That&rsquo;s right: I was astonished to discover that <em>I had already forgotten that $\tau/2$ is sometimes called &ldquo;$\pi$&rdquo;.</em> Perhaps this even happened to you just now. Welcome to my world.</p>
+
+<div class="label" id="sec-euler_s_identity"></div>
+
+
+<h3><a id="sec-2_3" href="#sec-euler_s_identity" class="heading"><span class="number">2.3</span> Euler&rsquo;s identity</a></h3>
+
+
+<p>I would be remiss in this manifesto not to address <em>Euler&rsquo;s identity</em>, sometimes called &ldquo;the most beautiful equation in mathematics&rdquo;. This identity involves <em>complex exponentiation</em>, which is deeply connected both to the circle functions and to the geometry of the circle itself.</p>
+
+<p>Depending on the route chosen, the following equation can either be proved as a theorem or taken as a definition; either way, it is quite remarkable:
+\[ e^{i\theta} = \cos\theta + i\sin\theta. \]
+Known as <em>Euler&rsquo;s formula</em> (after <a href="http://en.wikipedia.org/wiki/Leonhard_Euler">Leonhard Euler</a>), this equation relates an exponential with imaginary argument to the circle functions sine and cosine and to the imaginary unit&nbsp;$i$. Although justifying Euler&rsquo;s formula is beyond the scope of this manifesto, its provenance is above suspicion, and its importance is beyond dispute.</p>
+
+<p>Evaluating Euler&rsquo;s formula at $\theta = \tau$ yields <em>Euler&rsquo;s identity</em>:<sup class="footnote" id="fnref-0_6"><a href="#fn-0_6">6</a></sup>
+\[ e^{i\tau} = 1. \]
+In words, this equation makes the following fundamental observation:</p>
+
+<div class="center"><em>The complex exponential of the circle constant is unity.</em></div>
+
+
+<p>
+ <br />
+Geometrically, multiplying by $e^{i\theta}$ corresponds to rotating a complex number by an angle $\theta$ in the complex plane, which suggests a second interpretation of Euler&rsquo;s identity:</p>
+
+<div class="center"><em>A rotation by one turn is 1.</em></div>
+
+
+<p> <br />
+Since the number $1$ is the <a href="http://en.wikipedia.org/wiki/Identity_element">multiplicative identity</a>, the geometric meaning of $e^{i\tau} = 1$ is that rotating a point in the complex plane by one turn simply returns it to its original position.</p>
+
+<p>As in the case of radian angle measure, we see how natural the association is between $\tau$ and one turn of a circle. Indeed, the identification of $\tau$ with &ldquo;one turn&rdquo; makes Euler&rsquo;s identity sound almost like a tautology.<sup class="footnote" id="fnref-0_7"><a href="#fn-0_7">7</a></sup></p>
+
+<div class="label" id="sec-not_the_most_beautiful_equation"></div>
+
+
+<h4><a id="sec-2_3_1" href="#sec-not_the_most_beautiful_equation" class="heading">Not the most beautiful equation</a></h4>
+
+
+<p>Of course, the traditional form of Euler&rsquo;s identity is written in terms of $\pi$ instead of $\tau$. To derive it, we start by evaluating Euler&rsquo;s formula at $\theta = \pi$, which yields
+\[ e^{i\pi} = -1. \]
+But that minus sign is so ugly that the formula is almost always rearranged immediately, giving the following &ldquo;beautiful&rdquo; equation:
+\[ e^{i\pi} + 1 = 0. \]
+At this point, the expositor usually makes some grandiose statement about how Euler&rsquo;s identity relates $0$, $1$, $e$, $i$, and $\pi$&mdash;sometimes called the &ldquo;five most important numbers in mathematics&rdquo;. It&rsquo;s remarkable how many people complain that Euler&rsquo;s identity with $\tau$ relates only <em>four</em> of those five. Fine:
+\[ e^{i\tau} = 1 + 0. \]
+(In fact, since $i\sin\tau = 0$, the $0$ was already there.) This formula, <em>without</em> rearrangement, actually does relate the five most important numbers in mathematics: $0$, $1$, $e$, $i$, and $\tau$.</p>
+
+<div class="label" id="sec-eulerian_identities"></div>
+
+
+<h4><a id="sec-2_3_2" href="#sec-eulerian_identities" class="heading">Eulerian identities</a></h4>
+
+
+<p>Since you can add zero anywhere in any equation, the introduction of $0$ into the formula $e^{i\tau} = 1 + 0$ is a somewhat tongue-in-cheek counterpoint to $e^{i\pi} + 1 = 0$, but the identity $e^{i\pi} = -1$ does have a more serious point to make. Let&rsquo;s see what happens when we rewrite it in terms of $\tau$:
+\[
+e^{i\tau/2} = -1.
+\]
+Geometrically, this says that a rotation by half a turn is the same as multiplying by $-1$. And indeed this is the case: under a rotation of $\tau/2$ radians, the complex number $z = a + ib$ gets mapped to $-a - ib$, which is in fact just $-1\cdot z$.</p>
+
+<p>Written in terms of $\tau$, we see that the &ldquo;original&rdquo; form of Euler&rsquo;s identity has a transparent geometric meaning that it lacks when written in terms of $\pi$. (Of course, $e^{i\pi} = -1$ can be interpreted as a rotation by $\pi$ radians, but the near-universal rearrangement to form $e^{i\pi} + 1 = 0$ shows how using $\pi$ distracts from the identity&rsquo;s natural geometric meaning.) The quarter-angle identities have similar geometric interpretations: $e^{i\tau/4} = i$ says that a quarter turn in the complex plane is the same as multiplication by&nbsp;$i$, while $e^{i\cdot(3\tau/4)} = -i$ says that three-quarters of a turn is the same as multiplication by&nbsp;$-i$. A summary of these results, which we might reasonably call <em>Eulerian identities</em>, appears in <a class="ref" href="#table-eulerian_identities">Table&nbsp;1</a>.</p>
+
+<div class="label" id="table-eulerian_identities"></div>
+
+
+<div class="table"><div class="center">
+<table class="tabular"><tr><th class="align_center">Rotation angle</th><th class="align_center" colspan="3">Eulerian identity</th></tr><tr class="top_bar"><td class="align_center">$0$</td><td class="align_left">$e^{i\cdot0}$</td><td class="align_left">$ = $</td><td class="align_right">$1$ </td></tr><tr><td class="align_center">$\tau/4$</td><td class="align_left">$e^{i\tau/4}$</td><td class="align_left">$ = $</td><td class="align_right">$i$ </td></tr><tr><td class="align_center">$\tau/2$</td><td class="align_left">$e^{i\tau/2}$</td><td class="align_left">$ = $</td><td class="align_right">$-1$ </td></tr><tr><td class="align_center">$3\tau/4$</td><td class="align_left">$e^{i\cdot(3\tau/4)}$</td><td class="align_left">$ = $</td><td class="align_right">$-i$ </td></tr><tr><td class="align_center">$\tau$</td><td class="align_left">$e^{i\tau}$</td><td class="align_left">$ = $</td><td class="align_right">$1$</td></tr></table></div><div class="caption"><span class="header">Table 1: </span><span class="description">Eulerian identities for half, quarter, and full rotations.</span></div></div>
+
+
+<p>We can take this analysis a step further by noting that, for any angle&nbsp;$\theta$, $e^{i\theta}$ can be interpreted as a point lying on the unit circle in the complex plane. Since the complex plane identifies the horizontal axis with the real part of the number and the vertical axis with the imaginary part, Euler&rsquo;s formula tells us that $e^{i\theta}$ corresponds to the coordinates $(\cos\theta, \sin\theta)$. Plugging in the values of the &ldquo;special&rdquo; angles from <a class="ref" href="#fig-tau_angles">Figure&nbsp;8</a> then gives the points shown in <a class="ref" href="#table-complex_exponentials">Table&nbsp;2</a>, and plotting these points in the complex plane yields <a class="ref" href="#fig-tau_euler_circle">Figure&nbsp;12</a>. A comparison of <a class="ref" href="#fig-tau_euler_circle">Figure&nbsp;12</a> with <a class="ref" href="#fig-tau_angles">Figure&nbsp;8</a> quickly dispels any doubts about which choice of circle constant better reveals the relationship between Euler&rsquo;s formula and the geometry of the circle.</p>
+
+<div class="label" id="table-complex_exponentials"></div>
+
+
+<div class="table"><div class="center"> <span class="wider">
+
+<table class="tabular"><tr><th class="align_left">Polar form</th><th class="align_center">Rectangular form</th><th class="align_center">Coordinates</th></tr><tr class="top_bar bottom_bar"><td class="align_left">$e^{i\theta}$</td><td class="align_center">$\cos\theta + i\sin\theta$</td><td class="align_center">$(\cos\theta, \sin\theta)$</td></tr><tr class="top_bar"><td class="align_left">$e^{i\cdot0}$</td><td class="align_center">$1$</td><td class="align_center">$(1, 0)$ </td></tr><tr><td class="align_left">$e^{i\tau/12}$</td><td class="align_center">$\frac{\sqrt{3}}{2} + \frac{1}{2}i$</td><td class="align_center">$(\frac{\sqrt{3}}{2}, \frac{1}{2})$ </td></tr><tr><td class="align_left">$e^{i\tau/8}$</td><td class="align_center">$\frac{1}{\sqrt{2}} +  \frac{1}{\sqrt{2}}i$</td><td class="align_center">$(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})$ </td></tr><tr><td class="align_left">$e^{i\tau/6}$</td><td class="align_center">$\frac{1}{2} +\frac{\sqrt{3}}{2} i$</td><td class="align_center">$(\frac{1}{2}, \frac{\sqrt{3}}{2})$ </td></tr><tr><td class="align_left">$e^{i\tau/4}$</td><td class="align_center">$i$</td><td class="align_center">$(0, 1)$ </td></tr><tr><td class="align_left">$e^{i\tau/3}$</td><td class="align_center">$-\frac{1}{2} +\frac{\sqrt{3}}{2} i$</td><td class="align_center">$(-\frac{1}{2}, \frac{\sqrt{3}}{2})$ </td></tr><tr><td class="align_left">$e^{i\tau/2}$</td><td class="align_center">$-1$</td><td class="align_center">$(-1, 0)$ </td></tr><tr><td class="align_left">$e^{i\cdot(3\tau/4)}$</td><td class="align_center">$-i$</td><td class="align_center">$(0, -1)$ </td></tr><tr><td class="align_left">$e^{i\tau}$</td><td class="align_center">$1$</td><td class="align_center">$(1, 0)$</td></tr></table>
+ </span></div><div class="caption"><span class="header">Table 2: </span><span class="description">Complex exponentials of the special angles from <a class="ref" href="#fig-tau_angles">Figure&nbsp;8</a>.</span></div></div>
+
+
+
+
+<div class="label" id="fig-tau_euler_circle"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/tau_euler_circle.png" alt="tau_euler_circle" /></span></div><div class="caption"><span class="header">Figure 12: </span><span class="description">Complex exponentials of some special angles, plotted in the complex plane.</span></div></div>
+
+
+
+
+<div class="label" id="sec-circular_area"></div>
+
+
+<h2><a id="sec-3" href="#sec-circular_area" class="heading"><span class="number">3</span> Circular area: the <em>coup de gr&acirc;ce</em></a></h2>
+
+
+<p>If you arrived here as a $\pi$ believer, you must by now be questioning your faith. $\tau$ is so natural, its meaning so transparent&mdash;is there no example where $\pi$ shines through in all its radiant glory? A memory stirs&mdash;yes, there is such a formula&mdash;it is the formula for circular area! Behold:
+\[ A = \pi r^2. \]
+We see here $\pi$, unadorned, in one of the most important equations in mathematics&mdash;a formula first proved by <a href="http://en.wikipedia.org/wiki/Archimedes">Archimedes</a> himself. Order is restored! And yet, the name of this section sounds ominous&hellip; If this equation is $\pi$&rsquo;s crowning glory, how can it also be the <a href="http://en.wikipedia.org/wiki/Coup_de_grace"><em>coup de gr&acirc;ce</em></a>?</p>
+
+<div class="label" id="sec-quadratic_forms"></div>
+
+
+<h3><a id="sec-3_1" href="#sec-quadratic_forms" class="heading"><span class="number">3.1</span> Quadratic forms</a></h3>
+
+
+<p>Let us examine this paragon of $\pi$, $A = \pi r^2$. We notice that it involves the diameter&mdash;no, wait, the <em>radius</em>&mdash;raised to the second power. This makes it a simple <em>quadratic form</em>. Such forms arise in many contexts; as a <a href="http://thesis.library.caltech.edu/1940/">physicist</a>, my favorite examples come from the elementary physics curriculum. We will now consider several in turn.</p>
+
+<div class="label" id="sec-falling_in_a_uniform_gravitational_field"></div>
+
+
+<h4><a id="sec-3_1_1" href="#sec-falling_in_a_uniform_gravitational_field" class="heading">Falling in a uniform gravitational field</a></h4>
+
+
+<p><a href="http://en.wikipedia.org/wiki/Galileo_Galilei">Galileo Galilei</a> found that the velocity of an object falling in a uniform gravitational field is proportional to the time fallen:
+\[ v \propto t. \]
+The constant of proportionality is the gravitational acceleration&nbsp;$g$:
+\[ v = g t. \]
+Since velocity is the derivative of position, we can calculate the distance fallen by integration:
+\[ y = \int v\,dt = \int_0^t gt\,dt = \textstyle{\frac{1}{2}} gt^2. \]</p>
+
+<div class="label" id="sec-potential_energy_in_a_linear_spring"></div>
+
+
+<h4><a id="sec-3_1_2" href="#sec-potential_energy_in_a_linear_spring" class="heading">Potential energy in a linear spring</a></h4>
+
+
+<p><a href="http://en.wikipedia.org/wiki/Robert_Hooke">Robert Hooke</a> found that the external force required to stretch a spring is proportional to the distance stretched:
+\[ F \propto x. \]
+The constant of proportionality is the spring constant&nbsp;$k$:<sup class="footnote" id="fnref-0_8"><a href="#fn-0_8">8</a></sup>
+\[ F = k x. \]
+The potential energy in the spring is then equal to the work done by the external force:
+\[ U = \int F\,dx = \int_0^x kx\,dx = \textstyle{\frac{1}{2}} kx^2. \]</p>
+
+<div class="label" id="sec-energy_of_motion"></div>
+
+
+<h4><a id="sec-3_1_3" href="#sec-energy_of_motion" class="heading">Energy of motion</a></h4>
+
+
+<p><a href="http://en.wikipedia.org/wiki/Isaac_Newton">Isaac Newton</a> found that the force on an object is proportional to its acceleration:
+\[ F \propto a. \]
+The constant of proportionality is the mass&nbsp;$m$:
+\[ F = m a. \]
+The energy of motion, or <em>kinetic energy</em>, is equal to the total work done in accelerating the mass to velocity&nbsp;$v$:
+\[ K = \int F\,dx = \int ma\,dx = \int m\,\frac{dv}{dt}\,dx = \int m\, \frac{dx}{dt}\,dv = \int_0^v mv\,dv = \textstyle{\frac{1}{2}} mv^2. \]</p>
+
+<div class="label" id="sec-a_sense_of_foreboding"></div>
+
+
+<h3><a id="sec-3_2" href="#sec-a_sense_of_foreboding" class="heading"><span class="number">3.2</span> A sense of foreboding</a></h3>
+
+
+<p>Having seen several examples of simple quadratic forms in physics, you may by now have a sense of foreboding as we return to the geometry of the circle. This feeling is justified.</p>
+
+<div class="label" id="fig-circular_area"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/circular-area.png" alt="circular-area" /></span></div><div class="caption"><span class="header">Figure 13: </span><span class="description">Breaking down a circle into rings.</span></div></div>
+
+
+<p>As seen in <a class="ref" href="#fig-circular_area">Figure&nbsp;13</a>, the area of a circle can be calculated by breaking it down into circular rings of length $C$ and width $dr$, where the area of each ring is $C\,dr$:
+\[ dA = C\,dr. \]
+Now, the circumference of a circle is proportional to its radius:
+\[ C \propto r. \]
+The constant of proportionality is $\tau$:
+\[ C = \tau\,r. \]
+The area of the circle is then the integral over all rings:
+\[ A = \int dA = \int_0^r C\,dr = \int_0^r \tau\,r\,dr = \textstyle{\frac{1}{2}} \tau\,r^2. \]</p>
+
+<p>If you were still a $\pi$ partisan at the beginning of this section, your head has now exploded. For we see that even in this case, where $\pi$ supposedly shines, in fact there is a missing factor of $2$. Indeed, the original proof by Archimedes shows not that the area  of a circle is $\pi r^2$, but that it is equal to the area of a right triangle with base $C$ and height $r$. Applying the formula for triangular area then gives
+\[
+  A = \textstyle{\frac{1}{2}} bh = \textstyle{\frac{1}{2}}Cr = \textstyle{\frac{1}{2}}\tau\,r^2.
+\]
+There is simply no avoiding that factor of a half (<a class="ref" href="#table-quadratic_forms">Table&nbsp;3</a>).</p>
+
+<div class="label" id="table-quadratic_forms"></div>
+
+
+<div class="table"><div class="center">
+<table class="tabular"><tr><th class="align_left">Quantity</th><th class="align_center">Symbol</th><th class="align_center">Expression</th></tr><tr class="top_bar"><td class="align_left">Distance fallen</td><td class="align_center">$y$</td><td class="align_center">$\textstyle{\frac{1}{2}}gt^2$ </td></tr><tr><td class="align_left">Spring energy</td><td class="align_center">$U$</td><td class="align_center">$\textstyle{\frac{1}{2}}kx^2$ </td></tr><tr><td class="align_left">Kinetic energy</td><td class="align_center">$K$</td><td class="align_center">$\textstyle{\frac{1}{2}}mv^2$ </td></tr><tr><td class="align_left">Circular area</td><td class="align_center">$A$</td><td class="align_center">$\textstyle{\frac{1}{2}}\tau\,r^2$</td></tr></table></div><div class="caption"><span class="header">Table 3: </span><span class="description">Some common quadratic forms.</span></div></div>
+
+
+
+
+<div class="label" id="sec-quod_erat_demonstrandum"></div>
+
+
+<h4><a id="sec-3_2_1" href="#sec-quod_erat_demonstrandum" class="heading">Quod erat demonstrandum</a></h4>
+
+
+<p>We set out in this manifesto to show that $\tau$ is the true circle constant. Since the formula for circular area was just about the last, best argument that $\pi$ had going for it, I&rsquo;m going to go out on a limb here and say: <a href="http://en.wikipedia.org/wiki/Q.E.D.">Q.E.D.</a></p>
+
+<div class="label" id="sec-conflict_and_resistance"></div>
+
+
+<h2><a id="sec-4" href="#sec-conflict_and_resistance" class="heading"><span class="number">4</span> Conflict and resistance</a></h2>
+
+
+<p>Despite the definitive demonstration of the superiority of $\tau$, there are nevertheless many who oppose it, both as notation and as number. In this section, we address the concerns of those who accept the value but not the letter. We then rebut some of the many arguments marshaled against $C/r$ itself, including the so-called &ldquo;Pi Manifesto&rdquo; that defends the primacy of $\pi$. In this context, we&rsquo;ll discuss the rather advanced subject of the volume of a hypersphere (<a class="ref" href="#sec-volume_of_a_hypersphere">Section&nbsp;5.1</a>), which augments and amplifies the arguments in <a class="ref" href="#sec-circular_area">Section&nbsp;3</a> on circular area.</p>
+
+<div class="label" id="sec-one_turn"></div>
+
+
+<h3><a id="sec-4_1" href="#sec-one_turn" class="heading"><span class="number">4.1</span> One turn</a></h3>
+
+
+<p>The true test of any notation is usage; having seen $\tau$ used throughout this manifesto, you may already be convinced that it serves its role well. But for a constant as fundamental as $\tau$ it would be nice to have some deeper reasons for our choice. Why not $\alpha$, for example, or $\omega$? What&rsquo;s so great about $\tau$?</p>
+
+<p>There are two main reasons to use $\tau$ for the circle constant. The first is that $\tau$ visually resembles $\pi$: after centuries of use, the association of $\pi$ with the circle constant is unavoidable, and using $\tau$ feeds on this association instead of fighting it. (Indeed, the horizontal line in each letter suggests that we interpret the &ldquo;legs&rdquo; as <em>denominators</em>, so that $\pi$ has two legs in its denominator, while $\tau$ has only one. Seen this way, the relationship $\tau = 2\pi$ is perfectly natural.)<sup class="footnote" id="fnref-0_9"><a href="#fn-0_9">9</a></sup> The second reason is that $\tau$ corresponds to one <em>turn</em> of a circle, and you may have noticed that &ldquo;$\tau$&rdquo; and &ldquo;turn&rdquo; both start with a &ldquo;<em>t</em>&rdquo; sound. This was the original motivation for the choice of $\tau$, and it is not a coincidence: the root of the English word &ldquo;turn&rdquo; is the Greek word for &ldquo;lathe&rdquo;, <em>tornos</em>&mdash;or, as the Greeks would put it, \[ \tau \acute{o}\rho\nu o\varsigma. \]</p>
+
+<p>Since the original launch of <em>The Tau Manifesto</em>, I have learned that physicist <a href="http://www.harremoes.dk/Peter/">Peter Harremo&euml;s</a> independently proposed using $\tau$ to &ldquo;$\pi$ Is Wrong!&rdquo; author Bob Palais, for essentially the same reasons, and in fact Joseph Lindenberg anticipated both the argument and the symbol more than twenty years before! (Lindenberg has included both his original typewritten manuscript and a large number of other arguments at his site <a href="http://sites.google.com/site/taubeforeitwascool/">Tau Before It Was Cool</a>.) Dr.&nbsp;Harremo&euml;s has emphasized the importance of a point first made in <a class="ref" href="#sec-an_immodest_proposal">Section&nbsp;1.1</a>: using $\tau$ gives the circle constant a <em>name</em>. Since $\tau$ is an ordinary Greek letter, people encountering it for the first time can pronounce it immediately. Moreover, unlike calling the circle constant a &ldquo;turn&rdquo;,
+$\tau$ works well in both written and spoken contexts. For example, saying that a quarter circle has radian angle measure &ldquo;one quarter turn&rdquo; sounds great, but &ldquo;turn over four radians&rdquo; sounds awkward, and &ldquo;the area of a circle is one-half turn $r$ squared&rdquo; sounds downright odd. Using $\tau$, we can say &ldquo;tau over four radians&rdquo; and &ldquo;the area of a circle is one-half tau $r$ squared.&rdquo;</p>
+
+<div class="label" id="sec-ambiguous_notation"></div>
+
+
+<h4><a id="sec-4_1_1" href="#sec-ambiguous_notation" class="heading">Ambiguous notation</a></h4>
+
+
+<p>Of course, with any new notation there is the potential for conflict with present usage. As noted in <a class="ref" href="#sec-an_immodest_proposal">Section&nbsp;1.1</a>, &ldquo;$\pi$ Is Wrong!&rdquo; avoids this problem by introducing a new symbol (<a class="ref" href="#fig-palais_tau">Figure&nbsp;1</a>). There is precedent for this; for example, in the early days of quantum mechanics <a href="http://en.wikipedia.org/wiki/Max_Planck">Max Planck</a> introduced the constant&nbsp;$h$, which relates a light particle&rsquo;s energy to its frequency (through $E = h\nu$), but physicists soon realized that it is often more convenient to use $\hbar$ (read &ldquo;h-bar&rdquo;)&mdash;where $\hbar$ is just $h$ divided by&hellip; um&hellip; $2\pi$&mdash;and this usage is now standard. But getting a new symbol accepted is difficult: it has to be given a name, that name has to be popularized, and the symbol itself has to be added to word processing and typesetting systems. Moreover, promulgating a new symbol for $2\pi$ would require the cooperation of the academic mathematical community, which on the subject of $\pi$ vs. $\tau$ has so far been apathetic at best and hostile at worst. Using an existing symbol allows us to route around the mathematical establishment. (Perhaps someday academic mathematicians will come to a consensus on a different symbol for the number $2\pi$; if that ever happens, I reserve the right to support their proposed notation. But they have had over 300 years to fix this $\pi$ problem, so I wouldn&rsquo;t hold my breath.)</p>
+
+<p>Rather than advocating a new symbol, <em>The Tau Manifesto</em> opts for the use of an existing Greek letter. As a result, since $\tau$ is already used in some current contexts, we must address the conflicts with existing practice. Fortunately, there are surprisingly few common uses. Moreover, while $\tau$ is used for certain <em>specific</em> variables&mdash;e.g., <em>shear stress</em> in mechanical engineering, <em>torque</em> in rotational mechanics, and <em>proper time</em> in special and general relativity&mdash;there is no <em>universal</em> conflicting usage.<sup class="footnote" id="fnref-0_10"><a href="#fn-0_10">10</a></sup> In those cases, we can either tolerate ambiguity or route around the few present conflicts by selectively changing notation, such as using $N$ for torque<sup class="footnote" id="fnref-0_11"><a href="#fn-0_11">11</a></sup> or $\tau_p$ for proper time.</p>
+
+<p>Despite these arguments, potential usage conflicts have proven to be the greatest source of resistance to $\tau$. Some correspondents have even flatly denied that $\tau$ (or, presumably, any other currently used symbol) could possibly overcome these issues. But scientists and engineers have a high tolerance for notational ambiguity, and claiming that $\tau$-the-circle-constant can&rsquo;t coexist with other uses ignores considerable evidence to the contrary.</p>
+
+<p>One example of easily tolerated ambiguity occurs in quantum mechanics, where we encounter the following formula the <em>Bohr radius</em>, which (roughly speaking) is the &ldquo;size&rdquo; of a hydrogen atom in its lowest energy state (the <em>ground state</em>):
+\[
+a_0 = \frac{\hbar^2}{m e^2},
+\]
+where $m$ is the mass of an electron and $e$ is its charge. Meanwhile, the ground state itself is described by a quantity known as the <a href="http://en.wikipedia.org/wiki/Wave_function"><em>wavefunction</em></a>, which falls off exponentially with radius on a length scale set by the Bohr radius:
+\[
+\psi(r) = N\,e^{-r/a_0},
+\]
+where $N$ is a normalization constant.</p>
+
+<p>Have you noticed the problem yet? Probably not, which is just the point. The &ldquo;problem&rdquo; is that the $e$ in the Bohr radius and the $e$ in the wavefunction are <em>not the same $e$</em>&mdash;the first is the charge on an electron, while the second is the exponential number (the base of natural logarithms). In fact, if we expand the factor of $a_0$ in the argument of the exponent, we get
+\[
+\psi(r) = N\,e^{-m e^2 r/\hbar^2},
+\]
+which has an $e$ raised the power of something with $e$ in it. It&rsquo;s even worse than it looks, because $N$ itself contains $e$ as well:
+\[
+\psi(r) = \sqrt{\frac{1}{\pi a_0^3}}\,e^{-r/a_0} = 
+\frac{m^{3/2} e^3}{\pi^{1/2} \hbar^3}\,e^{-m e^2 r/\hbar^2}.
+\]</p>
+
+<p>I have no doubt that if a separate notation for the natural number did not already exist, anyone proposing the letter $e$ would be told it&rsquo;s impossible because of the conflicts with other uses. And yet, in practice no one ever has any problem with using $e$ in both contexts above.
+There are many other examples, including situations where even $\pi$ is used for two different things.<sup class="footnote" id="fnref-0_12"><a href="#fn-0_12">12</a></sup> It&rsquo;s hard to see how using $\tau$ for multiple quantities is any different.</p>
+
+<p>By the way, the $\pi$-pedants out there (and there have proven to be many) might note that hydrogen&rsquo;s ground-state wavefunction has a factor of $\pi$:
+\[
+\psi(r) = \sqrt{\frac{1}{\pi a_0^3}}\,e^{-r/a_0}.
+\]
+At first glance, this appears to be more natural than the version with $\tau$:
+\[
+\psi(r) = \sqrt{\frac{2}{\tau a_0^3}}\,e^{-r/a_0}.
+\]
+As usual, appearances are deceiving: the value of $N$ comes from the product
+\[
+\frac{1}{\sqrt{2\pi}} \frac{1}{\sqrt{2}} \frac{2}{a_0^{3/2}},
+\]
+which shows that the circle constant enters the calculation through $1/\sqrt{2\pi}$, i.e., $1/\sqrt{\tau}$. As with the formula for circular area, the cancellation to leave a bare $\pi$ is a coincidence.</p>
+
+<div class="label" id="sec-the_pi_manifesto_a_rebuttal"></div>
+
+
+<h3><a id="sec-4_2" href="#sec-the_pi_manifesto_a_rebuttal" class="heading"><span class="number">4.2</span> The Pi Manifesto</a></h3>
+
+
+<p>Although most objections to $\tau$ come from scattered email correspondence and miscellaneous comments on the Web, there is also an organized resistance. In particular, since the publication of <em>The Tau Manifesto</em> in June 2010, a &ldquo;<a href="http://www.thepimanifesto.com/">Pi Manifesto</a>&rdquo; has appeared to make the case for the traditional circle constant. This section and the two after it contain a rebuttal of its arguments. Of necessity, this treatment is terser and more advanced than the rest of the manifesto, but even a cursory reading of what follows will give an impression of the weakness of the Pi Manifesto&rsquo;s case.</p>
+
+<p>While we can certainly consider the appearance of the Pi Manifesto a good sign of continuing interest in this subject, it makes several false claims. For example, it says that the factor of $2\pi$ in the Gaussian (normal) distribution is a coincidence, and that it can more naturally be written as
+\[
+\frac{1}{\sqrt\pi(\sqrt 2\sigma)}e^{\frac{-x^2}{(\sqrt 2\sigma)^2}}.
+\]
+This is wrong: the factor of $2\pi$ comes from squaring the unnormalized Gaussian distribution and switching to polar coordinates, which leads to a factor of $1$ from
+the radial integral and a $2\pi$ from the angular integral. As in the case of circular area, the factor
+of $\pi$ comes from $1/2\times 2\pi$, not from $\pi$ alone.</p>
+
+<p>A related claim is that the <a href="http://mathworld.wolfram.com/GammaFunction.html">Gamma function</a> evaluated at $1/2$ is more natural in terms of $\pi$:
+\[
+\Gamma(\textstyle{\frac{1}{2}}) = \sqrt{\pi},
+\]
+where
+\[
+\Gamma(p) = \int_{0}^{\infty} x^{p-1} e^{-x}\,dx.
+\]
+But $\Gamma(\frac{1}{2})$ reduces to the same Gaussian integral as in the normal distribution (upon setting $u =
+x^{1/2}$), so the $\pi$ in this case is really $1/2\times 2\pi$ as well. Indeed, in many of the cases cited in the Pi Manifesto,
+the circle constant enters through an integral over all angles, i.e.,
+as $\theta$ ranges from $0$ to $\tau$.</p>
+
+<p>The Pi Manifesto also examines some formulas for regular
+$n$-sided polygons (or &ldquo;$n$-gons&rdquo;). For instance, it notes that the sum of the internal angles of an $n$-gon is given by
+\[
+\sum_{i=1}^n \theta_i=(n-2)\pi.
+\]
+This issue was dealt with in &ldquo;Pi Is Wrong!&rdquo;, which notes the following: &ldquo;The sum of the interior angles [of a
+triangle] is $\pi$, granted. But the sum of the <em>exterior</em> angles of <em>any</em>
+polygon, from which the sum of the interior angles can easily be
+derived, and which generalizes to the integral of the curvature of a
+simple closed curve, is $2\pi$.&rdquo; In addition, the Pi Manifesto offers the formula for the area of an $n$-gon with unit radius (the distance from center to vertex),
+\[ A=n\sin\frac{\pi}{n}\cos\frac{\pi}{n}, \]
+calling it &ldquo;clearly&hellip; another win for $\pi$.&rdquo; But using the double-angle identity $\sin\theta\cos\theta = \frac{1}{2} \sin 2\theta$ shows that this can be written as
+\[ A = n/2\, \sin\frac{2\pi}{n}, \]
+which is just
+\[ A = \frac{1}{2} n\, \sin\frac{\tau}{n}. \]
+In other words, the area of an $n$-gon has a natural
+factor of $1/2$. In fact, taking the limit $n\rightarrow \infty$ (and applying <a href="http://mathworld.wolfram.com/LHospitalsRule.html">L&rsquo;H&ocirc;pital&rsquo;s rule</a>) gives the area of a unit regular polygon with infinitely many sides, i.e., a unit circle:
+\[
+A = \lim_{n\rightarrow\infty} \frac{1}{2} n\, \sin\frac{\tau}{n}
+= \frac{1}{2} \lim_{n\rightarrow\infty} \frac{\sin\frac{\tau}{n}}{1/n} = \frac{1}{2}\tau.
+\]</p>
+
+<p>In this context, we should note that the Pi Manifesto makes much ado about $\pi$ being the area of a unit disk, so that (for example) the area of a quarter (unit) circle is $\pi/4$. This, it is claimed, makes just as good a case for $\pi$ as radian angle measure does for $\tau$. Unfortunately for this argument, as noted in <a class="ref" href="#sec-circular_area">Section&nbsp;3</a> and as seen again immediately above, the factor of $1/2$ arises naturally in the context of circular area. Indeed, the formula for the area of a circular sector subtended by angle&nbsp;$\theta$ is
+\[
+\frac{1}{2}\theta\, r^2,
+\]
+so there&rsquo;s no way to avoid the factor of $1/2$ in general. (We thus see that $A =
+\frac{1}{2} \tau\, r^2$ is simply the special case $\theta = \tau$.)</p>
+
+<p>In short, the difference between angle measure and area isn&rsquo;t
+arbitrary. There is no natural factor of $1/2$ in the
+case of angle measure. In contrast, in the case of area the factor of $1/2$ arises through the integral of a linear function in association with a simple quadratic form. In fact, the case for $\pi$ is even worse than it looks, as shown in the next section.</p>
+
+<div class="label" id="sec-getting_to_the_bottom_of_pi"></div>
+
+
+<h2><a id="sec-5" href="#sec-getting_to_the_bottom_of_pi" class="heading"><span class="number">5</span> Getting to the bottom of pi and tau</a></h2>
+
+
+<p>I continue to be impressed with how rich this subject is, and my understanding of $\pi$ and $\tau$ continues to evolve. On Half Tau Day, 2012, I identified <em>exactly</em> what is wrong with $\pi$. My argument hinged on an analysis of the surface area and volume of an $n$-dimensional sphere, which (as shown below) makes clear that $\pi$ doesn&rsquo;t have any fundamental geometric significance. My analysis was incomplete, though&mdash;a fact brought to my attention in a remarkable message from <em>Tau Manifesto</em> reader Jeff Cornell. As a result, this section is an attempt not only to definitively debunk $\pi$, but also to articulate the truth about $\tau$, a truth that is deeper and subtler than I had imagined.</p>
+
+<div class="label" id="sec-volume_of_a_hypersphere"></div>
+
+
+<h3><a id="sec-5_1" href="#sec-volume_of_a_hypersphere" class="heading"><span class="number">5.1</span> Surface area and volume of a hypersphere</a></h3>
+
+
+<p>We start our investigations with the generalization of a circle to arbitrary dimensions. This object, called a <em>hypersphere</em> or an <em>$n$-sphere</em>, it can be defined as follows.<sup class="footnote" id="fnref-0_13"><a href="#fn-0_13">13</a></sup> (For convenience, we assume that these spheres are centered on the origin.) A $0$-sphere is the empty set, and we define its &ldquo;interior&rdquo; to be a point.<sup class="footnote" id="fnref-0_14"><a href="#fn-0_14">14</a></sup> A $1$-sphere is the set of all points satisfying
+\[
+x^2 = r^2,
+\]
+which consists of the two points $\pm r$. Its interior, which satisfies
+\[
+x^2 \leq r^2,
+\]
+is the line segment from $-r$ to $r$. A $2$-sphere is a circle, which is the set of all points satisfying
+\[
+x^2 + y^2 = r^2.
+\]
+Its interior, which satisfies,
+\[
+x^2 + y^2 \leq r^2,
+\]
+is a disk. Similarly, a $3$-sphere satisfies
+\[
+x^2 + y^2 + z^2 = r^2,
+\]
+and its interior is a ball. The generalization to arbitrary&nbsp;$n$, although difficult to visualize for $n > 3$, is straightforward: an $n$-sphere is the set of all points satisfying
+\[
+\sum_{i=1}^{n} x_i^2 = r^2.
+\]</p>
+
+<p>The Pi Manifesto (discussed in <a class="ref" href="#sec-the_pi_manifesto_a_rebuttal">Section&nbsp;4.2</a>) includes an formula for the volume of a unit $n$-sphere as an argument in favor of $\pi$:
+\[
+\frac{\sqrt{\pi}^{n} }{\Gamma(1 + \frac{n}{2})},
+\]
+where (as noted in <a class="ref" href="#sec-the_pi_manifesto_a_rebuttal">Section&nbsp;4.2</a>) the Gamma function is
+\[ \Gamma(p) = \int_{0}^{\infty} x^{p-1} e^{-x}\,dx.
+\]
+This is a special case of the formula for general radius, which is also typically written in terms of $\pi$:
+\[ V_n = \frac{\pi^{n/2} r^n}{\Gamma(1 + \frac{n}{2})}. \]
+Because $V_n = \int S_n\,dr$, we have $S_n = dV_n/dr$, which means that the surface area can be written as follows:
+\[ S_n = \frac{n \pi^{n/2} r^{n-1}}{\Gamma(1 + \frac{n}{2})}. \]</p>
+
+<p>Rather than simply take these formulas at face value, let&rsquo;s see if we can untangle them to shed more light on the question of $\pi$ vs. $\tau$. We begin our analysis by noting that the apparent simplicity of the above formulas is an illusion: although the Gamma function is notationally simple, in fact it is an integral over a semi-infinite domain, which is not a simple idea at all. Fortunately, the Gamma function can be simplified in certain special cases. For example, when $n$ is an integer, it is easy to show (using integration by parts) that
+\[ 
+\Gamma(n) = (n-1)(n-2)\ldots 2\cdot 1 = (n-1)!
+\]
+Seen this way, $\Gamma$ can be interpreted as a generalization of the factorial function to real-valued arguments.<sup class="footnote" id="fnref-0_15"><a href="#fn-0_15">15</a></sup></p>
+
+<p>In the $n$-dimensional surface area and volume formulas, the argument of $\Gamma$ is not necessarily an integer, but rather is ($1 + \frac{n}{2}$), which is an integer when $n$ is even and is a <em>half</em>-integer when $n$ is odd. Taking this into account gives the following expression, which is taken from a standard reference, <a href="http://mathworld.wolfram.com/Hypersphere.html">Wolfram MathWorld</a>, and as usual is written in terms of&nbsp;$\pi$:
+\[ S_n = \begin{cases}
+\displaystyle \frac{2\pi^{n/2}\,r^{n-1}}{(\frac{1}{2}n - 1)!} & \text{if } n \text{ is even}; \\ \\
+ \displaystyle \frac{2^{(n+1)/2}\pi^{(n-1)/2}\,r^{n-1}}{(n-2)!!} & \text{if } n \text{ is odd}.
+ \end{cases} \]
+Integrating with respect to $r$ then gives
+\[ V_n = \begin{cases}
+\displaystyle \frac{\pi^{n/2}\,r^n}{(\frac{n}{2})!} & \text{if } n \text{ is even}; \\ \\
+ \displaystyle \frac{2^{(n+1)/2}\pi^{(n-1)/2}\,r^n}{n!!} & \text{if } n \text{ is odd}.
+ \end{cases} \]</p>
+
+<p>Let&rsquo;s examine the volume formula in more detail. Notice first that MathWorld uses the <em>double factorial function</em>&nbsp;$n!!$&mdash;but, strangely, it uses it only in the <em>odd</em> case. (This is a hint of things to come.) The double factorial function, although rarely encountered in mathematics, is elementary: it&rsquo;s like the normal factorial function, but involves subtracting $2$ at a time instead of $1$, so that, e.g., $5!! = 5 \cdot 3 \cdot 1$ and $6!! = 6 \cdot 4 \cdot 2$. In general, we have
+\[ n!! = \begin{cases}
+ n(n-2)(n-4)\ldots6\cdot4\cdot2 & \text{if } n \text{ is even}; \\ \\
+ n(n-2)(n-4)\ldots5\cdot3\cdot1 & \text{if } n \text{ is odd}.
+ \end{cases} \]
+(By definition, $0!! = 1!! = 1$.) Note that this definition naturally divides into even and odd cases, making MathWorld&rsquo;s decision to use it only in the odd case still more mysterious.</p>
+
+<p>To solve this mystery, we&rsquo;ll start by taking a closer look at the formula for odd&nbsp;$n$:
+\[ \frac{2^{(n+1)/2}\pi^{(n-1)/2}\,r^n}{n!!} \]
+Upon examining the expression
+\[ 2^{(n+1)/2}\pi^{(n-1)/2}, \]
+we notice that it can be rewritten as
+\[ 2(2\pi)^{(n-1)/2}, \]
+and here we recognize our old friend&nbsp;$2\pi$.</p>
+
+<p>Now let&rsquo;s look at the even case. We noted above how strange it is to use the ordinary factorial in the even case but the double factorial in the odd case. Indeed, because the double factorial is already defined piecewise, if we unified the formulas by using $n!!$ in both cases we could pull it out as a common factor:
+\[ 
+V_n = \frac{1}{n!!}\times \begin{cases}
+\ldots & \text{if } n \text{ is even}; \\ \\
+ \ldots & \text{if } n \text{ is odd}.
+ \end{cases}
+\]
+So, is there any connection between the factorial and the double factorial? Yes&mdash;when $n$ is even, the two are related by the following identity:
+\[ \left(\frac{n}{2}\right)! = \frac{n!!}{2^{n/2}}. \]
+(This is easy to verify using <a href="http://en.wikipedia.org/wiki/Mathematical_induction">mathematical induction</a>.) Substituting this into the volume formula for even $n$ then yields
+\[ \frac{2^{n/2}\pi^{n/2}\,r^n}{n!!}, \]
+which bears a striking resemblance to
+\[ \frac{(2\pi)^{n/2}\,r^n}{n!!}, \]
+and again we find a factor of $2\pi$.</p>
+
+<p>Putting these results together, we see that the volume of an $n$-sphere can be rewritten as
+\[ V_n = \begin{cases}
+ \displaystyle \frac{(2\pi)^{n/2}\,r^n}{n!!} & \text{if } n \text{ is even}; \\ \\
+ \displaystyle \frac{2(2\pi)^{(n-1)/2}\,r^n}{n!!} & \text{if } n \text{ is odd}
+ \end{cases} \]
+and its surface area is
+\[ S_n = \begin{cases}
+ \displaystyle \frac{(2\pi)^{n/2}\,r^{n-1}}{(n-2)!!} & \text{if } n \text{ is even}; \\ \\
+ \displaystyle \frac{2(2\pi)^{(n-1)/2}\,r^{n-1}}{(n-2)!!} & \text{if } n \text{ is odd.}
+ \end{cases} \]
+Making the substitution $\tau=2\pi$ then yields
+\[ S_n = \begin{cases}
+ \displaystyle \frac{\tau^{n/2}\,r^{n-1}}{(n-2)!!} & \text{if } n \text{ is even}; \\ \\
+ \displaystyle \frac{2\tau^{(n-1)/2}\,r^{n-1}}{(n-2)!!} & \text{if } n \text{ is odd.}
+ \end{cases} \]
+To unify the formulas further, we can use the <em>floor function</em> $\lfloor x \rfloor$, which is simply the largest integer less than or equal to $x$ (so that, e.g., $\lfloor 3.7 \rfloor = \lfloor 3.2 \rfloor = 3$). This gives
+\[ S_n = \begin{cases}
+ \displaystyle \frac{\tau^{\left\lfloor \frac{n}{2} \right\rfloor}\,r^{n-1}}{(n-2)!!} & \text{if } n \text{ is even}; \\ \\
+ \displaystyle \frac{2\tau^{\left\lfloor \frac{n}{2} \right\rfloor}\,r^{n-1}}{(n-2)!!} & \text{if } n \text{ is odd},
+ \end{cases} \]
+which allows us to write the formula as follows:
+\[ S_n = \frac{\tau^{\left\lfloor \frac{n}{2} \right\rfloor}\,r^{n-1}}{(n-2)!!}\times \begin{cases}
+ 1 & \text{if } n \text{ is even}; \\ \\
+ 2 & \text{if } n \text{ is odd}.
+ \end{cases} \]
+Integrating with respect to $r$ then yields
+\[ V_n = \frac{\tau^{\left\lfloor \frac{n}{2} \right\rfloor}\,r^n}{n!!}\times \begin{cases}
+ 1 & \text{if } n \text{ is even}; \\ \\
+ 2 & \text{if } n \text{ is odd}.
+ \end{cases} \]</p>
+
+<p>The equations above are a major improvement over the original formulation in terms of $\pi$, making what seems like an unassailable argument for $\tau$. As we&rsquo;ll see, it is indeed the case that $\pi$ is virtually useless in this context, but things are not as simple as they seem. In particular, <em>Tau Manifesto</em> reader Jeff Cornell pointed out, to my utter astonishment, that the formulas can be simplified further using the radian angle measure of a right angle,
+\[
+\eta = \frac{\tau}{4}.
+\]
+(Jeff used $\lambda$ in his correspondence, but I use $\eta$ in recognition of its use in David Butler&rsquo;s video <a href="http://youtu.be/1qpVdwizdvI">Pi may be wrong, but so is Tau</a>.)</p>
+
+<p>The biggest advantage of $\eta$ is that it completely unifies the even and odd cases. Making the substitution $\tau = 4\eta$ gives
+\[
+\tau^{\left\lfloor \frac{n}{2} \right\rfloor} = (4\eta)^{\left\lfloor \frac{n}{2} \right\rfloor} = 2^{2\left\lfloor \frac{n}{2} \right\rfloor} \eta^{\left\lfloor \frac{n}{2} \right\rfloor} =
+\eta^{\left\lfloor \frac{n}{2} \right\rfloor}\times
+\begin{cases}
+ 2^n & \text{if } n \text{ is even}; \\ \\
+ 2^{n-1} & \text{if } n \text{ is odd}. 
+ \end{cases}
+\]
+This means that we have a factor of
+\[
+ \eta^{\left\lfloor \frac{n}{2} \right\rfloor} \times
+\begin{cases}
+ 2^n & \text{if } n \text{ is even}; \\ \\
+ 2^{n-1} & \text{if } n \text{ is odd}. 
+ \end{cases}
+  \times \begin{cases}
+ 1 & \text{if } n \text{ is even}; \\ \\
+ 2 & \text{if } n \text{ is odd}. 
+ \end{cases}
+ = 2^n\,\eta^{\left\lfloor \frac{n}{2} \right\rfloor},
+\]
+which eliminates the explicit dependence on <a href="http://en.wikipedia.org/wiki/Parity_(mathematics)">parity</a>. Applying this to the formulas for surface area and volume yields
+\[ S_n = \frac{2^n\,\eta^{\left\lfloor \frac{n}{2} \right\rfloor}\,r^{n-1}}{(n-2)!!}
+\]
+and
+\[ V_n = \frac{2^n\,\eta^{\left\lfloor \frac{n}{2} \right\rfloor}\,r^n}{n!!}.
+\]</p>
+
+<p>The simplification in these formulas appears to come at the cost of a factor of $2^n$, but even this has a clear geometric meaning: a sphere in $n$ dimensions divides naturally into $2^n$ congruent pieces, corresponding to the $2^n$ families of solutions to $\sum_{i=1}^{n} x_i^2 = r^2$ (one for each choice of $\pm x_i$). In two dimensions, these are the circular arcs in each of the four quadrants; in three dimensions, they are the sectors of the sphere in each octant; and so on in higher dimensions.</p>
+
+<p>What the formulas in terms of $\eta$ tell us is that we can exploit the symmetry of the sphere by calculating the surface area or volume of <em>one</em> piece&mdash;typically the <em>principal part</em> where $x_i > 0$ for every $i$&mdash;and then find the full value by multiplying by&nbsp;$2^n$. This suggests that <em>the fundamental constant uniting the geometry $n$-spheres is the measure of a right angle</em>. (I liken the difference between $\tau$ and $\eta$ to the difference between the electron charge $e$ and the charge on a down quark $q_d = e/3$: the latter is the true quantum of charge, but using $q_d$ in place of $e$ would introduce inconvenient factors of $3$ throughout physics and chemistry.)</p>
+
+<div class="label" id="sec-three_families_of_constants"></div>
+
+
+<h3><a id="sec-5_2" href="#sec-three_families_of_constants" class="heading"><span class="number">5.2</span> Three families of constants</a></h3>
+
+
+<p>We have nearly gotten to the bottom of $\pi$ and $\tau$. To complete the excavation, we&rsquo;ll use the general formulas for the surface area and volume of an $n$-sphere to define two families of constants, and then use the definition of $\pi$ to define a third.</p>
+
+<p>The first family is defined by the surface area formula:
+\[
+\tau_n \equiv \frac{S_n}{r^{n-1}} = \frac{2^n\,\eta^{\left\lfloor \frac{n}{2} \right\rfloor}}{(n-2)!!}
+\]
+The second family is defined by the volume formula:
+\[
+\sigma_n \equiv \frac{V_n}{r^n} = \frac{2^n\,\eta^{\left\lfloor \frac{n}{2} \right\rfloor}}{n!!}
+\]
+With these two families of constants, we can write the surface area and volume formulas compactly as follows:
+\[ S_n = \tau_n\,r^{n-1} \]
+and
+\[ V_n = \sigma_n\,r^n. \]
+Because of the relation $V_n = \int S_n\,dr$, we have the simple relationship
+\[
+\sigma_n = \frac{\tau_n}{n}.
+\]</p>
+
+<p>Let us make some observations about these two families of constants. The first, as noted above, is that it is not $\tau$ but $\eta$ that unites these formulas. Nevertheless, the family $\tau_n$ has an important geometric meaning: by setting $r=1$, we see that each $\tau_n$ is the surface area of a unit $n$-sphere, which is also the angle measure of a full $n$-sphere. In particular, by writing $s_n$ as the $n$-dimensional &ldquo;arclength&rdquo; equal to a fraction&nbsp;$f$ of the full surface area&nbsp;$S_n$, we have
+\[
+\theta_n \equiv \frac{s_n}{r^{n-1}} = \frac{f S_n}{r^{n-1}} = f\left(\frac{S_n}{r^{n-1}}\right) = f\tau_n.
+\]
+Here $\theta_n$ is simply the $n$-dimensional generalization of radian angle measure, and we see that $\tau_n$ is the generalization of &ldquo;one turn&rdquo; to $n$ dimensions, which explains why the 2-sphere (circle) constant $\tau_2 = 2^2\,\eta = \tau$ leads naturally to the diagram shown in <a class="ref" href="#fig-tau_angles">Figure&nbsp;8</a>.</p>
+
+<p>Meanwhile, the $\sigma_n$ are the volumes of unit $n$-spheres. In particular, $\sigma_2$ is the area of a unit disk:
+\[
+\sigma_2 = \frac{\tau_2}{2} = \frac{\tau}{2}.
+\]
+This shows that $\sigma_2 = \tau/2 = 3.14159\ldots$ does have an independent geometric significance. Note, however, that <em>it has nothing to do with circumferences or diameters</em>. In other words, <em>$\pi = C/D$ is not a member of the family&nbsp;$\sigma_n$</em>.</p>
+
+<p>So, to which family of constants does $\pi$ naturally belong?
+Let&rsquo;s rewrite $\pi = C/D$ in terms more appropriate for generalization to higher dimensions:
+\[
+\pi = \frac{C}{D} = \frac{S_2}{D^{2-1}}.
+\]
+We thus see that $\pi$ is naturally associated with surface areas divided by the power of the diameter necessary to yield a dimensionless constant.
+This suggests introducing a third family of constants&nbsp;$\pi_n$:
+\[
+\pi_n \equiv \frac{S_n}{D^{n-1}}.
+\]
+We can express this family in terms of the $\tau_n$ as follows:
+\[
+\pi_n = \frac{S_n}{D^{n-1}} = \frac{S_n}{(2r)^{n-1}} = 
+\frac{S_n}{2^{n-1}r^{n-1}} = \frac{\tau_n}{2^{n-1}}.
+\]</p>
+
+<p>We are now finally in a position to understand exactly what is wrong with $\pi$. The principal geometric significance of $3.14159\ldots$ is that it is the area of a unit disk. But this number comes from evaluating $\sigma_n = \tau_n/n$ when $n=2$:
+\[
+\sigma_2 = \frac{\tau_2}{2} = \frac{\tau}{2}.
+\]
+It&rsquo;s true that this equals $\pi_2$:
+\[
+\pi_2 = \pi = \frac{\tau_2}{2^{2-1}} = \frac{\tau}{2}.
+\]
+But this equality is a coincidence: it occurs only because $2^{n-1}$ happens to equal $n$ when $n=2$. In all higher dimensions, $n$ and $2^{n-1}$ are distinct. In other words, <em>the geometric significance of $\pi$ is the result of a mathematical pun</em>.</p>
+
+<h2><a id="sec-6" href="#sec-6" class="heading"><span class="number">6</span> Conclusion</a></h2>
+
+
+<p>Over the years, I have heard many arguments against the wrongness of $\pi$ and against the rightness of $\tau$, so before concluding our discussion allow me to answer some of the most frequently asked questions.</p>
+
+<div class="label" id="sec-faq"></div>
+
+
+<h3><a id="sec-6_1" href="#sec-faq" class="heading"><span class="number">6.1</span> Frequently Asked Questions</a></h3>
+
+
+
+
+<ul>
+
+<li><strong>Are you serious?</strong> <br /> Of course. I mean, I&rsquo;m having fun with this, and the tone is occasionally lighthearted, but there is a serious purpose. Setting the circle constant equal to the circumference over the diameter is an awkward and confusing convention. Although I would love to see mathematicians change their ways, I&rsquo;m not particularly worried about them; they can take care of themselves. It is the neophytes I am most worried about, for they take the brunt of the damage: as noted in <a class="ref" href="#sec-circles_and_angles">Section&nbsp;2.1</a>, $\pi$ is a pedagogical disaster. Try explaining to a twelve-year-old (or to a thirty-year-old) why the angle measure for an eighth of a circle&mdash;one slice of pizza&mdash;is $\pi/8$. Wait, I meant $\pi/4$. See what I mean? It&rsquo;s madness&mdash;sheer, unadulterated madness.</li>
+
+<li><strong>How can we switch from $\pi$ to $\tau$?</strong> <br /> The next time you write something that uses the circle constant, simply say &ldquo;For convenience, we set $\tau = 2\pi$&rdquo;, and then proceed as usual. (Of course, this might just prompt the question, &ldquo;Why would you want to do that?&rdquo;, and I admit it would be nice to have a place to point them to. If only someone would write, say, a <em>manifesto</em> on the subject&hellip;) The way to get people to start using $\tau$ is to start using it yourself. </li>
+
+<li><strong>Isn&rsquo;t it too late to switch? Wouldn&rsquo;t all the textbooks and math papers need to be rewritten?</strong> <br /> No on both counts. It is true that some conventions, though unfortunate, are effectively irreversible. For example, Benjamin Franklin&rsquo;s choice for the signs of electric charges leads to electric current being positive, even though the charge carriers themselves are negative&mdash;thereby cursing electrical engineers with confusing minus signs ever since.<sup class="footnote" id="fnref-0_16"><a href="#fn-0_16">16</a></sup> To change this convention <em>would</em> require rewriting all the textbooks (and burning the old ones) since it is impossible to tell at a glance which convention is being used. In contrast, while <em>redefining</em> $\pi$ is effectively impossible, we can switch from $\pi$ to $\tau$ on the fly by using the conversion \[ \pi \leftrightarrow \textstyle{\frac{1}{2}}\tau. \] It&rsquo;s purely a matter of mechanical substitution, completely robust and indeed fully reversible. The switch from $\pi$ to $\tau$ can therefore happen incrementally; unlike a redefinition, it need not happen all at once.</li>
+
+<li><strong>Won&rsquo;t using $\tau$ confuse people, especially students?</strong> <br />  If you are smart enough to understand radian angle measure, you are smart enough to understand $\tau$&mdash;and  why $\tau$ is actually <em>less</em> confusing than $\pi$. Also, there is nothing intrinsically confusing about saying &ldquo;Let $\tau = 2\pi$&rdquo;; understood narrowly, it&rsquo;s just a simple substitution. Finally, we can embrace the situation as a teaching opportunity: the idea that $\pi$ might be wrong is <em>interesting</em>, and students can engage with the material by converting the equations in their textbooks from $\pi$ to $\tau$ to see for themselves which choice is better.</li>
+
+<li><strong>Does any of this really matter?</strong> <br /> Of course it matters. <em>The circle constant is important.</em> People care enough about it to write entire books on the subject, to celebrate it on a particular day each year, and to memorize tens of thousands of its digits. I care enough to write a whole manifesto, and you care enough to read it. It&rsquo;s precisely because it <em>does</em> matter that it&rsquo;s hard to admit that the present convention is wrong. (I mean, how do you break it to <a href="http://en.wikipedia.org/wiki/Lu_Chao">Lu Chao</a>, the current world-record holder, that he just recited 67,890 digits of one half of the true circle constant?)<sup class="footnote" id="fnref-0_17"><a href="#fn-0_17">17</a></sup> Since the circle constant is important, it&rsquo;s important to get it right, and we have seen in this manifesto that the right number is $\tau$. Although $\pi$ is of great <em>historical</em> importance, the <em>mathematical</em> significance of $\pi$ is that it is one-half $\tau$. </li>
+
+<li><strong>Why did anyone ever use $\pi$ in the first place?</strong> <br /> As notation, $\pi$ was popularized around 300 years ago by <a href="http://en.wikipedia.org/wiki/Leonhard_Euler">Leonhard Euler</a> (based on the work of <a href="http://en.wikipedia.org/wiki/William_Jones_(mathematician)">William Jones</a>), but the origins of $\pi$-the-number are lost in the mists of time. I suspect that the convention of using $C/D$ instead of $C/r$ arose simply because it is easier to <em>measure</em> the diameter of a circular object than it is to measure its radius. But that doesn&rsquo;t make it good mathematics, and I&rsquo;m surprised that Archimedes, who famously <a href="http://itech.fgcu.edu/faculty/clindsey/mhf4404/archimedes/archimedes.html">approximated the circle constant</a>, didn&rsquo;t realize that $C/r$ is the more fundamental number. I&rsquo;m even more surprised that Euler didn&rsquo;t correct the problem when he had the chance; unlike Archimedes, Euler had the benefit of modern algebraic notation, which (as we saw starting in <a class="ref" href="#sec-circles_and_angles">Section&nbsp;2.1</a>) makes the underlying relationships between circles and the circle constant abundantly clear.</li>
+
+<li><strong>Why does this subject interest you?</strong> <br /> First, as a truth-seeker I care about correctness of explanation. Second, as a teacher I care about clarity of exposition. Third, as a hacker I love a nice hack. Fourth, as a student of history and of human nature I find it fascinating that the absurdity of $\pi$ was lying in plain sight for centuries before anyone seemed to notice. Moreover, many of the people who missed the true circle constant are among the most rational and intelligent people ever to live. What else might be staring us in the face, just waiting for us to discover it?</li>
+
+<li><strong>Are you, like, a crazy person?</strong> <br /> That&rsquo;s really none of your business, but no. Apart from occasionally wearing <a href="http://www.vibramfivefingers.com/">unusual shoes</a>, I am to all external appearances normal in every way. You would never guess that, far from being an ordinary citizen, I am in fact a notorious mathematical propagandist.</li>
+
+<li><strong>But what about puns?</strong> <br /> We come now to the final objection. I know, I know, &ldquo;$\pi$ in the sky&rdquo; is so very clever. And yet, $\tau$ itself is pregnant with possibilities. $\tau$ism tells us: it is not $\tau$ that is a piece of $\pi$, but $\pi$ that is a piece of $\tau$&mdash;one-half $\tau$, to be exact. The identity $e^{i\tau} = 1$ says: &ldquo;<em>Be 1 with the $\tau$.</em>&rdquo; And though the observation that &ldquo;<em>A rotation by one turn is&nbsp;1</em>&rdquo; may sound like a $\tau$-tology, it is the true nature of the $\tau$. As we contemplate this nature to seek the <a href="http://www.answers.com/Tao">way</a> of the $\tau$, we must remember that $\tau$ism is based on reason, not on faith: $\tau$ists are never $\pi$ous.</li>
+
+</ul>
+
+
+
+
+<div class="label" id="sec-embrace_the_tau"></div>
+
+
+<h3><a id="sec-6_2" href="#sec-embrace_the_tau" class="heading"><span class="number">6.2</span> Embrace the tau</a></h3>
+
+
+<p>We have seen in <em>The Tau Manifesto</em> that the natural choice for the circle constant is the ratio of a circle&rsquo;s circumference not to its diameter, but to its radius. This number needs a name, and I hope you will join me in calling it&nbsp;$\tau$:
+\[
+  \mathrm{circular\ unit} = \tau \equiv \frac{C}{r} = 6.283185307179586\ldots
+\]
+The usage is natural, the motivation is clear, and the implications are profound. Plus, it comes with a really cool diagram (<a class="ref" href="#fig-tauism">Figure&nbsp;14</a>). We see in <a class="ref" href="#fig-tauism">Figure&nbsp;14</a> a movement through <em>yang</em> (&ldquo;light, white, moving up&rdquo;) to $\tau/2$ and a return through <em>yin</em> (&ldquo;dark, black, moving down&rdquo;) back to $\tau$.<sup class="footnote" id="fnref-0_18"><a href="#fn-0_18">18</a></sup> Using $\pi$ instead of $\tau$ is like having <em>yang</em> without <em>yin</em>.</p>
+
+<div class="label" id="fig-tauism"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="images/figures/tauism_rotated.png" alt="tauism_rotated" /></span></div><div class="caption"><span class="header">Figure 14: </span><span class="description">Followers of $\tau$ism seek the way of the $\tau$.</span></div></div>
+
+
+
+
+<div class="label" id="sec-tau_day"></div>
+
+
+<h3><a id="sec-6_3" href="#sec-tau_day" class="heading"><span class="number">6.3</span> Tau Day</a></h3>
+
+
+<p><em>The Tau Manifesto</em> first launched on Tau Day: June 28 (6/28), 2010. Tau Day is a time to celebrate and rejoice in all things mathematical.<sup class="footnote" id="fnref-0_19"><a href="#fn-0_19">19</a></sup> If you would like to receive updates about $\tau$, including notifications about possible future Tau Day events, please join the <em>Tau Manifesto</em> mailing list below. And if you think that the circular baked goods on Pi Day are tasty, just wait&mdash;Tau Day has twice as much pi(e)!</p>
+
+<p> insert_user_engagement</p>
+
+<div class="label" id="sec-acknowledgments"></div>
+
+
+<h4><a id="sec-6_3_1" href="#sec-acknowledgments" class="heading">Acknowledgments</a></h4>
+
+
+<p>I&rsquo;d first like to thank <a href="http://www.math.utah.edu/~palais">Bob Palais</a> for writing &ldquo;$\pi$ Is Wrong!&rdquo;. I don&rsquo;t remember how deep my suspicions about $\pi$ ran before I encountered that article, but &ldquo;$\pi$ Is Wrong!&rdquo; definitely opened my eyes, and every section of <em>The Tau Manifesto</em> owes it a debt of gratitude. I&rsquo;d also like to thank Bob for his helpful comments on this manifesto, and especially for being such a good sport about it.</p>
+
+<p>I&rsquo;ve been thinking about <em>The Tau Manifesto</em> for a while now, and many of the ideas presented here were developed through conversations with my friend Sumit Daftuar. Sumit served as a sounding board and occasional Devil&rsquo;s advocate, and his insight as a teacher and as a mathematician influenced my thinking in many ways.</p>
+
+<p>I have also received encouragement and helpful feedback from several readers. I&rsquo;d like to thank <a href="http://www.youtube.com/watch?v=jG7vhMMXagQ">Vi Hart</a> and <a href="http://www.youtube.com/watch?v=3174T-3-59Q">Michael Blake</a> for their amazing $\tau$-inspired videos, as well as Don &ldquo;Blue&rdquo; McConnell and Skona Brittain for helping make $\tau$ part of geek culture (through the <a href="http://tauclock.com/">time-in-$\tau$ iPhone app</a> and the <a href="http://www.sbcrafts.net/clocks/">tau clock</a>, respectively). The pleasing interpretation of the yin-yang symbol used in <em>The Tau Manifesto</em> is due to a suggestion by <a href="http://www.harremoes.dk/Peter/">Peter Harremo&euml;s</a>, who (as noted above) has the rare distinction of having independently proposed using $\tau$ for the circle constant. Another pre&ndash;<em>Tau Manifesto</em> tauist, <a href="https://sites.google.com/site/taubeforeitwascool/">Joseph Lindenberg</a>, has also been a staunch supporter, and his enthusiasm is much-appreciated. I got several good suggestions from <a href="http://christopherolah.wordpress.com/about-me">Christopher Olah</a>, particularly regarding the geometric interpretation of Euler&rsquo;s identity, and <a class="ref" href="#sec-eulerian_identities">Section&nbsp;2.3.2</a> on Eulerian identities was inspired by an excellent suggestion from Timothy &ldquo;Patashu&rdquo; Stiles. <a href="http://www.blahedo.org/blog/archives/001083.html">Don Blaheta</a> anticipated and inspired some of the material on hyperspheres, and <a href="http://spikedmath.com/forum/viewtopic.php?f=30&amp;t=147#p1577">John Kodegadulo</a> put it together in a particularly clear and entertaining way. Then Jeff Cornell, with his observation about the importance of $\tau/4$ in this context, shook my faith and blew my mind.
+Finally, I&rsquo;d like to thank <a href="http://techiferous.com/about">Wyatt Greene</a> for his extraordinarily helpful feedback on a pre-launch draft of the manifesto; among other things, if you ever need someone to tell you that &ldquo;pretty much all of [now deleted] section 5 is total crap&rdquo;, Wyatt is your man.</p>
+
+<div class="label" id="sec-about_the_author"></div>
+
+
+<h4><a id="sec-6_3_2" href="#sec-about_the_author" class="heading">About the author</a></h4>
+
+
+<p><em>The Tau Manifesto</em> author <a href="http://www.michaelhartl.com/">Michael Hartl</a> is a physicist, educator, and entrepreneur. He is the author of the <a href="http://ruby.railstutorial.org/">Ruby on Rails Tutorial</a>, the leading introduction to web development with <a href="http://www.rubyonrails.org/">Ruby on Rails</a>. Previously, he taught theoretical and computational physics at  <a href="http://www.caltech.edu/">Caltech</a>, where he received the Lifetime Achievement Award for Excellence in Teaching and served as Caltech&rsquo;s editor for <a href="http://www.amazon.com/Feynman-Lectures-Physics-including-Feynmans/dp/0805390456/ref=sr_1_1?ie=UTF8&amp;qid=1288414565&amp;sr=8-1"><em>The Feynman Lectures on Physics: The Definitive and Extended Edition</em></a>. He is a graduate of <a href="http://college.harvard.edu/">Harvard College</a>, has a <a href="http://thesis.library.caltech.edu/1940/">Ph.D. in Physics</a> from the <a href="http://www.caltech.edu/">California Institute of Technology</a>, and is an alumnus of the <a href="http://ycombinator.com/">Y&nbsp;Combinator</a> entrepreneur program.</p>
+
+<p>Michael is ashamed to admit that he knows $\pi$ to 50 decimal places&mdash;<a href="#fig:futurama_video">approximately 48 more than Matt Groening</a>. To atone for this, he has now memorized <a href="http://www.wolframalpha.com/input/?i=N[2+Pi,+53]">52 decimal places</a> of $\tau$.</p>
+
+<div class="label" id="sec-copyright_and_license"></div>
+
+
+<h4><a id="sec-6_3_3" href="#sec-copyright_and_license" class="heading">Copyright and license</a></h4>
+
+
+<p><em>The Tau Manifesto</em>. Copyright &copy; 2013 by Michael Hartl. Please feel free to share <em>The Tau Manifesto</em>, which is available under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>. This means that you can adapt it, translate it, or even include it in commercial works, as long as you attribute it to me (Michael Hartl) and link back to tauday.com. You also have permission to distribute copies of <a href="http://tauday.com/pdf"><em>The Tau Manifesto</em> PDF</a>, print it out, use it in classrooms, and so on. <em>Go forth and spread the good news about&nbsp;$\tau$!</em></p>
+
+<div class="footnotes">
+<ol>
+<li id="fn-0_1">Palais, Robert. &ldquo;$\pi$ Is Wrong!&rdquo;, <em>The Mathematical Intelligencer</em>, Volume&nbsp;23, Number&nbsp;3, 2001, pp.&nbsp;7&ndash;8. Many of the arguments in <em>The Tau Manifesto</em> are based on or are inspired by &ldquo;$\pi$ Is Wrong!&rdquo;. It is available online at <a href="http://www.math.utah.edu/~palais/pi.html">http://bit.ly/pi-is-wrong</a>.&nbsp;<a class="arrow" href="#fnref-0_1">&uarr;</a></li>
+<li id="fn-0_2">The symbol $\equiv$ means &ldquo;is defined as&rdquo;.&nbsp;<a class="arrow" href="#fnref-0_2">&uarr;</a></li>
+<li id="fn-0_3">The video in <a class="ref" href="#fig-futurama_video">Figure&nbsp;3</a> (available at  <a href="http://vimeo.com/12914981">http://vimeo.com/12914981</a>) is an excerpt from a lecture given by <a href="http://mathsci.appstate.edu/~sjg/">Dr. Sarah Greenwald</a>, a professor of mathematics at <a href="http://www.appstate.edu/">Appalachian State University</a>. Dr. Greenwald uses math references from <em>The Simpsons</em> and <em>Futurama</em> to engage her students&rsquo; interest and to help them get over their math anxiety. She is also the maintainer of the <a href="http://www.futuramamath.com/"><em>Futurama</em> Math Page</a>.&nbsp;<a class="arrow" href="#fnref-0_3">&uarr;</a></li>
+<li id="fn-0_4">Here $B_n$ is the $n$th <a href="http://en.wikipedia.org/wiki/Bernoulli_number">Bernoulli number</a>.&nbsp;<a class="arrow" href="#fnref-0_4">&uarr;</a></li>
+<li id="fn-0_5">These graphs were produced with the help of <a href="http://www.wolframalpha.com/">Wolfram|Alpha</a>.&nbsp;<a class="arrow" href="#fnref-0_5">&uarr;</a></li>
+<li id="fn-0_6">Here I&rsquo;m implicitly defining Euler&rsquo;s identity to be <em>the complex exponential of the circle constant</em>, rather than defining it to be the complex exponential of any particular number. If we choose $\tau$ as the circle constant, we obtain the identity shown. As we&rsquo;ll see momentarily, this is not the traditional form of the identity, which of course involves $\pi$, but the version with $\tau$ is the most <em>mathematically</em> meaningful statement of the identity, so I believe it deserves the name.&nbsp;<a class="arrow" href="#fnref-0_6">&uarr;</a></li>
+<li id="fn-0_7">Technically, all mathematical theorems are tautologies, but let&rsquo;s not be so pedantic.&nbsp;<a class="arrow" href="#fnref-0_7">&uarr;</a></li>
+<li id="fn-0_8">You may have seen this written as $F = -kx$. In this case, $F$ refers to the force exerted by the <em>spring</em>. By Newton&rsquo;s third law, the external force discussed above is the <em>negative</em> of the spring force.&nbsp;<a class="arrow" href="#fnref-0_8">&uarr;</a></li>
+<li id="fn-0_9">Thanks to <em>Tau Manifesto</em> reader Jim Porter for pointing out this interpretation.&nbsp;<a class="arrow" href="#fnref-0_9">&uarr;</a></li>
+<li id="fn-0_10">The only possible exception to this is the <em>golden ratio</em>, which is often denoted by $\tau$ in Europe. But not only is there an existing common alternative to this notation&mdash;namely, the Greek letter $\varphi$&mdash;this usage shows that there is precedent for using $\tau$ to denote a fundamental mathematical constant.&nbsp;<a class="arrow" href="#fnref-0_10">&uarr;</a></li>
+<li id="fn-0_11">This alternative for torque is already in use; see, for example, <em>Introduction to Electrodynamics</em> by David Griffiths, p.&nbsp;162.&nbsp;<a class="arrow" href="#fnref-0_11">&uarr;</a></li>
+<li id="fn-0_12">See, for instance, <em>An Introduction to Quantum Field Theory</em> by Peskin and Schroeder, where $\pi$ is used to denote both the circle constant and a &ldquo;conjugate momentum&rdquo; on the very same page (p.&nbsp;282).&nbsp;<a class="arrow" href="#fnref-0_12">&uarr;</a></li>
+<li id="fn-0_13">This discussion is based on <a href="http://spikedmath.com/forum/viewtopic.php?f=30&amp;t=147#p1577">an excellent comment by John Kodegadulo</a> at <a href="http://spikedmath.com/">spikedmath.com</a>.&nbsp;<a class="arrow" href="#fnref-0_13">&uarr;</a></li>
+<li id="fn-0_14">This makes sense, because a point has no boundary, i.e., the boundary of a point is the empty set.&nbsp;<a class="arrow" href="#fnref-0_14">&uarr;</a></li>
+<li id="fn-0_15">Indeed, the generalization to complex-valued arguments is straightforward.&nbsp;<a class="arrow" href="#fnref-0_15">&uarr;</a></li>
+<li id="fn-0_16">The sign of the charge carriers couldn&rsquo;t be determined with the technology of Franklin&rsquo;s time, so this isn&rsquo;t his fault. It&rsquo;s just bad luck.&nbsp;<a class="arrow" href="#fnref-0_16">&uarr;</a></li>
+<li id="fn-0_17">Congratulations to <a href="http://tau2000.com/">Ethan Brown</a> for setting the $\tau$ recitation world record by reciting $\tau$ correctly to 2012 digits!&nbsp;<a class="arrow" href="#fnref-0_17">&uarr;</a></li>
+<li id="fn-0_18">The interpretations of yin and yang quoted here are from <em>Zen Yoga: A Path to Enlightenment though Breathing, Movement and Meditation</em> by Aaron Hoopes.&nbsp;<a class="arrow" href="#fnref-0_18">&uarr;</a></li>
+<li id="fn-0_19">Since 6 and 28 are the first two <a href="http://en.wikipedia.org/wiki/Perfect_number"><em>perfect numbers</em></a>, 6/28 is actually a <em>perfect</em> day.&nbsp;<a class="arrow" href="#fnref-0_19">&uarr;</a></li>
+</ol>
+</div>
+
+
+

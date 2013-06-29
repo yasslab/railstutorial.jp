@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+# Delete the code clips from the HTML book.
+# The reason is that it's easy for them to get out of sync with the 
+# main code. The markup system originally used to make the book keeps them
+# in sync by construction, but hand-editing the HTML is likely to break this.
+
+embed = /(<embed .*? \/>)/m
+object = /(<object .*? <\/object>)/m
+
+Dir.glob("public/3.0/*").each do |filename|
+  content = File.open(filename).read
+  content.gsub!(embed, '')
+  content.gsub!(object, '')
+  File.open(filename, 'w').write(content)
+end

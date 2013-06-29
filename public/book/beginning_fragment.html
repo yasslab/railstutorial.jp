@@ -1,0 +1,1489 @@
+<h1 class="title">Ruby on Rails 3.2 チュートリアル</h1>
+
+
+<h1 class="subtitle">実例を使ってRailsを学ぼう</h1>
+
+
+<h2 class="author">Michael Hartl (マイケル・ハートル)</h2>
+
+
+
+
+<h2 class="contents">目次</h2>
+
+
+<div id="table_of_contents"><ol><li class="chapter"><a href="/chapters/beginning.html#top"><span class="number">第1章</span> ゼロから本番展開まで</a></li><li><ol><li class="section"><a href="/chapters/beginning.html#sec-introduction"><span class="number">1.1</span>はじめに</a></li><li><ol><li class="subsection"><a href="/chapters/beginning.html#sec-comments_for_various_readers"><span class="number">1.1.1</span>読者の皆さまへ</a></li><li class="subsection"><a href="/chapters/beginning.html#sec-1_1_2"><span class="number">1.1.2</span> Railsとスケールについて</a></li><li class="subsection"><a href="/chapters/beginning.html#sec-conventions"><span class="number">1.1.3</span>この本における取り決め</a></li></ol></li><li class="section"><a href="/chapters/beginning.html#sec-up_and_running"><span class="number">1.2</span> さっそく動作させる</a></li><li><ol><li class="subsection"><a href="/chapters/beginning.html#sec-development_tools"><span class="number">1.2.1</span>開発環境</a></li><li><ol><li class="subsubsection"><a href="/chapters/beginning.html#sec-1_2_1_1">IDE</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-1_2_1_2">テキストエディタとコマンドライン</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-1_2_1_3">ブラウザ</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-1_2_1_4">使用するツールについて</a></li></ol></li><li class="subsection"><a href="/chapters/beginning.html#sec-rubygems"><span class="number">1.2.2</span>Ruby、RubyGems、Rails、Git</a></li><li><ol><li class="subsubsection"><a href="/chapters/beginning.html#sec-rails_installer_windows">Railsインストーラ (Windows)</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-install_git">Gitのインストール</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-install_ruby">Rubyのインストール</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-install_rubygems">RubyGemsのインストール</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-install_rails">Railsのインストール</a></li></ol></li><li class="subsection"><a href="/chapters/beginning.html#sec-the_first_application"><span class="number">1.2.3</span>最初のアプリケーション</a></li><li class="subsection"><a href="/chapters/beginning.html#sec-bundler"><span class="number">1.2.4</span> Bundler</a></li><li class="subsection"><a href="/chapters/beginning.html#sec-rails_server"><span class="number">1.2.5</span> <tt>rails server</tt></a></li><li class="subsection"><a href="/chapters/beginning.html#sec-mvc"><span class="number">1.2.6</span>Model-view-controller (MVC)</a></li></ol></li><li class="section"><a href="/chapters/beginning.html#sec-version_control"><span class="number">1.3</span>Gitによるバージョン管理</a></li><li><ol><li class="subsection"><a href="/chapters/beginning.html#sec-git_setup"><span class="number">1.3.1</span>インストールとセットアップ</a></li><li><ol><li class="subsubsection"><a href="/chapters/beginning.html#sec-1_3_1_1">初めてのシステム・セットアップ</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-1_3_1_2">初めてのリポジトリ・セットアップ</a></li></ol></li><li class="subsection"><a href="/chapters/beginning.html#sec-adding_and_committing"><span class="number">1.3.2</span>追加とコミット</a></li><li class="subsection"><a href="/chapters/beginning.html#sec-1_3_3"><span class="number">1.3.3</span>Gitのメリット</a></li><li class="subsection"><a href="/chapters/beginning.html#sec-github"><span class="number">1.3.4</span> GitHub</a></li><li class="subsection"><a href="/chapters/beginning.html#sec-git_commands"><span class="number">1.3.5</span>ブランチ (branch)、変更 (edit)、 コミット (commit)、マージ (merge)</a></li><li><ol><li class="subsubsection"><a href="/chapters/beginning.html#sec-git_branch">ブランチ (branch)</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-git_edit">変更 (edit)</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-git_commit">コミット (commit)</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-git_merge">マージ (merge)</a></li><li class="subsubsection"><a href="/chapters/beginning.html#sec-git_push">プッシュ (push)</a></li></ol></li></ol></li><li class="section"><a href="/chapters/beginning.html#sec-deploying"><span class="number">1.4</span>展開する</a></li><li><ol><li class="subsection"><a href="/chapters/beginning.html#sec-heroku_setup"><span class="number">1.4.1</span> Herokuのセットアップ</a></li><li class="subsection"><a href="/chapters/beginning.html#sec-heroku_step_one"><span class="number">1.4.2</span> Herokuに展開する (1)</a></li><li class="subsection"><a href="/chapters/beginning.html#sec-1_4_3"><span class="number">1.4.3</span> Herokuに展開する (2)</a></li><li class="subsection"><a href="/chapters/beginning.html#sec-heroku_commands"><span class="number">1.4.4</span> Heroku コマンド</a></li></ol></li><li class="section"><a href="/chapters/beginning.html#sec-beginning_conclusion"><span class="number">1.5</span> 最後に</a></li></ol></li><li class="chapter"><a href="/chapters/a-demo-app.html#top"><span class="number">第2章</span>デモアプリケーション</a></li><li><ol><li class="section"><a href="/chapters/a-demo-app.html#sec-planning_the_application"><span class="number">2.1</span> アプリの計画</a></li><li><ol><li class="subsection"><a href="/chapters/a-demo-app.html#sec-modeling_demo_users"><span class="number">2.1.1</span>ユーザーのモデル設計</a></li><li class="subsection"><a href="/chapters/a-demo-app.html#sec-modeling_demo_microposts"><span class="number">2.1.2</span>マイクロポストのモデル設計</a></li></ol></li><li class="section"><a href="/chapters/a-demo-app.html#sec-demo_users_resource"><span class="number">2.2</span>Users リソース</a></li><li><ol><li class="subsection"><a href="/chapters/a-demo-app.html#sec-a_user_tour"><span class="number">2.2.1</span>ユーザページを探検する</a></li><li class="subsection"><a href="/chapters/a-demo-app.html#sec-mvc_in_action"><span class="number">2.2.2</span> MVCの挙動</a></li><li class="subsection"><a href="/chapters/a-demo-app.html#sec-weaknesses_of_this_users_resource"><span class="number">2.2.3</span>Users リソースの欠点</a></li></ol></li><li class="section"><a href="/chapters/a-demo-app.html#sec-microposts_resource"><span class="number">2.3</span>Mircroposts リソース</a></li><li><ol><li class="subsection"><a href="/chapters/a-demo-app.html#sec-a_micropost_microtour"><span class="number">2.3.1</span>マイクロポストのページを探検する</a></li><li class="subsection"><a href="/chapters/a-demo-app.html#sec-putting_the_micro_in_microposts"><span class="number">2.3.2</span>マイクロポストを<em>マイクロ</em>にする</a></li><li class="subsection"><a href="/chapters/a-demo-app.html#sec-demo_user_has_many_microposts"><span class="number">2.3.3</span>ユーザーとマイクロポストを<tt>has_many</tt>で関連づける</a></li><li class="subsection"><a href="/chapters/a-demo-app.html#sec-inheritance_hierarchies"><span class="number">2.3.4</span>継承の階層</a></li><li class="subsection"><a href="/chapters/a-demo-app.html#sec-deploying_the_demo_app"><span class="number">2.3.5</span>デモアプリケーションの展開</a></li></ol></li><li class="section"><a href="/chapters/a-demo-app.html#sec-2_4"><span class="number">2.4</span>最後に</a></li></ol></li><li class="chapter"><a href="/chapters/static-pages.html#top"><span class="number">第3章</span>ほぼ静的なページの作成</a></li><li><ol><li class="section"><a href="/chapters/static-pages.html#sec-static_pages"><span class="number">3.1</span>静的ページ</a></li><li><ol><li class="subsection"><a href="/chapters/static-pages.html#sec-truly_static_pages"><span class="number">3.1.1</span>「本当に」静的なページ</a></li><li class="subsection"><a href="/chapters/static-pages.html#sec-static_pages_with_rails"><span class="number">3.1.2</span>Railsによる静的なページ</a></li></ol></li><li class="section"><a href="/chapters/static-pages.html#sec-first_tests"><span class="number">3.2</span>最初のテスト</a></li><li><ol><li class="subsection"><a href="/chapters/static-pages.html#sec-TDD"><span class="number">3.2.1</span>テスト駆動開発</a></li><li class="subsection"><a href="/chapters/static-pages.html#sec-adding_a_page"><span class="number">3.2.2</span>ページの追加</a></li><li><ol><li class="subsubsection"><a href="/chapters/static-pages.html#sec-red">赤 (Red)</a></li><li class="subsubsection"><a href="/chapters/static-pages.html#sec-green">緑 (Green)</a></li><li class="subsubsection"><a href="/chapters/static-pages.html#sec-refactor">リファクタリング</a></li></ol></li></ol></li><li class="section"><a href="/chapters/static-pages.html#sec-slightly_dynamic_pages"><span class="number">3.3</span>ちょっとだけ動的ページ</a></li><li><ol><li class="subsection"><a href="/chapters/static-pages.html#sec-testing_a_title_change"><span class="number">3.3.1</span>タイトル変更をテストする</a></li><li class="subsection"><a href="/chapters/static-pages.html#sec-passing_title_tests"><span class="number">3.3.2</span>タイトルのテストをパスさせる</a></li><li class="subsection"><a href="/chapters/static-pages.html#sec-embedded_ruby"><span class="number">3.3.3</span>組込みRuby</a></li><li class="subsection"><a href="/chapters/static-pages.html#sec-layouts"><span class="number">3.3.4</span>レイアウトを使って重複を解消する</a></li></ol></li><li class="section"><a href="/chapters/static-pages.html#sec-static_pages_conclusion"><span class="number">3.4</span>最後に</a></li><li class="section"><a href="/chapters/static-pages.html#sec-static_pages_exercises"><span class="number">3.5</span>演習</a></li><li class="section"><a href="/chapters/static-pages.html#sec-advanced_setup"><span class="number">3.6</span>高度なセットアップ</a></li><li><ol><li class="subsection"><a href="/chapters/static-pages.html#sec-eliminating_bundle_exec"><span class="number">3.6.1</span><tt>bundle exec</tt>を追放する</a></li><li><ol><li class="subsubsection"><a href="/chapters/static-pages.html#sec-rvm_bundler_integration">RVM Bundler の統合</a></li><li class="subsubsection"><a href="/chapters/static-pages.html#sec-binstubs">binstubオプション</a></li></ol></li><li class="subsection"><a href="/chapters/static-pages.html#sec-guard"><span class="number">3.6.2</span>Guardによるテストの自動化</a></li><li class="subsection"><a href="/chapters/static-pages.html#sec-spork"><span class="number">3.6.3</span>Spork を使ったテストの高速化</a></li><li><ol><li class="subsubsection"><a href="/chapters/static-pages.html#sec-spork_and_guard">GuardにSporkを導入する</a></li></ol></li><li class="subsection"><a href="/chapters/static-pages.html#sec-tests_inside_sublime_text"><span class="number">3.6.4</span>Sublime Text上でテストする</a></li></ol></li></ol></li><li class="chapter"><a href="/chapters/rails-flavored-ruby.html#top"><span class="number">第4章</span> Rails風味のRuby</a></li><li><ol><li class="section"><a href="/chapters/rails-flavored-ruby.html#sec-motivation"><span class="number">4.1</span>動機</a></li><li class="section"><a href="/chapters/rails-flavored-ruby.html#sec-strings_and_methods"><span class="number">4.2</span>文字列(string)とメソッド</a></li><li><ol><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-comments"><span class="number">4.2.1</span>コメント</a></li><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-strings"><span class="number">4.2.2</span>文字列</a></li><li><ol><li class="subsubsection"><a href="/chapters/rails-flavored-ruby.html#sec-printing">出力</a></li><li class="subsubsection"><a href="/chapters/rails-flavored-ruby.html#sec-single_quoted_strings">シングルクォート内の文字列</a></li></ol></li><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-objects_and_message_passing"><span class="number">4.2.3</span>オブジェクトとメッセージ受け渡し</a></li><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-method_definitions"><span class="number">4.2.4</span>メソッドの定義</a></li><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-back_to_the_title_helper"><span class="number">4.2.5</span> title ヘルパー、再び</a></li></ol></li><li class="section"><a href="/chapters/rails-flavored-ruby.html#sec-other_data_structures"><span class="number">4.3</span>他のデータ構造</a></li><li><ol><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-arrays_and_ranges"><span class="number">4.3.1</span>配列と範囲演算子</a></li><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-blocks"><span class="number">4.3.2</span>ブロック</a></li><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-hashes_and_symbols"><span class="number">4.3.3</span>ハッシュとシンボル</a></li><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-css_revisited"><span class="number">4.3.4</span> CSS、再び</a></li></ol></li><li class="section"><a href="/chapters/rails-flavored-ruby.html#sec-ruby_classes"><span class="number">4.4</span> Ruby におけるクラス</a></li><li><ol><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-constructors"><span class="number">4.4.1</span>コンストラクタ</a></li><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-a_class_of_our_own"><span class="number">4.4.2</span>クラス継承</a></li><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-modifying_built_in_classes"><span class="number">4.4.3</span>組込みクラスの変更</a></li><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-a_controller_class"><span class="number">4.4.4</span>コントローラクラス</a></li><li class="subsection"><a href="/chapters/rails-flavored-ruby.html#sec-a_user_class"><span class="number">4.4.5</span>ユーザークラス</a></li></ol></li><li class="section"><a href="/chapters/rails-flavored-ruby.html#sec-conclusion"><span class="number">4.5</span>最後に</a></li><li class="section"><a href="/chapters/rails-flavored-ruby.html#sec-exercises"><span class="number">4.6</span>演習</a></li></ol></li><li class="chapter"><a href="/chapters/filling-in-the-layout.html#top"><span class="number">第5章</span>レイアウトを作成する</a></li><li><ol><li class="section"><a href="/chapters/filling-in-the-layout.html#sec-structure"><span class="number">5.1</span>構造を追加する</a></li><li><ol><li class="subsection"><a href="/chapters/filling-in-the-layout.html#sec-adding_to_the_layout"><span class="number">5.1.1</span>ナビゲーション</a></li><li class="subsection"><a href="/chapters/filling-in-the-layout.html#sec-custom_css"><span class="number">5.1.2</span>BootstrapとカスタムCSS</a></li><li class="subsection"><a href="/chapters/filling-in-the-layout.html#sec-partials"><span class="number">5.1.3</span>パーシャル (partial)</a></li></ol></li><li class="section"><a href="/chapters/filling-in-the-layout.html#sec-sass_and_the_asset_pipeline"><span class="number">5.2</span>Sass と asset pipleline</a></li><li><ol><li class="subsection"><a href="/chapters/filling-in-the-layout.html#sec-the_asset_pipeline"><span class="number">5.2.1</span> asset pipeline</a></li><li><ol><li class="subsubsection"><a href="/chapters/filling-in-the-layout.html#sec-5_2_1_1">asset ディレクトリ</a></li><li class="subsubsection"><a href="/chapters/filling-in-the-layout.html#sec-5_2_1_2">マニフェストファイル</a></li><li class="subsubsection"><a href="/chapters/filling-in-the-layout.html#sec-5_2_1_3">プリプロセッサエンジン</a></li><li class="subsubsection"><a href="/chapters/filling-in-the-layout.html#sec-5_2_1_4">プロダクション環境での効率性</a></li></ol></li><li class="subsection"><a href="/chapters/filling-in-the-layout.html#sec-sass"><span class="number">5.2.2</span>素晴らしい構文を備えたスタイルシート</a></li><li><ol><li class="subsubsection"><a href="/chapters/filling-in-the-layout.html#sec-5_2_2_1">ネスト</a></li><li class="subsubsection"><a href="/chapters/filling-in-the-layout.html#sec-5_2_2_2">変数</a></li></ol></li></ol></li><li class="section"><a href="/chapters/filling-in-the-layout.html#sec-layout_links"><span class="number">5.3</span>レイアウトのリンク</a></li><li><ol><li class="subsection"><a href="/chapters/filling-in-the-layout.html#sec-route_tests"><span class="number">5.3.1</span> ルートのテスト</a></li><li class="subsection"><a href="/chapters/filling-in-the-layout.html#sec-rails_routes"><span class="number">5.3.2</span> Railsのルート</a></li><li class="subsection"><a href="/chapters/filling-in-the-layout.html#sec-named_routes"><span class="number">5.3.3</span>名前付きルート</a></li><li class="subsection"><a href="/chapters/filling-in-the-layout.html#sec-pretty_rspec"><span class="number">5.3.4</span>Pretty RSpec</a></li></ol></li><li class="section"><a href="/chapters/filling-in-the-layout.html#sec-user_signup"><span class="number">5.4</span>ユーザーのサインアップ：最初のステップ</a></li><li><ol><li class="subsection"><a href="/chapters/filling-in-the-layout.html#sec-users_controller"><span class="number">5.4.1</span>ユーザーコントローラ</a></li><li class="subsection"><a href="/chapters/filling-in-the-layout.html#sec-signup_url"><span class="number">5.4.2</span>サインアップURI</a></li></ol></li><li class="section"><a href="/chapters/filling-in-the-layout.html#sec-layout_conclusion"><span class="number">5.5</span>最後に</a></li><li class="section"><a href="/chapters/filling-in-the-layout.html#sec-layout_exercises"><span class="number">5.6</span>演習</a></li></ol></li><li class="chapter"><a href="/chapters/modeling-users.html#top"><span class="number">第6章</span>ユーザーのモデルを作成する</a></li><li><ol><li class="section"><a href="/chapters/modeling-users.html#sec-user_model"><span class="number">6.1</span> Userモデル</a></li><li><ol><li class="subsection"><a href="/chapters/modeling-users.html#sec-database_migrations"><span class="number">6.1.1</span>データベースの移行</a></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-the_model_file"><span class="number">6.1.2</span>modelファイル</a></li><li><ol><li class="subsubsection"><a href="/chapters/modeling-users.html#sec-model_annotation">モデル注釈</a></li><li class="subsubsection"><a href="/chapters/modeling-users.html#sec-accessible_attributes">アクセス可能な属性</a></li></ol></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-creating_user_objects"><span class="number">6.1.3</span>ユーザーオブジェクトを作成する</a></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-finding_user_objects"><span class="number">6.1.4</span>ユーザーオブジェクトを検索する</a></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-updating_user_objects"><span class="number">6.1.5</span>ユーザーオブジェクトを更新する</a></li></ol></li><li class="section"><a href="/chapters/modeling-users.html#sec-user_validations"><span class="number">6.2</span>ユーザーを検証する</a></li><li><ol><li class="subsection"><a href="/chapters/modeling-users.html#sec-initial_user_tests"><span class="number">6.2.1</span>最初のユーザーテスト</a></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-presence_validation"><span class="number">6.2.2</span>プレゼンスを検証する</a></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-length_validation"><span class="number">6.2.3</span>長さを検証する</a></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-format_validation"><span class="number">6.2.4</span>フォーマットを検証する</a></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-uniqueness_validation"><span class="number">6.2.5</span>一意性を検証する</a></li><li><ol><li class="subsubsection"><a href="/chapters/modeling-users.html#sec-the_caveat">一意性の警告</a></li></ol></li></ol></li><li class="section"><a href="/chapters/modeling-users.html#sec-adding_a_secure_password"><span class="number">6.3</span>セキュアなパスワードを追加する</a></li><li><ol><li class="subsection"><a href="/chapters/modeling-users.html#sec-an_encrypted_password"><span class="number">6.3.1</span>暗号化されたパスワード</a></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-password_and_confirmation"><span class="number">6.3.2</span>パスワードと確認</a></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-user_authentication"><span class="number">6.3.3</span>ユーザー認証</a></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-has_secure_password"><span class="number">6.3.4</span>ユーザーがセキュアなパスワードを持っている</a></li><li class="subsection"><a href="/chapters/modeling-users.html#sec-creating_a_user"><span class="number">6.3.5</span>ユーザーを作成する</a></li></ol></li><li class="section"><a href="/chapters/modeling-users.html#sec-6_4"><span class="number">6.4</span>最後に</a></li><li class="section"><a href="/chapters/modeling-users.html#sec-6_5"><span class="number">6.5</span>演習</a></li></ol></li><li class="chapter"><a href="/chapters/sign-up.html#top"><span class="number">第7章</span>ユーザー登録</a></li><li><ol><li class="section"><a href="/chapters/sign-up.html#sec-showing_users"><span class="number">7.1</span>ユーザーを表示する</a></li><li><ol><li class="subsection"><a href="/chapters/sign-up.html#sec-rails_environments"><span class="number">7.1.1</span>デバッグとRails環境</a></li><li class="subsection"><a href="/chapters/sign-up.html#sec-a_users_resource"><span class="number">7.1.2</span>ユーザーリソース</a></li><li class="subsection"><a href="/chapters/sign-up.html#sec-tests_with_factories"><span class="number">7.1.3</span>ファクトリーを使用してユーザー表示ページをテストする</a></li><li class="subsection"><a href="/chapters/sign-up.html#sec-a_gravatar_image"><span class="number">7.1.4</span>gravatar画像とサイドバー</a></li></ol></li><li class="section"><a href="/chapters/sign-up.html#sec-signup_form"><span class="number">7.2</span>ユーザー登録フォーム</a></li><li><ol><li class="subsection"><a href="/chapters/sign-up.html#sec-tests_for_user_signup"><span class="number">7.2.1</span>ユーザー登録のためのテスト</a></li><li class="subsection"><a href="/chapters/sign-up.html#sec-using_form_for"><span class="number">7.2.2</span><tt>form_for</tt>を使用する</a></li><li class="subsection"><a href="/chapters/sign-up.html#sec-the_form_html"><span class="number">7.2.3</span>フォームHTML</a></li></ol></li><li class="section"><a href="/chapters/sign-up.html#sec-signup_failure"><span class="number">7.3</span>ユーザー登録失敗</a></li><li><ol><li class="subsection"><a href="/chapters/sign-up.html#sec-a_working_form"><span class="number">7.3.1</span>正しいフォーム</a></li><li class="subsection"><a href="/chapters/sign-up.html#sec-signup_error_messages"><span class="number">7.3.2</span>ユーザー登録のエラーメッセージ</a></li></ol></li><li class="section"><a href="/chapters/sign-up.html#sec-signup_success"><span class="number">7.4</span>ユーザー登録成功</a></li><li><ol><li class="subsection"><a href="/chapters/sign-up.html#sec-the_finished_signup_form"><span class="number">7.4.1</span>登録フォームの完成</a></li><li class="subsection"><a href="/chapters/sign-up.html#sec-the_flash"><span class="number">7.4.2</span>flash</a></li><li class="subsection"><a href="/chapters/sign-up.html#sec-the_first_signup"><span class="number">7.4.3</span>実際のユーザー登録</a></li><li class="subsection"><a href="/chapters/sign-up.html#sec-deploying_to_production_with_ssl"><span class="number">7.4.4</span> SSLを導入してプロダクション環境を展開する</a></li></ol></li><li class="section"><a href="/chapters/sign-up.html#sec-7_5"><span class="number">7.5</span>最後に</a></li><li class="section"><a href="/chapters/sign-up.html#sec-signup_exercises"><span class="number">7.6</span>演習</a></li></ol></li><li class="chapter"><a href="/chapters/sign-in-sign-out.html#top"><span class="number">第8章</span>サインイン、サインアウト</a></li><li><ol><li class="section"><a href="/chapters/sign-in-sign-out.html#sec-signin_failure"><span class="number">8.1</span>セッション、サインインの失敗</a></li><li><ol><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-sessions_controller"><span class="number">8.1.1</span>Sessionコントローラ</a></li><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-signin_tests"><span class="number">8.1.2</span>サインインをテストする</a></li><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-signin_form"><span class="number">8.1.3</span>サインインのフォーム</a></li><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-reviewing_form_submission"><span class="number">8.1.4</span>確認フォームを送信する</a></li><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-rendering_with_a_flash_message"><span class="number">8.1.5</span>フラッシュメッセージをレンダリングする</a></li></ol></li><li class="section"><a href="/chapters/sign-in-sign-out.html#sec-signin_success"><span class="number">8.2、</span>サインイン成功</a></li><li><ol><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-remember_me"><span class="number">8.2.1</span>[このアカウント設定を保存する]</a></li><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-a_working_sign_in_method"><span class="number">8.2.2</span>正しい<tt>sign_in</tt>メソッド</a></li><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-current_user"><span class="number">8.2.3</span>現在のユーザー</a></li><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-changing_the_layout_links"><span class="number">8.2.4</span>レイアウトリンクを変更する</a></li><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-signin_upon_signup"><span class="number">8.2.5</span>ユーザー登録と同時にサインインする</a></li><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-signing_out"><span class="number">8.2.6</span>サインアウトする</a></li></ol></li><li class="section"><a href="/chapters/sign-in-sign-out.html#sec-cucumber"><span class="number">8.3</span>Cucumberの紹介(オプション)</a></li><li><ol><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-installation_and_setup"><span class="number">8.3.1</span>インストールと設定</a></li><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-features_and_steps"><span class="number">8.3.2</span>機能と手順</a></li><li class="subsection"><a href="/chapters/sign-in-sign-out.html#sec-rspec_custom_matchers"><span class="number">8.3.3</span>対比: RSpecのカスタムマッチャー</a></li></ol></li><li class="section"><a href="/chapters/sign-in-sign-out.html#sec-8_4"><span class="number">8.4</span>最後に</a></li><li class="section"><a href="/chapters/sign-in-sign-out.html#sec-sign_in_out_exercises"><span class="number">8.5</span>演習</a></li></ol></li><li class="chapter"><a href="/chapters/updating-showing-and-deleting-users.html#top"><span class="number">第9章</span> ユーザーの更新・表示・削除</a></li><li><ol><li class="section"><a href="/chapters/updating-showing-and-deleting-users.html#sec-updating_users"><span class="number">9.1</span>ユーザーを更新する</a></li><li><ol><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-edit_form"><span class="number">9.1.1</span>編集フォーム</a></li><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-unsuccessful_edits"><span class="number">9.1.2</span>編集の失敗</a></li><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-successful_edits"><span class="number">9.1.3</span>編集の成功</a></li></ol></li><li class="section"><a href="/chapters/updating-showing-and-deleting-users.html#sec-authorization"><span class="number">9.2</span>認証</a></li><li><ol><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-requiring_signed_in_users"><span class="number">9.2.1</span>ユーザーのサインインを要求する</a></li><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-requiring_the_right_user"><span class="number">9.2.2</span>正しいユーザーを要求する</a></li><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-friendly_forwarding"><span class="number">9.2.3</span>フレンドリーフォワーディング</a></li></ol></li><li class="section"><a href="/chapters/updating-showing-and-deleting-users.html#sec-showing_all_users"><span class="number">9.3</span>すべてのユーザーを表示する</a></li><li><ol><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-user_index"><span class="number">9.3.1</span>ユーザーインデックス</a></li><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-sample_users"><span class="number">9.3.2</span>サンプルのユーザー</a></li><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-pagination"><span class="number">9.3.3</span>ページネーション</a></li><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-partial_refactoring"><span class="number">9.3.4</span>部分的リファクタリング</a></li></ol></li><li class="section"><a href="/chapters/updating-showing-and-deleting-users.html#sec-destroying_users"><span class="number">9.4</span>ユーザを削除する</a></li><li><ol><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-administrative_users"><span class="number">9.4.1</span>管理ユーザー</a></li><li><ol><li class="subsubsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-revisiting_attr_accessible"><tt>attr_accessible</tt>属性再び</a></li></ol></li><li class="subsection"><a href="/chapters/updating-showing-and-deleting-users.html#sec-the_destroy_action"><span class="number">9.4.2</span> <tt>destroy</tt>アクション</a></li></ol></li><li class="section"><a href="/chapters/updating-showing-and-deleting-users.html#sec-updating_and_deleting_users_conclusion"><span class="number">9.5</span>最後に</a></li><li class="section"><a href="/chapters/updating-showing-and-deleting-users.html#sec-updating_deleting_exercises"><span class="number">9.6</span>演習</a></li></ol></li><li class="chapter"><a href="/chapters/user-microposts.html#top"><span class="number">第10章</span>ユーザーのマイクロポスト</a></li><li><ol><li class="section"><a href="/chapters/user-microposts.html#sec-a_micropost_model"><span class="number">10.1</span>マイクロポストのモデル</a></li><li><ol><li class="subsection"><a href="/chapters/user-microposts.html#sec-the_basic_model"><span class="number">10.1.1</span>基本的なモデル</a></li><li class="subsection"><a href="/chapters/user-microposts.html#sec-accessible_attribute"><span class="number">10.1.2</span>Accessible属性と最初の検証</a></li><li class="subsection"><a href="/chapters/user-microposts.html#sec-user_micropost_associations"><span class="number">10.1.3</span>User/Micropostの関連付け</a></li><li class="subsection"><a href="/chapters/user-microposts.html#sec-ordering_and_dependency"><span class="number">10.1.4</span>マイクロポストを改良する</a></li><li><ol><li class="subsubsection"><a href="/chapters/user-microposts.html#sec-default_scope">デフォルトのスコープ</a></li><li class="subsubsection"><a href="/chapters/user-microposts.html#sec-dependent_destroy">Dependent: destroy</a></li></ol></li><li class="subsection"><a href="/chapters/user-microposts.html#sec-micropost_validations"><span class="number">10.1.5</span>コンテンツの検証</a></li></ol></li><li class="section"><a href="/chapters/user-microposts.html#sec-showing_microposts"><span class="number">10.2</span>マイクロポストを表示する</a></li><li><ol><li class="subsection"><a href="/chapters/user-microposts.html#sec-augmenting_the_user_show_page"><span class="number">10.2.1</span>ユーザー表示ページの拡張</a></li><li class="subsection"><a href="/chapters/user-microposts.html#sec-sample_microposts"><span class="number">10.2.2</span>マイクロポストのサンプル</a></li></ol></li><li class="section"><a href="/chapters/user-microposts.html#sec-manipulating_microposts"><span class="number">10.3</span>マイクロポストを操作する</a></li><li><ol><li class="subsection"><a href="/chapters/user-microposts.html#sec-access_control"><span class="number">10.3.1</span>アクセス制御</a></li><li class="subsection"><a href="/chapters/user-microposts.html#sec-creating_microposts"><span class="number">10.3.2</span>マイクロポストを作成する</a></li><li class="subsection"><a href="/chapters/user-microposts.html#sec-a_proto_feed"><span class="number">10.3.3</span>フィードの原型</a></li><li class="subsection"><a href="/chapters/user-microposts.html#sec-destroying_microposts"><span class="number">10.3.4</span>マイクロポストを削除する</a></li></ol></li><li class="section"><a href="/chapters/user-microposts.html#sec-10_4"><span class="number">10.4</span>最後に</a></li><li class="section"><a href="/chapters/user-microposts.html#sec-micropost_exercises"><span class="number">10.5</span>演習</a></li></ol></li><li class="chapter"><a href="/chapters/following-users.html#top"><span class="number">第11章</span>ユーザーをフォローする</a></li><li><ol><li class="section"><a href="/chapters/following-users.html#sec-the_relationship_model"><span class="number">11.1</span>Relationshipのモデル</a></li><li><ol><li class="subsection"><a href="/chapters/following-users.html#sec-a_problem_with_the_data_model"><span class="number">11.1.1</span>データモデルの問題 (および解決策)</a></li><li class="subsection"><a href="/chapters/following-users.html#sec-relationship_user_associations"><span class="number">11.1.2</span>User/relationshipの関連付け</a></li><li class="subsection"><a href="/chapters/following-users.html#sec-relationship_validations"><span class="number">11.1.3</span>検証</a></li><li class="subsection"><a href="/chapters/following-users.html#sec-following"><span class="number">11.1.4</span>フォローしているユーザー</a></li><li class="subsection"><a href="/chapters/following-users.html#sec-followers"><span class="number">11.1.5</span>フォローされているユーザー</a></li></ol></li><li class="section"><a href="/chapters/following-users.html#sec-a_web_interface_for_following_and_followers"><span class="number">11.2</span>フォローしているユーザー用のWebインターフェイス</a></li><li><ol><li class="subsection"><a href="/chapters/following-users.html#sec-sample_following_data"><span class="number">11.2.1</span>フォローしているユーザーのサンプルデータ</a></li><li class="subsection"><a href="/chapters/following-users.html#sec-stats_and_a_follow_form"><span class="number">11.2.2</span>統計とフォロー用フォーム</a></li><li class="subsection"><a href="/chapters/following-users.html#sec-following_and_followers_pages"><span class="number">11.2.3</span>「フォローしている」と「フォローされている」のページ</a></li><li class="subsection"><a href="/chapters/following-users.html#sec-a_working_follow_button_the_standard_way"><span class="number">11.2.4</span>[フォローする] ボタン (標準的な方法)</a></li><li class="subsection"><a href="/chapters/following-users.html#sec-a_working_follow_button_with_ajax"><span class="number">11.2.5</span>[フォローする] ボタン (Ajax)</a></li></ol></li><li class="section"><a href="/chapters/following-users.html#sec-the_status_feed"><span class="number">11.3</span>ステータスフィード</a></li><li><ol><li class="subsection"><a href="/chapters/following-users.html#sec-motivation_and_strategy"><span class="number">11.3.1</span>動機と計画</a></li><li class="subsection"><a href="/chapters/following-users.html#sec-a_first_feed_implementation"><span class="number">11.3.2</span>フィードを初めて実装する</a></li><li class="subsection"><a href="/chapters/following-users.html#sec-scopes_subselects_and_a_lambda"><span class="number">11.3.3</span>サブセレクト</a></li><li class="subsection"><a href="/chapters/following-users.html#sec-the_new_status_feed"><span class="number">11.3.4</span>新しいステータスフィード</a></li></ol></li><li class="section"><a href="/chapters/following-users.html#sec-following_conclusion"><span class="number">11.4</span>最後に</a></li><li><ol><li class="subsection"><a href="/chapters/following-users.html#sec-extensions_to_the_sample_application"><span class="number">11.4.1</span>サンプルアプリケーションの機能を拡張する</a></li><li><ol><li class="subsubsection"><a href="/chapters/following-users.html#sec-replies">返信機能</a></li><li class="subsubsection"><a href="/chapters/following-users.html#sec-messaging">メッセージ機能</a></li><li class="subsubsection"><a href="/chapters/following-users.html#sec-follower_notifications">フォロワーの通知</a></li><li class="subsubsection"><a href="/chapters/following-users.html#sec-password_reminders">パスワードリマインダー</a></li><li class="subsubsection"><a href="/chapters/following-users.html#sec-signup_confirmation">ユーザー登録の確認</a></li><li class="subsubsection"><a href="/chapters/following-users.html#sec-rss_feed">RSSフィード</a></li><li class="subsubsection"><a href="/chapters/following-users.html#sec-rest_api">REST API</a></li><li class="subsubsection"><a href="/chapters/following-users.html#sec-search">検索機能</a></li></ol></li><li class="subsection"><a href="/chapters/following-users.html#sec-guide_to_further_resources"><span class="number">11.4.2</span>読み物ガイド</a></li></ol></li><li class="section"><a href="/chapters/following-users.html#sec-following_exercises"><span class="number">11.5</span>演習</a></li></ol></li></ol></div>
+
+
+<div id="main_content"></div>
+
+
+<p> <span class="preamble">
+</span><span class="preamble"> <span id="foreword">
+</span></span><span class="preamble"><span id="foreword"><strong>前書き</strong> </span></span><br /><span class="preamble"><span id="foreword">
+</span></span><span class="preamble"><span id="foreword"> </span>
+</span><span class="preamble"> </span></p>
+
+<p>私が前にいた会社 (CD Baby) は、かなり早い段階でRuby on Railsに乗り換えたのですが、またPHPに戻ってしまいました (詳細は私の名前をGoogleで検索してみて下さい)。Michael Hartl氏が書いたこの本を強く勧められ、これはやってみなければ、と試した結果、私が再びRailsに乗り換えるに至ったのがこの<em>Ruby on Railsチュートリアル</em>です。</p>
+
+<p>私は多数のRails本を参考にしてきましたが、真の決定版と呼べるものは本書をおいて他にありません。本書ではあらゆる手順が文字通りRails流 (“Rails way”は railway にかけている) で行われており、最初はなかなか慣れませんでしたが、この本を終えた今、ついにこれこそが自然な方式だと感じられるまでになりました。また、本書はRails本の中で唯一、多くのプロが推奨するテスト駆動開発 (TDD: Test Driven Development) 方式を全編を通して実践していて、非常に分かりやすく解説されています。極めつけは、Git、GitHub、そしてHerokuまでも実例に含めた事で、チュートリアルのコード例など実際のプロジェクトの開発プロセスまでも体験できるようになっていることです。チュートリアルのコード例は、どれもチュートリアルと見事に一体化しています。</p>
+
+<p>本書は全体が筋道だったストーリーに貫かれており、非常に素晴らしいものです。私自身、3日間かけて章の終わりにある練習問題もやりながら<em>Railsチュートリアル</em>を一気に読破しました。最初から最後まで、途中を飛ばさずにやるのが一番効果的で有益な読み方です。ぜひやってみて下さい。</p>
+
+<p>是非お試しください。</p>
+
+<p><a href="http://sivers.org/">デレック・シバーズ (Derek Sivers)</a> (<a href="http://sivers.org/">sivers.org</a>)<br />
+<em>元: <a href="http://www.cdbaby.com/"><em>CD Baby</em></a> (創始者)</em> <br />
+<em>現在: <a href="http://thoughts.pro/"><em>Thoughts Ltd.</em></a> (創始者) </em> <br /></p>
+
+<p> <span class="preamble">
+</span><span class="preamble"><strong>謝辞</strong> </span><br /><span class="preamble">
+</span><span class="preamble"> </span></p>
+
+<p><em>Ruby on Rails チュートリアル</em>は、私の以前の著書<em>RailsSpace</em>と、その時の共著者の<a href="http://aure.com/">Aurelius Prochazka</a>に多くを負っています。Aureには、RailsSpaceでの協力と本書への支援も含め、感謝したいと思います。また、<em>RailsSpace</em>と<em>Rails チュートリアル</em>両方の編集を担当して頂いたDebra Williams Cauley氏にも謝意を表したく思います。</p>
+
+<p>私にインスピレーションと知識を与えてくれたRubyistの方々にも感謝したいと思います:David Heinemeier Hansson、 Yehuda Katz、 Carl Lerche、 Jeremy Kemper、 Xavier Noria、 Ryan Bates、 Geoffrey Grosenbach、 Peter Cooper、 Matt Aimonetti、 Gregg Pollack、 Wayne E. Seguin、 Amy Hoy、 Dave Chelimsky、 Pat Maddox、 Tom Preston-Werner、 Chris Wanstrath、 Chad Fowler、 Josh Susser、 Obie Fernandez、 Ian McFarland、 Steven Bristol、 Pratik Naik、 Sarah Mei、 Sarah Allen、 Wolfram Arnold、 Alex Chaffee、 Giles Bowkett、 Evan Dorn、 Long Nguyen、 James Lindenbaum、 Adam Wiggins、 Tikhon Bernstam、 Ron Evans、 Wyatt Greene、 Miles Forrest、 Pivotal Labsの方々、 Herokuの方々、 thoughtbotの方々、 そしてGitHubチーム。最後に、ここに書ききれないほど多くの読者の方々から執筆中にバグ報告や提案を頂き、本書をできる限り良いものにするのに大変役立ちました。<br /></p>
+
+<p> <span class="preamble">
+</span><span class="preamble"> <span id="author">
+</span></span><span class="preamble"><span id="author"><strong>著者</strong> </span></span><br /><span class="preamble"><span id="author">
+</span></span><span class="preamble"><span id="author"> </span>
+</span><span class="preamble"> </span></p>
+
+<p><a href="http://michaelhartl.com/">マイケル・ハートル (Michael Hartl) </a>は、<a href="http://rubyonrails.org/">Ruby on Rails</a>を使用したweb開発を手ほどきする教材として有名な <a href="http://ruby.railstutorial.org/"><em>Ruby on Rails チュートリアル</em></a>の著者です。(今ではすっかり古くなってしまいましたが) Railsのチュートリアル本である<em>RailsSpace</em>の著述と開発に携わったことがあり、 一時人気を博したRuby on RailsベースのソーシャルネットワーキングプラットフォームInsoshiも開発していました。2011年、マイケルはRailsコミュニティへの貢献が認められて<a href="http://rubyheroes.com/heroes">Ruby Hero Award</a>を受賞しました。<a href="http://college.harvard.edu/">ハーバード大学</a>卒業後 、<a href="http://www.caltech.edu/">カリフォルニア工科大学</a>で<a href="http://resolver.caltech.edu/CaltechETD:etd-05222003-161626">物理学博士号</a>を取得し、起業プログラム<a href="http://ycombinator.com/">Y Combinator</a>の卒業生でもあります。<br /></p>
+
+<p> <span id="license" class="preamble">
+</span><span id="license" class="preamble"><strong>著作権とライセンス</strong> </span><br /><span id="license" class="preamble">
+</span><span id="license" class="preamble"> </span></p>
+
+<p><em>Ruby on Rails チュートリアル: 実例を使ってRailsを学ぼう</em>Copyright © 2010 by Michael Hartl.<em>Ruby on Rails チュートリアル</em>内のすべてのソースコードは<a href="http://www.opensource.org/licenses/mit-license.php">MITライセンス</a>および<a href="http://people.freebsd.org/~phk/">Beerwareライセンス</a> の元で提供されています。</p>
+
+<div class="code"><div class="highlight"><pre>(The MIT License)
+Copyright (c) 2012 Michael Hartl
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY, </br>WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISINGOUT OF OR </br>IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.</pre></div>
+</div>
+
+
+<div class="code"><div class="highlight"><pre>/ *
+ * ----------------------------------------------------------------------------
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 42):
+ * Michael Hartl wrote this code.As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.
+ * ----------------------------------------------------------------------------
+ */</pre></div>
+</div>
+
+
+<div id="top"></div>
+
+
+<h1 class="chapter"><a id="sec-1" href="/chapters/beginning.html#top" class="heading"><span class="number">第1章</span> ゼロから本番展開まで</a></h1>
+
+
+<p><a href="http://ruby.railstutorial.org/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。この本の目的は、「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったウェブ開発を学びたいんだけど、どこから始めればいいの？」という質問に答えることです。<em>本書</em>を読み終わる頃には、あなたは自作のカスタムWebアプリケーションを開発し、展開 (deploy) するための知識をすべて得られるはずです。また、Railsの「教育エコシステム」なるものに含まれる、さらに高度な本、ブログ、スクリーンキャストなどの恩恵を受けるのにふさわしい実力を身につけられます。<em>Ruby on Rails チュートリアル</em>はRails 3を使用しているため、ここで学んだ内容はRailsの最新バージョンに完全に対応しています。(最新の<em>Ruby on Railsチュートリアル</em>については、この本が掲載されている<a href="http://railstutorial.org/">http://railstutorial.org/</a>を参照してください。本書をオフラインで読んでいる方は、<a href="http://railstutorial.org/book">http://railstutorial.org/book</a>で<a href="http://railstutorial.org/book">オンライン版Rails Tutorial book</a>で最新版を確認してください。</p>
+
+<p>本書の目的は、単にRailsを教えることでは<em>ありません</em>。そうではなく、<em>Railsを使用したWeb開発</em>を教える、すなわちWorld Wide Web用ソフトウェアを開発できるスキルを獲得(または強化)できるようにすることが目的です。Ruby on Railsのみならず、HTML &amp; CSS、データベース、バージョン管理、テスティング、展開のためのスキルセットも本書の対象となります。この目的達成のため、<em>Ruby on Railsチュートリアル</em>では統合的なアプローチを採用しています。つまり、実際に動作するサンプルアプリケーションを一から作成するという例題をこなすことによってRailsを習得します。<a href="http://sivers.org"></a>Siversが前書きで述べたとおり、本書は一貫した直線的なストーリーを持つように構成されており、最初から最後まで飛ばさずに読むことを前提としています。技術書を飛ばし読み/つまみ食いするのが習慣になっている方にとっては、本書のような直線的なアプローチを行うために多少頭の切り替えが必要になるかもしれませんが、その価値は十分にあります。ぜひトライしてみてください。<em>Ruby on Railsチュートリアル</em>をTVゲームにたとえれば、あなたは主人公であり、1章ごとにRails開発者としてレベルアップして行くとお考えください (演習は<a href="http://en.wikipedia.org/wiki/Boss_(video_gaming)#Miniboss">中ボス</a>です)。</p>
+
+<p>この第1章では、必要なソフトウェアをインストールし、開発環境(<a class="ref" href="/chapters/beginning.html#sec-up_and_running">1.2</a>)を整えてRuby on Railsの準備をします。続いて、<code>first_app</code> という最初のRailsアプリの作成に着手します。<em>Railsチュートリアル</em>ではソフトウェア開発のベストプラクティスを重要視しているので、新しいRailsプロジェクトを作成後、ただちにGit(<a class="ref" href="/chapters/beginning.html#sec-version_control">1.3</a>)を使用してバージョン管理下に置きます。そして何と、この章ではプロダクション環境(<a class="ref" href="/chapters/beginning.html#sec-deploying">1.4</a>)に<em>展開</em>して一般公開するところまで行います。</p>
+
+<p><a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/chapters/beginning.html#sidebar-scaffolding">囲み1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/chapters/beginning.html#fn-1_1">1</a></sup>と呼ばれることもあります)を通してデモアプリを使ってみます。</p>
+
+<p>第3章以降では、<em>サンプルアプリケーション</em> (<code>sample_app</code>と呼びます) を作成します。このアプリはTDD(<em>テスト駆動開発</em> で開発し、<a class="ref" href="/chapters/static-pages.html#top">第3章</a>で静的ページ(と少しの動的コンテンツ)を追加する事から始めます。<a class="ref" href="/chapters/rails-flavored-ruby.html#top">第4章</a> では少し回り道をし、Railsを動かしているRuby言語について簡単に学びます。<a class="ref" href="/chapters/filling-in-the-layout.html#top">第5章</a>から<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#top">第9章</a>ではレイアウト、ユーザーのデータモデル、そしてユーザー登録・認証システムを作りサンプルアプリの基礎を完成させます。最後に<a class="ref" href="/chapters/user-microposts.html#top">第10章</a>と<a class="ref" href="/chapters/following-users.html#top">第11章</a>ではマイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
+
+<p>最終的なサンプルアプリは、元々は同じRailsで書かれていたある<a href="http://twitter.com/">ソーシャルマイクロブログサイト</a>にとてもよく似た仕上がりになります。もちろん、私たちはこのサンプルアプリを中心に開発を進めて行きますが、<em>Rails チュートリアル</em>では今後Webアプリケーションを作成する時に、どのようなアプリケーションであっても通用する基礎を築きます。</p>
+
+<div class="label" id="sidebar-scaffolding"></div>
+
+
+<div class="sidebar"><span class="title"><span class="header">囲み1.1</span></span><span class="title"><span class="description">早くて簡単なScaffoldの甘い誘惑</span></span>
+<p>Railsの作者David Heinemer Hansson氏による有名な「<a href="http://www.youtube.com/watch?v=Gzj723LkRJY">15分で作るブログ</a>」ビデオ (現在はRyan Bates氏による「Rails 2による15分で作るブログ」に更新されています) などを見ていただければわかるように、Railsは当初から刺激的なフレームワークです。これらのビデオはRailsのパワーを目の当たりにするには最適で、是非視聴する事をお勧めします。しかし、これらのビデオでは15分でブログを作るという離れ業を、<em>scaffold</em>という機能を利用して成し遂げています。このscaffoldという機能は、Railsの<code>generate</code>コマンドによる<em>自動生成コード</em>に強く依存します。</p>
+
+<p>Ruby on Railsのチュートリアルを書いていて、<a href="http://en.wikipedia.org/wiki/Dark_side_(Star_Wars)">あまりにも素早く簡単にコードが生成できる</a>scaffoldの機能を私もついあてにしてしまいそうになります。しかし、生成されたコードの複雑さとその量の多さに、初心者は圧倒されてしまうことでしょう。動くには動くのですが、ソースコードを見ても何がなんだか理解できないことでしょう。scaffoldのコード自動生成に頼ると、スクリプト作成の達人にはなるかもしれませんが、Rails自体の知識はほとんど身に付きません。</p>
+
+<p><em>Ruby on Rails</em> チュートリアルでは、ほぼ逆のアプローチで開発を行います。scaffoldは<a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>での簡単なデモアプリ作成に使用しますが、<em>このチュートリアル</em>の中核は<a class="ref" href="/chapters/static-pages.html#top">第3章</a>から作成するサンプルアプリケーションです。開発の段階ごとに、手頃な<em>一口サイズ</em>のコードを書いてもらいます。この一口サイズコードは、無理なく理解できる程度にシンプルで、かつある程度の歯ごたえとやりがいを得られるように配慮してあります。最終的には、どんなWebアプリを作成する時にも役立つ、より深く柔軟なRailsの知識を身につけられるようになっています。</p>
+</div>
+
+
+
+
+<div class="label" id="sec-introduction"></div>
+
+
+<h2><a id="sec-1_1" href="/chapters/beginning.html#sec-introduction" class="heading"><span class="number">1.1</span>はじめに</a></h2>
+
+
+<p>2004年にデビューしてからというもの、Ruby on Railsは動的Webアプリケーションを開発するための最も有力な、そして人気のあるフレームワーク (土台) の１つに成長しました。ほんの小さな会社から巨大企業までがRailsを使っています: <a href="http://37signals.com/">37signals</a>、<a href="http://github.com/">GitHub</a>、<a href="http://shopify.com/">Shopify</a>、<a href="http://scribd.com/">Scribd</a>、<a href="http://twitter.com/">Twitter</a>、<a href="http://livingsocial.com/">LivingSocial</a>、<a href="http://groupon.com/">Groupon</a>、<a href="http://hulu.com/">Hulu</a>、<a href="http://yellowpages.com/">Yellow Pages</a>など、<a href="http://rubyonrails.org/applications">Ruby on Railsを使っているサイトのリスト</a>は増える一方です。<a href="http://entp.com/">ENTP</a>、<a href="http://thoughtbot.com/">thoughtbot</a>、<a href="http://pivotallabs.com/">Pivotal Labs</a>、<a href="http://hashrocket.com/">Hashrocket</a>、そして無数のコンサルタント、インストラクターなど、Railsを専門に扱う開発者も多く存在します。</p>
+
+<p>Railsのどこがそんなに凄いのでしょうか?第一に、Railsは100%オープンソースで、制限の緩い<a href="http://www.opensource.org/licenses/mit-license.php">MITライセンス</a>で公開されているので、ダウンロードも使用も無料であるという点です。Railsがこれほどまでに成功をおさめ、優美でコンパクトなコードを記述できるのは、背後でフレームワークを動かしている<a href="http://ruby-lang.org/">Ruby</a>という言語の柔軟性を利用してWebアプリケーション作成に特化した<a href="http://en.wikipedia.org/wiki/Domain_Specific_Language">DSL (ドメイン固有言語)</a> を実装しているからです。このため、HTMLの生成、データモデルの作成、そしてURLの転送など、Webプログラミングで必要な多くの作業が簡単になり、アプリケーションコードが読みやすく、短く収まります。</p>
+
+<p>第二に、Railsは、Webテクノロジーやフレームワークデザインの進歩に素早く適応します。たとえば、RailsはWebアプリケーション構築の際に使用されるRESTアーキテクチャをいち早く完全に実装したフレームワークの１つです (RESTについてはこのチュートリアルで後々解説していきます)。また、Railsの作成者である<a href="http://loudthinking.com/">David Heinemeier Hansson</a>をはじめとする<a href="http://rubyonrails.org/core">Railsのコアチーム</a>は、ためらうことなく他のフレームワークの有用な機能をどしどし取り入れます。RailsとMerbの合流はその一例です。結果としてRailsは、Merbのモジュール化されたデザインと安定した <a href="http://en.wikipedia.org/wiki/Application_programming_interface">API</a>の恩恵を受ける事ができました。</p>
+
+<p>最後に、Railsコミュニティは非常に熱心で様々な経歴の開発者の集まりです。結果、何百人ものオープンソース<a href="http://contributors.rubyonrails.org/">コントリビュータ</a>たち、多くの参加者で賑わう各種<a href="http://railsconf.com/">カンファレンス</a>、多様多種な<a href="http://agilewebdevelopment.com/plugins">プラグイン</a>、ページネーションや画像アップロードなど特定の作業を行うためのおびただしい<a href="https://rubygems.org/">gem</a> 、情報豊かな多数のブログ、そしてフォーラムや掲示板、チャットルームなどが存在します。数多くのRailsプログラマのおかげで、ほとんどのアプリケーションエラーはGoogle検索をするだけで、関連するブログポストや掲示板のスレッドを見つけることができます。</p>
+
+<div class="label" id="sec-comments_for_various_readers"></div>
+
+
+<h3><a id="sec-1_1_1" href="/chapters/beginning.html#sec-comments_for_various_readers" class="heading"><span class="number">1.1.1</span> 読者の皆さまへのコメント</a></h3>
+
+
+<p><em>Rails チュートリアル</em>にはRailsだけではなく、Ruby言語、<a href="http://en.wikipedia.org/wiki/HTML">HTML</a>、<a href="http://en.wikipedia.org/wiki/CSS">CSS</a>、若干の<a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a>、そしてさらにわずかの<a href="http://en.wikipedia.org/wiki/SQL">SQL</a>のためのチュートリアルを含んでいます。あなたの現時点のWeb開発の知識量にかかわらず、このチュートリアルを読み終える頃には、高度な情報源を難なく読みこなし、各トピックをさらにシステマチックに取り扱えるほどの実力が付く内容になっています。これは、本書で扱われているマテリアルが<em>極めて膨大である</em>ということでもあります。コンピュータのプログラミング経験があまりない人にとっては、その情報量に圧倒されることがあるかもしれません。読者の経験や知識に応じて<em>Railsチュートリアル</em>を習得するためのアドバイスを以下に用意しました。ぜひ参考にしてください。<br /></p>
+
+<p><strong>すべての読者へ: </strong>私が良く聞かれる質問の１つが、「Railsを覚える前にRubyを勉強しておいた方がいいでしょうか」です。答えは「あなた自身の学習スタイルとプログラミング経験によります」です。最初からすべてを体系的に学びたい、またはプログラミングの経験がまったくない場合には、おそらくRubyを最初に学んでおくのがよいでしょう。Rubyを学ぶのであれば、Peter Cooper「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」(邦訳は現時点ではなし) がお勧めです。一方、Rails開発初心者の多くは<em>Webアプリケーション</em>の作成にたちまち夢中になり、たった1つのWebページを作成するために500ページものRuby本を読み通す気にはなれないでしょう。このような方には、対話的に Rubyを学習できるWebサービス<a href="http://tryruby.org/">Try Ruby</a><sup class="footnote" id="fnref-1_2"><a href="/chapters/beginning.html#fn-1_2">2</a></sup>でRubyを大まかに理解し、必要に応じて<a href="http://railsforzombies.org/">Rails for Zombies</a><sup class="footnote" id="fnref-1_3"><a href="/chapters/beginning.html#fn-1_3">3</a></sup>でRailsでどんなことができるかを学んでおくことをお勧めします (いずれも日本語版はなし)。</p>
+
+<p>もう１つよく聞かれる質問で「最初からテストしていいのか？」というのがあります。「はじめに」で述べたように、<em>Rails チュートリアル</em>では最初からテスト駆動開発 (TDD) を採用しています。これは私からみてRailsアプリケーションを開発するのに最適な方法ですが、その分かなり複雑になり、習得に時間もかかります。テストが面倒になったり、難しくて前に進めなくなった場合、思い切ってその箇所をスキップするか、テストはコード検証のためのツールと割りきって単に動かすだけにとどめ、理解は後回しにしてしまっても構いません。後者でいうテストとは、<em>spec</em>と呼ばれるテストファイルを作成し、そこにテストコードを本書で指示された<em>とおり</em>にコピペするということです。その後テストスイートを実行します。<a class="ref" href="/chapters/filling-in-the-layout.html#top">第5章</a>で実践しますが、最初はテストに失敗し、次にチュートリアルに従ってコードを書くと次のテストにはパスするようにシナリオが作られています。<br /></p>
+
+<p><strong>経験の浅いプログラマ: </strong> ご注意いただきたいのですが、<em>Railsチュートリアル</em>は、まったくのプログラミング初心者、Webアプリケーションの初心者を主な読者層としては想定していません。プログラミング言語やWebアプリケーションは、たとえどれほどシンプルなものであっても必ずある程度には複雑なものだからです。Webプログラミングについてまったくの初心者の方が、本書<em>Railsチュートリアル</em>が難しすぎると感じた場合は、まずHTMLとCSSの基礎を勉強してください。それから<em>Railsチュートリアル</em>に再度挑戦してください。(現時点でお勧めの学習教材を思いつかず恐縮ですが、HTMLの学習用として<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>はなかなかよさそうです。David Sawyer McFarlandの<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>を推薦してくれた読者もいます。)Peter Cooperの<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>の最初の数章をやってみるのもよいでしょう。同書のサンプルアプリケーションは本格的なWebアプリケーションに比べて非常に小さいので、比較的やりやすいと思います。実のところ、驚くほど多くのプログラミング初心者の皆様が本書でWeb開発を学ぼうとしているのです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。そうした方には、<a href="http://railstutorial.org/screencasts"><em>Rails Tutorial</em> screencast series</a><sup class="footnote" id="fnref-1_4"><a href="/chapters/beginning.html#fn-1_4">4</a></sup> (いずれも日本語版はなし) を特にお勧めします。このビデオチュートリアルは、Railsソフトウェア開発のベテランの作業を文字通り「肩越しに」学ぶことができます。<br /></p>
+
+<p><strong>ソフトウェア開発経験があり、Web開発を始めたい方: </strong> プログラミングの経験がある方でクラス、メソッド、データ構造などに馴染みがあるなら、その知識は有利に働くはずです。JavaやC/C++とRubyではかなり記述スタイルが違うので少し違和感を感じるかもしれませんが、すぐに慣れるはずです。(Rubyではセミコロン&#39;;&#39;も使えます) <em>Railsチュートリアル</em>はWeb特有の概念をほぼカバーしているので、<tt>PUT</tt>と<tt>POST</tt>の違いが分からなくても心配はいりません。<br /></p>
+
+<p><strong>Web開発の経験があり、Railsを始めたい方: </strong> PHPやPythonなど動的言語を使用した事があるなら、かなり楽に読めるかと思います。特にPythonの経験は有利です。基本的なコンセプトは聞いた事あるものばかりかもしれませんが、テスト駆動開発 (TDD) やRESTスタイルなどは多くの方にとって初耳かもしれません。Ruby特有のクセも、最初はとまどうかもしれませんが、チュートリアルを進めて行くうちに明らかになっていくと思います。<br /></p>
+
+<p><strong>Railsを使った事がないRubyプログラマの方: </strong>最近では多くのRubyプログラマがRailsを使用しているので、純粋にRubyのみを使っている方は少ないかと思いますが、経験豊富なRubyプログラマの方にはObie Fernandezの<a href="http://www.amazon.com/gp/product/0321601661"><em>The Rails 3 Way</em></a>をお勧めします。<br /></p>
+
+<p><strong>Rails開発者で経験の少ない方: </strong> もしかしたら既に他のチュートリアルを読んだり小規模なRailsアプリを組んだことがあるかもしれません。Rails開発者からも、本書から多くのことを学べたという声をたくさんいただいています。本書は、あなたがRailsを始めて使い始めた頃のチュートリアルよりも新しい情報がふんだんに盛り込まれており、きっと役に立つはずです。<br /></p>
+
+<p><strong>Rails開発者で経験豊富な方:</strong> 本書はあなたには必要ないかもしれませんが、Rails開発者の方からも本書が「意外と役に立った」との声をいただいているので、Railsを違う視点から見てみるのも楽しいかもしれません。<br /></p>
+
+<p><em>Ruby on Rails チュートリアル</em>を読み終えたら、(Ruby以外での) 開発経験のある方には、Rubyを一から覚えることができ、詳細な解説も載っているDavid A. Blackの<a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a>か、似たような内容で項目ごとに分かれているHal Fultonの<a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a>をお勧めします。その後は<a href="http://www.amazon.com/gp/product/0321601661"><em>The Rails 3 Way</em></a>でRailsの知識を深めると良いでしょう。<br /></p>
+
+<p>全部終わった頃には、より高レベルのRailsガイドや情報源を読めるようになっているはずです。私が特にお勧めしたいのは以下です:</p>
+
+<ul>
+
+<li><a href="http://railscasts.com/">RailsCasts</a> (Ryan Bates) : 質の高い、ほぼ無料のスクリーンキャスト集</li>
+<li><a href="http://peepcode.com/">PeepCode</a>: 質の高い商用スクリーンキャスト</li>
+<li><a href="http://www.codeschool.com/">Code School</a>: 対話的にプログラミングを学習できるコース</li>
+<li><a href="http://guides.rubyonrails.org/">Rails Guides</a>: テーマごとに分類された最新のRailsリファレンスです。</li>
+<li><a href="http://railscasts.com/">RailsCasts</a> (Ryan Bates): おや、さっきも <a href="http://railscasts.com/">RailsCasts</a>のことを書いたような気が。そのぐらい<a href="http://railscasts.com/"><em>RailsCasts</em></a>はお勧めです。</li>
+
+
+</ul>
+
+
+
+
+<h3><a id="sec-1_1_2" href="/chapters/beginning.html#sec-1_1_2" class="heading"><span class="number">1.1.2</span> Railsと「スケール」について</a></h3>
+
+
+<p>この節を続ける前に、Railsフレームワークにとって当初から「ネック」とされてきた事の１つが、多くのデータとユーザによって発生する通信量に対応するための「スケーリングの難しさ」です。ここで１つ言っておきます。ここで必要なのは<a href="http://idleprocess.wordpress.com/2009/11/24/presentation-summary-high-performance-at-massive-scale-lessons-learned-at-facebook/">フレームワークをスケールさせるのではなくて、<em>Webサイト自体</em>をスケールさせる</a>ことです。Railsは言うまでもなく素晴らしいものですが、結局はただのフレームワークです。すなわち、問題はRailsがスケールできるかどうかではなく、「スケールするアプリケーションをRailsで組む事ができるか」なのです。どっちにしろ世界で最もトラフィックの多いサイトがRailsを使用している今、答えはYESです。スケーリング<em>自体</em>はRailsだけの問題ではありませんが、もしあなたのアプリケーションがHuluやYellow Pages並のデータ量を扱わなければならなくなってもRailsは<em>あなたの</em>世界征服を止める事はないでしょう。</p>
+
+<div class="label" id="sec-conventions"></div>
+
+
+<h3><a id="sec-1_1_3" href="/chapters/beginning.html#sec-conventions" class="heading"><span class="number">1.1.3</span> この本における取り決め</a></h3>
+
+
+<p>本書における取り決め (コマンドやコードの記述法などの統一) はできるだけ分かりやすく選んだつもりです。ここでは分かりにくいかもしれない部分を解説しておきます。</p>
+
+<p><a href="http://railstutorial.org/book">HTML版</a>、<a href="http://railstutorial.org/">PDF版</a>ともに、文中には内部リンク (<a class="ref" href="/chapters/beginning.html#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロードページ</a>など) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="/chapters/beginning.html#fn-1_5">5</a></sup>。</p>
+
+<p>本書の出てくる例の多くはコマンドライン (ターミナル) のコマンドを使っています。簡素化のため、すべてのコマンドライン例は次のようにUnixスタイルの $ プロンプトを使っています。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;hello, world&quot;</span>
+<span class="go">&quot;hello world&quot;</span>
+</pre></div>
+</div>
+
+
+<p>Windowsユーザの方は、Windowsコマンドラインでは次のように <code>&gt;</code> プロンプトが使用されている事をご理解ください。</p>
+
+<div class="code"><div class="highlight"><pre><span class="go">C:\Sites&gt; echo &quot;hello, world&quot;</span>
+<span class="go">&quot;hello world&quot;</span>
+</pre></div>
+</div>
+
+
+<p>Unix上では、コマンドを入力する際<code>sudo</code> (他のユーザーの特権レベルでプログラムを実行するためのコマンド) を使わなければならない場合があります<sup class="footnote" id="fnref-1_6"><a href="/chapters/beginning.html#fn-1_6">6</a></sup>デフォルトで<code>sudo</code>コマンドで実行されたプログラムは、<a class="ref" href="/chapters/beginning.html#sec-rubygems">1.2.2</a>の例のように通常のユーザはアクセスできないファイルやディレクトリへのアクセス権を持つ「管理者権限」で実行されます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> sudo ruby setup.rb</pre></div>
+</div>
+
+
+<p><a class="ref" href="/chapters/beginning.html#sec-install_ruby">Section 1.2.2.3</a>で推奨されているRuby Version Manager (rvm)を導入していない場合、ほとんどのUnix/Linux/OS Xシステムでは<code>sudo</code>の実行が必要です。rvmを導入している場合は以下のように実行できます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby setup.rb</pre></div>
+</div>
+
+
+<p>Railsにはコマンドラインで実行できる多数のコマンドが付属しています。たとえば、<a class="ref" href="/chapters/beginning.html#sec-rails_server">1.2.5</a>にあるように以下のコマンドを使用して開発用WebサーバーをローカルPC上で実行することができます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="nv">$ </span>rails server</pre></div>
+</div>
+
+
+<p>コマンドラインのプロンプトと同じく、<em>Railsチュートリアル</em>ではディレクトリの区切りをUnix式にスラッシュ(<code>/</code>)で表記しています。たとえばサンプルアプリケーションの場所は以下になります。</p>
+
+<div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app</pre></div>
+</div>
+
+
+<p>Windowsでの同等のパスは以下になります。</p>
+
+<div class="code"><div class="highlight"><pre>C:\Sites\sample_app</pre></div>
+</div>
+
+
+<p>Railsで作成するアプリケーションのルートディレクトリを<em>Railsルート</em>と呼びます。この用語はやや間違えられやすいようで、多くの人がRailsルートを「Railsそのもののルート」だと勘違いします。この点を明確にするため、<em>Railsチュートリアル</em>ではRailsルートといえば<em>Railsで作成したアプリケーションのルート</em>を指すものとし、すべてのディレクトリはここを起点とした相対パスで示します。たとえば、サンプルアプリケーションの<code>config</code>ディレクトリは以下です。</p>
+
+<div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app/config</pre></div>
+</div>
+
+
+<p>この場合、このRailsアプリケーションのルートディレクトリは<code>config</code>の1つ上の階層であり、以下になります。</p>
+
+<div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app</pre></div>
+</div>
+
+
+<p>以下のようなディレクトリパスを簡潔に記述する場合、</p>
+
+<div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app/config/routes.rb</pre></div>
+</div>
+
+
+<p>本書ではアプリケーションのルートを省略して単に<code>config/routes.rb</code>と記載します。</p>
+
+<p><em>Railsチュートリアル</em>には、シェルコマンドやバージョン管理ソフトウェア、Rubyプログラムなどが出力するさまざまな結果が多数掲載されています。出力結果はコンピュータシステムによって微妙に異なるのが普通ですから、本書に掲載されている出力結果が実際の出力と正確に同じであるとは限りませんが、この点は問題ありません。</p>
+
+<p>システムの状態によっては、一部のコマンドを実行した時にエラーが発生することもあります。本書では、あらゆる場合を想定してエラー対策を事細かに記載するような<a href="http://en.wikipedia.org/wiki/Sisyphus">面倒なこと</a>はしていません。代わりに、エラーメッセージを素直にGoogleで検索してください。これは実際のソフトウェア開発にも効果的なテクニックです。本書のチュートリアル実行中に何か問題が生じたら、<a href="http://railstutorial.org/help">RailsチュートリアルのHelpページ</a>に記載されているリソースに当たってみてください<sup class="footnote" id="fnref-1_7"><a href="/chapters/beginning.html#fn-1_7">7</a></sup>。</p>
+
+<div class="label" id="sec-up_and_running"></div>
+
+
+<h2><a id="sec-1_2" href="/chapters/beginning.html#sec-up_and_running" class="heading"><span class="number">1.2</span> さっそく動作させる</a></h2>
+
+
+
+
+<blockquote><p>本書の第1章は、さしずめロースクールで言うところの「草むしり期間」(=選別期間) のようなものです。ここで開発環境の構築に成功できた人ならば、最後までやり通すのは難しくありません。<br /> —Bob Cavezza (<em>Railsチュートリアル</em>読者)</p>
+</blockquote>
+
+
+<p>いよいよ、Ruby on Railsの開発環境の構築と最初のアプリの作成をする時が来ました。特にプログラミング経験が無い方は少し苦労するかもしれませんが、どうか諦めずに頑張ってください。苦労するのはあなただけではありません。これは開発者として誰もが何度となく通る道であり、苦労は必ず大いに報われることを私が保証いたします。</p>
+
+<div class="label" id="sec-development_tools"></div>
+
+
+<h3><a id="sec-1_2_1" href="/chapters/beginning.html#sec-development_tools" class="heading"><span class="number">1.2.1</span>開発環境</a></h3>
+
+
+<p>開発環境はRailsプログラマの数だけあります。開発者たちは自分の環境を、最早自分でもわからなくなるぐらいにとことんカスタマイズするものだからです。開発環境は、大きく分けてテキストエディタとコマンドラインを使用する環境とIDE (統合開発環境) を使った環境に分けられます。まずは後者から見てみましょう。</p>
+
+<h4><a id="sec-1_2_1_1" href="/chapters/beginning.html#sec-1_2_1_1" class="heading">IDE</a></h4>
+
+
+<p>Rails用のIDEの数は多く、<a href="http://www.aptana.com/rails/">RadRails</a>、<a href="http://www.jetbrains.com/ruby/index.html">RubyMine</a>、<a href="http://www.codegear.com/products/3rdrail">3rd Rail</a>などさまざまなものがあります。特にRubyMineの評判がよいようです。さらに、David Loefflerという読者が<a href="https://github.com/perfectionist/sample_project/wiki">RailsチュートリアルでRubyMineを使用する方法</a><sup class="footnote" id="fnref-1_8"><a href="/chapters/beginning.html#fn-1_8">8</a></sup>というドキュメントまでまとめてくれました。IDEでの開発が好みという方は、自分のスタイルに合うかどうか上のリンクをチェックしてみるとよいでしょう。</p>
+
+<h4><a id="sec-1_2_1_2" href="/chapters/beginning.html#sec-1_2_1_2" class="heading">テキストエディタとコマンドライン</a></h4>
+
+
+<p>私自身は、すべてが整った強力なIDEの代わりに、<em>テキストエディタ</em>でテキストを編集し、<em>コマンドライン</em>でコマンドを実行するというシンプルな手段を好んでいます (<a class="ref" href="/chapters/beginning.html#fig-editor_shell">図 1.1</a>)。どの組み合わせを使うかは自身の好みとプラットフォームによりますが。</p>
+
+<ul>
+<li><strong>テキストエディタ: </strong> 私は断然<a href="http://www.sublimetext.com/2">Sublime Text 2</a>をお勧めします。これは非常によくできたクロスプラットフォームのテキストエディタであり、現段階ではまだベータ版ですが、とてもそうは思えないほどパワフルです。Sublime Textは<a href="http://macromates.com">TextMate</a>の影響を強く受けています。そして実際、スニペットやカラースキームなどについてはTextMateのカスタマイズ設定と互換性があります。（あなたがMacユーザーであれば、TextMateは今でも良い選択であると言えます。OS X版しかありませんが。)2番目の選択肢にふさわしい<a href="http://www.vim.org/">Vim</a><sup class="footnote" id="fnref-1_9"><a href="/chapters/beginning.html#fn-1_9">9</a></sup>は多くのプラットフォームで動作します。Vimは無償で手に入りますが、Sublime Textは商用版しかありません。どちらもプロの使用に耐えうるものですが、私の経験ではSublime Textは初心者にとって<em>はるかに</em>扱いやすいものであると言えます。</li>
+
+<li><strong>ターミナル: </strong> OS Xの場合、<a href="http://iterm.sourceforge.net/">iTerm</a>かシステム備え付けのTerminal appをお勧めします。Linuxの場合、デフォルトのターミナルで構いません。Windowsの場合、Rails環境をそのままインストールするよりも、Linuxが動作する仮想マシン上にインストールすることを好む人が多いようです。この場合、コマンドラインオプションは従来通りです。開発環境をWindows自身にインストールするのであれば、コマンドラインは<a href="http://railsinstaller.org/">Railsインストーラ</a>付属の物がおすすめです (<a class="ref" href="/chapters/beginning.html#sec-rails_installer_windows">1.2.2.1</a>)。</li>
+</ul>
+
+
+<p>Sublime Textを選んだ方のために、オプション設定方法を解説した<a href="https://github.com/mhartl/rails_tutorial_sublime_text">Railsチュートリアル: Sublime Text</a><sup class="footnote" id="fnref-1_10"><a href="/chapters/beginning.html#fn-1_10">10</a></sup>を用意してあります。(この種の設定はいろいろと面倒でエラーも起きやすいので、あくまで上級者向けです。Sublime Textはデフォルト設定のままでも依然としてRailsアプリケーションを編集するための良い選択肢です。)</p>
+
+<div class="label" id="fig-editor_shell"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/editor_shell.png" alt="editor_shell" /></span></div><div class="caption"><span class="header">図1.1：</span> <span class="description">テキストエディタ/コマンドライン開発環境(TextMate/ ITERMを使用) <a href="http://railstutorial.org/images/figures/editor_shell-full.png">(拡大)</a></span></div></div>
+
+
+
+
+<h4><a id="sec-1_2_1_3" href="/chapters/beginning.html#sec-1_2_1_3" class="heading">ブラウザ</a></h4>
+
+
+<p>ブラウザの種類は豊富ですが、大半のRails開発者はFirefox、Safari、もしくはChromeを選ぶ傾向にあるようです。Rails チュートリアル内のスクリーンショットも原則としてFirefoxの物を使用しています。Firefoxを使う場合、HTMLの構造とCSSのルールをダイナミックに調査/編集できる<a href="http://getfirebug.com/">Firebug</a>アドオンがおすすめです。Firefoxを使用しない場合、SafariとChromeにはページの調査したい部分を右クリックする事で情報を調べられる機能があります。</p>
+
+<h4><a id="sec-1_2_1_4" href="/chapters/beginning.html#sec-1_2_1_4" class="heading">使用するツールについて</a></h4>
+
+
+<p>開発環境を整える過程で、すべてを思い通りに設定するには<em>かなり</em>長い時間がかかる事を実感するかもしれません。Sublime TextやVimなどのエディタやIDEは特に、何週間かかっても極めるのは難しいものです。初めての方に申し上げておきますが、心配はいりません。<em>開発ツールを覚えるのに時間をかけるのはいたって普通の事なのです</em>。これもまた、開発者なら誰もが通る道です。「良いアイディアが浮かんで<em>今すぐにでもRailsでWebアプリを作りたいだけ</em>なのに、Unixエディタの使い方を覚えるのに1週間もかかって前に進めない！」とイライラする事もあるでしょう。しかしながら、道具の使い方は職人にとって当然の心得です。払った努力に見合う見返りは必ずあります。</p>
+
+<div class="label" id="sec-rubygems"></div>
+
+
+<h3><a id="sec-1_2_2" href="/chapters/beginning.html#sec-rubygems" class="heading"><span class="number">1.2.2</span>Ruby、RubyGems、Rails、Git</a></h3>
+
+
+
+
+<blockquote><p>実質的に世界中のあらゆるソフトウェアは、壊れているか使いにくいかのどちらかだ。人々がソフトウェアに恐怖心を抱くのは、結局これが原因なのだ。人々は何かインストールしようとしたりオンラインフォームに記入したりするたびに、それらがさっぱり動かないという事態にすっかり慣らされてしまっている。正直、<em>私は</em>何かをインストールすることが怖い。これでも私はコンピュータサイエンスの博士号を持っているのだが。<br /> —Paul Graham (<em>Founders at Work</em>)</p>
+</blockquote>
+
+
+<p>さあ、RubyとRailsをインストールしましょう。本書では可能な限り多くの環境をカバーするようにしていますが、システムが変われば手順がうまくいかないこともあります。問題が生じた場合は、エラーメッセージをGoogleで検索するか、<a href="http://railstutorial.org/help">RailsチュートリアルのHelpページ</a>を参照してください。</p>
+
+<p><strong>警告: 特に断りのない限り、Railsを含むすべてのソフトウェアはチュートリアルで使用されているものと正確に同じバージョンを使用してください。そうでないと同じ結果を得られないことがあります。</strong> バージョンが少々異なっていても同じ結果を得られることもありますが、特にRailsのバージョンに関しては必ず指定を守ってください。これには例外もあり、たとえばRubyそれ自身が該当します。1.9.2と1.9.3は実質的に同じであり、チュートリアルには影響しません。お好きな方をご使用ください。</p>
+
+<div class="label" id="sec-rails_installer_windows"></div>
+
+
+<h4><a id="sec-1_2_2_1" href="/chapters/beginning.html#sec-rails_installer_windows" class="heading">Railsインストーラ (Windows)</a></h4>
+
+
+<p>最近までWindows上でのRailsのインストールは困難だったのですが、<a href="http://engineyard.com/">Engine Yard</a>の方々(特にDr. Nic WilliamsとWayne E. Seguin)のおかげで非常に簡単になりました。Windowsユーザーの方は<a href="http://railsinstaller.org/">Railsインストーラ</a>からインストーラをダウンロードして下さい。exeファイルをダブルクリックし、指示に従ってGit、Ruby、RubyGems、そしてRails自身をインストールします (<a class="ref" href="/chapters/beginning.html#sec-install_git">1.2.2.2</a>、<a class="ref" href="/chapters/beginning.html#sec-install_ruby">1.2.2.3</a>、<a class="ref" href="/chapters/beginning.html#sec-install_rubygems">1.2.2.4</a>、<a class="ref" href="/chapters/beginning.html#sec-install_rails">1.2.2.5</a>はスキップしてください)。インストール完了後、<a class="ref" href="/chapters/beginning.html#sec-the_first_application">1.2.3</a>までスキップして最初のアプリケーション作成に取りかかってください。</p>
+
+<p>注意: このRailsインストーラによってインストールされるRailsのバージョンは<a class="ref" href="/chapters/beginning.html#sec-install_rails">1.2.2.5</a>に記載のものと異なることがあります。その場合、互換性の問題が生じることもありえます。この問題を解決するために、Railsのバージョン番号順に並んだRubyインストーラのリストを作成してもらうようNicとWayneに働きかけています。</p>
+
+<div class="label" id="sec-install_git"></div>
+
+
+<h4><a id="sec-1_2_2_2" href="/chapters/beginning.html#sec-install_git" class="heading">Gitのインストール</a></h4>
+
+
+<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="/chapters/beginning.html#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早い内にインストールを済ませておきます。<a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にして下さい。</p>
+
+<div class="label" id="sec-install_ruby"></div>
+
+
+<h4><a id="sec-1_2_2_3" href="/chapters/beginning.html#sec-install_ruby" class="heading">Rubyのインストール</a></h4>
+
+
+<p>次にRubyをインストールします。もしかすると既にあなたのシステムに入っているかもしれないので、その場合は以下を実行して</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span>Ruby-V<span class="go">    ruby &quot;1.9.3&quot;</span>
+</pre></div>
+</div>
+
+
+<p>バージョン情報を確認してください。Rails 3はRuby 1.8.7以上で動作しますが、1.9.2が最適です。このチュートリアルはバージョン1.9.2または1.9.3を使用していることを前提で進めていきますが、1.8.7でも問題はないはずです (ただし1つだけ文法の違いがあり、<a class="ref" href="/chapters/rails-flavored-ruby.html#top">第4章</a>で補足しています。また、出力に若干の違いが生じます)。</p>
+
+<p>OS X、またはLinuxを使う場合、<a href="http://rvm.io/">Ruby Version Manager (RVM)</a>を使用してRubyをインストールすることを強くお勧めします。RVMを使うと、複数のRubyバージョンを共存させられるのでとても便利です。(Windows上で動作する同様のソフトに<a href="http://github.com/vertiginous/pik">Pik</a>があります。)同じマシン上で異なるバージョンのRubyやRailsを実行したい場合、これは特に重要です。RVMで問題が生じたときは、作者のWayne E. SeguinとRVMのIRCチャットのチャンネル (<a href="http://webchat.freenode.net/?channels=rvm">#rvm on freenode.net</a>)で連絡を取れることがあります<sup class="footnote" id="fnref-1_11"><a href="/chapters/beginning.html#fn-1_11">11</a></sup>。Linuxを使用している方には、Sudobitsブログの「<a href="http://blog.sudobits.com/2012/05/02/how-to-install-ruby-on-rails-in-ubuntu-12-04-lts/">UbuntuにRuby on Railsをインストールする方法</a>」が特にお勧めです。</p>
+
+<p><a href="http://rvm.io/rvm/install/">RVMをインストール</a>後、以下を実行してRubyをインストールします<sup class="footnote" id="fnref-1_12"><a href="/chapters/beginning.html#fn-1_12">12</a></sup>。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm get head <span class="o">&amp;&amp;</span> rvm reload
+<span class="gp">$</span> rvm install 1.9.3
+<span class="go">&lt;しばらく待つ&gt;</span>
+</pre></div>
+</div>
+
+
+<p>最初のコマンドはRVMの更新とリロードを行います。RVMは頻繁に更新されているので、RVM操作の際にはこれを行うようにしてください。次のコマンドはRuby 1.9.3をインストールします。システムによってはダウンロードとコンパイルに多少時間がかかることがありますので、なかなか終わらなくても心配せずに待ってください。</p>
+
+<p>OS Xユーザーの場合、<code>autoconf</code>の実行ファイルがないと問題が生じることがあります。この場合は<a href="http://mxcl.github.com/homebrew/">Homebrew</a><sup class="footnote" id="fnref-1_13"><a href="/chapters/beginning.html#fn-1_13">13</a></sup>というOS X用のパッケージ管理システムをインストールしてから以下を実行してください。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> brew install automake
+<span class="gp">$</span> rvm install 1.9.3
+</pre></div>
+</div>
+
+
+<p>Linuxユーザーの場合、OpenSSLというライブラリへのパスを追加する必要が生じることがあるとの報告を受けました。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm install 1.9.3 --with-openssl-dir<span class="o">=</span><span class="nv">$HOME</span>/.rvm/
+</pre></div>
+</div>
+
+
+<p>一部の古いOS Xシステムでは、readlineライブラリへのパスを追加する必要が生じる場合があります。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm install 1.9.3 --with-readline-dir<span class="o">=</span>/opt/local
+</pre></div>
+</div>
+
+
+<p>(何度も書きましたが、環境構築にトラブルはつきものです。地道にネットを検索し、問題を特定することが唯一の解決策です。)</p>
+
+<p>Rubyをインストールしたら、Railsのアプリケーションを実行するために必要な他のソフトウェア向けにシステムを構成する必要があります。通常、これは<em>gem</em>のインストールに関連します。gemとは自己完結型のRubyコードのパッケージです。バージョン番号の異なるgem同士がコンフリクトすることがあるため、一連のgemを自己完結的にまとめた<em>gemset</em>というものを作成してバージョンを使い分けるのが便利です。本書のチュートリアル用に、以下の要領で<code>rails3tutorial2ndEd</code>というgemsetをぜひ作成しておいてください。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm use 1.9.3@rails3tutorial2ndEd --create --default
+<span class="go">Using /Users/mhartl/.rvm/gems/ruby-1.9.3 with gemset rails3tutorial2ndEd</span>
+</pre></div>
+</div>
+
+
+<p>このコマンドを実行すると、Ruby 1.9.3に関連付けて<code>rails3tutorial2ndEd</code>というgemsetを作成し (<tt class="verb">--create</tt>オプション)、このgemsetをただちに使用可能にします (<tt class="verb">use</tt>)とデフォルト指定用の(<tt class="verb">--default</tt>)。以後、<code>1.9.3@rails3tutorial2ndEd</code>というRubyとgemsetの組み合わせがすべてのターミナルウィンドウで使用可能になります。RVMにはgemset管理のためのコマンドが多数用意されています。詳細については<a href="http://rvm.io/gemsets/">http://rvm.beginrescueend.com/gemsets/</a>を参照してください。RVMがうまく動かない場合は以下を実行してヘルプを表示してください。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm --help
+<span class="gp">$</span> rvm gemset --help
+</pre></div>
+</div>
+
+
+<div class="label" id="sec-install_rubygems"></div>
+
+
+<h4><a id="sec-1_2_2_4" href="/chapters/beginning.html#sec-install_rubygems" class="heading">RubyGemsのインストール</a></h4>
+
+
+<p>RubyGemsはRubyのプロジェクトのためのパッケージマネージャであり、Rubyのパッケージ (<em>gem</em>) として利用できる多くの有用なライブラリがあります。Railsもgemとしてインストールします。Rubyがインストールされていれば、RubyGemsは簡単にインストールできます。<a href="http://rvm.io/rvm/install/">RVMをインストール</a>してあれば、既にRubyGemsも同時にインストールされているはずです。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> which gem
+<span class="go">/Users/mhartl/.rvm/rubies/ruby-1.9.3-p0/bin/gem</span>
+</pre></div>
+</div>
+
+
+<p>RubyGemsがインストールされていない場合は、<a href="http://rubyforge.org/frs/?group_id=126">RubyGemsをダウンロード</a>して解凍し、作成された<code>rubygems</code>ディレクトリでセットアッププログラムを実行して下さい。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby setup.rb
+</pre></div>
+</div>
+
+
+<p>(アクセス権の問題が生じたら、<a class="ref" href="/chapters/beginning.html#sec-conventions">1.1.3</a>を参照してください。おそらく<code>sudo</code>コマンドを併用する必要があります。)</p>
+
+<p>既にRubyGemsがインストールされている場合は、システムをチュートリアルで使われているバージョンに更新して下さい。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> gem update --system 1.8.24
+</pre></div>
+</div>
+
+
+<p>システムを特定のバージョンに固定しておけば、今後RubyGemsが変更されたときのコンフリクトを防止できます。</p>
+
+<p>gemをインストールすると、RubyGemsによってriとrdocという2種類のドキュメントがデフォルトで作成されます。多くのRubyやRailsの開発者はこれらのドキュメントが自動生成される時間すら惜しいと考えます。(多くのプログラマーはネイティブのriやrdocなど参照せず、さっさとオンラインドキュメントを見に行ってしまいます。) riやrdocの自動生成を抑制するには、<code>.gemrc</code>というファイルを<a class="ref" href="/chapters/beginning.html#code-create_gemrc">リスト1.1</a>のようにホームディレクトリに作成し、そこに<a class="ref" href="/chapters/beginning.html#code-gemrc">リスト1.2</a>の内容を追加しておきます。(チルダ“<tt class="verb">~</tt>”は「ホームディレクトリ」を表します。 <code>.gemrc</code>ファイルのようにファイル名冒頭にドット「<tt class="verb">.</tt>」を付けると隠しファイルとして扱われます。Unixの設定ファイルにはこのような名前を付けるのが習わしとなっています。)</p>
+
+<div class="label" id="code-create_gemrc"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">リスト1.1</span> <span class="description">gem設定ファイルを作成する。</span> </div>
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> subl ~/.gemrc
+</pre></div>
+</div></div>
+
+
+<p>冒頭の<code>subl</code>はOS Xで Sublime Textを起動するコマンドです。 設定方法については<a href="http://www.sublimetext.com/docs/2/osx_command_line.html">OS X コマンドライン用Sublime Text 2ドキュメント</a> (英語) を参照してください。使用しているプラットフォームやエディタが異なる場合、sublを他のエディタコマンドに読み替えてください (エディタのアイコンをダブルクリックするか、<code>mate</code>、<code>vim</code>、<code>gvim</code>、<code>mvim</code>などのコマンドに差し替えます)。記述を簡素化するため、本書で以後<code>subl</code>と書かれていたら各自好みのエディタに読み替えてください。</p>
+
+<div class="label" id="code-gemrc"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">リスト1.2</span> <span class="description"><code>.gemrc</code>にriとrdoc生成を抑制するコマンドを追加する。</span> </div>
+<div class="code"><div class="highlight"><pre><span class="ss">install:</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">rdoc</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">ri</span>
+<span class="ss">update:</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">rdoc</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">ri</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="sec-install_rails"></div>
+
+
+<h4><a id="sec-1_2_2_5" href="/chapters/beginning.html#sec-install_rails" class="heading">Railsのインストール</a></h4>
+
+
+<p>RubyGemsをインストールしてしまえば、Railsのインストールは簡単です。本書ではRails 3.2で統一します。以下を実行して3.2をインストールしてください。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> gem install rails -v 3.2.13
+</pre></div>
+</div>
+
+
+<p>正しくインストールされたかどうかを確認するには、以下のコマンドを実行してバージョンを確認してください。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails -v
+<span class="go">Rails 3.2.13</span>
+</pre></div>
+</div>
+
+
+<p><em>メモ: </em> <a class="ref" href="/chapters/beginning.html#sec-rails_installer_windows">1.2.2.1</a>でRailsインストーラを使用してRailsをインストールした場合、Railsのバージョンが異なっている可能性があります。この記事の執筆時点では、このバージョンの違いは影響していません。ただし、今後Railsのバージョンが本書指定のものから離れていくにつれ、バージョンの違いによる影響が顕著になる可能性があります。特定のバージョンのRailsインストーラへのリンクを作成してもらえるよう、現在Engine Yardに働きかけています。</p>
+
+<p>Linuxを実行している場合は、この時点で、他にもいくつかのパッケージをインストールする必要が生じる場合があります。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> sudo apt-get install libxslt-dev libxml2-dev libsqlite3-dev <span class="c"># Linuxのみ</span>
+</pre></div>
+</div>
+
+
+
+
+<div class="label" id="sec-the_first_application"></div>
+
+
+<h3><a id="sec-1_2_3" href="/chapters/beginning.html#sec-the_first_application" class="heading"><span class="number">1.2.3</span>最初のアプリケーション</a></h3>
+
+
+<p>どんなRailsアプリケーションも最初の作成手順は同じです。<code>rails new</code>コマンドを実行して作成します。このコマンドを実行するだけで、指定のディレクトリにRailsアプリケーションのスケルトンを簡単に作成できます。これを行うには、まず複数のRailsプロジェクトを保存するためのディレクトリを作成し、<code>rails new</code>を実行して最初のアプリケーションを作成します (<a class="ref" href="/chapters/beginning.html#code-rails_command">リスト1.3</a>)。</p>
+
+<div class="label" id="code-rails_command"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">リスト1.3</span> <span class="description"><code>rails new</code>を実行してアプリケーションを新規作成する。</span> </div>
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> mkdir rails_projects
+<span class="gp">$</span> <span class="nb">cd </span>rails_projects
+<span class="gp">$</span> rails new first_app
+<span class="go">      create  </span>
+<span class="go">      create  README.rdoc</span>
+<span class="go">      create  Rakefile</span>
+<span class="go">      create  config.ru</span>
+<span class="go">      create  .gitignore</span>
+<span class="go">      create  Gemfile</span>
+<span class="go">      create  app</span>
+<span class="go">      create  app/assets/images/rails.png</span>
+<span class="go">      create  app/assets/javascripts/application.js</span>
+<span class="go">      create  app/assets/stylesheets/application.css</span>
+<span class="go">      create  app/controllers/application_controller.rb</span>
+<span class="go">      create  app/helpers/application_helper.rb</span>
+<span class="go">      create  app/mailers</span>
+<span class="go">      create  app/models</span>
+<span class="go">      create  app/views/layouts/application.html.erb</span>
+<span class="go">      create  app/mailers/.gitkeep</span>
+<span class="go">      create  app/models/.gitkeep</span>
+<span class="go">      create  config</span>
+<span class="go">      create  config/routes.rb</span>
+<span class="go">      create  config/application.rb</span>
+<span class="go">      create  config/environment.rb</span>
+<span class="go">      .</span>
+<span class="go">      .</span>
+<span class="go">      .</span>
+<span class="go">      create  vendor/plugins</span>
+<span class="go">      create  vendor/plugins/.gitkeep</span>
+<span class="go">         run  bundle install</span>
+<span class="go">Fetching source index for https://rubygems.org/</span>
+<span class="go">.</span>
+<span class="go">.</span>
+<span class="go">.</span>
+<span class="go">Your bundle is complete!</span><span class="go">Use `bundle show [gemname]` to see where a bundled</span>
+<span class="go">gem is installed.</span>
+</pre></div>
+</div></div>
+
+
+<p><a class="ref" href="/chapters/beginning.html#code-rails_command">Listing 1.3</a>の下の方に注目してください。<code>rails new</code>を実行すると、ファイルの作成後に<code>bundle install</code>コマンドが自動的に実行されています。もしbundle installが実行されていなくても心配はいりません。落ち着いて<a class="ref" href="/chapters/beginning.html#sec-bundler">1.2.4</a>の手順に従えば実行できます。</p>
+
+<p><code>rails</code>コマンドによって非常に多くのファイルとディレクトリが作成されていることにご注目ください。ディレクトリとファイルの構造 ( <a class="ref" href="/chapters/beginning.html#fig-directory_structure_rails_3_2">図1.2</a>) がこのように標準化されていることは数あるRailsの利点の１つであり、実際に動作するアプリケーションを何も無い状態からただちに作成することができるのです。さらに、この構造はすべてのRailsアプリに共通しているので、他の開発者の書いたコードの挙動を容易に推察できます。Railsがデフォルトで作成するファイルについては<a class="ref" href="/chapters/beginning.html#table-rails_directory_structure">表1.1</a>を参照してください。本書を通してこれらのファイルやディレクトリの目的を学んでいきます。特に、<a class="ref" href="/chapters/filling-in-the-layout.html#sec-the_asset_pipeline">5.2.1</a>以降ではRails 3.1の新機能である<em>アセットパイプライン</em>の一部となる<code>app/assets</code>ディレクトリについて詳しく説明します。アセットパイプラインによって、CSS (Cascading Style Sheet) やJavaScriptファイルなどのアセットを簡単に編成したり展開することができます。</p>
+
+<div class="label" id="fig-directory_structure_rails_3_2"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/directory_structure_rails_31.png" alt="directory_structure_rails_31" /></span></div><div class="caption"><span class="header">図1.2: </span><span class="description">新規作成されたRailsアプリケーションのディレクトリ構造。<a href="http://railstutorial.org/images/figures/directory_structure_rails_31-full.png">(拡大)</a></span></div></div>
+
+
+
+
+<div class="label" id="table-rails_directory_structure"></div>
+
+
+<div class="table"><div class="center">
+<table class="tabular"><tr><th class="align_left"><strong>ファイル/ディレクトリ</strong></th><th class="align_left"><strong>目的</strong></th></tr><tr class="top_bar"><td class="align_left"><code>app/</code></td><td class="align_left">モデル、ビュー、コントローラ、ヘルパーなどを含む主要なアプリケーションコード</td></tr><tr><td class="align_left"><code>app/assets</code></td><td class="align_left">アプリケーションで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット</td></tr><tr><td class="align_left"><code>config/</code></td><td class="align_left">アプリケーションの設定</td></tr><tr><td class="align_left"><code>db/</code></td><td class="align_left">データベース関連のファイル</td></tr><tr><td class="align_left"><code>doc/</code></td><td class="align_left">マニュアルなど、アプリケーションのドキュメント</td></tr><tr><td class="align_left"><code>lib/</code></td><td class="align_left">ライブラリモジュール</td></tr><tr><td class="align_left"><code>lib/assets</code></td><td class="align_left">ライブラリで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット</td></tr><tr><td class="align_left"><code>log/</code></td><td class="align_left">アプリケーションのログファイル</td></tr><tr><td class="align_left"><code>public/</code></td><td class="align_left">エラーページなど、一般(Webブラウザなど)に直接公開するデータ</td></tr><tr><td class="align_left"><code>script/rails</code></td><td class="align_left">コード生成、コンソールの起動、ローカルのWebサーバの立ち上げなどに使用するRailsスクリプト</td></tr><tr><td class="align_left"><code>test/</code></td><td class="align_left">アプリケーションのテスト(<a class="ref" href="/chapters/static-pages.html#sec-static_pages_with_rails">3.1.2</a>で作成する<code>spec/</code>ディレクトリがあるため、現在は使用されていません)</td></tr><tr><td class="align_left"><code>tmp/</code></td><td class="align_left">一時ファイル</td></tr><tr><td class="align_left"><code>vendor/</code></td><td class="align_left">サードパーティのプラグインやgemなど</td></tr><tr><td class="align_left"><code>vendor/assets</code></td><td class="align_left">サードパーティのプラグインやgemで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット</td></tr><tr><td class="align_left"><code>README.rdoc</code></td><td class="align_left">アプリケーションの簡単な説明</td></tr><tr><td class="align_left"><code>Rakefile</code></td><td class="align_left"><code>rake</code>コマンドで使用可能なタスク</td></tr><tr><td class="align_left"><code>Gemfile</code></td><td class="align_left">このアプリケーションに必要なGemの定義ファイル</td></tr><tr><td class="align_left"><code>Gemfile.lock</code></td><td class="align_left">アプリケーションのすべてのコピーが同じgemのバージョンを使用していることを確認するために使用されるgemのリスト</td></tr><tr><td class="align_left"><code>config.ru</code></td><td class="align_left"><a href="http://rack.rubyforge.org/doc/">Rackミドルウェア</a>用の設定ファイル</td></tr><tr><td class="align_left"><code>.gitignore</code></td><td class="align_left">Gitに無視させたいファイルを指定するためのパターン</td></tr></table></div><div class="caption"><span class="header">表1.1: </span> <span class="description">デフォルトのRailsフォルダ構造まとめ。</span></div></div>
+
+
+
+
+<div class="label" id="sec-bundler"></div>
+
+
+<h3><a id="sec-1_2_4" href="/chapters/beginning.html#sec-bundler" class="heading"><span class="number">1.2.4</span> Bundler</a></h3>
+
+
+<p>Railsアプリケーションを新規作成したら、次は<em>Bundler</em>を実行して、アプリケーションに必要なgemをインストールおよびインクルードします。<a class="ref" href="/chapters/beginning.html#sec-the_first_application">1.2.3</a>でも簡単に説明したように、Bundlerは<code>rails</code>によって自動的に実行 (この場合は<code>bundle install</code>) されます。ここではデフォルトのアプリケーションgemを変更してBundlerを再度実行してみます。そのためにまず、好みのエディタで<code>Gemfile</code>を開きます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>first_app/
+<span class="gp">$</span> SUBL Gemfile</pre></div>
+</div>
+
+
+<p>ファイルの内容は<a class="ref" href="/chapters/beginning.html#code-default_gemfile">リスト1.4</a>のようになっているはずです。Gemfileの内容はRubyのコードですが、ここでは文法を気にする必要はありません。Rubyについては<a class="ref" href="/chapters/rails-flavored-ruby.html#top">第4章</a>でもっとくわしく説明します。</p>
+
+<div class="label" id="code-default_gemfile"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">リスト1.4</span> <span class="description"><code>first_app</code>ディレクトリ直下にあるデフォルトの<code>Gemfile</code>。</span> </div>
+<div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.13&#39;</span>
+
+<span class="c1"># Bundle edge Rails instead:</span>
+<span class="c1"># gem &#39;rails&#39;, :git =&gt; &#39;git://github.com/rails/rails.git&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span>
+
+
+<span class="c1"># Gems used only for assets and not required</span>
+<span class="c1"># in production environments by default.</span>
+<span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span>   <span class="s1">&#39;~&gt; 3.2.3&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.2.2&#39;</span>
+
+  <span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;= 1.2.3&#39;</span>
+<span class="k">end</span>
+
+<span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span>
+
+<span class="c1"># To use ActiveModel has_secure_password</span>
+<span class="c1"># gem &#39;bcrypt-ruby&#39;, &#39;~&gt; 3.0.0&#39;</span>
+
+<span class="c1"># To use Jbuilder templates for JSON</span>
+<span class="c1"># gem &#39;jbuilder&#39;</span>
+
+<span class="c1"># Use unicorn as the web server</span>
+<span class="c1"># gem &#39;unicorn&#39;</span>
+
+<span class="c1"># Deploy with Capistrano</span>
+<span class="c1"># gem &#39;capistrano&#39;</span>
+
+<span class="c1"># To use debugger</span>
+<span class="c1"># gem &#39;ruby-debug19&#39;, :require =&gt; &#39;ruby-debug&#39;</span>
+</pre></div>
+</div></div>
+
+
+<p>ほとんどの行はハッシュシンボル <code>#</code>でコメントされています。これらの行では、よく使われているgemとBundlerの文法の例をコメント形式で紹介しています。この時点では、デフォルト以外のgemは使用しません。 デフォルトは、Rails自体のgem、アセットパイプライン関連のいくつかのgem (<a class="ref" href="/chapters/filling-in-the-layout.html#sec-the_asset_pipeline">5.2.1</a>)、JQuery JavaScriptライブラリ関連のgem、<a href="http://www.sqlite.org/">SQLiteデータベース</a>へのRubyインターフェイス用gemです。</p>
+
+<p><code>gem</code> コマンドで特定のバージョン番号を指定しない限り、Bundlerは自動的に最新バージョンのgemを取得してインストールしてくれます。残念ながらgemを更新すると小さな問題を起こすことがよくあるので、<a class="ref" href="/chapters/beginning.html#code-default_gemfile">リスト1.4</a>からコメントアウト行を除いた<a class="ref" href="/chapters/beginning.html#code-gemfile_sqlite_version">リスト1.5</a>に示したように、このチュートリアルではたいていの場合動作確認済みのバージョン番号を指定しています。</p>
+
+<div class="label" id="code-gemfile_sqlite_version"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">リスト1.5</span> <span class="description">gemのバージョンを指定した<code>Gemfile</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.13&#39;</span>
+
+<span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.5&#39;</span>
+<span class="k">end</span>
+
+
+<span class="c1"># Gems used only for assets and not required</span>
+<span class="c1"># in production environments by default.</span>
+<span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span>   <span class="s1">&#39;3.2.5&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.2&#39;</span>
+
+  <span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;1.2.3&#39;</span>
+<span class="k">end</span>
+
+<span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0.2&#39;</span>
+</pre></div>
+</div></div>
+
+
+<p><a class="ref" href="/chapters/beginning.html#code-gemfile_sqlite_version">リスト1.5</a>ではJQueryの行を変更しています。JQueryはRailsでデフォルトで使用されるJavaScriptのライブラリです。</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span>
+</pre></div>
+</div>
+
+
+<p>上を以下のように変更します。</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0.2&#39;</span>
+</pre></div>
+</div>
+
+
+<p>他にも変更を行います。</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span>
+</pre></div>
+</div>
+
+
+<p>上を以下のように変更します。</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.5&#39;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>この変更を行うと、Bundlerは<code>sqlite3</code> gemの<code>1.3.5</code>を強制的にインストールします。ここではさらに、SQLiteをdevelopment環境 (<a class="ref" href="/chapters/sign-up.html#sec-rails_environments">7.1.1</a>) でのみ使用するための指定も行なっていることに注意してください。こうすることで、Heroku (<a class="ref" href="/chapters/beginning.html#sec-deploying">1.4</a>) で使用するデータベースソフトウェアと衝突する可能性を避けられます。</p>
+
+<p><a class="ref" href="/chapters/beginning.html#code-gemfile_sqlite_version">リスト1.5</a>では他にもいくつかの変更を行なっています。</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span>   <span class="s1">&#39;~&gt; 3.2.3&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.2.2&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;= 1.2.3&#39;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>上を以下のように変更します。</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span>   <span class="s1">&#39;3.2.5&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.2&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;1.2.3&#39;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>以下の構文を実行すると</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;= 1.2.3&#39;</span>
+</pre></div>
+</div>
+
+
+<p><code>uglifier</code>のバージョンが<code>1.2.3</code>以上であれば最新バージョンのgemがインストールされます。 極端に言えばバージョンが<code>7.2</code>であってもそれが最新ならインストールされます。なお、uglifierはアセットパイプラインでファイル圧縮を行うためのものです。一方、以下のコードを実行すると</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.2.2&#39;</span>
+</pre></div>
+</div>
+
+
+<p><code>coffee-rails</code> (これもアセットパイプラインで使用するgemです) のバージョンが<code>3.3</code> より小さい場合にインストールします。つまり、<tt class="verb">&gt;=</tt>と書くと必ずアップグレードが行われますが、<tt class="verb">~&gt; 3.2.2</tt>と書くとマイナーなアップグレードしか行われないことになります。この場合<code>3.2.1</code> から<code>3.2.2</code>へのアップグレードは行われますが、<code>3.2</code>から <code>3.3</code>へのアップグレードは行われません。経験上、残念ながらマイナーアップグレードですら問題を引き起こすことがあります。このため、<em>Railsチュートリアル</em>では基本的にすべてのgemでバージョンをピンポイントで指定してます。(例外として、執筆時点でベータ版やRC (Release Candidate) 版のgemについては<tt class="verb">~&gt;</tt>を使用し、最終版がリリースされたときに読み込まれるようにしてあります。) 主にベテラン開発者の方へ: <code>Gemfile</code>で<tt class="verb">~&gt;</tt>が指定されているgemも含め、基本的にはなるべく最新のgemを使用してください。ただし、それによって本書に記載されているのと異なる挙動を示す可能性がある点にご注意ください。</p>
+
+<p><code>Gemfile</code>を正しく設定した後、<code>bundle update</code><sup class="footnote" id="fnref-1_14"><a href="/chapters/beginning.html#fn-1_14">14</a></sup>と<code>bundle install</code>を使用してgemをインストールします。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle update
+<span class="gp">$</span> bundle install
+<span class="go">Fetching source index for https://rubygems.org/</span>
+<span class="go">.</span>
+<span class="go">.</span>
+<span class="go">.</span>
+</pre></div>
+</div>
+
+
+<p>OS Xユーザーの場合、このときに<code>ruby.h</code>などのRubyヘッダファイルがないというエラーが表示されることがあります。その場合はXcodeをインストールしてください。この開発ツールはOS Xのインストーラディスクに含まれていますが、フルインストールするのは大げさなので、サイズの小さい<a href="https://developer.apple.com/downloads/">Command Line Tools for Xcode</a>.<sup class="footnote" id="fnref-1_15"><a href="/chapters/beginning.html#fn-1_15">15</a></sup> だけをインストールすることをお勧めします。Nokogiri gemのインストール中にlibxsltエラーが発生した場合は、以下のようにRubyを再インストールしてください。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm reinstall 1.9.3
+<span class="gp">$</span> bundle install
+</pre></div>
+</div>
+
+
+<p><code>bundle install</code>コマンドの実行にはしばらく時間がかかるかもしれません。完了後、アプリケーションが実行可能になります。<em>注: </em>このセットアップ方法は最初のアプリケーションにはよいのですが、理想的な方法ではありません。<a class="ref" href="/chapters/static-pages.html#top">第3章</a>ではBundlerを使用してRuby gemをインストールするためのさらに強力で複雑な方法をご紹介します。</p>
+
+<div class="label" id="sec-rails_server"></div>
+
+
+<h3><a id="sec-1_2_5" href="/chapters/beginning.html#sec-rails_server" class="heading"><span class="number">1.2.5</span> <tt>rails server</tt></a></h3>
+
+
+<p><a class="ref" href="/chapters/beginning.html#sec-the_first_application">Section 1.2.3</a>の<code>rails new</code>コマンドと<a class="ref" href="/chapters/beginning.html#sec-bundler">1.2.4</a>の<code>bundle install</code>コマンドを実行したおかげで、実際に動かすことのできるアプリケーションが作成されました。うれしいことに、Railsには開発マシンからのみブラウズできる<em>ローカル</em>Webサーバを起動させるためのコマンドラインプログラム (<em>スクリプト</em>) が付属しているので、以下のコマンドを実行するだけで簡単に起動することができます<sup class="footnote" id="fnref-1_16"><a href="/chapters/beginning.html#fn-1_16">16</a></sup>。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails server
+<span class="go">=&gt; Booting WEBrick</span>
+<span class="go">=&gt; Rails application starting on http://0.0.0.0:3000</span>
+<span class="go">=&gt; Call with -d to detach</span>
+<span class="go">=&gt; Ctrl-C to shutdown server</span>
+</pre></div>
+</div>
+
+
+<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムを確認してください。<a href="http://nodejs.org/">Node.js</a>が特にお勧めです。) 表示されたメッセージは、RailsアプリケーションがIPaddress<code>0.0.0.0</code>、<a href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">ポート番号</a> 3000<sup class="footnote" id="fnref-1_17"><a href="/chapters/beginning.html#fn-1_17">17</a></sup>で動作していることを示しています。このIPアドレスは、このマシンに設定されているすべてのIPアドレスで受信待ち (listen) するように指定しています。これにより、<code>127.0.0.1</code>(<code>localhost</code>)という特別なアドレスでアプリケーションをブラウズできます。<a class="ref" href="/chapters/beginning.html#fig-riding_rails_31">図1.3</a>は、<a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示した時の結果です。</p>
+
+<div class="label" id="fig-riding_rails_31"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/riding_rails_31.png" alt="riding_rails_31" /></span></div><div class="caption"><span class="header">図1.3:</span> <span class="description">デフォルトのRailsページ。 <a href="http://railstutorial.org/images/figures/riding_rails_31-full.png">（拡大）</a></span></div></div>
+
+
+<p>この最初のアプリケーションの情報を見るには、「About your application’s environment」のリンクをクリックして下さい。<a class="ref" href="/chapters/beginning.html#fig-riding_rails_32_environment">図1.4</a>のような画面が表示されます (<a class="ref" href="/chapters/beginning.html#fig-riding_rails_32_environment">図1.4</a>は私の環境でキャプチャしたものなので、これとは若干異なる可能性があります)。</p>
+
+<div class="label" id="fig-riding_rails_32_environment"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/riding_rails_32_environment.png" alt="riding_rails_32_environment" /></span></div><div class="caption"><span class="header">図1.4:</span> <span class="description">アプリケーション環境が表示されているデフォルトページ<a href="http://railstutorial.org/images/figures/riding_rails_32_environment-full.png">（拡大）</a></span></div></div>
+
+
+<p>もちろん、いずれデフォルトのRailsページは不要になりますが、アプリケーションが動いているのを見るのは気分のいいものです。<a class="ref" href="/chapters/filling-in-the-layout.html#sec-rails_routes">5.3.2</a>ではこのデフォルトページを削除し、カスタマイズしたホームページに置き換えます。</p>
+
+<div class="label" id="sec-mvc"></div>
+
+
+<h3><a id="sec-1_2_6" href="/chapters/beginning.html#sec-mvc" class="heading"><span class="number">1.2.6</span> Model-View-Controller (MVC)</a></h3>
+
+
+<p>まだ始まったばかりですが、今のうちにRailsアプリケーションの全体的な仕組みを知っておくことは後々役立ちます (<a class="ref" href="/chapters/beginning.html#fig-MVC">図1.5</a>)。デフォルトのRailsアプリ構造 (<a class="ref" href="/chapters/beginning.html#fig-directory_structure_rails_3_2">図1.2</a>) を眺めてみると、<code>app/</code>というディレクトリがあり、その中に「<code>models</code>」「<code>views</code>」「<code>controllers</code>」という3つのサブディレクトリがあることに気付いた方もいると思います。ここにはRailsが<a href="http://en.wikipedia.org/wiki/Model-view-controller">MVC (model-view-controller)</a> というアーキテクチャパターンを採用していることが暗に示されています。MVCでは、ドメインロジック (ビジネスロジックともいいます) と、グラフィカルユーザーインターフェース (GUI) と密に関連する入力/表示ロジックを分離します。Webアプリケーションの場合、「ドメインロジック」はユーザや記事、商品などのデータモデルに相当し、ユーザーインターフェースはWebページを指します。</p>
+
+<p>Railsアプリと通信する際、ブラウザは一般的にWebサーバに<em>request</em> (リクエスト) を送信し、これはリクエストを処理する役割を担っているRailsの<em>controller</em> (コントローラ) に渡されます。 コントローラは、場合によってはすぐに<em>view</em> (ビュー) を生成してHTMLをブラウザに送り返します。動的なサイトでは、一般にコントローラは (ユーザーなどの) サイトの要素を表しており、データベースとの通信を担当しているRubyのオブジェクトである<em>model</em> (モデル) と対話します。モデルを呼び出した後、コントローラは、ビューをレンダリングし、完成したWebページをHTMLとしてブラウザに返します。</p>
+
+<div class="label" id="fig-MVC"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/mvc_schematic.png" alt="mvc_schematic" /></span></div><div class="caption"><span class="header">図1.5: </span> <span class="description">model-view-controller (MVC) アーキテクチャの概念図。</span></div></div>
+
+
+<p>この解説が少し抽象的に思えるかもしれませんが、この章は後に何度も参照する事になるのでご安心ください。さらに、 <a class="ref" href="/chapters/a-demo-app.html#sec-mvc_in_action">2.2.2</a>のデモアプリケーションの説明の中で、MVCについてもっと詳しく解説します。サンプリアプリケーションでは、MVCの3つの要素をすべて使用します。<a class="ref" href="/chapters/static-pages.html#sec-static_pages_with_rails">3.1.2</a>ではまずコントローラとビューを使用し、モデルは<a class="ref" href="/chapters/modeling-users.html#sec-user_model">6.1</a>から使い始めます。 <a class="ref" href="/chapters/sign-up.html#sec-a_users_resource">7.1.2</a>では3つの要素が協調して動作します。</p>
+
+<div class="label" id="sec-version_control"></div>
+
+
+<h2><a id="sec-1_3" href="/chapters/beginning.html#sec-version_control" class="heading"><span class="number">1.3</span> Gitによるバージョン管理</a></h2>
+
+
+<p>新しく動作するRailsアプリが完成したところで、さっそくアプリケーションのソースコードを<em>バージョン管理</em>下に置きましょう。これを行わないとアプリケーションが動かないということではありませんが、ほとんどのRails開発者はバージョン管理は開発現場において必要不可欠であると考えています。バージョン管理システムを導入しておけば、プロジェクトのコードの履歴を追ったり、うっかり削除してしまったファイルを復旧 (ロールバック) したりという作業が行えるようになります。バージョン管理システムを熟知することは、今やあらゆるソフトウェア開発者にとって必須のスキルであると言ってよいでしょう。</p>
+
+<p>バージョン管理システムにもさまざまなものがありますが、RailsコミュニティではLinuxカーネル用にLinus Torvaldsにより開発された分散バージョン管理システムである<a href="http://git-scm.com/">Git</a>が主流になっています。Git (というよりバージョン管理) はそれだけで大きなテーマなので、すべてを説明しようとすると軽く一冊の本を超えてしまいます。本書では簡単に言及するにとどめますが、幸いネット上には無償で利用できるリソースがあふれています。その中でも特に「<a href="http://progit.org"><em>Pro Git</em></a>」Scott Chacon (Apress, 2009) をお勧めいたします (訳注: Pro Gitには素晴らしい日本語版があります: http://git-scm.com/book/ja/ )。ソースコードのバージョン管理は<em>何としても</em>導入してください。バージョン管理はRailsを使用するどんな場面でも必要になりますし、バージョン管理システムを応用して、自分の作成したコードを他の開発者と簡単に共有したり <a class="ref" href="/chapters/beginning.html#sec-github">1.3.4</a>)、最初の章で作成したアプリケーションを本番サーバーへ展開したりすることもできる (<a class="ref" href="/chapters/beginning.html#sec-deploying">1.4</a>) からです。</p>
+
+<div class="label" id="sec-git_setup"></div>
+
+
+<h3><a id="sec-1_3_1" href="/chapters/beginning.html#sec-git_setup" class="heading"><span class="number">1.3.1</span>インストールとセットアップ</a></h3>
+
+
+<p>Gitがインストールされていない場合は、まず<a class="ref" href="/chapters/beginning.html#sec-install_git">1.2.2.2</a>に従ってGitをインストールしてください (リンク先の節でも述べているように、<a href="http://progit.org/book/ch1-4.html"><em>Pro Git</em>の「Gitのインストール</a>」の記載に従うことになります)。</p>
+
+<h4><a id="sec-1_3_1_1" href="/chapters/beginning.html#sec-1_3_1_1" class="heading">最初のシステムセットアップ</a></h4>
+
+
+<p>Gitのインストール後、最初に1回だけ行う必要のある設定があります。これは<em>system</em>セットアップと呼ばれ、使用するコンピュータ1台につき1回だけ行います。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git config --global user.name <span class="s2">&quot;あなたの名前&quot;</span>
+<span class="gp">$</span> git config --global user.email your.email@example.com
+</pre></div>
+</div>
+
+
+<p>私の場合、<code>checkout</code> という長ったらしいコマンドの代わりに<code>co</code>という短いコマンド (エイリアス) も使えるようにしています。これを行うには以下を実行します。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git config --global alias.co checkout
+</pre></div>
+</div>
+
+
+<p>本書では、<code>co</code>エイリアスを設定していないシステムでも動作するようにフルスペルの<code>checkout</code>を使用していますが、私自身は実際の開発ではほとんどいつも<code>git co</code>を使ってプロジェクトをチェックアウトしています。</p>
+
+<p>手順の最後として、Gitのコミットメッセージを入力するときに使用するエディタを設定できます。Sublime Text、TextMate、gVim、MacVimなどのGUIエディタを使用する場合、シェルから離れずシェル内で起動するようフラグを付けてください<sup class="footnote" id="fnref-1_18"><a href="/chapters/beginning.html#fn-1_18">18</a></sup>。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git config --global core.editor <span class="s2">&quot;subl -w&quot;</span>
+</pre></div>
+</div>
+
+
+<p><code>&quot;subl -w&quot;</code> の部分は、TextMateの場合は <code>&quot;mate -w&quot;</code>、gVimの場合は<code>&quot;gvim -f&quot;</code>、MacVimの場合は<code>&quot;mvim -f&quot;</code> にそれぞれ置き換えます。</p>
+
+<h4><a id="sec-1_3_1_2" href="/chapters/beginning.html#sec-1_3_1_2" class="heading">最初のリポジトリセットアップ</a></h4>
+
+
+<p>今度は、<em>レポジトリ</em>を作成するたびに必要な作業を行います。まず、Railsアプリケーションのルートディレクトリに移動し、新しいリポジトリの初期化を行います。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git init
+<span class="go">Initialized empty Git repository in /Users/mhartl/rails_projects/first_app/.git/</span>
+</pre></div>
+</div>
+
+
+<p>次に、プロジェクトのファイルをリポジトリに追加します。ここで１つ問題点があります。Gitは<em>すべての</em>ファイルの変更履歴を管理するようになっていますが、管理対象に含めたくないファイルもあります。たとえば、Railsによって作成されるログファイルは頻繁に内容が変わるので、いちいちバージョン管理に更新させたくありません。Gitにはこういったファイルを管理対象から除外する機能があります。<code>.gitignore</code>というファイルをアプリケーションのルートディレクトリに置き、除外したいファイルを指定するためのルールをそこに記載します。<sup class="footnote" id="fnref-1_19"><a href="/chapters/beginning.html#fn-1_19">19</a></sup></p>
+
+<p><a class="ref" href="/chapters/beginning.html#table-rails_directory_structure">表1.1</a>をもう一度見てみると、<code>rails</code>コマンドを実行した時にRailsアプリケーションのルートディレクトリに<code>.gitignore</code>ファイルが作成されています (<a class="ref" href="/chapters/beginning.html#code-default_gitignore">リスト1.6</a>)。</p>
+
+<div class="label" id="code-default_gitignore"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">リスト1.6</span> <span class="description"><code>rails</code>コマンドで作成されるデフォルトの<code>.gitignore</code>ファイルの内容。</span> </div>
+<div class="code"><div class="highlight"><pre># See http://help.github.com/ignore-files/ for more about ignoring files.
+#
+# If you find yourself ignoring temporary files generated by your text editor
+# or operating system, you probably want to add a global ignore instead:
+#   git config --global core.excludesfile ~/.gitignore_global
+
+# Ignore bundler config
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+</pre></div>
+</div></div>
+
+
+<p><a class="ref" href="/chapters/beginning.html#code-default_gitignore">リスト1.6</a>の設定では、ログファイル、Railsの一時ファイル (<code>tmp</code>)、SQLiteデータベースなどが除外されます。(<code>log/</code>ディレクトリ以下のログファイルを除外したい場合は、<code>log/*.log</code>と指定することで、ファイル名が<code>.log</code>で終わるファイルが除外されます。これらのファイルは頻繁に更新されるため、バージョン管理に含めるのは何かと不便です。さらに、他の開発者と共同作業を行う場合にこのようなファイルをバージョン管理に含めると無用な衝突 (conflict) が発生し、関係者一同が無駄にいらいらすることになりかねません。</p>
+
+<p>本書のチュートリアルでは、<a class="ref" href="/chapters/beginning.html#code-default_gitignore">リスト1.6</a>の<code>.gitignore</code>設定で十分です。システム環境によっては、<a class="ref" href="/chapters/beginning.html#code-gitignore">リスト1.7</a>のように設定するとさらに便利になることがあります。この<code>.gitignore</code>では、Railsドキュメントファイル、VimやEmacsのスワップファイル、そしてOS Xユーザーにはお馴染みの、あのいまいましい<code>.DS_Store</code>ディレクトリ (MacのFinder操作で作成される隠しディレクトリ) も管理対象から除外されます。この拡張版除外設定を使用したい場合は、<code>.gitignore</code>を好みのテキストエディタで開き、<a class="ref" href="/chapters/beginning.html#code-gitignore">リスト1.7</a>の内容で置き換えます。</p>
+
+<div class="label" id="code-gitignore"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">リスト1.7</span> <span class="description">より多くのパターンを除外する<code>.gitignore</code>ファイル。</span> </div>
+<div class="code"><div class="highlight"><pre># Ignore bundler config
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Ignore other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
+.idea
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="sec-adding_and_committing"></div>
+
+
+<h3><a id="sec-1_3_2" href="/chapters/beginning.html#sec-adding_and_committing" class="heading"><span class="number">1.3.2</span>追加とコミット</a></h3>
+
+
+<p>最後に、新しく作成したRailsプロジェクトのファイルをGitに追加し、次にそれをコミットします。ファイルを追加する (<code>.gitignore</code>で指定されているものを除く) には、以下のコマンドを実行します。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
+</pre></div>
+</div>
+
+
+<p>ここで「<code>.</code>」は現在のディレクトリ (カレントディレクトリ) を指します。Gitは<em>再帰的に</em>ファイルを追加できるので、自動的にすべてのサブディレクトリも追加されます。このコマンドによりプロジェクトのファイルは、コミット待ちの変更が格納されている「<em>ステージングエリア</em>」という一種の待機場所に追加されます。ステージングエリアにあるファイルのリストを表示するには、<code>status</code>コマンドを実行します<sup class="footnote" id="fnref-1_20"><a href="/chapters/beginning.html#fn-1_20">20</a></sup>。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git status
+<span class="gp">#</span> On branch master
+<span class="gp">#</span>
+<span class="gp">#</span> Initial commit
+<span class="gp">#</span>
+<span class="gp">#</span> Changes to be committed:
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+<span class="gp">#</span>
+<span class="gp">#</span>       new file:   README.rdoc
+<span class="gp">#</span>       new file:   Rakefile
+<span class="go">.</span>
+<span class="go">.</span>
+<span class="go">.</span>
+</pre></div>
+</div>
+
+
+<p>（出力結果が長いので、省略された部分を示すために縦点を使っています。）</p>
+
+<p>変更を保存するには、<code>commit</code>コマンドを使います。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git commit -m <span class="s2">&quot;Initial commit&quot;</span>
+<span class="go">[master (root-commit) df0a62f] Initial commit</span>
+<span class="go">42 files changed, 8461 insertions(+), 0 deletions(-)</span>
+<span class="go">create mode 100644 README.rdoc</span>
+<span class="go">create mode 100644 Rakefile</span>
+<span class="go">.</span>
+<span class="go">.</span>
+<span class="go">.</span>
+</pre></div>
+</div>
+
+
+<p><code>-m</code>フラグは、コミットメッセージ (コミット内容の覚書) をその場で追加する場合に使用します。<code>-m</code>を省略した場合、<a class="ref" href="/chapters/beginning.html#sec-git_setup">Section 1.3.1</a>で設定されたエディタが起動され、コミットメッセージの入力を求められます。</p>
+
+<p>ここでコミットについて少し解説しておきます。Gitにおけるコミットは、あくまで<em>ローカル</em>マシン上での操作であることに注意してください。この点について、もう一つの有名なオープンソースバージョン管理システムであるSubversionとははっきり異なります。Gitの場合、コミットを実行してもリモート上にあるリポジトリを直接変更することはありません。Gitでは、ローカルでの変更保存 (<code>git commit</code>) と、リモート上のリポジトリへの変更反映 (<code>git push</code>) の2段階に分かれています。<a class="ref" href="/chapters/beginning.html#sec-git_commands">1.3.5</a>にはこのpushの例が記載されています。</p>
+
+<p>ちなみに、<code>log</code>コマンドでコミットメッセージの履歴を参照できます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git log
+<span class="go">commit df0a62f3f091e53ffa799309b3e32c27b0b38eb4</span>
+<span class="go">Author: Michael Hartl &lt;michael@michaelhartl.com&gt;</span>
+<span class="go">Date:   Thu Oct 15 11:36:21 2009 -0700</span>
+
+<span class="go">  Initial commit</span>
+</pre></div>
+</div>
+
+
+<p><code>git log</code>を終了するには<code>q</code>キーを押してください。</p>
+
+<h3><a id="sec-1_3_3" href="/chapters/beginning.html#sec-1_3_3" class="heading"><span class="number">1.3.3</span>Gitのメリット</a></h3>
+
+
+<p>今の時点では、ソースコードをバージョン管理下に置かなければならない理由が今ひとつよくわからないという方がいるかもしれませんので、例を１つ紹介します (この後の章でも多くの実例を紹介します)。仮に、あなたが重要な<code>app/controllers/</code>ディレクトリを削除してしまったとしましょう。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> ls app/controllers/
+<span class="go">application_controller.rb</span>
+<span class="gp">$</span> rm -rf app/controllers/
+<span class="gp">$</span> ls app/controllers/
+<span class="go">ls: app/controllers/: No such file or directory</span>
+</pre></div>
+</div>
+
+
+<p>ここでは、Unixコマンドの<code>ls</code>で<code>app/controllers/</code>ディレクトリの中身を表示した後、<code>rm</code>コマンドをうっかり実行してこのディレクトリを削除してしまいました。<code>-rf</code>フラグは、「recursive」(サブディレクトリやその中のファイルもすべて削除する)、「 force」(削除して良いかどうかをユーザーに確認しない) を指定するオプションです。</p>
+
+<p>現在の状態を確認してみましょう。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git status
+<span class="gp">#</span> On branch master
+<span class="gp">#</span> Changed but not updated:
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git add/rm &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
+<span class="gp">#</span>
+<span class="gp">#</span>       deleted:    app/controllers/application_controller.rb
+<span class="gp">#</span>
+<span class="go">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span>
+</pre></div>
+</div>
+
+
+<p>ファイルがいくつか削除されましたが、この変更が行われたのは現在の「作業ツリー」内のみなので、まだコミット (保存) されていません。つまり、以前のコミットを<code>checkout</code>コマンド (と、現在までの変更を強制的に上書きして元に戻すための<code>-f</code>フラグ) でチェックアウトすれば、簡単に削除前の状態に戻すことができます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout -f
+<span class="gp">$</span> git status
+<span class="gp">#</span> On branch master
+<span class="go">nothing to commit (working directory clean)</span>
+<span class="gp">$</span> ls app/controllers/
+<span class="go">application_controller.rb</span>
+</pre></div>
+</div>
+
+
+<p>削除されたディレクトリとファイルが無事復旧しました。これでひと安心です。</p>
+
+<div class="label" id="sec-github"></div>
+
+
+<h3><a id="sec-1_3_4" href="/chapters/beginning.html#sec-github" class="heading"><span class="number">1.3.4</span>GitHub</a></h3>
+
+
+<p>Gitを使用してプロジェクトをバージョン管理下に置くことができたので、今度は<a href="http://github.com">GitHub</a>にソースコードをアップロードしてみましょう。GitHubは、Gitリポジトリの置き場所を提供したり (ホスティング)、リポジトリを開発者同士で共有するサービスを提供するWebサービスとして有名です。GitHubにわざわざリポジトリをプッシュするのには2つの理由があります。１つ目は、ソースコード (とそのすべての変更履歴) の完全なバックアップを作成することです。２つ目は、他の開発者との共同作業をより簡単に行うことです。GitHubへのプッシュは必須ではありませんが、GitHubのメンバーになっておくと、多くのオープンソースプロジェクトに参加できるようになります。</p>
+
+<div class="label" id="fig-create_first_repository"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/create_first_repository_new.png" alt="create_first_repository_new" /></span></div><div class="caption"><span class="header">図1.6: </span><span class="description">アカウント作成直後のGitHubページ。<a href="http://railstutorial.org/images/figures/create_first_repository_new-full.png">(拡大)</a></span></div></div>
+
+
+<p>GitHubにはさまざまな有料プランがありますが、オープンソースのコードなら無料で利用できるので、初めて利用するのであれば<a href="https://github.com/signup/free">無料のGitHubアカウント</a>を作成しましょう (念のため、<a href="http://help.github.com/key-setup-redirect">GitHubのSSHキー作成方法のチュートリアル</a>を先に読んでおいてください)。 アカウント作成後、[<a href="http://github.com/new">Create repository</a>]をクリックし、<a class="ref" href="/chapters/beginning.html#fig-create_first_repository">図1.6</a>に従ってフォームに記入します。(注意: このときに<code>README</code>ファイルを使用してリポジトリを初期化<em>しないでください</em> 。<code>rails new</code>コマンドを実行するときにこれらのファイルが作成されるからです。) リポジトリを作成したら、以下を実行してアプリケーションをプッシュします。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git remote add origin git@github.com:&lt;username&gt;/first_app.git
+<span class="gp">$</span> git push -u origin master
+</pre></div>
+</div>
+
+
+<p>最初のコマンドは、現在のメイン (<em>master</em>) ブランチ用の &quot;origin&quot; としてGitHubに追加します。次のコマンドで実際に GitHubにプッシュします （<tt>-u</tt>フラグについては気にする必要はありません。気になるのであれば &quot;git set upstream&quot;で検索してみてください）。もちろん、<tt class="verb">&lt;username&gt;</tt>はあなたの名前に置き換えてください。たとえば、私が<code>railstutorial</code>用に実行したコマンドは以下のとおりです。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git remote add origin git@github.com:railstutorial/first_app.git
+</pre></div>
+</div>
+
+
+<p>このコマンドを実行すると、GitHubにファイル閲覧、コミット履歴の表示など多数の機能を備えたアプリケーションのリポジトリ用のページが作成されました (<a class="ref" href="/chapters/beginning.html#fig-github_repository_page">図1.7</a>)。</p>
+
+<div class="label" id="fig-github_repository_page"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/github_repository_page.png" alt="github_repository_page" /></span></div><div class="caption"><span class="header">図1.7: </span><span class="description">GitHubのリポジトリページ。<a href="http://railstutorial.org/images/figures/github_repository_page-full.png">(拡大)</a></span></div></div>
+
+
+<p>なお、GitHubにはコマンドラインインターフェイスを拡張したGUIアプリケーションもあります。 GUIアプリケーションの方が好みであれば、<a href="http://windows.github.com/">GitHub for Windows</a>や<a href="http://mac.github.com/">GitHub for Mac</a>をチェックしてみてください  (Linux用のGitHubは今のところGitしかないようです)。</p>
+
+<div class="label" id="sec-git_commands"></div>
+
+
+<h3><a id="sec-1_3_5" href="/chapters/beginning.html#sec-git_commands" class="heading"><span class="number">1.3.5</span>ブランチ (branch)、変更 (edit)、 コミット (commit)、マージ (merge)</a></h3>
+
+
+<p><a class="ref" href="/chapters/beginning.html#sec-github">1.3.4</a>,で紹介した手順を踏んでいれば、GitHubは自動的にリポジトリのメインページに<code>README</code>ファイルの内容を表示している事に気付くかもしれません。このチュートリアルでは、プロジェクトは<code>rails</code>コマンドによって作成されたRailsアプリケーションなので、<code>README</code>ファイルはRailsに既に含まれています (<a class="ref" href="/chapters/beginning.html#fig-rails_readme">図1.8</a>)。<code>README</code>ファイルの拡張子は<code>.rdoc</code>になっているので、GitHubでは適切なフォーマットで表示されます。しかしその内容はRailsフレームワークそのものに関するもので、そのままでは役に立ちません。この節ではREADMEの内容を編集し、プロジェクトに関する記述に置き換えます。それと同時に、Gitでbranch、edit、commit、mergeを行う際に私がお勧めしたいワークフローの実例をお見せします。</p>
+
+<div class="label" id="fig-rails_readme"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/rails_readme_3_2.png" alt="rails_readme_3_2" /></span></div><div class="caption"><span class="header">図1.8: </span><span class="description">GitHub上の、役に立たない初期の<code>README</code>ファイル<a href="http://railstutorial.org/images/figures/rails_readme_3_2-full.png">(拡大)</a></span></div></div>
+
+
+
+
+<div class="label" id="sec-git_branch"></div>
+
+
+<h4><a id="sec-1_3_5_1" href="/chapters/beginning.html#sec-git_branch" class="heading">ブランチ (branch)</a></h4>
+
+
+<p>Gitは、ブランチ (<em>branch</em>) をきわめて簡単かつ高速に作成することができます。ブランチは基本的にはリポジトリのコピーで、ブランチ上では元のファイルを触らずに新しいコードを書くなど、自由に変更や実験を試すことができます。通常、親リポジトリは<em>マスター</em>ブランチと呼ばれ、トピックブランチ (短期間だけ使う一時的なブランチ) は<code>checkout</code>と<code>-b</code>フラグを使って作成できます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout -b modify-README
+<span class="go">Switched to a new branch &#39;modify-README&#39;</span>
+<span class="gp">$</span> git branch
+<span class="go">master</span>
+<span class="go">* modify-README</span>
+</pre></div>
+</div>
+
+
+<p>2つ目のコマンド (<code>git branch</code>) は、単にすべてのローカルブランチを一覧表示しているだけです。「<code>*</code>」はそのブランチが現在使用中であることを表します。1番目の<code>git checkout -b modify-README</code>コマンドで、ブランチの新規作成とそのブランチへの切り替えが同時に行われていることに注目してください。<code>modify-README</code>ブランチに*が付いていることで、このブランチが現在使用中であることが示されています (<a class="ref" href="/chapters/beginning.html#sec-version_control">1.3</a>で<code>co</code>エイリアスを設定した場合は、<code>git co -b modify-README</code>と入力することもできます)。</p>
+
+<p>ブランチの真価は他の開発者と共同で作業する時に発揮されますが<sup class="footnote" id="fnref-1_21"><a href="/chapters/beginning.html#fn-1_21">21</a></sup>、このチュートリアルのように一人で作業する時にも役立ちます。マスターブランチはトピックブランチで行った変更に影響されないので、たとえブランチ上のコードが<em>めちゃくちゃ</em>になってしまっても、マスターブランチをチェックアウトしてトピックブランチを削除すれば、いつでも変更を破棄する事ができます。具体的な方法についてはこの章の最後で説明します。</p>
+
+<p>ちなみに、通常このような小さな変更のためにわざわざブランチを作成する必要はありませんが、ブランチがよい習慣であることに変わりはないので、少しでも練習しておきましょう。</p>
+
+<div class="label" id="sec-git_edit"></div>
+
+
+<h4><a id="sec-1_3_5_2" href="/chapters/beginning.html#sec-git_edit" class="heading">変更 (Edit)</a></h4>
+
+
+<p>トピックブランチを作成後、READMEの内容をわかりやすく書き換えてみましょう。私の場合、デフォルトのRDocを編集するときには主に<a href="http://daringfireball.net/projects/markdown/">Markdown</a>というマークアップ言語を使用しています。拡張子を<code>.md</code>にしておけば、GitHubにアップロードしたときに自動的にドキュメントがきれいに整形されます。今回はGitに付属する<code>mv</code>コマンド (注: Unixのmvコマンドではありません!) を使ってREADMEの拡張子を変更し、それからREADMEの内容を<a class="ref" href="/chapters/beginning.html#code-new_readme">リスト1.8</a>の内容に書き換えます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git mv README.rdoc README.md
+<span class="gp">$</span> subl README.md
+</pre></div>
+</div>
+
+
+<div class="label" id="code-new_readme"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">リスト1.8</span> <span class="description">新しい<code>README</code>ファイル (<code>README.md</code>)。</span> </div>
+<div class="code"><div class="highlight"><pre># Ruby on Rails Tutorial: first application
+
+This is the first application for
+[*Ruby on Rails Tutorial: Learn Rails by Example*](http://railstutorial.org/)
+by [Michael Hartl](http://michaelhartl.com/).
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="sec-git_commit"></div>
+
+
+<h4><a id="sec-1_3_5_3" href="/chapters/beginning.html#sec-git_commit" class="heading">コミット (commit)</a></h4>
+
+
+<p>変更が終わったら、ブランチの状態を確認してみましょう。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git status
+<span class="gp">#</span> On branch modify-README
+<span class="gp">#</span> Changes to be committed:
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+<span class="gp">#</span>
+<span class="gp">#</span>       renamed:    README.rdoc -&gt; README.md
+<span class="gp">#</span>
+<span class="gp">#</span> Changed but not updated:
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
+<span class="gp">#</span>
+<span class="gp">#</span>       modified:   README.md
+<span class="gp">#</span>
+</pre></div>
+</div>
+
+
+<p>この時点で、<a class="ref" href="/chapters/beginning.html#sec-adding_and_committing">1.3.2</a>のように<code>git add .</code>を実行することもできますが、Gitには現存するすべてのファイル (git mvで作成したファイルも含む) への変更を一括でコミットする<code>-a</code>フラグがあります。このフラグは非常によく使われます。なお、<code>git mv</code>で作成されたファイルは、Gitでは新規ファイルではなく変更として扱われます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git commit -a -m <span class="s2">&quot;Improve the README file&quot;</span>
+<span class="go">2 files changed, 5 insertions(+), 243 deletions(-)</span>
+<span class="go">delete mode 100644 README.rdoc</span>
+<span class="go">create mode 100644 README.md</span>
+</pre></div>
+</div>
+
+
+<p><code>-a</code>フラグは慎重に扱ってください。最後のコミット後に新しいファイルを追加した場合は、まず<code>git add</code>を実行してバージョン管理下に置く必要があります。</p>
+
+<p>コミットメッセージは<em>現在形</em>で書くようにしましょう。Gitのモデルは、(単一のパッチではなく) 一連のパッチとしてコミットされます。そのため、コミットメッセージを書くときには、そのコミットが「何をしたのか」と履歴スタイルで書くよりも「何を<em>する</em>」ためのものなのかを書く方が、後から見返したときにわかりやすくなります。さらに、現在形で書いておけば、Gitコマンド自身によって生成されるコミットメッセージとも時制が整合します。詳細についてはGitHubに投稿された「<a href="https://github.com/blog/926-shiny-new-commit-styles">最新のコミット方法</a>」(英語) を参照してください。</p>
+
+<div class="label" id="sec-git_merge"></div>
+
+
+<h4><a id="sec-1_3_5_4" href="/chapters/beginning.html#sec-git_merge" class="heading">マージ (merge)</a></h4>
+
+
+<p>ファイルの変更が終わったので、マスターブランチにこの変更を<em>マージ (merge)</em> します。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout master
+<span class="go">Switched to branch &#39;master&#39;</span>
+<span class="gp">$</span> git merge modify-README
+<span class="go">Updating 34f06b7..2c92bef</span>
+<span class="go">Fast forward</span>
+<span class="go">README.rdoc     |  243 --------------------------------------------------</span>
+<span class="go">README.md       |    5 +</span>
+<span class="go">2 files changed, 5 insertions(+), 243 deletions(-)</span>
+<span class="go">delete mode 100644 README.rdoc</span>
+<span class="go">create mode 100644 README.md</span>
+</pre></div>
+</div>
+
+
+<p>Gitの出力には<code>34f06b7</code>のような文字列が含まれていることがあります。Gitはこれらをリポジトリの内部処理に使用しています。この文字列は環境の違いにより上記のものと少し異なるかもしれませんが、他の部分はほぼ同じはずです。</p>
+
+<p>変更をマージした後は、<code>git branch -d</code>を実行してトピックブランチを削除すれば終わりです。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git branch -d modify-README
+<span class="go">Deleted branch modify-README (was 2c92bef).</span>
+</pre></div>
+</div>
+
+
+<p>トピックブランチの削除は必須ではありません。実際、トピックブランチを削除せずにそのままにしておくことはよく行われています。トピックブランチを削除せずに残しておけば、トピックブランチとマスターブランチを交互に行き来して、きりの良い所で変更をマージする事ができます。</p>
+
+<p>上で述べたように、<code>git branch -D</code>でトピックブランチ上の変更を破棄することもできます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="c"># これはあくまで例です。ブランチでミスをした時以外は実行しないで下さい。</span>
+<span class="nv">$ </span>git checkout -b topic-branch
+<span class="nv">$ </span>&lt;really screw up the branch&gt;
+<span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -a -m <span class="s2">&quot;Major screw up&quot;</span>
+<span class="nv">$ </span>git checkout master
+<span class="nv">$ </span>git branch -D topic-branch
+</pre></div>
+</div>
+
+
+<p><code>-d</code>フラグと異なり、<code>-D</code>フラグは変更をマージしていなくてもブランチを削除してくれます。</p>
+
+<div class="label" id="sec-git_push"></div>
+
+
+<h4><a id="sec-1_3_5_5" href="/chapters/beginning.html#sec-git_push" class="heading">プッシュ (push)</a></h4>
+
+
+<p><code>README</code>ファイルの更新が終わったので、GitHubに変更をプッシュして結果を見てみましょう。既に<a class="ref" href="/chapters/beginning.html#sec-github">1.3.4</a>で一度プッシュを行ったので、大抵のシステムでは<code>git push</code>を実行するときに<code>origin master</code>を省略できます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git push
+</pre></div>
+</div>
+
+
+<p>先ほど説明したとおり、Markdownで記述された新しいファイルはGitHubできれいにフォーマットされます (<a class="ref" href="/chapters/beginning.html#fig-new_readme">図1.9</a>)。</p>
+
+<div class="label" id="fig-new_readme"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/new_readme.png" alt="new_readme" /></span></div><div class="caption"><span class="header">図1.9:</span> <span class="description">Markdownを使用してフォーマットされた改良版<code>README</code>ファイル。<a href="http://railstutorial.org/images/figures/new_readme-full.png">(拡大)</a></span></div></div>
+
+
+
+
+<div class="label" id="sec-deploying"></div>
+
+
+<h2><a id="sec-1_4" href="/chapters/beginning.html#sec-deploying" class="heading"><span class="number">1.4</span>展開する</a></h2>
+
+
+<p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境に展開 (デプロイ: deploy) してしまいましょう。アプリケーションの展開は必須ではありませんが、頻繁に本番展開することによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境に展開しないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_22"><a href="/chapters/beginning.html#fn-1_22">22</a></sup>。</p>
+
+<p>かつてはRailsアプリの本番展開は大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx<sup class="footnote" id="fnref-1_23"><a href="/chapters/beginning.html#fn-1_23">23</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスホスティングを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
+
+<p>私のお気に入りはHerokuで、Railsを含むRuby Webアプリ用のホスティングプラットフォームです<sup class="footnote" id="fnref-1_24"><a href="/chapters/beginning.html#fn-1_24">24</a></sup>。Herokuは、ソースコードのバージョン管理にGitを使用していれば、Railsアプリケーションを簡単に本番環境に展開できます (Gitを導入したのは、まさにこのHerokuで使うためでもあります。まだGitをインストールしていなければ、<a class="ref" href="/chapters/beginning.html#sec-version_control">1.3</a>を参照してください)。この章では、私たちの最初のアプリケーションをHerokuに展開します。</p>
+
+<div class="label" id="sec-heroku_setup"></div>
+
+
+<h3><a id="sec-1_4_1" href="/chapters/beginning.html#sec-heroku_setup" class="heading"><span class="number">1.4.1</span> Herokuのセットアップ</a></h3>
+
+
+<p>Herokuでは<a href="http://www.postgresql.org/">PostgreSQL</a>データベースを使用します (ちなみに発音は “post-gres-cue-ell” で、よく“Postgres”と略されます)。そのためには、production (本番) 環境に<tt>pg</tt> gemをインストールしてRailsがPostgreSQLと通信できるようにします。</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.12.2&#39;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>上のコードを<a class="ref" href="/chapters/beginning.html#code-gemfile_sqlite_version">リスト1.5</a>の<code>Gemfile</code>に追加すると、<a class="ref" href="/chapters/beginning.html#code-gemfile_pg_gem">リスト1.9</a>のようになります。</p>
+
+<div class="label" id="code-gemfile_pg_gem"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">リスト1.9</span> <span class="description">PostgreSQL用の<tt>pg</tt> gemを追加した <code>Gemfile</code>。</span> </div>
+<div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.13&#39;</span>
+
+<span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.5&#39;</span>
+<span class="k">end</span>
+
+
+<span class="c1"># Gems used only for assets and not required</span>
+<span class="c1"># in production environments by default.</span>
+<span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span>   <span class="s1">&#39;3.2.5&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.2.2&#39;</span>
+
+  <span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;1.2.3&#39;</span>
+<span class="k">end</span>
+
+<span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0.2&#39;</span>
+
+<span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.12.2&#39;</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>インストールの際には、<code>bundle install</code>に特殊なフラグを追加します。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install --without production
+</pre></div>
+</div>
+
+
+<p><tt class="verb">--without production</tt>オプションを追加すると、 production用のgem (この場合は<tt>pg</tt>のみ) はローカルの環境にはインストールされません。(今回追加したgemは本番環境でしか使用できないように制限されているので、このコマンドを実行しても、ローカルgemはローカルの環境にインストールされません。ただし<code>Gemfile.lock</code>については、Herokuがこれを使用して本番環境のRailsアプリケーションで必要なgemを推測するため、更新しておく必要があります。)</p>
+
+<p>次にHerokuのアカウントを新規作成して設定します。最初に<a href="http://api.heroku.com/signup">Herokuのユーザー登録</a>を行います。アカウント作成後に完了通知メールが届いたら、<a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>を使用して必要なHerokuソフトウェアをインストールします<sup class="footnote" id="fnref-1_25"><a href="/chapters/beginning.html#fn-1_25">25</a></sup>。次にターミナルで以下の<code>heroku</code>コマンドを実行します (実行前にターミナルの終了と再起動が必要なことがあります)。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku login
+</pre></div>
+</div>
+
+
+<p>最後に、元のRailsプロジェクトディレクトリに移動し、<code>heroku</code>コマンドを実行して、Herokuサーバー上にサンプルアプリケーション用の場所を作成します (<a class="ref" href="/chapters/beginning.html#code-heroku_create">リスト1.10</a>)。</p>
+
+<div class="label" id="code-heroku_create"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">リスト1.10</span> <span class="description">Herokuに新しいアプリケーションを作成する。</span> </div>
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/rails_projects/first_app
+<span class="gp">$</span> heroku create
+<span class="go">Created http://stormy-cloud-5881.herokuapp.com/ |</span>
+<span class="go">git@heroku.com:stormy-cloud-5881.herokuapp.com</span>
+<span class="go">Git remote heroku added</span>
+</pre></div>
+</div></div>
+
+
+<p>この<code>heroku</code>コマンドを実行すると、私たちのRailsアプリケーション専用のサブドメインが作成され、ただちにブラウザで表示可能になります。今はまだ何もありませんが、すぐに展開してWebページを表示させましょう。</p>
+
+<div class="label" id="sec-heroku_step_one"></div>
+
+
+<h3><a id="sec-1_4_2" href="/chapters/beginning.html#sec-heroku_step_one" class="heading"><span class="number">1.4.2</span> Herokuに展開する (1)</a></h3>
+
+
+<p>Railsアプリケーションを実際にHerokuに展開するには、まずGitを使用してHerokuにリポジトリをプッシュします。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git push heroku master
+</pre></div>
+</div>
+
+
+<h3><a id="sec-1_4_3" href="/chapters/beginning.html#sec-1_4_3" class="heading"><span class="number">1.4.3</span> Herokuに展開する (2)</a></h3>
+
+
+<p>失礼、その2はありません。これで終わりです (<a class="ref" href="/chapters/beginning.html#fig-heroku_app_31">図1.10</a>)。展開されたアプリケーションの表示は、<code>heroku create</code> (<a class="ref" href="/chapters/beginning.html#code-heroku_create">リスト1.10</a>) を実行した際に生成されたアドレスをブラウザで開くだけです (もちろんここに出てくる私のアドレスではなく、あなたのアドレスを使って下さい)。<code>heroku</code>コマンドに以下の引数を与えるだけで、正しいアドレスでブラウザが起動します。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku open
+</pre></div>
+</div>
+
+
+<p>なお、設定の関係で、&quot;About your application’s environment” リンクはHeroku上ではリンク切れになります。これは正常です。<a class="ref" href="/chapters/filling-in-the-layout.html#sec-rails_routes">5.3.2</a>ではこのデフォルトのRailsページは削除されるので、完全なサンプルアプリケーションではこのエラーは消え去ります。</p>
+
+<div class="label" id="fig-heroku_app_31"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/heroku_app_31.png" alt="heroku_app_31" /></span></div><div class="caption"><span class="header">図1.10: </span><span class="description">Heroku上で動作しているRailsチュートリアルの最初のアプリケーション。<a href="http://railstutorial.org/images/figures/heroku_app_31-full.png">(拡大)</a></span></div></div>
+
+
+<p>Herokuへの展開が完了した後は、アプリケーションの管理と設定にこんな美しいユーザーインターフェースを使用できます (<a class="ref" href="/chapters/beginning.html#fig-heroku_info">図1.11</a>)。</p>
+
+<div class="label" id="fig-heroku_info"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/heroku_info.png" alt="heroku_info" /></span></div><div class="caption"><span class="header">図1.11: </span><span class="description">美しいHerokuのインターフェイス。<a href="http://railstutorial.org/images/figures/heroku_info-full.png">(拡大)</a></span></div></div>
+
+
+
+
+<div class="label" id="sec-heroku_commands"></div>
+
+
+<h3><a id="sec-1_4_4" href="/chapters/beginning.html#sec-heroku_commands" class="heading"><span class="number">1.4.4</span>Herokuコマンド</a></h3>
+
+
+<p><a href="http://devcenter.heroku.com/heroku-command">Herokuのコマンド</a>はたくさんあるので、ここでは簡単に触れる程度にとどめますが、少しだけ使ってみましょう。アプリケーションの名前を変更してみます。</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku rename railstutorial
+</pre></div>
+</div>
+
+
+<p>注意: この名前は、私のサンプルアプリケーションで既に使用していますので、他の名前を使用してください。実際は、Herokuで生成されたデフォルトのアドレスでも十分です。本当にアプリケーションの名前を変えてみたい場合は、次のようなランダムなサブドメイン名を設定し、この章の冒頭で説明したアプリケーションのセキュリティを実装してみる方法もあります。</p>
+
+<pre class="verbatim">hwpcbmze.heroku.com
+seyjhflo.heroku.com
+jhyicevg.heroku.com</pre>
+
+
+<p>このようなでたらめのサブドメイン名なら、アドレスを渡さない限りサイトがアクセスされる心配もありません。(ちなみに、Rubyの威力の一端をお見せするために、ランダムなサブドメイン名を生成するためのコンパクトなコードを以下に記します。</p>
+
+<div class="code"><div class="highlight"><pre><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">shuffle</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">7</span><span class="o">].</span><span class="n">join</span>
+</pre></div>
+</div>
+
+
+<p>最高ですね。)</p>
+
+<p>Herokuでは、サブドメインの他に独自ドメインも使用できます。(実は、この<a href="http://railstutorial.org">Ruby on RailsチュートリアルWebサイト</a>もHeroku上にあるのです。あなたが本書をオンラインで読んでいるということは、まさにHerokuにホスティングされたWebサイトを見ているということになります。) カスタムドメインや他のHeroku関連の情報については、<a href="http://devcenter.heroku.com/">Herokuドキュメント</a>を参照してください。</p>
+
+<div class="label" id="sec-beginning_conclusion"></div>
+
+
+<h2><a id="sec-1_5" href="/chapters/beginning.html#sec-beginning_conclusion" class="heading"><span class="number">1.5</span>最後に</a></h2>
+
+
+<p>この章ではインストール、開発環境の設定、バージョン管理、本番環境への展開など、多くの課題を達成しました。ここまでの進捗をTwitterに投稿したりFacebookで通知するには以下のリンクからどうぞ。</p>
+
+<div class="center"><a href="http://twitter.com/?status=I&#39;m%20learning%20Ruby%20on%20Rails%20with%20@railstutorial!%20http://railstutorial.org/">@railstutorialでRuby on Railsを学習中!</a><a href="http://twitter.com/?status=I&#39;m%20learning%20Ruby%20on%20Rails%20with%20@railstutorial!%20http://railstutorial.org/">http://railstutorial.org/</a></div>
+
+
+<p> </p>
+
+<p>後は、Railsを実際に勉強するだけです。一緒に頑張りましょう。</p>
+
+<div class="navigation">  <a class="next_page" href="/chapters/a-demo-app.html#top">
+</a><a class="next_page" href="/chapters/a-demo-app.html#top">    <span class="number">第2章</span>デモアプリケーション»</a><a class="next_page" href="/chapters/a-demo-app.html#top">  </a>
+</div><div class="footnotes">
+<ol>
+<li id="fn-1_1"><em>URI</em>はUniform Resource Identifierの略です。それよりやや一般性の低い<em>URL</em>はUniform Resource Locatorの略です。URIは、要するに「ブラウザのアドレスバーにあるあれ」と考えればだいたい合っています。<a class="arrow" href="/chapters/beginning.html#fnref-1_1">↑</a></li>
+<li id="fn-1_2">http://tryruby.org/ <a class="arrow" href="/chapters/beginning.html#fnref-1_2">↑</a></li>
+<li id="fn-1_3">http://railsforzombies.org/ <a class="arrow" href="/chapters/beginning.html#fnref-1_3">↑</a></li>
+<li id="fn-1_4">http://railstutorial.org/screencasts <a class="arrow" href="/chapters/beginning.html#fnref-1_4">↑</a></li>
+<li id="fn-1_5"><em>Railsチュートリアル</em>を読んでいて、チュートリアル内部の別セクション番号へのリンクをクリックして移動したら、なるべくすぐに元の場所に戻ることをお勧めします。Webページで読んでいる場合は、ブラウザの [戻る] ボタンで戻れます。Adobe ReaderやOS XのプレビューでPDF版を読んでいる場合でも、同様に戻る方法があります。Adobe Readerの場合は、ドキュメント画面を右クリックして [Previous View]をクリックします。OS X Previewの場合はメニューの <tt>[移動] &gt; [戻る]</tt> で戻れます。<a class="arrow" href="/chapters/beginning.html#fnref-1_5">↑</a></li>
+<li id="fn-1_6"><code>sudo</code>コマンドを実行するとデフォルトでroot (スーパーユーザー) に切り替わるためか、多くの人がsudoコマンドを &quot;superuser do&quot; の略だと誤って信じています。正しくは、<code>sudo</code>は<code>su</code>コマンドと英語の “do” をつなげたものです。そして<code>su</code>コマンドは “substitute user” (ユーザーの切替) の略なのです。ターミナルで<code>man su</code>と入力すればこのことを確認できます。 <a class="arrow" href="/chapters/beginning.html#fnref-1_6">↑</a></li>
+<li id="fn-1_7">http://railstutorial.org/help <a class="arrow" href="/chapters/beginning.html#fnref-1_7">↑</a></li>
+<li id="fn-1_8">https://github.com/perfectionist/sample_project/wiki <a class="arrow" href="/chapters/beginning.html#fnref-1_8">↑</a></li>
+<li id="fn-1_9">viは、Unixで古くから使用されているコマンドベースの強力なエディタです。Vimは &quot;vi improved&quot; の略です。<a class="arrow" href="/chapters/beginning.html#fnref-1_9">↑</a></li>
+<li id="fn-1_10">https://github.com/mhartl/rails_tutorial_sublime_text <a class="arrow" href="/chapters/beginning.html#fnref-1_10">↑</a></li>
+<li id="fn-1_11">IRCが初めてであれば、まず “irc client &lt;あなたのプラットフォーム&gt;”で検索することをお勧めします。 OS X用のネイティブクライアントとしては<a href="http://colloquy.info/">Colloquy</a>と<a href="http://limechat.net/mac/">LimeChat</a>がお勧めです。もちろんWeb版のインターフェイスもあります。<a href="http://webchat.freenode.net/?channels=rvm">http://webchat.freenode.net/?channels=rvm</a> <a class="arrow" href="/chapters/beginning.html#fnref-1_11">↑</a></li>
+<li id="fn-1_12">場合によっては、動作させるために<a href="http://subversion.tigris.org/">Subversion</a>というバージョン管理システムをインストールしておく必要があるかもしれません。<a class="arrow" href="/chapters/beginning.html#fnref-1_12">↑</a></li>
+<li id="fn-1_13">http://mxcl.github.com/homebrew/ <a class="arrow" href="/chapters/beginning.html#fnref-1_13">↑</a></li>
+<li id="fn-1_14">この手順が必要となるのは、Rails gemのバージョンを変更した場合に限られます。おそらくRailsインストーラを使用している場合にしかこういうことは起こらないでしょう。他の場合にこの手順を実行しても大丈夫です。<a class="arrow" href="/chapters/beginning.html#fnref-1_14">↑</a></li>
+<li id="fn-1_15">https://developer.apple.com/downloads/ <a class="arrow" href="/chapters/beginning.html#fnref-1_15">↑</a></li>
+<li id="fn-1_16">Windowsユーザーの場合は代わりに<code>ruby rails server</code>と入力する必要がある場合があると<a class="ref" href="/chapters/beginning.html#sec-conventions">1.1.3</a>に書いてあったことを思い出してください。<a class="arrow" href="/chapters/beginning.html#fnref-1_16">↑</a></li>
+<li id="fn-1_17">通常、Webサイトは80番ポートで受信待ちしますが、このポートを使用するには特別な権限が必要になることが多いので、Railsの開発用サーバーでは制限の少ない、番号の大きいポート (いわゆるハイナンバーポート) を使用します。<a class="arrow" href="/chapters/beginning.html#fnref-1_17">↑</a></li>
+<li id="fn-1_18">GUIエディタの起動後もターミナルを使用し続けることはできます。ただし、Gitはデタッチ時にコミットメッセージが空のままファイルを閉じたとみなすため、コミットは中断されます。Gitのエディタオプションで<code>subl</code>や<code>gvim</code>にフラグを付けないと、このあたりの動作で頭が混乱するかもしれません (訳注: gitのエディタ設定はGUIエディタとあまり相性がよくないらしく、vimやnanoのようなコマンドベースのエディタを選択するのが無難なようです)。この注釈の意味がよくわからない場合は、無視してくださってよいです。<a class="arrow" href="/chapters/beginning.html#fnref-1_18">↑</a></li>
+<li id="fn-1_19"><code>.gitignore</code>がディレクトリに見当たらない場合は、ファイルブラウザやエクスプローラで隠しファイルを表示するよう設定を変更する必要があるかもしれません。<a class="arrow" href="/chapters/beginning.html#fnref-1_19">↑</a></li>
+<li id="fn-1_20"><code>git status</code>を実行したときに表示して欲しくないファイルがあれば、それらのファイルを<a class="ref" href="/chapters/beginning.html#code-gitignore">1.7</a>の<code>.gitignore</code>ファイルに追加してください。<a class="arrow" href="/chapters/beginning.html#fnref-1_20">↑</a></li>
+<li id="fn-1_21">詳細については<a href="http://progit.org/book/ch3-0.html"><em>Pro Git</em>の「Gitのブランチ機能」</a>を参照してください。<a class="arrow" href="/chapters/beginning.html#fnref-1_21">↑</a></li>
+<li id="fn-1_22"><em>Railsチュートリアル</em>のサンプル・アプリケーションでは気にする必要はありません。作りかけの恥ずかしいWebアプリケーションをネットにうっかり公開してしまわないだろうかと心配する方もいらっしゃるかと思いますが、それを防ぐための方法はいくつもありますのでご安心ください。<a class="ref" href="/chapters/beginning.html#sec-heroku_commands">1.4.4</a>はその方法の1つです。<a class="arrow" href="/chapters/beginning.html#fnref-1_22">↑</a></li>
+<li id="fn-1_23">“Engine X&quot; と発音します。<a class="arrow" href="/chapters/beginning.html#fnref-1_23">↑</a></li>
+<li id="fn-1_24">Herokuは、Ruby Webプラットフォームに<a href="http://rack.rubyforge.org/">Rackミドルウェア</a>が導入されていれば動作します。このミドルウェアは、WebフレームワークとWebサーバーの標準インターフェイスを提供します。Rackインターフェイスを導入したことで、Rubyコミュニティは大きな力を得ることができました。Rackはさまざまなフレームワークに導入されており、<a href="http://www.sinatrarb.com/">Sinatra</a>、<a href="http://ramaze.net/">Ramaze</a>、<a href="http://camping.rubyforge.org/files/README.html">Camping</a>、そしてRubyがRackを採用しています。つまり、RubyのWebアプリケーションは基本的にHerokuでサポートされているということです。<a class="arrow" href="/chapters/beginning.html#fnref-1_24">↑</a></li>
+<li id="fn-1_25">https://toolbelt.heroku.com/ <a class="arrow" href="/chapters/beginning.html#fnref-1_25">↑</a></li>
+</ol>
+</div>
+
+
+
+
