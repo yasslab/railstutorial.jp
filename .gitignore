@@ -15,9 +15,6 @@
 /log/*.log
 /tmp
 
-# Ignore initializer
-/config/initializers/*
-
 # Ignore buffer files in local environment
 .dropbox
 Icon
