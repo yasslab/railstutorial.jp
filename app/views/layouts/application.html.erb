@@ -8,13 +8,15 @@
     <meta name="description" content="Ruby on Rails チュートリアル：実例を使ってRailsを学ぼう - Michael Hartl (マイケル・ハートル)" />
     <meta name="keywords" content="Learn Ruby Rails チュートリアル ウェブ Rails開発" />
     <meta name="author" content="Michael Hartl (マイケル・ハートル)" />
-    <meta property="og:title" content="Ruby on Rails チュートリアル：実例を使ってRailsを学ぼう"/>
-    <meta property="og:site_name" content="Ruby on Rails チュートリアル"/>
-    <meta property="og:image" content="http://railstutorial.org/images/layout/logo.png"/>
 
-    <meta property="og:url" content="http://japanese.railstutorial.org/">
-    <meta property="og:type" content="article" />
+    <meta property="fb:app_id"    content="144878509039953" />
+    <meta property="og:title"     content="Ruby on Rails チュートリアル：実例を使ってRailsを学ぼう"/>
+    <meta property="og:site_name" content="Ruby on Rails チュートリアル"/>
+    <meta property="og:image"     content="http://railstutorial.jp/images/layout/logo.png"/>
+    <meta property="og:url"       content="http://railstutorial.jp/">
+    <meta property="og:type"      content="article" />
     <meta property="og:description" content="Ruby on Rails チュートリアル：実例を使ってRailsを学ぼう - Michael Hartl (マイケル・ハートル) Rails 3.2/4.0 対応" />
+    
     <link href="/stylesheets/polytexnic.css?1304201481" media="screen" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/pygments.css?1304201481" media="screen" rel="stylesheet" type="text/css" />
 
@@ -120,8 +122,9 @@
 		  </span>
 		</div>
 		<div class="share">
-		  <fb:like href="http://railstutorial.jp/" show_faces="false"
-			   layout="button_count" colorscheme="light"></fb:like>
+		  <div class="fb-like" data-href="http://railstutorial.jp" data-send="false"
+		       data-layout="button_count" data-width="450" data-show-faces="false"
+		       data-font="arial"></div>
 		</div>
 	      </div>
 	      <!--
@@ -153,5 +156,13 @@
     </div>
     
   </body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=144878509039953";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
 </html>
 
