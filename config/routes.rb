@@ -1,6 +1,9 @@
 RailstutorialJp::Application.routes.draw do
   get '/', to: 'chapters#index'
   resources :chapters, :only => ['show']
+  get "/:chapter", to: 'chapters#old'
+  
+  #get "/:title", to: "chapters#index"
   #match '/' => redirect('/chapters/beginning'), via: [:get]
   #get '/' => redirect('/chapters/beginning')
   #get '/' => root_path
