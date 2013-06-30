@@ -4,6 +4,10 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+# To configure your application logs to be visible via heroku logs and to serve static assets.
+# See `https://devcenter.heroku.com/articles/rails-integration-gems` for more information.
+gem 'rails_12factor'
+
 # Use sqlite3 as the database for Active Record
 group :development do
   gem 'sqlite3'
