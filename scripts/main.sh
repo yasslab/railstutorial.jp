@@ -9,7 +9,7 @@ cd archive/ja
 sh ../../scripts/correct_filenames.sh
 sh ../../scripts/correct_htmls.sh
 sh ../../scripts/truncate_htmls.sh
-sh ../../scripts/update_htmls.sh
+sh ../../scripts/update_html.sh
 cd ../../
 rm -rf archive
 echo "Finished updating html files."
@@ -20,6 +20,4 @@ echo ""
 #./html2pdf.sh
 #echo "Finished creating pdf files."
 #echo ""
-
-# Truncate HTML and make then embeddable fragment
 
