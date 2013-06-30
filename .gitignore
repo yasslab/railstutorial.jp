@@ -23,6 +23,7 @@ Icon
 *~
 *.pyc
 #*
+*#
 *.out
 .DS_Store
 config.json
