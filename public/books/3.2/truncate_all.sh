@@ -1,0 +1,1 @@
+scripts/truncate_all.sh
