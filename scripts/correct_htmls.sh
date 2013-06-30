@@ -7,7 +7,7 @@
 
 for file in `ls *.html`
 do
-    cat $file | sed -e "s/railstutorial-ja.herokuapp.com/railstutorial.jp/g" > $file.modified_1
+    cat $file | sed -e "s/railstutorial-ja.herokuapp.com\//railstutorial.jp\/chapters\//g" > $file.modified_1
     cat $file.modified_1 | sed -e "s/,FITNESS/,<\/br>FITNESS/g" > $file.modified_2
     cat $file.modified_2 | sed -e "s/WHETHER/<\/br>WHETHER/g" > $file.modified_3
     cat $file.modified_3 | sed -e "s/IN CONNECTION WITH/<\/br>IN CONNECTION WITH/g" > $file.modified_4
