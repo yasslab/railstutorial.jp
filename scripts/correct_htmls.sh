@@ -2,12 +2,12 @@
 
 # Collect html files in the current directory,
 # then apply the following patches to each file:
-#   - replace a link of 'railstutorial-ja...' with 'railstutorial.jp'.
+#   - change absolute links, 'http://railstutorial-ja' into relative ones.
 #   - add </br> tags to LICENSE
 
 for file in `ls *.html`
 do
-    cat $file | sed -e "s/railstutorial-ja.herokuapp.com\//railstutorial.jp\/chapters\//g" > $file.modified_1
+    cat $file | sed -e "s/http:\/\/railstutorial-ja.herokuapp.com/chapters/g" > $file.modified_1
     cat $file.modified_1 | sed -e "s/,FITNESS/,<\/br>FITNESS/g" > $file.modified_2
     cat $file.modified_2 | sed -e "s/WHETHER/<\/br>WHETHER/g" > $file.modified_3
     cat $file.modified_3 | sed -e "s/IN CONNECTION WITH/<\/br>IN CONNECTION WITH/g" > $file.modified_4
