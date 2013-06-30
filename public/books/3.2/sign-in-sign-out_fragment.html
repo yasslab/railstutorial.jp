@@ -115,7 +115,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p><a href="http://en.wikipedia.org/wiki/Session_(computer_science)"><em>セッション</em></a>とは、2つのコンピュータの間、たとえばクライアント側のブラウザとサーバーで動作しているRailsとの間の、半永続的な接続のことです。ここでは、”サインイン” の共通パターンを実装するためにセッションを使用します。ここで、Webの世界にはセッションの振る舞いを表現するためのいくつかの異なったモデルがあります。ブラウザを閉じるとセッションを終了する「忘却モデル」、[パスワードを保存する] チェックボックスを使用してセッションを継続する「継続モデル」、ユーザーが明示的にサインアウトするまでセッションを継続する「永続モデル」などです<sup class="footnote" id="fnref-8_1"><a href="/chapters/sign-in-sign-out.html#fn-8_1">1</a></sup>。ここでは、最後の永続モデルを採用することにします。ユーザーがサインインすると、ユーザーが明示的にサウンアウトするまでサインインの状態を永続させます (<a class="ref" href="/chapters/sign-in-sign-out.html#sec-remember_me">8.2.1</a>では、“永続” が実際どれくらいの長さなのかをお見せします)。</p>
 
-<p>セッションは、RESTfulなリソースとして作成しておくと便利です。たとえばサインインページを<em>new</em>セッションで、サインインを<em>create</em>セッションで、サインアウトを<em>destroy</em>セッションでそれぞれ扱います。Usersリソースのように (Usersモデルを経由して) データベースをバックエンドに持つリソースとは異なり、このSessionsリソースでは<a href="http://en.wikipedia.org/wiki/HTTP_cookie"><em>cookie</em></a>を使用します。cookieとは、ブラウザに保存される小さなテキストデータです。サインイン関連の作業の大半は、このcookieをベースにして認証システムを構築することになります。この節と次の節では、セッション機能を作成する準備として、Sessionコントローラ、サインイン用のフォーム、そしてこれらに関連するコントローラのアクションを作成します。次の<a class="ref" href="/chapters/sign-in-sign-out.html#sec-signin_success">8.2</a>では、cookie管理のために必要なコードを追加して、ユーザーがサインインするための仕組みを完成させます。 </p>
+<p>セッションは、RESTfulなリソースとして作成しておくと便利です。たとえばサインインページを<em>new</em>セッションで、サインインを<em>create</em>セッションで、サインアウトを<em>destroy</em>セッションでそれぞれ扱います。Usersリソースのように (Usersモデルを経由して) データベースをバックエンドに持つリソースとは異なり、このSessionsリソースでは<a href="http://en.wikipedia.org/wiki/HTTP_cookie"><em>cookies</em></a>を使用します。cookiesとは、ブラウザに保存される小さなテキストデータです。サインイン関連の作業の大半は、このcookiesをベースにして認証システムを構築することになります。この節と次の節では、セッション機能を作成する準備として、Sessionコントローラ、サインイン用のフォーム、そしてこれらに関連するコントローラのアクションを作成します。次の<a class="ref" href="/chapters/sign-in-sign-out.html#sec-signin_success">8.2</a>では、cookies管理のために必要なコードを追加して、ユーザーがサインインするための仕組みを完成させます。 </p>
 
 <div class="label" id="sec-sessions_controller"></div>
 
@@ -582,7 +582,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>最初の行は、送信されたメールアドレスを使用して、データベースからユーザーを取り出しています。(<a class="ref" href="/chapters/modeling-users.html#sec-uniqueness_validation">6.2.5</a>ではメールアドレスはすべて小文字で保存されていたことを思い出してください。従って、ここでは<code>downcase</code>メソッドを使用して、正しいメールアドレスが入力されたときに確実にマッチするようにしています)。次の行は少しわかりにくいかもしれませんが、Railsプログラミングではよく使われる手法です。</p>
+<p>最初の行は、送信されたメールアドレスを使用して、データベースからユーザーを取り出しています。(<a class="ref" href="/chapters/modeling-users.html#sec-uniqueness_validation">6.2.5</a>ではメールアドレスはすべて小文字で保存されていたことを思い出してください。従って、ここでは<code>downcase</code>メソッドを使用して、正しいメールアドレスが入力されたときに確実にマッチするようにしています)。次の行は少しわかりにくいかもしれませんが、Railsプログラミングでは定番の手法です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:password</span><span class="o">]</span><span class="p">)</span>
 </pre></div>
@@ -828,7 +828,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>この<code>session</code>オブジェクトは、ユーザーidをcookieに保持することで、ページ移動後にもユーザーidを参照できるようにしています。cookieはブラウザが閉じられると無効になります。アプリケーションは、ページごとに以下の呼び出しを行います。</p>
+<p>この<code>session</code>オブジェクトは、ユーザーidをcookiesに保持することで、ページ移動後にもユーザーidを参照できるようにしています。cookiesはブラウザが閉じられると無効になります。アプリケーションは、ページごとに以下の呼び出しを行います。</p>
 
 <div class="code"><div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">session</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span><span class="p">)</span>
 </pre></div>
@@ -837,7 +837,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p>これだけで、ユーザーを取り出すことができます。Railsでは、セッションがセキュアになるように扱っていますので、悪意のあるユーザーがidをなりすまそうとしても、Railsはセッションごとに生成される特別の<em>セッションid</em>によって不一致を検出します。</p>
 
-<p>私たちのアプリケーション設計では、<em>永続的な</em>セッションを採用します。つまり、ブラウザを閉じた後にもサインイン状態を保持するということであり、サインインしたユーザに対して何らかの<em>恒久的な</em>識別子を使用する必要があります。これを実現するために、ユーザーごとに一意かつ安全な記憶トークンを生成し、ブラウザを閉じても無効にならない<em>恒久的な</em>cookieとして登録します。</p>
+<p>私たちのアプリケーション設計では、<em>永続的な</em>セッションを採用します。つまり、ブラウザを閉じた後にもサインイン状態を保持するということであり、サインインしたユーザに対して何らかの<em>恒久的な</em>識別子を使用する必要があります。これを実現するために、ユーザーごとに一意かつ安全な記憶トークンを生成し、ブラウザを閉じても無効にならない<em>恒久的な</em>cookiesとして登録します。</p>
 
 <p>記憶トークンはユーザーに関連付けられる必要があります。また、今後使用するときのために保持しておく必要もあります。そこで、<a class="ref" href="/chapters/sign-in-sign-out.html#fig-user_model_remember_token">図8.8</a>に示すUserモデルの属性に記憶トークンの保存場所を追加しましょう。</p>
 
@@ -910,7 +910,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>ここで、記憶トークンに何を使用するかを決める必要があります。有力な候補としてさまざまなものが考えられますが、基本的には長くてランダムな文字列であればどんなものでも良いでしょう。原理的には、ユーザーのパスワードは安全に暗号化されているのでユーザーの<code>password_hash</code>属性を使用することもできます。しかし、たとえ暗号化されていても、ユーザーのパスワードを不必要に攻撃者に見えるようにしてしまうのは望ましいことではありません。そこで、用心に用心を重ね、Ruby標準ライブラリの<code>SecureRandom</code>モジュールにある<code>urlsafe_base64</code>メソッドを使用して記憶トークンをカスタム生成することにしましょう。このメソッドは、URIとして (つまりcookieとしても) 安全に使用できる<a href="http://en.wikipedia.org/wiki/Base64">Base64</a>文字列を作成します<sup class="footnote" id="fnref-8_3"><a href="/chapters/sign-in-sign-out.html#fn-8_3">3</a></sup>。本書の執筆時点では、<code>SecureRandom.urlsafe_base64</code>はA–Z、a–z、0–9、“-”、“_”のいずれかの文字 (64種類) からなる長さ16のランダムな文字列を返します。生成された2つの記憶トークンが偶然一致する確率は、10のマイナス29乗 (64のマイナス16乗、2のマイナス96乗) にほぼ等しく、トークンが衝突することはまずありません。</p>
+<p>ここで、記憶トークンに何を使用するかを決める必要があります。有力な候補としてさまざまなものが考えられますが、基本的には長くてランダムな文字列であればどんなものでも良いでしょう。原理的には、ユーザーのパスワードは安全に暗号化されているのでユーザーの<code>password_hash</code>属性を使用することもできます。しかし、たとえ暗号化されていても、ユーザーのパスワードを不必要に攻撃者に見えるようにしてしまうのは望ましいことではありません。そこで、用心に用心を重ね、Ruby標準ライブラリの<code>SecureRandom</code>モジュールにある<code>urlsafe_base64</code>メソッドを使用して記憶トークンをカスタム生成することにしましょう。このメソッドは、URIとして (つまりcookiesとしても) 安全に使用できる<a href="http://en.wikipedia.org/wiki/Base64">Base64</a>文字列を作成します<sup class="footnote" id="fnref-8_3"><a href="/chapters/sign-in-sign-out.html#fn-8_3">3</a></sup>。本書の執筆時点では、<code>SecureRandom.urlsafe_base64</code>はA–Z、a–z、0–9、“-”、“_”のいずれかの文字 (64種類) からなる長さ16のランダムな文字列を返します。生成された2つの記憶トークンが偶然一致する確率は、10のマイナス29乗 (64のマイナス16乗、2のマイナス96乗) にほぼ等しく、トークンが衝突することはまずありません。</p>
 
 <p>記憶トークンの生成には<em>コールバック</em>を使用することにします。このテクニックは、<a class="ref" href="/chapters/modeling-users.html#sec-uniqueness_validation">6.2.5</a>でemailの一意性の文脈で紹介しました。そのときと同様に<code>before_save</code>コールバックを使用しますが、今回は <code>remember_token</code>属性の生成を、ユーザーが保存される直前に行います。もうひとつの方法として、before_saveコールバックの代わりに<code>before_create</code>コールバック<sup class="footnote" id="fnref-8_4"><a href="/chapters/sign-in-sign-out.html#fn-8_4">4</a></sup>を使用するという方法も考えられます。このコールバックは、ユーザーが最初に作成された時点で記憶トークンを<em>一度だけ</em>設定します。このコールバックは正常に動作するのですが、<a href="http://en.wikipedia.org/wiki/Session_hijacking">ハイジャックされたセッション</a>も期限切れにならずにずっと残ってしまうというセキュリティ上の問題が生じます (セッションハイジャックとは、記憶トークンをコピーしてそのユーザーとして不正にサインインすることです)。対照的に、<code>before_save</code>コールバックではユーザーが自分の情報を更新するたびに記憶トークンも更新されることが保証されます (<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-successful_edits">9.1.3</a>) ので、その分セキュリティ上有利です。(セッションハイジャックは、セキュリティ上の注意を呼びかけるためにこれを実演する<a href="http://codebutler.com/firesheep">Firesheep</a>アプリケーションによって広く知られるようになりました。Firesheepを使用すると、公共Wi-Fiネットワーク経由で接続したときに多くの有名Webサイトの記憶トークンが丸見えになっていることがわかります。この問題を解決するには、<a class="ref" href="/chapters/sign-up.html#sec-deploying_to_production_with_ssl">7.4.4</a>で説明したようにWebサイト全体をSSLで暗号化することです。ただし、サインインしているコンピュータの物理アドレス (MACアドレス) を攻撃者が知っていれば記憶トークンを入手できてしまうので、ときどき記憶トークンを変更する方法も依然としてセキュリティ上有効です。)</p>
 
@@ -985,7 +985,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p>このため、上をコンソールで実行すると<code>NoMethodError</code>例外が発生します。</p>
 
-<p>最後に、<code>create_remember_token</code>メソッドは、ユーザーの属性のひとつに<em>割り当てる</em>必要があります。この文脈から、<code>remember_token</code>の前に<code>self</code>キーワードを追加する必要があります。</p>
+<p>最後に、<code>create_remember_token</code>メソッドは、ユーザーの属性のひとつに「<em>要素代入 (assignment)</em>」する必要があります。この文脈から、<code>remember_token</code>の前に<code>self</code>キーワードを追加する必要があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">create_remember_token</span>
   <span class="nb">self</span><span class="o">.</span><span class="n">remember_token</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">urlsafe_base64</span>
@@ -994,15 +994,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>(<em>Note</em>: If you are using Ruby 1.8.7, you should use <code>SecureRandom.hex</code> here instead.) Because of the way Active Record synthesizes attributes based on database columns, without <code>self</code> the assignment would create a <em>local</em> variable called <code>remember_token</code>, which isn’t what we want at all. Using <code>self</code> ensures that assignment sets the user’s <code>remember_token</code> so that it will be written to the database along with the other attributes when the user is saved.</p>
+<p>(<em>注意</em>: Ruby 1.8.7を使用している場合は、SecureRandomの代わりに<code>SecureRandom.hex</code>を使用する必要があります) 。<code>self</code>キーワードを使用しないと、Active Recordがデータベースのカラムを元にして属性を合成するので、上の要素代入によって<code>remember_token</code>という名前の<em>ローカル</em>変数が作成されてしまい、期待どおりの結果になりません。<code>self</code>キーワードを与えることで、要素代入は正しくそのユーザーの<code>remember_token</code>属性を設定するようになり、ユーザーが保存されるときに他の属性と一緒にこの属性もデータベースに保存されます。</p>
 
-<p>Putting this all together yields the User model shown in <a class="ref" href="/chapters/sign-in-sign-out.html#code-before_save_create_remember_token">リスト8.18</a>.</p>
+<p>以上の実装をまとめたUserモデルを<a class="ref" href="/chapters/sign-in-sign-out.html#code-before_save_create_remember_token">リスト8.18</a>に示します。</p>
 
 <div class="label" id="code-before_save_create_remember_token"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 8.18.</span> <span class="description">A <code>before_save</code> callback to create <code>remember_token</code>. </span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
+<div class="listing"><span class="header">リスト8.18</span> <span class="description"><code>before_save</code>コールバックを使用して <code>remember_token</code>属性を作成する。</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
   <span class="n">attr_accessible</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:password_confirmation</span>
   <span class="n">has_secure_password</span>
@@ -1022,9 +1022,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>By the way, the extra level of indentation on <code>create_remember_token</code> is there to make it visually apparent which methods are defined after <code>private</code>.</p>
+<p>ちなみに、<code>private</code>キーワード以降のコードは、強調のため<code>create_remember_token</code>のインデントを1段深くしてあります。</p>
 
-<p>Since the <code>SecureRandom.urlsafe_base64</code> string is definitely <em>not</em> blank, the tests for the User model should now be passing:</p>
+<p><code>SecureRandom.urlsafe_base64</code>は決して空欄には<em>ならなくなった</em>ので、Userモデルのテストはパスするはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/models/user_spec.rb
 </pre></div>
@@ -1037,13 +1037,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-8_2_2" href="/chapters/sign-in-sign-out.html#sec-a_working_sign_in_method" class="heading"><span class="number">8.2.2</span>正しい<tt>sign_in</tt>メソッド</a></h3>
 
 
-<p>Now we’re ready to write the first signin element, the <code>sign_in</code> function itself. As noted above, our desired authentication method is to place a remember token as a cookie on the user’s browser, and then use the token to find the user record in the database as the user moves from page to page (implemented in <a class="ref" href="/chapters/sign-in-sign-out.html#sec-current_user">8.2.3</a>). The result, <a class="ref" href="/chapters/sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>, introduces two new ideas: the <code>cookies</code> hash and <code>current_user</code>.</p>
+<p>いよいよ、最初のサインイン要素である<code>sign_in</code>関数自身の実装に取りかかりましょう。既に述べたように、これから作る認証メソッドは、記憶トークンをブラウザのcookiesに保存し、ユーザーが別のページに移動する (<a class="ref" href="/chapters/sign-in-sign-out.html#sec-current_user">8.2.3</a>で実装予定) ときにそのトークンを使用してデータベース内のユーザーのレコードを見つけます。そこで、<a class="ref" href="/chapters/sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>では<code>cookies</code>ハッシュ と<code>current_user</code>という2つの新しいアイディアを導入しています。</p>
 
 <div class="label" id="code-sign_in_function"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 8.19.</span> <span class="description">The complete (but not-yet-working) <code>sign_in</code> function. </span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
+<div class="listing"><span class="header">リスト8.19</span> <span class="description">完全だがまだ動作しない<code>sign_in</code>関数。</span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">SessionsHelper</span>
 
   <span class="k">def</span> <span class="nf">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
@@ -1055,7 +1055,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p><a class="ref" href="/chapters/sign-in-sign-out.html#code-sign_in_function">リスト8.19</a> introduces the <code>cookies</code> utility supplied by Rails. We can use <code>cookies</code> as if it were a hash; each element in the cookie is itself a hash of two elements, a <code>value</code> and an optional <code>expires</code> date. For example, we could implement user signin by placing a cookie with value equal to the user’s remember token that expires 20 years from now:</p>
+<p><a class="ref" href="/chapters/sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>では、Railsが提供する<code>cookies</code>ユーティリティを導入しています。<code>cookies</code>はハッシュであるかのように扱うことができます。cookiesの各要素は、それ自体が2つの要素 (<code>value</code>とオプションの<code>expires</code>日時) のハッシュになっています。たとえば以下のように、cookiesに20年後に期限切れになる記憶トークンに等しい値を保存することで、ユーザーのサインインを実装できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">cookies</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">value:</span>   <span class="n">user</span><span class="o">.</span><span class="n">remember_token</span><span class="p">,</span>
                              <span class="ss">expires:</span> <span class="mi">20</span><span class="o">.</span><span class="n">years</span><span class="o">.</span><span class="n">from_now</span><span class="o">.</span><span class="n">utc</span> <span class="p">}</span>
@@ -1063,13 +1063,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>(This uses one of the convenient Rails time helpers, as discussed in <a class="ref" href="/chapters/sign-in-sign-out.html#sidebar-time_helpers">Box 8.1</a>.)</p>
+<p>(上のコードではRailsの便利なtimeヘルパーを使用しています。<a class="ref" href="/chapters/sign-in-sign-out.html#sidebar-time_helpers">囲み8.1</a>を参照してください。)</p>
 
 <div class="label" id="sidebar-time_helpers"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">Box 8.1.</span></span><span class="title"><span class="description">Cookies expire <tt>20.years.from_now</tt></span></span>
-<p>You may recall from <a class="ref" href="/chapters/rails-flavored-ruby.html#sec-a_class_of_our_own">4.4.2</a> that Ruby lets you add methods to <em>any</em> class, even built-in ones. In that section, we added a <tt>palindrome?</tt> method to the <tt>String</tt> class (and discovered as a result that <tt>&quot;deified&quot;</tt> is a palindrome), and we also saw how Rails adds a <tt>blank?</tt> method to class <tt>Object</tt> (so that <tt>&quot;&quot;.blank?</tt>, <tt>&quot; &quot;.blank?</tt>, and <tt>nil.blank?</tt> are all <tt>true</tt>). The cookie code in <a class="ref" href="/chapters/sign-in-sign-out.html#code-sign_in_function">リスト8.19</a> (which internally sets a cookie that expires <tt>20.years.from_now</tt>) gives yet another example of this practice through one of Rails’ <em>time helpers</em>, which are methods added to <tt>Fixnum</tt> (the base class for numbers):</p>
+<div class="sidebar"><span class="title"><span class="header">囲み8.1</span></span><span class="title"><span class="description">cookiesは今から20年後に切れる (<tt>20.years.from_now</tt>)</span></span>
+<p>Rubyでは、組み込みクラスを含む<em>あらゆる</em>クラスにメソッドを追加できることを<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-a_class_of_our_own">4.4.2</a>で学んだことを思い出してください。あのときは、<tt>palindrome?</tt>メソッドを<tt>String</tt>クラスに追加しました (ついでに<tt>&quot;deified&quot;</tt>も回文になっていることを発見しました)。また、Railsが実は<tt>blank?</tt>メソッドを<tt>Object</tt>クラスに追加していることも判明しました (これにより、<tt>&quot;&quot;.blank?</tt>、<tt>&quot; &quot;.blank?</tt>、<tt>nil.blank?</tt>はいずれも<tt>true</tt>になります)。<a class="ref" href="/chapters/sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>のコードでは、cookiesが20年後に期限切れになる (<tt>20.years.from_now</tt>) ように指定していますが、これはRailsの<em>timeヘルパー</em>を使用した格好の例題になります。timeヘルパーはRailsによって、数値関連の基底クラスである<tt>Fixnum</tt>クラスに追加されます。</p>
 
 <pre class="verbatim">  $ rails console
   &gt;&gt; 1.year.from_now
@@ -1078,7 +1078,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
   =&gt; Sat, 02 Jan 2010 03:39:14 UTC +00:00</pre>
 
 
-<p>Rails adds other helpers, too:</p>
+<p>Railsは以下のようなヘルパーも追加しています。</p>
 
 <pre class="verbatim">  &gt;&gt; 1.kilobyte
   =&gt; 1024
@@ -1086,29 +1086,29 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
   =&gt; 5242880</pre>
 
 
-<p>These are useful for upload validations, making it easy to restrict, say, image uploads to <tt>5.megabytes</tt>.</p>
+<p>上のヘルパーは、ファイルのアップロードに<tt>5.megabytes</tt>などと制限を与えるのに便利です。</p>
 
-<p>Though it must be used with caution, the flexibility to add methods to built-in classes allows for extraordinarily natural additions to plain Ruby. Indeed, much of the elegance of Rails ultimately derives from the malleability of the underlying Ruby language.</p>
+<p>メソッドを組み込みクラスに追加できる柔軟性の高さのおかげで、純粋なRubyをきわめて自然に拡張することができます (もちろん注意して使う必要はありますが)。実際、Railsのエレガントな仕様の多くは、背後にあるRubyの高い拡張性によって実現されているのです。</p>
 </div>
 
 
-<p>This pattern of setting a cookie that expires 20 years in the future became so common that Rails added a special <code>permanent</code> method to implement it, so that we can simply write</p>
+<p>上のように20年で期限切れになるcookies設定はよく使われるようになり、今ではRailsにも特殊な<code>permanent</code>という専用のメソッドが追加されたほどです。このメソッドを使用すると、コードは以下のようにシンプルになります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">cookies</span><span class="o">.</span><span class="n">permanent</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">remember_token</span>
 </pre></div>
 </div>
 
 
-<p>Under the hood, using <code>permanent</code> causes Rails to set the expiration to <code>20.years.from_now</code> automatically.</p>
+<p>上のコードでは、<code>permanent</code>メソッドによって自動的に期限が<code>20.years.from_now</code>に設定されます。</p>
 
-<p>After the cookie is set, on subsequent page views we can retrieve the user with code like</p>
+<p>cookiesを設定後、移動先のページで以下のようなコードを使用してユーザーを取り出すことができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">find_by_remember_token</span><span class="p">(</span><span class="n">cookies</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>Of course, <code>cookies</code> isn’t <em>really</em> a hash, since assigning to <code>cookies</code> actually <em>saves</em> a piece of text on the browser, but part of the beauty of Rails is that it lets you forget about that detail and concentrate on writing the application.</p>
+<p>もちろん、この<code>cookies</code>は<em>本物の</em>ハッシュではなく、実際には<code>cookies</code>に割り当てを行うとブラウザ上のテキストの断片を<em>保存</em>しているだけです。そうしたアプリケーションの実装の詳細を忘れさせてくれるところにRailsの美しさの一端が垣間見えます。</p>
 
 <div class="label" id="sec-current_user"></div>
 
@@ -1116,7 +1116,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-8_2_3" href="/chapters/sign-in-sign-out.html#sec-current_user" class="heading"><span class="number">8.2.3</span>現在のユーザー</a></h3>
 
 
-<p>Having discussed how to store the user’s remember token in a cookie for later use, we now need to learn how to retrieve the user on subsequent page views. Let’s look again at the <code>sign_in</code> function to see where we are:</p>
+<p>後で使うために記憶トークンをcookiesに保存する方法の説明が終わりましたので、今度は移動先のページでユーザーを取り出す方法について学びましょう。<code>sign_in</code>関数のコードをもういちどよく見てみてください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">SessionsHelper</span>
 
@@ -1129,43 +1129,43 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>Our focus now is the second line:</p>
+<p>関数の2行目にある以下のコードにご注目ください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nb">self</span><span class="o">.</span><span class="n">current_user</span> <span class="o">=</span> <span class="n">user</span>
 </pre></div>
 </div>
 
 
-<p>The purpose of this line is to create <code>current_user</code>, accessible in both controllers and views, which will allow constructions such as</p>
+<p>この行の目的は、コントローラからもビューからもアクセスできる<code>current_user</code>を作成することです。これにより、以下のような構文を使用できるようになります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">name</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>and</p>
+<p>以下も使用できるようになります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">redirect_to</span> <span class="n">current_user</span>
 </pre></div>
 </div>
 
 
-<p>The use of <code>self</code> is necessary in this context for the same essential reason noted in the discussion leading up to <a class="ref" href="/chapters/sign-in-sign-out.html#code-before_save_create_remember_token">リスト8.18</a>: without <code>self</code>, Ruby would simply create a local variable called <code>current_user</code>.</p>
+<p><a class="ref" href="/chapters/sign-in-sign-out.html#code-before_save_create_remember_token">リスト8.18</a>のときに説明したのと同じ理由で、ここにも<code>self</code>が必要です。<code>self</code>がないと、Rubyは単に<code>current_user</code>というローカル変数を作成してしまいます。</p>
 
-<p>To start writing the code for <code>current_user</code>, note that the line</p>
+<p><code>current_user</code>のコードを書く上で、以下の行については注意が必要です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nb">self</span><span class="o">.</span><span class="n">current_user</span> <span class="o">=</span> <span class="n">user</span>
 </pre></div>
 </div>
 
 
-<p>is an <em>assignment</em>, which we must define. Ruby has a special syntax for defining such an assignment function, shown in <a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_equals">リスト8.20</a>.</p>
+<p>上は「<em>要素代入 (assignment)</em>」であることにご注意ください。このcurrent_user=は別途定義が必要です。<a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_equals">リスト8.20</a>に示したように、Rubyにはこのような要素代入関数を定義する特殊な文法があります。</p>
 
 <div class="label" id="code-current_user_equals"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 8.20.</span> <span class="description">Defining assignment to <code>current_user</code>. </span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
+<div class="listing"><span class="header">リスト8.20</span> <span class="description"><code>current_user</code>への要素代入を定義する。</span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">SessionsHelper</span>
 
   <span class="k">def</span> <span class="nf">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
@@ -1182,29 +1182,29 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>This might look confusing—most languages don’t let you use the equals sign in a method definition—but it simply defines a method <code>current_user=</code> expressly designed to handle assignment to <code>current_user</code>. In other words, the code</p>
+<p>上のコードで使用されている特殊な文法は混乱しやすいのでご注意ください。普通のプログラミング言語では、定義するメソッドの名前に等号を使用することはできませんが、Rubyではメソッド名末尾の等号には特殊な意味があり、上のコードは<code>current_user</code>への要素代入を扱うように設計された<code>current_user=</code>というメソッドを単に定義します。つまり、以下のコードは</p>
 
 <div class="code"><div class="highlight"><pre><span class="nb">self</span><span class="o">.</span><span class="n">current_user</span> <span class="o">=</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
 </pre></div>
 </div>
 
 
-<p>is automatically converted to</p>
+<p>自動的に以下のコードに置き換えられます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">current_user</span><span class="o">=</span><span class="p">(</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>thereby invoking the <code>current_user=</code> method. Its one argument is the right-hand side of the assignment, in this case the user to be signed in. The one-line method body just sets an instance variable <code>@current_user</code>, effectively storing the user for later use.</p>
+<p>そして最終的に<code>current_user=</code>というメソッドが呼び出されます。その引数は要素代入の右側にひとつ置かれます (ここではサインインするユーザー)。この一行メソッドは、単に<code>@current_user</code>インスタンス変数を設定し、後に使用するためにユーザーを効率よく保存します。</p>
 
-<p>In ordinary Ruby, we could define a second method, <code>current_user</code>, designed to return the value of <code>@current_user</code>, as shown in  <a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_wrong">リスト8.21</a>.</p>
+<p>通常のRubyでは、2番目のメソッドである<code>current_user</code>を定義することができます。<a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_wrong">リスト8.21</a>に示したように、このメソッドは<code>@current_user</code>の値を返すようになっています。</p>
 
 <div class="label" id="code-current_user_wrong"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 8.21.</span> <span class="description">A tempting but useless definition for <code>current_user</code>.</span> </div>
+<div class="listing"><span class="header">リスト8.21</span> <span class="description">魅力的だが役に立たない<code>current_user</code>の定義。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">SessionsHelper</span>
 
   <span class="k">def</span> <span class="nf">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
@@ -1218,21 +1218,20 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">current_user</span>
-    <span class="vi">@current_user</span>     <span class="c1"># Useless! </span><span class="c1">Don&#39;t use this line.</span>
+    <span class="vi">@current_user</span>     <span class="c1"># 役に立たない。</span><span class="c1">この行は使用しないこと。</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
 </div></div>
 
 
-<p>If we did this, we would effectively replicate the functionality of <code>attr_accessor</code>, which we saw in <a class="ref" href="/chapters/rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>.<sup class="footnote" id="fnref-8_5"><a href="/chapters/sign-in-sign-out.html#fn-8_5">5</a></sup> The problem is that it utterly fails to solve our problem: with the code in <a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_wrong">リスト8.21</a>, the user’s signin status would be forgotten: as soon as the user went to another page—<em>poof!</em>—the session would end and the user would be automatically signed out.
-To avoid this problem, we can find the user corresponding to the remember token created by the code in <a class="ref" href="/chapters/sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>, as shown in <a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_working">リスト8.22</a>.</p>
+<p>もしかすると、これを使用して<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>の<code>attr_accessor</code>を効率よく置き換えることができるのではないでしょうか<sup class="footnote" id="fnref-8_5"><a href="/chapters/sign-in-sign-out.html#fn-8_5">5</a></sup>。それをしないのは、このコードを使用すると今までの苦労が台無しになってしまうからです。<a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_wrong">リスト8.21</a>のコードを使用すると、ユーザーが別のページに移動した瞬間にユーザーのサインイン情報が<em>スカッと</em>消滅してしまいます。セッションは終了し、ユーザーは自動的にサインアウトしてしまいます。この問題を回避するには、<a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_working">リスト8.22</a>に示したように、<a class="ref" href="/chapters/sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>のコードで作成した記憶トークンに対応するユーザーを検索します。</p>
 
 <div class="label" id="code-current_user_working"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 8.22.</span> <span class="description">Finding the current user using the <code>remember_token</code>. </span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
+<div class="listing"><span class="header">リスト8.22</span> <span class="description"><code>remember_token</code>を使用して現在のユーザーを検索する。</span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">SessionsHelper</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -1249,32 +1248,32 @@ To avoid this problem, we can find the user corresponding to the remember token 
 </div></div>
 
 
-<p><a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_working">リスト8.22</a> uses the common but initially obscure <code>||=</code> (“or equals”) assignment operator (<a class="ref" href="/chapters/sign-in-sign-out.html#sidebar-or_equals">Box 8.2</a>). Its effect is to set the <code>@current_user</code> instance variable to the user corresponding to the remember token, but only if <code>@current_user</code> is undefined.<sup class="footnote" id="fnref-8_6"><a href="/chapters/sign-in-sign-out.html#fn-8_6">6</a></sup> In other words, the construction</p>
+<p><a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_working">リスト8.22</a>では、Rubyでは定番の (しかし最初はまごつきやすい) <code>||=</code> (“or equals”) 代入演算子を使用しています (<a class="ref" href="/chapters/sign-in-sign-out.html#sidebar-or_equals">囲み8.2</a>)。この代入演算子は、<code>@current_user</code>が未定義の場合にのみ、<code>@current_user</code>インスタンス変数に記憶トークンを設定します<sup class="footnote" id="fnref-8_6"><a href="/chapters/sign-in-sign-out.html#fn-8_6">6</a></sup>。つまり、以下のコードは</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@current_user</span> <span class="o">||=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_remember_token</span><span class="p">(</span><span class="n">cookies</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>calls the <code>find_by_remember_token</code> method the first time <code>current_user</code> is called, but on subsequent invocations returns <code>@current_user</code> without hitting the database.<sup class="footnote" id="fnref-8_7"><a href="/chapters/sign-in-sign-out.html#fn-8_7">7</a></sup> This is only useful if <code>current_user</code> is used more than once for a single user request; in any case, <code>find_by_remember_token</code> will be called at least once every time a user visits a page on the site.</p>
+<p>あるユーザーに対して<code>current_user</code>が初めて呼び出される場合は<code>find_by_remember_token</code>メソッドを呼び出しますが、以後の呼び出しではデータベースにアクセスせずに<code>@current_user</code>を返します<sup class="footnote" id="fnref-8_7"><a href="/chapters/sign-in-sign-out.html#fn-8_7">7</a></sup>。このコードは、ひとつのユーザーリクエストに対して<code>current_user</code>が何度も使用される場合にのみ有用です。いずれの場合も、ユーザーがWebサイトにアクセスすると<code>find_by_remember_token</code>は最低1回は呼び出されます。</p>
 
 <div class="label" id="sidebar-or_equals"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">Box 8.2.</span></span><span class="title"><span class="description">What the *$@! </span></span><span class="title"><span class="description">is <tt>||=</tt> ? </span></span>
-<p>The <tt>||=</tt> construction is very Rubyish—that is, it is highly characteristic of the Ruby language—and hence important to learn if you plan on doing much Ruby programming. Though at first it may seem mysterious, <em>or equals</em> is easy to understand by analogy.</p>
+<div class="sidebar"><span class="title"><span class="header">囲み8.2</span></span><span class="title"><span class="description"></span></span><span class="title"><span class="description"><tt>||=</tt>とは一体何か</span></span>
+<p><tt>||=</tt>という記法は非常にRuby的であり、Rubyという言語を強く特徴づけるものです。Rubyプログラミングの達人になりたいのであれば、この記法を習得することが重要です。<em>or equals</em>という概念は一見神妙不可思議に見えますが、他のものになぞらえて考えることで理解できます。</p>
 
-<p>We start by noting a common idiom for changing a currently defined variable. Many computer programs involve incrementing a variable, as in</p>
+<p>最初は、現在定義されている変数を変更するというありふれたコードについて説明します。多くのコンピュータプログラムでは、以下のようにして変数の値を1つ増やすことができます。</p>
 
 <pre class="verbatim">  x = x + 1</pre>
 
 
-<p>Most languages provide a syntactic shortcut for this operation; in Ruby (and in C, C++, Perl, Python, Java, etc.), it appears as follows:</p>
+<p>そして、Ruby (C、C++、Perl、Python、Java) などの多くのプログラミング言語では、以下のような短縮形を使用して上の演算を行うことができます。</p>
 
 <pre class="verbatim">  x += 1</pre>
 
 
-<p>Analogous constructs exist for other operators as well:</p>
+<p>他の演算子についても同様の短縮形が利用できます。</p>
 
 <pre class="verbatim">  $ rails console
   &gt;&gt; x = 1
@@ -1287,9 +1286,9 @@ To avoid this problem, we can find the user corresponding to the remember token 
   =&gt; -1</pre>
 
 
-<p>In each case, the pattern is that <tt>x = x O y</tt> and <tt>x O= y</tt> are equivalent for any operator <tt>O</tt>.</p>
+<p>いずれの場合も、<tt>●</tt>という演算子があるときの「<tt>x = x ● y</tt>」と「<tt>x ●= y</tt>」の動作は同じです。</p>
 
-<p>Another common Ruby pattern is assigning to a variable if it’s <tt>nil</tt> but otherwise leaving it alone. Recalling the <em>or</em> operator <tt>||</tt> seen in <a class="ref" href="/chapters/rails-flavored-ruby.html#sec-objects_and_message_passing">4.2.3</a>, we can write this as follows:</p>
+<p>Rubyでは、「変数の値が<tt>nil</tt>なら変数に代入するが、nilでなければ代入しない (変数の値を変えない)」という操作が非常によく使われます。<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-objects_and_message_passing">4.2.3</a>で説明した<em>or</em>演算子<tt>||</tt>を使用すれば、以下のように書くことができます。</p>
 
 <pre class="verbatim">  &gt;&gt; @user
   =&gt; nil
@@ -1299,15 +1298,15 @@ To avoid this problem, we can find the user corresponding to the remember token 
   =&gt; &quot;the user&quot;</pre>
 
 
-<p>Since <tt>nil</tt> is false in a boolean context, the first assignment is <tt>nil || &quot;the user&quot;</tt>, which evaluates to <tt>&quot;the user&quot;</tt>; similarly, the second assignment is <tt>&quot;the user&quot; || &quot;another user&quot;</tt>, which also evaluates to <tt>&quot;the user&quot;</tt>—since strings are <tt>true</tt> in a boolean context, the series of <tt>||</tt> expressions terminates after the first expression is evaluated. (This practice of evaluating <tt>||</tt> expressions from left to right and stopping on the first true value is known as <em>short-circuit evaluation</em>.)</p>
+<p><tt>nil</tt>の論理値は偽 (false) です。初めて代入するときは「<tt>nil || &quot;the user&quot;</tt>」となり、これは「<tt>&quot;the user&quot;</tt>」と評価されます。同様に、2度目の代入では「<tt>&quot;the user&quot; || &quot;another user&quot;</tt>」となり、これも「<tt>&quot;the user&quot;</tt>」と評価されます。あらゆる文字列の論理値は真 (<tt>true</tt>) なので、 <tt>||</tt>を使用する一連の式は、いずれも1番目の式が評価された時点で終了します (なお、<tt>||</tt>式を左から右に評価し、最初の左の値がtrueであればその時点で終了するというやり方を<em>短絡評価 (short-circuit evaluation)</em>と呼びます)。</p>
 
-<p>Comparing the console sessions for the various operators, we see that <tt>@user = @user || value</tt> follows the <tt>x = x O y</tt> pattern with <tt>||</tt> in the place of <tt>O</tt>, which suggests the following equivalent construction:</p>
+<p>上述した多くの演算子をコンソールセッション上で実行して比較してみると、<tt>@user = @user || value</tt>は「<tt>x = x O y</tt>」のパターンに該当し、<tt>O</tt>が<tt>||</tt>に置き換わっただけのものであることがわかります。ということは、この演算は以下と同じであることが推測できます。</p>
 
 <pre class="verbatim">  &gt;&gt; @user ||= &quot;the user&quot;
   =&gt; &quot;the user&quot;</pre>
 
 
-<p>Voilà !</p>
+<p>ご覧あれ。</p>
 </div>
 
 
@@ -1319,29 +1318,28 @@ To avoid this problem, we can find the user corresponding to the remember token 
 <h3><a id="sec-8_2_4" href="/chapters/sign-in-sign-out.html#sec-changing_the_layout_links" class="heading"><span class="number">8.2.4</span>レイアウトリンクを変更する</a></h3>
 
 
-<p>We come finally to a practical application of all our signin/out work: we’ll change the layout links based on signin status. In particular, as seen in the <a class="ref" href="/chapters/sign-in-sign-out.html#fig-signin_success_mockup">図8.3</a> mockup, we’ll arrange for the links to change when users sign in or sign out, and we’ll also add links for listing all users and user settings (to be completed in <a class="ref" href="/chapters/updating-showing-and-deleting-users.html#top">第9章</a>) and one for the current user’s profile page. In doing so, we’ll get the tests in <a class="ref" href="/chapters/sign-in-sign-out.html#code-signin_success_tests">リスト8.6</a> to pass, which means our test suite will be green for the first time since the beginning of the chapter.</p>
+<p>サインイン/サインアウトが動作するようになり、実用的なアプリケーションらしくなってきました。今度は、サインインの状態に合わせてレイアウト上のリンクが変わるようにしましょう。特に、<a class="ref" href="/chapters/sign-in-sign-out.html#fig-signin_success_mockup">図8.3</a>のモックアップで示したように、ユーザーがサインインしているときとサインアウトしているときでリンクを変更し、すべてのユーザーを表示するリンクとユーザー設定用のリンクも追加し (<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#top">第9章</a>で完成する予定)、さらに現在のユーザーのプロファイルのリンクも追加します。これらを実装することで、<a class="ref" href="/chapters/sign-in-sign-out.html#code-signin_success_tests">リスト8.6</a>のテストがパスするようになります。つまり、本章開始以来初めてテストスイート全体が緑色 (成功) になるということです。</p>
 
-<p>The way to change the links in the site layout involves using an
-if-else branching structure inside of Embedded Ruby:</p>
+<p>サイトレイアウトのリンクを変更するには、埋め込みRubyの内側でif-else分岐構造を使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">signed_in?</span> <span class="cp">%&gt;</span>
-  # Links for signed-in users
+  # サインインしているユーザー用のリンク
 <span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
-  # Links for non-signed-in-users
-end
+  #サインインしていないユーザー用のリンク
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>This kind of code requires the existence of a <code>signed_in?</code> boolean, which we’ll now define.</p>
+<p>この種のコードでは、<code>signed_in?</code>論理値が必要になりますので、これから作成しましょう。</p>
 
-<p>A user is signed in if there is a current user in the session, i.e., if <code>current_user</code> is non-<code>nil</code>. This requires the use of the “not” operator, written using an exclamation point <code>!</code> and usually read as “bang”. In the present context, a user is signed in if <code>current_user</code> is <em>not</em> <code>nil</code>, as shown in <a class="ref" href="/chapters/sign-in-sign-out.html#code-signed_in_p">リスト8.23</a>.</p>
+<p>ユーザーがサインインしている状態は、セッションに現在のユーザーがいる (<code>current_user</code>が<code>nil</code>でない) ことで表されます。これを表現するには否定の演算子が必要なので、<code>!</code> (&quot;bang&quot; と読みます) を使用します。<a class="ref" href="/chapters/sign-in-sign-out.html#code-signed_in_p">リスト8.23</a>に示すとおり、現在の文脈では<code>current_user</code>が<code>nil</code>で<em>ない</em>場合にユーザーがサインインしています。</p>
 
 <div class="label" id="code-signed_in_p"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 8.23.</span> <span class="description">The <code>signed_in?</code> </span><span class="description">helper method. </span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
+<div class="listing"><span class="header">リスト8.23</span> <span class="description"><code>signed_in?</code></span><span class="description">ヘルパーメソッド。</span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">SessionsHelper</span>
 
   <span class="k">def</span> <span class="nf">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
@@ -1360,7 +1358,7 @@ end
 </div></div>
 
 
-<p>With the <code>signed_in?</code> method in hand, we’re ready to finish the layout links. There are four new links, two of which are stubbed out (to be completed in <a class="ref" href="/chapters/updating-showing-and-deleting-users.html#top">第9章</a>):</p>
+<p><code>signed_in?</code>メソッドを手作りしてあるので、レイアウトのリンクはすぐに作成できます。なお、新しく作るリンクは4つですが、そのうち以下の2つのリンクは未実装です (<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#top">第9章</a>で完成の予定)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Users&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Settings&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span>
@@ -1368,36 +1366,36 @@ end
 </div>
 
 
-<p>The signout link, meanwhile, uses the signout path defined in <a class="ref" href="/chapters/sign-in-sign-out.html#code-sessions_resource">リスト8.2</a>:</p>
+<p>サインアウトのリンクには、<a class="ref" href="/chapters/sign-in-sign-out.html#code-sessions_resource">リスト8.2</a>で定義したサインアウトのパスを使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Sign out&quot;</span><span class="p">,</span> <span class="n">signout_path</span><span class="p">,</span> <span class="nb">method</span><span class="p">:</span> <span class="s2">&quot;delete&quot;</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>(Notice that the signout link passes a hash argument indicating that it should submit with an HTTP <tt>DELETE</tt> request.<sup class="footnote" id="fnref-8_8"><a href="/chapters/sign-in-sign-out.html#fn-8_8">8</a></sup>) Finally, we’ll add a profile link as follows:</p>
+<p>(上のコードでは、サインアウトのリンクがハッシュ引数を渡していることにご注目ください。このハッシュ引数は、HTTPの<tt>DELETE</tt>リクエストを使用して送信される必要があることを示しています<sup class="footnote" id="fnref-8_8"><a href="/chapters/sign-in-sign-out.html#fn-8_8">8</a></sup>)。最後に、以下のようにプロファイルへのリンクも追加します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Profile&quot;</span><span class="p">,</span> <span class="n">current_user</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>Here we could write</p>
+<p>なお、上のコードは以下のように書くこともできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Profile&quot;</span><span class="p">,</span> <span class="n">user_path</span><span class="p">(</span><span class="n">current_user</span><span class="p">)</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>but Rails allows us to link directly to the user, in this context automatically converting <code>current_user</code> into <code>user_path(current_user)</code>.</p>
+<p>Railsでは、このユーザーへの直接リンクが許されるので、この場合<code>current_user</code>は<code>user_path(current_user)</code>に自動的に変換されます。</p>
 
-<p>In the process of putting the new links into the layout, we’ll take advantage of Bootstrap’s ability to make dropdown menus, which you can read more about on the <a href="http://twitter.github.com/bootstrap/components.html">Bootstrap components page</a>. The full result appears in <a class="ref" href="/chapters/sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>. Note in particular the CSS ids and classes related to the Bootstrap dropdown menu.</p>
+<p>新しいリンクをレイアウトに追加するときに、Bootstrapの機能を使用してドロップダウンメニューを実現しましょう。詳細については「<a href="http://twitter.github.com/bootstrap/components.html">Bootstrapコンポーネント</a> (英語)」を参照してください。完全なコードを<a class="ref" href="/chapters/sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>に示します。このコードでは、Bootstrapのドロップダウンメニューに関連するCSSのidとクラスが与えられていることにご注目ください。</p>
 
 <div class="label" id="code-layout_signin_signout_links"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 8.24.</span> <span class="description">Changing the layout links for signed-in users. </span><br /><span class="description"> <code>app/views/layouts/_header.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト8.24</span> <span class="description">サインインしているユーザー用にリンクを変更する。</span><br /><span class="description"> <code>app/views/layouts/_header.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;navbar navbar-fixed-top navbar-inverse&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;navbar-inner&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
@@ -1423,7 +1421,7 @@ end
             <span class="nt">&lt;/li&gt;</span>
           <span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
             <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Sign in&quot;</span><span class="p">,</span> <span class="n">signin_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
-          end
+          <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
         <span class="nt">&lt;/ul&gt;</span>
       <span class="nt">&lt;/nav&gt;</span>
     <span class="nt">&lt;/div&gt;</span>
@@ -1433,13 +1431,13 @@ end
 </div></div>
 
 
-<p>The dropdown menu requires the use of Bootstrap’s JavaScript library, which we can include using the Rails asset pipeline by editing the application JavaScript file, as shown in <a class="ref" href="/chapters/sign-in-sign-out.html#code-bootstrap_js">リスト8.25</a>.</p>
+<p>ドロップダウンメニューを実現するには、BootstrapのJavaScriptライブラリが必要です。このライブラリは、Railsのアセットパイプラインを使用してインクルードすることができます。そのためには、<a class="ref" href="/chapters/sign-in-sign-out.html#code-bootstrap_js">リスト8.25</a>に示すようにアプリケーションのJavaScriptファイルを編集します。</p>
 
 <div class="label" id="code-bootstrap_js"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 8.25.</span> <span class="description">Adding the Bootstrap JavaScript library to <code>application.js</code>. </span><br /><span class="description"> <code>app/assets/javascripts/application.js</code></span> </div>
+<div class="listing"><span class="header">リスト8.25</span> <span class="description">Bootstrap JavaScriptライブラリを<code>application.js</code>に追加する。</span><br /><span class="description"> <code>app/assets/javascripts/application.js</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="c1">//= require jquery</span>
 <span class="c1">//= require jquery_ujs</span>
 <span class="c1">//= require bootstrap</span>
@@ -1448,16 +1446,16 @@ end
 </div></div>
 
 
-<p>This uses the Sprockets library to include the Bootstrap JavaScript, which in turn is available thanks to the <tt>bootstrap-sass</tt> gem from <a class="ref" href="/chapters/filling-in-the-layout.html#sec-custom_css">5.1.2</a>.</p>
+<p>上のコードは、Sprocketsライブラリを使用してBootstrap JavaScriptをインクルードします。<a class="ref" href="/chapters/filling-in-the-layout.html#sec-custom_css">5.1.2</a>で<tt>bootstrap-sass</tt> gemを導入してあるので、これでBootstrapが利用できるようになります。</p>
 
-<p>With the code in <a class="ref" href="/chapters/sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>, all the tests should be passing:</p>
+<p><a class="ref" href="/chapters/sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>のコードを使用することで、すべてのテストにパスするはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
 </div>
 
 
-<p>Unfortunately, if you actually examine the application in the browser, you’ll see that it doesn’t yet work. This is because the “remember me” functionality requires the user to have a remember token, but the current user doesn’t have one: we created the first user back in <a class="ref" href="/chapters/sign-up.html#sec-the_first_signup">7.4.3</a>, long before implementing the callback that sets the remember token. To fix this, we need to save each user to invoke the <code>before_save</code> callback defined in <a class="ref" href="/chapters/sign-in-sign-out.html#code-before_save_create_remember_token">リスト8.18</a>, which creates a remember token as a side-effect:</p>
+<p>ただし残念なことに、ブラウザで実際にアプリケーションを動かしてみると、まだ正常に動作していないことがわかります。これは、ユーザーのパスワードを保存する機能 (“remember me”) ではユーザーが記憶トークンを持っている必要がありますが、現在のユーザーには記憶トークンがないためです。<a class="ref" href="/chapters/sign-up.html#sec-the_first_signup">7.4.3</a>で最初のユーザーを作成したのは、記憶トークンを設定するコールバックを実装するよりもずっと前だったことを思い出してください。これを修正するには、各ユーザーを保存して<code>before_save</code>コールバックが呼び出されるようにします。このコールバックは<a class="ref" href="/chapters/sign-in-sign-out.html#code-before_save_create_remember_token">リスト8.18</a>で定義したもので、副作用として記憶トークンを作成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">remember_token</span>
@@ -1469,22 +1467,22 @@ end
 </div>
 
 
-<p>Here we’ve iterated over all the users in case you added more than one while playing with the signup form. Note that we’ve passed an option to the <code>save</code> method; as currently written, <code>save</code> by itself wouldn’t work because we haven’t included the password or its confirmation. Indeed, for a real site we wouldn’t even know any of the passwords, but we would still want to be able to save the users. The solution is to pass <code>validate: false</code> to tell Active Record skip the validations (<a href="http://api.rubyonrails.org/v3.2.0/classes/ActiveRecord/Persistence.html#method-i-save">Rails API <tt>save</tt></a>).</p>
+<p>なお、上ではユーザー登録フォームで試しに何人もユーザーを登録していた方向けに、念のためすべてのユーザーを列挙しています。そのコマンドでは、オプションを<code>save</code>メソッドに渡していることにご注目ください。既に述べたように、パスワードとパスワードの確認を含めなかったので<code>save</code>メソッド自身は動作しません。実際のWebサイトではユーザーのパスワードを知ることはできませんが、それでも (メンテナンス目的などで) ユーザーを保存する必要が生じることがあります。この問題を解決するためには、<code>validate: false</code>を渡し、Active Recordに検証をスキップさせます (Rails APIの「<a href="http://api.rubyonrails.org/v3.2.0/classes/ActiveRecord/Persistence.html#method-i-save"><tt>save</tt></a>」を参照)。</p>
 
-<p>With that change, a signed-in user now sees the new links and dropdown menu defined by <a class="ref" href="/chapters/sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>, as shown in <a class="ref" href="/chapters/sign-in-sign-out.html#fig-profile_with_signout_link">図8.9</a>.</p>
+<p>以上の変更を行ったことで、<a class="ref" href="/chapters/sign-in-sign-out.html#fig-profile_with_signout_link">図8.9</a>に示したように、<a class="ref" href="/chapters/sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>で定義したドロップダウンメニューがサインインしたユーザーに表示されるようになりました。</p>
 
 <div class="label" id="fig-profile_with_signout_link"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/profile_with_signout_link_bootstrap.png" alt="profile_with_signout_link_bootstrap" /></span></div><div class="caption"><span class="header">図8.9: </span><span class="description">A signed-in user with new links and a dropdown menu. <a href="http://railstutorial.org/images/figures/profile_with_signout_link_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/profile_with_signout_link_bootstrap.png" alt="profile_with_signout_link_bootstrap" /></span></div><div class="caption"><span class="header">図8.9</span><span class="description">サインインしたユーザーにリンクとドロップダウンが表示されるようになった。<a href="http://railstutorial.org/images/figures/profile_with_signout_link_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>At this point, you should verify that you can sign in, close the browser, and then still be signed in when you visit the sample application. If you want, you can even inspect the browser cookies to see the result directly (<a class="ref" href="/chapters/sign-in-sign-out.html#fig-cookie_in_browser">図8.10</a>).</p>
+<p>この時点で、ブラウザで実際にサインインできることを確認し、続いてブラウザを閉じてから再度サンプルアプリケーションを表示するとサインインしたままになっていることを確認してください。その気になれば、ブラウザのcookiesをブラウザで調べて結果を直接確認することもできます (<a class="ref" href="/chapters/sign-in-sign-out.html#fig-cookie_in_browser">図8.10</a>)。</p>
 
 <div class="label" id="fig-cookie_in_browser"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/cookie_in_browser.png" alt="cookie_in_browser" /></span></div><div class="caption"><span class="header">図8.10: </span><span class="description">The remember token cookie in the local browser. <a href="http://railstutorial.org/images/figures/cookie_in_browser-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/cookie_in_browser.png" alt="cookie_in_browser" /></span></div><div class="caption"><span class="header">図8.10</span><span class="description">ローカルのブラウザで記憶トークンのcookiesを表示する。<a href="http://railstutorial.org/images/figures/cookie_in_browser-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -1495,7 +1493,7 @@ end
 <h3><a id="sec-8_2_5" href="/chapters/sign-in-sign-out.html#sec-signin_upon_signup" class="heading"><span class="number">8.2.5</span>ユーザー登録と同時にサインインする</a></h3>
 
 
-<p>In principle, although we are now done with authentication, newly registered users might be confused, as they are not signed in by default. Implementing this is the last bit of polish before letting users sign out. We’ll start by adding a line to the authentication tests (<a class="ref" href="/chapters/sign-in-sign-out.html#code-sign_up_sign_in">リスト8.26</a>). This includes the “after saving the user” <code>describe</code> block from <a class="ref" href="/chapters/sign-up.html#code-after_save_tests">リスト7.32</a> (<a class="ref" href="/chapters/sign-up.html#sec-signup_exercises">7.6</a>), which you should add to the test now if you didn’t already do the corresponding exercise.</p>
+<p>認証機能の基本的な部分はできましたが、ユーザーが登録を行った後もそのユーザーがデフォルトではサインインしておらず、このままではユーザーが混乱する可能性があります。そこで、サインアウトの機能を実装する前にその部分をもう少し作り込みましょう。最初に、認証のテストを追加します (<a class="ref" href="/chapters/sign-in-sign-out.html#code-sign_up_sign_in">リスト8.26</a>)。ここには、<a class="ref" href="/chapters/sign-up.html#sec-signup_exercises">7.6</a>の<a class="ref" href="/chapters/sign-up.html#code-after_save_tests">リスト7.32</a>でも使った “after saving the user” <code>describe</code>ブロックが含まれています。ここに関連する演習を行なっていなかった方は、この時点で追加する必要があります。</p>
 
 <div class="label" id="code-sign_up_sign_in"></div>
 
