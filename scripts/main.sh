@@ -8,8 +8,8 @@ unzip ./archive.zip
 cd archive/ja
 sh ../../scripts/correct_filenames.sh
 sh ../../scripts/correct_htmls.sh
-cp ../../scripts/rasterize.js ./
-sh ../../scripts/html2pdf.sh
+#cp ../../scripts/rasterize.js ./
+#sh ../../scripts/html2pdf.sh
 sh ../../scripts/truncate_htmls.sh
 sh ../../scripts/update_htmls.sh
 cd ../../
