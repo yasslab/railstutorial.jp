@@ -898,7 +898,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h4><a id="sec-5_2_1_4" href="/chapters/filling-in-the-layout.html#sec-5_2_1_4" class="heading">プロダクション環境での効率性</a></h4>
 
 
-<p>アセットパイプラインの最大のメリットの1つは、アセットが自動的に本番のアプリケーションにも反映されることです。従来は、CSSとJavaScriptを整理するために、機能毎にファイルを分割し、（インデントを多用して）見栄えの良いフォーマットに整えていました。これは、プログラマから見れば便利な方法ですが、プロダクション環境として見ると非効率です。というのも、いくつもの実物大のファイルがあると、ページ読み込み時間が著しく遅くなるからです（そして、読み込み時間は、ユーザ体験の質に影響を与える重要な指標の１つです）。一方、アセットパイプラインでは、プロダクション環境に最適化するために、全てのスタイルシートを１つのCSSファイル (<code>application.css</code>) に、また、全ての JavaScript ファイルを１つのJSファイル (<code>javascripts.js</code>) にまとめてくれます。さらに、そのようなファイルの全てに対して (具体的には、<code>lib/assets</code> や <code>vendor/assets</code> に含まれているファイルに対して) 必要の無い空白を取り除く処理を行い、ファイルサイズを<em>最小化</em>してくれます。結果として、アセットパイプラインは、２つの異なった状況に対してそれぞれ最高の環境を提供してくれます。つまり、プログラマーに対しては複数の見栄えの良いフォーマットのファイルを提供し、プロダクション環境に対しては１つの最適化されたファイルを提供してくれます。</p>
+<p>アセットパイプラインの最大のメリットの1つは、本番のアプリケーションで効率的になるように最適化されたアセットも自動的に生成されることです。従来は、CSSとJavaScriptを整理するために、機能を個別のファイルに分割し、(インデントを多用して) 読みやすいフォーマットに整えていました。これは、プログラマにとっては便利な方法ですが、本番環境にとっては非効率です。それというのも、拡大のCSSやJavaScriptファイルを多数インクルードすると、ページの読み込み時間が著しく遅くなるからです (読み込み時間は、ユーザ体験の質に影響を与える重要な指標の1つです)。一方、アセットパイプラインでは、本番環境に最適化するために、すべてのスタイルシートを1つのCSSファイル (<code>application.css</code>) にまとめ、すべてのJavaScriptファイルを1つのJSファイル (<code>javascripts.js</code>) にまとめてくれます。さらに、それらのファイルすべてに対して (<code>lib/assets</code>や<code>vendor/assets</code>のファイルも含め) 不要な空白を取り除く処理を行い、ファイルサイズを<em>最小化</em>してくれます。これにより、アセットパイプラインは、2つの異なった状況に対してそれぞれ最高の環境を提供してくれます。つまり、プログラマーに対しては見やすく分割されたフォーマットのファイルを提供し、本番環境に対しては最適化された1つのファイルを提供してくれます。</p>
 
 <div class="label" id="sec-sass"></div>
 
@@ -906,14 +906,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-5_2_2" href="/chapters/filling-in-the-layout.html#sec-sass" class="heading"><span class="number">5.2.2</span>素晴らしい構文を備えたスタイルシート</a></h3>
 
 
-<p><em>Sass</em> は、多くの点でCSSを改善してくれる、スタイルシートを書くための言語です。本セクションでは、Sass が提供する２つの重要な機能、<em>ネスト</em> と <em>変数</em> について説明します。(３つ目の重要な機能である <em>Mixin</em> については、<a class="ref" href="/chapters/sign-up.html#sec-rails_environments">7.1.1</a> で紹介します。)</p>
+<p><em>Sass</em> は、スタイルシートを記述するための言語であり、CSSに比べて多くの点が強化されています。この節では、Sassが提供する2つの重要な機能である<em>ネスト</em>と<em>変数</em>について説明します (3つ目の重要な機能である<em>ミックスイン</em>については、<a class="ref" href="/chapters/sign-up.html#sec-rails_environments">7.1.1</a>で紹介します)。</p>
 
-<p><a class="ref" href="/chapters/filling-in-the-layout.html#sec-custom_css">5.1.2</a> で簡潔に指摘したように、Sass は SCSS というフォーマットに対応しています（<code>.scss</code> という拡張子が SCSS です）。SCSSは、厳密な意味で、CSS本体を抽象化したフォーマットです。具体的には、SCSS は CSS に新しい機能を<em>追加</em>しただけで、全く新しい構文を定義したようなものではありません。<sup class="footnote" id="fnref-5_9"><a href="/chapters/filling-in-the-layout.html#fn-5_9">9</a></sup> このため、あらゆる有効なCSSファイルは、SCSS ファイルとしても扱えます。結果として、既存の記法ルールをもっているプロジェクトにとって、（互換性があるため）便利なフォーマットになっています。本書の例では、ブートストラップの恩恵を得るために、私達は最初から SCSS 使っていました。Rails のアセットパイプラインは、Sass を使って <code>.scss</code> という拡張子をもつファイルを自動的に処理してくれます。このため <code>custom.css.scss</code> ファイルは、Sass プリプロセッサによって事前に処理され、その後、パッケージ化されたファイルがブラウザに送られました。</p>
+<p><a class="ref" href="/chapters/filling-in-the-layout.html#sec-custom_css">5.1.2</a>でも簡単に説明しましたが、SassはSCSSというフォーマットに対応しています (<code>.scss</code>という拡張子はSCSSをであることを表します)。SCSSは、CSSの機能をすべて包含する、厳密なスーパーセットです。つまり、SCSSはCSSに新しい機能を<em>追加</em>しただけで、まったく新しい構文を定義したものではありません<sup class="footnote" id="fnref-5_9"><a href="/chapters/filling-in-the-layout.html#fn-5_9">9</a></sup>。このため、有効なCSSファイルは、すべてSCSSファイルとしても扱うことができ、既存の記法ルールを使用しているプロジェクトにとっても互換性のある便利なフォーマットになっています。本書の例では、Bootstrapの恩恵を得るために、最初からSCSSを使用してきました。Railsのアセットパイプラインは、<code>.scss</code>という拡張子を持つファイルをSassを使って自動的に処理してくれます。このため、<code>custom.css.scss</code>ファイルはSassプリプロセッサによって前処理され、その後ブラウザでの配信に備えてパッケージ化されます。</p>
 
 <h4><a id="sec-5_2_2_1" href="/chapters/filling-in-the-layout.html#sec-5_2_2_1" class="heading">ネスト</a></h4>
 
 
-<p>スタイルシート内に共通のパターンがあれば、要素をネストさせることができます。例えば、<a class="ref" href="/chapters/filling-in-the-layout.html#code-universal_css">リスト 5.5</a> の例では、<code>.center</code> と <code>.center h1</code> の両方に対してルールがあります。</p>
+<p>スタイルシート内に共通のパターンがある場合は、要素をネストさせることができます。たとえば、<a class="ref" href="/chapters/filling-in-the-layout.html#code-universal_css">リスト 5.5</a>では、以下のように<code>.center</code>と<code>.center h1</code>の両方に対してルールがあります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nc">.center</span> <span class="p">{</span>
   <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
@@ -926,7 +926,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>Sass を使うと、次のように書き換えることができます。</p>
+<p>上のルールは、Sassを使用して以下のように書き換えることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nc">.center</span> <span class="p">{</span>
   <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
@@ -938,9 +938,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>この例では、ネストの内側にある <code>h1</code> というルールは、<code>.center</code> というルールを継承しています。</p>
+<p>上の例では、ネストの内側にある<code>h1</code>というルールは、<code>.center</code>のルールを継承しています。</p>
 
-<p>今度は、少しだけ異なったルールに対してネスト機能を使う例を見てみましょう。<a class="ref" href="/chapters/filling-in-the-layout.html#code-logo_css">リスト 5.7</a>で、私達は次のコードを目にしました。</p>
+<p>今度は、もう少し異なるルールに対してネスト機能を使う例を見てみましょう。<a class="ref" href="/chapters/filling-in-the-layout.html#code-logo_css">リスト 5.7</a>には以下のコードがあります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nn">#logo</span> <span class="p">{</span>
   <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
@@ -962,7 +962,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>ここでは <code>#logo</code> という ID が２回出現しています。１回目はロゴ自身を定義するためで、２回目は<code>hover</code>属性に対して定義するために出現しています。(なお、hover 属性は、該当する要素の上にマウスポインタが置かれたとき、どのような見た目にするかを定義します。)２つ目のルールをネストするためには、親属性である<code>#logo</code>を参照する必要があります。このような場合、SCSSでは、次のようにアンパーサンド <code>&amp;</code> を使って実現できます。</p>
+<p>上のコードには<code>#logo</code>というidが2回使用されています。1回目はロゴ自身を定義するために、2回目は<code>hover</code>属性を定義するために使用されています (なおhover属性は、該当する要素の上にマウスポインタをかざしたときの表示を定義します)。2つ目のルールをネストするためには、親属性である<code>#logo</code>を参照する必要があります。このような場合、SCSSでは以下のようにアンパーサンド<code>&amp;</code>を使って実現できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nn">#logo</span> <span class="p">{</span>
   <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
@@ -983,9 +983,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>Sass は、SCSSをCSSに変換する際に、<code>&amp;:hover</code> を <code>#logo:hover</code> に置換します。</p>
+<p>Sassは、SCSSをCSSに変換する際に、<code>&amp;:hover</code>を <code>#logo:hover</code>に置換します。</p>
 
-<p>これらのネスト機能は、フッターの CSS (<a class="ref" href="/chapters/filling-in-the-layout.html#code-footer_css">リスト 5.13</a>) でも使われています。具体的には、次のように使われています。</p>
+<p>これらのネスト機能は、フッターのCSSでも使用できます。<a class="ref" href="/chapters/filling-in-the-layout.html#code-footer_css">リスト5.13</a>のコードは、SCSSを使用して以下のように書き換えることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">footer</span> <span class="p">{</span>
   <span class="na">margin-top</span><span class="o">:</span> <span class="mi">45</span><span class="kt">px</span><span class="p">;</span>
@@ -1014,12 +1014,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p><a class="ref" href="/chapters/filling-in-the-layout.html#code-footer_css">リスト 5.13</a> を手で変換してみることは、良い演習になります。手で変換したあとも、CSS が適切に動作していることを確認してみましょう。</p>
+<p><a class="ref" href="/chapters/filling-in-the-layout.html#code-footer_css">リスト 5.13</a>を手作業で変換してみることは、良い演習になります。変換後にもCSSが適切に動作していることを確認してみましょう。</p>
 
 <h4><a id="sec-5_2_2_2" href="/chapters/filling-in-the-layout.html#sec-5_2_2_2" class="heading">変数</a></h4>
 
 
-<p>Sass では、冗長なコードを削除し、より自由な表現を可能にするために、<em>変数</em>が定義できるようになっています。例えば、<a class="ref" href="/chapters/filling-in-the-layout.html#code-typography_css">リスト 5.6</a>や<a class="ref" href="/chapters/filling-in-the-layout.html#code-footer_css">リスト 5.13</a>を見てみると、同じ色を繰り返し参照している箇所があります。</p>
+<p>Sassでは、冗長なコードを削除し、より自由な表現を可能にするために、<em>変数</em>が定義できるようになっています。たとえば、<a class="ref" href="/chapters/filling-in-the-layout.html#code-typography_css">リスト 5.6</a>や<a class="ref" href="/chapters/filling-in-the-layout.html#code-footer_css">リスト 5.13</a>を見てみると、同じ色を繰り返し参照している箇所があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">h2</span> <span class="p">{</span>
   <span class="na">.</span>
@@ -1040,14 +1040,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>今回のケースでは、<code>#999</code> は薄い灰色を指しています。Sass では、このような値を変数として定義し、次のように変数名を与えることができます。</p>
+<p>上のコードの<code>#999</code>は薄い灰色を指しています。Sassでは、このような値を変数として定義し、以下のように変数名を与えることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nv">$lightGray</span><span class="o">:</span> <span class="mh">#999</span><span class="p">;</span>
 </pre></div>
 </div>
 
 
-<p>この機能により、SCSS では次のように書き直すことができます。</p>
+<p>この機能を使用して、SCSSを以下のように書き直すことができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nv">$lightGray</span><span class="o">:</span> <span class="mh">#999</span><span class="p">;</span>
 <span class="nc">.</span>
@@ -1072,14 +1072,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p><code>$lightGray</code>のような変数名は、<code>#999</code> のような値よりも分かりやすいので、たとえその変数が繰り返し使われなかったとしても、変数名を与えることは有益になることが多いです。実際、Bootstrap フレームワークでは、多くの色に対して変数名を定義しています。定義された各変数は <a href="http://bootstrapdocs.com/v2.0.4/docs/less.html">Bootstrap page of LESS variables</a> から見ることができます。このページでは、Sass ではなく LESS を使って変数が定義されていますが、<tt>bootstrap-sass</tt> という Gem を使えば、Sass でも同様の変数が使えるようになります。LESS と Sass の違いを想像するのはそこまで難しくありません。例えば、LESS がアットマーク <code>@</code> を使うのに対して、Sass はドルマーク <code>$</code> を使っていることは容易に分かります。話を戻して、Bootstrap の変数の一覧表を見ると、薄い灰色に対して次の変数名が与えられることが分かります。</p>
+<p><code>$lightGray</code>のような変数名は、<code>#999</code> のような値よりもわかりやすいので、たとえその変数が繰り返し使われないとしても、変数名を与えることは多くの場合有用です。実際、Bootstrapフレームワークでは、多くの色に対して変数名を定義しています。定義されている変数は「<a href="http://bootstrapdocs.com/v2.0.4/docs/less.html">Bootstrap page of LESS variables</a>」で参照することができます。このWebサイトでは、SassではなくLESSを使って変数が定義されていますが、<tt>bootstrap-sass</tt>というgemを使用すれば、Sassでも同様の変数が使えるようになります。LESSとSass の違いを想像するのはそれほど難しくありません。たとえば、LESSではアットマーク<code>@</code>を使用しているのに対して、Sassはドルマーク<code>$</code>を使っていることはすぐにわかります。話を戻して、Bootstrapの変数の一覧表を見ると、薄い灰色に対して以下のの変数名が与えられることに気が付きます。</p>
 
 <div class="code"><div class="highlight"><pre> <span class="k">@grayLight</span><span class="nd">:</span> <span class="nn">#999</span><span class="o">;</span>
 </pre></div>
 </div>
 
 
-<p>これは、<tt>bootstrap-sass</tt> という Gem を使うと、SCSS でも同様に <code>$grayLight</code> という変数が使えることを意味しています。先ほど私達が定義した <code>$lightGray</code> というカスタム変数に代わりに、用意された変数を使ってみましょう。</p>
+<p>これは、<tt>bootstrap-sass</tt>というgemを使えば、SCSSでも同様に<code>$grayLight</code>という変数が使えることを意味しています。先ほど定義した<code>$lightGray</code>というカスタム変数に代わりに、用意された変数を使ってみましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">h2</span> <span class="p">{</span>
   <span class="na">.</span>
@@ -1100,13 +1100,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>今回取り上げた Sass のネスト機能や変数機能を使って全ての SCSS ファイルを書き直すと、<a class="ref" href="/chapters/filling-in-the-layout.html#code-refactored_scss">リスト 5.15</a> のようになります。このリストでは、Sass の変数 (詳しくは Bootstrap LESS の変数一覧を参考にしてください) や、事前に用意された色の変数 (例えば <code>#fff</code> には <code>white</code> という変数) を使っています。<code>footer</code> タグのルールが、劇的に向上していることを確認してみてください。</p>
+<p>今回取り上げたSassのネスト機能や変数機能を使ってSCSSファイルを全面的に書き直すと、<a class="ref" href="/chapters/filling-in-the-layout.html#code-refactored_scss">リスト 5.15</a>のようになります。このリストでは、Sassの変数 (詳しくはBootstrap LESSの変数一覧を参考にしてください) や、組み込みの色変数 (たとえば<code>#fff</code>には<code>white</code> という変数) を使っています。<code>footer</code>タグのルールが、劇的に向上していることを確認してみてください。</p>
 
 <div class="label" id="code-refactored_scss"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト 5.15.</span> <span class="description">ネストや変数を使って初期の SCSS ファイルを書き直した結果</span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="listing"><span class="header">リスト5.15</span> <span class="description">ネストや変数を使って初期のSCSSファイルを書き直した結果。</span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">@import</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
 
 <span class="cm">/* mixins, variables, etc. */</span>
@@ -1213,7 +1213,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>他にも、Sass を使ってスタイルシートをより簡単にする方法はいくつもありますが、今回はその中でも最も重要な機能を使って <a class="ref" href="/chapters/filling-in-the-layout.html#code-refactored_scss">リスト 5.15</a> を書きました。Sass を使うことによって、私達は素晴らしいスタートを切ることができました。Sass についてより詳しく知りたい場合は、<a href="http://sass-lang.com/">Sass の公式サイト</a> をチェックしてみると良いでしょう。</p>
+<p>Sassを使ってスタイルシートをより簡単にする方法は他にもありますが、今回はその中でも最も重要な機能を使って<a class="ref" href="/chapters/filling-in-the-layout.html#code-refactored_scss">リスト 5.15</a>を書き直しました。Sassを使うことによって、素晴らしいスタートを切ることができました。Sassの詳細については、<a href="http://sass-lang.com/">Sass の公式サイト</a> (英語) を参照してください。</p>
 
 <div class="label" id="sec-layout_links"></div>
 
@@ -1221,32 +1221,32 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h2><a id="sec-5_3" href="/chapters/filling-in-the-layout.html#sec-layout_links" class="heading"><span class="number">5.3</span>レイアウトのリンク</a></h2>
 
 
-<p>立派なスタイルでサイトレイアウト作成が完了しましたが、<code>’#’</code>で代用していたリンクを埋めるときがやってきました。もちろんリンクをこのように直接記述することもできます</p>
+<p>サイトのレイアウトが美しく仕上がりましたので、今度は<code>’#’</code>で代用していたリンクを書き換えてみましょう。もちろん、以下のようにリンクを直接記述することもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/static_pages/about&quot;</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;</span>
 </pre></div>
 </div>
 
 
-<p>しかしこれはRails流ではありません。私個人としては、aboutページへのURIは /static_pages/about ではなく /about であった方が良いと思います。さらに、Railsの規約では下記のようなコードで<em>名前付きルート</em>を使用します。</p>
+<p>しかし、上の記法はRails流ではありません。まず、aboutページへのURIは/static_pages/aboutではなく/aboutの方がよいでしょう。さらに、Railsでは以下のようなコードでは<em>名前付きルート</em>を使用するのが慣例となっています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;About&quot;</span><span class="p">,</span> <span class="n">about_path</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>この方法でコードはよりわかりやすい意味を持ち、また、<code>about_path</code>の定義を変えることで<code>about_path</code>が使用されている全てのURIを変更できるため、より柔軟性を持ちます。</p>
+<p>上のようにすることでコードの意味がわかりやすくなり、<code>about_path</code>の定義を変えれば<code>about_path</code>が使用されているすべてのURIを変更できるため、柔軟性が高まります。</p>
 
-<p>計画しているリンクの全てのリストは、URIとルート(route)のマッピングと共に<a class="ref" href="/chapters/filling-in-the-layout.html#table-url_mapping">表5.1</a>にあります。この章の終わりまでに、最後のリンクを除き全て実装します。(最後のリンクは<a class="ref" href="/chapters/sign-in-sign-out.html#top">第8章</a>で作成します。)</p>
+<p>今後使用する計画のあるすべてのリンクのリストを、URIとルート (route) のマッピングと共に<a class="ref" href="/chapters/filling-in-the-layout.html#table-url_mapping">表5.1</a>に示します。この章の終わりまでに、最後のリンクを除き全て実装します。(最後のリンクは<a class="ref" href="/chapters/sign-in-sign-out.html#top">第8章</a>で作成します。)</p>
 
 <div class="label" id="table-url_mapping"></div>
 
 
 <div class="table"><div class="center">
-<table class="tabular"><tr><th class="align_left"><strong>Page</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_right"><strong>Named route</strong></th></tr><tr class="top_bar"><td class="align_left">Home</td><td class="align_left">/</td><td class="align_right"><code>root_path</code></td></tr><tr><td class="align_left">About</td><td class="align_left">/about</td><td class="align_right"><code>about_path</code></td></tr><tr><td class="align_left">Help</td><td class="align_left">/help</td><td class="align_right"><code>help_path</code></td></tr><tr><td class="align_left">Contact</td><td class="align_left">/contact</td><td class="align_right"><code>contact_path</code></td></tr><tr><td class="align_left">Sign up</td><td class="align_left">/signup</td><td class="align_right"><code>signup_path</code></td></tr><tr><td class="align_left">Sign in</td><td class="align_left">/signin</td><td class="align_right"><code>signin_path</code></td></tr></table></div><div class="caption"><span class="header">表 5.1 </span><span class="description">サイトリンクのルート(route)とURIのマッピング。</span></div></div>
+<table class="tabular"><tr><th class="align_left"><strong>ページ</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_right"><strong>名前付きルート</strong></th></tr><tr class="top_bar"><td class="align_left">Home</td><td class="align_left">/</td><td class="align_right"><code>root_path</code></td></tr><tr><td class="align_left">About</td><td class="align_left">/about</td><td class="align_right"><code>about_path</code></td></tr><tr><td class="align_left">Help</td><td class="align_left">/help</td><td class="align_right"><code>help_path</code></td></tr><tr><td class="align_left">Contact</td><td class="align_left">/contact</td><td class="align_right"><code>contact_path</code></td></tr><tr><td class="align_left">Sign up</td><td class="align_left">/signup</td><td class="align_right"><code>signup_path</code></td></tr><tr><td class="align_left">Sign in</td><td class="align_left">/signin</td><td class="align_right"><code>signin_path</code></td></tr></table></div><div class="caption"><span class="header">表 5.1</span><span class="description">サイトリンクのルート (routing) とURIのマッピング。</span></div></div>
 
 
-<p>先に進む前にContactページを追加しましょう。(<a class="ref" href="/chapters/static-pages.html#top">第3章</a>の演習として残されています). テストは<a class="ref" href="/chapters/filling-in-the-layout.html#code-contact_page_test">リストL5.16</a>に載せており、単に<a class="ref" href="/chapters/static-pages.html#code-pages_controller_spec_title">リスト3.18</a>に登場したモデルにしたがっています。<a class="ref" href="/chapters/filling-in-the-layout.html#code-contact_page_test">リスト5.16</a>のアプリケーションコードでは、Ruby 1.9スタイルのハッシュに変更していることに注意してください。</p>
+<p>先に進む前にContactページを追加しておいてください (<a class="ref" href="/chapters/static-pages.html#top">第3章</a>の演習課題ですので、やってない方は追加をお願いします)。テストは<a class="ref" href="/chapters/filling-in-the-layout.html#code-contact_page_test">リストL5.16</a>に載せており、単に<a class="ref" href="/chapters/static-pages.html#code-pages_controller_spec_title">リスト3.18</a>に登場したモデルにしたがっています。<a class="ref" href="/chapters/filling-in-the-layout.html#code-contact_page_test">リスト5.16</a>のアプリケーションコードでは、Ruby 1.9スタイルのハッシュに変更していることに注意してください。</p>
 
 <div class="label" id="code-contact_page_test"></div>
 
@@ -1496,7 +1496,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>もし注意深く<a class="ref" href="/chapters/filling-in-the-layout.html#code-static_page_routes">リスト5.21</a>コードを読むと、それが何をしているか理解できるでしょう。例えば、</p>
+<p>もし注意深く<a class="ref" href="/chapters/filling-in-the-layout.html#code-static_page_routes">リスト5.21</a>コードを読むと、それが何をしているか理解できるでしょう。たとえば、</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">match</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#about&#39;</span>
 </pre></div>
@@ -1609,7 +1609,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-5_3_3" href="/chapters/filling-in-the-layout.html#sec-named_routes" class="heading"><span class="number">5.3.3</span>名前付きルート</a></h3>
 
 
-<p><a class="ref" href="/chapters/filling-in-the-layout.html#sec-rails_routes">5.3.2</a>で作成した名前付きルートをレイアウトで動作するようにしましょう。これには<code>link_to</code>メソッドの2番目の引数に適切な名前付きルートを指定する必要があります。例えば</p>
+<p><a class="ref" href="/chapters/filling-in-the-layout.html#sec-rails_routes">5.3.2</a>で作成した名前付きルートをレイアウトで動作するようにしましょう。これには<code>link_to</code>メソッドの2番目の引数に適切な名前付きルートを指定する必要があります。たとえば</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;About&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -1676,7 +1676,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p>これでレイアウトは<a class="ref" href="/chapters/static-pages.html#top">第3章</a>で作成した全ての静的ページについて、例えば、<a href="http://localhost:3000/about">/about</a> はAboutページ(<a class="ref" href="/chapters/filling-in-the-layout.html#fig-about_page">図5.8</a>)へ行くようなリンクを持ちます。</p>
+<p>これでレイアウトは<a class="ref" href="/chapters/static-pages.html#top">第3章</a>で作成した全ての静的ページについて、たとえば、<a href="http://localhost:3000/about">/about</a> はAboutページ(<a class="ref" href="/chapters/filling-in-the-layout.html#fig-about_page">図5.8</a>)へ行くようなリンクを持ちます。</p>
 
 <p>ところで実際にレイアウト上にリンクの存在をテストしていませんが、もし名前付きルートが定義されていなければテストは失敗するであろうということに注目する価値があります。これは<a class="ref" href="/chapters/filling-in-the-layout.html#code-static_page_routes">リスト5.21</a>のルート定義をコメントアウトし、テストスイートを走らせることで確認できます。リンクが実際に正しい場所を指している事を確認するテストの手法については<a class="ref" href="/chapters/filling-in-the-layout.html#sec-layout_exercises">5.6</a>を参照します。</p>
 
