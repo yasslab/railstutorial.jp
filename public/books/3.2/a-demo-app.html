@@ -275,10 +275,10 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <p>続いてデモアプリケーションの開発を進めるには、以下のように<em>Rake</em>を使用してデータベースをマイグレート (<em>migrate</em>) する必要があります (<a class="ref" href="/chapters/a-demo-app.html#sidebar-rake">囲み2.1</a>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
-<span class="go">==  CreateUsers: migrating ====================================================</span>
+<span class="go">==  CreateUsers: migrating ==========================================</span>
 <span class="go">-- create_table(:users)</span>
 <span class="go">   -&gt; 0.0017s</span>
-<span class="go">==  CreateUsers: migrated (0.0018s) ===========================================</span>
+<span class="go">==  CreateUsers: migrated (0.0018s) =================================</span>
 </pre></div>
 </div>
 
@@ -661,10 +661,10 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <p>新しいデータモデルでデータベースを更新するには、<a class="ref" href="/chapters/a-demo-app.html#sec-demo_users_resource">2.2</a>のときと同様にマイグレーションを実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
-<span class="go">==  CreateMicroposts: migrating ===============================================</span>
+<span class="go">==  CreateMicroposts: migrating ===============================</span>
 <span class="go">-- create_table(:microposts)</span>
 <span class="go">   -&gt; 0.0023s</span>
-<span class="go">==  CreateMicroposts: migrated (0.0026s) ======================================</span>
+<span class="go">==  CreateMicroposts: migrated (0.0026s) ======================</span>
 </pre></div>
 </div>
 
