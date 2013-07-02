@@ -5,12 +5,12 @@ class ApplicationController < ActionController::Base
 
   private
 
-    # Use the Heroku Varnish cache.
-    def heroku_cache
-      if Rails.env.production?
-        age = 1.day.to_i
-        response.headers['Cache-Control'] = "public, max-age=#{age}"
-      end
+  # Use the Heroku Varnish cache.
+  def heroku_cache
+    if Rails.env.production?
+      age = 1.day.to_i
+      response.headers['Cache-Control'] = "public, max-age=#{age}"
     end
+  end
 
 end

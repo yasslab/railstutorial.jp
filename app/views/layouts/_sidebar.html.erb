@@ -1,35 +1,62 @@
-<div id='sidebar'>
-  <div class='content'>
-    <!-- = link_to image_tag("icons/feed-icon32x32.png"), feed_url -->
-    <!-- = link_to image_tag("icons/twitter.png"), twitter_url -->
-    <!-- = link_to image_tag("icons/mail-icons/mail-icon-32x32.png"), email_url -->
-    <div id='navtool'>
+<% if not mobile_device? %>
+  <div id='sidebar'>
+    <div class='content'>
+      <div id='navtool'>
 
-      <table class='layout'>
-        <tr>
-          <td colspan='2'><a href="#book_menu"><img alt="Up A Level" src="/images/buttons/sb_button_up.png?1304201480" /></a></td>
-        </tr>
-        <tr>
-          <td><img alt="Previous Chapter" src="/images/buttons/sb_button_prev.png?1304201480" /></td>
-          <td><a href="a-demo-app#top"><img alt="Next Chapter" src="/images/buttons/sb_button_next.png?1304201480" /></a></td>
-        </tr>
-      </table>
+	<table class='layout'>
+	  <tr>
+	    <td colspan='2'><a href="#book_menu"><img alt="Up A Level" src="/images/buttons/sb_button_up.png?1304201480" /></a></td>
+	  </tr>
+	  <tr>
+	    <td><%= prev_button(@content) %></td>
+	    <td><%= next_button(@content) %></td>
+	  </tr>
+	</table>
 
-      <a href="http://amzn.to/RTbook"><img alt="Buy Print Edition" src="/images/buttons/sb_button_buy_print_edition_red.png?1304201480" /></a>
-      <br />
-      <a href="http://railstutorial.org/#buy"><img alt="Buy Screencasts" src="/images/buttons/sb_button_buy_screencasts_red.png?1304201480" /></a>
-      <div class='connect'>
-        <table class='center'>
-          <tr>
-            <td><a href="http://feeds.feedburner.com/railstutorial"><img alt="Feed-icon24x24" src="/images/icons/feed-icon24x24.png?1304201481" title="Get news updates via RSS" /></a></td>
-            <td><a href="http://feedburner.google.com/fb/a/mailverify?uri=railstutorial&amp;loc=en_US"><img alt="Mail-icon-24x24" src="/images/icons/mail-icons/mail-icon-24x24.png?1304201481" title="Get news updates by email" /></a></td>
-            <td><a href="http://www.facebook.com/pages/Ruby-on-Rails-Tutorial/197151265072"><img alt="Facebook-icon24x24" src="/images/icons/facebook-icon24x24.png?1304201481" title="Become a fan on Facebook" /></a></td>
+	<!--
+	    <a href="http://amzn.to/RTbook"><img alt="Buy Print Edition" src="/images/buttons/sb_button_buy_print_edition_red.png?1304201480" /></a>
+	    <br />
+	    <a href="http://ruby.railstutorial.org/#buy"><img alt="Buy Screencasts" src="/images/buttons/sb_button_buy_screencasts_red.png?1304201480" /></a>
+	    -->
+	<div class='connect'>
+	  <table class='center'>
+	    <tr>
+	      <td><a href="https://www.facebook.com/groups/japanese.railstutorial.org/"><img alt="Facebook-icon24x24" src="/images/icons/facebook-icon24x24.png?1304201481" title="Rails Tutorial 翻訳グループ" /></a></td>
+	      <td><a href="https://facebook-rss.herokuapp.com/rss/159687977541389"><img alt="Feed-icon24x24" src="/images/icons/feed-icon24x24.png?1304201481" title="翻訳の最新状況をRSSで取得する" /></a></td>
+	      <td><a href="mailto:yasulab@gmail.com"><img alt="Mail-icon-24x24" src="/images/icons/mail-icons/mail-icon-24x24.png?1304201481" title="翻訳に関するお問い合わせ" /></a></td>
+	      <td><a href="http://github.com/yasulab/railstutorial.jp"><img alt="github-icon24x24" src="/images/icons/github-icon24x24.png?1304201481" title="翻訳のリポジトリをチェックする" /></a></td>
+	    </tr>
+	  </table>
+	</div>
 
-            <td><a href="http://twitter.com/railstutorial"><img alt="Twitter-icon24x24" src="/images/icons/twitter-icon24x24.png?1304201481" title="Follow on Twitter" /></a></td>
-          </tr>
-        </table>
+	<div class="section">
+	  <div class="switcher">
+	    <span class="title round">Rails 3.2</span>
+	    •
+	    <span class="switcher_link">
+	      <a href="#3rd_edition_is_comming_soon" onclick="return alert('現在，第３版(Rails 4.0 対応)を翻訳中です！\n詳細は Rails Tutorial 翻訳グループをご確認下さい．')">Rails 4.0</a>
+	    </span>
+	  </div>
+	  <div class="share">
+	    <div class="fb-like" data-href="http://railstutorial.jp" data-send="false"
+		 data-layout="button_count" data-width="450" data-show-faces="false"
+		 data-font="arial"></div>
+	    <a href="https://twitter.com/share"
+	       class="twitter-share-button"
+	       data-url="http://railstutorial.jp"
+	       data-text="Rails チュートリアル：実例を使ってRailsを学ぼう"
+	       data-lang="ja" data-hashtags="railstutorialjp">ツイート</a>
+	  </div>
+	</div>
+	<!--
+	    <div class="section">
+	      <a href="https://www.facebook.com/groups/japanese.railstutorial.org/">
+		Rails Tutorial 翻訳グループ</a>
+	    </div>
+	    -->
+	
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
+<% end %>

@@ -20,135 +20,36 @@
     <link href="/stylesheets/polytexnic.css?1304201481" media="screen" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/pygments.css?1304201481" media="screen" rel="stylesheet" type="text/css" />
 
-    <link href="/stylesheets/screen.css?1304201481" media="screen, projection" rel="stylesheet" type="text/css" />
+    <% if mobile_device? %>
+      <link href="/stylesheets/screen_mobile.css?1304201481" media="screen, projection" rel="stylesheet" type="text/css" />
+    <% else %>
+      <link href="/stylesheets/screen.css?1304201481" media="screen, projection" rel="stylesheet" type="text/css" />
+    <% end %>
     
     <link href="/stylesheets/print.css?1304201481" media="print" rel="stylesheet" type="text/css" />
     <!--[if lte IE 7]><link href="/stylesheets/ie.css?1304201481" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
     <!--[if lt IE 7]>  <div style='border: 1px solid #F7941D; background: #FEEFDA; text-align: center; clear: both; height: 75px; position: relative;'>    <div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='javascript:this.parentNode.parentNode.style.display="none"; return false;'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-cornerx.jpg' style='border: none;' alt='Close this notice'/></a></div>    <div style='width: 640px; margin: 0 auto; text-align: left; padding: 0; overflow: hidden; color: black;'>      <div style='width: 75px; float: left;'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-warning.jpg' alt='Warning!'/></div>      <div style='width: 275px; float: left; font-family: Arial, sans-serif;'>        <div style='font-size: 14px; font-weight: bold; margin-top: 12px;'>You are using an outdated browser</div>        <div style='font-size: 12px; margin-top: 6px; line-height: 12px;'>For a better experience using this site, please upgrade to a modern web browser.</div>      </div>      <div style='width: 75px; float: left;'><a href='http://www.firefox.com' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-firefox.jpg' style='border: none;' alt='Get Firefox 3.5'/></a></div>      <div style='width: 75px; float: left;'><a href='http://www.browserforthebetter.com/download.html' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-ie8.jpg' style='border: none;' alt='Get Internet Explorer 8'/></a></div>      <div style='width: 73px; float: left;'><a href='http://www.apple.com/safari/download/' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-safari.jpg' style='border: none;' alt='Get Safari 4'/></a></div>      <div style='float: left;'><a href='http://www.google.com/chrome' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-chrome.jpg' style='border: none;' alt='Get Google Chrome'/></a></div>    </div>  </div>  <![endif]-->
     <link href='http://feeds.feedburner.com/railstutorial' rel='alternate' title='Rails Tutorial News' type='application/rss+xml' />
 
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-42117937-1', 'railstutorial.jp');
-    ga('send', 'pageview');
-  </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-42117937-1', 'railstutorial.jp');
+      ga('send', 'pageview');
+    </script>
 
   </head>
+  
   <body class="book"> 
-
     <div id="container">
-      <div id="header" class="clearfix"><div id='title'>
-	  <div id='logo'><a href="http://railstutorial.jp/"><img alt="Logo" src="/images/layout/logo.png?1304201481" /></a></div>
-	  <h1 id='name'>
-	    <a href="http://railstutorial.jp/">Ruby on Rails チュートリアル</a>
-	  </h1>
-	  <br />
-	  <h2 id='authors'>
-	    <a href="http://railstutorial.jp/">by Michael Hartl (マイケル・ハートル)</a>
-	  </h2>
-	</div>
-      </div>
-      <div id="menu">
-	<div class='links'>
-	  <div class='box'>
-	    <span>
-	      <a href="/">ホーム</a>
-	    </span>
-	    <span class='division'>|</span>
-	    <span>
-	      <a href="https://www.facebook.com/groups/japanese.railstutorial.org/">翻訳グループ</a>
-	    </span>
-	    <span>
-	      <a href="https://www.facebook.com/groups/japanese.railstutorial.org/"><img alt="Facebook グループ" src="/images/icons/facebook-icon24x24.png?1304201481" /></a>
-	    </span>
-	    <span class='division'>|</span>
-	    <span>
-	      <a href="http://ruby.railstutorial.org/">原著</a>
-	    </span>
-	    <!--
-		<span class='division'>
-		  |
-		</span>
-		<span>
-		  <a href="https://www.facebook.com/groups/japanese.railstutorial.org/">翻訳グループ</a>
-		</span>
-		<span class='img'>
-		  <a href="http://feeds.feedburner.com/railstutorial"><img alt="Feed-icon" class="feed" src="/images/icons/feed-icon16x16.png?1304201481" /></a>
-		</span>
-		-->
-	  </div>
-	</div>
-      </div>     
-      <div id="content">         
-        <div id='sidebar'>
-	  <div class='content'>
-	    <div id='navtool'>
+      <%= render 'layouts/header' %>      
 
-	      <table class='layout'>
-		<tr>
-		  <td colspan='2'><a href="#book_menu"><img alt="Up A Level" src="/images/buttons/sb_button_up.png?1304201480" /></a></td>
-		</tr>
-		<tr>
-		  <td><%= prev_button(@content) %></td>
-		  <td><%= next_button(@content) %></td>
-		</tr>
-	      </table>
-
-	      <!--
-		  <a href="http://amzn.to/RTbook"><img alt="Buy Print Edition" src="/images/buttons/sb_button_buy_print_edition_red.png?1304201480" /></a>
-		  <br />
-		  <a href="http://ruby.railstutorial.org/#buy"><img alt="Buy Screencasts" src="/images/buttons/sb_button_buy_screencasts_red.png?1304201480" /></a>
-		  -->
-	      <div class='connect'>
-		<table class='center'>
-		  <tr>
-		    <td><a href="https://www.facebook.com/groups/japanese.railstutorial.org/"><img alt="Facebook-icon24x24" src="/images/icons/facebook-icon24x24.png?1304201481" title="Rails Tutorial 翻訳グループ" /></a></td>
-		    <td><a href="https://facebook-rss.herokuapp.com/rss/159687977541389"><img alt="Feed-icon24x24" src="/images/icons/feed-icon24x24.png?1304201481" title="翻訳の最新状況をRSSで取得する" /></a></td>
-		    <td><a href="mailto:yasulab@gmail.com"><img alt="Mail-icon-24x24" src="/images/icons/mail-icons/mail-icon-24x24.png?1304201481" title="翻訳に関するお問い合わせ" /></a></td>
-		    <td><a href="http://github.com/yasulab/railstutorial.jp"><img alt="github-icon24x24" src="/images/icons/github-icon24x24.png?1304201481" title="翻訳のリポジトリをチェックする" /></a></td>
-		  </tr>
-		</table>
-	      </div>
-
-	      <div class="section">
-		<div class="switcher">
-		  <span class="title round">Rails 3.2</span>
-		  •
-		  <span class="switcher_link">
-		    <a href="#3rd_edition_is_comming_soon" onclick="return alert('現在，第３版(Rails 4.0 対応)を翻訳中です！\n詳細は Rails Tutorial 翻訳グループをご確認下さい．')">Rails 4.0</a>
-		  </span>
-		</div>
-		<div class="share">
-		  <div class="fb-like" data-href="http://railstutorial.jp" data-send="false"
-		       data-layout="button_count" data-width="450" data-show-faces="false"
-		       data-font="arial"></div>
-		  <a href="https://twitter.com/share"
-		     class="twitter-share-button"
-		     data-url="http://railstutorial.jp"
-		     data-text="Rails チュートリアル：実例を使ってRailsを学ぼう"
-		     data-lang="ja" data-hashtags="railstutorialjp">ツイート</a>
-		</div>
-	      </div>
-	      <!--
-	      <div class="section">
-		<a href="https://www.facebook.com/groups/japanese.railstutorial.org/">
-		  Rails Tutorial 翻訳グループ</a>
-	      </div>
-	      -->
-	      
-	    </div>
-	  </div>
-
-	</div>
-
-        
+      <div id="content">
+	<%= render 'layouts/sidebar' %>      
+	
         <div id="main" class="withsidebar">
-          
-
-
 	  <div id="book_menu">
 	    <a href="#main_content">コンテンツまでスキップする</a>
 	  </div>
@@ -158,9 +59,9 @@
 	  <div id="container-bottom"></div>
 	</div>
       </div>
-    </div>
-    
+    </div>    
   </body>
+  
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -168,7 +69,7 @@
     js = d.createElement(s); js.id = id;
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=144878509039953";
     fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));</script>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </html>
 
