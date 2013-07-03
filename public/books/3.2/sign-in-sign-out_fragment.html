@@ -484,9 +484,9 @@
 <div class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">create</span>
   <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_email</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:email</span><span class="o">].</span><span class="n">downcase</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:password</span><span class="o">]</span><span class="p">)</span>
-    <span class="c1"># Sign the user in and redirect to the user&#39;s show page.</span>
+    <span class="c1"># ユーザをサインインさせ、ユーザページ (show) にリダイレクトする。</span>
   <span class="k">else</span>
-    <span class="c1"># Create an error message and re-render the signin form.</span>
+    <span class="c1"># エラーメッセージを表示し、サインインフォームを再描画する。</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </pre></div>
@@ -720,7 +720,7 @@
   <span class="n">protect_from_forgery</span>
   <span class="kp">include</span> <span class="no">SessionsHelper</span>
 
-  <span class="c1"># Force signout to prevent CSRF attacks</span>
+  <span class="c1"># CSRF脆弱性の対策のために、サインアウトさせる。</span>
   <span class="k">def</span> <span class="nf">handle_unverified_request</span>
     <span class="n">sign_out</span>
     <span class="k">super</span>
@@ -2007,7 +2007,7 @@
 <li id="fn-8_1">他に、一定時間が経過するとセッションを期限切れにするモデルもあります。このモデルは、インターネットバンキングや金融取引口座などの重要な情報を扱うWebサイトに向いています。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_1">↑</a></li>
 <li id="fn-8_2">画像は<a href="http://www.flickr.com/photos/hermanusbackpackers/3343254977/">http://www.flickr.com/photos/hermanusbackpackers/3343254977/</a>からの引用です。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_2">↑</a></li>
 <li id="fn-8_3">このメソッドは、RailsCastの「<a href="http://railscasts.com/episodes/274-remember-me-reset-password">remember me</a>」の記事を元に選びました。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_3">↑</a></li>
-<li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Rails Guidesの「<a href="http://guides.rubyonrails.org/active_record_validations_callbacks.html#callbacks-overview">コールバックについて</a> (英語)」を参照してください。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_4">↑</a></li>
+<li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Rails Guidesの「<a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#callbacks-overview">コールバックについて</a> (英語)」を参照してください。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_4">↑</a></li>
 <li id="fn-8_5">実は、この2つは完全に同等です。<code>attr_accessor</code>は、単にゲッターメソッドやセッターメソッドを自動的に作成する便利な方法でしかありません。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_5">↑</a></li>
 <li id="fn-8_6">通常、これは初期値が<code>nil</code>である変数への代入を意味しますが、<code>false</code>値も<code>||=</code>演算子によって上書きされることにご注意ください。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_6">↑</a></li>
 <li id="fn-8_7">これは、<a class="ref" href="/chapters/modeling-users.html#sidebar-let">囲み6.3</a>で説明した<em>メモ化 (memoization) </em>の例になっています。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_7">↑</a></li>

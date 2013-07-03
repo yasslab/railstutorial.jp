@@ -1596,9 +1596,9 @@
 <h3><a id="sec-5_3_4" href="/chapters/filling-in-the-layout.html#sec-pretty_rspec" class="heading"><span class="number">5.3.4</span>Pretty RSpec</a></h3>
 
 
-<p><a class="ref" href="/chapters/filling-in-the-layout.html#sec-route_tests">5.3.1</a>で静的ページのテストが冗長で同じような繰り返しになってきていると言うことを述べました(<a class="ref" href="/chapters/filling-in-the-layout.html#code-route_tests">リスト5.20</a>)。ここではRSpecの最新の機能を使い、テストをより簡潔で洗練されたものにします。</p>
+<p><a class="ref" href="/chapters/filling-in-the-layout.html#sec-route_tests">5.3.1</a>で、静的ページのテストが冗長で繰り返しが多くなってきたことを指摘しました (<a class="ref" href="/chapters/filling-in-the-layout.html#code-route_tests">リスト5.20</a>)。この節では、RSpecの最新の機能を使い、テストをより簡潔で洗練されたものにします。</p>
 
-<p>どのように改善できるかいくつかの例を見てみましょう。</p>
+<p>テストの改善方法について、いくつかの例を見てみましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
 
@@ -1622,7 +1622,7 @@
 </div>
 
 
-<p>一つ気付くことは3つの例全てでルートへのアクセスが含まれていることです。<code>before</code>ブロックを使用することでこの冗長箇所を除くことができます。</p>
+<p>まず、上の3つの例はいずれもルートへのアクセスを含んでいることに気付きます。<code>before</code>ブロックを使用することでこの冗長箇所を除くことができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
   <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">root_path</span> <span class="p">}</span> 
@@ -1644,44 +1644,44 @@
 </div>
 
 
-<p>以下の行に注目してください。</p>
+<p>上のコードでは以下を使用しました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">root_path</span> <span class="p">}</span>
 </pre></div>
 </div>
 
 
-<p>これでそれぞれの例の前にルートパスへのアクセスを実行します。(<code>before</code>メソッドは別名でもある<code>before(:each)</code>でも呼ぶことができます。)</p>
+<p>これにより、それぞれの例の前にルートパスへのアクセスを実行します (<code>before</code>メソッドは、別名でもある<code>before(:each)</code>で呼ぶこともできます)。</p>
 
-<p>それぞれの例では現れる冗長性の原因が他にもあります。</p>
+<p>冗長性の原因は他にもあります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should have the h1 &#39;Sample App&#39;&quot;</span> <span class="k">do</span>
 </pre></div>
 </div>
 
 
-<p>上記と下記ではどちらも本質的には同じような事を言っています。</p>
+<p>上と以下はどちらも本質的には同じ内容です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">page</span><span class="o">.</span><span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="ss">text:</span> <span class="s1">&#39;Sample App&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>さらにどちらの例も<code>page</code>変数を参照しています。RSpecに<code>page</code>はテスト使用している<em>対象(subject)</em>であると伝えることにより、冗長の原因を排除できます。</p>
+<p>さらに、どちらの例も<code>page</code>変数を参照しています。以下のように、<code>page</code>はテストの<em>主題 (subject) </em>であることをRSpecに伝えることにより、冗長の原因を排除できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">subject</span> <span class="p">{</span> <span class="n">page</span> <span class="p">}</span>
 </pre></div>
 </div>
 
 
-<p>そして<code>it</code>変数のメソッドを使用することにより、コードと記述を1行に収めます。</p>
+<p>次に、以下のように<code>it</code>メソッドの変種を使用することにより、コードと記述を1行に収めます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="ss">text:</span> <span class="s1">&#39;Sample App&#39;</span><span class="p">)</span> <span class="p">}</span>
 </pre></div>
 </div>
 
 
-<p><code>subject { page }</code>により、<code>should</code>の呼び出しは自動的にCapybara (<a class="ref" href="/chapters/static-pages.html#sec-TDD">3.2.1</a>)により提供される<code>page</code>変数を使用します。</p>
+<p><code>subject { page }</code>と記述したことにより、<code>should</code>の呼び出しは自動的にCapybara (<a class="ref" href="/chapters/static-pages.html#sec-TDD">3.2.1</a>)により提供される<code>page</code>変数を使用します。</p>
 
 <p>これらの変更を加えることでHomeページのテストはより簡潔になります。</p>
 
@@ -1699,14 +1699,14 @@
 </div>
 
 
-<p>このコードは以前より良く見えますが、まだタイトルのテストが少し長すぎます。確かに<a class="ref" href="/chapters/filling-in-the-layout.html#code-route_tests">リスト5.20</a>にあるほとんどのタイトルのテストが長いテキストになっています。</p>
+<p>上のコードは以前より良くなりましたが、まだタイトルのテストが少し長すぎます。確かに、<a class="ref" href="/chapters/filling-in-the-layout.html#code-route_tests">リスト5.20</a>にあるほとんどのタイトルのテストで以下の長いテキストが使用されています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="s2">&quot;Ruby on Rails Tutorial Sample App | About&quot;</span>
 </pre></div>
 </div>
 
 
-<p><a class="ref" href="/chapters/static-pages.html#sec-static_pages_exercises">3.5</a>の演習は<code>base_title</code>変数を定義し、文字列の補完を使用することでこの冗長性を排除することを提案します(<a class="ref" href="/chapters/static-pages.html#code-pages_controller_spec_exercise">リスト3.30</a>)。<a class="ref" href="/chapters/rails-flavored-ruby.html#code-title_helper">リスト4.2</a>の<code>full_title</code>ヘルパーと似ている<code>full_title</code>を定義することでもっと良くすることができます。RSpecユーティリティー用に<code>spec/support</code>ディレクトリーと<code>utilities.rb</code>ファイルを作ることでこれを行います(<a class="ref" href="/chapters/filling-in-the-layout.html#code-rspec_utilities">リスト5.26</a>)。</p>
+<p><a class="ref" href="/chapters/static-pages.html#sec-static_pages_exercises">3.5</a>の演習では、<code>base_title</code>変数を定義し、文字列の補完を使用することでこの冗長性を排除することを提案しました (<a class="ref" href="/chapters/static-pages.html#code-pages_controller_spec_exercise">リスト3.30</a>)。<a class="ref" href="/chapters/rails-flavored-ruby.html#code-title_helper">リスト4.2</a>の<code>full_title</code>ヘルパーと同様の<code>full_title</code>を定義することで、さらに改良することができます。これを行うには、RSpecユーティリティで使用する<code>spec/support</code>ディレクトリーと<code>utilities.rb</code>ファイルを作成します (<a class="ref" href="/chapters/filling-in-the-layout.html#code-rspec_utilities">リスト5.26</a>)。</p>
 
 <div class="label" id="code-rspec_utilities"></div>
 
@@ -1725,7 +1725,7 @@
 </div></div>
 
 
-<p>もちろんこれは基本的<a class="ref" href="/chapters/rails-flavored-ruby.html#code-title_helper">リスト4.2</a>のヘルパーと同じです。しかし、二つの独立したメソッドを持つことでベースタイトルのタイプミスを捉えることができます。これははっきりとしない設計ですが、オリジナルの<code>full_title</code>ヘルパーを直接テストするより良い(少しだけ先進的な)アプローチで、演習で登場します(<a class="ref" href="/chapters/filling-in-the-layout.html#sec-layout_exercises">5.6</a>)。</p>
+<p>もちろんこれは、基本的に<a class="ref" href="/chapters/rails-flavored-ruby.html#code-title_helper">リスト4.2</a>のヘルパーの複製です。しかし、2つの独立したメソッドがあることで基本タイトルのタイプミスを検出することができます。これはやや疑問の残る設計ですが、それでも、演習で登場する (<a class="ref" href="/chapters/filling-in-the-layout.html#sec-layout_exercises">5.6</a>) オリジナルの<code>full_title</code>ヘルパーを直接テストしたときよりも良い (やや高度な) アプローチです。</p>
 
 <p>RSpecによって<code>spec/support</code>ディレクトリは自動的に読み込まれるため、Homeテストは以下のように書くことができます。</p>
 
