@@ -13,9 +13,10 @@ do
     cat $file.modified_3 | sed -e "s/IN CONNECTION WITH/<\/br>IN CONNECTION WITH/g" > $file.modified_4
     cat $file.modified_4 | sed -e "s/フルサイズ/拡大/g" > $file.modified_5
     cat $file.modified_5 | sed -e "s/テストドリブン/テスト駆動/g" > $file.modified_6
+    cat $file.modified_6 | sed -e "s/active_record_validations_callbacks/v3.2.13\/active_record_validations_callbacks/g" > $file.modified_7
     echo "corrected $file"
     if [ $? -eq 0 ]; then
-        mv $file.modified_6 $file
+        mv $file.modified_7 $file
     fi
 
 done
