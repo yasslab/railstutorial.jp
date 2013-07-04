@@ -2,21 +2,32 @@
 
 # Collect html files in the current directory,
 # then apply the following patches to each file:
-#   - change absolute links, 'http://railstutorial-ja' into relative ones.
-#   - add </br> tags to LICENSE
+#   - Change absolute links into relative ones.
+#   - Align LICENSE by adding <br> tags.
+#   - Replace specific terminologies with appropriate Japanese ones.
+
+re_array=("s/http:\/\/railstutorial-ja.herokuapp.com/\/chapters/g" \
+          "s/,FITNESS/,<\/br>FITNESS/g" \
+	  "s/WHETHER/<\/br>WHETHER/g" \
+	  "s/IN CONNECTION WITH/<\/br>IN CONNECTION WITH/g" \
+	  "s/フルサイズ/拡大/g" \
+	  "s/テストドリブン/テスト駆動/g" \
+	  "s/active_record_validations_callbacks/v3.2.13\/active_record_validations_callbacks/g" \
+)
 
 for file in `ls *.html`
 do
-    cat $file | sed -e "s/http:\/\/railstutorial-ja.herokuapp.com/\/chapters/g" > $file.modified_1
-    cat $file.modified_1 | sed -e "s/,FITNESS/,<\/br>FITNESS/g" > $file.modified_2
-    cat $file.modified_2 | sed -e "s/WHETHER/<\/br>WHETHER/g" > $file.modified_3
-    cat $file.modified_3 | sed -e "s/IN CONNECTION WITH/<\/br>IN CONNECTION WITH/g" > $file.modified_4
-    cat $file.modified_4 | sed -e "s/フルサイズ/拡大/g" > $file.modified_5
-    cat $file.modified_5 | sed -e "s/テストドリブン/テスト駆動/g" > $file.modified_6
-    cat $file.modified_6 | sed -e "s/active_record_validations_callbacks/v3.2.13\/active_record_validations_callbacks/g" > $file.modified_7
-    echo "corrected $file"
+    cp $file $file.modified_0
+    i=0
+    for re in "${re_array[@]}"
+    do
+	cat $file.modified_$i | sed -e "$re" > $file.modified_`expr $i + 1`
+	i=`expr $i + 1`
+    done
+    
     if [ $? -eq 0 ]; then
-        mv $file.modified_7 $file
+        mv $file.modified_$i $file
     fi
 
+    echo "corrected $file"
 done
