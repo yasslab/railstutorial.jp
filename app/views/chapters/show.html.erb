@@ -2,7 +2,11 @@
   <div id="book_top">
   </div>
     <div id="book">
-      <%= render 'layouts/contents' %>
+      <% if third_edition? @version %>
+        <%= render 'shared/4.0/contents' %>
+      <% else %>/
+	<%= render 'shared/3.2/contents' %>
+      <% end %>
       <%= raw @content %>
     </div>
   <div id="book_bottom">

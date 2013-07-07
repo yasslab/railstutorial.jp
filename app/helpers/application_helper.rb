@@ -16,6 +16,10 @@ module ApplicationHelper
     end
   end
 
+  def third_edition?(version)
+    version == "4.0"
+  end
+
   private
 
     # Return the nav button, linked if appropriate.

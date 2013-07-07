@@ -31,12 +31,22 @@
 
 	<div class="section">
 	  <div class="switcher">
-	    <span class="title round">Rails 3.2</span>
-	    •
-	    <span class="switcher_link">
-	      <a href="#3rd_edition_is_comming_soon" onclick="return alert('現在，第３版(Rails 4.0 対応)を翻訳中です！\n詳細は Rails Tutorial 翻訳グループをご確認下さい．')">Rails 4.0</a>
-	    </span>
+	    <% if third_edition?(@version) %>
+	      <span class="switcher_link">
+		<%= link_to "Rails 3.2", params.merge(version: nil, :anchor => 'top') %>
+	      </span>
+	      •
+	      <span class="title round">Rails 4.0</span>
+	    <% else %>
+	      <span class="title round">Rails 3.2</span>
+	      •
+	      <span class="switcher_link">
+		<%= link_to "Rails 4.0", params.merge(version: 4.0, :anchor => 'top') %>
+	      </span>
+	    <% end %>
 	  </div>
+
+	  
 	  <div class="share">
 	    <div class="fb-like" data-href="http://railstutorial.jp" data-send="false"
 		 data-layout="button_count" data-width="450" data-show-faces="false"
