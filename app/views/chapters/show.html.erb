@@ -4,7 +4,7 @@
     <div id="book">
       <% if third_edition? @version %>
         <%= render 'shared/4.0/contents' %>
-      <% else %>/
+      <% else %>
 	<%= render 'shared/3.2/contents' %>
       <% end %>
       <%= raw @content %>
