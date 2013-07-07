@@ -23,10 +23,11 @@ class ChaptersController < ApplicationController
 
   def old
     # redirect to the corresponding page if visited old URL
-    chapter = params[:chapter]
-    format  = params[:format]
-    if File.exist?("public/books/3.2/#{chapter}_fragment.html")
-      redirect_to "/chapters/#{chapter}.#{format}"
+    chapter  = params[:chapter]
+    @version = params[:version]
+
+    if File.exist?("public/books/#{@version}/#{chapter}_fragment.html")
+      redirect_to "/chapters/#{chapter}?version=4.0#top"
     else
       redirect_to "/"
     end
