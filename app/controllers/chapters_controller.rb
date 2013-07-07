@@ -8,7 +8,11 @@ class ChaptersController < ApplicationController
 
   def show
     chapter = params[:id]
-    @content = File.open("public/books/3.2/#{chapter}_fragment.html").read
+    if params[:version] == "4.0"
+      @content = File.open("public/books/4.0/#{chapter}_fragment.html").read
+    else
+      @content = File.open("public/books/3.2/#{chapter}_fragment.html").read
+    end
   end
 
   def old

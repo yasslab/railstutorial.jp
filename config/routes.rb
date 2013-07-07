@@ -1,12 +1,10 @@
 RailstutorialJp::Application.routes.draw do
-  get '/', to: 'chapters#index'
+
+  root 'chapters#index'
   resources :chapters, :only => ['show']
+
+  # Redirect to the corresponding chapter when visiting old chapter.
   get "/:chapter", to: 'chapters#old'
-  
-  #get "/:title", to: "chapters#index"
-  #match '/' => redirect('/chapters/beginning'), via: [:get]
-  #get '/' => redirect('/chapters/beginning')
-  #get '/' => root_path
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

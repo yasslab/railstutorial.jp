@@ -1,0 +1,1860 @@
+
+
+<div id="top"></div>
+
+
+<h1 class="chapter"><a id="sec-6" href="modeling-users?version=4.0#top" class="heading"><span class="number">Chapter 6</span> Modeling users</a></h1>
+
+
+<p>In <a class="ref" href="filling-in-the-layout?version=4.0#top">Chapter&nbsp;5</a>, we ended with a stub page for creating new users (<a class="ref" href="filling-in-the-layout?version=4.0#sec-user_signup">Section&nbsp;5.4</a>); over the course of the next four chapters, we&rsquo;ll fulfill the promise implicit in this incipient signup page. The first critical step is to create a <em>data model</em> for users of our site, together with a way to store that data. In <a class="ref" href="sign-up?version=4.0#top">Chapter&nbsp;7</a>, we&rsquo;ll give users the ability to sign up for our site and create a user profile page. Once users can sign up, we&rsquo;ll let them sign in and sign out as well (<a class="ref" href="sign-in-sign-out?version=4.0#top">Chapter&nbsp;8</a>), and in <a class="ref" href="updating-showing-and-deleting-users?version=4.0#top">Chapter&nbsp;9</a> (<a class="ref" href="updating-showing-and-deleting-users?version=4.0#sec-requiring_signed_in_users">Section&nbsp;9.2.1</a>) we&rsquo;ll learn how to protect pages from improper access. Taken together, the material in <a class="ref" href="modeling-users?version=4.0#top">Chapter&nbsp;6</a> through <a class="ref" href="updating-showing-and-deleting-users?version=4.0#top">Chapter&nbsp;9</a> develops a full Rails login and authentication system. As you may know, there are various pre-built authentication solutions for Rails; <a class="ref" href="modeling-users?version=4.0#sidebar-roll_your_own">Box&nbsp;6.1</a> explains why, at least at first, it&rsquo;s probably a better idea to roll your own.</p>
+
+<p>This is a long and action-packed chapter, and you may find it unusually challenging, especially if you are new to data modeling. By the end of it, though, we will have created an industrial-strength system for validating, storing, and retrieving user information.</p>
+
+<div class="label" id="sidebar-roll_your_own"></div>
+
+
+<div class="sidebar"><span class="title"><span class="header">Box 6.1.</span><span class="description">Roll your own authentication system</span></span>
+<p>Virtually all web applications require a login and authentication system of some sort. As a result, most web frameworks have a plethora of options for implementing such systems, and Rails is no exception. Examples of authentication and authorization systems include <a href="http://github.com/thoughtbot/clearance">Clearance</a>, <a href="http://github.com/binarylogic/authlogic">Authlogic</a>, <a href="http://github.com/plataformatec/devise">Devise</a>, and <a href="http://railscasts.com/episodes/192-authorization-with-cancan">CanCan</a> (as well as non-Rails-specific solutions built on top of <a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a> or <a href="http://en.wikipedia.org/wiki/Oauth">OAuth</a>). It&rsquo;s reasonable to ask why we should reinvent the wheel. Why not just use an off-the-shelf solution instead of rolling our own?</p>
+
+<p>For one, practical experience shows that authentication on most sites requires extensive customization, and modifying a third-party product is often more work than writing the system from scratch. In addition, off-the-shelf systems can be &ldquo;black boxes&rdquo;, with potentially mysterious innards; when you write your own system, you are far more likely to understand it. Moreover, recent additions to Rails (<a class="ref" href="modeling-users?version=4.0#sec-adding_a_secure_password">Section&nbsp;6.3</a>) make it easy to write a custom authentication system. Finally, if you <em>do</em> end up using a third-party system later on, you&rsquo;ll be in a much better position to understand and modify it if you&rsquo;ve first built one yourself.</p>
+</div>
+
+
+<p>As usual, if you&rsquo;re following along using Git for version control, now would be a good time to make a topic branch for modeling users:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout master
+<span class="gp">$</span> git checkout -b modeling-users
+</pre></div>
+</div>
+
+
+<p>(The first line here is just to make sure that you start on the master branch, so that the <code>modeling-users</code> topic branch is based on <code>master</code>. You can skip that command if you&rsquo;re already on the master branch.)</p>
+
+<div class="label" id="sec-user_model"></div>
+
+
+<h2><a id="sec-6_1" href="modeling-users?version=4.0#sec-user_model" class="heading"><span class="number">6.1</span> User model</a></h2>
+
+
+<p>Although the ultimate goal of the next three chapters is to make a signup page for our site (mocked up in <a class="ref" href="modeling-users?version=4.0#fig-signup_mockup_preview">Figure&nbsp;6.1</a>), it would do little good now to accept information for new users: we don&rsquo;t currently have any place to put it. Thus, the first step in signing up users is to make a data structure to capture and store their information.</p>
+
+<div class="label" id="fig-signup_mockup_preview"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">Figure 6.1: </span><span class="description">A mockup of the user signup page.&nbsp;<a href="http://railstutorial.org/images/figures/signup_mockup_bootstrap-full.png">(full size)</a></span></div></div>
+
+
+<p>In Rails, the default data structure for a data model is called, naturally enough, a&nbsp;<em>model</em> (the M in MVC from <a class="ref" href="beginning?version=4.0#sec-mvc">Section&nbsp;1.2.6</a>). The default Rails solution to the problem of persistence is to use a <em>database</em> for long-term data storage, and the default library for interacting with the database is called <em>Active Record</em>.<sup class="footnote" id="fnref-6_1"><a href="?version=4.0#fn-6_1">1</a></sup> Active Record comes with a host of methods for creating, saving, and finding data objects, all without having to use the structured query language (SQL)<sup class="footnote" id="fnref-6_2"><a href="?version=4.0#fn-6_2">2</a></sup> used by <a href="http://en.wikipedia.org/wiki/Relational_database">relational databases</a>. Moreover, Rails has a feature called <em>migrations</em> to allow data definitions to be written in pure Ruby, without having to learn an SQL data definition language (DDL). The effect is that Rails insulates you almost entirely from the details of the data store. In this book, by using SQLite for development and PostgreSQL (via Heroku) for deployment (<a class="ref" href="beginning?version=4.0#sec-deploying">Section&nbsp;1.4</a>), we have developed this theme even further, to the point where we barely ever have to think about how Rails stores data, even for production applications.</p>
+
+<div class="label" id="sec-database_migrations"></div>
+
+
+<h3><a id="sec-6_1_1" href="modeling-users?version=4.0#sec-database_migrations" class="heading"><span class="number">6.1.1</span> Database migrations</a></h3>
+
+
+<p>You may recall from <a class="ref" href="rails-flavored-ruby?version=4.0#sec-a_user_class">Section&nbsp;4.4.5</a> that we have already encountered, via a custom-built <code>User</code> class, user objects with <code>name</code> and <code>email</code> attributes. That class served as a useful example, but it lacked the critical property of <em>persistence</em>: when we created a User object at the Rails console, it disappeared as soon as we exited. Our goal in this section is to create a model for users that won&rsquo;t disappear quite so easily.</p>
+
+<p>As with the User class in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-a_user_class">Section&nbsp;4.4.5</a>, we&rsquo;ll start by modeling a user with two attributes, a <code>name</code> and an <code>email</code> address, the latter of which we&rsquo;ll use as a unique username.<sup class="footnote" id="fnref-6_3"><a href="?version=4.0#fn-6_3">3</a></sup> (We&rsquo;ll add an attribute for passwords in <a class="ref" href="modeling-users?version=4.0#sec-adding_a_secure_password">Section&nbsp;6.3</a>.) In <a class="ref" href="rails-flavored-ruby?version=4.0#code-example_user">Listing&nbsp;4.9</a>, we did this with Ruby&rsquo;s <code>attr_accessor</code> method:</p>
+
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>In contrast, when using Rails to model users we don&rsquo;t need to identify the attributes explicitly. As noted briefly above, to store data Rails uses a relational database by default, which consists of <em>tables</em> composed of data <em>rows</em>, where each row has <em>columns</em> of data attributes. For example, to store users with names and email addresses, we&rsquo;ll create a <code>users</code> table with <code>name</code> and <code>email</code> columns (with each row corresponding to one user). By naming the columns in this way, we&rsquo;ll let Active Record figure out the User object attributes for us.</p>
+
+<p>Let&rsquo;s see how this works. (If this discussion gets too abstract for your taste, be patient; the console examples starting in <a class="ref" href="modeling-users?version=4.0#sec-creating_user_objects">Section&nbsp;6.1.3</a> and the database browser screenshots in <a class="ref" href="modeling-users?version=4.0#fig-sqlite_database_browser">Figure&nbsp;6.3</a> and <a class="ref" href="modeling-users?version=4.0#fig-sqlite_user_row">Figure&nbsp;6.6</a> should make things clearer.) You may recall from <a class="ref" href="filling-in-the-layout?version=4.0#code-generate_users_controller">Listing&nbsp;5.29</a> that we created a Users controller (along with a <code>new</code> action) using the command</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate controller Users new --no-test-framework
+</pre></div>
+</div>
+
+
+<p>There is an analogous command for making a model: <code>generate model</code>. <a class="ref" href="modeling-users?version=4.0#code-generate_user_model">Listing&nbsp;6.1</a> shows the command to generate a User model with two attributes, <code>name</code> and <code>email</code>.</p>
+
+<div class="label" id="code-generate_user_model"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.1.</span> <span class="description">Generating a User model.</span> </div>
+<div class="code"><div class="highlight"><pre>$ rails generate model User name:string email:string
+      invoke  active_record
+      create    db/migrate/[timestamp]_create_users.rb
+      create    app/models/user.rb
+      invoke    rspec
+      create      spec/models/user_spec.rb
+</pre></div>
+</div></div>
+
+
+<p>(Note that, in contrast to the plural convention for controller names, model names are singular: a Users controller, but a User model.) By passing the optional parameters <code>name:string</code> and <code>email:string</code>, we tell Rails about the two attributes we want, along with what types those attributes should be (in this case, <code>string</code>). Compare this with including the action names in <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.5</a> and <a class="ref" href="filling-in-the-layout?version=4.0#code-generate_users_controller">Listing&nbsp;5.29</a>.</p>
+
+<p>One of the results of the <code>generate</code> command in <a class="ref" href="modeling-users?version=4.0#code-generate_user_model">Listing&nbsp;6.1</a> is a new file called a <em>migration</em>.  Migrations provide a way to alter the structure of the database incrementally, so that our data model can adapt to changing requirements. In the case of the User model, the migration is created automatically by the model generation script; it creates a <code>users</code> table with two columns, <code>name</code> and <code>email</code>, as shown in <a class="ref" href="modeling-users?version=4.0#code-users_migration">Listing&nbsp;6.2</a>. (We&rsquo;ll see in <a class="ref" href="modeling-users?version=4.0#sec-uniqueness_validation">Section&nbsp;6.2.5</a> and again in <a class="ref" href="modeling-users?version=4.0#sec-adding_a_secure_password">Section&nbsp;6.3</a> how to make a migration from scratch.)</p>
+
+<div class="label" id="code-users_migration"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.2.</span> <span class="description">Migration for the User model (to create a <code>users</code> table). <br /> <code>db/migrate/[timestamp]_create_users.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:users</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:email</span>
+
+      <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Note that the name of the migration file is prefixed by a <em>timestamp</em> based on when the migration was generated. In the early days of migrations, the filenames were prefixed with incrementing integers, which caused conflicts for collaborating teams if multiple programmers had migrations with the same number. Barring the improbable scenario of migrations generated the same second, using timestamps conveniently avoids such collisions.</p>
+
+<p>The migration itself consists of a <code>change</code> method that determines the change to be made to the database. In the case of <a class="ref" href="modeling-users?version=4.0#code-users_migration">Listing&nbsp;6.2</a>, <code>change</code> uses a Rails method called <code>create_table</code> to create a <em>table</em> in the database for storing users. The <code>create_table</code> method accepts a block (<a class="ref" href="rails-flavored-ruby?version=4.0#sec-blocks">Section&nbsp;4.3.2</a>) with one block variable, in this case called <code>t</code> (for &ldquo;table&rdquo;). Inside the block, the <code>create_table</code> method uses the <code>t</code>&nbsp;object to create <code>name</code> and <code>email</code> columns in the database, both of type <code>string</code>.<sup class="footnote" id="fnref-6_4"><a href="?version=4.0#fn-6_4">4</a></sup> Here the table name is plural (<code>users</code>) even though the model name is singular (User), which reflects a linguistic convention followed by Rails: a model represents a single user, whereas a database table consists of many users. The final line in the block, <code>t.timestamps</code>, is a special command that creates two <em>magic columns</em> called <code>created_at</code> and <code>updated_at</code>, which are timestamps that automatically record when a given user is created and updated. (We&rsquo;ll see concrete examples of the magic columns starting in <a class="ref" href="modeling-users?version=4.0#sec-creating_user_objects">Section&nbsp;6.1.3</a>.) The full data model represented by this migration is shown in <a class="ref" href="modeling-users?version=4.0#fig-user_model_initial">Figure&nbsp;6.2</a>.</p>
+
+<div class="label" id="fig-user_model_initial"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/user_model_initial.png" alt="user_model_initial" /></span></div><div class="caption"><span class="header">Figure 6.2: </span><span class="description">The users data model produced by <a class="ref" href="modeling-users?version=4.0#code-users_migration">Listing&nbsp;6.2</a>.</span></div></div>
+
+
+<p>We can run the migration, known as &ldquo;migrating up&rdquo;, using the <code>rake</code> command (<a class="ref" href="a-demo-app?version=4.0#sidebar-rake">Box&nbsp;2.1</a>) as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
+</pre></div>
+</div>
+
+
+<p>(You may recall that we ran this command in a similar context in <a class="ref" href="a-demo-app?version=4.0#sec-demo_users_resource">Section&nbsp;2.2</a>.) The first time <code>db:migrate</code> is run, it creates a file called <code>db/development.sqlite3</code>, which is an <a href="http://sqlite.org/">SQLite</a><sup class="footnote" id="fnref-6_5"><a href="?version=4.0#fn-6_5">5</a></sup> database. We can see the structure of the database using the excellent <a href="http://sourceforge.net/projects/sqlitebrowser/">SQLite Database Browser</a> to open the <code>db/development.sqlite3</code> file (<a class="ref" href="modeling-users?version=4.0#fig-sqlite_database_browser">Figure&nbsp;6.3</a>); compare with the diagram in <a class="ref" href="modeling-users?version=4.0#fig-user_model_initial">Figure&nbsp;6.2</a>.  You might note that there&rsquo;s one column in <a class="ref" href="modeling-users?version=4.0#fig-sqlite_database_browser">Figure&nbsp;6.3</a> not accounted for in the migration: the <code>id</code> column. As noted briefly in <a class="ref" href="a-demo-app?version=4.0#sec-demo_users_resource">Section&nbsp;2.2</a>, this column is created automatically, and is used by Rails to identify each row uniquely.</p>
+
+<div class="label" id="fig-sqlite_database_browser"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sqlite_database_browser.png" alt="sqlite_database_browser" /></span></div><div class="caption"><span class="header">Figure 6.3: </span><span class="description">The  <a href="http://sqlitebrowser.sourceforge.net/">SQLite Database Browser</a> with our new <code>users</code> table.&nbsp;<a href="http://railstutorial.org/images/figures/sqlite_database_browser-full.png">(full size)</a></span></div></div>
+
+
+<p>Most migrations, including all the ones in the <em>Rails Tutorial</em>, are <em>reversible</em>, which means we can &ldquo;migrate down&rdquo; and undo them with a single Rake task, called <code>db:rollback</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:rollback
+</pre></div>
+</div>
+
+
+<p>(See <a class="ref" href="static-pages?version=4.0#sidebar-undoing_things">Box&nbsp;3.2</a> for another technique useful for reversing migrations.) Under the hood, this command executes the <code>drop_table</code> command to remove the users table from the database. The reason this works is that the <code>change</code> method knows that <code>drop_table</code> is the inverse of <code>create_table</code>, which means that the rollback migration can be easily inferred. In the case of an irreversible migration, such as one to remove a database column, it is necessary to define separate <code>up</code> and <code>down</code> methods in place of the single <code>change</code> method. Read about <a href="http://guides.rubyonrails.org/migrations.html">migrations in the Rails Guides</a> for more information.</p>
+
+<p>If you rolled back the database, migrate up again before proceeding:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
+</pre></div>
+</div>
+
+
+
+
+<div class="label" id="sec-the_model_file"></div>
+
+
+<h3><a id="sec-6_1_2" href="modeling-users?version=4.0#sec-the_model_file" class="heading"><span class="number">6.1.2</span> The model file</a></h3>
+
+
+<p>We&rsquo;ve seen how the User model generation in <a class="ref" href="modeling-users?version=4.0#code-generate_user_model">Listing&nbsp;6.1</a> generated a migration file (<a class="ref" href="modeling-users?version=4.0#code-users_migration">Listing&nbsp;6.2</a>), and we saw in <a class="ref" href="modeling-users?version=4.0#fig-sqlite_database_browser">Figure&nbsp;6.3</a> the results of running this migration: it updated a file called <code>development.sqlite3</code> by creating a table <code>users</code> with columns <code>id</code>, <code>name</code>, <code>email</code>, <code>created_at</code>, and <code>updated_at</code>. <a class="ref" href="modeling-users?version=4.0#code-generate_user_model">Listing&nbsp;6.1</a> also created the model itself; the rest of this section is dedicated to understanding it.</p>
+
+<p>We begin by looking at the code for the User model, which lives in the file <code>user.rb</code> inside the <code>app/models/</code> directory. It is, to put it mildly, very compact (<a class="ref" href="modeling-users?version=4.0#code-raw_user_model">Listing&nbsp;6.3</a>).</p>
+
+<div class="label" id="code-raw_user_model"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.3.</span> <span class="description">The brand new User model. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Recall from <a class="ref" href="rails-flavored-ruby?version=4.0#sec-a_class_of_our_own">Section&nbsp;4.4.2</a> that the syntax <code>class User &lt; ActiveRecord::Base</code> means that the <code>User</code> class <em>inherits</em> from <code>ActiveRecord::Base</code>, so that the User model automatically has all the functionality of the <code>ActiveRecord::Base</code> class. Of course, knowledge of this inheritance doesn&rsquo;t do any good unless we know what <code>ActiveRecord::Base</code> contains, so let&rsquo;s get started with some concrete examples.</p>
+
+<div class="label" id="sec-creating_user_objects"></div>
+
+
+<h3><a id="sec-6_1_3" href="modeling-users?version=4.0#sec-creating_user_objects" class="heading"><span class="number">6.1.3</span> Creating user objects</a></h3>
+
+
+<p>As in <a class="ref" href="rails-flavored-ruby?version=4.0#top">Chapter&nbsp;4</a>, our tool of choice for exploring data models is the Rails console. Since we don&rsquo;t (yet) want to make any changes to our database, we&rsquo;ll start the console in a <em>sandbox</em>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="go">$ rails console --sandbox</span>
+<span class="go">Loading development environment in sandbox</span>
+<span class="go">Any modifications you make will be rolled back on exit</span>
+<span class="go">&gt;&gt;</span>
+</pre></div>
+</div>
+
+
+<p>As indicated by the helpful message &ldquo;Any modifications you make will be rolled back on exit&rdquo;, when started in a sandbox the console will &ldquo;roll back&rdquo; (i.e., undo) any database changes introduced during the session.</p>
+
+<p>In the console session in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-a_user_class">Section&nbsp;4.4.5</a>, we created a new user object with <code>User.new</code>, which we had access to only after requiring the example user file in <a class="ref" href="rails-flavored-ruby?version=4.0#code-example_user">Listing&nbsp;4.9</a>. With models, the situation is different; as you may recall from <a class="ref" href="rails-flavored-ruby?version=4.0#sec-a_controller_class">Section&nbsp;4.4.4</a>, the Rails console automatically loads the Rails environment, which includes the models. This means that we can make a new user object without any further work:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">new</span>
+<span class="go">=&gt; #&lt;User id: nil, name: nil, email: nil, created_at: nil, updated_at: nil&gt;</span>
+</pre></div>
+</div>
+
+
+<p>We see here the default console representation of a user object.</p>
+
+<p>When called with no arguments, <code>User.new</code> returns an object with all <code>nil</code> attributes. In <a class="ref" href="rails-flavored-ruby?version=4.0#sec-a_user_class">Section&nbsp;4.4.5</a>, we designed the example User class to take an <em>initialization hash</em> to set the object attributes; that design choice was motivated by Active Record, which allows objects to be initialized in the same way:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
+<span class="go">=&gt; #&lt;User id: nil, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
+<span class="go">created_at: nil, updated_at: nil&gt;</span>
+</pre></div>
+</div>
+
+
+<p>Here we see that the name and email attributes have been set as expected.</p>
+
+<p>If you&rsquo;ve been tailing the development log, you may have noticed that no new lines have shown up yet. This is because calling <code>User.new</code> doesn&rsquo;t touch the database; it simply creates a new Ruby object in memory. To save the user object to the database, we call the <code>save</code> method on the <code>user</code> variable:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">save</span>
+<span class="go">=&gt; true</span>
+</pre></div>
+</div>
+
+
+<p>The <code>save</code> method returns <code>true</code> if it succeeds and <code>false</code> otherwise. (Currently, all saves should succeed; we&rsquo;ll see cases in <a class="ref" href="modeling-users?version=4.0#sec-user_validations">Section&nbsp;6.2</a> when some will fail.) As soon as you save, you should see a line in the development log with the SQL command to <code>INSERT INTO "users"</code>. Because of the many methods supplied by Active Record, we won&rsquo;t ever need raw SQL in this book, and I&rsquo;ll omit discussion of the SQL commands from now on. But you can learn a lot by watching the log.</p>
+
+<p>You may have noticed that the new user object had <code>nil</code> values for the <code>id</code> and the magic columns <code>created_at</code> and <code>updated_at</code> attributes. Let&rsquo;s see if our <code>save</code> changed anything:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span>
+<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
+<span class="go">created_at: &quot;2013-03-11 00:57:46&quot;, updated_at: &quot;2013-03-11 00:57:46&quot;&gt;</span>
+</pre></div>
+</div>
+
+
+<p>We see that the <code>id</code> has been assigned a value of&nbsp;<code>1</code>, while the magic columns have been assigned the current time and date.<sup class="footnote" id="fnref-6_6"><a href="?version=4.0#fn-6_6">6</a></sup> Currently, the created and updated timestamps are identical; we&rsquo;ll see them differ in <a class="ref" href="modeling-users?version=4.0#sec-updating_user_objects">Section&nbsp;6.1.5</a>.</p>
+
+<p>As with the User class in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-a_user_class">Section&nbsp;4.4.5</a>, instances of the User model allow access to their attributes using a dot notation:<sup class="footnote" id="fnref-6_7"><a href="?version=4.0#fn-6_7">7</a></sup></p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">name</span>
+<span class="go">=&gt; &quot;Michael Hartl&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">email</span>
+<span class="go">=&gt; &quot;mhartl@example.com&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">updated_at</span>
+<span class="go">=&gt; Mon, 11 Mar 2013 00:57:46 UTC +00:00</span>
+</pre></div>
+</div>
+
+
+<p>As we&rsquo;ll see in <a class="ref" href="sign-up?version=4.0#top">Chapter&nbsp;7</a>, it&rsquo;s often convenient to make and save a model in two steps as we have above, but Active Record also lets you combine them into one step with <code>User.create</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;A Nother&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;another@example.org&quot;</span><span class="p">)</span>
+<span class="go">#&lt;User id: 2, name: &quot;A Nother&quot;, email: &quot;another@example.org&quot;, created_at:</span>
+<span class="go">&quot;2013-03-11 01:05:24&quot;, updated_at: &quot;2013-03-11 01:05:24&quot;&gt;</span>
+<span class="gp">&gt;&gt; </span><span class="n">foo</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;foo@bar.com&quot;</span><span class="p">)</span>
+<span class="go">#&lt;User id: 3, name: &quot;Foo&quot;, email: &quot;foo@bar.com&quot;, created_at: &quot;2013-03-11</span>
+<span class="go">01:05:42&quot;, updated_at: &quot;2013-03-11 01:05:42&quot;&gt;</span>
+</pre></div>
+</div>
+
+
+<p>Note that <code>User.create</code>, rather than returning <code>true</code> or <code>false</code>, returns the User object itself, which we can optionally assign to a variable (such as <code>foo</code> in the second command above).</p>
+
+<p>The inverse of <code>create</code> is <code>destroy</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">foo</span><span class="o">.</span><span class="n">destroy</span>
+<span class="go">=&gt; #&lt;User id: 3, name: &quot;Foo&quot;, email: &quot;foo@bar.com&quot;, created_at: &quot;2013-03-11</span>
+<span class="go">01:05:42&quot;, updated_at: &quot;2013-03-11 01:05:42&quot;&gt;</span>
+</pre></div>
+</div>
+
+
+<p>Oddly, <code>destroy</code>, like <code>create</code>, returns the object in question, though I can&rsquo;t recall ever having used the return value of <code>destroy</code>. Even odder, perhaps, is that the <code>destroy</code>ed object still exists in memory:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">foo</span>
+<span class="go">=&gt; #&lt;User id: 3, name: &quot;Foo&quot;, email: &quot;foo@bar.com&quot;, created_at: &quot;2013-03-11</span>
+<span class="go">01:05:42&quot;, updated_at: &quot;2013-03-11 01:05:42&quot;&gt;</span>
+</pre></div>
+</div>
+
+
+<p>How do we know if we really destroyed an object? And for saved and non-destroyed objects, how can we retrieve users from the database? It&rsquo;s time to learn how to use Active Record to find user objects.</p>
+
+<div class="label" id="sec-finding_user_objects"></div>
+
+
+<h3><a id="sec-6_1_4" href="modeling-users?version=4.0#sec-finding_user_objects" class="heading"><span class="number">6.1.4</span> Finding user objects</a></h3>
+
+
+<p>Active Record provides several options for finding objects. Let&rsquo;s use them to find the first user we created while verifying that the third user (<code>foo</code>) has been destroyed. We&rsquo;ll start with the existing user:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
+<span class="go">created_at: &quot;2013-03-11 00:57:46&quot;, updated_at: &quot;2013-03-11 00:57:46&quot;&gt;</span>
+</pre></div>
+</div>
+
+
+<p>Here we&rsquo;ve passed the id of the user to <code>User.find</code>; Active Record returns the user with that&nbsp;id.</p>
+
+<p>Let&rsquo;s see if the user with an <code>id</code> of&nbsp;<code>3</code> still exists in the database:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">ActiveRecord::RecordNotFound: Couldn&#39;t find User with ID=3</span>
+</pre></div>
+</div>
+
+
+<p>Since we destroyed our third user in <a class="ref" href="modeling-users?version=4.0#sec-creating_user_objects">Section&nbsp;6.1.3</a>, Active Record can&rsquo;t find it in the database. Instead, <code>find</code> raises an <em>exception</em>, which is a way of indicating an exceptional event in the execution of a program&mdash;in this case, a nonexistent Active Record id, which causes <code>find</code> to raise an <code>ActiveRecord::RecordNotFound</code> exception.<sup class="footnote" id="fnref-6_8"><a href="?version=4.0#fn-6_8">8</a></sup></p>
+
+<p>In addition to the generic <code>find</code>, Active Record also allows us to find users by specific attributes:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">find_by_email</span><span class="p">(</span><span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
+<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
+<span class="go">created_at: &quot;2013-03-11 00:57:46&quot;, updated_at: &quot;2013-03-11 00:57:46&quot;&gt;</span>
+</pre></div>
+</div>
+
+
+<p>The <code>find_by_email</code> method is automatically created by Active Record based on the <code>email</code> attribute in the <code>users</code> table. (As you might guess, Active Record creates a <code>find_by_name</code> method as well.) Starting in Rails&nbsp;4.0, the preferred method to find by attribute is to use the <code>find_by</code> method instead, passing the attribute as a hash:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
+<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
+<span class="go">created_at: &quot;2013-03-11 00:57:46&quot;, updated_at: &quot;2013-03-11 00:57:46&quot;&gt;</span>
+</pre></div>
+</div>
+
+
+<p>Since we will be using email addresses as usernames, this sort of <code>find</code> will be useful when we learn how to let users sign in to our site (<a class="ref" href="sign-up?version=4.0#top">Chapter&nbsp;7</a>). If you&rsquo;re worried that <code>find_by</code> will be inefficient if there are a large number of users, you&rsquo;re ahead of the game; we&rsquo;ll cover this issue, and its solution via database indices, in <a class="ref" href="modeling-users?version=4.0#sec-uniqueness_validation">Section&nbsp;6.2.5</a>.</p>
+
+<p>We&rsquo;ll end with a couple of more general ways of finding users. First, there&rsquo;s <code>first</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">first</span>
+<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
+<span class="go">created_at: &quot;2013-03-11 00:57:46&quot;, updated_at: &quot;2013-03-11 00:57:46&quot;&gt;</span>
+</pre></div>
+</div>
+
+
+<p>Naturally, <code>first</code> just returns the first user in the database. There&rsquo;s also <code>all</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">all</span>
+<span class="go">=&gt; [#&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
+<span class="go">created_at: &quot;2013-03-11 00:57:46&quot;, updated_at: &quot;2013-03-11 00:57:46&quot;&gt;,</span>
+<span class="go">#&lt;User id: 2, name: &quot;A Nother&quot;, email: &quot;another@example.org&quot;, created_at:</span>
+<span class="go">&quot;2013-03-11 01:05:24&quot;, updated_at: &quot;2013-03-11 01:05:24&quot;&gt;]</span>
+</pre></div>
+</div>
+
+
+<p>No prizes for inferring that <code>all</code> returns an array (<a class="ref" href="rails-flavored-ruby?version=4.0#sec-arrays_and_ranges">Section&nbsp;4.3.1</a>) of all users in the database.</p>
+
+<div class="label" id="sec-updating_user_objects"></div>
+
+
+<h3><a id="sec-6_1_5" href="modeling-users?version=4.0#sec-updating_user_objects" class="heading"><span class="number">6.1.5</span> Updating user objects</a></h3>
+
+
+<p>Once we&rsquo;ve created objects, we often want to update them. There are two basic ways to do this. First, we can assign attributes individually, as we did in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-a_user_class">Section&nbsp;4.4.5</a>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span>           <span class="c1"># Just a reminder about our user&#39;s attributes</span>
+<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
+<span class="go">created_at: &quot;2013-03-11 00:57:46&quot;, updated_at: &quot;2013-03-11 00:57:46&quot;&gt;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;mhartl@example.net&quot;</span>
+<span class="go">=&gt; &quot;mhartl@example.net&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">save</span>
+<span class="go">=&gt; true</span>
+</pre></div>
+</div>
+
+
+<p>Note that the final step is necessary to write the changes to the database. We can see what happens without a save by using <code>reload</code>, which reloads the object based on the database information:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">email</span>
+<span class="go">=&gt; &quot;mhartl@example.net&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;foo@bar.com&quot;</span>
+<span class="go">=&gt; &quot;foo@bar.com&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">reload</span><span class="o">.</span><span class="n">email</span>
+<span class="go">=&gt; &quot;mhartl@example.net&quot;</span>
+</pre></div>
+</div>
+
+
+<p>Now that we&rsquo;ve updated the user, the magic columns differ, as promised in <a class="ref" href="modeling-users?version=4.0#sec-creating_user_objects">Section&nbsp;6.1.3</a>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">created_at</span>
+<span class="go">=&gt; &quot;2013-03-11 00:57:46&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">updated_at</span>
+<span class="go">=&gt; &quot;2013-03-11 01:37:32&quot;</span>
+</pre></div>
+</div>
+
+
+<p>The second main way to update attributes is to use <code>update_attributes</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">update_attributes</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;The Dude&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;dude@abides.org&quot;</span><span class="p">)</span>
+<span class="go">=&gt; true</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">name</span>
+<span class="go">=&gt; &quot;The Dude&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">email</span>
+<span class="go">=&gt; &quot;dude@abides.org&quot;</span>
+</pre></div>
+</div>
+
+
+<p>The <code>update_attributes</code> method accepts a hash of attributes, and on success performs both the update and the save in one step (returning <code>true</code> to indicate that the save went through). Note that if any of the validations fail, such as when a password is required to save a record (as implemented in <a class="ref" href="modeling-users?version=4.0#sec-adding_a_secure_password">Section&nbsp;6.3</a>), the call to <code>update_attributes</code> will fail. If we only need to update a single attribute, using singular <code>update_attribute</code> bypasses this restriction:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">update_attribute</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="s2">&quot;The Dude&quot;</span><span class="p">)</span>
+<span class="go">=&gt; true</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">name</span>
+<span class="go">=&gt; &quot;The Dude&quot;</span>
+</pre></div>
+</div>
+
+
+
+
+<div class="label" id="sec-user_validations"></div>
+
+
+<h2><a id="sec-6_2" href="modeling-users?version=4.0#sec-user_validations" class="heading"><span class="number">6.2</span> User validations</a></h2>
+
+
+<p>The User model we created in <a class="ref" href="modeling-users?version=4.0#sec-user_model">Section&nbsp;6.1</a> now has working <code>name</code> and <code>email</code> attributes, but they are completely generic: any string (including an empty one) is currently valid in either case. And yet, names and email addresses are more specific than this. For example, <code>name</code> should be non-blank, and <code>email</code> should match the specific format characteristic of email addresses. Moreover, since we&rsquo;ll be using email addresses as unique usernames when users sign in, we shouldn&rsquo;t allow email duplicates in the database.</p>
+
+<p>In short, we shouldn&rsquo;t allow <code>name</code> and <code>email</code> to be just any strings; we should enforce certain constraints on their values. Active Record allows us to impose such constraints using <em>validations</em>. In this section, we&rsquo;ll cover several of the most common cases, validating <em>presence</em>, <em>length</em>, <em>format</em> and <em>uniqueness</em>. In <a class="ref" href="modeling-users?version=4.0#sec-has_secure_password">Section&nbsp;6.3.4</a> we&rsquo;ll add a final common validation, <em>confirmation</em>. And we&rsquo;ll see in <a class="ref" href="sign-up?version=4.0#sec-signup_failure">Section&nbsp;7.3</a> how validations give us convenient error messages when users make submissions that violate them.</p>
+
+<div class="label" id="sec-initial_user_tests"></div>
+
+
+<h3><a id="sec-6_2_1" href="modeling-users?version=4.0#sec-initial_user_tests" class="heading"><span class="number">6.2.1</span> Initial user tests</a></h3>
+
+
+<p>As with the other features of our sample app, we&rsquo;ll add User model validations using test-driven development. Because we didn&rsquo;t pass the</p>
+
+<pre class="verbatim">--no-test-framework</pre>
+
+
+<p>flag when we generated the User model (unlike, e.g., <a class="ref" href="filling-in-the-layout?version=4.0#code-generate_users_controller">Listing&nbsp;5.29</a>), the command in <a class="ref" href="modeling-users?version=4.0#code-generate_user_model">Listing&nbsp;6.1</a> produces an initial spec for testing users, but in this case it&rsquo;s practically blank (<a class="ref" href="modeling-users?version=4.0#code-default_user_spec">Listing&nbsp;6.4</a>).</p>
+
+<div class="label" id="code-default_user_spec"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.4.</span> <span class="description">The practically blank default User spec. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+  <span class="n">pending</span> <span class="s2">&quot;add some examples to (or delete) </span><span class="si">#{</span><span class="bp">__FILE__</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>This simply uses the <code>pending</code> method to indicate that we should fill the spec with something useful. We can see its effect by preparing a (blank) test database and running the User model spec:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
+<span class="gp">$</span> bundle <span class="nb">exec </span>rake <span class="nb">test</span>:prepare
+<span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/models/user_spec.rb
+<span class="go">*</span>
+
+
+<span class="go">Finished in 0.01999 seconds</span>
+<span class="go">1 example, 0 failures, 1 pending</span>
+
+<span class="go">Pending:</span>
+<span class="go">  User add some examples to (or delete)</span>
+<span class="go">  /Users/mhartl/rails_projects/sample_app/spec/models/user_spec.rb</span>
+<span class="go">  (Not Yet Implemented)</span>
+</pre></div>
+</div>
+
+
+<p>On many systems, pending specs will be displayed in yellow to indicate that they are in between passing (green) and failing (red).</p>
+
+<p>This is the first time we&rsquo;ve seen the command to create a test database with the correct structure:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake <span class="nb">test</span>:prepare
+</pre></div>
+</div>
+
+
+<p>This just ensures that the data model from the development database, <code>db/development.sqlite3</code>, is reflected in the test database, <code>db/test.sqlite3</code>. (Failure to run this Rake task after a migration is a common source of confusion. In addition, sometimes the test database gets corrupted and needs to be reset. If your test suite is mysteriously breaking, be sure to try running <code>rake test:prepare</code> to see if that fixes the problem.)</p>
+
+<p>We&rsquo;ll follow the advice of the default spec by filling it in with some RSpec examples, shown in <a class="ref" href="modeling-users?version=4.0#code-user_spec">Listing&nbsp;6.5</a>.</p>
+
+<div class="label" id="code-user_spec"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.5.</span> <span class="description">Testing for the <code>:name</code> and <code>:email</code> attributes. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">subject</span> <span class="p">{</span> <span class="vi">@user</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>The <code>before</code> block, which we saw in <a class="ref" href="filling-in-the-layout?version=4.0#code-pretty_page_tests">Listing&nbsp;5.28</a>), runs the code inside the block before each example&mdash;in this case, creating a new <code>@user</code> instance variable using <code>User.new</code> and a valid initialization hash. Then</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">subject</span> <span class="p">{</span> <span class="vi">@user</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>makes <code>@user</code> the default subject of the test example, as seen before in the context of the <code>page</code> variable in <a class="ref" href="filling-in-the-layout?version=4.0#sec-pretty_rspec">Section&nbsp;5.3.4</a>.</p>
+
+<p>The two examples in <a class="ref" href="modeling-users?version=4.0#code-user_spec">Listing&nbsp;6.5</a> test for the existence of <code>name</code> and <code>email</code> attributes:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
+<span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>These examples implicitly use the Ruby method <code>respond_to?</code>, which accepts a symbol and returns <code>true</code> if the object responds to the given method or attribute and <code>false</code> otherwise:</p>
+
+<div class="code"><div class="highlight"><pre><span class="go">$ rails console --sandbox</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">respond_to?</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+<span class="go">=&gt; true</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">respond_to?</span><span class="p">(</span><span class="ss">:foobar</span><span class="p">)</span>
+<span class="go">=&gt; false</span>
+</pre></div>
+</div>
+
+
+<p>(Recall from <a class="ref" href="rails-flavored-ruby?version=4.0#sec-objects_and_message_passing">Section&nbsp;4.2.3</a> that Ruby uses a question mark to indicate such true/false boolean methods.) The tests themselves rely on the <em>boolean convention</em> used by RSpec: the code</p>
+
+<div class="code"><div class="highlight"><pre><span class="vi">@user</span><span class="o">.</span><span class="n">respond_to?</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+<p>can be tested using the RSpec code</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should respond to &#39;name&#39;&quot;</span> <span class="k">do</span>
+  <span class="n">expect</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>Because of <code>subject { @user }</code>, we can alternatively write this using the single-line style introduced in <a class="ref" href="filling-in-the-layout?version=4.0#sec-pretty_rspec">Section&nbsp;5.3.4</a>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>These kinds of tests allow us to use TDD to add new attributes and methods to our User model, and as a side-effect we get a nice specification for the methods that all <code>User</code> objects should respond to.</p>
+
+<p>Because we have already properly prepared the test database with <code>rake test:prepare</code>, the tests should pass:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
+</pre></div>
+</div>
+
+
+
+
+<div class="label" id="sec-presence_validation"></div>
+
+
+<h3><a id="sec-6_2_2" href="modeling-users?version=4.0#sec-presence_validation" class="heading"><span class="number">6.2.2</span> Validating presence</a></h3>
+
+
+<p>Perhaps the most elementary validation is <em>presence</em>, which simply verifies that a given attribute is present. For example, in this section we&rsquo;ll ensure that both the name and email fields are present before a user gets saved to the database. In <a class="ref" href="sign-up?version=4.0#sec-signup_error_messages">Section&nbsp;7.3.3</a>, we&rsquo;ll see how to propagate this requirement up to the signup form for creating new users.</p>
+
+<p>We&rsquo;ll start with a test for the presence of a <code>name</code> attribute. Although the first step in TDD is to write a <em>failing</em> test (<a class="ref" href="static-pages?version=4.0#sec-TDD">Section&nbsp;3.2.1</a>), in this case we don&rsquo;t yet know enough about validations to write the proper test, so we&rsquo;ll write the validation first, using the console to understand it. Then we&rsquo;ll comment out the validation, write a failing test, and verify that uncommenting the validation gets the test to pass. This procedure may seem pedantic for such a simple test, but I have seen many &ldquo;simple&rdquo; tests that actually test the wrong thing; being meticulous about TDD is simply the <em>only</em> way to be confident that we&rsquo;re testing the right thing. (This comment-out technique is also useful when rescuing an application whose application code is already written but&mdash;<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>quelle horreur!</em></a>&mdash;has no tests.)</p>
+
+<p>The way to validate the presence of the name attribute is to use the <code>validates</code> method with argument <code>presence: true</code>, as shown in  <a class="ref" href="modeling-users?version=4.0#code-validates_presence_of_name">Listing&nbsp;6.6</a>. The <code>presence: true</code> argument is a one-element <em>options hash</em>; recall from <a class="ref" href="rails-flavored-ruby?version=4.0#sec-css_revisited">Section&nbsp;4.3.4</a> that curly braces are optional when passing hashes as the final argument in a method. (As noted in <a class="ref" href="filling-in-the-layout?version=4.0#sec-adding_to_the_layout">Section&nbsp;5.1.1</a>, the use of options hashes is a recurring theme in Rails.)</p>
+
+<div class="label" id="code-validates_presence_of_name"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.6.</span> <span class="description">Validating the presence of a <code>name</code> attribute. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p><a class="ref" href="modeling-users?version=4.0#code-validates_presence_of_name">Listing&nbsp;6.6</a> may look like magic, but <code>validates</code> is just a method. An equivalent formulation of <a class="ref" href="modeling-users?version=4.0#code-validates_presence_of_name">Listing&nbsp;6.6</a> using parentheses is as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="n">validates</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>Let&rsquo;s drop into the console to see the effects of adding a validation to our User model:<sup class="footnote" id="fnref-6_9"><a href="?version=4.0#fn-6_9">9</a></sup></p>
+
+<div class="code"><div class="highlight"><pre><span class="go">$ rails console --sandbox</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">save</span>
+<span class="go">=&gt; false</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">valid?</span>
+<span class="go">=&gt; false</span>
+</pre></div>
+</div>
+
+
+<p>Here <code>user.save</code> returns <code>false</code>, indicating a failed save. In the final command, we use the <code>valid?</code> method, which returns <code>false</code> when the object fails one or more validations, and <code>true</code> when all validations pass. In this case, we only have one validation, so we know which one failed, but it can still be helpful to check using the <code>errors</code> object generated on failure:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">full_messages</span>
+<span class="go">=&gt; [&quot;Name can&#39;t be blank&quot;]</span>
+</pre></div>
+</div>
+
+
+<p>(The error message is a hint that Rails validates the presence of an attribute using the <code>blank?</code> method, which we saw at the end of <a class="ref" href="rails-flavored-ruby?version=4.0#sec-modifying_built_in_classes">Section&nbsp;4.4.3</a>.)</p>
+
+<p>Now for the failing test. To ensure that our incipient test will fail, let&rsquo;s comment out the validation at this point (<a class="ref" href="modeling-users?version=4.0#code-commented_out_validation">Listing&nbsp;6.7</a>).</p>
+
+<div class="label" id="code-commented_out_validation"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.7.</span> <span class="description">Commenting out a validation to ensure a failing test. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="c1"># validates :name, presence: true</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>The initial validation tests then appear as in <a class="ref" href="modeling-users?version=4.0#code-failing_validates_name_spec">Listing&nbsp;6.8</a>.</p>
+
+<div class="label" id="code-failing_validates_name_spec"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.8.</span> <span class="description">A failing test for validation of the <code>name</code> attribute. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">subject</span> <span class="p">{</span> <span class="vi">@user</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_valid</span> <span class="p">}</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;when name is not present&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_valid</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>The first new example is just a sanity check, verifying that the subject (<code>@user</code>) is initially valid:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_valid</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>This is another example of the RSpec boolean convention we saw in <a class="ref" href="modeling-users?version=4.0#sec-initial_user_tests">Section&nbsp;6.2.1</a>: whenever an object responds to a boolean method <code>foo?</code>, there is a corresponding test method called <code>be_foo</code>. In this case, we can test the result of calling</p>
+
+<div class="code"><div class="highlight"><pre><span class="vi">@user</span><span class="o">.</span><span class="n">valid?</span>
+</pre></div>
+</div>
+
+
+<p>with</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should be valid&quot;</span> <span class="k">do</span>
+  <span class="n">expect</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_valid</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>As before, <code>subject { @user }</code> lets us use the one-line style, yielding</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_valid</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>The second test first sets the user&rsquo;s name to an invalid (blank) value, and then tests to see that the resulting <code>@user</code> object is invalid:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;when name is not present&quot;</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_valid</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>This uses a <code>before</code> block to set the user&rsquo;s name to an invalid (blank) value and then checks that the resulting user object is not valid.</p>
+
+<p>You should verify that the tests fail at this point:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/models/user_spec.rb
+<span class="go">...F</span>
+<span class="go">4 examples, 1 failure</span>
+</pre></div>
+</div>
+
+
+<p>Now uncomment the validation (i.e., revert <a class="ref" href="modeling-users?version=4.0#code-commented_out_validation">Listing&nbsp;6.7</a> back to <a class="ref" href="modeling-users?version=4.0#code-validates_presence_of_name">Listing&nbsp;6.6</a>) to get the tests to pass:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/models/user_spec.rb
+<span class="go">....</span>
+<span class="go">4 examples, 0 failures</span>
+</pre></div>
+</div>
+
+
+<p>Of course, we also want to validate the presence of email addresses. The test (<a class="ref" href="modeling-users?version=4.0#code-validates_email_spec">Listing&nbsp;6.9</a>) is analogous to the one for the <code>name</code> attribute.</p>
+
+<div class="label" id="code-validates_email_spec"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.9.</span> <span class="description">A test for presence of the <code>email</code> attribute. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">describe</span> <span class="s2">&quot;when email is not present&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_valid</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>The implementation is also virtually the same, as seen in <a class="ref" href="modeling-users?version=4.0#code-validates_presence_of_email">Listing&nbsp;6.10</a>.</p>
+
+<div class="label" id="code-validates_presence_of_email"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.10.</span> <span class="description">Validating the presence of the <code>name</code> and <code>email</code> attributes. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span>  <span class="ss">presence:</span> <span class="kp">true</span>
+  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Now all the tests should pass, and the presence validations are complete.</p>
+
+<div class="label" id="sec-length_validation"></div>
+
+
+<h3><a id="sec-6_2_3" href="modeling-users?version=4.0#sec-length_validation" class="heading"><span class="number">6.2.3</span> Length validation</a></h3>
+
+
+<p>We&rsquo;ve constrained our User model to require a name for each user, but we should go further: the user&rsquo;s names will be displayed on the sample site, so we should enforce some limit on their length. With all the work we did in <a class="ref" href="modeling-users?version=4.0#sec-presence_validation">Section&nbsp;6.2.2</a>, this step is easy.</p>
+
+<p>We start with a test. There&rsquo;s no science to picking a maximum length; we&rsquo;ll just pull&nbsp;<code>50</code> out of thin air as a reasonable upper bound, which means verifying that names of&nbsp;<code>51</code> characters are too long   (<a class="ref" href="modeling-users?version=4.0#code-length_validation_test">Listing&nbsp;6.11</a>).</p>
+
+<div class="label" id="code-length_validation_test"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.11.</span> <span class="description">A test for <code>name</code> length validation. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">describe</span> <span class="s2">&quot;when name is too long&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span> <span class="o">*</span> <span class="mi">51</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_valid</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>For convenience, we&rsquo;ve used &ldquo;string multiplication&rdquo; in <a class="ref" href="modeling-users?version=4.0#code-length_validation_test">Listing&nbsp;6.11</a> to make a string 51 characters long. We can see how this works using the console:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;a&quot;</span> <span class="o">*</span> <span class="mi">51</span>
+<span class="go">=&gt; &quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="s2">&quot;a&quot;</span> <span class="o">*</span> <span class="mi">51</span><span class="p">)</span><span class="o">.</span><span class="n">length</span>
+<span class="go">=&gt; 51</span>
+</pre></div>
+</div>
+
+
+<p>The test in <a class="ref" href="modeling-users?version=4.0#code-length_validation_test">Listing&nbsp;6.11</a> should fail. To get it to pass, we need to know about the validation argument to constrain length, <code>:length</code>, along with the <code>:maximum</code> parameter to enforce the upper bound (<a class="ref" href="modeling-users?version=4.0#code-length_validation">Listing&nbsp;6.12</a>).</p>
+
+<div class="label" id="code-length_validation"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.12.</span> <span class="description">Adding a length validation for the <code>name</code> attribute. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span>  <span class="ss">presence:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">length:</span> <span class="p">{</span> <span class="ss">maximum:</span> <span class="mi">50</span> <span class="p">}</span>
+  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Now the tests should pass. With our test suite passing again, we can move on to a more challenging validation: email format.</p>
+
+<div class="label" id="sec-format_validation"></div>
+
+
+<h3><a id="sec-6_2_4" href="modeling-users?version=4.0#sec-format_validation" class="heading"><span class="number">6.2.4</span> Format validation</a></h3>
+
+
+<p>Our validations for the <code>name</code> attribute enforce only minimal constraints&mdash;any non-blank name under 51 characters will do&mdash;but of course the <code>email</code> attribute must satisfy more stringent requirements. So far we&rsquo;ve only rejected blank email addresses; in this section, we&rsquo;ll require email addresses to conform to the familiar pattern <code>user@example.com</code>.</p>
+
+<p>Neither the tests nor the validation will be exhaustive, just good enough to accept most valid email addresses and reject most invalid ones. We&rsquo;ll start with a couple tests involving collections of valid and invalid addresses. To make these collections, it&rsquo;s worth knowing about the useful  <code>%w[]</code> technique for making arrays of strings, as seen in this console session:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="sx">%w[foo bar baz]</span>
+<span class="go">=&gt; [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]</span>
+<span class="gp">&gt;&gt; </span><span class="n">addresses</span> <span class="o">=</span> <span class="sx">%w[user@foo.COM THE_US-ER@foo.bar.org first.last@foo.jp]</span>
+<span class="go">=&gt; [&quot;user@foo.COM&quot;, &quot;THE_US-ER@foo.bar.org&quot;, &quot;first.last@foo.jp&quot;]</span>
+<span class="gp">&gt;&gt; </span><span class="n">addresses</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">address</span><span class="o">|</span>
+<span class="gp">?&gt; </span>  <span class="nb">puts</span> <span class="n">address</span>
+<span class="gp">&gt;&gt; </span><span class="k">end</span>
+<span class="go">user@foo.COM</span>
+<span class="go">THE_US-ER@foo.bar.org</span>
+<span class="go">first.last@foo.jp</span>
+</pre></div>
+</div>
+
+
+<p>Here we&rsquo;ve iterated over the elements of the <code>addresses</code> array using the <code>each</code> method (<a class="ref" href="rails-flavored-ruby?version=4.0#sec-blocks">Section&nbsp;4.3.2</a>). With this technique in hand, we&rsquo;re ready to write some basic email format validation tests (<a class="ref" href="modeling-users?version=4.0#code-email_format_validation_tests">Listing&nbsp;6.13</a>).</p>
+
+<div class="label" id="code-email_format_validation_tests"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.13.</span> <span class="description">Tests for email format validation. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">describe</span> <span class="s2">&quot;when email format is invalid&quot;</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">&quot;should be invalid&quot;</span> <span class="k">do</span>
+      <span class="n">addresses</span> <span class="o">=</span> <span class="sx">%w[user@foo,com user_at_foo.org example.user@foo.</span>
+<span class="sx">                     foo@bar_baz.com foo@bar+baz.com]</span>
+      <span class="n">addresses</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">invalid_address</span><span class="o">|</span>
+        <span class="vi">@user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">invalid_address</span>
+        <span class="n">expect</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">be_valid</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;when email format is valid&quot;</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">&quot;should be valid&quot;</span> <span class="k">do</span>
+      <span class="n">addresses</span> <span class="o">=</span> <span class="sx">%w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]</span>
+      <span class="n">addresses</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">valid_address</span><span class="o">|</span>
+        <span class="vi">@user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">valid_address</span>
+        <span class="n">expect</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_valid</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>As noted above, these are far from exhaustive, but we do check the common valid email forms <code>user@foo.COM</code>, <code>THE_US-ER@foo.bar.org </code> (uppercase, underscores, and compound domains), and <code>first.last@foo.jp</code> (the standard corporate username <code>first.last</code>, with a two-letter top-level domain&nbsp;<code>jp</code> (Japan)), along with several invalid forms.</p>
+
+<p>The application code for email format validation uses a <em>regular expression</em> (or <em>regex</em>) to define the format, along with the <code>:format</code> argument to the <code>validates</code> method (<a class="ref" href="modeling-users?version=4.0#code-validates_format_of_email">Listing&nbsp;6.14</a>).</p>
+
+<div class="label" id="code-validates_format_of_email"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.14.</span> <span class="description">Validating the email format with a regular expression. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span>  <span class="ss">presence:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">length:</span> <span class="p">{</span> <span class="ss">maximum:</span> <span class="mi">50</span> <span class="p">}</span>
+  <span class="no">VALID_EMAIL_REGEX</span> <span class="o">=</span> <span class="sr">/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i</span>
+  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="p">{</span> <span class="ss">with:</span> <span class="no">VALID_EMAIL_REGEX</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Here the regex <code>VALID_EMAIL_REGEX</code> is a <em>constant</em>, indicated in Ruby by a name starting with a capital letter. The code</p>
+
+<div class="code"><div class="highlight"><pre>  <span class="no">VALID_EMAIL_REGEX</span> <span class="o">=</span> <span class="sr">/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i</span>
+  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="p">{</span> <span class="ss">with:</span> <span class="no">VALID_EMAIL_REGEX</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>ensures that only email addresses that match the pattern will be considered valid. (Because it starts with a capital letter, <code>VALID_EMAIL_REGEX</code> is a Ruby <em>constant</em>, so its value can&rsquo;t change.)</p>
+
+<p>So, where does the pattern come from? Regular expressions consist of a terse (some would say <a href="http://catb.org/jargon/html/L/line-noise.html">unreadable</a>) language for matching text patterns; learning to construct regexes is an art, and to get you started I&rsquo;ve broken <code>VALID_EMAIL_REGEX</code> into bite-sized pieces (<a class="ref" href="modeling-users?version=4.0#table-valid_email_regex">Table&nbsp;6.1</a>).<sup class="footnote" id="fnref-6_10"><a href="?version=4.0#fn-6_10">10</a></sup> To really learn about regular expressions, though, I consider the amazing <a href="http://www.rubular.com/">Rubular</a> regular expression editor (<a class="ref" href="modeling-users?version=4.0#fig-rubular">Figure&nbsp;6.4</a>) to be simply essential.<sup class="footnote" id="fnref-6_11"><a href="?version=4.0#fn-6_11">11</a></sup> The Rubular website has a beautiful interactive interface for making regular expressions, along with a handy regex quick reference. I encourage you to study <a class="ref" href="modeling-users?version=4.0#table-valid_email_regex">Table&nbsp;6.1</a> with a browser window open to Rubular&mdash;no amount of reading about regular expressions can replace a couple of hours playing with Rubular. (<em>Note</em>: If you use the regex from <a class="ref" href="modeling-users?version=4.0#code-validates_format_of_email">Listing&nbsp;6.14</a> in Rubular, you should leave off the <tt class="verb">\A</tt> and <tt class="verb">\z</tt> characters.)</p>
+
+<div class="label" id="table-valid_email_regex"></div>
+
+
+<div class="table"><div class="center">
+<table class="tabular"><tr><th class="align_left"><strong>Expression</strong></th><th class="align_left"><strong>Meaning</strong></th></tr><tr class="top_bar"><td class="align_left"><tt class="verb">/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i</tt></td><td class="align_left">full regex</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">start of regex</td></tr><tr><td class="align_left"><tt class="verb">\A</tt></td><td class="align_left">match start of a string</td></tr><tr><td class="align_left"><tt class="verb">[\w+\-.]+</tt></td><td class="align_left">at least one word character, plus, hyphen, or dot</td></tr><tr><td class="align_left"><tt class="verb">@</tt></td><td class="align_left">literal &ldquo;at sign&rdquo;</td></tr><tr><td class="align_left"><tt class="verb">[a-z\d\-.]+</tt></td><td class="align_left">at least one letter, digit, hyphen, or dot</td></tr><tr><td class="align_left"><tt class="verb">\.</tt></td><td class="align_left">literal dot</td></tr><tr><td class="align_left"><tt class="verb">[a-z]+</tt></td><td class="align_left">at least one letter</td></tr><tr><td class="align_left"><tt class="verb">\z</tt></td><td class="align_left">match end of a string</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">end of regex</td></tr><tr><td class="align_left"><tt class="verb">i</tt></td><td class="align_left">case insensitive</td></tr></table></div><div class="caption"><span class="header">Table 6.1: </span><span class="description">Breaking down the email regex from <a class="ref" href="modeling-users?version=4.0#code-validates_format_of_email">Listing&nbsp;6.14</a>.</span></div></div>
+
+
+<p>By the way, there actually exists a full regex for matching email addresses according to the official standard, but it&rsquo;s really not worth the trouble. The one in <a class="ref" href="modeling-users?version=4.0#code-validates_format_of_email">Listing&nbsp;6.14</a> is fine, maybe even better than the official one.<sup class="footnote" id="fnref-6_12"><a href="?version=4.0#fn-6_12">12</a></sup> The expression above does have one weakness, though: it allows invalid addresses such as <code>foo@bar..com</code> that contain consecutive dots. Fixing this blemish is left as an exercise (<a class="ref" href="modeling-users?version=4.0#sec-modeling_users_exercises">Section&nbsp;6.5</a>).</p>
+
+<div class="label" id="fig-rubular"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/rubular.png" alt="rubular" /></span></div><div class="caption"><span class="header">Figure 6.4: </span><span class="description">The awesome  <a href="http://www.rubular.com/">Rubular</a> regular expression editor.&nbsp;<a href="http://railstutorial.org/images/figures/rubular-full.png">(full size)</a></span></div></div>
+
+
+<p>The tests should all be passing now. (In fact, the tests for valid email addresses should have been passing all along; since regexes are notoriously error-prone, the valid email tests are there mainly as a sanity check on <code>VALID_EMAIL_REGEX</code>.) This means that there&rsquo;s only one constraint left: enforcing the email addresses to be unique.</p>
+
+<div class="label" id="sec-uniqueness_validation"></div>
+
+
+<h3><a id="sec-6_2_5" href="modeling-users?version=4.0#sec-uniqueness_validation" class="heading"><span class="number">6.2.5</span> Uniqueness validation</a></h3>
+
+
+<p>To enforce uniqueness of email addresses (so that we can use them as usernames), we&rsquo;ll be using the <code>:unique</code> option to the <code>validates</code> method. But be warned: there&rsquo;s a <em>major</em> caveat, so don&rsquo;t just skim this section&mdash;read it carefully.</p>
+
+<p>We&rsquo;ll start, as usual, with our tests. In our previous model tests, we&rsquo;ve mainly used <code>User.new</code>, which just creates a Ruby object in memory, but for uniqueness tests we actually need to put a record into the database.<sup class="footnote" id="fnref-6_13"><a href="?version=4.0#fn-6_13">13</a></sup> The (first) duplicate email test appears in <a class="ref" href="modeling-users?version=4.0#code-validates_uniqueness_of_email_test">Listing&nbsp;6.15</a>.</p>
+
+<div class="label" id="code-validates_uniqueness_of_email_test"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.15.</span> <span class="description">A test for the rejection of duplicate email addresses. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">describe</span> <span class="s2">&quot;when email address is already taken&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="k">do</span>
+      <span class="n">user_with_same_email</span> <span class="o">=</span> <span class="vi">@user</span><span class="o">.</span><span class="n">dup</span>
+      <span class="n">user_with_same_email</span><span class="o">.</span><span class="n">save</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_valid</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>The method here is to make a user with the same email address as <code>@user</code>, which we accomplish using <code>@user.dup</code>, which creates a duplicate user with the same attributes. Since we then save that user, the original <code>@user</code> has an email address that already exists in the database, and hence should not be valid.</p>
+
+<p>We can get the new test in <a class="ref" href="modeling-users?version=4.0#code-validates_uniqueness_of_email_test">Listing&nbsp;6.15</a> to pass with the code in <a class="ref" href="modeling-users?version=4.0#code-validates_uniqueness_of_email">Listing&nbsp;6.16</a>.</p>
+
+<div class="label" id="code-validates_uniqueness_of_email"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.16.</span> <span class="description">Validating the uniqueness of email addresses. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="p">{</span> <span class="ss">with:</span> <span class="no">VALID_EMAIL_REGEX</span> <span class="p">},</span>
+                    <span class="ss">uniqueness:</span> <span class="kp">true</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>We&rsquo;re not quite done, though. Email addresses are typically processed as if they were case-insensitive&mdash;i.e., <code>foo@bar.com</code> is treated the same as <code>FOO@BAR.COM</code> or <code>FoO@BAr.coM</code>&mdash;so our validation should incorporate this as well.<sup class="footnote" id="fnref-6_14"><a href="?version=4.0#fn-6_14">14</a></sup> We test for case-insensitivity with the code in <a class="ref" href="modeling-users?version=4.0#code-validates_uniqueness_of_email_case_insensitive_test">Listing&nbsp;6.17</a>.</p>
+
+<div class="label" id="code-validates_uniqueness_of_email_case_insensitive_test"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.17.</span> <span class="description">A test for the rejection of duplicate email addresses, insensitive to case. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">describe</span> <span class="s2">&quot;when email address is already taken&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="k">do</span>
+      <span class="n">user_with_same_email</span> <span class="o">=</span> <span class="vi">@user</span><span class="o">.</span><span class="n">dup</span>
+      <span class="n">user_with_same_email</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="vi">@user</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">upcase</span>
+      <span class="n">user_with_same_email</span><span class="o">.</span><span class="n">save</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_valid</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Here we are using the <code>upcase</code> method on strings (seen briefly in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-blocks">Section&nbsp;4.3.2</a>). This test does the same thing as the first duplicate email test, but with an upper-case email address instead. If this test feels a little abstract, go ahead and fire up the console:</p>
+
+<div class="code"><div class="highlight"><pre><span class="go">$ rails console --sandbox</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">upcase</span>
+<span class="go">=&gt; &quot;USER@EXAMPLE.COM&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user_with_same_email</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">dup</span>
+<span class="gp">&gt;&gt; </span><span class="n">user_with_same_email</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">upcase</span>
+<span class="gp">&gt;&gt; </span><span class="n">user_with_same_email</span><span class="o">.</span><span class="n">valid?</span>
+<span class="go">=&gt; true</span>
+</pre></div>
+</div>
+
+
+<p>Of course, <code>user_with_same_email.valid?</code> is <code>true</code>, because the uniqueness validation is currently case-sensitive, but we want it to be <code>false</code>. Fortunately, <code>:uniqueness</code> accepts an option, <code>:case_sensitive</code>, for just this purpose (<a class="ref" href="modeling-users?version=4.0#code-validates_uniqueness_of_email_case_insensitive">Listing&nbsp;6.18</a>).</p>
+
+<div class="label" id="code-validates_uniqueness_of_email_case_insensitive"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.18.</span> <span class="description">Validating the uniqueness of email addresses, ignoring case. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="p">{</span> <span class="ss">with:</span> <span class="no">VALID_EMAIL_REGEX</span> <span class="p">},</span>
+                    <span class="ss">uniqueness:</span> <span class="p">{</span> <span class="ss">case_sensitive:</span> <span class="kp">false</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Note that we have simply replaced <code>true</code> with <code>case_sensitive: false</code>; Rails infers in this case that <code>:uniqueness</code> should be <code>true</code>. At this point, our application&mdash;with an important caveat&mdash;enforces email uniqueness, and our test suite should pass.</p>
+
+<div class="label" id="sec-the_caveat"></div>
+
+
+<h4><a id="sec-6_2_5_1" href="modeling-users?version=4.0#sec-the_caveat" class="heading">The uniqueness caveat</a></h4>
+
+
+<p>There&rsquo;s just one small problem, the caveat alluded to above:</p>
+
+<p><strong>Using <code>validates :uniqueness</code> does not guarantee uniqueness.</strong></p>
+
+<p>D&rsquo;oh! But what can go wrong? Here&rsquo;s what:</p>
+
+<ol>
+<li>Alice signs up for the sample app, with address alice@wonderland.com.</li>
+<li>Alice accidentally clicks on &ldquo;Submit&rdquo; <em>twice</em>, sending two requests in quick succession.</li>
+<li>The following sequence occurs: request 1 creates a user in memory that passes validation, request 2 does the same, request&nbsp;1&rsquo;s user gets saved, request&nbsp;2&rsquo;s user gets saved.</li>
+<li>Result: two user records with the exact same email address, despite the uniqueness validation.</li>
+</ol>
+
+
+<p>If the above sequence seems implausible, believe me, it isn&rsquo;t: it can happen on any Rails website with significant traffic. Luckily, the solution is straightforward to implement; we just need to enforce uniqueness at the database level as well. Our method is to create a database <em>index</em> on the email column, and then require that the index be unique.</p>
+
+<p>The email index represents an update to our data modeling requirements, which (as discussed in <a class="ref" href="modeling-users?version=4.0#sec-database_migrations">Section&nbsp;6.1.1</a>) is handled in Rails using migrations. We saw in <a class="ref" href="modeling-users?version=4.0#sec-database_migrations">Section&nbsp;6.1.1</a> that generating the User model automatically created a new migration (<a class="ref" href="modeling-users?version=4.0#code-users_migration">Listing&nbsp;6.2</a>); in the present case, we are adding structure to an existing model, so we need to create a migration directly using the <code>migration</code> generator:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate migration add_index_to_users_email
+</pre></div>
+</div>
+
+
+<p>Unlike the migration for users, the email uniqueness migration is not pre-defined, so we need to fill in its contents with <a class="ref" href="modeling-users?version=4.0#code-email_uniqueness_index">Listing&nbsp;6.19</a>.<sup class="footnote" id="fnref-6_15"><a href="?version=4.0#fn-6_15">15</a></sup></p>
+
+<div class="label" id="code-email_uniqueness_index"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.19.</span> <span class="description">The migration for enforcing email uniqueness. <br /> <code>db/migrate/[timestamp]_add_index_to_users_email.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">AddIndexToUsersEmail</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">add_index</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">unique:</span> <span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>This uses a Rails method called <code>add_index</code> to add an index on the <code>email</code> column of the <code>users</code> table. The index by itself doesn&rsquo;t enforce uniqueness, but the option <code>unique: true</code> does.</p>
+
+<p>The final step is to migrate the database:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
+</pre></div>
+</div>
+
+
+<p>(If this fails, try exiting any running sandbox console sessions, which can lock the database and prevent migrations.) If you&rsquo;re interested in seeing the practical effect of this, take a look at the file <code>db/schema.rb</code>, which should now include a line like this:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">add_index</span> <span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;email&quot;</span><span class="o">]</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;index_users_on_email&quot;</span><span class="p">,</span> <span class="ss">unique:</span> <span class="kp">true</span>
+</pre></div>
+</div>
+
+
+<p>Unfortunately, there&rsquo;s one more change we need to make to be assured of email uniqueness, which is to make sure that the email address is all lower-case before it gets saved to the database. The reason is that not all database adapters use case-sensitive indices.<sup class="footnote" id="fnref-6_16"><a href="?version=4.0#fn-6_16">16</a></sup> The way to do this is with a <a href="http://en.wikipedia.org/wiki/Callback_(computer_science)"><em>callback</em></a>, which is a method that gets invoked at a particular point in the lifetime of an Active Record object (see the <a href="http://api.rubyonrails.org/v4.0.0/classes/ActiveRecord/Callbacks.html">Rails API entry on callbacks</a>). In the present case, we&rsquo;ll use a <code>before_save</code> callback to force Rails to downcase the email attribute before saving the user to the database, as shown in <a class="ref" href="modeling-users?version=4.0#code-email_downcase">Listing&nbsp;6.20</a>.</p>
+
+<div class="label" id="code-email_downcase"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.20.</span> <span class="description">Ensuring email uniqueness by downcasing the email attribute. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="n">before_save</span> <span class="p">{</span> <span class="nb">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">downcase</span> <span class="p">}</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>The code in <a class="ref" href="modeling-users?version=4.0#code-email_downcase">Listing&nbsp;6.20</a> passes a block to the <code>before_save</code> callback and sets the user&rsquo;s email address to a lower-case version of its current value using the <code>downcase</code> string method. This code is a little advanced, and at this point I suggest you simply trust that it works; if you&rsquo;re skeptical, comment out the uniqueness validation from <a class="ref" href="modeling-users?version=4.0#code-validates_uniqueness_of_email">Listing&nbsp;6.16</a> and try to create users with identical email addresses to see the error that results. (We&rsquo;ll see this technique again in <a class="ref" href="sign-in-sign-out?version=4.0#sec-remember_me">Section&nbsp;8.2.1</a>, where we&rsquo;ll use the preferred <em>method reference</em> convention.) Writing a test for the code in <a class="ref" href="modeling-users?version=4.0#code-email_downcase">Listing&nbsp;6.20</a> is left as an exercise (<a class="ref" href="modeling-users?version=4.0#sec-modeling_users_exercises">Section&nbsp;6.5</a>).</p>
+
+<p>Now the Alice scenario above will work fine: the database will save a user record based on the first request, and will reject the second save for violating the uniqueness constraint. (An error will appear in the Rails log, but that doesn&rsquo;t do any harm. You can actually catch the <code>ActiveRecord::StatementInvalid</code> exception that gets raised, but in this tutorial we won&rsquo;t bother with this step.) Adding this index on the email attribute accomplishes a second goal, alluded to briefly in <a class="ref" href="modeling-users?version=4.0#sec-finding_user_objects">Section&nbsp;6.1.4</a>: it fixes an efficiency problem in <code>find_by</code> (<a class="ref" href="modeling-users?version=4.0#sidebar-database_indices">Box&nbsp;6.2</a>).</p>
+
+<div class="label" id="sidebar-database_indices"></div>
+
+
+<div class="sidebar"><span class="title"><span class="header">Box 6.2.</span><span class="description">Database indices</span></span>
+<p>When creating a column in a database, it is important to consider whether we will need to <em>find</em> records by that column. Consider, for example, the <tt>email</tt> attribute created by the migration in <a class="ref" href="modeling-users?version=4.0#code-users_migration">Listing&nbsp;6.2</a>. When we allow users to sign in to the sample app starting in <a class="ref" href="sign-up?version=4.0#top">Chapter&nbsp;7</a>, we will need to find the user record corresponding to the submitted email address; unfortunately, based on the na&iuml;ve data model, the only way to find a user by email address is to look through <em>each</em> user row in the database and compare its email attribute to the given email. This is known in the database business as a <em>full-table scan</em>, and for a real site with thousands of users it is a <a href="http://catb.org/jargon/html/B/Bad-Thing.html">Bad Thing</a>.</p>
+
+<p>Putting an index on the email column fixes the problem. To understand a database index, it&rsquo;s helpful to consider the analogy of a book index. In a book, to find all the occurrences of a given string, say &ldquo;foobar&rdquo;, you would have to scan each page for &ldquo;foobar&rdquo;. With a book index, on the other hand, you can just look up &ldquo;foobar&rdquo; in the index to see all the pages containing &ldquo;foobar&rdquo;. A database index works essentially the same way.</p>
+</div>
+
+
+
+
+<div class="label" id="sec-adding_a_secure_password"></div>
+
+
+<h2><a id="sec-6_3" href="modeling-users?version=4.0#sec-adding_a_secure_password" class="heading"><span class="number">6.3</span> Adding a secure password</a></h2>
+
+
+<p>In this section, we&rsquo;ll add the last of the basic User attributes: a secure password used to authenticate users of the sample application. The method is to require each user to have a password (with a password confirmation), and then store an encrypted version of the password in the database. We&rsquo;ll also add a way to <em>authenticate</em> a user based on a given password, a method we&rsquo;ll use in <a class="ref" href="sign-in-sign-out?version=4.0#top">Chapter&nbsp;8</a> to allow users to sign in to the site.</p>
+
+<p>The method for authenticating users will be to take a submitted password, encrypt it, and compare the result to the encrypted value stored in the database. If the two match, then the submitted password is correct and the user is authenticated. By comparing encrypted values instead of raw passwords, we will be able to authenticate users without storing the passwords themselves. This means that, even if our database is compromised, our users&rsquo; passwords will still be secure.</p>
+
+<p>Much of the secure password machinery will be implemented using a single Rails method called <code>has_secure_password</code> (first introduced in Rails&nbsp;3.1). Because so much of what follows depends on this one method, it is difficult to develop secure passwords incrementally. Starting in <a class="ref" href="modeling-users?version=4.0#sec-password_and_confirmation">Section&nbsp;6.3.2</a>, I recommend adding the <code>has_secure_password</code> method early on and then comment it out before adding each new test to use proper TDD.(Since screencasts allow for a more incremental development approach, interested readers should consider the <a href="http://railstutorial.org/screencasts">Ruby on Rails Tutorial screencasts</a> for a fuller understanding of this material.)</p>
+
+<div class="label" id="sec-an_encrypted_password"></div>
+
+
+<h3><a id="sec-6_3_1" href="modeling-users?version=4.0#sec-an_encrypted_password" class="heading"><span class="number">6.3.1</span> An encrypted password</a></h3>
+
+
+<p>We&rsquo;ll start with the necessary change to the data model for users, which involves adding a <code>password_digest</code> column to the <code>users</code> table (<a class="ref" href="modeling-users?version=4.0#fig-user_model_password_digest">Figure&nbsp;6.5</a>). The name <em>digest</em> comes from the terminology of <a href="http://en.wikipedia.org/wiki/Cryptographic_hash_function">cryptographic hash functions</a>, and the exact name <code>password_digest</code> is necessary for the implementation in <a class="ref" href="modeling-users?version=4.0#sec-has_secure_password">Section&nbsp;6.3.4</a> to work. By encrypting the password properly, we&rsquo;ll ensure that an attacker won&rsquo;t be able to sign in to the site even if he manages to obtain a copy of the database.</p>
+
+<div class="label" id="fig-user_model_password_digest"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/user_model_password_digest.png" alt="user_model_password_digest" /></span></div><div class="caption"><span class="header">Figure 6.5: </span><span class="description">The User model with an added <code>password_digest</code> attribute.</span></div></div>
+
+
+<p>We&rsquo;ll use the state-of-the-art hash function called <a href="http://en.wikipedia.org/wiki/Bcrypt">bcrypt</a> to irreversibly encrypt the password to form the password hash. To use bcrypt in the sample application, we need to add the <code>bcrypt-ruby</code> gem to our <code>Gemfile</code> (<a class="ref" href="modeling-users?version=4.0#code-bcrypt_ruby">Listing&nbsp;6.21</a>).</p>
+
+<div class="label" id="code-bcrypt_ruby"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.21.</span> <span class="description">Adding <code>bcrypt-ruby</code> to the <code>Gemfile</code>.</span> </div>
+<div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+<span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;bootstrap-sass&#39;</span><span class="p">,</span> <span class="s1">&#39;2.3.2.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;bcrypt-ruby&#39;</span><span class="p">,</span> <span class="s1">&#39;3.0.1&#39;</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+</pre></div>
+</div></div>
+
+
+<p>Then run <code>bundle install</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install
+</pre></div>
+</div>
+
+
+<p>Since we want users to have a password digest column, a user object should respond to <code>password_digest</code>, which suggests the test shown in <a class="ref" href="modeling-users?version=4.0#code-respond_to_password_digest">Listing&nbsp;6.22</a>.</p>
+
+<div class="label" id="code-respond_to_password_digest"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.22.</span> <span class="description">Ensuring that a User object has a <code>password_digest</code> column. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">subject</span> <span class="p">{</span> <span class="vi">@user</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:password_digest</span><span class="p">)</span> <span class="p">}</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>To get the test to pass, we first generate an appropriate migration for the <code>password_digest</code> column:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate migration add_password_digest_to_users password_digest:string
+</pre></div>
+</div>
+
+
+<p>Here the first argument is the migration name, and we&rsquo;ve also supplied a second argument with the name and type of attribute we want to create. (Compare this to the original generation of the <code>users</code> table in <a class="ref" href="modeling-users?version=4.0#code-generate_user_model">Listing&nbsp;6.1</a>.) We can choose any migration name we want, but it&rsquo;s convenient to end the name with <code>_to_users</code>, since in this case Rails automatically constructs a migration to add columns to the <code>users</code> table. Moreover, by including the second argument, we&rsquo;ve given Rails enough information to construct the entire migration for us, as seen in <a class="ref" href="modeling-users?version=4.0#code-password_migration">Listing&nbsp;6.23</a>.</p>
+
+<div class="label" id="code-password_migration"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.23.</span> <span class="description">The migration to add a <code>password_digest</code> column to the <code>users</code> table. <br /> <code>db/migrate/[ts]_add_password_digest_to_users.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">AddPasswordDigestToUsers</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:password_digest</span><span class="p">,</span> <span class="ss">:string</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>This code uses the <code>add_column</code> method to add a <code>password_digest</code> column to the <code>users</code> table.</p>
+
+<p>We can get the failing test from <a class="ref" href="modeling-users?version=4.0#code-respond_to_password_digest">Listing&nbsp;6.22</a> to pass by migrating the development database and preparing the test database:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
+<span class="gp">$</span> bundle <span class="nb">exec </span>rake <span class="nb">test</span>:prepare
+<span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
+</pre></div>
+</div>
+
+
+
+
+<div class="label" id="sec-password_and_confirmation"></div>
+
+
+<h3><a id="sec-6_3_2" href="modeling-users?version=4.0#sec-password_and_confirmation" class="heading"><span class="number">6.3.2</span> Password and confirmation</a></h3>
+
+
+<p>As seen in the mockup in <a class="ref" href="modeling-users?version=4.0#fig-signup_mockup_preview">Figure&nbsp;6.1</a>, we expect to have users confirm their passwords, a common practice on the web meant to minimize typos. We could enforce this at the controller layer, but it&rsquo;s conventional to put it in the model and use Active Record to enforce the constraint. The method is to add <code>password</code> and <code>password_confirmation</code> attributes to the User model, and then require that the two attributes match before the record is saved to the database. Unlike the other attributes we&rsquo;ve seen so far, the password attributes will be <em>virtual</em>&mdash;they will only exist temporarily in memory, and will not be persisted to the database. As we&rsquo;ll see in <a class="ref" href="modeling-users?version=4.0#sec-has_secure_password">Section&nbsp;6.3.4</a>, these virtual attributes are implemented automatically by <code>has_secure_password</code>.</p>
+
+<p>We&rsquo;ll start with <code>respond_to</code> tests for a password and its confirmation, as seen in <a class="ref" href="modeling-users?version=4.0#code-user_respond_to_password">Listing&nbsp;6.24</a>.</p>
+
+<div class="label" id="code-user_respond_to_password"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.24.</span> <span class="description">Testing for the <code>password</code> and <code>password_confirmation</code> attributes. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
+                     <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span> <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">subject</span> <span class="p">{</span> <span class="vi">@user</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:password_digest</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:password</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:password_confirmation</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_valid</span> <span class="p">}</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Note that we&rsquo;ve added <code>:password</code> and <code>:password_confirmation</code> to the initialization hash for <code>User.new</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">before</span> <span class="k">do</span>
+  <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
+                   <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span> <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>We definitely don&rsquo;t want users to enter a blank password, so we&rsquo;ll add another test to validate password presence:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;when password is not present&quot;</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
+                     <span class="ss">password:</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="ss">password_confirmation:</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_valid</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>Since we&rsquo;ll be testing password mismatch in a moment, here we make sure to test the <em>presence</em> validation by setting both the password and its confirmation to a blank string.</p>
+
+<p>We also want to ensure that the password and confirmation match. The case where they <em>do</em> match is already covered by <code>it { should be_valid }</code>, so we only need to test the case of a mismatch:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;when password doesn&#39;t match confirmation&quot;</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span><span class="o">.</span><span class="n">password_confirmation</span> <span class="o">=</span> <span class="s2">&quot;mismatch&quot;</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_valid</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>Putting everything together gives the (failing) tests in <a class="ref" href="modeling-users?version=4.0#code-password_tests">Listing&nbsp;6.25</a>.</p>
+
+<div class="label" id="code-password_tests"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.25.</span> <span class="description">Test for the password and password confirmation. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
+                     <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span> <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">subject</span> <span class="p">{</span> <span class="vi">@user</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:password_digest</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:password</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:password_confirmation</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_valid</span> <span class="p">}</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">describe</span> <span class="s2">&quot;when password is not present&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="k">do</span>
+      <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
+                       <span class="ss">password:</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="ss">password_confirmation:</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_valid</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;when password doesn&#39;t match confirmation&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span><span class="o">.</span><span class="n">password_confirmation</span> <span class="o">=</span> <span class="s2">&quot;mismatch&quot;</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_valid</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>We can get the tests in <a class="ref" href="modeling-users?version=4.0#code-password_tests">Listing&nbsp;6.25</a> to pass using just one extra line of code, as shown in <a class="ref" href="modeling-users?version=4.0#code-initial_passing_password_tests">Listing&nbsp;6.26</a>.</p>
+
+<div class="label" id="code-initial_passing_password_tests"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.26.</span> <span class="description">Getting the initial password tests to pass. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">has_secure_password</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>It&rsquo;s remarkble that the one line</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">has_secure_password</span>
+</pre></div>
+</div>
+
+
+<p>gets all of the current password tests to pass, and it does a lot more besides. Indeed, it does too much, preventing some of the upcoming test from being red before going green, so before proceeding I recommend commenting it out (<a class="ref" href="modeling-users?version=4.0#code-commented_out_has_secure_password">Listing&nbsp;6.27</a>).</p>
+
+<div class="label" id="code-commented_out_has_secure_password"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.27.</span> <span class="description">Commenting out <code>has_secure_password</code> for the sake of TDD. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="c1"># has_secure_password</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="sec-user_authentication"></div>
+
+
+<h3><a id="sec-6_3_3" href="modeling-users?version=4.0#sec-user_authentication" class="heading"><span class="number">6.3.3</span> User authentication</a></h3>
+
+
+<p>The final piece of our password machinery is a method to retrieve users based on their email and passwords. This divides naturally into two parts: first, find a user by email address; second, authenticate the user with a given password. All but the last of the tests in this section are implemented by <code>has_secure_password</code>, so while implementing them you should be able to uncomment the commented-out line in <a class="ref" href="modeling-users?version=4.0#code-commented_out_has_secure_password">Listing&nbsp;6.27</a> to get them to pass.</p>
+
+<p>The first step is simple; as we saw in <a class="ref" href="modeling-users?version=4.0#sec-finding_user_objects">Section&nbsp;6.1.4</a>, we can find a user with a given email address using the <code>find_by</code> method:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="n">email</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+<p>The second step is then to use an <code>authenticate</code> method to verify that the user has the given password. In <a class="ref" href="sign-in-sign-out?version=4.0#top">Chapter&nbsp;8</a>, we&rsquo;ll retrieve the current (signed-in) user using code something like this:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">current_user</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+<p>If the given password matches the user&rsquo;s password, it should return the user; otherwise, it should return <code>false</code>.</p>
+
+<p>As usual, we can express the requirement for <code>authenticate</code> using RSpec. The resulting tests are more advanced than the others we&rsquo;ve seen, so let&rsquo;s break them down into pieces; if you&rsquo;re new to RSpec, you might want to read this section a couple of times. We start by requiring a User object to respond to <code>authenticate</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:authenticate</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>We then cover the two cases of password match and mismatch:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;return value of authenticate method&quot;</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span><span class="o">.</span><span class="n">save</span> <span class="p">}</span>
+  <span class="n">let</span><span class="p">(</span><span class="ss">:found_user</span><span class="p">)</span> <span class="p">{</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="vi">@user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;with valid password&quot;</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">eq</span> <span class="n">found_user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="vi">@user</span><span class="o">.</span><span class="n">password</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;with invalid password&quot;</span> <span class="k">do</span>
+    <span class="n">let</span><span class="p">(</span><span class="ss">:user_for_invalid_password</span><span class="p">)</span> <span class="p">{</span> <span class="n">found_user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s2">&quot;invalid&quot;</span><span class="p">)</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">eq</span> <span class="n">user_for_invalid_password</span> <span class="p">}</span>
+    <span class="n">specify</span> <span class="p">{</span> <span class="n">expect</span><span class="p">(</span><span class="n">user_for_invalid_password</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_false</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>The <code>before</code> block saves the user to the database so that it can be retrieved using <code>find_by</code>, which we accomplish using the <code>let</code> method:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">let</span><span class="p">(</span><span class="ss">:found_user</span><span class="p">)</span> <span class="p">{</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="vi">@user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>We&rsquo;ve used <code>let</code> in a couple of exercises, but this is the first time we&rsquo;ve seen it in the body of the tutorial. <a class="ref" href="modeling-users?version=4.0#sidebar-let">Box&nbsp;6.3</a> covers <code>let</code> in more detail.</p>
+
+<p>The two <code>describe</code> blocks cover the case where <code>@user</code> and <code>found_user</code> should be the same (password match) and different (password mismatch); they use the &ldquo;equals&rdquo; <code>eq</code> test for object equality (which uses <code>==</code> to test equality, as seen in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-arrays_and_ranges">Section&nbsp;4.3.1</a>). Note that the tests in</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;with invalid password&quot;</span> <span class="k">do</span>
+  <span class="n">let</span><span class="p">(</span><span class="ss">:user_for_invalid_password</span><span class="p">)</span> <span class="p">{</span> <span class="n">found_user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s2">&quot;invalid&quot;</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">eq</span> <span class="n">user_for_invalid_password</span> <span class="p">}</span>
+  <span class="n">specify</span> <span class="p">{</span> <span class="n">expect</span><span class="p">(</span><span class="n">user_for_invalid_password</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_false</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>use <code>let</code> a second time, and also use the <code>specify</code> method. This is just a synonym for <code>it</code>, and can be used when writing <code>it</code> would sound unnatural. In this case, it sounds good to say &ldquo;it [i.e., the user] should not equal wrong user&rdquo;, but it sounds strange to say &ldquo;user: user with invalid password should be false&rdquo;; saying &ldquo;specify: user with invalid password should be false&rdquo; sounds better.</p>
+
+<div class="label" id="sidebar-let"></div>
+
+
+<div class="sidebar"><span class="title"><span class="header">Box 6.3.</span><span class="description">Using <tt>let</tt></span></span>
+<p>RSpec&rsquo;s <tt>let</tt> method provides a convenient way to create local variables inside tests. The syntax might look a little strange, but its effect is similar to variable assignment. The argument of <tt>let</tt> is a symbol, and it takes a block whose return value is assigned to a local variable with the symbol&rsquo;s name. In other words,</p>
+
+<pre class="verbatim">let(:found_user) { User.find_by(email: @user.email) }</pre>
+
+
+<p>creates a <tt>found_user</tt> variable whose value is equal to the result of <tt>find_by</tt>. We can then use this variable in any of the <tt>before</tt> or <tt>it</tt> blocks throughout the rest of the test. One advantage of <tt>let</tt> is that it <em>memoizes</em> its value, which means that it remembers the value from one invocation to the next. (Note that <a href="http://en.wikipedia.org/wiki/Memoization"><em>memoize</em></a> is a technical term; in particular, it&rsquo;s <em>not</em> a misspelling of &ldquo;memorize&rdquo;.) In the present case, because <tt>let</tt> memoizes the <tt>found_user</tt> variable, the <tt>find_by</tt> method will only be called once whenever the User model specs are run.</p>
+</div>
+
+
+<p>Finally, as a security precaution, we&rsquo;ll test for a length validation on passwords, requiring that they be at least six characters long:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;with a password that&#39;s too short&quot;</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="vi">@user</span><span class="o">.</span><span class="n">password_confirmation</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span> <span class="o">*</span> <span class="mi">5</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_invalid</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>Putting together all the tests above gives <a class="ref" href="modeling-users?version=4.0#code-authenticate_spec">Listing&nbsp;6.28</a>.</p>
+
+<div class="label" id="code-authenticate_spec"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.28.</span> <span class="description">Tests for password length and the <code>authenticate</code> method. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+
+  <span class="n">before</span> <span class="k">do</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span>
+                     <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span> <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">subject</span> <span class="p">{</span> <span class="vi">@user</span> <span class="p">}</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:authenticate</span><span class="p">)</span> <span class="p">}</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">describe</span> <span class="s2">&quot;with a password that&#39;s too short&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="vi">@user</span><span class="o">.</span><span class="n">password_confirmation</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span> <span class="o">*</span> <span class="mi">5</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_invalid</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;return value of authenticate method&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span><span class="o">.</span><span class="n">save</span> <span class="p">}</span>
+    <span class="n">let</span><span class="p">(</span><span class="ss">:found_user</span><span class="p">)</span> <span class="p">{</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="vi">@user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span> <span class="p">}</span>
+
+    <span class="n">describe</span> <span class="s2">&quot;with valid password&quot;</span> <span class="k">do</span>
+      <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">eq</span> <span class="n">found_user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="vi">@user</span><span class="o">.</span><span class="n">password</span><span class="p">)</span> <span class="p">}</span>
+    <span class="k">end</span>
+
+    <span class="n">describe</span> <span class="s2">&quot;with invalid password&quot;</span> <span class="k">do</span>
+      <span class="n">let</span><span class="p">(</span><span class="ss">:user_for_invalid_password</span><span class="p">)</span> <span class="p">{</span> <span class="n">found_user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s2">&quot;invalid&quot;</span><span class="p">)</span> <span class="p">}</span>
+
+      <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">eq</span> <span class="n">user_for_invalid_password</span> <span class="p">}</span>
+      <span class="n">specify</span> <span class="p">{</span> <span class="n">expect</span><span class="p">(</span><span class="n">user_for_invalid_password</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_false</span> <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>As noted in <a class="ref" href="modeling-users?version=4.0#sidebar-let">Box&nbsp;6.3</a>, <code>let</code> memoizes its value, so that the first nested <code>describe</code> block in <a class="ref" href="modeling-users?version=4.0#code-authenticate_spec">Listing&nbsp;6.28</a> invokes <code>let</code> to retrieve the user from the database using <code>find_by</code>, but the second <code>describe</code> block doesn&rsquo;t hit the database a second time.</p>
+
+<div class="label" id="sec-has_secure_password"></div>
+
+
+<h3><a id="sec-6_3_4" href="modeling-users?version=4.0#sec-has_secure_password" class="heading"><span class="number">6.3.4</span> User has secure password</a></h3>
+
+
+<p>In previous versions of Rails, adding a secure password was difficult and time-consuming, as seen in the <a href="http://railstutorial.org/book?version=3.0">Rails&nbsp;3.0 version of the <em>Rails Tutorial</em></a>,<sup class="footnote" id="fnref-6_17"><a href="?version=4.0#fn-6_17">17</a></sup> which covers the creation of an authentication system from scratch. But web developers&rsquo; understanding of how best to authenticate users has matured enough that it now comes bundled with the latest version of Rails. As a result, we&rsquo;ll complete the implementation of secure passwords (and get to a green test suite) using only a few lines of code.</p>
+
+<p>First, we need a length validation for the password, which uses the <code>:minimum</code> key in analogy with the <code>:maximum</code> key from <a class="ref" href="modeling-users?version=4.0#code-length_validation">Listing&nbsp;6.12</a>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">validates</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">length:</span> <span class="p">{</span> <span class="ss">minimum:</span> <span class="mi">6</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>(Presence validations for the password and its confirmation are automatically added by <code>has_secure_password</code>.)</p>
+
+<p>Second, we need to add <code>password</code> and <code>password_confirmation</code> attributes, require the presence of the password, require that they match, and add an <code>authenticate</code> method to compare an encrypted password to the <code>password_digest</code> to authenticate users. This is the only nontrivial step, and in the latest version of Rails all these features come for free with one method, <code>has_secure_password</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">has_secure_password</span>
+</pre></div>
+</div>
+
+
+<p>As long as there is a <code>password_digest</code> column in the database, adding this one method to our model gives us a secure way to create and authenticate new users.</p>
+
+<p>(If you&rsquo;d like to see how <code>has_secure_password</code> is implemented, I suggest taking a look at <a href="https://github.com/rails/rails/blob/master/activemodel/lib/active_model/secure_password.rb">the source code for <tt>secure_password.rb</tt></a>, which is well-documented and quite readable. That code includes the lines</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">validates_confirmation_of</span> <span class="ss">:password</span><span class="p">,</span>
+                          <span class="k">if</span><span class="p">:</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="n">m</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">present?</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>which (as described in the <a href="http://api.rubyonrails.org/v4.0.0/classes/ActiveModel/Validations/HelperMethods.html#method-i-validates_confirmation_of">Rails API</a>) automagically creates an attribute called <code>password_confirmation</code>. It also includes a validation for the <code>password_digest</code> attribute.)</p>
+
+<p>Together with the presence validation from <a class="ref" href="modeling-users?version=4.0#code-initial_passing_password_tests">Listing&nbsp;6.26</a>, the elements above yield the User model shown in <a class="ref" href="modeling-users?version=4.0#code-password_implementation">Listing&nbsp;6.29</a>, which completes the implementation of secure passwords.</p>
+
+<div class="label" id="code-password_implementation"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.29.</span> <span class="description">The complete implementation for secure passwords. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="n">before_save</span> <span class="p">{</span> <span class="nb">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">downcase</span> <span class="p">}</span>
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">length:</span> <span class="p">{</span> <span class="ss">maximum:</span> <span class="mi">50</span> <span class="p">}</span>
+  <span class="no">VALID_EMAIL_REGEX</span> <span class="o">=</span> <span class="sr">/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i</span>
+  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence:</span>   <span class="kp">true</span><span class="p">,</span>
+                    <span class="nb">format</span><span class="p">:</span>     <span class="p">{</span> <span class="ss">with:</span> <span class="no">VALID_EMAIL_REGEX</span> <span class="p">},</span>
+                    <span class="ss">uniqueness:</span> <span class="p">{</span> <span class="ss">case_sensitive:</span> <span class="kp">false</span> <span class="p">}</span>
+  <span class="n">has_secure_password</span>
+  <span class="n">validates</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">length:</span> <span class="p">{</span> <span class="ss">minimum:</span> <span class="mi">6</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>You should confirm at this point that the test suite passes:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
+</pre></div>
+</div>
+
+
+
+
+<div class="label" id="sec-creating_a_user"></div>
+
+
+<h3><a id="sec-6_3_5" href="modeling-users?version=4.0#sec-creating_a_user" class="heading"><span class="number">6.3.5</span> Creating a user</a></h3>
+
+
+<p>Now that the basic User model is complete, we&rsquo;ll create a user in the database as preparation for making a page to show the user&rsquo;s information in <a class="ref" href="sign-up?version=4.0#sec-showing_users">Section&nbsp;7.1</a>. This also gives us a chance to make the work from the previous sections feel more concrete; merely getting the test suite to pass may seem anti-climactic, and it will be gratifying to see an actual user record in the development database.</p>
+
+<p>Since we can&rsquo;t yet sign up through the web&mdash;that&rsquo;s the goal of <a class="ref" href="sign-up?version=4.0#top">Chapter&nbsp;7</a>&mdash;we&rsquo;ll use the Rails console to create a new user by hand. In contrast to <a class="ref" href="modeling-users?version=4.0#sec-creating_user_objects">Section&nbsp;6.1.3</a>, in this section we&rsquo;ll take care <em>not</em> to start in a sandbox, since this time the whole point is to save a record to the database:</p>
+
+<div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
+<span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">,</span>
+<span class="gp">?&gt; </span>            <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span> <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
+<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;, created_at: &quot;2013-03-11 20:45:19&quot;, updated_at: &quot;2013-03-11 20:45:19&quot;, password_digest: &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn5sKNaGTEmT0jU7.n...&quot;&gt;</span>
+</pre></div>
+</div>
+
+
+<p>To check that this worked, let&rsquo;s look at the row in the development database (<code>db/development.sqlite3</code>) using the SQLite Database Browser (<a class="ref" href="modeling-users?version=4.0#fig-sqlite_user_row">Figure&nbsp;6.6</a>). Note that the columns correspond to the attributes of the data model defined in <a class="ref" href="modeling-users?version=4.0#fig-user_model_password_digest">Figure&nbsp;6.5</a>.</p>
+
+<div class="label" id="fig-sqlite_user_row"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sqlite_user_row_with_password_4_0.png" alt="sqlite_user_row_with_password_4_0" /></span></div><div class="caption"><span class="header">Figure 6.6: </span><span class="description">A user row in the SQLite database <code>db/development.sqlite3</code>.&nbsp;<a href="http://railstutorial.org/images/figures/sqlite_user_row_with_password_4_0-full.png">(full size)</a></span></div></div>
+
+
+<p>Returning to the console, we can see the effect of <code>has_secure_password</code> from <a class="ref" href="modeling-users?version=4.0#code-password_implementation">Listing&nbsp;6.29</a> by looking at the <code>password_digest</code> attribute:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">password_digest</span>
+<span class="go">=&gt; &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn5sKNaGTEmT0jU7.ncBJ/60gHq&quot;</span>
+</pre></div>
+</div>
+
+
+<p>This is the encrypted version of the password (<code>"foobar"</code>) used to initialize the user object. We can also verify that the <code>authenticate</code> command is working by first using an invalid password and then a valid one:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s2">&quot;invalid&quot;</span><span class="p">)</span>
+<span class="go">=&gt; false</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
+<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;, created_at: &quot;2013-03-11 20:45:19&quot;, updated_at: &quot;2013-03-11 20:45:19&quot;, password_digest: &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn5sKNaGTEmT0jU7.n...&quot;&gt;</span>
+</pre></div>
+</div>
+
+
+<p>As required by the tests in <a class="ref" href="modeling-users?version=4.0#code-authenticate_spec">Listing&nbsp;6.28</a>, <code>authenticate</code> returns <code>false</code> if the password is invalid and the user itself if the password is valid.</p>
+
+<h2><a id="sec-6_4" href="modeling-users?version=4.0#sec-6_4" class="heading"><span class="number">6.4</span> Conclusion</a></h2>
+
+
+<p>Starting from scratch, in this chapter we created a working User model with <code>name</code>, <code>email</code>, and various password attributes, together with validations enforcing several important constraints on their values. In addition, we can securely authenticate users using a given password. In previous versions of Rails, such a feat would have taken more than twice as much code, but because of the compact <code>validates</code> method and <code>has_secure_password</code>, we were able to build a complete User model using less than a dozen lines of code.</p>
+
+<p>In the next chapter, <a class="ref" href="sign-up?version=4.0#top">Chapter&nbsp;7</a>, we&rsquo;ll make a working signup form to create new users, together with a page to display each user&rsquo;s information. In <a class="ref" href="sign-in-sign-out?version=4.0#top">Chapter&nbsp;8</a>, we&rsquo;ll use the authentication machinery from <a class="ref" href="modeling-users?version=4.0#sec-adding_a_secure_password">Section&nbsp;6.3</a> to let users sign into the site.</p>
+
+<p>If you&rsquo;re using Git, now would be a good time to commit if you haven&rsquo;t done so in a while:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Make a basic User model (including secure passwords)&quot;</span>
+</pre></div>
+</div>
+
+
+<p>Then merge back into the master branch:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout master
+<span class="gp">$</span> git merge modeling-users
+</pre></div>
+</div>
+
+
+<div class="label" id="sec-modeling_users_exercises"></div>
+
+
+<h2><a id="sec-6_5" href="modeling-users?version=4.0#sec-modeling_users_exercises" class="heading"><span class="number">6.5</span> Exercises</a></h2>
+
+
+
+
+<ol>
+
+<li>Add a test for the email downcasing from <a class="ref" href="modeling-users?version=4.0#code-email_downcase">Listing&nbsp;6.20</a>, as shown in <a class="ref" href="modeling-users?version=4.0#code-email_downcase_test">Listing&nbsp;6.30</a>. This test uses the <code>reload</code> method for reloading a value from the database and the <code>eq</code> method for testing equality. By commenting out the <code>before_save</code> line, verify that <a class="ref" href="modeling-users?version=4.0#code-email_downcase_test">Listing&nbsp;6.30</a> tests the right thing.</li>
+
+<li>By running the test suite, verify that the <code>before_save</code> callback can be written as shown in <a class="ref" href="modeling-users?version=4.0#code-downcase_bang">Listing&nbsp;6.31</a>.</li>
+
+<li>As noted in <a class="ref" href="modeling-users?version=4.0#sec-format_validation">Section&nbsp;6.2.4</a>, the email regex in <a class="ref" href="modeling-users?version=4.0#code-validates_format_of_email">Listing&nbsp;6.14</a> allows invalid email addresses with consecutive dots matching the pattern &ldquo;foo@bar..com&rdquo;. Add this address to the list of invalid address in <a class="ref" href="modeling-users?version=4.0#code-email_format_validation_tests">Listing&nbsp;6.13</a> to get a failing test, and then use the more complicated regex shown in <a class="ref" href="modeling-users?version=4.0#code-better_email_regex">Listing&nbsp;6.32</a> to get the test to pass.</li>
+
+<li>Read through the Rails API entry for <code>ActiveRecord::Base</code> to get a sense of its capabilities.</li>
+
+<li>Study the entry in the Rails API for the <code>validates</code> method to learn more about its capabilities and options.</li>
+
+<li>Spend a couple of hours playing with <a href="http://www.rubular.com/">Rubular</a>.</li>
+
+</ol>
+
+
+
+
+<div class="label" id="code-email_downcase_test"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.30.</span> <span class="description">A test for the email downcasing from <a class="ref" href="modeling-users?version=4.0#code-email_downcase">Listing&nbsp;6.20</a>. <br /> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">describe</span> <span class="s2">&quot;email address with mixed case&quot;</span> <span class="k">do</span>
+    <span class="n">let</span><span class="p">(</span><span class="ss">:mixed_case_email</span><span class="p">)</span> <span class="p">{</span> <span class="s2">&quot;Foo@ExAMPle.CoM&quot;</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should be saved as all lower-case&quot;</span> <span class="k">do</span>
+      <span class="vi">@user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">mixed_case_email</span>
+      <span class="vi">@user</span><span class="o">.</span><span class="n">save</span>
+      <span class="n">expect</span><span class="p">(</span><span class="vi">@user</span><span class="o">.</span><span class="n">reload</span><span class="o">.</span><span class="n">email</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span> <span class="n">mixed_case_email</span><span class="o">.</span><span class="n">downcase</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="code-downcase_bang"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.31.</span> <span class="description">An alternate implementation of the <code>before_save</code> callback. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="n">has_secure_password</span>
+  <span class="n">before_save</span> <span class="p">{</span> <span class="n">email</span><span class="o">.</span><span class="n">downcase!</span> <span class="p">}</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="code-better_email_regex"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 6.32.</span> <span class="description">A valid email regex that disallows double dots in email addressed. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="no">VALID_EMAIL_REGEX</span> <span class="o">=</span> <span class="sr">/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i</span>
+  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="p">{</span> <span class="ss">with:</span> <span class="no">VALID_EMAIL_REGEX</span> <span class="p">},</span>
+                    <span class="ss">uniqueness:</span> <span class="p">{</span> <span class="ss">case_sensitive:</span> <span class="kp">false</span> <span class="p">}</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<div class="navigation">  <a class="prev_page" href="filling-in-the-layout?version=4.0#top">
+    &laquo;&nbsp;<span class="number">Chapter 5</span> Filling in the layout
+  </a>
+  <a class="next_page" href="sign-up?version=4.0#top">
+    <span class="number">Chapter 7</span> Sign up&nbsp;&raquo;
+  </a>
+</div><div class="footnotes">
+<ol>
+<li id="fn-6_1">The name comes from the &ldquo;<a href="http://en.wikipedia.org/wiki/Active_record_pattern">active record pattern</a>&rdquo;, identified and named in <em>Patterns of Enterprise Application Architecture</em> by Martin Fowler.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_1">&uarr;</a></li>
+<li id="fn-6_2">Pronounced &ldquo;ess-cue-ell&rdquo;, though the alternate pronunciation &ldquo;sequel&rdquo; is also common.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_2">&uarr;</a></li>
+<li id="fn-6_3">By using an email address as the username, we open the theoretical possibility of communicating with our users at a future date.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_3">&uarr;</a></li>
+<li id="fn-6_4">Don&rsquo;t worry about exactly how the <code>t</code>&nbsp;object manages to do this; the beauty of <em>abstraction layers</em> is that we don&rsquo;t have to know. We can just trust the <code>t</code>&nbsp;object to do its job.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_4">&uarr;</a></li>
+<li id="fn-6_5">Officially pronounced &ldquo;ess-cue-ell-ite&rdquo;, although the (mis)pronunciation &ldquo;sequel-ite&rdquo; is also common.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_5">&uarr;</a></li>
+<li id="fn-6_6">In case you&rsquo;re curious about <code>"2013-03-11 00:57:46"</code>, I&rsquo;m not writing this after midnight; the timestamps are recorded in <a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">Coordinated Universal Time</a> (UTC), which for most practical purposes is the same as <a href="http://en.wikipedia.org/wiki/Greenwich_Mean_Time">Greenwich Mean Time</a>. From the <a href="http://tf.nist.gov/general/misc.htm">NIST Time and Frequency FAQ</a>:   <strong>Q:</strong> Why is UTC used as the acronym for Coordinated Universal Time instead of CUT? <strong>A:</strong> In 1970 the Coordinated Universal Time system was devised by an international advisory group of technical experts within the International Telecommunication Union (ITU). The ITU felt it was best to designate a single abbreviation for use in all languages in order to minimize confusion. Since unanimous agreement could not be achieved on using either the English word order, CUT, or the French word order, TUC, the acronym UTC was chosen as a compromise.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_6">&uarr;</a></li>
+<li id="fn-6_7">Note the value of <code>user.updated_at</code>. Told you the timestamp was in UTC.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_7">&uarr;</a></li>
+<li id="fn-6_8">Exceptions and exception handling are somewhat advanced Ruby subjects, and we won&rsquo;t need them much in this book. They are important, though, and I suggest learning about them using one of the Ruby books recommended in <a class="ref" href="beginning?version=4.0#sec-comments_for_various_readers">Section&nbsp;1.1.1</a>.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_8">&uarr;</a></li>
+<li id="fn-6_9">I&rsquo;ll omit the output of console commands when they are not particularly instructive&mdash;for example, the results of <code>User.new</code>.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_9">&uarr;</a></li>
+<li id="fn-6_10">Note that, in <a class="ref" href="modeling-users?version=4.0#table-valid_email_regex">Table&nbsp;6.1</a>, &ldquo;letter&rdquo; really means &ldquo;lower-case letter&rdquo;, but the <code>i</code> at the end of the regex enforces case-insensitive matching.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_10">&uarr;</a></li>
+<li id="fn-6_11">If you find it as useful as I do, I encourage you to <a href="http://bit.ly/donate-to-rubular">donate to Rubular</a> to reward developer <a href="http://lovitt.net/">Michael Lovitt</a> for his wonderful work.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_11">&uarr;</a></li>
+<li id="fn-6_12">Did you know that <code>"Michael Hartl"@example.com</code>, with quotation marks and a space in the middle, is a valid email address according to the standard? Incredibly, it is&mdash;but it&rsquo;s absurd.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_12">&uarr;</a></li>
+<li id="fn-6_13">As noted briefly in the introduction to this section, there is a dedicated test database, <code>db/test.sqlite3</code>, for this purpose.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_13">&uarr;</a></li>
+<li id="fn-6_14">Technically, only the domain part of the email address is case-insensitive: foo@bar.com is actually different from Foo@bar.com. In practice, though, it is a bad idea to rely on this fact; as noted at <a href="http://email.about.com/od/emailbehindthescenes/f/email_case_sens.htm">about.com</a>, &ldquo;Since the case sensitivity of email addresses can create a lot of confusion, interoperability problems and widespread headaches, it would be foolish to require email addresses to be typed with the correct case. Hardly any email service or ISP does enforce case sensitive email addresses, returning messages whose recipient&rsquo;s email address was not typed correctly (in all upper case, for example). &rdquo; Thanks to reader Riley Moses for pointing this out.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_14">&uarr;</a></li>
+<li id="fn-6_15">Of course, we could just edit the migration file for the <code>users</code> table in <a class="ref" href="modeling-users?version=4.0#code-users_migration">Listing&nbsp;6.2</a> but that would require rolling back and then migrating back up. The Rails Way is to use migrations every time we discover that our data model needs to change.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_15">&uarr;</a></li>
+<li id="fn-6_16">Direct experimentation with SQLite on my system and PostgreSQL on Heroku show that this step is, in fact, necessary.&nbsp;<a class="arrow" href="?version=4.0#fnref-6_16">&uarr;</a></li>
+<li id="fn-6_17">http://railstutorial.org/book?version=3.0&nbsp;<a class="arrow" href="?version=4.0#fnref-6_17">&uarr;</a></li>
+</ol>
+</div>
+
+
+

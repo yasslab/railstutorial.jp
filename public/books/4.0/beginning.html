@@ -1,0 +1,1786 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>Learn Web Development with the Ruby on Rails Tutorial | Beginning</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta name="robots" content="all" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="description" content="Ruby on Rails Tutorial: Learn Rails by Example by Michael Hartl" />
+<meta name="keywords" content="Learn Ruby Rails Tutorial web development Rails 3" />
+<meta name="author" content="Michael Hartl" />
+<meta property="og:title" content="Ruby on Rails Tutorial: Learn Rails by Example"/>
+<meta property="og:site_name" content="Ruby on Rails Tutorial"/>
+<meta property="og:image" content="http://railstutorial.org/images/layout/logo.png"/>
+<meta property="og:url" content="http://railstutorial.org/">
+<meta property="og:type" content="article" />
+<meta property="og:description" content="Ruby on Rails Tutorial: Learn Web Development with Rails by Michael Hartl teaches web development with Ruby on Rails. Rails Tutorial is fully up-to-date with Rails 3.0 and Rails 3.2." />
+    <link href="/stylesheets/polytexnic.css?1373140901" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/pygments.css?1373140901" media="screen" rel="stylesheet" type="text/css" />
+
+      <link href="/stylesheets/screen.css?1373140901" media="screen, projection" rel="stylesheet" type="text/css" />
+      
+    <link href="/stylesheets/print.css?1373140901" media="print" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 7]><link href="/stylesheets/ie.css?1373140901" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if lt IE 7]>  <div style='border: 1px solid #F7941D; background: #FEEFDA; text-align: center; clear: both; height: 75px; position: relative;'>    <div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='javascript:this.parentNode.parentNode.style.display="none"; return false;'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-cornerx.jpg' style='border: none;' alt='Close this notice'/></a></div>    <div style='width: 640px; margin: 0 auto; text-align: left; padding: 0; overflow: hidden; color: black;'>      <div style='width: 75px; float: left;'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-warning.jpg' alt='Warning!'/></div>      <div style='width: 275px; float: left; font-family: Arial, sans-serif;'>        <div style='font-size: 14px; font-weight: bold; margin-top: 12px;'>You are using an outdated browser</div>        <div style='font-size: 12px; margin-top: 6px; line-height: 12px;'>For a better experience using this site, please upgrade to a modern web browser.</div>      </div>      <div style='width: 75px; float: left;'><a href='http://www.firefox.com' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-firefox.jpg' style='border: none;' alt='Get Firefox 3.5'/></a></div>      <div style='width: 75px; float: left;'><a href='http://www.browserforthebetter.com/download.html' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-ie8.jpg' style='border: none;' alt='Get Internet Explorer 8'/></a></div>      <div style='width: 73px; float: left;'><a href='http://www.apple.com/safari/download/' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-safari.jpg' style='border: none;' alt='Get Safari 4'/></a></div>      <div style='float: left;'><a href='http://www.google.com/chrome' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-chrome.jpg' style='border: none;' alt='Get Google Chrome'/></a></div>    </div>  </div>  <![endif]-->
+    <link href='http://feeds.feedburner.com/railstutorial' rel='alternate' title='Rails Tutorial News' type='application/rss+xml' />
+
+    
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>    
+    
+  <base href="http://ruby.railstutorial.org/chapters/beginning" />
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'],["\\(","\\)"]]},
+    processEscapes: true,
+    "HTML-CSS": {
+      availableFonts: ["TeX"]
+    }
+  });
+</script>    
+
+
+  </head>
+<body class="book"> 
+
+  <div id="container">
+    <div id="header" class="clearfix"><div id='title'>
+  <div id='logo'><a href="http://ruby.railstutorial.org/"><img alt="Logo" src="/images/layout/logo.png?1373140900" /></a></div>
+  <h1 id='name'>
+    <a href="http://ruby.railstutorial.org/">Ruby on Rails Tutorial</a>
+  </h1>
+  <br />
+  <h2 id='authors'>
+    <a href="http://ruby.railstutorial.org/#author">by Michael Hartl</a>
+  </h2>
+</div>
+</div>
+    <div id="menu"><div class='links'>
+  <div class='box'>
+    <span>
+      <a href="http://ruby.railstutorial.org/">Home</a>
+    </span>
+    <span class='division'>
+      |
+    </span>
+    <span>
+      <a href="/ruby-on-rails-tutorial-book">Book</a>
+    </span>
+    <span class='division'>
+      |
+    </span>
+    <span>
+      <a href="/help">Help</a>
+    </span>
+    <span class='division'>
+      |
+    </span>
+    <span>
+      <a href="/contact">Contact</a>
+    </span>
+    <span class='division'>
+      |
+    </span>
+    <span>
+      <a href="http://news.railstutorial.org/">News</a>
+    </span>
+    <span class='img'>
+      <a href="http://feeds.feedburner.com/railstutorial"><img alt="Feed-icon16x16" class="feed" src="/images/icons/feed-icon16x16.png?1373140900" /></a>
+    </span>
+    <!-- %span.division -->
+    <!-- 
+    -->
+    <!-- %span -->
+    <!-- = link_to "By Email", email_url -->
+    <!-- %span.img -->
+    <!-- = link_to email_icon, email_url -->
+    <span class='division'>
+      |
+    </span>
+    <span>
+      <a href="http://twitter.com/railstutorial">Follow</a>
+    </span>
+    <span>
+      <a href="http://twitter.com/railstutorial"><img alt="Twitter-small" src="/images/icons/twitter-small.png?1373140900" /></a>
+    </span>
+  </div>
+</div>
+</div>     
+      <div id="content">         
+        <div id='sidebar'>
+  <div class='content'>
+      <!-- = link_to image_tag("icons/feed-icon32x32.png"), feed_url -->
+    <!-- = link_to image_tag("icons/twitter.png"), twitter_url -->
+    <!-- = link_to image_tag("icons/mail-icons/mail-icon-32x32.png"), email_url -->
+    <div id='navtool'>
+      <table class='layout'>
+        <tr>
+          <td colspan='2'><a href="?version=4.0#book_menu"><img alt="Up A Level" src="/images/buttons/sb_button_up.png?1373140897" /></a></td>
+        </tr>
+        <tr>
+          <td><img alt="Previous Chapter" src="/images/buttons/sb_button_prev.png?1373140897" /></td>
+          <td><a href="a-demo-app?version=4.0#top"><img alt="Next Chapter" src="/images/buttons/sb_button_next.png?1373140897" /></a></td>
+        </tr>
+      </table>
+      <a href="http://www.amazon.com/gp/product/0321832051/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321832051&linkCode=as2&tag=therubonraitu-20"><img alt="Ruby on Rails Tutorial: Learn Web Development with Rails" src="/images/buttons/sb_button_buy_print_edition_red.png?1373140897" /></a><img src="http://www.assoc-amazon.com/e/ir?t=therubonraitu-20&l=as2&o=1&a=0321832051" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+      <br />
+      <a href="/#buy"><img alt="Buy Screencasts" src="/images/buttons/sb_button_pdf_screencasts_red.png?1373140897" /></a>
+      <center><a href="http://youtu.be/bOdn9EdUquo" target="_blank"><img alt="Screencasts_thumbnail_play" src="/images/thumbnails/screencasts_thumbnail_play.png?1373140900" /></a></center>
+      <div class='connect'>
+        <table class='center'>
+          <tr>
+            <td><a href="http://feeds.feedburner.com/railstutorial"><img alt="Feed-icon24x24" src="/images/icons/feed-icon24x24.png?1373140900" title="Get news updates via RSS" /></a></td>
+            <td><a href="http://feedburner.google.com/fb/a/mailverify?uri=railstutorial&amp;loc=en_US"><img alt="Mail-icon-24x24" src="/images/icons/mail-icons/mail-icon-24x24.png?1373140900" title="Get news updates by email" /></a></td>
+            <td><a href="http://www.facebook.com/pages/Ruby-on-Rails-Tutorial/197151265072"><img alt="Facebook-icon24x24" src="/images/icons/facebook-icon24x24.png?1373140900" title="Become a fan on Facebook" /></a></td>
+            <td><a href="http://twitter.com/railstutorial"><img alt="Twitter-icon24x24" src="/images/icons/twitter-icon24x24.png?1373140900" title="Follow on Twitter" /></a></td>
+          </tr>
+        </table>
+      </div>
+      <div class='section'>
+        <div class='switcher'>
+          <span class='switcher_link'><a href="/book">Rails 3.2</a></span>
+          &#149;
+          <span class='title round'>Rails 4.0</span>
+        </div>
+        <div class='share'><fb:like href="http://railstutorial.org/" show_faces="false" layout="button_count" colorscheme="light"></fb:like></div>
+      </div>
+      <div class='section'>
+        <a href='/contact'>
+          Report bugs &amp; typos here
+        </a>
+      </div>
+    </div>
+    <!-- .section -->
+    <!-- Sidebar areas labeled with class "section", like this one, will be styled suitably for text. -->
+    <!-- .section -->
+    <!-- %a{ :href => '/affiliates' } -->
+    <!-- Rails Tutorial Affiliate Program&mdash;50% commissions -->
+  </div>
+</div>
+<!-- %h3 Get Involved -->
+<!-- 
+-->
+<!-- .links -->
+<!-- %p.subscribe -->
+<!-- %span= link_to(image_tag('feed-icon32x32.png'), feed_url) -->
+<!-- = link_to("Subscribe", feed_url) -->
+<!-- %p.follow -->
+<!-- = link_to(image_tag('twitter.png'), twitter_url) -->
+<!-- = link_to("Follow", twitter_url) -->
+<!-- 
+-->
+
+                      
+        <div id="main" class="withsidebar">
+          
+
+
+<div id="book_menu">
+  <a href="?version=4.0#main_content">skip to content</a>
+  |
+  <a href="/book/ruby-on-rails-tutorial?version=4.0">view as single page</a>
+</div>
+
+
+<div id="book_wrap">
+  <div id="book_top">
+  </div>
+    <div id="book">
+
+
+<h1 class="title">Ruby on Rails Tutorial </h1>
+
+
+<h1 class="subtitle">  Learn Web Development with Rails</h1>
+
+
+<h2 class="author">Michael Hartl</h2>
+
+
+
+
+<h2 class="contents">Contents</h2>
+
+
+<div id="table_of_contents"><ol><li class="chapter"><a href="beginning?version=4.0#top"><span class="number">Chapter 1</span> From zero to deploy</a></li><li><ol><li class="section"><a href="beginning?version=4.0#sec-introduction"><span class="number">1.1</span> Introduction</a></li><li><ol><li class="subsection"><a href="beginning?version=4.0#sec-comments_for_various_readers"><span class="number">1.1.1</span> Comments for various readers</a></li><li class="subsection"><a href="beginning?version=4.0#sec-1_1_2"><span class="number">1.1.2</span> &ldquo;Scaling&rdquo; Rails</a></li><li class="subsection"><a href="beginning?version=4.0#sec-conventions"><span class="number">1.1.3</span> Conventions in this book</a></li></ol></li><li class="section"><a href="beginning?version=4.0#sec-up_and_running"><span class="number">1.2</span> Up and running</a></li><li><ol><li class="subsection"><a href="beginning?version=4.0#sec-development_tools"><span class="number">1.2.1</span> Development environments</a></li><li><ol><li class="subsubsection"><a href="beginning?version=4.0#sec-1_2_1_1">IDEs</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-1_2_1_2">Text editors and command lines</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-1_2_1_3">Browsers</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-1_2_1_4">A note about tools</a></li></ol></li><li class="subsection"><a href="beginning?version=4.0#sec-rubygems"><span class="number">1.2.2</span> Ruby, RubyGems, Rails, and Git</a></li><li><ol><li class="subsubsection"><a href="beginning?version=4.0#sec-rails_installer_windows">Rails Installer (Windows)</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-install_git">Install Git</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-install_ruby">Install Ruby</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-install_rubygems">Install RubyGems</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-install_rails">Install Rails</a></li></ol></li><li class="subsection"><a href="beginning?version=4.0#sec-the_first_application"><span class="number">1.2.3</span> The first application</a></li><li class="subsection"><a href="beginning?version=4.0#sec-bundler"><span class="number">1.2.4</span> Bundler</a></li><li class="subsection"><a href="beginning?version=4.0#sec-rails_server"><span class="number">1.2.5</span> <tt>rails server</tt></a></li><li class="subsection"><a href="beginning?version=4.0#sec-mvc"><span class="number">1.2.6</span> Model-view-controller (MVC)</a></li></ol></li><li class="section"><a href="beginning?version=4.0#sec-version_control"><span class="number">1.3</span> Version control with Git</a></li><li><ol><li class="subsection"><a href="beginning?version=4.0#sec-git_setup"><span class="number">1.3.1</span> Installation and setup</a></li><li><ol><li class="subsubsection"><a href="beginning?version=4.0#sec-1_3_1_1">First-time system setup</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-1_3_1_2">First-time repository setup</a></li></ol></li><li class="subsection"><a href="beginning?version=4.0#sec-adding_and_committing"><span class="number">1.3.2</span> Adding and committing</a></li><li class="subsection"><a href="beginning?version=4.0#sec-1_3_3"><span class="number">1.3.3</span> What good does Git do you?</a></li><li class="subsection"><a href="beginning?version=4.0#sec-github"><span class="number">1.3.4</span> GitHub</a></li><li class="subsection"><a href="beginning?version=4.0#sec-git_commands"><span class="number">1.3.5</span> Branch, edit, commit, merge</a></li><li><ol><li class="subsubsection"><a href="beginning?version=4.0#sec-git_branch">Branch</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-git_edit">Edit</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-git_commit">Commit</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-git_merge">Merge</a></li><li class="subsubsection"><a href="beginning?version=4.0#sec-git_push">Push</a></li></ol></li></ol></li><li class="section"><a href="beginning?version=4.0#sec-deploying"><span class="number">1.4</span> Deploying</a></li><li><ol><li class="subsection"><a href="beginning?version=4.0#sec-heroku_setup"><span class="number">1.4.1</span> Heroku setup</a></li><li class="subsection"><a href="beginning?version=4.0#sec-heroku_step_one"><span class="number">1.4.2</span> Heroku deployment, step one</a></li><li class="subsection"><a href="beginning?version=4.0#sec-1_4_3"><span class="number">1.4.3</span> Heroku deployment, step two</a></li><li class="subsection"><a href="beginning?version=4.0#sec-heroku_commands"><span class="number">1.4.4</span> Heroku commands</a></li></ol></li><li class="section"><a href="beginning?version=4.0#sec-beginning_conclusion"><span class="number">1.5</span> Conclusion</a></li></ol></li><li class="chapter"><a href="a-demo-app?version=4.0#top"><span class="number">Chapter 2</span> A demo app</a></li><li><ol><li class="section"><a href="a-demo-app?version=4.0#sec-planning_the_application"><span class="number">2.1</span> Planning the application</a></li><li><ol><li class="subsection"><a href="a-demo-app?version=4.0#sec-modeling_demo_users"><span class="number">2.1.1</span> Modeling demo users</a></li><li class="subsection"><a href="a-demo-app?version=4.0#sec-modeling_demo_microposts"><span class="number">2.1.2</span> Modeling demo microposts</a></li></ol></li><li class="section"><a href="a-demo-app?version=4.0#sec-demo_users_resource"><span class="number">2.2</span> The Users resource</a></li><li><ol><li class="subsection"><a href="a-demo-app?version=4.0#sec-a_user_tour"><span class="number">2.2.1</span> A user tour</a></li><li class="subsection"><a href="a-demo-app?version=4.0#sec-mvc_in_action"><span class="number">2.2.2</span> MVC in action</a></li><li class="subsection"><a href="a-demo-app?version=4.0#sec-weaknesses_of_this_users_resource"><span class="number">2.2.3</span> Weaknesses of this Users resource</a></li></ol></li><li class="section"><a href="a-demo-app?version=4.0#sec-microposts_resource"><span class="number">2.3</span> The Microposts resource</a></li><li><ol><li class="subsection"><a href="a-demo-app?version=4.0#sec-a_micropost_microtour"><span class="number">2.3.1</span> A micropost microtour</a></li><li class="subsection"><a href="a-demo-app?version=4.0#sec-putting_the_micro_in_microposts"><span class="number">2.3.2</span> Putting the <em>micro</em> in microposts</a></li><li class="subsection"><a href="a-demo-app?version=4.0#sec-demo_user_has_many_microposts"><span class="number">2.3.3</span> A user <tt>has_many</tt> microposts</a></li><li class="subsection"><a href="a-demo-app?version=4.0#sec-inheritance_hierarchies"><span class="number">2.3.4</span> Inheritance hierarchies</a></li><li class="subsection"><a href="a-demo-app?version=4.0#sec-deploying_the_demo_app"><span class="number">2.3.5</span> Deploying the demo app</a></li></ol></li><li class="section"><a href="a-demo-app?version=4.0#sec-2_4"><span class="number">2.4</span> Conclusion</a></li></ol></li><li class="chapter"><a href="static-pages?version=4.0#top"><span class="number">Chapter 3</span> Mostly static pages</a></li><li><ol><li class="section"><a href="static-pages?version=4.0#sec-static_pages"><span class="number">3.1</span> Static pages</a></li><li class="section"><a href="static-pages?version=4.0#sec-first_tests"><span class="number">3.2</span> Our first tests</a></li><li><ol><li class="subsection"><a href="static-pages?version=4.0#sec-TDD"><span class="number">3.2.1</span> Test-driven development</a></li><li class="subsection"><a href="static-pages?version=4.0#sec-adding_a_page"><span class="number">3.2.2</span> Adding a page</a></li><li><ol><li class="subsubsection"><a href="static-pages?version=4.0#sec-red">Red</a></li><li class="subsubsection"><a href="static-pages?version=4.0#sec-green">Green</a></li><li class="subsubsection"><a href="static-pages?version=4.0#sec-refactor">Refactor</a></li></ol></li></ol></li><li class="section"><a href="static-pages?version=4.0#sec-slightly_dynamic_pages"><span class="number">3.3</span> Slightly dynamic pages</a></li><li><ol><li class="subsection"><a href="static-pages?version=4.0#sec-testing_a_title_change"><span class="number">3.3.1</span> Testing a title change</a></li><li class="subsection"><a href="static-pages?version=4.0#sec-passing_title_tests"><span class="number">3.3.2</span> Passing title tests</a></li><li class="subsection"><a href="static-pages?version=4.0#sec-embedded_ruby"><span class="number">3.3.3</span> Embedded Ruby</a></li><li class="subsection"><a href="static-pages?version=4.0#sec-layouts"><span class="number">3.3.4</span> Eliminating duplication with layouts</a></li></ol></li><li class="section"><a href="static-pages?version=4.0#sec-static_pages_conclusion"><span class="number">3.4</span> Conclusion</a></li><li class="section"><a href="static-pages?version=4.0#sec-static_pages_exercises"><span class="number">3.5</span> Exercises</a></li><li class="section"><a href="static-pages?version=4.0#sec-advanced_setup"><span class="number">3.6</span> Advanced setup</a></li><li><ol><li class="subsection"><a href="static-pages?version=4.0#sec-eliminating_bundle_exec"><span class="number">3.6.1</span> Eliminating <tt>bundle exec</tt></a></li><li><ol><li class="subsubsection"><a href="static-pages?version=4.0#sec-rvm_bundler_integration">RVM Bundler integration</a></li><li class="subsubsection"><a href="static-pages?version=4.0#sec-binstubs">binstubs</a></li></ol></li><li class="subsection"><a href="static-pages?version=4.0#sec-guard"><span class="number">3.6.2</span> Automated tests with Guard</a></li><li class="subsection"><a href="static-pages?version=4.0#sec-spork"><span class="number">3.6.3</span> Speeding up tests with Spork</a></li><li><ol><li class="subsubsection"><a href="static-pages?version=4.0#sec-spork_and_guard">Guard with Spork</a></li></ol></li><li class="subsection"><a href="static-pages?version=4.0#sec-tests_inside_sublime_text"><span class="number">3.6.4</span> Tests inside Sublime Text</a></li></ol></li></ol></li><li class="chapter"><a href="rails-flavored-ruby?version=4.0#top"><span class="number">Chapter 4</span> Rails-flavored Ruby</a></li><li><ol><li class="section"><a href="rails-flavored-ruby?version=4.0#sec-motivation"><span class="number">4.1</span> Motivation</a></li><li class="section"><a href="rails-flavored-ruby?version=4.0#sec-strings_and_methods"><span class="number">4.2</span> Strings and methods</a></li><li><ol><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-comments"><span class="number">4.2.1</span> Comments</a></li><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-strings"><span class="number">4.2.2</span> Strings</a></li><li><ol><li class="subsubsection"><a href="rails-flavored-ruby?version=4.0#sec-printing">Printing</a></li><li class="subsubsection"><a href="rails-flavored-ruby?version=4.0#sec-single_quoted_strings">Single-quoted strings</a></li></ol></li><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-objects_and_message_passing"><span class="number">4.2.3</span> Objects and message passing</a></li><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-method_definitions"><span class="number">4.2.4</span> Method definitions</a></li><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-back_to_the_title_helper"><span class="number">4.2.5</span> Back to the title helper</a></li></ol></li><li class="section"><a href="rails-flavored-ruby?version=4.0#sec-other_data_structures"><span class="number">4.3</span> Other data structures</a></li><li><ol><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-arrays_and_ranges"><span class="number">4.3.1</span> Arrays and ranges</a></li><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-blocks"><span class="number">4.3.2</span> Blocks</a></li><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-hashes_and_symbols"><span class="number">4.3.3</span> Hashes and symbols</a></li><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-css_revisited"><span class="number">4.3.4</span> CSS revisited</a></li></ol></li><li class="section"><a href="rails-flavored-ruby?version=4.0#sec-ruby_classes"><span class="number">4.4</span> Ruby classes</a></li><li><ol><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-constructors"><span class="number">4.4.1</span> Constructors</a></li><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-a_class_of_our_own"><span class="number">4.4.2</span> Class inheritance</a></li><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-modifying_built_in_classes"><span class="number">4.4.3</span> Modifying built-in classes</a></li><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-a_controller_class"><span class="number">4.4.4</span> A controller class</a></li><li class="subsection"><a href="rails-flavored-ruby?version=4.0#sec-a_user_class"><span class="number">4.4.5</span> A user class</a></li></ol></li><li class="section"><a href="rails-flavored-ruby?version=4.0#sec-conclusion"><span class="number">4.5</span> Conclusion</a></li><li class="section"><a href="rails-flavored-ruby?version=4.0#sec-exercises"><span class="number">4.6</span> Exercises</a></li></ol></li><li class="chapter"><a href="filling-in-the-layout?version=4.0#top"><span class="number">Chapter 5</span> Filling in the layout</a></li><li><ol><li class="section"><a href="filling-in-the-layout?version=4.0#sec-structure"><span class="number">5.1</span> Adding some structure</a></li><li><ol><li class="subsection"><a href="filling-in-the-layout?version=4.0#sec-adding_to_the_layout"><span class="number">5.1.1</span> Site navigation</a></li><li class="subsection"><a href="filling-in-the-layout?version=4.0#sec-custom_css"><span class="number">5.1.2</span> Bootstrap and custom CSS</a></li><li class="subsection"><a href="filling-in-the-layout?version=4.0#sec-partials"><span class="number">5.1.3</span> Partials</a></li></ol></li><li class="section"><a href="filling-in-the-layout?version=4.0#sec-sass_and_the_asset_pipeline"><span class="number">5.2</span> Sass and the asset pipeline</a></li><li><ol><li class="subsection"><a href="filling-in-the-layout?version=4.0#sec-the_asset_pipeline"><span class="number">5.2.1</span> The asset pipeline</a></li><li><ol><li class="subsubsection"><a href="filling-in-the-layout?version=4.0#sec-5_2_1_1">Asset directories</a></li><li class="subsubsection"><a href="filling-in-the-layout?version=4.0#sec-5_2_1_2">Manifest files</a></li><li class="subsubsection"><a href="filling-in-the-layout?version=4.0#sec-5_2_1_3">Preprocessor engines</a></li><li class="subsubsection"><a href="filling-in-the-layout?version=4.0#sec-5_2_1_4">Efficiency in production</a></li></ol></li><li class="subsection"><a href="filling-in-the-layout?version=4.0#sec-sass"><span class="number">5.2.2</span> Syntactically awesome stylesheets</a></li><li><ol><li class="subsubsection"><a href="filling-in-the-layout?version=4.0#sec-5_2_2_1">Nesting</a></li><li class="subsubsection"><a href="filling-in-the-layout?version=4.0#sec-5_2_2_2">Variables</a></li></ol></li></ol></li><li class="section"><a href="filling-in-the-layout?version=4.0#sec-layout_links"><span class="number">5.3</span> Layout links</a></li><li><ol><li class="subsection"><a href="filling-in-the-layout?version=4.0#sec-route_tests"><span class="number">5.3.1</span> Route tests</a></li><li class="subsection"><a href="filling-in-the-layout?version=4.0#sec-rails_routes"><span class="number">5.3.2</span> Rails routes</a></li><li class="subsection"><a href="filling-in-the-layout?version=4.0#sec-named_routes"><span class="number">5.3.3</span> Named routes</a></li><li class="subsection"><a href="filling-in-the-layout?version=4.0#sec-pretty_rspec"><span class="number">5.3.4</span> Pretty RSpec</a></li></ol></li><li class="section"><a href="filling-in-the-layout?version=4.0#sec-user_signup"><span class="number">5.4</span> User signup: A first step</a></li><li><ol><li class="subsection"><a href="filling-in-the-layout?version=4.0#sec-users_controller"><span class="number">5.4.1</span> Users controller</a></li><li class="subsection"><a href="filling-in-the-layout?version=4.0#sec-signup_url"><span class="number">5.4.2</span> Signup URL</a></li></ol></li><li class="section"><a href="filling-in-the-layout?version=4.0#sec-layout_conclusion"><span class="number">5.5</span> Conclusion</a></li><li class="section"><a href="filling-in-the-layout?version=4.0#sec-layout_exercises"><span class="number">5.6</span> Exercises</a></li></ol></li><li class="chapter"><a href="modeling-users?version=4.0#top"><span class="number">Chapter 6</span> Modeling users</a></li><li><ol><li class="section"><a href="modeling-users?version=4.0#sec-user_model"><span class="number">6.1</span> User model</a></li><li><ol><li class="subsection"><a href="modeling-users?version=4.0#sec-database_migrations"><span class="number">6.1.1</span> Database migrations</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-the_model_file"><span class="number">6.1.2</span> The model file</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-creating_user_objects"><span class="number">6.1.3</span> Creating user objects</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-finding_user_objects"><span class="number">6.1.4</span> Finding user objects</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-updating_user_objects"><span class="number">6.1.5</span> Updating user objects</a></li></ol></li><li class="section"><a href="modeling-users?version=4.0#sec-user_validations"><span class="number">6.2</span> User validations</a></li><li><ol><li class="subsection"><a href="modeling-users?version=4.0#sec-initial_user_tests"><span class="number">6.2.1</span> Initial user tests</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-presence_validation"><span class="number">6.2.2</span> Validating presence</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-length_validation"><span class="number">6.2.3</span> Length validation</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-format_validation"><span class="number">6.2.4</span> Format validation</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-uniqueness_validation"><span class="number">6.2.5</span> Uniqueness validation</a></li><li><ol><li class="subsubsection"><a href="modeling-users?version=4.0#sec-the_caveat">The uniqueness caveat</a></li></ol></li></ol></li><li class="section"><a href="modeling-users?version=4.0#sec-adding_a_secure_password"><span class="number">6.3</span> Adding a secure password</a></li><li><ol><li class="subsection"><a href="modeling-users?version=4.0#sec-an_encrypted_password"><span class="number">6.3.1</span> An encrypted password</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-password_and_confirmation"><span class="number">6.3.2</span> Password and confirmation</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-user_authentication"><span class="number">6.3.3</span> User authentication</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-has_secure_password"><span class="number">6.3.4</span> User has secure password</a></li><li class="subsection"><a href="modeling-users?version=4.0#sec-creating_a_user"><span class="number">6.3.5</span> Creating a user</a></li></ol></li><li class="section"><a href="modeling-users?version=4.0#sec-6_4"><span class="number">6.4</span> Conclusion</a></li><li class="section"><a href="modeling-users?version=4.0#sec-modeling_users_exercises"><span class="number">6.5</span> Exercises</a></li></ol></li><li class="chapter"><a href="sign-up?version=4.0#top"><span class="number">Chapter 7</span> Sign up</a></li><li><ol><li class="section"><a href="sign-up?version=4.0#sec-showing_users"><span class="number">7.1</span> Showing users</a></li><li><ol><li class="subsection"><a href="sign-up?version=4.0#sec-rails_environments"><span class="number">7.1.1</span> Debug and Rails environments</a></li><li class="subsection"><a href="sign-up?version=4.0#sec-a_users_resource"><span class="number">7.1.2</span> A Users resource</a></li><li class="subsection"><a href="sign-up?version=4.0#sec-tests_with_factories"><span class="number">7.1.3</span> Testing the user show page (with factories)</a></li><li class="subsection"><a href="sign-up?version=4.0#sec-a_gravatar_image"><span class="number">7.1.4</span> A Gravatar image and a sidebar</a></li></ol></li><li class="section"><a href="sign-up?version=4.0#sec-signup_form"><span class="number">7.2</span> Signup form</a></li><li><ol><li class="subsection"><a href="sign-up?version=4.0#sec-tests_for_user_signup"><span class="number">7.2.1</span> Tests for user signup</a></li><li class="subsection"><a href="sign-up?version=4.0#sec-using_form_for"><span class="number">7.2.2</span> Using <tt>form_for</tt></a></li><li class="subsection"><a href="sign-up?version=4.0#sec-the_form_html"><span class="number">7.2.3</span> The form HTML</a></li></ol></li><li class="section"><a href="sign-up?version=4.0#sec-signup_failure"><span class="number">7.3</span> Signup failure</a></li><li><ol><li class="subsection"><a href="sign-up?version=4.0#sec-a_working_form"><span class="number">7.3.1</span> A working form</a></li><li class="subsection"><a href="sign-up?version=4.0#sec-strong_parameters"><span class="number">7.3.2</span> Strong parameters</a></li><li class="subsection"><a href="sign-up?version=4.0#sec-signup_error_messages"><span class="number">7.3.3</span> Signup error messages</a></li></ol></li><li class="section"><a href="sign-up?version=4.0#sec-signup_success"><span class="number">7.4</span> Signup success</a></li><li><ol><li class="subsection"><a href="sign-up?version=4.0#sec-the_finished_signup_form"><span class="number">7.4.1</span> The finished signup form</a></li><li class="subsection"><a href="sign-up?version=4.0#sec-the_flash"><span class="number">7.4.2</span> The flash</a></li><li class="subsection"><a href="sign-up?version=4.0#sec-the_first_signup"><span class="number">7.4.3</span> The first signup</a></li><li class="subsection"><a href="sign-up?version=4.0#sec-deploying_to_production_with_ssl"><span class="number">7.4.4</span> Deploying to production with SSL</a></li></ol></li><li class="section"><a href="sign-up?version=4.0#sec-7_5"><span class="number">7.5</span> Conclusion</a></li><li class="section"><a href="sign-up?version=4.0#sec-signup_exercises"><span class="number">7.6</span> Exercises</a></li></ol></li><li class="chapter"><a href="sign-in-sign-out?version=4.0#top"><span class="number">Chapter 8</span> Sign in, sign out</a></li><li><ol><li class="section"><a href="sign-in-sign-out?version=4.0#sec-signin_failure"><span class="number">8.1</span> Sessions and signin failure</a></li><li><ol><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-sessions_controller"><span class="number">8.1.1</span> Sessions controller</a></li><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-signin_tests"><span class="number">8.1.2</span> Signin tests</a></li><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-signin_form"><span class="number">8.1.3</span> Signin form</a></li><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-reviewing_form_submission"><span class="number">8.1.4</span> Reviewing form submission</a></li><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-rendering_with_a_flash_message"><span class="number">8.1.5</span> Rendering with a flash message</a></li></ol></li><li class="section"><a href="sign-in-sign-out?version=4.0#sec-signin_success"><span class="number">8.2</span> Signin success</a></li><li><ol><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-remember_me"><span class="number">8.2.1</span> Remember me</a></li><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-a_working_sign_in_method"><span class="number">8.2.2</span> A working <tt>sign_in</tt> method</a></li><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-current_user"><span class="number">8.2.3</span> Current user</a></li><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-changing_the_layout_links"><span class="number">8.2.4</span> Changing the layout links</a></li><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-signin_upon_signup"><span class="number">8.2.5</span> Signin upon signup</a></li><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-signing_out"><span class="number">8.2.6</span> Signing out</a></li></ol></li><li class="section"><a href="sign-in-sign-out?version=4.0#sec-cucumber"><span class="number">8.3</span> Introduction to Cucumber (optional)</a></li><li><ol><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-installation_and_setup"><span class="number">8.3.1</span> Installation and setup</a></li><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-features_and_steps"><span class="number">8.3.2</span> Features and steps</a></li><li class="subsection"><a href="sign-in-sign-out?version=4.0#sec-rspec_custom_matchers"><span class="number">8.3.3</span> Counterpoint: RSpec custom matchers</a></li></ol></li><li class="section"><a href="sign-in-sign-out?version=4.0#sec-8_4"><span class="number">8.4</span> Conclusion</a></li><li class="section"><a href="sign-in-sign-out?version=4.0#sec-sign_in_out_exercises"><span class="number">8.5</span> Exercises</a></li></ol></li><li class="chapter"><a href="updating-showing-and-deleting-users?version=4.0#top"><span class="number">Chapter 9</span> Updating, showing, and deleting users</a></li><li><ol><li class="section"><a href="updating-showing-and-deleting-users?version=4.0#sec-updating_users"><span class="number">9.1</span> Updating users</a></li><li><ol><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-edit_form"><span class="number">9.1.1</span> Edit form</a></li><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-unsuccessful_edits"><span class="number">9.1.2</span> Unsuccessful edits</a></li><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-successful_edits"><span class="number">9.1.3</span> Successful edits</a></li></ol></li><li class="section"><a href="updating-showing-and-deleting-users?version=4.0#sec-authorization"><span class="number">9.2</span> Authorization</a></li><li><ol><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-requiring_signed_in_users"><span class="number">9.2.1</span> Requiring signed-in users</a></li><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-requiring_the_right_user"><span class="number">9.2.2</span> Requiring the right user</a></li><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-friendly_forwarding"><span class="number">9.2.3</span> Friendly forwarding</a></li></ol></li><li class="section"><a href="updating-showing-and-deleting-users?version=4.0#sec-showing_all_users"><span class="number">9.3</span> Showing all users</a></li><li><ol><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-user_index"><span class="number">9.3.1</span> User index</a></li><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-sample_users"><span class="number">9.3.2</span> Sample users</a></li><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-pagination"><span class="number">9.3.3</span> Pagination</a></li><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-partial_refactoring"><span class="number">9.3.4</span> Partial refactoring</a></li></ol></li><li class="section"><a href="updating-showing-and-deleting-users?version=4.0#sec-destroying_users"><span class="number">9.4</span> Deleting users</a></li><li><ol><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-administrative_users"><span class="number">9.4.1</span> Administrative users</a></li><li><ol><li class="subsubsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-revisiting_strong_parameters">Revisiting strong parameters</a></li></ol></li><li class="subsection"><a href="updating-showing-and-deleting-users?version=4.0#sec-the_destroy_action"><span class="number">9.4.2</span> The <tt>destroy</tt> action</a></li></ol></li><li class="section"><a href="updating-showing-and-deleting-users?version=4.0#sec-updating_and_deleting_users_conclusion"><span class="number">9.5</span> Conclusion</a></li><li class="section"><a href="updating-showing-and-deleting-users?version=4.0#sec-updating_deleting_exercises"><span class="number">9.6</span> Exercises</a></li></ol></li><li class="chapter"><a href="user-microposts?version=4.0#top"><span class="number">Chapter 10</span> User microposts</a></li><li><ol><li class="section"><a href="user-microposts?version=4.0#sec-a_micropost_model"><span class="number">10.1</span> A Micropost model</a></li><li><ol><li class="subsection"><a href="user-microposts?version=4.0#sec-the_basic_model"><span class="number">10.1.1</span> The basic model</a></li><li class="subsection"><a href="user-microposts?version=4.0#sec-first_micropost_validation"><span class="number">10.1.2</span> The first validation</a></li><li class="subsection"><a href="user-microposts?version=4.0#sec-user_micropost_associations"><span class="number">10.1.3</span> User/Micropost associations</a></li><li class="subsection"><a href="user-microposts?version=4.0#sec-ordering_and_dependency"><span class="number">10.1.4</span> Micropost refinements</a></li><li><ol><li class="subsubsection"><a href="user-microposts?version=4.0#sec-default_scope">Default scope</a></li><li class="subsubsection"><a href="user-microposts?version=4.0#sec-dependent_destroy">Dependent: destroy</a></li></ol></li><li class="subsection"><a href="user-microposts?version=4.0#sec-micropost_validations"><span class="number">10.1.5</span> Content validations</a></li></ol></li><li class="section"><a href="user-microposts?version=4.0#sec-showing_microposts"><span class="number">10.2</span> Showing microposts</a></li><li><ol><li class="subsection"><a href="user-microposts?version=4.0#sec-augmenting_the_user_show_page"><span class="number">10.2.1</span> Augmenting the user show page</a></li><li class="subsection"><a href="user-microposts?version=4.0#sec-sample_microposts"><span class="number">10.2.2</span> Sample microposts</a></li></ol></li><li class="section"><a href="user-microposts?version=4.0#sec-manipulating_microposts"><span class="number">10.3</span> Manipulating microposts</a></li><li><ol><li class="subsection"><a href="user-microposts?version=4.0#sec-access_control"><span class="number">10.3.1</span> Access control</a></li><li class="subsection"><a href="user-microposts?version=4.0#sec-creating_microposts"><span class="number">10.3.2</span> Creating microposts</a></li><li class="subsection"><a href="user-microposts?version=4.0#sec-a_proto_feed"><span class="number">10.3.3</span> A proto-feed</a></li><li class="subsection"><a href="user-microposts?version=4.0#sec-destroying_microposts"><span class="number">10.3.4</span> Destroying microposts</a></li></ol></li><li class="section"><a href="user-microposts?version=4.0#sec-10_4"><span class="number">10.4</span> Conclusion</a></li><li class="section"><a href="user-microposts?version=4.0#sec-micropost_exercises"><span class="number">10.5</span> Exercises</a></li></ol></li><li class="chapter"><a href="following-users?version=4.0#top"><span class="number">Chapter 11</span> Following users</a></li><li><ol><li class="section"><a href="following-users?version=4.0#sec-the_relationship_model"><span class="number">11.1</span> The Relationship model</a></li><li><ol><li class="subsection"><a href="following-users?version=4.0#sec-a_problem_with_the_data_model"><span class="number">11.1.1</span> A problem with the data model (and a solution)</a></li><li class="subsection"><a href="following-users?version=4.0#sec-relationship_user_associations"><span class="number">11.1.2</span> User/relationship associations</a></li><li class="subsection"><a href="following-users?version=4.0#sec-relationship_validations"><span class="number">11.1.3</span> Validations</a></li><li class="subsection"><a href="following-users?version=4.0#sec-following"><span class="number">11.1.4</span> Followed users</a></li><li class="subsection"><a href="following-users?version=4.0#sec-followers"><span class="number">11.1.5</span> Followers</a></li></ol></li><li class="section"><a href="following-users?version=4.0#sec-a_web_interface_for_following_and_followers"><span class="number">11.2</span> A web interface for following users</a></li><li><ol><li class="subsection"><a href="following-users?version=4.0#sec-sample_following_data"><span class="number">11.2.1</span> Sample following data</a></li><li class="subsection"><a href="following-users?version=4.0#sec-stats_and_a_follow_form"><span class="number">11.2.2</span> Stats and a follow form</a></li><li class="subsection"><a href="following-users?version=4.0#sec-following_and_followers_pages"><span class="number">11.2.3</span> Following and followers pages</a></li><li class="subsection"><a href="following-users?version=4.0#sec-a_working_follow_button_the_standard_way"><span class="number">11.2.4</span> A working follow button the standard way</a></li><li class="subsection"><a href="following-users?version=4.0#sec-a_working_follow_button_with_ajax"><span class="number">11.2.5</span> A working follow button with Ajax</a></li></ol></li><li class="section"><a href="following-users?version=4.0#sec-the_status_feed"><span class="number">11.3</span> The status feed</a></li><li><ol><li class="subsection"><a href="following-users?version=4.0#sec-motivation_and_strategy"><span class="number">11.3.1</span> Motivation and strategy</a></li><li class="subsection"><a href="following-users?version=4.0#sec-a_first_feed_implementation"><span class="number">11.3.2</span> A first feed implementation</a></li><li class="subsection"><a href="following-users?version=4.0#sec-scopes_subselects_and_a_lambda"><span class="number">11.3.3</span> Subselects</a></li><li class="subsection"><a href="following-users?version=4.0#sec-the_new_status_feed"><span class="number">11.3.4</span> The new status feed</a></li></ol></li><li class="section"><a href="following-users?version=4.0#sec-following_conclusion"><span class="number">11.4</span> Conclusion</a></li><li><ol><li class="subsection"><a href="following-users?version=4.0#sec-extensions_to_the_sample_application"><span class="number">11.4.1</span> Extensions to the sample application</a></li><li><ol><li class="subsubsection"><a href="following-users?version=4.0#sec-replies">Replies</a></li><li class="subsubsection"><a href="following-users?version=4.0#sec-messaging">Messaging</a></li><li class="subsubsection"><a href="following-users?version=4.0#sec-follower_notifications">Follower notifications</a></li><li class="subsubsection"><a href="following-users?version=4.0#sec-password_reminders">Password reminders</a></li><li class="subsubsection"><a href="following-users?version=4.0#sec-signup_confirmation">Signup confirmation</a></li><li class="subsubsection"><a href="following-users?version=4.0#sec-rss_feed">RSS feed</a></li><li class="subsubsection"><a href="following-users?version=4.0#sec-rest_api">REST API</a></li><li class="subsubsection"><a href="following-users?version=4.0#sec-search">Search</a></li></ol></li><li class="subsection"><a href="following-users?version=4.0#sec-guide_to_further_resources"><span class="number">11.4.2</span> Guide to further resources</a></li></ol></li><li class="section"><a href="following-users?version=4.0#sec-following_exercises"><span class="number">11.5</span> Exercises</a></li></ol></li></ol></div>
+
+
+<div id="main_content"></div>
+
+
+<p> <span class="preamble">
+ <span id="foreword">
+<strong> Foreword</strong> <br />
+ </span>
+ </span></p>
+
+<p>My former company (CD Baby) was one of the first to loudly switch to Ruby on Rails, and then even more loudly switch back to PHP (Google me to read about the drama). This book by Michael Hartl came so highly recommended that I had to try it, and the <em>Ruby on Rails Tutorial</em> is what I used to switch back to Rails again.</p>
+
+<p>Though I&rsquo;ve worked my way through many Rails books, this is the one that finally made me &ldquo;get&rdquo; it. Everything is done very much &ldquo;the Rails way&rdquo;&mdash;a way that felt very unnatural to me before, but now after doing this book finally feels natural. This is also the only Rails book that does test-driven development the entire time, an approach highly recommended by the experts but which has never been so clearly demonstrated before. Finally, by including Git, GitHub, and Heroku in the demo examples, the author really gives you a feel for what it&rsquo;s like to do a real-world project. The tutorial&rsquo;s code examples are not in isolation.</p>
+
+<p>The linear narrative is such a great format. Personally, I powered through the <em>Rails Tutorial</em> in three long days, doing all the examples and challenges at the end of each chapter. Do it from start to finish, without jumping around, and you&rsquo;ll get the ultimate benefit.</p>
+
+<p>Enjoy!</p>
+
+<p><a href="http://sivers.org/">Derek Sivers</a> (<a href="http://sivers.org/">sivers.org</a>) <br />
+<em>Founder, CD Baby</em> <br /></p>
+
+<p> <span class="preamble">
+<strong> Acknowledgments</strong> <br />
+ </span></p>
+
+<p>The <em>Ruby on Rails Tutorial</em> owes a lot to my previous Rails book, <em>RailsSpace</em>, and hence to my coauthor <a href="http://aure.com/">Aurelius Prochazka</a>. I&rsquo;d like to thank Aure both for the work he did on that book and for his support of this one. I&rsquo;d also like to thank Debra Williams Cauley, my editor on both <em>RailsSpace</em> and the <em>Ruby on Rails Tutorial</em>; as long as she keeps taking me to baseball games, I&rsquo;ll keep writing books for her.</p>
+
+<p>I&rsquo;d like to acknowledge a long list of Rubyists who have taught and inspired me over the years: David Heinemeier Hansson, Yehuda Katz, Carl Lerche, Jeremy Kemper, Xavier Noria, Ryan Bates, Geoffrey Grosenbach, Peter Cooper, Matt Aimonetti, Gregg Pollack, Wayne&nbsp;E. Seguin, Amy Hoy, Dave Chelimsky, Pat Maddox, Tom Preston-Werner, Chris Wanstrath, Chad Fowler, Josh Susser, Obie Fernandez, Ian McFarland, Steven Bristol, Pratik Naik, Sarah Mei, Sarah Allen, Wolfram Arnold, Alex Chaffee, Giles Bowkett, Evan Dorn, Long Nguyen, James Lindenbaum, Adam Wiggins, Tikhon Bernstam, Ron Evans, Wyatt Greene, Miles Forrest, the good people at Pivotal Labs, the Heroku gang, the thoughtbot guys, and the GitHub crew. Finally, many, many readers&mdash;far too many to list&mdash;have contributed a huge number of bug reports and suggestions during the writing of this book, and I gratefully acknowledge their help in making it as good as it can&nbsp;be. <br /></p>
+
+<p> <span class="preamble">
+ <span id="author">
+<strong> About the author</strong> <br />
+ </span>
+ </span></p>
+
+<p><a href="http://michaelhartl.com/">Michael Hartl</a> is the author of the <a href="http://ruby.railstutorial.org/"><em>Ruby on Rails Tutorial</em></a>, the leading introduction to web development with <a href="http://rubyonrails.org/">Ruby on Rails</a>. His prior experience includes writing and developing <em>RailsSpace</em>, an extremely obsolete Rails tutorial book, and developing Insoshi, a once-popular and now-obsolete social networking platform in Ruby on Rails. In 2011, Michael received a <a href="http://rubyheroes.com/heroes">Ruby Hero Award</a> for his contributions to the Ruby community. He is a graduate of <a href="http://college.harvard.edu/">Harvard College</a>, has a <a href="http://resolver.caltech.edu/CaltechETD:etd-05222003-161626">Ph.D. in Physics</a> from <a href="http://www.caltech.edu/">Caltech</a>, and is an alumnus of the <a href="http://ycombinator.com/">Y&nbsp;Combinator</a> entrepreneur program. <br /></p>
+
+<p> <span id="license" class="preamble">
+<strong> Copyright and license</strong> <br />
+ </span></p>
+
+<p><em>Ruby on Rails Tutorial: Learn Web Development with Rails</em>. Copyright &copy; 2012 by Michael Hartl. All source code in the <em>Ruby on Rails Tutorial</em> is available jointly under the <a href="http://opensource.org/licenses/MIT">MIT License</a> and the <a href="http://people.freebsd.org/~phk/">Beerware License</a>.</p>
+
+<div class="code"><div class="highlight"><pre>The MIT License
+
+Copyright (c) 2012 Michael Hartl
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</pre></div>
+</div>
+
+
+<div class="code"><div class="highlight"><pre>/*
+ * ----------------------------------------------------------------------------
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 42):
+ * Michael Hartl wrote this code. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.
+ * ----------------------------------------------------------------------------
+ */
+</pre></div>
+</div>
+
+
+<div id="top"></div>
+
+
+<h1 class="chapter"><a id="sec-1" href="beginning?version=4.0#top" class="heading"><span class="number">Chapter 1</span> From zero to deploy</a></h1>
+
+
+<p>Welcome to the <a href="http://ruby.railstutorial.org/ruby-on-rails-tutorial-book"><em>Ruby on Rails Tutorial</em></a>. The goal of this book is to be the best answer to the question, &ldquo;If I want to learn web development with <a href="http://rubyonrails.org/">Ruby on Rails</a>, where should I start?&rdquo; By the time you finish the <em>Ruby on Rails Tutorial</em>, you will have all the skills you need to develop and deploy your own custom web applications with Rails. You will also be ready to benefit from the many more advanced books, blogs, and screencasts that are part of the thriving Rails educational ecosystem. Finally, since the <em>Ruby on Rails Tutorial</em> uses Rails&nbsp;4, the knowledge you gain here represents the state of the art in web development. (The most up-to-date version of the <em>Ruby on Rails Tutorial</em> can be found on the book&rsquo;s website at <a href="http://railstutorial.org/">http://railstutorial.org/</a>; if you are reading this book offline, be sure to check the <a href="http://railstutorial.org/book">online version of the Rails Tutorial book</a> at <a href="http://railstutorial.org/book">http://railstutorial.org/book</a> for the latest updates.)</p>
+
+<p>Note that the goal of this book is <em>not</em> merely to teach Rails, but rather to teach <em>web development with Rails</em>, which means acquiring (or expanding) the skills needed to develop software for the World Wide Web. In addition to Ruby on Rails, this skillset includes HTML &amp; CSS, databases, version control, testing, and deployment. To accomplish this goal, the <em>Ruby on Rails Tutorial</em> takes an integrated approach: you will learn Rails by example by building a substantial sample application from scratch. As <a href="http://sivers.org">Derek Sivers</a> notes in the foreword, this book is structured as a linear narrative, designed to be read from start to finish. If you are used to skipping around in technical books, taking this linear approach might require some adjustment, but I suggest giving it a try. You can think of the <em>Ruby on Rails Tutorial</em> as a video game where you are the main character, and where you level up as a Rails developer in each chapter. (The exercises are the <a href="http://en.wikipedia.org/wiki/Boss_(video_gaming)#Miniboss">minibosses</a>.)</p>
+
+<p>In this first chapter, we&rsquo;ll get started with Ruby on Rails by installing all the necessary software and by setting up our development environment (<a class="ref" href="beginning?version=4.0#sec-up_and_running">Section&nbsp;1.2</a>). We&rsquo;ll then create our first Rails application, called (appropriately enough) <code>first_app</code>. The <em>Rails Tutorial</em> emphasizes good software development practices, so immediately after creating our fresh new Rails project we&rsquo;ll put it under version control with Git (<a class="ref" href="beginning?version=4.0#sec-version_control">Section&nbsp;1.3</a>). And, believe it or not, in this chapter we&rsquo;ll even put our first app on the wider web by <em>deploying</em> it to production (<a class="ref" href="beginning?version=4.0#sec-deploying">Section&nbsp;1.4</a>).</p>
+
+<p>In <a class="ref" href="a-demo-app?version=4.0#top">Chapter&nbsp;2</a>, we&rsquo;ll make a second project, whose purpose is to demonstrate the basic workings of a Rails application. To get up and running quickly, we&rsquo;ll build this <em>demo app</em> (called <code>demo_app</code>) using scaffolding (<a class="ref" href="beginning?version=4.0#sidebar-scaffolding">Box&nbsp;1.1</a>) to generate code; since this code is both ugly and complex, <a class="ref" href="a-demo-app?version=4.0#top">Chapter&nbsp;2</a> will focus on interacting with the demo app through its <em>URIs</em> (often called <em>URLs</em>)<sup class="footnote" id="fnref-1_1"><a href="?version=4.0#fn-1_1">1</a></sup> using a web browser.</p>
+
+<p>The rest of the tutorial focuses on developing a single large <em>sample application</em> (called <code>sample_app</code>), writing all the code from scratch. We&rsquo;ll develop the sample app using <em>test-driven development</em> (TDD), getting started in <a class="ref" href="static-pages?version=4.0#top">Chapter&nbsp;3</a> by creating static pages and then adding a little dynamic content. We&rsquo;ll take a quick detour in <a class="ref" href="rails-flavored-ruby?version=4.0#top">Chapter&nbsp;4</a> to learn a little about the Ruby language underlying Rails. Then, in <a class="ref" href="filling-in-the-layout?version=4.0#top">Chapter&nbsp;5</a> through <a class="ref" href="updating-showing-and-deleting-users?version=4.0#top">Chapter&nbsp;9</a>, we&rsquo;ll complete the foundation for the sample application by making a site layout, a user data model, and a full registration and authentication system. Finally, in <a class="ref" href="user-microposts?version=4.0#top">Chapter&nbsp;10</a> and <a class="ref" href="following-users?version=4.0#top">Chapter&nbsp;11</a> we&rsquo;ll add microblogging and social features to make a working example site.</p>
+
+<p>The final sample application will bear more than a passing resemblance to a certain popular <a href="http://twitter.com/">social microblogging site</a>&mdash;a site which, coincidentally, was also originally written in Rails. Though of necessity our efforts will focus on this specific sample application, the emphasis throughout the <em>Rails Tutorial</em> will be on general principles, so that you will have a solid foundation no matter what kinds of web applications you want to build.</p>
+
+<div class="label" id="sidebar-scaffolding"></div>
+
+
+<div class="sidebar"><span class="title"><span class="header">Box 1.1.</span><span class="description">Scaffolding: Quicker, easier, more seductive</span></span>
+<p>From the beginning, Rails has benefited from a palpable sense of excitement, starting with the famous <a href="http://www.youtube.com/watch?v=Gzj723LkRJY">15-minute weblog video</a> by Rails creator David Heinemeier Hansson. That video and its successors are a great way to get a taste of Rails&rsquo; power, and I recommend watching them. But be warned: they accomplish their amazing fifteen-minute feat using a feature called <em>scaffolding</em>, which relies heavily on <em>generated code</em>, magically created by the Rails <code>generate</code> command.</p>
+
+<p>When writing a Ruby on Rails tutorial, it is tempting to rely on the scaffolding approach&mdash;it&rsquo;s <a href="http://en.wikipedia.org/wiki/Dark_side_(Star_Wars)">quicker, easier, more seductive</a>. But the complexity and sheer amount of code in the scaffolding can be utterly overwhelming to a beginning Rails developer; you may be able to use it, but you probably won&rsquo;t understand it. Following the scaffolding approach risks turning you into a virtuoso script generator with little (and brittle) actual knowledge of Rails.</p>
+
+<p>In the <em>Ruby on Rails Tutorial</em>, we&rsquo;ll take the (nearly) polar opposite approach: although <a class="ref" href="a-demo-app?version=4.0#top">Chapter&nbsp;2</a> will develop a small demo app using scaffolding, the core of the <em>Rails Tutorial</em> is the sample app, which we&rsquo;ll start writing in <a class="ref" href="static-pages?version=4.0#top">Chapter&nbsp;3</a>. At each stage of developing the sample application, we will write <em>small, bite-sized</em> pieces of code&mdash;simple enough to understand, yet novel enough to be challenging. The cumulative effect will be a deeper, more flexible knowledge of Rails, giving you a good background for writing nearly any type of web application.</p>
+</div>
+
+
+
+
+<div class="label" id="sec-introduction"></div>
+
+
+<h2><a id="sec-1_1" href="beginning?version=4.0#sec-introduction" class="heading"><span class="number">1.1</span> Introduction</a></h2>
+
+
+<p>Since its debut in 2004, Ruby on Rails has rapidly become one of the most powerful and popular frameworks for building dynamic web applications. Everyone from scrappy startups to huge companies have used Rails: <a href="http://37signals.com/">37signals</a>, <a href="http://github.com/">GitHub</a>, <a href="http://shopify.com/">Shopify</a>, <a href="http://scribd.com/">Scribd</a>,  <a href="http://twitter.com/">Twitter</a>, <a href="http://disney.com/">Disney</a>, <a href="http://hulu.com/">Hulu</a>, the <a href="http://yellowpages.com/">Yellow Pages</a>&mdash;the <a href="http://rubyonrails.org/applications">list of sites using Rails</a> goes on and on. There are also many web development shops that specialize in Rails, such as <a href="http://entp.com/">ENTP</a>, <a href="http://thoughtbot.com/">thoughtbot</a>, <a href="http://pivotallabs.com/">Pivotal Labs</a>, and <a href="http://hashrocket.com/">Hashrocket</a>, plus innumerable independent consultants, trainers, and contractors.</p>
+
+<p>What makes Rails so great? First of all, Ruby on Rails is 100% open-source, available under the permissive <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>, and as a result it also costs nothing to download or use. Rails also owes much of its success to its elegant and compact design; by exploiting the malleability of the underlying <a href="http://ruby-lang.org/">Ruby</a> language, Rails effectively creates a <a href="http://en.wikipedia.org/wiki/Domain_Specific_Language">domain-specific language</a> for writing web applications. As a result, many common web programming tasks&mdash;such as generating HTML, making data models, and routing URLs&mdash;are easy with Rails, and the resulting application code is concise and readable.</p>
+
+<p>Rails also adapts rapidly to new developments in web technology and framework design. For example, Rails was one of the first frameworks to fully digest and implement the REST architectural style for structuring web applications (which we&rsquo;ll be learning about throughout this tutorial). And when other frameworks develop successful new techniques, Rails creator <a href="http://loudthinking.com/">David Heinemeier Hansson</a> and the <a href="http://rubyonrails.org/core">Rails core team</a> don&rsquo;t hesitate to incorporate their ideas. Perhaps the most dramatic example is the merger of Rails and Merb, a rival Ruby web framework, so that Rails now benefits from Merb&rsquo;s modular design, stable <a href="http://en.wikipedia.org/wiki/Application_programming_interface">API</a>, and improved performance.</p>
+
+<p>Finally, Rails benefits from an unusually enthusiastic and diverse community. The results include hundreds of open-source <a href="http://contributors.rubyonrails.org/">contributors</a>, well-attended <a href="http://railsconf.com/">conferences</a>, a huge number of <a href="https://rubygems.org/">gems</a> (self-contained solutions to specific problems such as pagination and image upload), a rich variety of informative blogs, and a cornucopia of discussion forums and IRC channels. The large number of Rails programmers also makes it easier to handle the inevitable application errors: the &ldquo;Google the error message&rdquo; algorithm nearly always produces a relevant blog post or discussion-forum thread.</p>
+
+<div class="label" id="sec-comments_for_various_readers"></div>
+
+
+<h3><a id="sec-1_1_1" href="beginning?version=4.0#sec-comments_for_various_readers" class="heading"><span class="number">1.1.1</span> Comments for various readers</a></h3>
+
+
+<p>The <em>Rails Tutorial</em> contains integrated tutorials not only for Rails, but also for the underlying Ruby language, the RSpec testing framework, <a href="http://en.wikipedia.org/wiki/HTML">HTML</a>, <a href="http://en.wikipedia.org/wiki/CSS">CSS</a>, a small amount of <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a>, and even a little <a href="http://en.wikipedia.org/wiki/SQL">SQL</a>. This means that, no matter where you currently are in your knowledge of web development, by the time you finish this tutorial you will be ready for more advanced Rails resources, as well as for the more systematic treatments of the other subjects mentioned. It also means that there&rsquo;s a <em>lot</em> of material to cover; if you don&rsquo;t already have much experience programming computers, you might find it overwhelming. The comments below contain some suggestions for approaching the <em>Rails Tutorial</em> depending on your background. <br /></p>
+
+<p><strong>All readers:</strong> One common question when learning Rails is whether to learn Ruby first. The answer depends on your personal learning style and how much programming experience you already have. If you prefer to learn everything systematically from the ground up, or if you have never programmed before, then learning Ruby first might work well for you, and in this case I recommend <a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a> by Peter Cooper. On the other hand, many beginning Rails developers are excited about making <em>web</em> applications, and would rather not slog through a 500-page book on pure Ruby before ever writing a single web page. In this case, I recommend following the short interactive tutorial at <a href="http://tryruby.org/">Try Ruby</a>,<sup class="footnote" id="fnref-1_2"><a href="?version=4.0#fn-1_2">2</a></sup> and then optionally do the free tutorial at <a href="http://railsforzombies.org/">Rails for Zombies</a><sup class="footnote" id="fnref-1_3"><a href="?version=4.0#fn-1_3">3</a></sup> to get a taste of what Rails can do.</p>
+
+<p>Another common question is whether to use tests from the start. As noted in the introduction, the <em>Rails Tutorial</em> uses test-driven development (also called test-first development), which in my view is the best way to develop Rails applications, but it does introduce a substantial amount of overhead and complexity. If you find yourself getting bogged down by the tests, I suggest either skipping them on a first reading or (even better) using them as a tool to verify your code&rsquo;s correctness without worrying about how they work. This latter strategy involves creating the necessary test files (called <em>specs</em>) and filling them with the test code <em>exactly</em> as it appears in the book. You can then run the test suite (as described in <a class="ref" href="filling-in-the-layout?version=4.0#top">Chapter&nbsp;5</a>) to watch it fail, then write the application code as described in the tutorial, and finally re-run the test suite to watch it pass. <br /></p>
+
+<p><strong>Inexperienced programmers:</strong> The <em>Rails Tutorial</em> is not aimed principally at beginning programmers, and web applications, even relatively simple ones, are by their nature fairly complex. If you are completely new to web programming and find the <em>Rails Tutorial</em> too difficult, I suggest learning the basics of HTML and CSS and then giving the <em>Rails Tutorial</em> another go. (Unfortunately, I don&rsquo;t have a personal recommendation here, but <a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a> looks promising, and one reader recommends <a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a> by David Sawyer McFarland.) You might also consider reading the first few chapters of <a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a> by Peter Cooper, which starts with sample applications much smaller than a full-blown web app. That said, a surprising number of beginners have used this tutorial to learn web development, so I suggest giving it a try, and I especially recommend the <a href="http://railstutorial.org/screencasts"><em>Rails Tutorial</em> screencast series</a><sup class="footnote" id="fnref-1_4"><a href="?version=4.0#fn-1_4">4</a></sup> to give you an &ldquo;over-the-shoulder&rdquo; look at Rails software development. <br /></p>
+
+<p><strong>Experienced programmers new to web development:</strong> Your previous experience means you probably already understand ideas like classes, methods, data structures, etc., which is a big advantage. Be warned that if your background is in C/C++ or Java, you may find Ruby a bit of an odd duck, and it might take time to get used to it; just stick with it and eventually you&rsquo;ll be fine. (Ruby even lets you put semicolons at the ends of lines if you miss them too much.) The <em>Rails Tutorial</em> covers all the web-specific ideas you&rsquo;ll need, so don&rsquo;t worry if you don&rsquo;t currently know a <tt>POST</tt> from a <tt>PATCH</tt>.<br /></p>
+
+<p><strong>Experienced web developers new to Rails:</strong> You have a great head start, especially if you have used a dynamic language such as PHP or (even better) Python. The basics of what we cover will likely be familiar, but test-driven development may be new to you, as may be the structured REST style favored by Rails. Ruby has its own idiosyncrasies, so those will likely be new, too.<br /></p>
+
+<p><strong>Experienced Ruby programmers:</strong> The set of Ruby programmers who don&rsquo;t know Rails is a small one nowadays, but if you are a member of this elite group you can fly through this book and then move on to developing applications of your own.<br /></p>
+
+<p><strong>Inexperienced Rails programmers:</strong> You&rsquo;ve perhaps read some other tutorials and made a few small Rails apps yourself. Based on reader feedback, I&rsquo;m confident that you can still get a lot out of this book. Among other things, the techniques here may be more up-to-date than the ones you picked up when you originally learned Rails. <br /></p>
+
+<p><strong>Experienced Rails programmers:</strong> This book is unnecessary for you, but many experienced Rails developers have expressed surprise at how much they learned from this book, and you might enjoy seeing Rails from a different perspective. <br /></p>
+
+<p>After finishing the <em>Ruby on Rails Tutorial</em>, I recommend that experienced programmers read <a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a> by David&nbsp;A. Black, <a href="www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional-Series/dp/0321584104/?version=4.0#"><em>Eloquent Ruby</em></a> by Russ Olsen, or <a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a> by Hal Fulton, which is also fairly advanced but takes a more topical approach. <br /></p>
+
+<p>At the end of this process, no matter where you started, you should be ready for the many more intermediate-to-advanced Rails resources out there. Here are some I particularly recommend:</p>
+
+<ul>
+
+<li><a href="http://railscasts.com/">RailsCasts</a> by Ryan Bates: Excellent (mostly) free Rails screencasts</li>
+<li><a href="http://peepcode.com/">PeepCode</a>: Excellent commercial screencasts</li>
+<li><a href="http://www.codeschool.com/">Code School</a>: Interactive programming courses</li>
+<li><a href="http://guides.rubyonrails.org/">Rails Guides</a>: Good topical and up-to-date Rails references</li>
+<li><a href="http://railscasts.com/">RailsCasts</a> by Ryan Bates: Did I already mention <a href="http://railscasts.com/">RailsCasts</a>? Seriously: <a href="http://railscasts.com/"><em>RailsCasts</em></a>.</li>
+
+
+</ul>
+
+
+
+
+<h3><a id="sec-1_1_2" href="beginning?version=4.0#sec-1_1_2" class="heading"><span class="number">1.1.2</span> &ldquo;Scaling&rdquo; Rails</a></h3>
+
+
+<p>Before moving on with the rest of the introduction, I&rsquo;d like to take a moment to address the one issue that dogged the Rails framework the most in its early days: the supposed inability of Rails to &ldquo;scale&rdquo;&mdash;i.e., to handle large amounts of traffic. Part of this issue relied on a misconception; <a href="http://idleprocess.wordpress.com/2009/11/24/presentation-summary-high-performance-at-massive-scale-lessons-learned-at-facebook/">you scale a <em>site</em>, not a framework</a>, and Rails, as awesome as it is, is only a framework. So the real question should have been, &ldquo;Can a site built with Rails scale?&rdquo; In any case, the question has now been definitively answered in the affirmative: some of the most heavily trafficked sites in the world use Rails. Actually <em>doing</em> the scaling is beyond the scope of just Rails, but rest assured that if <em>your</em> application ever needs to handle the load of Hulu or the Yellow Pages, Rails won&rsquo;t stop you from taking over the world.</p>
+
+<div class="label" id="sec-conventions"></div>
+
+
+<h3><a id="sec-1_1_3" href="beginning?version=4.0#sec-conventions" class="heading"><span class="number">1.1.3</span> Conventions in this book</a></h3>
+
+
+<p>The conventions in this book are mostly self-explanatory. In this section, I&rsquo;ll mention some that may not be.</p>
+
+<p>Both the <a href="http://railstutorial.org/book">HTML</a> and <a href="http://railstutorial.org/">PDF</a> editions of this book are full of links, both to internal sections (such as <a class="ref" href="beginning?version=4.0#sec-up_and_running">Section&nbsp;1.2</a>) and to external sites (such as the main <a href="http://rubyonrails.org/download">Ruby on Rails download</a> page).<sup class="footnote" id="fnref-1_5"><a href="?version=4.0#fn-1_5">5</a></sup></p>
+
+<p>Many examples in this book use command-line commands. For simplicity, all command line examples use a Unix-style command line prompt (a dollar sign), as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;hello, world&quot;</span>
+<span class="go">hello, world</span>
+</pre></div>
+</div>
+
+
+<p>Windows users should understand that their systems will use the analogous angle prompt&nbsp;<code>&gt;</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="go">C:\Sites&gt; echo &quot;hello, world&quot;</span>
+<span class="go">hello, world</span>
+</pre></div>
+</div>
+
+
+<p>On Unix systems, some commands should be executed with <code>sudo</code>, which stands for &ldquo;substitute user do&rdquo;.<sup class="footnote" id="fnref-1_6"><a href="?version=4.0#fn-1_6">6</a></sup> By default, a command executed with <code>sudo</code> is run as an administrative user, which has access to files and directories that normal users can&rsquo;t touch, such as in this example from <a class="ref" href="beginning?version=4.0#sec-rubygems">Section&nbsp;1.2.2</a>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> sudo ruby setup.rb
+</pre></div>
+</div>
+
+
+<p>Most Unix/Linux/OS&nbsp;X systems require <code>sudo</code> by default, unless you are using Ruby Version Manager as suggested in <a class="ref" href="beginning?version=4.0#sec-install_ruby">Section&nbsp;1.2.2.3</a>; in this case, you would type this instead:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby setup.rb
+</pre></div>
+</div>
+
+
+<p>Rails comes with lots of commands that can be run at the command line. For example, in <a class="ref" href="beginning?version=4.0#sec-rails_server">Section&nbsp;1.2.5</a> we&rsquo;ll run a local development web server as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nv">$ </span>rails server
+</pre></div>
+</div>
+
+
+<p>As with the command-line prompt, the <em>Rails Tutorial</em> uses the Unix convention for directory separators (i.e., a forward slash&nbsp;<code>/</code>). My Rails Tutorial sample application, for instance, lives in</p>
+
+<div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app
+</pre></div>
+</div>
+
+
+<p>On Windows, the analogous directory would be</p>
+
+<div class="code"><div class="highlight"><pre>C:\Sites\sample_app
+</pre></div>
+</div>
+
+
+<p>The root directory for any given app is known as the <em>Rails root</em>, but this terminology is confusing and many people mistakenly believe that the &ldquo;Rails root&rdquo; is the root directory for Rails itself. For clarity, the <em>Rails Tutorial</em> will refer to the Rails root as the <em>application root</em>, and henceforth all directories will be relative to this directory. For example, the <code>config</code> directory of my sample application is</p>
+
+<div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app/config
+</pre></div>
+</div>
+
+
+<p>The application root directory here is everything before <code>config</code>, i.e.,</p>
+
+<div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app
+</pre></div>
+</div>
+
+
+<p>For brevity, when referring to the file</p>
+
+<div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app/config/routes.rb
+</pre></div>
+</div>
+
+
+<p>I&rsquo;ll omit the application root and simply write <code>config/routes.rb</code>.</p>
+
+<p>The <em>Rails Tutorial</em> often shows output from various programs (shell commands, version control status, Ruby programs, etc.). Because of the innumerable small differences between different computer systems, the output you see may not always agree exactly with what is shown in the text,
+but this is not cause for concern.</p>
+
+<p>Some commands may produce errors depending on your system; rather than attempt the <a href="http://en.wikipedia.org/wiki/Sisyphus">Sisyphean</a> task of documenting all such errors in this tutorial, I will delegate to the &ldquo;Google the error message&rdquo; algorithm, which among other things is good practice for real-life software development. If you run into any problems while following the tutorial, I suggest consulting the resources listed on the <a href="http://railstutorial.org/help">Rails Tutorial help page</a>.<sup class="footnote" id="fnref-1_7"><a href="?version=4.0#fn-1_7">7</a></sup></p>
+
+<div class="label" id="sec-up_and_running"></div>
+
+
+<h2><a id="sec-1_2" href="beginning?version=4.0#sec-up_and_running" class="heading"><span class="number">1.2</span> Up and running</a></h2>
+
+
+
+
+<blockquote><p>I think of Chapter 1 as the &ldquo;weeding out phase&rdquo; in law school&mdash;if you can get your dev environment set up, the rest is easy to get through. <br /> &mdash;Bob Cavezza, <em>Rails Tutorial</em> reader</p>
+</blockquote>
+
+
+<p>It&rsquo;s time now to get going with a Ruby on Rails development environment and our first application. There is quite a bit of overhead here, especially if you don&rsquo;t have extensive programming experience, so don&rsquo;t get discouraged if it takes a while to get started. It&rsquo;s not just you; every developer goes through it (often more than once), but rest assured that the effort will be richly rewarded.</p>
+
+<div class="label" id="sec-development_tools"></div>
+
+
+<h3><a id="sec-1_2_1" href="beginning?version=4.0#sec-development_tools" class="heading"><span class="number">1.2.1</span> Development environments</a></h3>
+
+
+<p>Considering various idiosyncratic customizations, there are probably as many development environments as there are Rails programmers, but there are at least two broad types: text editor/command line environments, and integrated development environments (IDEs). Let&rsquo;s consider the latter first.</p>
+
+<h4><a id="sec-1_2_1_1" href="beginning?version=4.0#sec-1_2_1_1" class="heading">IDEs</a></h4>
+
+
+<p>The most prominent Rails IDEs are <a href="http://www.aptana.com/rails/">RadRails</a> and <a href="http://www.jetbrains.com/ruby/index.html">RubyMine</a>. I&rsquo;ve heard especially good things about RubyMine, and one reader (David Loeffler) has assembled <a href="https://github.com/perfectionist/sample_project/wiki">notes on how to use RubyMine with this tutorial</a>.<sup class="footnote" id="fnref-1_8"><a href="?version=4.0#fn-1_8">8</a></sup> If you&rsquo;re comfortable using an IDE, I suggest taking a look at the options mentioned to see what fits with the way you work.</p>
+
+<h4><a id="sec-1_2_1_2" href="beginning?version=4.0#sec-1_2_1_2" class="heading">Text editors and command lines</a></h4>
+
+
+<p>Instead of using an IDE, I prefer to use a <em>text editor</em> to edit text, and a <em>command line</em> to issue commands (<a class="ref" href="beginning?version=4.0#fig-editor_shell">Figure&nbsp;1.1</a>). Which combination you use depends on your tastes and your platform.</p>
+
+<ul>
+<li><strong>Text editor:</strong> I recommend <a href="http://www.sublimetext.com/2">Sublime Text&nbsp;2</a>, an outstanding cross-platform text editor that is simultaneously easy to learn and industrial-strength.<sup class="footnote" id="fnref-1_9"><a href="?version=4.0#fn-1_9">9</a></sup> Sublime Text is heavily influenced by <a href="http://macromates.com">TextMate</a>, and in fact is compatible with most TextMate customizations, such as snippets and color schemes. (TextMate, which is available only on OS&nbsp;X, is still a good choice if you use a Mac.) A second excellent choice is <a href="http://www.vim.org/">Vim</a>,<sup class="footnote" id="fnref-1_10"><a href="?version=4.0#fn-1_10">10</a></sup> versions of which are available for all major platforms. Sublime Text can be obtained commercially, whereas Vim can be obtained at no cost; both are industrial-strength editors, but in my experience Sublime Text is <em>much</em> more accessible to beginners.</li>
+
+<li><strong>Terminal:</strong> On OS&nbsp;X, I recommend either use <a href="http://iterm.sourceforge.net/">iTerm</a> or the native Terminal app. On Linux, the default terminal is fine. On Windows, many users prefer to develop Rails applications in a virtual machine running Linux, in which case your command-line options reduce to the previous case. If developing within Windows itself, I recommend using the command prompt that comes with <a href="http://railsinstaller.org/">Rails Installer</a> (<a class="ref" href="beginning?version=4.0#sec-rails_installer_windows">Section&nbsp;1.2.2.1</a>).</li>
+</ul>
+
+
+<p>If you decide to use Sublime Text, you might want to follow the optional setup instructions for <a href="https://github.com/mhartl/rails_tutorial_sublime_text">Rails Tutorial Sublime Text</a>.<sup class="footnote" id="fnref-1_11"><a href="?version=4.0#fn-1_11">11</a></sup> (Such configuration settings can be fiddly and error-prone, so I mainly recommend them for more advanced users; Sublime Text is an excellent choice for editing Rails applications even without the advanced setup.)</p>
+
+<div class="label" id="fig-editor_shell"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/editor_shell.png" alt="editor_shell" /></span></div><div class="caption"><span class="header">Figure 1.1: </span><span class="description">A text editor/command line development environment.  <a href="http://railstutorial.org/images/figures/editor_shell-full.png">(full size)</a></span></div></div>
+
+
+
+
+<h4><a id="sec-1_2_1_3" href="beginning?version=4.0#sec-1_2_1_3" class="heading">Browsers</a></h4>
+
+
+<p>Although there are many web browsers to choose from, the vast majority of Rails programmers use Firefox, Safari, or Chrome when developing. All three browsers include a built-in &ldquo;Inspect element&rdquo; feature available by right- (or control-)clicking on any part of the page.</p>
+
+<h4><a id="sec-1_2_1_4" href="beginning?version=4.0#sec-1_2_1_4" class="heading">A note about tools</a></h4>
+
+
+<p>In the process of getting your development environment up and running, you may find that you spend a <em>lot</em> of time getting everything just right. The learning process for editors and IDEs is particularly long; you can spend weeks on Sublime Text or Vim tutorials alone. If you&rsquo;re new to this game, I want to assure you that <em>spending time learning tools is normal</em>. Everyone goes through it. Sometimes it is frustrating, and it&rsquo;s easy to get impatient when you have an awesome web app in your head and you <em>just want to learn Rails already</em>, but have to spend a week learning some weird ancient Unix editor just to get started. But a craftsman has to know his tools, and in the end the reward is worth the effort.</p>
+
+<div class="label" id="sec-rubygems"></div>
+
+
+<h3><a id="sec-1_2_2" href="beginning?version=4.0#sec-rubygems" class="heading"><span class="number">1.2.2</span> Ruby, RubyGems, Rails, and Git</a></h3>
+
+
+
+
+<blockquote><p>Practically all the software
+in the world is either broken or very difficult to use. So users dread software. They&rsquo;ve been trained that whenever they try to install something, or even fill out a form online, it&rsquo;s not going to work. <em>I</em> dread installing stuff, and I have a Ph.D. in computer science. <br /> &mdash;Paul Graham, in <em>Founders at Work</em> by Jessica Livingston</p>
+</blockquote>
+
+
+<p>Now it&rsquo;s time to install Ruby and Rails. I&rsquo;ve done my best to cover as many bases as possible, but systems vary, and many things can go wrong during these steps. Be sure to Google the error message or consult the <a href="http://railstutorial.org/help">Rails Tutorial help page</a> if you run into trouble.</p>
+
+<p><strong>Unless otherwise noted, you should use the exact versions of all software used in the tutorial, including Rails itself, if you want the same results.</strong> Sometimes minor version differences will yield identical results, but you shouldn&rsquo;t count on this, especially with respect to Rails versions. The main exception is Ruby itself: 1.9.2, 1.9.3, and 2.0.0 are virtually identical for the purposes of this tutorial, so feel free to use any one.</p>
+
+<div class="label" id="sec-rails_installer_windows"></div>
+
+
+<h4><a id="sec-1_2_2_1" href="beginning?version=4.0#sec-rails_installer_windows" class="heading">Rails Installer (Windows)</a></h4>
+
+
+<p>Installing Rails on Windows used to be a real pain, but thanks to the efforts of the good people at <a href="http://engineyard.com/">Engine Yard</a>&mdash;especially Dr.&nbsp;Nic Williams and Wayne&nbsp;E. Seguin&mdash;installing Rails and related software on Windows is now easy. If you are using Windows, go to <a href="http://railsinstaller.org/">Rails Installer</a> and download the Rails Installer executable and view the excellent installation video. Double-click the executable and follow the instructions to install Git (so you can skip <a class="ref" href="beginning?version=4.0#sec-install_git">Section&nbsp;1.2.2.2</a>), Ruby (skip <a class="ref" href="beginning?version=4.0#sec-install_ruby">Section&nbsp;1.2.2.3</a>), RubyGems (skip <a class="ref" href="beginning?version=4.0#sec-install_rubygems">Section&nbsp;1.2.2.4</a>), and Rails itself (skip <a class="ref" href="beginning?version=4.0#sec-install_rails">Section&nbsp;1.2.2.5</a>). Once the installation has finished, you can skip right to the creation of the first application in <a class="ref" href="beginning?version=4.0#sec-the_first_application">Section&nbsp;1.2.3</a>.</p>
+
+<p>Bear in mind that the Rails Installer might use a slightly different version of Rails from the one installed in <a class="ref" href="beginning?version=4.0#sec-install_rails">Section&nbsp;1.2.2.5</a>, which might cause incompatibilities. To fix this, I am currently working with Nic and Wayne to create a list of Rails Installers ordered by Rails version number.</p>
+
+<div class="label" id="sec-install_git"></div>
+
+
+<h4><a id="sec-1_2_2_2" href="beginning?version=4.0#sec-install_git" class="heading">Install Git</a></h4>
+
+
+<p>Much of the Rails ecosystem depends in one way or another on a <a href="http://en.wikipedia.org/wiki/Revision_control">version control system</a> called <a href="http://git-scm.com/">Git</a> (covered in more detail in <a class="ref" href="beginning?version=4.0#sec-version_control">Section&nbsp;1.3</a>). Because its use is ubiquitous, you should install Git even at this early stage; I suggest following the installation instructions for your platform at the <a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git">Installing Git section of <em>Pro Git</em></a>.</p>
+
+<div class="label" id="sec-install_ruby"></div>
+
+
+<h4><a id="sec-1_2_2_3" href="beginning?version=4.0#sec-install_ruby" class="heading">Install Ruby</a></h4>
+
+
+<p>The next step is to install Ruby. (This can be painful and error-prone, and I actually dread having to install new versions of Ruby, but unfortunately it&rsquo;s the cost of doing business.)</p>
+
+<p>It&rsquo;s possible that your system already has Ruby installed. Try running</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby -v
+</pre></div>
+</div>
+
+
+<p>to see the version number. Rails&nbsp;4 requires Ruby&nbsp;1.9 or later and works best with Ruby&nbsp;2.0. (In particular, it won&rsquo;t work Ruby&nbsp;1.8.7.) This tutorial assumes that most readers are using Ruby&nbsp;1.9.3 or 2.0.0, but Ruby&nbsp;1.9.2 should work as well.</p>
+
+<p>As part of installing Ruby, if you are using OS&nbsp;X or Linux I strongly recommend using <a href="http://rvm.io/">Ruby Version Manager (RVM)</a>, which allows you to install and manage multiple versions of Ruby on the same machine. (The <a href="http://github.com/vertiginous/pik">Pik</a> project accomplishes a similar feat on Windows.) This is particularly important if you want to run different versions of Ruby or Rails on the same machine. If you run into any problems with RVM, you can often find its creator, Wayne&nbsp;E. Seguin, on the RVM IRC channel (<a href="http://webchat.freenode.net/?channels=rvm">#rvm on freenode.net</a>).<sup class="footnote" id="fnref-1_12"><a href="?version=4.0#fn-1_12">12</a></sup> If you are running Linux, I particularly recommend <a href="http://blog.sudobits.com/2012/05/02/how-to-install-ruby-on-rails-in-ubuntu-12-04-lts/">How to install Ruby on Rails in Ubuntu on the Sudobits Blog</a>.</p>
+
+<p>As a prerequisite, OS&nbsp;X users may need to install the Xcode developer tools. To avoid the (huge) full installation, I recommend the much smaller <a href="https://developer.apple.com/downloads/">Command Line Tools for Xcode</a>.<sup class="footnote" id="fnref-1_13"><a href="?version=4.0#fn-1_13">13</a></sup></p>
+
+<p>To get started with the Ruby installation, first <a href="http://rvm.io/rvm/install/">install RVM</a>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> curl -L https://get.rvm.io | bash -s
+</pre></div>
+</div>
+
+
+<p>(If you have RVM installed, you should run</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm get stable
+</pre></div>
+</div>
+
+
+<p>to ensure that you have the latest version.)</p>
+
+<p>You can then get Ruby set up by examining the requirements for installing it:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm requirements
+</pre></div>
+</div>
+
+
+<p>On my system, I had to install the following (using <a href="http://mxcl.github.com/homebrew/">Homebrew</a>, a package management system for OS&nbsp;X):</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> brew install libtool libxslt libksba openssl
+</pre></div>
+</div>
+
+
+<p>On Linux, you can accomplish similar things with <code>apt-get</code> or <code>yum</code>.</p>
+
+<p>I also had to install a <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> library:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">#</span> For Mac with Homebrew
+<span class="gp">$</span> brew install libyaml
+
+<span class="gp">#</span> For Debian-based Linux systems
+<span class="gp">$</span> apt-get install libyaml-dev
+
+<span class="gp">#</span> For Fedora/CentOS/RHEL Linux systems
+<span class="gp">$</span> yum install libyaml-devel
+</pre></div>
+</div>
+
+
+<p>Finally, I needed to tell RVM where OpenSSL was located when installing Ruby&nbsp;2.0.0:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm install 2.0.0 --with-openssl-dir<span class="o">=</span><span class="nv">$HOME</span>/.rvm/usr
+<span class="go">&lt;wait a while&gt;</span>
+</pre></div>
+</div>
+
+
+<p>With that, at least on my system, Ruby&nbsp;2.0.0 was installed successfully.</p>
+
+<p>Unfortunately, lots of things can go wrong along the way. I&rsquo;ve done my best to cover some of the most common cases, but the only general solution is web searches and determination.</p>
+
+<p>After installing Ruby, you should configure your system for the other software needed to run Rails applications. This typically involves installing <em>gems</em>, which are self-contained packages of Ruby code. Since gems with different version numbers sometimes conflict, it is often convenient to create separate <em>gemsets</em>, which are self-contained bundles of gems. For the purposes of this tutorial, I suggest creating a gemset called <code>railstutorial_rails_4_0</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm use 2.0.0@railstutorial_rails_4_0 --create --default
+<span class="go">Using /Users/mhartl/.rvm/gems/ruby-2.0.0-p0 with gemset railstutorial_rails_4_0</span>
+</pre></div>
+</div>
+
+
+<p>This command creates (<tt class="verb">--create</tt>) the gemset <code>railstutorial_rails_4_0</code> associated with Ruby&nbsp;2.0.0 while arranging to start using it immediately (<tt class="verb">use</tt>) and setting it as the default (<tt class="verb">--default</tt>) gemset, so that any time we open a new terminal window the <code>2.0.0@railstutorial_rails_4_0</code> Ruby/gemset combination is automatically selected. RVM supports a large variety of commands for manipulating gemsets; see the documentation at <a href="http://rvm.io/gemsets/">http://rvm.beginrescueend.com/gemsets/</a>. If you ever get stuck with RVM, running commands like these should help you get your bearings:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm --help
+<span class="gp">$</span> rvm gemset --help
+</pre></div>
+</div>
+
+
+<div class="label" id="sec-install_rubygems"></div>
+
+
+<h4><a id="sec-1_2_2_4" href="beginning?version=4.0#sec-install_rubygems" class="heading">Install RubyGems</a></h4>
+
+
+<p>RubyGems is a package manager for Ruby projects, and there are many useful libraries (including Rails) available as Ruby packages, or <em>gems</em>. Installing RubyGems should be easy once you install Ruby. In fact, if you have <a href="http://rvm.io/rvm/install/">installed RVM</a>, you already have RubyGems, since RVM includes it automatically:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> which gem
+<span class="go">/Users/mhartl/.rvm/rubies/ruby-2.0.0-p0/bin/gem</span>
+</pre></div>
+</div>
+
+
+<p>If you don&rsquo;t already have it, you should <a href="http://rubyforge.org/frs/?group_id=126">download RubyGems</a>, extract it, and then go to the <code>rubygems</code> directory and run the setup program:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby setup.rb
+</pre></div>
+</div>
+
+
+<p>(If you get a permissions error here, recall from <a class="ref" href="beginning?version=4.0#sec-conventions">Section&nbsp;1.1.3</a> that you may have to use <code>sudo</code>.)</p>
+
+<p>If you already have RubyGems installed, you should make sure your system uses the version used in this tutorial:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> gem update --system 2.0.3
+</pre></div>
+</div>
+
+
+<p>Freezing your system to this particular version will help prevent conflicts as RubyGems changes in the future.</p>
+
+<p>When installing gems, by default RubyGems generates two different kinds of documentation (called ri and rdoc), but many Ruby and Rails developers find that the time to build them isn&rsquo;t worth the benefit. (Many programmers rely on online documentation instead of the native ri and rdoc documents.) To prevent the automatic generation of the documentation, I recommend making a gem configuration file called <code>.gemrc</code> in your home directory as in <a class="ref" href="beginning?version=4.0#code-create_gemrc">Listing&nbsp;1.1</a> with the line in <a class="ref" href="beginning?version=4.0#code-gemrc">Listing&nbsp;1.2</a>. (The tilde&nbsp;&ldquo;<tt class="verb">~</tt>&rdquo; means &ldquo;home directory&rdquo;, while the dot&nbsp;<tt class="verb">.</tt> in <code>.gemrc</code> makes the file hidden, which is a common convention for configuration files. )</p>
+
+<div class="label" id="code-create_gemrc"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 1.1.</span> <span class="description">Creating a gem configuration file.</span> </div>
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> subl ~/.gemrc
+</pre></div>
+</div></div>
+
+
+<p>Here <code>subl</code> is the command-line command to launch Sublime Text on OS&nbsp;X, which you can set up using the <a href="http://www.sublimetext.com/docs/2/osx_command_line.html">Sublime Text&nbsp;2 documentation for the OS&nbsp;X command line</a>. If you&rsquo;re on a different platform, or if you&rsquo;re using a different editor, you should replace this command as necessary (i.e., by double-clicking the application icon or by using an alternate command such as <code>mate</code>, <code>vim</code>, <code>gvim</code>, or <code>mvim</code>). For brevity, throughout the rest of this tutorial I&rsquo;ll use <code>subl</code> as a shorthand for &ldquo;open with your favorite text editor.&rdquo;</p>
+
+<div class="label" id="code-gemrc"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 1.2.</span> <span class="description">Suppressing the ri and rdoc documentation in <code>.gemrc</code>.</span> </div>
+<div class="code"><div class="highlight"><pre><span class="ss">install:</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">rdoc</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">ri</span>
+<span class="ss">update:</span>  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">rdoc</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">ri</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="sec-install_rails"></div>
+
+
+<h4><a id="sec-1_2_2_5" href="beginning?version=4.0#sec-install_rails" class="heading">Install Rails</a></h4>
+
+
+<p>Once you&rsquo;ve installed RubyGems, installing Rails should be easy. This tutorial standardizes on Rails&nbsp;4.0, which we can install as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> gem install rails --version 4.0.0
+</pre></div>
+</div>
+
+
+<p>To check your Rails installation, run the following command to print out the version number:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails -v
+<span class="go">Rails 4.0.0</span>
+</pre></div>
+</div>
+
+
+<p><em>Note:</em> If you installed Rails using the Rails Installer in <a class="ref" href="beginning?version=4.0#sec-rails_installer_windows">Section&nbsp;1.2.2.1</a>, there might be slight version differences. As of this writing, those differences are not relevant, but in the future, as the current Rails version diverges from the one used in this tutorial, these differences may become significant. I am currently working with Engine Yard to create links to specific versions of the Rails Installer.</p>
+
+<p>If you&rsquo;re running Linux, you might have to install a couple of other packages at this point:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> sudo apt-get install libxslt-dev libxml2-dev libsqlite3-dev <span class="c"># Linux only</span>
+</pre></div>
+</div>
+
+
+
+
+<div class="label" id="sec-the_first_application"></div>
+
+
+<h3><a id="sec-1_2_3" href="beginning?version=4.0#sec-the_first_application" class="heading"><span class="number">1.2.3</span> The first application</a></h3>
+
+
+<p>Virtually all Rails applications start the same way, by running <code>rails new</code> command. This handy command creates a skeleton Rails application in a directory of your choice. To get started, make a directory for your Rails projects and then run <code>rails new</code> to make the first application (<a class="ref" href="beginning?version=4.0#code-rails_command">Listing&nbsp;1.3</a>):</p>
+
+<div class="label" id="code-rails_command"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 1.3.</span> <span class="description">Running <code>rails new</code> to generate a new application.</span> </div>
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> mkdir rails_projects
+<span class="gp">$</span> <span class="nb">cd </span>rails_projects
+<span class="gp">$</span> rails new first_app
+<span class="go">      create</span>
+<span class="go">      create  README.rdoc</span>
+<span class="go">      create  Rakefile</span>
+<span class="go">      create  config.ru</span>
+<span class="go">      create  .gitignore</span>
+<span class="go">      create  Gemfile</span>
+<span class="go">      create  app</span>
+<span class="go">      create  app/assets/javascripts/application.js</span>
+<span class="go">      create  app/assets/stylesheets/application.css</span>
+<span class="go">      create  app/controllers/application_controller.rb</span>
+<span class="go">      .</span>
+<span class="go">      .</span>
+<span class="go">      .</span>
+<span class="go">      create  test/test_helper.rb</span>
+<span class="go">      create  tmp/cache</span>
+<span class="go">      create  tmp/cache/assets</span>
+<span class="go">      create  vendor/assets/javascripts</span>
+<span class="go">      create  vendor/assets/javascripts/.keep</span>
+<span class="go">      create  vendor/assets/stylesheets</span>
+<span class="go">      create  vendor/assets/stylesheets/.keep</span>
+<span class="go">         run  bundle install</span>
+<span class="go">.</span>
+<span class="go">.</span>
+<span class="go">.</span>
+<span class="go">Your bundle is complete! Use `bundle show [gemname]` to see where a bundled</span>
+<span class="go">gem is installed.</span>
+</pre></div>
+</div></div>
+
+
+<p>As seen at the end of <a class="ref" href="beginning?version=4.0#code-rails_command">Listing&nbsp;1.3</a>, running <code>rails new</code> automatically runs the <code>bundle install</code> command after the file creation is done. If that step doesn&rsquo;t work right now, don&rsquo;t worry; follow the steps in <a class="ref" href="beginning?version=4.0#sec-bundler">Section&nbsp;1.2.4</a> and you should be able to get it to work.</p>
+
+<p>Notice how many files and directories the <code>rails</code> command creates. This standard directory and file structure (<a class="ref" href="beginning?version=4.0#fig-directory_structure_rails">Figure&nbsp;1.2</a>) is one of the many advantages of Rails; it immediately gets you from zero to a functional (if minimal) application. Moreover, since the structure is common to all Rails apps, you can immediately get your bearings when looking at someone else&rsquo;s code. A summary of the default Rails files appears in <a class="ref" href="beginning?version=4.0#table-rails_directory_structure">Table&nbsp;1.1</a>; we&rsquo;ll learn about most of these files and directories throughout the rest of this book. In particular, starting in <a class="ref" href="filling-in-the-layout?version=4.0#sec-the_asset_pipeline">Section&nbsp;5.2.1</a> we&rsquo;ll discuss the <code>app/assets</code> directory, part of the <em>asset pipeline</em> that makes it easier than ever to organize and deploy assets such as cascading style sheets and JavaScript files.</p>
+
+<div class="label" id="fig-directory_structure_rails"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/directory_structure_rails_4_0.png" alt="directory_structure_rails_4_0" /></span></div><div class="caption"><span class="header">Figure 1.2: </span><span class="description">The directory structure for a newly created Rails app.&nbsp;<a href="http://railstutorial.org/images/figures/directory_structure_rails_4_0-full.png">(full size)</a></span></div></div>
+
+
+
+
+<div class="label" id="table-rails_directory_structure"></div>
+
+
+<div class="table"><div class="center">
+<table class="tabular"><tr><th class="align_left"><strong>File/Directory</strong></th><th class="align_left"><strong>Purpose</strong></th></tr><tr class="top_bar"><td class="align_left"><code>app/</code></td><td class="align_left">Core application (app) code, including models, views, controllers, and helpers</td></tr><tr><td class="align_left"><code>app/assets</code></td><td class="align_left">Applications assets such as cascading style sheets (CSS), JavaScript files, and images</td></tr><tr><td class="align_left"><code>bin/</code></td><td class="align_left">Binary executable files</td></tr><tr><td class="align_left"><code>config/</code></td><td class="align_left">Application configuration</td></tr><tr><td class="align_left"><code>db/</code></td><td class="align_left">Database files</td></tr><tr><td class="align_left"><code>doc/</code></td><td class="align_left">Documentation for the application</td></tr><tr><td class="align_left"><code>lib/</code></td><td class="align_left">Library modules</td></tr><tr><td class="align_left"><code>lib/assets</code></td><td class="align_left">Library assets such as cascading style sheets (CSS), JavaScript files, and images</td></tr><tr><td class="align_left"><code>log/</code></td><td class="align_left">Application log files</td></tr><tr><td class="align_left"><code>public/</code></td><td class="align_left">Data accessible to the public (e.g., web browsers), such as error pages</td></tr><tr><td class="align_left"><code>script/rails</code></td><td class="align_left">A script for generating code, opening console sessions, or starting a local server</td></tr><tr><td class="align_left"><code>test/</code></td><td class="align_left">Application tests (made obsolete by the <code>spec/</code> directory in <a class="ref" href="static-pages?version=4.0#sec-static_pages">Section&nbsp;3.1</a>)</td></tr><tr><td class="align_left"><code>tmp/</code></td><td class="align_left">Temporary files</td></tr><tr><td class="align_left"><code>vendor/</code></td><td class="align_left">Third-party code such as plugins and gems</td></tr><tr><td class="align_left"><code>vendor/assets</code></td><td class="align_left">Third-party assets such as cascading style sheets (CSS), JavaScript files, and images</td></tr><tr><td class="align_left"><code>README.rdoc</code></td><td class="align_left">A brief description of the application</td></tr><tr><td class="align_left"><code>Rakefile</code></td><td class="align_left">Utility tasks available via the <code>rake</code> command</td></tr><tr><td class="align_left"><code>Gemfile</code></td><td class="align_left">Gem requirements for this app</td></tr><tr><td class="align_left"><code>Gemfile.lock</code></td><td class="align_left">A list of gems used to ensure that all copies of the app use the same gem versions</td></tr><tr><td class="align_left"><code>config.ru</code></td><td class="align_left">A configuration file for <a href="http://rack.rubyforge.org/doc/">Rack middleware</a></td></tr><tr><td class="align_left"><code>.gitignore</code></td><td class="align_left">Patterns for files that should be ignored by Git</td></tr></table></div><div class="caption"><span class="header">Table 1.1: </span><span class="description">A summary of the default Rails directory structure.</span></div></div>
+
+
+
+
+<div class="label" id="sec-bundler"></div>
+
+
+<h3><a id="sec-1_2_4" href="beginning?version=4.0#sec-bundler" class="heading"><span class="number">1.2.4</span> Bundler</a></h3>
+
+
+<p>After creating a new Rails application, the next step is to use <em>Bundler</em> to install and include the gems needed by the app. As noted briefly in <a class="ref" href="beginning?version=4.0#sec-the_first_application">Section&nbsp;1.2.3</a>, Bundler is run automatically (via <code>bundle install</code>) by the <code>rails</code> command, but in this section we&rsquo;ll make some changes to the default application gems and run Bundler again. This involves opening the <code>Gemfile</code> with your favorite text editor:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>first_app/
+<span class="gp">$</span> subl Gemfile
+</pre></div>
+</div>
+
+
+<p>The result should look something like <a class="ref" href="beginning?version=4.0#code-default_gemfile">Listing&nbsp;1.4</a>. The code in this file is Ruby, but don&rsquo;t worry at this point about the syntax; <a class="ref" href="rails-flavored-ruby?version=4.0#top">Chapter&nbsp;4</a> will cover Ruby in more depth.</p>
+
+<div class="label" id="code-default_gemfile"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 1.4.</span> <span class="description">The default <code>Gemfile</code> in the <code>first_app</code> directory.</span> </div>
+<div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+
+<span class="c1"># Use sqlite3 as the database for Active Record</span>
+<span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span>
+
+<span class="c1"># Use SCSS for stylesheets</span>
+<span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.0.0&#39;</span>
+
+<span class="c1"># Use Uglifier as compressor for JavaScript assets</span>
+<span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;= 1.3.0&#39;</span>
+
+<span class="c1"># Use CoffeeScript for .js.coffee assets and views</span>
+<span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.0.0&#39;</span>
+
+<span class="c1"># See https://github.com/sstephenson/execjs#readme for more supported runtimes</span>
+<span class="c1"># gem &#39;therubyracer&#39;, platforms: :ruby</span>
+
+<span class="c1"># Use jquery as the JavaScript library</span>
+<span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span>
+
+<span class="c1"># Turbolinks makes following links in your web application faster.</span>
+<span class="c1"># Read more: https://github.com/rails/turbolinks</span>
+<span class="n">gem</span> <span class="s1">&#39;turbolinks&#39;</span>
+
+<span class="c1"># Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder</span>
+<span class="n">gem</span> <span class="s1">&#39;jbuilder&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 1.0.1&#39;</span>
+
+<span class="n">group</span> <span class="ss">:doc</span> <span class="k">do</span>
+  <span class="c1"># bundle exec rake doc:rails generates the API under doc/api.</span>
+  <span class="n">gem</span> <span class="s1">&#39;sdoc&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+<span class="k">end</span>
+
+<span class="c1"># Use ActiveModel has_secure_password</span>
+<span class="c1"># gem &#39;bcrypt-ruby&#39;, &#39;~&gt; 3.0.0&#39;</span>
+
+<span class="c1"># Use unicorn as the app server</span>
+<span class="c1"># gem &#39;unicorn&#39;</span>
+
+<span class="c1"># Use Capistrano for deployment</span>
+<span class="c1"># gem &#39;capistrano&#39;, group: :development</span>
+
+<span class="c1"># Use debugger</span>
+<span class="c1"># gem &#39;debugger&#39;, group: [:development, :test]</span>
+</pre></div>
+</div></div>
+
+
+<p>Many of these lines are commented out with the hash symbol&nbsp;<code>#</code>; they are there to show you some commonly needed gems and to give examples of the Bundler syntax. For now, we won&rsquo;t need any gems other than the defaults.</p>
+
+<p>Unless you specify a version number to the <code>gem</code> command, Bundler will automatically install the latest version of the gem. Unfortunately, gem updates often cause minor but potentially confusing breakage, so in this tutorial we&rsquo;ll include explicit version numbers known to work, as seen in <a class="ref" href="beginning?version=4.0#code-gemfile_sqlite_version">Listing&nbsp;1.5</a> (which also omits the commented-out lines from <a class="ref" href="beginning?version=4.0#code-default_gemfile">Listing&nbsp;1.4</a>).</p>
+
+<div class="label" id="code-gemfile_sqlite_version"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 1.5.</span> <span class="description">A <code>Gemfile</code> with an explicit version of each Ruby gem.</span> </div>
+<div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+<span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+
+<span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.7&#39;</span>
+<span class="k">end</span>
+
+<span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;2.1.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.2.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;turbolinks&#39;</span><span class="p">,</span> <span class="s1">&#39;1.1.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;jbuilder&#39;</span><span class="p">,</span> <span class="s1">&#39;1.0.2&#39;</span>
+
+<span class="n">group</span> <span class="ss">:doc</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sdoc&#39;</span><span class="p">,</span> <span class="s1">&#39;0.3.20&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p><a class="ref" href="beginning?version=4.0#code-gemfile_sqlite_version">Listing&nbsp;1.5</a> adds the line</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+</pre></div>
+</div>
+
+
+<p>identifying the version of Ruby expected by the application, which is especially useful when deploying applications (<a class="ref" href="beginning?version=4.0#sec-deploying">Section&nbsp;1.4</a>). (If you are using a version of Ruby other than 2.0.0, you should change this line accordingly.)</p>
+
+<p>The updated <code>Gemfile</code> also changes the line for jQuery, the default JavaScript library used by Rails, from</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span>
+</pre></div>
+</div>
+
+
+<p>to</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.2.1&#39;</span>
+</pre></div>
+</div>
+
+
+<p>We&rsquo;ve also changed</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span>
+</pre></div>
+</div>
+
+
+<p>to</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.7&#39;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>which forces Bundler to install version <code>1.3.7</code> of the <code>sqlite3</code> gem. Note that we&rsquo;ve also taken this opportunity to arrange for the gem to be included only in a development environment (<a class="ref" href="sign-up?version=4.0#sec-rails_environments">Section&nbsp;7.1.1</a>), which prevents potential conflicts with the database used by Heroku (<a class="ref" href="beginning?version=4.0#sec-deploying">Section&nbsp;1.4</a>).</p>
+
+<p><a class="ref" href="beginning?version=4.0#code-gemfile_sqlite_version">Listing&nbsp;1.5</a> also changes a few other lines, converting</p>
+
+<div class="code"><div class="highlight"><pre><span class="c1"># Use SCSS for stylesheets</span>
+<span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.0.0&#39;</span>
+
+<span class="c1"># Use Uglifier as compressor for JavaScript assets</span>
+<span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;= 1.3.0&#39;</span>
+
+<span class="c1"># Use CoffeeScript for .js.coffee assets and views</span>
+<span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.0.0&#39;</span>
+</pre></div>
+</div>
+
+
+<p>to</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span>   <span class="s1">&#39;4.0.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;2.1.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+</pre></div>
+</div>
+
+
+<p>The syntax</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;= 1.3.0&#39;</span>
+</pre></div>
+</div>
+
+
+<p>installs the latest version of the <code>uglifier</code> gem (which handles file compression for the asset pipeline) as long as it&rsquo;s greater than or equal to version&nbsp;<code>1.3.0</code>&mdash;even if it&rsquo;s, say, version&nbsp;<code>7.2</code>. Meanwhile, the code</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.0.0&#39;</span>
+</pre></div>
+</div>
+
+
+<p>installs the gem <code>coffee-rails</code> (also needed by the asset pipeline) as long as it&rsquo;s newer than version&nbsp;<code>4.0.0</code>. In other words, the <tt class="verb">&gt;=</tt> notation always performs upgrades, whereas the <tt class="verb">~&gt; 4.0.0</tt> notation only performs upgrades to minor point releases (e.g., from <code>4.0.0</code> to <code>4.0.1</code>), but not to major point releases (e.g., from <code>4.0</code> to <code>4.1</code>). Unfortunately, experience shows that even minor point releases can break things, so for the <em>Rails Tutorial</em> we&rsquo;ll err on the side of caution by including exact version numbers for virtually all gems.
+You are welcome to use the most up-to-date version of any gem, including using to the <tt class="verb">~&gt;</tt> construction in the <code>Gemfile</code> (which I generally recommend for more advanced users), but be warned that this may cause the tutorial to act unpredictably.</p>
+
+<p>Once you&rsquo;ve assembled the proper <code>Gemfile</code>, install the gems using
+<code>bundle update</code><sup class="footnote" id="fnref-1_14"><a href="?version=4.0#fn-1_14">14</a></sup> and <code>bundle install</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle update
+<span class="gp">$</span> bundle install
+<span class="go">Fetching source index for https://rubygems.org/</span>
+<span class="go">.</span>
+<span class="go">.</span>
+<span class="go">.</span>
+</pre></div>
+</div>
+
+
+<p>The <code>bundle install</code> command might take a few moments, but when it&rsquo;s done our application will be ready to run.</p>
+
+<div class="label" id="sec-rails_server"></div>
+
+
+<h3><a id="sec-1_2_5" href="beginning?version=4.0#sec-rails_server" class="heading"><span class="number">1.2.5</span> <tt>rails server</tt></a></h3>
+
+
+<p>Thanks to running <code>rails new</code> in <a class="ref" href="beginning?version=4.0#sec-the_first_application">Section&nbsp;1.2.3</a> and <code>bundle install</code> in <a class="ref" href="beginning?version=4.0#sec-bundler">Section&nbsp;1.2.4</a>, we already have an application we can run&mdash;but how? Happily, Rails comes with a command-line program, or <em>script</em>, that runs a <em>local</em> web server, visible only from your development machine:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails server
+<span class="go">=&gt; Booting WEBrick</span>
+<span class="go">=&gt; Rails application starting on http://0.0.0.0:3000</span>
+<span class="go">=&gt; Call with -d to detach</span>
+<span class="go">=&gt; Ctrl-C to shutdown server</span>
+</pre></div>
+</div>
+
+
+<p>(If your system complains about the lack of a JavaScript runtime, visit the <a href="https://github.com/sstephenson/execjs">execjs page at GitHub</a> for a list of possibilities. I particularly recommend installing <a href="http://nodejs.org/">Node.js</a>.) This tells us that the application is running on <a href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">port number</a> 3000<sup class="footnote" id="fnref-1_15"><a href="?version=4.0#fn-1_15">15</a></sup> at the address <code>0.0.0.0</code>. This address tells the computer to listen on every available IP address configured on that specific machine; in particular, we can view the application using the special address <code>127.0.0.1</code>, which is also known as <code>localhost</code>. We can see the result of visiting <a href="http://localhost:3000/">http://localhost:3000/</a> in <a class="ref" href="beginning?version=4.0#fig-riding_rails">Figure&nbsp;1.3</a>.</p>
+
+<div class="label" id="fig-riding_rails"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/riding_rails_4_0.png" alt="riding_rails_4_0" /></span></div><div class="caption"><span class="header">Figure 1.3: </span><span class="description">The default Rails page.&nbsp;<a href="http://railstutorial.org/images/figures/riding_rails_4_0-full.png">(full size)</a></span></div></div>
+
+
+<p>To see information about our first application, click on the link &ldquo;About your application&rsquo;s environment&rdquo;. The result is shown in <a class="ref" href="beginning?version=4.0#fig-riding_rails_environment">Figure&nbsp;1.4</a>. (<a class="ref" href="beginning?version=4.0#fig-riding_rails_environment">Figure&nbsp;1.4</a> represents the environment on my machine when I made the screenshot; your results may differ.)</p>
+
+<div class="label" id="fig-riding_rails_environment"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/riding_rails_environment_4_0.png" alt="riding_rails_environment_4_0" /></span></div><div class="caption"><span class="header">Figure 1.4: </span><span class="description">The default page with the app environment.&nbsp;<a href="http://railstutorial.org/images/figures/riding_rails_environment_4_0-full.png">(full size)</a></span></div></div>
+
+
+<p>Of course, we don&rsquo;t need the default Rails page in the long run, but it&rsquo;s nice to see it working for now. We&rsquo;ll remove the default page (and replace it with a custom home page) in <a class="ref" href="filling-in-the-layout?version=4.0#sec-rails_routes">Section&nbsp;5.3.2</a>.</p>
+
+<div class="label" id="sec-mvc"></div>
+
+
+<h3><a id="sec-1_2_6" href="beginning?version=4.0#sec-mvc" class="heading"><span class="number">1.2.6</span> Model-view-controller (MVC)</a></h3>
+
+
+<p>Even at this early stage, it&rsquo;s helpful to get a high-level overview of how Rails applications work (<a class="ref" href="beginning?version=4.0#fig-MVC">Figure&nbsp;1.5</a>). You might have noticed that the standard Rails application structure (<a class="ref" href="beginning?version=4.0#fig-directory_structure_rails">Figure&nbsp;1.2</a>) has an application directory called <code>app/</code> with three subdirectories: <code>models</code>, <code>views</code>, and <code>controllers</code>. This is a hint that Rails follows the <a href="http://en.wikipedia.org/wiki/Model-view-controller">model-view-controller</a> (MVC) architectural pattern, which enforces a separation between &ldquo;domain logic&rdquo; (also called &ldquo;business logic&rdquo;) from the input and presentation logic associated with a graphical user interface (GUI). In the case of web applications, the &ldquo;domain logic&rdquo; typically consists of data models for things like users, articles, and products, and the GUI is just a web page in a web browser.</p>
+
+<p>When interacting with a Rails application, a browser sends a <em>request</em>, which is received by a web server and passed on to a Rails <em>controller</em>, which is in charge of what to do next. In some cases, the controller will immediately render a <em>view</em>, which is a template that gets converted to HTML and sent back to the browser. More commonly for dynamic sites, the controller interacts with a <em>model</em>, which is a Ruby object that represents an element of the site (such as a user) and is in charge of communicating with the database. After invoking the model, the controller then renders the view and returns the complete web page to the browser as HTML.</p>
+
+<div class="label" id="fig-MVC"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/mvc_schematic.png" alt="mvc_schematic" /></span></div><div class="caption"><span class="header">Figure 1.5: </span><span class="description">A schematic representation of the model-view-controller (MVC) architecture.</span></div></div>
+
+
+<p>If this discussion seems a bit abstract right now, worry not; we&rsquo;ll refer back to this section frequently. In addition, <a class="ref" href="a-demo-app?version=4.0#sec-mvc_in_action">Section&nbsp;2.2.2</a> has a more detailed discussion of MVC in the context of the demo app.  Finally, the sample app will use all aspects of MVC; we&rsquo;ll cover controllers and views starting in <a class="ref" href="static-pages?version=4.0#sec-static_pages">Section&nbsp;3.1</a>, models starting in <a class="ref" href="modeling-users?version=4.0#sec-user_model">Section&nbsp;6.1</a>, and we&rsquo;ll see all three working together in <a class="ref" href="sign-up?version=4.0#sec-a_users_resource">Section&nbsp;7.1.2</a>.</p>
+
+<div class="label" id="sec-version_control"></div>
+
+
+<h2><a id="sec-1_3" href="beginning?version=4.0#sec-version_control" class="heading"><span class="number">1.3</span> Version control with Git</a></h2>
+
+
+<p>Now that we have a fresh and working Rails application, we&rsquo;ll take a moment for a step that, while technically optional, would be viewed by many Rails developers as practically essential, namely, placing our application source code under <em>version control</em>. Version control systems allow us to track changes to our project&rsquo;s code, collaborate more easily, and roll back any inadvertent errors (such as accidentally deleting files). Knowing how to use a version control system is a required skill for every software developer.</p>
+
+<p>There are many options for version control, but the Rails community has largely standardized on <a href="http://git-scm.com/">Git</a>, a distributed version control system originally developed by Linus Torvalds to host the Linux kernel. Git is a large subject, and we&rsquo;ll only be scratching the surface in this book, but there are many good free resources online; I especially recommend <a href="http://progit.org"><em>Pro Git</em></a> by Scott Chacon (Apress, 2009). Putting your source code under version control with Git is <em>strongly</em> recommended, not only because it&rsquo;s nearly a universal practice in the Rails world, but also because it will allow you to share your code more easily (<a class="ref" href="beginning?version=4.0#sec-github">Section&nbsp;1.3.4</a>) and deploy your application right here in the first chapter (<a class="ref" href="beginning?version=4.0#sec-deploying">Section&nbsp;1.4</a>).</p>
+
+<div class="label" id="sec-git_setup"></div>
+
+
+<h3><a id="sec-1_3_1" href="beginning?version=4.0#sec-git_setup" class="heading"><span class="number">1.3.1</span> Installation and setup</a></h3>
+
+
+<p>The first step is to install Git if you haven&rsquo;t yet followed the steps in <a class="ref" href="beginning?version=4.0#sec-install_git">Section&nbsp;1.2.2.2</a>. (As noted in that section, this involves following the instructions in the <a href="http://progit.org/book/ch1-4.html">Installing Git section of <em>Pro Git</em></a>.)</p>
+
+<h4><a id="sec-1_3_1_1" href="beginning?version=4.0#sec-1_3_1_1" class="heading">First-time system setup</a></h4>
+
+
+<p>After installing Git, you should perform a set of one-time setup steps. These are <em>system</em> setups, meaning you only have to do them once per computer:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+<span class="gp">$</span> git config --global user.email your.email@example.com
+</pre></div>
+</div>
+
+
+<p>I also like to use <code>co</code> in place of the more verbose <code>checkout</code> command, which we can arrange as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git config --global alias.co checkout
+</pre></div>
+</div>
+
+
+<p>This tutorial will usually use the full <code>checkout</code> command, which works for systems that don&rsquo;t have <code>co</code> configured, but in real life I nearly always use <code>git co</code>.</p>
+
+<p>As a final setup step, you can optionally set the editor Git will use for commit messages. If you use a graphical editor such as Sublime Text, TextMate, gVim, or MacVim, you need to use a flag to make sure that the editor stays attached to the shell instead of detaching immediately:<sup class="footnote" id="fnref-1_16"><a href="?version=4.0#fn-1_16">16</a></sup></p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git config --global core.editor <span class="s2">&quot;subl -w&quot;</span>
+</pre></div>
+</div>
+
+
+<p>Replace <code>"subl -w"</code> with <code>"mate -w"</code> for TextMate, <code>"gvim -f"</code> for gVim, or <code>"mvim -f"</code> for MacVim.</p>
+
+<h4><a id="sec-1_3_1_2" href="beginning?version=4.0#sec-1_3_1_2" class="heading">First-time repository setup</a></h4>
+
+
+<p>Now we come to some steps that are necessary each time you create a new <em>repository</em>. First navigate to the root directory of the first app and initialize a new repository:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git init
+<span class="go">Initialized empty Git repository in /Users/mhartl/rails_projects/first_app/.git/</span>
+</pre></div>
+</div>
+
+
+<p>The next step is to add the project files to the repository. There&rsquo;s a minor complication, though: by default Git tracks the changes of <em>all</em> the files, but there are some files we don&rsquo;t want to track. For example, Rails creates log files to record the behavior of the application; these files change frequently, and we don&rsquo;t want our version control system to have to update them constantly. Git has a simple mechanism to ignore such files: simply include a file called <code>.gitignore</code> in the application root directory with some rules telling Git which files to ignore.<sup class="footnote" id="fnref-1_17"><a href="?version=4.0#fn-1_17">17</a></sup></p>
+
+<p>Looking again at <a class="ref" href="beginning?version=4.0#table-rails_directory_structure">Table&nbsp;1.1</a>, we see that the <code>rails</code> command creates a default <code>.gitignore</code> file in the application root directory, as shown in <a class="ref" href="beginning?version=4.0#code-default_gitignore">Listing&nbsp;1.6</a>.</p>
+
+<div class="label" id="code-default_gitignore"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 1.6.</span> <span class="description">The default <code>.gitignore</code> created by the <code>rails</code> command.</span> </div>
+<div class="code"><div class="highlight"><pre># See http://help.github.com/ignore-files/ for more about ignoring files.
+#
+# If you find yourself ignoring temporary files generated by your text editor
+# or operating system, you probably want to add a global ignore instead:
+#   git config --global core.excludesfile &#39;~/.gitignore_global&#39;
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+</pre></div>
+</div></div>
+
+
+<p><a class="ref" href="beginning?version=4.0#code-default_gitignore">Listing&nbsp;1.6</a> causes Git to ignore files such as log files, Rails temporary (<code>tmp</code>) files, and SQLite databases. (For example, to ignore log files, which live in the <code>log/</code> directory, we use <code>log/*.log</code> to ignore all files that end in <code>.log</code>.) Most of these ignored files change frequently and automatically, so including them under version control is unnecessary. Moreover, when collaborating with others, these irrelevant changes can cause frustrating conflicts.</p>
+
+<p>The <code>.gitignore</code> file in <a class="ref" href="beginning?version=4.0#code-default_gitignore">Listing&nbsp;1.6</a> is a good start, but for convenience and security (<a class="ref" href="static-pages?version=4.0#code-secret_token">Listing&nbsp;3.2</a>) I recommend using <a class="ref" href="beginning?version=4.0#code-gitignore">Listing&nbsp;1.7</a> instead. This augmented <code>.gitignore</code> arranges to ignore Rails documentation files, Vim and Emacs swap files, and (for OS&nbsp;X users) the weird <code>.DS_Store</code> directories created by the Mac Finder application. If you want to use this broader set of ignored files, open up <code>.gitignore</code> in your favorite text editor and fill it with the contents of <a class="ref" href="beginning?version=4.0#code-gitignore">Listing&nbsp;1.7</a>.</p>
+
+<div class="label" id="code-gitignore"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 1.7.</span> <span class="description">An augmented <code>.gitignore</code> file.</span> </div>
+<div class="code"><div class="highlight"><pre># Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Ignore other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
+.idea
+.secret
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="sec-adding_and_committing"></div>
+
+
+<h3><a id="sec-1_3_2" href="beginning?version=4.0#sec-adding_and_committing" class="heading"><span class="number">1.3.2</span> Adding and committing</a></h3>
+
+
+<p>Finally, we&rsquo;ll add the files in your new Rails project to Git and then commit the results. You can add all the files (apart from those that match the ignore patterns in <code>.gitignore</code>) as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
+</pre></div>
+</div>
+
+
+<p>Here the dot &lsquo;<code>.</code>&rsquo; represents the current directory, and Git is smart enough to add the files <em>recursively</em>, so it automatically includes all the subdirectories. This command adds the project files to a <em>staging area</em>, which contains pending changes to your project; you can see which files are in the staging area using the <code>status</code> command:<sup class="footnote" id="fnref-1_18"><a href="?version=4.0#fn-1_18">18</a></sup></p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git status
+<span class="gp">#</span> On branch master
+<span class="gp">#</span>
+<span class="gp">#</span> Initial commit
+<span class="gp">#</span>
+<span class="gp">#</span> Changes to be committed:
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+<span class="gp">#</span>
+<span class="gp">#</span>       new file:   README.rdoc
+<span class="gp">#</span>       new file:   Rakefile
+<span class="go">.</span>
+<span class="go">.</span>
+<span class="go">.</span>
+</pre></div>
+</div>
+
+
+<p>(The results are long, so I&rsquo;ve used vertical dots to indicate omitted output.)</p>
+
+<p>To tell Git you want to keep the changes, use the <code>commit</code> command:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git commit -m <span class="s2">&quot;Initial commit&quot;</span>
+<span class="go">[master (root-commit) df0a62f] Initial commit</span>
+<span class="go">42 files changed, 8461 insertions(+), 0 deletions(-)</span>
+<span class="go">create mode 100644 README.rdoc</span>
+<span class="go">create mode 100644 Rakefile</span>
+<span class="go">.</span>
+<span class="go">.</span>
+<span class="go">.</span>
+</pre></div>
+</div>
+
+
+<p>The <code>-m</code> flag lets you add a message for the commit; if you omit <code>-m</code>, Git will open the editor you set in <a class="ref" href="beginning?version=4.0#sec-git_setup">Section&nbsp;1.3.1</a> and have you enter the message there.</p>
+
+<p>It is important to note that Git commits are <em>local</em>, recorded only on the machine on which the commits occur. This is in contrast to the popular open-source version control system called Subversion, in which a commit necessarily makes changes on a remote repository. Git divides a Subversion-style commit into its two logical pieces: a local recording of the changes (<code>git commit</code>) and a push of the changes up to a remote repository (<code>git push</code>). We&rsquo;ll see an example of the push step in <a class="ref" href="beginning?version=4.0#sec-git_commands">Section&nbsp;1.3.5</a>.</p>
+
+<p>By the way, you can see a list of your commit messages using the <code>log</code> command:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git log
+<span class="go">commit df0a62f3f091e53ffa799309b3e32c27b0b38eb4</span>
+<span class="go">Author: Michael Hartl &lt;michael@michaelhartl.com&gt;</span>
+<span class="go">Date:   Thu Oct 15 11:36:21 2009 -0700</span>
+
+<span class="go">  Initial commit</span>
+</pre></div>
+</div>
+
+
+<p>To exit <code>git log</code>, you may have to type <code>q</code> to quit.</p>
+
+<h3><a id="sec-1_3_3" href="beginning?version=4.0#sec-1_3_3" class="heading"><span class="number">1.3.3</span> What good does Git do you?</a></h3>
+
+
+<p>It&rsquo;s probably not entirely clear at this point why putting your source under version control does you any good, so let me give just one example. (We&rsquo;ll see many others in the chapters ahead.) Suppose you&rsquo;ve made some accidental changes, such as (D&rsquo;oh!) deleting the critical <code>app/controllers/</code> directory:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> ls app/controllers/
+<span class="go">application_controller.rb</span>
+<span class="gp">$</span> rm -rf app/controllers/
+<span class="gp">$</span> ls app/controllers/
+<span class="go">ls: app/controllers/: No such file or directory</span>
+</pre></div>
+</div>
+
+
+<p>Here we&rsquo;re using the Unix <code>ls</code> command to list the contents of the <code>app/controllers/</code> directory and the <code>rm</code> command to remove it. The <code>-rf</code> flag means &ldquo;recursive force&rdquo;, which recursively removes all files, directories, subdirectories, and so on, without asking for explicit confirmation of each deletion.</p>
+
+<p>Let&rsquo;s check the status to see what&rsquo;s up:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git status
+<span class="gp">#</span> On branch master
+<span class="gp">#</span> Changed but not updated:
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git add/rm &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
+<span class="gp">#</span>
+<span class="gp">#</span>       deleted:    app/controllers/application_controller.rb
+<span class="gp">#</span>
+<span class="go">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span>
+</pre></div>
+</div>
+
+
+<p>We see here that a file has been deleted, but the changes are only on the &ldquo;working tree&rdquo;; they haven&rsquo;t been committed yet. This means we can still undo the changes easily by having Git check out the previous commit with the <code>checkout</code> command (and a <code>-f</code> flag to force overwriting the current changes):</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout -f
+<span class="gp">$</span> git status
+<span class="gp">#</span> On branch master
+<span class="go">nothing to commit (working directory clean)</span>
+<span class="gp">$</span> ls app/controllers/
+<span class="go">application_controller.rb</span>
+</pre></div>
+</div>
+
+
+<p>The missing directory and file are back. That&rsquo;s a relief!</p>
+
+<div class="label" id="sec-github"></div>
+
+
+<h3><a id="sec-1_3_4" href="beginning?version=4.0#sec-github" class="heading"><span class="number">1.3.4</span> GitHub</a></h3>
+
+
+<p>Now that you&rsquo;ve put your project under version control with Git, it&rsquo;s time to push your code up to <a href="http://github.com">GitHub</a>, a social coding site optimized for hosting and sharing Git repositories. Putting a copy of your Git repository at GitHub serves two purposes: it&rsquo;s a full backup of your code (including the full history of commits), and it makes any future collaboration much easier. This step is optional, but being a GitHub member will open the door to participating in a wide variety of open-source projects.</p>
+
+<div class="label" id="fig-create_first_repository"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/create_first_repository_4_0.png" alt="create_first_repository_4_0" /></span></div><div class="caption"><span class="header">Figure 1.6: </span><span class="description">Creating the first app repository at GitHub.&nbsp;<a href="http://railstutorial.org/images/figures/create_first_repository_4_0-full.png">(full size)</a></span></div></div>
+
+
+<p>GitHub has a variety of paid plans, but for open-source code their services are free, so sign up for a <a href="https://github.com/signup/free">free GitHub account</a> if you don&rsquo;t have one already. (You might have to follow the <a href="http://help.github.com/key-setup-redirect">GitHub tutorial on creating SSH keys</a> first.) After signing up, click on the link to <a href="http://github.com/new">create a repository</a> and fill in the information as in <a class="ref" href="beginning?version=4.0#fig-create_first_repository">Figure&nbsp;1.6</a>. (Take care <em>not</em> to initialize the repository with a <code>README</code> file, as <code>rails new</code> creates one of those automatically.) After submitting the form, push up your first application as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git remote add origin https://github.com/&lt;username&gt;/first_app.git
+<span class="gp">$</span> git push -u origin master
+</pre></div>
+</div>
+
+
+<p>These commands tell Git that you want to add GitHub as the origin for your main (<em>master</em>) branch and then push your repository up to GitHub. (Don&rsquo;t worry about what the <tt>-u</tt> flag does; if you&rsquo;re curious, do a web search for &ldquo;git set upstream&rdquo;.) Of course, you should replace <tt class="verb">&lt;username&gt;</tt> with your actual username. For example, the command I ran was</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git remote add origin https://github.com/mhartl/first_app.git
+</pre></div>
+</div>
+
+
+<p>The result is a page at GitHub for the first application repository, with file browsing, full commit history, and lots of other goodies (<a class="ref" href="beginning?version=4.0#fig-github_repository_page">Figure&nbsp;1.7</a>).</p>
+
+<div class="label" id="fig-github_repository_page"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/github_repository_page_4_0.png" alt="github_repository_page_4_0" /></span></div><div class="caption"><span class="header">Figure 1.7: </span><span class="description">A GitHub repository page.&nbsp;<a href="http://railstutorial.org/images/figures/github_repository_page_4_0-full.png">(full size)</a></span></div></div>
+
+
+<p>GitHub also has native applications to augment the command-line interface, so if you&rsquo;re more comfortable with GUI apps you might want to check out <a href="http://windows.github.com/">GitHub for Windows</a> or <a href="http://mac.github.com/">GitHub for Mac</a>. (GitHub for Linux is still just Git, it seems.)</p>
+
+<div class="label" id="sec-git_commands"></div>
+
+
+<h3><a id="sec-1_3_5" href="beginning?version=4.0#sec-git_commands" class="heading"><span class="number">1.3.5</span> Branch, edit, commit, merge</a></h3>
+
+
+<p>If you&rsquo;ve followed the steps in <a class="ref" href="beginning?version=4.0#sec-github">Section&nbsp;1.3.4</a>, you might notice that GitHub automatically shows the contents of the <code>README</code> file on the main repository page. In our case, since the project is a Rails application generated using the <code>rails</code> command, the <code>README</code> file is the one that comes with Rails (<a class="ref" href="beginning?version=4.0#fig-rails_readme">Figure&nbsp;1.8</a>). Because of the <code>.rdoc</code> extension on the file, GitHub ensures that it is formatted nicely, but the contents aren&rsquo;t helpful at all, so in this section we&rsquo;ll make our first edit by changing the <code>README</code> to describe our project rather than the Rails framework itself. In the process, we&rsquo;ll see a first example of the branch, edit, commit, merge workflow that I recommend using with Git.</p>
+
+<div class="label" id="fig-rails_readme"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/rails_readme_4_0.png" alt="rails_readme_4_0" /></span></div><div class="caption"><span class="header">Figure 1.8: </span><span class="description">The initial <code>README</code> file for our project at GitHub.&nbsp;<a href="http://railstutorial.org/images/figures/rails_readme_4_0-full.png">(full size)</a></span></div></div>
+
+
+
+
+<div class="label" id="sec-git_branch"></div>
+
+
+<h4><a id="sec-1_3_5_1" href="beginning?version=4.0#sec-git_branch" class="heading">Branch</a></h4>
+
+
+<p>Git is incredibly good at making <em>branches</em>, which are effectively copies of a repository where we can make (possibly experimental) changes without modifying the parent files. In most cases, the parent repository is the <em>master</em> branch, and we can create a new topic branch by using <code>checkout</code> with the <code>-b</code> flag:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout -b modify-README
+<span class="go">Switched to a new branch &#39;modify-README&#39;</span>
+<span class="gp">$</span> git branch
+<span class="go">master</span>
+<span class="go">* modify-README</span>
+</pre></div>
+</div>
+
+
+<p>Here the second command, <code>git branch</code>, just lists all the local branches, and the asterisk&nbsp;<code>*</code> identifies which branch we&rsquo;re currently on. Note that <code>git checkout -b modify-README</code> both creates a new branch and switches to it, as indicated by the asterisk in front of the <code>modify-README</code> branch. (If you set up the <code>co</code> alias in <a class="ref" href="beginning?version=4.0#sec-version_control">Section&nbsp;1.3</a>, you can use <code>git co -b modify-README</code> instead.)</p>
+
+<p>The full value of branching only becomes clear when working on a project with multiple developers,<sup class="footnote" id="fnref-1_19"><a href="?version=4.0#fn-1_19">19</a></sup> but branches are helpful even for a single-developer tutorial such as this one. In particular, the master branch is insulated from any changes we make to the topic branch, so even if we <em>really</em> screw things up we can always abandon the changes by checking out the master branch and deleting the topic branch. We&rsquo;ll see how to do this at the end of the section.</p>
+
+<p>By the way, for a change as small as this one I wouldn&rsquo;t normally bother with a new branch, but it&rsquo;s never too early to start practicing good habits.</p>
+
+<div class="label" id="sec-git_edit"></div>
+
+
+<h4><a id="sec-1_3_5_2" href="beginning?version=4.0#sec-git_edit" class="heading">Edit</a></h4>
+
+
+<p>After creating the topic branch, we&rsquo;ll edit it to make it a little more descriptive. I prefer the <a href="http://daringfireball.net/projects/markdown/">Markdown markup language</a> to the default RDoc for this purpose, and if you use the file extension <code>.md</code> then GitHub will automatically format it nicely for you. So, first we&rsquo;ll use Git&rsquo;s version of the Unix <code>mv</code> (&ldquo;move&rdquo;) command to change the name, and then fill it in with the contents of <a class="ref" href="beginning?version=4.0#code-new_readme">Listing&nbsp;1.8</a>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git mv README.rdoc README.md
+<span class="gp">$</span> subl README.md
+</pre></div>
+</div>
+
+
+<div class="label" id="code-new_readme"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 1.8.</span> <span class="description">The new <code>README</code> file, <code>README.md</code>.</span> </div>
+<div class="code"><div class="highlight"><pre># Ruby on Rails Tutorial: first application
+
+This is the first application for the
+[*Ruby on Rails Tutorial*](http://railstutorial.org/)
+by [Michael Hartl](http://michaelhartl.com/).
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="sec-git_commit"></div>
+
+
+<h4><a id="sec-1_3_5_3" href="beginning?version=4.0#sec-git_commit" class="heading">Commit</a></h4>
+
+
+<p>With the changes made, we can take a look at the status of our branch:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git status
+<span class="gp">#</span> On branch modify-README
+<span class="gp">#</span> Changes to be committed:
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage<span class="o">)</span>
+<span class="gp">#</span>
+<span class="gp">#</span>       renamed:    README.rdoc -&gt; README.md
+<span class="gp">#</span>
+<span class="gp">#</span> Changed but not updated:
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed<span class="o">)</span>
+<span class="gp">#</span>   <span class="o">(</span>use <span class="s2">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes in working directory<span class="o">)</span>
+<span class="gp">#</span>
+<span class="gp">#</span>       modified:   README.md
+<span class="gp">#</span>
+</pre></div>
+</div>
+
+
+<p>At this point, we could use <code>git add .</code> as in <a class="ref" href="beginning?version=4.0#sec-adding_and_committing">Section&nbsp;1.3.2</a>, but Git provides the <code>-a</code> flag as a shortcut for the (very common) case of committing all modifications to existing files (or files created using <code>git mv</code>, which don&rsquo;t count as new files to Git):</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git commit -a -m <span class="s2">&quot;Improve the README file&quot;</span>
+<span class="go">2 files changed, 5 insertions(+), 243 deletions(-)</span>
+<span class="go">delete mode 100644 README.rdoc</span>
+<span class="go">create mode 100644 README.md</span>
+</pre></div>
+</div>
+
+
+<p>Be careful about using the <code>-a</code> flag improperly; if you have added any new files to the project since the last commit, you still have to tell Git about them using <code>git add</code> first.</p>
+
+<p>Note that we write the commit message in the <em>present</em> tense. Git models commits as a series of patches, and in this context it makes sense to describe what each commit <em>does</em>, rather than what it did. Moreover, this usage matches up with the commit messages generated by Git commands themselves. See the GitHub post <a href="https://github.com/blog/926-shiny-new-commit-styles">Shiny new commit styles</a> for more information.</p>
+
+<div class="label" id="sec-git_merge"></div>
+
+
+<h4><a id="sec-1_3_5_4" href="beginning?version=4.0#sec-git_merge" class="heading">Merge</a></h4>
+
+
+<p>Now that we&rsquo;ve finished making our changes, we&rsquo;re ready to <em>merge</em> the results back into our master branch:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout master
+<span class="go">Switched to branch &#39;master&#39;</span>
+<span class="gp">$</span> git merge modify-README
+<span class="go">Updating 34f06b7..2c92bef</span>
+<span class="go">Fast forward</span>
+<span class="go">README.rdoc     |  243 --------------------------------------------------</span>
+<span class="go">README.md       |    5 +</span>
+<span class="go">2 files changed, 5 insertions(+), 243 deletions(-)</span>
+<span class="go">delete mode 100644 README.rdoc</span>
+<span class="go">create mode 100644 README.md</span>
+</pre></div>
+</div>
+
+
+<p>Note that the Git output frequently includes things like <code>34f06b7</code>, which are related to Git&rsquo;s internal representation of repositories. Your exact results will differ in these details, but otherwise should essentially match the output shown above.</p>
+
+<p>After you&rsquo;ve merged in the changes, you can tidy up your branches by deleting the topic branch using <code>git branch -d</code> if you&rsquo;re done with it:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git branch -d modify-README
+<span class="go">Deleted branch modify-README (was 2c92bef).</span>
+</pre></div>
+</div>
+
+
+<p>This step is optional, and in fact it&rsquo;s quite common to leave the topic branch intact. This way you can switch back and forth between the topic and master branches, merging in changes every time you reach a natural stopping point.</p>
+
+<p>As mentioned above, it&rsquo;s also possible to abandon your topic branch changes, in this case with <code>git branch -D</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="c"># For illustration only; don&#39;t do this unless you mess up a branch</span>
+<span class="nv">$ </span>git checkout -b topic-branch
+<span class="nv">$ </span>&lt;really screw up the branch&gt;
+<span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -a -m <span class="s2">&quot;Major screw up&quot;</span>
+<span class="nv">$ </span>git checkout master
+<span class="nv">$ </span>git branch -D topic-branch
+</pre></div>
+</div>
+
+
+<p>Unlike the <code>-d</code> flag, the <code>-D</code> flag will delete the branch even though we haven&rsquo;t merged in the changes.</p>
+
+<div class="label" id="sec-git_push"></div>
+
+
+<h4><a id="sec-1_3_5_5" href="beginning?version=4.0#sec-git_push" class="heading">Push</a></h4>
+
+
+<p>Now that we&rsquo;ve updated the <code>README</code>, we can push the changes up to GitHub to see the result. Since we have already done one push (<a class="ref" href="beginning?version=4.0#sec-github">Section&nbsp;1.3.4</a>), on most systems we can omit <code>origin master</code>, and simply run <code>git push</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git push
+</pre></div>
+</div>
+
+
+<p>As promised, GitHub nicely formats the new file using Markdown (<a class="ref" href="beginning?version=4.0#fig-new_readme">Figure&nbsp;1.9</a>).</p>
+
+<div class="label" id="fig-new_readme"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/new_readme_4_0.png" alt="new_readme_4_0" /></span></div><div class="caption"><span class="header">Figure 1.9: </span><span class="description">The improved <code>README</code> file formatted with Markdown.&nbsp;<a href="http://railstutorial.org/images/figures/new_readme_4_0-full.png">(full size)</a></span></div></div>
+
+
+
+
+<div class="label" id="sec-deploying"></div>
+
+
+<h2><a id="sec-1_4" href="beginning?version=4.0#sec-deploying" class="heading"><span class="number">1.4</span> Deploying</a></h2>
+
+
+<p>Even at this early stage, we&rsquo;re already going to deploy our (still-empty) Rails application to production. This step is optional, but deploying early and often allows us to catch any deployment problems early in our development cycle. The alternative&mdash;deploying only after laborious effort sealed away in a development environment&mdash;often leads to terrible integration headaches when launch time comes.<sup class="footnote" id="fnref-1_20"><a href="?version=4.0#fn-1_20">20</a></sup></p>
+
+<p>Deploying Rails applications used to be a pain, but the Rails deployment ecosystem has matured rapidly in the past few years, and now there are several great options. These include shared hosts or virtual private servers running <a href="http://www.modrails.com/">Phusion Passenger</a> (a module for the Apache and Nginx<sup class="footnote" id="fnref-1_21"><a href="?version=4.0#fn-1_21">21</a></sup> web servers), full-service deployment companies such as <a href="http://engineyard.com/">Engine Yard</a> and <a href="http://railsmachine.com/">Rails Machine</a>, and cloud deployment services such as <a href="http://cloud.engineyard.com">Engine Yard Cloud</a> and <a href="http://heroku.com/">Heroku</a>.</p>
+
+<p>My favorite Rails deployment option is Heroku, which is a hosted platform built specifically for deploying Rails and other web applications.<sup class="footnote" id="fnref-1_22"><a href="?version=4.0#fn-1_22">22</a></sup> Heroku makes deploying Rails applications ridiculously easy&mdash;as long as your source code is under version control with Git. (This is yet another reason to follow the Git setup steps in <a class="ref" href="beginning?version=4.0#sec-version_control">Section&nbsp;1.3</a> if you haven&rsquo;t already.) The rest of this section is dedicated to deploying our first application to Heroku.</p>
+
+<div class="label" id="sec-heroku_setup"></div>
+
+
+<h3><a id="sec-1_4_1" href="beginning?version=4.0#sec-heroku_setup" class="heading"><span class="number">1.4.1</span> Heroku setup</a></h3>
+
+
+<p>Heroku uses the <a href="http://www.postgresql.org/">PostgreSQL</a> database (pronounced &ldquo;post-gres-cue-ell&rdquo;, and often called &ldquo;Postgres&rdquo; for short), which means that we need to add the <tt>pg</tt>&nbsp;gem in the production environment to allow Rails to talk to Postgres:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.15.1&#39;</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>As noted in <a class="ref" href="beginning?version=4.0#sec-bundler">Section&nbsp;1.2.4</a>, it&rsquo;s also a good idea to specify explictly which version of Ruby our applications expects:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+</pre></div>
+</div>
+
+
+<p>(You should substitute <code>&rsquo;1.9.3&rsquo;</code> if that&rsquo;s the version of Ruby you&rsquo;re using, though for this tutorial the difference shouldn&rsquo;t ever matter.) Applying these changes to the <code>Gemfile</code> from <a class="ref" href="beginning?version=4.0#code-gemfile_sqlite_version">Listing&nbsp;1.5</a> yields <a class="ref" href="beginning?version=4.0#code-gemfile_pg_gem">Listing&nbsp;1.9</a>.</p>
+
+<div class="label" id="code-gemfile_pg_gem"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 1.9.</span> <span class="description">A <code>Gemfile</code> with an added <tt>pg</tt> gem and explicit Ruby version.</span> </div>
+<div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+<span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+
+<span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.7&#39;</span>
+<span class="k">end</span>
+
+<span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;2.1.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.2.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;turbolinks&#39;</span><span class="p">,</span> <span class="s1">&#39;1.1.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;jbuilder&#39;</span><span class="p">,</span> <span class="s1">&#39;1.0.2&#39;</span>
+
+<span class="n">group</span> <span class="ss">:doc</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sdoc&#39;</span><span class="p">,</span> <span class="s1">&#39;0.3.20&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+<span class="k">end</span>
+
+<span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.15.1&#39;</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>To install it, we run <code>bundle install</code> with a special flag:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install --without production
+</pre></div>
+</div>
+
+
+<p>The <tt class="verb">--without production</tt> option prevents the local installation of any production gems, which in this case is just&nbsp;<tt>pg</tt>. (If Bundler complains about a <tt>readline</tt> error, try adding <code>gem &rsquo;rb-readline&rsquo;</code> to your <code>Gemfile</code>.) Because the only gem we&rsquo;ve added is restricted to a production environment, right now this command doesn&rsquo;t actually install any additional local gems, but it&rsquo;s needed to update <code>Gemfile.lock</code> with the <tt>pg</tt> gem and the specific Ruby version since that&rsquo;s what Heroku uses to infer the requirements of our application. We can commit the resulting change as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git commit -a -m <span class="s2">&quot;Update Gemfile.lock for Heroku&quot;</span>
+</pre></div>
+</div>
+
+
+<p>Next we have to create and configure a new Heroku account. The first step is to <a href="http://api.heroku.com/signup">sign up for Heroku</a>; after checking your email to complete the creation of your account, install the necessary Heroku software using the <a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>.<sup class="footnote" id="fnref-1_23"><a href="?version=4.0#fn-1_23">23</a></sup> Then use the <code>heroku</code> command to log in at the command line (you may have to exit and restart your terminal program first):</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku login
+</pre></div>
+</div>
+
+
+<p>Finally, navigate back to your Rails project directory and use the <code>heroku</code> command to create a place on the Heroku servers for the sample app to live (<a class="ref" href="beginning?version=4.0#code-heroku_create">Listing&nbsp;1.10</a>).</p>
+
+<div class="label" id="code-heroku_create"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 1.10.</span> <span class="description">Creating a new application at Heroku.</span> </div>
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/rails_projects/first_app
+<span class="gp">$</span> heroku create
+<span class="go">Created http://stormy-cloud-5881.herokuapp.com/ |</span>
+<span class="go">git@heroku.com:stormy-cloud-5881.herokuapp.com</span>
+<span class="go">Git remote heroku added</span>
+</pre></div>
+</div></div>
+
+
+<p>The <code>heroku</code> command creates a new subdomain just for our application, available for immediate viewing. There&rsquo;s nothing there yet, though, so let&rsquo;s get busy deploying.</p>
+
+<div class="label" id="sec-heroku_step_one"></div>
+
+
+<h3><a id="sec-1_4_2" href="beginning?version=4.0#sec-heroku_step_one" class="heading"><span class="number">1.4.2</span> Heroku deployment, step one</a></h3>
+
+
+<p>To deploy the application, the first step is to use Git to push it up to Heroku:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git push heroku master
+</pre></div>
+</div>
+
+
+<h3><a id="sec-1_4_3" href="beginning?version=4.0#sec-1_4_3" class="heading"><span class="number">1.4.3</span> Heroku deployment, step two</a></h3>
+
+
+<p>There is no step two! We&rsquo;re already done (<a class="ref" href="beginning?version=4.0#fig-heroku_app">Figure&nbsp;1.10</a>). To see your newly deployed application, you can visit the address that you saw when you ran <code>heroku create</code> (i.e., <a class="ref" href="beginning?version=4.0#code-heroku_create">Listing&nbsp;1.10</a>, but with the address for your app, not the address for mine). You can also use an argument to the <code>heroku</code> command that automatically opens your browser with the right address:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku open
+</pre></div>
+</div>
+
+
+<p>Unfortunately, the resulting page is an error; as of Rails&nbsp;4.0, for technical reasons the default Rails page doesn&rsquo;t work on Heroku. The good news is that the error will go away (in the context of the full sample application) when we add a root route in <a class="ref" href="filling-in-the-layout?version=4.0#sec-rails_routes">Section&nbsp;5.3.2</a>.</p>
+
+<div class="label" id="fig-heroku_app"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/heroku_app_4_0.png" alt="heroku_app_4_0" /></span></div><div class="caption"><span class="header">Figure 1.10: </span><span class="description">The first Rails Tutorial application running on Heroku.&nbsp;<a href="http://railstutorial.org/images/figures/heroku_app_4_0-full.png">(full size)</a></span></div></div>
+
+
+<p>Once you&rsquo;ve deployed successfully, Heroku provides a beautiful interface for administering and configuring your application (<a class="ref" href="beginning?version=4.0#fig-heroku_info">Figure&nbsp;1.11</a>).</p>
+
+<div class="label" id="fig-heroku_info"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/heroku_info_4_0.png" alt="heroku_info_4_0" /></span></div><div class="caption"><span class="header">Figure 1.11: </span><span class="description">The beautiful interface at Heroku.&nbsp;<a href="http://railstutorial.org/images/figures/heroku_info_4_0-full.png">(full size)</a></span></div></div>
+
+
+
+
+<div class="label" id="sec-heroku_commands"></div>
+
+
+<h3><a id="sec-1_4_4" href="beginning?version=4.0#sec-heroku_commands" class="heading"><span class="number">1.4.4</span> Heroku commands</a></h3>
+
+
+<p>There are many <a href="http://devcenter.heroku.com/heroku-command">Heroku commands</a>, and we&rsquo;ll barely scratch the surface in this book. Let&rsquo;s take a minute to show just one of them by renaming the application as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku rename railstutorial
+</pre></div>
+</div>
+
+
+<p>Don&rsquo;t use this name yourself; it&rsquo;s already taken by me! In fact, you probably shouldn&rsquo;t bother with this step right now; using the default address supplied by Heroku is fine. But if you do want to rename your application, you can arrange for it to be reasonably secure by using a random or obscure subdomain, such as the following:</p>
+
+<pre class="verbatim">hwpcbmze.herokuapp.com
+seyjhflo.herokuapp.com
+jhyicevg.herokuapp.com</pre>
+
+
+<p>With a random subdomain like this, someone could visit your site only if you gave them the address. (By the way, as a preview of Ruby&rsquo;s compact awesomeness, here&rsquo;s the code I used to generate the random subdomains:</p>
+
+<div class="code"><div class="highlight"><pre><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">shuffle</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">7</span><span class="o">].</span><span class="n">join</span>
+</pre></div>
+</div>
+
+
+<p>Pretty sweet.)</p>
+
+<p>In addition to supporting subdomains, Heroku also supports custom domains. (In fact, the <a href="http://railstutorial.org">Ruby on Rails Tutorial site</a> lives at Heroku; if you&rsquo;re reading this book online, you&rsquo;re looking at a Heroku-hosted site right now!) See the <a href="http://devcenter.heroku.com/">Heroku documentation</a> for more information about custom domains and other Heroku topics.</p>
+
+<div class="label" id="sec-beginning_conclusion"></div>
+
+
+<h2><a id="sec-1_5" href="beginning?version=4.0#sec-beginning_conclusion" class="heading"><span class="number">1.5</span> Conclusion</a></h2>
+
+
+<p>We&rsquo;ve come a long way in this chapter: installation, development environment setup, version control, and deployment. If you want to share your progress at this point, feel free to send a tweet or Facebook status update with something like this:</p>
+
+<div class="center"><a href="http://twitter.com/?status=I'm%20learning%20Ruby%20on%20Rails%20with%20@railstutorial!%20http://railstutorial.org/">I&rsquo;m learning Ruby on Rails with @railstutorial! http://railstutorial.org/</a></div>
+
+
+<p>&nbsp;</p>
+
+<p>All that&rsquo;s left is to actually start learning Rails! Let&rsquo;s get to it.</p>
+
+<div class="navigation">  <a class="next_page" href="a-demo-app?version=4.0#top">
+    <span class="number">Chapter 2</span> A demo app&nbsp;&raquo;
+  </a>
+</div><div class="footnotes">
+<ol>
+<li id="fn-1_1"><em>URI</em> stands for Uniform Resource Identifier, while the slightly less general <em>URL</em> stands for Uniform Resource Locator. In practice, the URL is usually equivalent to &ldquo;the thing you see in the address bar of your browser&rdquo;.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_1">&uarr;</a></li>
+<li id="fn-1_2">http://tryruby.org/&nbsp;<a class="arrow" href="?version=4.0#fnref-1_2">&uarr;</a></li>
+<li id="fn-1_3">http://railsforzombies.org/&nbsp;<a class="arrow" href="?version=4.0#fnref-1_3">&uarr;</a></li>
+<li id="fn-1_4">http://railstutorial.org/screencasts&nbsp;<a class="arrow" href="?version=4.0#fnref-1_4">&uarr;</a></li>
+<li id="fn-1_5">When reading the <em>Rails Tutorial</em>, you may find it convenient to follow an internal section link to look at the reference and then immediately go back to where you were before. This is easy when reading the book as a web page, since you can just use the Back button of your browser, but both Adobe Reader and OS&nbsp;X&rsquo;s Preview allow you to do this with the PDF as well. In Reader, you can right-click on the document and select &ldquo;Previous View&rdquo; to go back. In Preview, use the Go menu: <tt>Go &gt; Back</tt>.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_5">&uarr;</a></li>
+<li id="fn-1_6">Many people erroneously believe that <code>sudo</code> stands for &ldquo;superuser do&rdquo; because it runs commands as the superuser (root) by default. In fact, <code>sudo</code> is a concatenation of the <code>su</code> command and the English word &ldquo;do&rdquo;, and <code>su</code> stands for &ldquo;substitute user&rdquo;, as you can verify by typing <code>man su</code> in your shell.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_6">&uarr;</a></li>
+<li id="fn-1_7">http://railstutorial.org/help&nbsp;<a class="arrow" href="?version=4.0#fnref-1_7">&uarr;</a></li>
+<li id="fn-1_8">https://github.com/perfectionist/sample_project/wiki&nbsp;<a class="arrow" href="?version=4.0#fnref-1_8">&uarr;</a></li>
+<li id="fn-1_9">As of this writing, <a href="http://www.sublimetext.com/3">Sublime Text&nbsp;3</a> is in beta, available only to registered users of Sublime Text&nbsp;2. I recommend trying the newest Sublime Text only if you really want to be on the bleeding edge.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_9">&uarr;</a></li>
+<li id="fn-1_10">The vi editor is one of the most ancient yet powerful weapons in the Unix arsenal, and Vim is &ldquo;vi improved&rdquo;.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_10">&uarr;</a></li>
+<li id="fn-1_11">https://github.com/mhartl/rails_tutorial_sublime_text&nbsp;<a class="arrow" href="?version=4.0#fnref-1_11">&uarr;</a></li>
+<li id="fn-1_12">If you haven&rsquo;t used IRC before, I suggest you start by searching the web for &ldquo;irc client &lt;your platform&gt;&rdquo;. Two good native clients for OS&nbsp;X are <a href="http://colloquy.info/">Colloquy</a> and <a href="http://limechat.net/mac/">LimeChat</a>. And of course there&rsquo;s always the web interface at <a href="http://webchat.freenode.net/?channels=rvm">http://webchat.freenode.net/?channels=rvm</a>.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_12">&uarr;</a></li>
+<li id="fn-1_13">https://developer.apple.com/downloads/&nbsp;<a class="arrow" href="?version=4.0#fnref-1_13">&uarr;</a></li>
+<li id="fn-1_14">This step is necessary only if you&rsquo;ve changed the version of the Rails gem, which would likely happen only if you&rsquo;re using Rails Installer, but it does no harm to run it in other cases as well.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_14">&uarr;</a></li>
+<li id="fn-1_15">Normally, websites run on port 80, but this usually requires special privileges, so Rails picks a less restricted higher-numbered port for the development server.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_15">&uarr;</a></li>
+<li id="fn-1_16">Normally this is a feature, since it lets you continue to use the command line after launching your editor, but Git interprets the detachment as closing the file with an empty commit message, which prevents the commit from going through. I only mention this point because it can be seriously confusing if you try to set your editor to <code>subl</code> or <code>gvim</code> without the flag. If you find this note confusing, feel free to ignore it.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_16">&uarr;</a></li>
+<li id="fn-1_17">If you can&rsquo;t see the <code>.gitignore</code> file in your directory, you may need to configure your directory viewer to show hidden files.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_17">&uarr;</a></li>
+<li id="fn-1_18">If in the future any unwanted files start showing up when you type <code>git status</code>, just add them to your <code>.gitignore</code> file from <a class="ref" href="beginning?version=4.0#code-gitignore">Listing&nbsp;1.7</a>.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_18">&uarr;</a></li>
+<li id="fn-1_19">See the chapter <a href="http://progit.org/book/ch3-0.html">Git Branching in <em>Pro Git</em></a> for details.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_19">&uarr;</a></li>
+<li id="fn-1_20">Though it shouldn&rsquo;t matter for the example applications in the <em>Rails Tutorial</em>, if you&rsquo;re worried about accidentally making your app public too soon there are several options; see <a class="ref" href="beginning?version=4.0#sec-heroku_commands">Section&nbsp;1.4.4</a> for one.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_20">&uarr;</a></li>
+<li id="fn-1_21">Pronounced &ldquo;Engine X&rdquo;.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_21">&uarr;</a></li>
+<li id="fn-1_22">Heroku works with any Ruby web platform that uses <a href="http://rack.rubyforge.org/">Rack middleware</a>, which provides a standard interface between web frameworks and web servers. Adoption of the Rack interface has been extraordinarily strong in the Ruby community, including frameworks as varied as <a href="http://www.sinatrarb.com/">Sinatra</a>, <a href="http://ramaze.net/">Ramaze</a>, <a href="http://camping.rubyforge.org/files/README.html">Camping</a>, and Rails, which means that Heroku basically supports any Ruby web app.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_22">&uarr;</a></li>
+<li id="fn-1_23">https://toolbelt.heroku.com/&nbsp;<a class="arrow" href="?version=4.0#fnref-1_23">&uarr;</a></li>
+</ol>
+</div>
+
+
+
+
+
+    </div>
+  <div id="book_bottom">
+  </div>
+</div>
+        
+        </div>
+
+    <div>Michael Hartl is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.</div>
+ 
+    <div id="container-bottom"></div>
+    
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({appId: '145973438749643', status: true, cookie: true,
+             xfbml: true});
+  };
+  (function() {
+    var e = document.createElement('script');
+    e.type = 'text/javascript';
+    e.src = document.location.protocol +
+      '//connect.facebook.net/en_US/all.js';
+    e.async = true;
+    document.getElementById('fb-root').appendChild(e);
+  }());
+</script>
+
+  
+      <script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  try {
+  var pageTracker = _gat._getTracker("UA-8667566-1");
+  pageTracker._trackPageview();
+  } catch(err) {}</script>
+
+  
+  
+  </div>
+</body>
+</html>

@@ -1,0 +1,2223 @@
+
+
+<div id="top"></div>
+
+
+<h1 class="chapter"><a id="sec-5" href="filling-in-the-layout?version=4.0#top" class="heading"><span class="number">Chapter 5</span> Filling in the layout</a></h1>
+
+
+<p>In the process of taking a brief tour of Ruby in <a class="ref" href="rails-flavored-ruby?version=4.0#top">Chapter&nbsp;4</a>, we learned about including the application stylesheet into the sample application&mdash;but, as noted in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-css_revisited">Section&nbsp;4.3.4</a>, this stylesheet is currently empty. In this chapter, we&rsquo;ll change this by incorporating the <em>Bootstrap</em> framework into our application, and then we&rsquo;ll add some custom styles of our own.<sup class="footnote" id="fnref-5_1"><a href="?version=4.0#fn-5_1">1</a></sup> We&rsquo;ll also start filling in the layout with links to the pages (such as Home and About) that we&rsquo;ve created so far (<a class="ref" href="filling-in-the-layout?version=4.0#sec-structure">Section&nbsp;5.1</a>). Along the way, we&rsquo;ll learn about partials, Rails routes, and the asset pipeline, including an introduction to Sass (<a class="ref" href="filling-in-the-layout?version=4.0#sec-sass_and_the_asset_pipeline">Section&nbsp;5.2</a>). We&rsquo;ll also refactor the tests from <a class="ref" href="static-pages?version=4.0#top">Chapter&nbsp;3</a> using the latest RSpec techniques. We&rsquo;ll end by taking a first important step toward letting users sign up to our site.</p>
+
+<div class="label" id="sec-structure"></div>
+
+
+<h2><a id="sec-5_1" href="filling-in-the-layout?version=4.0#sec-structure" class="heading"><span class="number">5.1</span> Adding some structure</a></h2>
+
+
+<p>The <em>Rails Tutorial</em> is a book on web development, not web design, but it would be depressing to work on an application that looks like <em>complete</em> crap, so in this section we&rsquo;ll add some structure to the layout and give it some minimal styling with CSS. In addition to using some custom CSS rules, we&rsquo;ll make use of <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>, an open-source web design framework from Twitter. We&rsquo;ll also give our <em>code</em> some styling, so to speak, using <em>partials</em> to tidy up the layout once it gets a little cluttered.</p>
+
+<p>When building web applications, it is often useful to get a high-level overview of the user interface as early as possible. Throughout the rest of this book, I will thus often include <em>mockups</em> (in a web context often called <em>wireframes</em>), which are rough sketches of what the eventual application will look like.<sup class="footnote" id="fnref-5_2"><a href="?version=4.0#fn-5_2">2</a></sup> In this chapter, we will principally be developing the static pages introduced in <a class="ref" href="static-pages?version=4.0#sec-static_pages">Section&nbsp;3.1</a>, including a site logo, a navigation header, and a site footer. A mockup for the most important of these pages, the Home page, appears in <a class="ref" href="filling-in-the-layout?version=4.0#fig-home_page_mockup">Figure&nbsp;5.1</a>. You can see the final result in <a class="ref" href="filling-in-the-layout?version=4.0#fig-site_with_footer">Figure&nbsp;5.7</a>. You&rsquo;ll note that it differs in some details&mdash;for example, we&rsquo;ll end up adding a Rails logo on the page&mdash;but that&rsquo;s fine, since a mockup need not be exact.</p>
+
+<div class="label" id="fig-home_page_mockup"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/home_page_mockup_bootstrap.png" alt="home_page_mockup_bootstrap" /></span></div><div class="caption"><span class="header">Figure 5.1: </span><span class="description">A mockup of the sample application&rsquo;s Home page.&nbsp;<a href="http://railstutorial.org/images/figures/home_page_mockup_bootstrap-full.png">(full size)</a></span></div></div>
+
+
+<p>As usual, if you&rsquo;re using Git for version control, now would be a good time to make a new branch:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout -b filling-in-layout
+</pre></div>
+</div>
+
+
+<div class="label" id="sec-adding_to_the_layout"></div>
+
+
+<h3><a id="sec-5_1_1" href="filling-in-the-layout?version=4.0#sec-adding_to_the_layout" class="heading"><span class="number">5.1.1</span> Site navigation</a></h3>
+
+
+<p>As a first step toward adding links and styles to the sample application, we&rsquo;ll update the site layout file <code>application.html.erb</code> (last seen in <a class="ref" href="rails-flavored-ruby?version=4.0#code-application_layout_full_title">Listing&nbsp;4.3</a>) with additional HTML structure. This includes some additional divisions, some CSS classes, and the start of our site navigation. The full file is in <a class="ref" href="filling-in-the-layout?version=4.0#code-layout_new_structure">Listing&nbsp;5.1</a>; explanations for the various pieces follow immediately thereafter. If you&rsquo;d rather not delay gratification, you can see the results in <a class="ref" href="filling-in-the-layout?version=4.0#fig-layout_no_logo_or_custom_css">Figure&nbsp;5.2</a>. (<em>Note:</em> it&rsquo;s not (yet) very gratifying.)</p>
+
+<div class="label" id="code-layout_new_structure"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.1.</span> <span class="description">The site layout with added structure. <br /> <code>app/views/layouts/application.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span><span class="cp">&lt;%=</span> <span class="n">full_title</span><span class="p">(</span><span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+                                           <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">javascript_include_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">csrf_meta_tags</span> <span class="cp">%&gt;</span>
+    <span class="c">&lt;!--[if lt IE 9]&gt;</span>
+<span class="c">    &lt;script src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;</span>
+<span class="c">    &lt;![endif]--&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;navbar navbar-fixed-top navbar-inverse&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;navbar-inner&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+          <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;sample app&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="s2">&quot;logo&quot;</span> <span class="cp">%&gt;</span>
+          <span class="nt">&lt;nav&gt;</span>
+            <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav pull-right&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Home&quot;</span><span class="p">,</span>    <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Help&quot;</span><span class="p">,</span>    <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+              <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Sign in&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+          <span class="nt">&lt;/nav&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/header&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>Let&rsquo;s look at the new elements in <a class="ref" href="filling-in-the-layout?version=4.0#code-layout_new_structure">Listing&nbsp;5.1</a> from top to bottom. As alluded to briefly in <a class="ref" href="static-pages?version=4.0#sec-passing_title_tests">Section&nbsp;3.3.2</a>, Rails&nbsp;4 uses HTML5 by default (as indicated by the doctype <code>&lt;!DOCTYPE html&gt;</code>); since the HTML5 standard is relatively new, some browsers (especially older versions Internet Explorer) don&rsquo;t fully support it, so we include some JavaScript code (known as an &ldquo;<a href="http://code.google.com/p/html5shim/">HTML5 shim</a>&rdquo;) to work around the issue:</p>
+
+<div class="code"><div class="highlight"><pre><span class="c">&lt;!--[if lt IE 9]&gt;</span>
+<span class="c">&lt;script src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;</span>
+<span class="c">&lt;![endif]--&gt;</span>
+</pre></div>
+</div>
+
+
+<p>The somewhat odd syntax</p>
+
+<div class="code"><div class="highlight"><pre><span class="c">&lt;!--[if lt IE 9]&gt;</span>
+</pre></div>
+</div>
+
+
+<p>includes the enclosed line only if the version of Microsoft Internet Explorer&nbsp;(IE) is less than&nbsp;9 (<code>if lt IE 9</code>). The weird <code>[if lt IE 9]</code> syntax is <em>not</em> part of Rails; it&rsquo;s actually a <a href="http://en.wikipedia.org/wiki/Conditional_comment">conditional comment</a> supported by Internet Explorer browsers for just this sort of situation. It&rsquo;s a good thing, too, because it means we can include the HTML5 shim <em>only</em> for IE browsers less than version&nbsp;9, leaving other browsers such as Firefox, Chrome, and Safari unaffected.</p>
+
+<p>The next section includes a <code>header</code> for the site&rsquo;s (plain-text) logo, a couple of divisions (using the <code>div</code> tag), and a list of elements with navigation links:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;navbar navbar-fixed-top navbar-inverse&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;navbar-inner&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;sample app&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="s2">&quot;logo&quot;</span> <span class="cp">%&gt;</span>
+      <span class="nt">&lt;nav&gt;</span>
+        <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav pull-right&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Home&quot;</span><span class="p">,</span>    <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Help&quot;</span><span class="p">,</span>    <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Sign in&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;/nav&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+</pre></div>
+</div>
+
+
+<p>Here the <code>header</code> tag indicates elements that should go at the top of the page. We&rsquo;ve given the <code>header</code> tag three <em>CSS classes</em>,<sup class="footnote" id="fnref-5_3"><a href="?version=4.0#fn-5_3">3</a></sup> called <code>navbar</code>, <code>navbar-fixed-top</code>, and <code>navbar-inverse</code>, separated by spaces:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;navbar navbar-fixed-top navbar-inverse&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+
+
+<p>All HTML elements can be assigned both classes and <em>ids</em>; these are merely labels, and are useful for styling with CSS (<a class="ref" href="filling-in-the-layout?version=4.0#sec-custom_css">Section&nbsp;5.1.2</a>). The main difference between classes and ids is that classes can be used multiple times on a page, but ids can be used only once. In the present case, all the navbar classes have special meaning to the Bootstrap framework, which we&rsquo;ll install and use in <a class="ref" href="filling-in-the-layout?version=4.0#sec-custom_css">Section&nbsp;5.1.2</a>.</p>
+
+<p>Inside the <code>header</code> tag, we see a couple of <code>div</code> tags:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;navbar-inner&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+
+
+<p>The <code>div</code> tag is a generic division; it doesn&rsquo;t do anything apart from divide the document into distinct parts. In older-style HTML, <code>div</code> tags are used for nearly all site divisions, but HTML5 adds the <code>header</code>, <code>nav</code>, and <code>section</code> elements for divisions common to many applications. In this case, each <code>div</code> has a CSS class as well. As with the <code>header</code> tag&rsquo;s classes, these classes have special meaning to Bootstrap.</p>
+
+<p>After the divs, we encounter some embedded Ruby:</p>
+
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;sample app&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="s2">&quot;logo&quot;</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;nav&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav pull-right&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Home&quot;</span><span class="p">,</span>    <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Help&quot;</span><span class="p">,</span>    <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Sign in&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+</pre></div>
+</div>
+
+
+<p>This uses the Rails helper <code>link_to</code> to create links (which we created directly with the anchor tag&nbsp;<code>a</code> in <a class="ref" href="static-pages?version=4.0#sec-passing_title_tests">Section&nbsp;3.3.2</a>); the first argument to <code>link_to</code> is the link text, while the second is the URL. We&rsquo;ll fill in the URLs with <em>named routes</em> in <a class="ref" href="filling-in-the-layout?version=4.0#sec-named_routes">Section&nbsp;5.3.3</a>, but for now we use the stub URL <code>&rsquo;#&rsquo;</code> commonly used in web design. The third argument is an options hash, in this case adding the CSS&nbsp;id <code>logo</code> to the sample app link. (The other three links have no options hash, which is fine since it&rsquo;s optional.) Rails helpers often take options hashes in this way, giving us the flexibility to add arbitrary HTML options without ever leaving Rails.</p>
+
+<p>The second element inside the divs is a list of navigation links, made using the <em>unordered list</em> tag <code>ul</code>, together with the <em>list item</em> tag <code>li</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;nav&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav pull-right&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Home&quot;</span><span class="p">,</span>    <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Help&quot;</span><span class="p">,</span>    <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Sign in&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+</pre></div>
+</div>
+
+
+<p>The <code>nav</code> tag, though formally unnecessary here, communicates the purpose of the navigation links. The <code>nav</code> and <code>pull-right</code> classes on the <code>ul</code> tag have special meaning to Bootstrap. Once Rails has processed this layout and evaluated the embedded Ruby, the list looks like this:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;nav&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav pull-right&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Help<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Sign in<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+</pre></div>
+</div>
+
+
+<p>The final part of the layout is a <code>div</code> for the main content:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</div>
+
+
+<p>As before, the <code>container</code> class has special meaning to Bootstrap. As we learned in <a class="ref" href="static-pages?version=4.0#sec-layouts">Section&nbsp;3.3.4</a>, the <code>yield</code> method inserts the contents of each page into the site layout.</p>
+
+<p>Apart from the site footer, which we&rsquo;ll add in <a class="ref" href="filling-in-the-layout?version=4.0#sec-partials">Section&nbsp;5.1.3</a>, our layout is now complete, and we can look at the results by visiting the Home page. To take advantage of the upcoming style elements, we&rsquo;ll add some extra elements to
+the <code>home.html.erb</code> view (<a class="ref" href="filling-in-the-layout?version=4.0#code-signup_button">Listing&nbsp;5.2</a>).</p>
+
+<div class="label" id="code-signup_button"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.2.</span> <span class="description">The Home page with a link to the signup page. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;center hero-unit&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Welcome to the Sample App<span class="nt">&lt;/h1&gt;</span>
+
+  <span class="nt">&lt;h2&gt;</span>
+    This is the home page for the
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.org/&quot;</span><span class="nt">&gt;</span>Ruby on Rails Tutorial<span class="nt">&lt;/a&gt;</span>
+    sample application.
+  <span class="nt">&lt;/h2&gt;</span>
+
+  <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Sign up now!&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="ss">class:</span> <span class="s2">&quot;btn btn-large btn-primary&quot;</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">image_tag</span><span class="p">(</span><span class="s2">&quot;rails.png&quot;</span><span class="p">,</span> <span class="ss">alt:</span> <span class="s2">&quot;Rails&quot;</span><span class="p">),</span> <span class="s1">&#39;http://rubyonrails.org/&#39;</span> <span class="cp">%&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>In preparation for adding users to our site in <a class="ref" href="sign-up?version=4.0#top">Chapter&nbsp;7</a>, the first <code>link_to</code> creates a stub link of the form</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">class=</span><span class="s">&quot;btn btn-large btn-primary&quot;</span><span class="nt">&gt;</span>Sign up now!<span class="nt">&lt;/a&gt;</span>
+</pre></div>
+</div>
+
+
+<p>In the <code>div</code> tag, the <code>hero-unit</code> CSS class has a special meaning to Bootstrap, as do the <code>btn</code>, <code>btn-large</code>, and <code>btn-primary</code> classes in the signup button.</p>
+
+<p>The second <code>link_to</code> shows off the <code>image_tag</code> helper, which takes as arguments the path to an image and an optional options hash, in this case setting the <code>alt</code> attribute of the image tag using symbols. To make this clearer, let&rsquo;s look at the HTML this tag produces:<sup class="footnote" id="fnref-5_4"><a href="?version=4.0#fn-5_4">4</a></sup></p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">&quot;Rails&quot;</span> <span class="na">src=</span><span class="s">&quot;/assets/rails.png&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+
+
+<p>The <code>alt</code> attribute is what will be displayed if there is no image, and it is also what will be displayed by screen readers for the visually impaired. Although people are sometimes sloppy about including the <code>alt</code> attribute for images, it is in fact required by the HTML standard. Luckily, Rails includes a default <code>alt</code> attribute; if you don&rsquo;t specify the attribute in the call to <code>image_tag</code>, Rails just uses the image filename (minus extension). In this case, though, we&rsquo;ve set the <code>alt</code> text explicitly in order to capitalize &ldquo;Rails&rdquo;.</p>
+
+<p>In previous versions of Rails, the <code>rails.png</code> logo was included automatically with every Rails project, but in the latest version it doesn&rsquo;t get generated as part of <code>rails new</code>, so you should download it from the main Ruby on Rails page at <a href="http://rubyonrails.org/images/rails.png">http://rubyonrails.org/images/rails.png</a> and place it in the <code>app/assets/images/</code> directory. (You may also have to create that directory as well, either with <code>mkdir</code> or with a graphical file manager.) Because we used the <code>image_tag</code> helper in <a class="ref" href="filling-in-the-layout?version=4.0#code-signup_button">Listing&nbsp;5.2</a>, Rails will automatically find any images in that directory using the asset pipeline (<a class="ref" href="filling-in-the-layout?version=4.0#sec-sass_and_the_asset_pipeline">Section&nbsp;5.2</a>).</p>
+
+<p>Now we&rsquo;re finally ready to see the fruits of our labors (<a class="ref" href="filling-in-the-layout?version=4.0#fig-layout_no_logo_or_custom_css">Figure&nbsp;5.2</a>). Pretty underwhelming, you say? Perhaps so. Happily, though, we&rsquo;ve done a good job of giving our HTML elements sensible classes, which puts us in a great position to add style to the site with CSS.</p>
+
+<div class="label" id="fig-layout_no_logo_or_custom_css"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/layout_no_logo_or_custom_css_bootstrap_rails_4.png" alt="layout_no_logo_or_custom_css_bootstrap_rails_4" /></span></div><div class="caption"><span class="header">Figure 5.2: </span><span class="description">The Home page (<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>) with no custom CSS.&nbsp;<a href="http://railstutorial.org/images/figures/layout_no_logo_or_custom_css_bootstrap_rails_4-full.png">(full size)</a></span></div></div>
+
+
+
+
+<div class="label" id="sec-custom_css"></div>
+
+
+<h3><a id="sec-5_1_2" href="filling-in-the-layout?version=4.0#sec-custom_css" class="heading"><span class="number">5.1.2</span> Bootstrap and custom CSS</a></h3>
+
+
+<p>In <a class="ref" href="filling-in-the-layout?version=4.0#sec-adding_to_the_layout">Section&nbsp;5.1.1</a>, we associated many of the HTML elements with CSS classes, which gives us considerable flexibility in constructing a layout based on CSS. As noted in <a class="ref" href="filling-in-the-layout?version=4.0#sec-adding_to_the_layout">Section&nbsp;5.1.1</a>, many of these classes are specific to <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>, a framework from Twitter that makes it easy to add nice web design and user interface elements to an HTML5 application. In this section, we&rsquo;ll combine Bootstrap with some custom CSS rules to start adding some style to the sample application.</p>
+
+<p>Our first step is to add Bootstrap, which in Rails applications can be accomplished with the <tt>bootstrap-sass</tt> gem, as shown in <a class="ref" href="filling-in-the-layout?version=4.0#code-bootstrap_sass">Listing&nbsp;5.3</a>. The Bootstrap framework natively uses the <a href="http://lesscss.org/">LESS CSS</a> language for making dynamic stylesheets, but the Rails asset pipeline supports the (very similar) Sass language by default (<a class="ref" href="filling-in-the-layout?version=4.0#sec-sass_and_the_asset_pipeline">Section&nbsp;5.2</a>), so <tt>bootstrap-sass</tt> converts LESS to Sass and makes all the necessary Bootstrap files available to the current application.<sup class="footnote" id="fnref-5_5"><a href="?version=4.0#fn-5_5">5</a></sup></p>
+
+<div class="label" id="code-bootstrap_sass"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.3.</span> <span class="description">Adding the <tt>bootstrap-sass</tt> gem to the <code>Gemfile</code>.</span> </div>
+<div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+<span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;bootstrap-sass&#39;</span><span class="p">,</span> <span class="s1">&#39;2.3.2.0&#39;</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+</pre></div>
+</div></div>
+
+
+<p>To install Bootstrap, we run <code>bundle install</code> as usual:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install
+</pre></div>
+</div>
+
+
+<p>Then restart the web server to incorporate the changes into the development application. (On most systems, restarting the server will involve pressing <tt>Ctrl-C</tt> and then running <code>rails server</code>.) Finally, as of Rails&nbsp;4.0 we need to add a line to <code>config/application.rb</code> to make <tt>bootstrap-sass</tt> compatible with the asset pipeline, as shown in <a class="ref" href="filling-in-the-layout?version=4.0#code-bootstrap_config">Listing&nbsp;5.4</a>.</p>
+
+<div class="label" id="code-bootstrap_config"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.4.</span> <span class="description">Adding a line for asset pipeline compatibility. <br /> <code>config/application.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s1">&#39;../boot&#39;</span><span class="p">,</span> <span class="bp">__FILE__</span><span class="p">)</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="k">module</span> <span class="nn">SampleApp</span>
+  <span class="k">class</span> <span class="nc">Application</span> <span class="o">&lt;</span> <span class="ss">Rails::Application</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">assets</span><span class="o">.</span><span class="n">precompile</span> <span class="o">+=</span> <span class="sx">%w(*.png *.jpg *.jpeg *.gif)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>The first step in adding custom CSS to our application is to open a file to contain it:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> subl app/assets/stylesheets/custom.css.scss
+</pre></div>
+</div>
+
+
+<p>Here both the directory name and filename are important. The directory</p>
+
+<div class="code"><div class="highlight"><pre><span class="go">app/assets/stylesheets</span>
+</pre></div>
+</div>
+
+
+<p>is part of the asset pipeline (<a class="ref" href="filling-in-the-layout?version=4.0#sec-sass_and_the_asset_pipeline">Section&nbsp;5.2</a>), and any stylesheets in this directory will automatically be included as part of the <code>application.css</code> file included in the site layout. Furthermore, the filename <code>custom.css.scss</code> includes the <code>.css</code> extension, which indicates a CSS file, and the <code>.scss</code> extension, which indicates a &ldquo;Sassy CSS&rdquo; file and arranges for the asset pipeline to process the file using Sass. (We won&rsquo;t be using Sass until <a class="ref" href="filling-in-the-layout?version=4.0#sec-sass">Section&nbsp;5.2.2</a>, but it&rsquo;s needed now for the <tt>bootstrap-sass</tt> gem to work its magic.)</p>
+
+<p>Inside the file for custom CSS, we can use the <code>@import</code> function to include Bootstrap, as shown in <a class="ref" href="filling-in-the-layout?version=4.0#code-bootstrap_css">Listing&nbsp;5.5</a>.</p>
+
+<div class="label" id="code-bootstrap_css"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.5.</span> <span class="description">Adding Bootstrap CSS. <br /> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">@import</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
+</pre></div>
+</div></div>
+
+
+<p>This one line includes the entire Bootstrap CSS framework, with the result shown in in <a class="ref" href="filling-in-the-layout?version=4.0#fig-sample_app_only_bootstrap">Figure&nbsp;5.3</a>. (You may have to use <tt>Ctrl-C</tt> restart the local web server. It&rsquo;s also worth noting that the screenshots use Bootstrap&nbsp;2.0, whereas the tutorial currently uses Bootstrap&nbsp;2.3, so there may be minor differences in appearance. These are not cause for concern.) The placement of the text isn&rsquo;t good and the logo doesn&rsquo;t have any style, but the colors and signup button look promising.</p>
+
+<div class="label" id="fig-sample_app_only_bootstrap"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sample_app_only_bootstrap_4_0.png" alt="sample_app_only_bootstrap_4_0" /></span></div><div class="caption"><span class="header">Figure 5.3: </span><span class="description">The sample application with Bootstrap CSS.&nbsp;<a href="http://railstutorial.org/images/figures/sample_app_only_bootstrap_4_0-full.png">(full size)</a></span></div></div>
+
+
+<p>Next we&rsquo;ll add some CSS that will be used site-wide for styling the layout and each individual page, as shown in <a class="ref" href="filling-in-the-layout?version=4.0#code-universal_css">Listing&nbsp;5.6</a>. There are quite a few rules in <a class="ref" href="filling-in-the-layout?version=4.0#code-universal_css">Listing&nbsp;5.6</a>; to get a sense of what a CSS rule does, it&rsquo;s often helpful to comment it out using CSS comments, i.e., by putting it inside <code>/* &hellip; */</code>, and seeing what changes.
+The result of the CSS in <a class="ref" href="filling-in-the-layout?version=4.0#code-universal_css">Listing&nbsp;5.6</a> is shown in <a class="ref" href="filling-in-the-layout?version=4.0#fig-sample_app_universal">Figure&nbsp;5.4</a>.</p>
+
+<div class="label" id="code-universal_css"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.6.</span> <span class="description">Adding CSS for some universal styling applying to all pages. <br /> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">@import</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
+
+<span class="cm">/* universal */</span>
+
+<span class="nt">html</span> <span class="p">{</span>
+  <span class="na">overflow-y</span><span class="o">:</span> <span class="no">scroll</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">body</span> <span class="p">{</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">60</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">section</span> <span class="p">{</span>
+  <span class="na">overflow</span><span class="o">:</span> <span class="no">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">textarea</span> <span class="p">{</span>
+  <span class="na">resize</span><span class="o">:</span> <span class="n">vertical</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.center</span> <span class="p">{</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.center</span> <span class="nt">h1</span> <span class="p">{</span>
+  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="fig-sample_app_universal"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sample_app_universal_4_0.png" alt="sample_app_universal_4_0" /></span></div><div class="caption"><span class="header">Figure 5.4: </span><span class="description">Adding some spacing and other universal styling.&nbsp;<a href="http://railstutorial.org/images/figures/sample_app_universal_4_0-full.png">(full size)</a></span></div></div>
+
+
+<p>Note that the CSS in <a class="ref" href="filling-in-the-layout?version=4.0#code-universal_css">Listing&nbsp;5.6</a> has a consistent form. In general, CSS rules refer either to a class, an id, an HTML tag, or some combination thereof, followed by a list of styling commands. For example,</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">body</span> <span class="p">{</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">60</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>puts 60&nbsp;pixels of padding at the top of the page. Because of the <code>navbar-fixed-top</code> class in the <code>header</code> tag, Bootstrap fixes the navigation bar to the top of the page, so the padding serves to separate the main text from the navigation. (Because the default navbar color changed between Boostrap 2.0 and 2.1, we need the <code>navbar-inverse</code> class to make it dark instead of light.) Meanwhile, the CSS in the rule</p>
+
+<div class="code"><div class="highlight"><pre><span class="nc">.center</span> <span class="p">{</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>associates the <code>center</code> class with the <code>text-align: center</code> property. In other words, the dot <code>.</code> in <code>.center</code> indicates that the rule styles a class. (As we&rsquo;ll see in <a class="ref" href="filling-in-the-layout?version=4.0#code-logo_css">Listing&nbsp;5.8</a>, the pound sign <code>#</code> identifies a rule to style a CSS <em>id</em>.) This means that elements inside any tag (such as a <code>div</code>) with class <code>center</code> will be centered on the page. (We saw an example of this class in <a class="ref" href="filling-in-the-layout?version=4.0#code-signup_button">Listing&nbsp;5.2</a>.)</p>
+
+<p>Although Bootstrap comes with CSS rules for nice typography, we&rsquo;ll also add some custom rules for the appearance of the text on our site, as shown in <a class="ref" href="filling-in-the-layout?version=4.0#code-typography_css">Listing&nbsp;5.7</a>. (Not all of these rules apply to the Home page, but each rule here will be used at some point in the sample application.) The result of <a class="ref" href="filling-in-the-layout?version=4.0#code-typography_css">Listing&nbsp;5.7</a> is shown in <a class="ref" href="filling-in-the-layout?version=4.0#fig-sample_app_typography">Figure&nbsp;5.5</a>.</p>
+
+<div class="label" id="code-typography_css"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.7.</span> <span class="description">Adding CSS for nice typography. <br /> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">@import</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+
+<span class="o">/*</span> <span class="nt">typography</span> <span class="o">*/</span>
+
+<span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span> <span class="p">{</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">h1</span> <span class="p">{</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">3</span><span class="kt">em</span><span class="p">;</span>
+  <span class="na">letter-spacing</span><span class="o">:</span> <span class="mi">-2</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">h2</span> <span class="p">{</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.2</span><span class="kt">em</span><span class="p">;</span>
+  <span class="na">letter-spacing</span><span class="o">:</span> <span class="mi">-1</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#999</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">p</span> <span class="p">{</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.1</span><span class="kt">em</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.7</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="fig-sample_app_typography"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sample_app_typography_4_0.png" alt="sample_app_typography_4_0" /></span></div><div class="caption"><span class="header">Figure 5.5: </span><span class="description">Adding some typographic styling.&nbsp;<a href="http://railstutorial.org/images/figures/sample_app_typography_4_0-full.png">(full size)</a></span></div></div>
+
+
+<p>Finally, we&rsquo;ll add some rules to style the site&rsquo;s logo, which simply consists of the text &ldquo;sample app&rdquo;. The CSS in <a class="ref" href="filling-in-the-layout?version=4.0#code-logo_css">Listing&nbsp;5.8</a> converts the text to uppercase and modifies its size, color, and placement. (We&rsquo;ve used a CSS&nbsp;id because we expect the site logo to appear on the page only once, but you could use a class instead.)</p>
+
+<div class="label" id="code-logo_css"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.8.</span> <span class="description">Adding CSS for the site logo. <br /> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">@import</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+
+<span class="o">/*</span> <span class="nt">header</span> <span class="o">*/</span>
+
+<span class="nn">#logo</span> <span class="p">{</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.7</span><span class="kt">em</span><span class="p">;</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+  <span class="na">text-transform</span><span class="o">:</span> <span class="no">uppercase</span><span class="p">;</span>
+  <span class="na">letter-spacing</span><span class="o">:</span> <span class="mi">-1</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">9</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">bold</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nn">#logo</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+  <span class="na">text-decoration</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div></div>
+
+
+<p>Here <code>color: #fff</code> changes the color of the logo to white. HTML colors can be coded with three pairs of base-16 (hexadecimal) numbers, one each for the primary colors red, green, and blue (in that order). The code <code>#ffffff</code> maxes out all three colors, yielding pure white, and <code>#fff</code> is a shorthand for the full <code>#ffffff</code>. The CSS standard also defines a large number of synonyms for common <a href="http://www.w3schools.com/html/html_colornames.asp">HTML colors</a>, including <code>white</code> for <code>#fff</code>. The result of the CSS in <a class="ref" href="filling-in-the-layout?version=4.0#code-logo_css">Listing&nbsp;5.8</a> is shown in <a class="ref" href="filling-in-the-layout?version=4.0#fig-sample_app_logo">Figure&nbsp;5.6</a>.</p>
+
+<div class="label" id="fig-sample_app_logo"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sample_app_logo_4_0.png" alt="sample_app_logo_4_0" /></span></div><div class="caption"><span class="header">Figure 5.6: </span><span class="description">The sample app with nicely styled logo.&nbsp;<a href="http://railstutorial.org/images/figures/sample_app_logo_4_0-full.png">(full size)</a></span></div></div>
+
+
+
+
+<div class="label" id="sec-partials"></div>
+
+
+<h3><a id="sec-5_1_3" href="filling-in-the-layout?version=4.0#sec-partials" class="heading"><span class="number">5.1.3</span> Partials</a></h3>
+
+
+<p>Although the layout in <a class="ref" href="filling-in-the-layout?version=4.0#code-layout_new_structure">Listing&nbsp;5.1</a> serves its purpose, it&rsquo;s getting a little cluttered. The HTML shim takes up three lines and uses weird IE-specific syntax, so it would be nice to tuck it away somewhere on its own. In addition, the header HTML forms a logical unit, so it should all be packaged up in one place. The way to achieve this in Rails is to use a facility called <em>partials</em>. Let&rsquo;s first take a look at what the layout looks like after the partials are defined (<a class="ref" href="filling-in-the-layout?version=4.0#code-layout_with_partials">Listing&nbsp;5.9</a>).</p>
+
+<div class="label" id="code-layout_with_partials"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.9.</span> <span class="description">The site layout with partials for the stylesheets and header. <br /> <code>app/views/layouts/application.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span><span class="cp">&lt;%=</span> <span class="n">full_title</span><span class="p">(</span><span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+                                           <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">javascript_include_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">csrf_meta_tags</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">&#39;layouts/shim&#39;</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">&#39;layouts/header&#39;</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>In <a class="ref" href="filling-in-the-layout?version=4.0#code-layout_with_partials">Listing&nbsp;5.9</a>, we&rsquo;ve replaced the HTML shim stylesheet lines with a single call to a Rails helper called <code>render</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">&#39;layouts/shim&#39;</span> <span class="cp">%&gt;</span>
+</pre></div>
+</div>
+
+
+<p>The effect of this line is to look for a file called  <code>app/views/layouts/_shim.html.erb</code>, evaluate its contents, and insert the results into the view.<sup class="footnote" id="fnref-5_6"><a href="?version=4.0#fn-5_6">6</a></sup> (Recall that <tt class="verb">&lt;%= ... %&gt;</tt> is the embedded Ruby syntax needed to evaluate a Ruby expression and then insert the results into the template.) Note the leading underscore on the filename <code>_shim.html.erb</code>; this underscore is the universal convention for naming partials, and among other things makes it possible to identify all the partials in a directory at a glance.</p>
+
+<p>Of course, to get the partial to work, we have to fill it with some content; in the case of the shim partial, this is just the three lines of shim code from <a class="ref" href="filling-in-the-layout?version=4.0#code-layout_new_structure">Listing&nbsp;5.1</a>; the result appears in <a class="ref" href="filling-in-the-layout?version=4.0#code-stylesheets_partial">Listing&nbsp;5.10</a>.</p>
+
+<div class="label" id="code-stylesheets_partial"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.10.</span> <span class="description">A partial for the HTML shim. <br /> <code>app/views/layouts/_shim.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="c">&lt;!--[if lt IE 9]&gt;</span>
+<span class="c">&lt;script src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;</span>
+<span class="c">&lt;![endif]--&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>Similarly, we can move the header material into the partial shown in <a class="ref" href="filling-in-the-layout?version=4.0#code-header_partial">Listing&nbsp;5.11</a> and insert it into the layout with another call to <code>render</code>.</p>
+
+<div class="label" id="code-header_partial"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.11.</span> <span class="description">A partial for the site header. <br /> <code>app/views/layouts/_header.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;navbar navbar-fixed-top navbar-inverse&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;navbar-inner&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;sample app&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="s2">&quot;logo&quot;</span> <span class="cp">%&gt;</span>
+      <span class="nt">&lt;nav&gt;</span>
+        <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav pull-right&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Home&quot;</span><span class="p">,</span>    <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Help&quot;</span><span class="p">,</span>    <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Sign in&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;/nav&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>Now that we know how to make partials, let&rsquo;s add a site footer to go along with the header. By now you can probably guess that we&rsquo;ll call it <code>_footer.html.erb</code> and put it in the layouts directory (<a class="ref" href="filling-in-the-layout?version=4.0#code-footer_partial">Listing&nbsp;5.12</a>).<sup class="footnote" id="fnref-5_7"><a href="?version=4.0#fn-5_7">7</a></sup></p>
+
+<div class="label" id="code-footer_partial"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.12.</span> <span class="description">A partial for the site footer. <br /> <code>app/views/layouts/_footer.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;footer</span> <span class="na">class=</span><span class="s">&quot;footer&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;small&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.org/&quot;</span><span class="nt">&gt;</span>Rails Tutorial<span class="nt">&lt;/a&gt;</span>
+    by Michael Hartl
+  <span class="nt">&lt;/small&gt;</span>
+  <span class="nt">&lt;nav&gt;</span>
+    <span class="nt">&lt;ul&gt;</span>
+      <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;About&quot;</span><span class="p">,</span>   <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Contact&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://news.railstutorial.org/&quot;</span><span class="nt">&gt;</span>News<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/nav&gt;</span>
+<span class="nt">&lt;/footer&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>As with the header, in the footer we&rsquo;ve used <code>link_to</code> for the internal links to the About and Contact pages and stubbed out the URLs with <code>&rsquo;#&rsquo;</code> for now. (As with <code>header</code>, the <code>footer</code> tag is new in HTML5.)</p>
+
+<p>We can render the footer partial in the layout by following the same pattern as the stylesheets and header partials (<a class="ref" href="filling-in-the-layout?version=4.0#code-layout_with_footer">Listing&nbsp;5.13</a>).</p>
+
+<div class="label" id="code-layout_with_footer"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.13.</span> <span class="description">The site layout with a footer partial. <br /> <code>app/views/layouts/application.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span><span class="cp">&lt;%=</span> <span class="n">full_title</span><span class="p">(</span><span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
+                                           <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">javascript_include_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">csrf_meta_tags</span> <span class="cp">%&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">&#39;layouts/shim&#39;</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">&#39;layouts/header&#39;</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">&#39;layouts/footer&#39;</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>Of course, the footer will be ugly without some styling (<a class="ref" href="filling-in-the-layout?version=4.0#code-footer_css">Listing&nbsp;5.14</a>). The results appear in <a class="ref" href="filling-in-the-layout?version=4.0#fig-site_with_footer">Figure&nbsp;5.7</a>.</p>
+
+<div class="label" id="code-footer_css"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.14.</span> <span class="description">Adding the CSS for the site footer. <br /> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nc">.</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+
+<span class="o">/*</span> <span class="nt">footer</span> <span class="o">*/</span>
+
+<span class="nt">footer</span> <span class="p">{</span>
+  <span class="na">margin-top</span><span class="o">:</span> <span class="mi">45</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">border-top</span><span class="o">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="no">solid</span> <span class="mh">#eaeaea</span><span class="p">;</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#999</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">footer</span> <span class="nt">a</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#555</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">footer</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#222</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">footer</span> <span class="nt">small</span> <span class="p">{</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">footer</span> <span class="nt">ul</span> <span class="p">{</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">right</span><span class="p">;</span>
+  <span class="na">list-style</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">footer</span> <span class="nt">ul</span> <span class="nt">li</span> <span class="p">{</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="fig-site_with_footer"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/site_with_footer_bootstrap_4_0.png" alt="site_with_footer_bootstrap_4_0" /></span></div><div class="caption"><span class="header">Figure 5.7: </span><span class="description">The Home page (<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>) with an added footer.&nbsp;<a href="http://railstutorial.org/images/figures/site_with_footer_bootstrap_4_0-full.png">(full size)</a></span></div></div>
+
+
+
+
+<div class="label" id="sec-sass_and_the_asset_pipeline"></div>
+
+
+<h2><a id="sec-5_2" href="filling-in-the-layout?version=4.0#sec-sass_and_the_asset_pipeline" class="heading"><span class="number">5.2</span> Sass and the asset pipeline</a></h2>
+
+
+<p>One of the most notable additions in recent versions of Rails is the asset pipeline, which significantly improves the production and management of static assets such as CSS, JavaScript, and images. This section gives a high-level overview of the asset pipeline and then shows how to use a remarkable tool for making CSS called <em>Sass</em>, now included by default as part of the asset pipeline.</p>
+
+<div class="label" id="sec-the_asset_pipeline"></div>
+
+
+<h3><a id="sec-5_2_1" href="filling-in-the-layout?version=4.0#sec-the_asset_pipeline" class="heading"><span class="number">5.2.1</span> The asset pipeline</a></h3>
+
+
+<p>The asset pipeline involves lots of changes under Rails&rsquo; hood, but from the perspective of a typical Rails developer there are three principal features to understand: asset directories, manifest files, and preprocessor engines.<sup class="footnote" id="fnref-5_8"><a href="?version=4.0#fn-5_8">8</a></sup> Let&rsquo;s consider each in turn.</p>
+
+<h4><a id="sec-5_2_1_1" href="filling-in-the-layout?version=4.0#sec-5_2_1_1" class="heading">Asset directories</a></h4>
+
+
+<p>In versions of Rails before 3.0 (including 3.0 itself), static assets lived in the <code>public/</code> directory, as follows:</p>
+
+<ul>
+<li><code>public/stylesheets</code></li>
+<li><code>public/javascripts</code></li>
+<li><code>public/images</code></li>
+</ul>
+
+
+<p>Files in these directories are (even post-3.0) automatically served up via requests to http://example.com/stylesheets, etc.</p>
+
+<p>Starting in Rails 3.1, and continuing in Rails&nbsp;4, there are <em>three</em> canonical directories for static assets, each with its own purpose:</p>
+
+<ul>
+<li><code>app/assets</code>: assets specific to the present application</li>
+<li><code>lib/assets</code>: assets for libraries written by your dev team</li>
+<li><code>vendor/assets</code>: assets from third-party vendors</li>
+</ul>
+
+
+<p>As you might guess, each of these directories has a subdirectory for each asset class, e.g.,</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> ls app/assets/
+<span class="go">images      javascripts stylesheets</span>
+</pre></div>
+</div>
+
+
+<p>At this point, we&rsquo;re in a position to understand the motivation behind the location of the <code>custom.css.scss</code> file in <a class="ref" href="filling-in-the-layout?version=4.0#sec-custom_css">Section&nbsp;5.1.2</a>: <code>custom.css.scss</code> is specific to the sample application, so it goes in <code>app/assets/stylesheets</code>.</p>
+
+<h4><a id="sec-5_2_1_2" href="filling-in-the-layout?version=4.0#sec-5_2_1_2" class="heading">Manifest files</a></h4>
+
+
+<p>Once you&rsquo;ve placed your assets in their logical locations, you can use <em>manifest files</em> to tell Rails (via the <a href="https://github.com/sstephenson/sprockets">Sprockets</a> gem) how to combine them to form single files. (This applies to CSS and JavaScript but not to images.) As an example, let&rsquo;s take a look at the default manifest file for app stylesheets (<a class="ref" href="filling-in-the-layout?version=4.0#code-app_css_manifest">Listing&nbsp;5.15</a>).</p>
+
+<div class="label" id="code-app_css_manifest"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.15.</span> <span class="description">The manifest file for app-specific CSS. <br /> <code>app/assets/stylesheets/application.css</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm"> * This is a manifest file that&#39;ll automatically include all the stylesheets</span>
+<span class="cm"> * available in this directory and any sub-directories. You&#39;re free to add</span>
+<span class="cm"> * application-wide styles to this file and they&#39;ll appear at the top of the</span>
+<span class="cm"> * compiled file, but it&#39;s generally better to create a new file per style</span>
+<span class="cm"> * scope.</span>
+<span class="cm"> *= require_self</span>
+<span class="cm"> *= require_tree .</span>
+<span class="cm">*/</span>
+</pre></div>
+</div></div>
+
+
+<p>The key lines here are actually CSS comments, but they are used by Sprockets to include the proper files:</p>
+
+<div class="code"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm"> .</span>
+<span class="cm"> .</span>
+<span class="cm"> .</span>
+<span class="cm"> *= require_self</span>
+<span class="cm"> *= require_tree .</span>
+<span class="cm">*/</span>
+</pre></div>
+</div>
+
+
+<p>Here</p>
+
+<div class="code"><div class="highlight"><pre><span class="go">*= require_tree .</span>
+</pre></div>
+</div>
+
+
+<p>ensures that all CSS files in the <code>app/assets/stylesheets</code> directory (including the tree subdirectories) are included into the application CSS. The line</p>
+
+<div class="code"><div class="highlight"><pre><span class="go">*= require_self</span>
+</pre></div>
+</div>
+
+
+<p>specifies where in the loading sequence the CSS in <code>application.css</code> itself gets included.</p>
+
+<p>Rails comes with sensible default manifest files, and in the <em>Rails Tutorial</em> we won&rsquo;t need to make any changes, but the <a href="http://guides.rubyonrails.org/asset_pipeline.html">Rails Guides entry on the asset pipeline</a> has more detail if you need it.</p>
+
+<h4><a id="sec-5_2_1_3" href="filling-in-the-layout?version=4.0#sec-5_2_1_3" class="heading">Preprocessor engines</a></h4>
+
+
+<p>After you&rsquo;ve assembled your assets, Rails prepares them for the site template by running them through several preprocessing engines and using the manifest files to combine them for delivery to the browser. We tell Rails which processor to use using filename extensions; the three most common cases are <code>.scss</code> for Sass, <code>.coffee</code> for CoffeeScript, and <code>.erb</code> for embedded Ruby (ERb). We first covered ERb in <a class="ref" href="static-pages?version=4.0#sec-embedded_ruby">Section&nbsp;3.3.3</a>, and cover Sass in <a class="ref" href="filling-in-the-layout?version=4.0#sec-sass">Section&nbsp;5.2.2</a>. We won&rsquo;t be needing CoffeeScript in this tutorial, but it&rsquo;s an elegant little language that compiles to JavaScript. (The <a href="http://railscasts.com/episodes/267-coffeescript-basics">RailsCast on CoffeeScript basics</a> is a good place to start.)</p>
+
+<p>The preprocessor engines can be chained, so that</p>
+
+<p><code>foobar.js.coffee</code></p>
+
+<p>gets run through the CoffeeScript processor, and</p>
+
+<p><code>foobar.js.erb.coffee</code></p>
+
+<p>gets run through both CoffeeScript and ERb (with the code running from right to left, i.e., CoffeeScript first).</p>
+
+<h4><a id="sec-5_2_1_4" href="filling-in-the-layout?version=4.0#sec-5_2_1_4" class="heading">Efficiency in production</a></h4>
+
+
+<p>One of the best things about the asset pipeline is that it automatically results in assets that are optimized to be efficient in a production application.  Traditional methods for organizing CSS and JavaScript involve splitting functionality into separate files and using nice formatting (with lots of indentation). While convenient for the programmer, this is inefficient in production; including multiple full-sized files can significantly slow page-load times (one of the most important factors affecting the quality of the user experience). With the asset pipeline, in production all the application stylesheets get rolled into one CSS file (<code>application.css</code>), all the application JavaScript code gets rolled into one JavaScript file (<code>javascripts.js</code>), and all such files (including those in <code>lib/assets</code> and <code>vendor/assets</code>) are <em>minified</em> to remove the unnecessary whitespace that bloats file size. As a result, we get the best of both worlds: multiple nicely formatted files for programmer convenience, with single optimized files in production.</p>
+
+<div class="label" id="sec-sass"></div>
+
+
+<h3><a id="sec-5_2_2" href="filling-in-the-layout?version=4.0#sec-sass" class="heading"><span class="number">5.2.2</span> Syntactically awesome stylesheets</a></h3>
+
+
+<p><em>Sass</em> is a language for writing stylesheets that improves on CSS in many ways. In this section, we cover two of the most important improvements, <em>nesting</em> and <em>variables</em>. (A third technique, <em>mixins</em>, is introduced in <a class="ref" href="sign-up?version=4.0#sec-rails_environments">Section&nbsp;7.1.1</a>.)</p>
+
+<p>As noted briefly in <a class="ref" href="filling-in-the-layout?version=4.0#sec-custom_css">Section&nbsp;5.1.2</a>, Sass supports a format called SCSS (indicated with a <code>.scss</code> filename extension), which is a strict superset of CSS itself; that is, SCSS only <em>adds</em> features to CSS, rather than defining an entirely new syntax.<sup class="footnote" id="fnref-5_9"><a href="?version=4.0#fn-5_9">9</a></sup> This means that every valid CSS file is also a valid SCSS file, which is convenient for projects with existing style rules. In our case, we used SCSS from the start in order to take advantage of Bootstrap. Since the Rails asset pipeline automatically uses Sass to process files with the <code>.scss</code> extension, the <code>custom.css.scss</code> file will be run through the Sass preprocessor before being packaged up for delivery to the browser.</p>
+
+<h4><a id="sec-5_2_2_1" href="filling-in-the-layout?version=4.0#sec-5_2_2_1" class="heading">Nesting</a></h4>
+
+
+<p>A common pattern in stylesheets is having rules that apply to nested elements. For example, in <a class="ref" href="filling-in-the-layout?version=4.0#code-universal_css">Listing&nbsp;5.6</a> we have rules both for <code>.center</code> and for <code>.center h1</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nc">.center</span> <span class="p">{</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.center</span> <span class="nt">h1</span> <span class="p">{</span>
+  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>We can replace this in Sass with</p>
+
+<div class="code"><div class="highlight"><pre><span class="nc">.center</span> <span class="p">{</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+  <span class="nt">h1</span> <span class="p">{</span>
+    <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>Here the nested <code>h1</code> rule automatically inherits the <code>.center</code> context.</p>
+
+<p>There&rsquo;s a second candidate for nesting that requires a slightly different syntax. In <a class="ref" href="filling-in-the-layout?version=4.0#code-logo_css">Listing&nbsp;5.8</a>, we have the code</p>
+
+<div class="code"><div class="highlight"><pre><span class="nn">#logo</span> <span class="p">{</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.7</span><span class="kt">em</span><span class="p">;</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+  <span class="na">text-transform</span><span class="o">:</span> <span class="no">uppercase</span><span class="p">;</span>
+  <span class="na">letter-spacing</span><span class="o">:</span> <span class="mi">-1</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">9</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">bold</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nn">#logo</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+  <span class="na">text-decoration</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>Here the logo id <code>#logo</code> appears twice, once by itself and once with the <code>hover</code> attribute (which controls its appearance when the mouse pointer hovers over the element in question). In order to nest the second rule, we need to reference the parent element <code>#logo</code>; in SCSS, this is accomplished with the ampersand character&nbsp;<code>&amp;</code> as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nn">#logo</span> <span class="p">{</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.7</span><span class="kt">em</span><span class="p">;</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+  <span class="na">text-transform</span><span class="o">:</span> <span class="no">uppercase</span><span class="p">;</span>
+  <span class="na">letter-spacing</span><span class="o">:</span> <span class="mi">-1</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">9</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">bold</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
+    <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+    <span class="na">text-decoration</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>Sass changes <code>&amp;:hover</code> into <code>#logo:hover</code> as part of converting from SCSS to CSS.</p>
+
+<p>Both of these nesting techniques apply to the footer CSS in <a class="ref" href="filling-in-the-layout?version=4.0#code-footer_css">Listing&nbsp;5.14</a>, which can be transformed into the following:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">footer</span> <span class="p">{</span>
+  <span class="na">margin-top</span><span class="o">:</span> <span class="mi">45</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">border-top</span><span class="o">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="no">solid</span> <span class="mh">#eaeaea</span><span class="p">;</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#999</span><span class="p">;</span>
+  <span class="nt">a</span> <span class="p">{</span>
+    <span class="na">color</span><span class="o">:</span> <span class="mh">#555</span><span class="p">;</span>
+    <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
+      <span class="na">color</span><span class="o">:</span> <span class="mh">#222</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nt">small</span> <span class="p">{</span>
+    <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nt">ul</span> <span class="p">{</span>
+    <span class="na">float</span><span class="o">:</span> <span class="no">right</span><span class="p">;</span>
+    <span class="na">list-style</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+    <span class="nt">li</span> <span class="p">{</span>
+      <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+      <span class="na">margin-left</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>Converting <a class="ref" href="filling-in-the-layout?version=4.0#code-footer_css">Listing&nbsp;5.14</a> by hand is a good exercise, and you should verify that the CSS still works properly after the conversion.</p>
+
+<h4><a id="sec-5_2_2_2" href="filling-in-the-layout?version=4.0#sec-5_2_2_2" class="heading">Variables</a></h4>
+
+
+<p>Sass allows us to define <em>variables</em> to eliminate duplication and write more expressive code. For example, looking at <a class="ref" href="filling-in-the-layout?version=4.0#code-typography_css">Listing&nbsp;5.7</a> and <a class="ref" href="filling-in-the-layout?version=4.0#code-footer_css">Listing&nbsp;5.14</a>, we see that there are repeated references to the same color:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">h2</span> <span class="p">{</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#999</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+<span class="nt">footer</span> <span class="p">{</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#999</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>In this case, <code>#999</code> is a light gray, and we can give it a name by defining a variable as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nv">$lightGray</span><span class="o">:</span> <span class="mh">#999</span><span class="p">;</span>
+</pre></div>
+</div>
+
+
+<p>This allows us to rewrite our SCSS like this:</p>
+
+<div class="code"><div class="highlight"><pre><span class="nv">$lightGray</span><span class="o">:</span> <span class="mh">#999</span><span class="p">;</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+<span class="nt">h2</span> <span class="p">{</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nv">$lightGray</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+<span class="nt">footer</span> <span class="p">{</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nv">$lightGray</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>Because variable names such as <code>$lightGray</code> are more descriptive than <code>#999</code>, it&rsquo;s often useful to define variables even for values that aren&rsquo;t repeated. Indeed, the Bootstrap framework defines a large number of variables for colors, available online on the <a href="http://bootstrapdocs.com/v2.0.4/docs/less.html">Bootstrap page of LESS variables</a>. That page defines variables using LESS, not Sass, but the <tt>bootstrap-sass</tt> gem provides the Sass equivalents. It is not difficult to guess the correspondence; where LESS uses an &ldquo;at&rdquo; sign&nbsp;<code>@</code>, Sass uses a dollar sign&nbsp;<code>$</code>. Looking the Bootstrap variable page, we see that there is a variable for light gray:</p>
+
+<div class="code"><div class="highlight"><pre> <span class="k">@grayLight</span><span class="nd">:</span> <span class="nn">#999</span><span class="o">;</span>
+</pre></div>
+</div>
+
+
+<p>This means that, via the <tt>bootstrap-sass</tt> gem, there should be a corresponding SCSS variable <code>$grayLight</code>. We can use this to replace our custom variable, <code>$lightGray</code>, which gives</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">h2</span> <span class="p">{</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nv">$grayLight</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+<span class="nc">.</span>
+<span class="nt">footer</span> <span class="p">{</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">.</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nv">$grayLight</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>Applying the Sass nesting and variable definition features to the full SCSS file gives the file in <a class="ref" href="filling-in-the-layout?version=4.0#code-refactored_scss">Listing&nbsp;5.16</a>. This uses both Sass variables (as inferred from the Bootstrap LESS variable page) and built-in named colors (i.e., <code>white</code> for <code>#fff</code>). Note in particular the dramatic improvement in the rules for the <code>footer</code> tag.</p>
+
+<div class="label" id="code-refactored_scss"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.16.</span> <span class="description">The initial SCSS file converted to use nesting and variables. <br /> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">@import</span> <span class="s2">&quot;bootstrap&quot;</span><span class="p">;</span>
+
+<span class="cm">/* mixins, variables, etc. */</span>
+
+<span class="nv">$grayMediumLight</span><span class="o">:</span> <span class="mh">#eaeaea</span><span class="p">;</span>
+
+<span class="cm">/* universal */</span>
+
+<span class="nt">html</span> <span class="p">{</span>
+  <span class="na">overflow-y</span><span class="o">:</span> <span class="no">scroll</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">body</span> <span class="p">{</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">60</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">section</span> <span class="p">{</span>
+  <span class="na">overflow</span><span class="o">:</span> <span class="no">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">textarea</span> <span class="p">{</span>
+  <span class="na">resize</span><span class="o">:</span> <span class="n">vertical</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.center</span> <span class="p">{</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+  <span class="nt">h1</span> <span class="p">{</span>
+    <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* typography */</span>
+
+<span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span> <span class="p">{</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">h1</span> <span class="p">{</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">3</span><span class="kt">em</span><span class="p">;</span>
+  <span class="na">letter-spacing</span><span class="o">:</span> <span class="mi">-2</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">h2</span> <span class="p">{</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.2</span><span class="kt">em</span><span class="p">;</span>
+  <span class="na">letter-spacing</span><span class="o">:</span> <span class="mi">-1</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nv">$grayLight</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">p</span> <span class="p">{</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.1</span><span class="kt">em</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.7</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="cm">/* header */</span>
+
+<span class="nn">#logo</span> <span class="p">{</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.7</span><span class="kt">em</span><span class="p">;</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+  <span class="na">text-transform</span><span class="o">:</span> <span class="no">uppercase</span><span class="p">;</span>
+  <span class="na">letter-spacing</span><span class="o">:</span> <span class="mi">-1</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">9</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">bold</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
+    <span class="na">color</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span>
+    <span class="na">text-decoration</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* footer */</span>
+
+<span class="nt">footer</span> <span class="p">{</span>
+  <span class="na">margin-top</span><span class="o">:</span> <span class="mi">45</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">border-top</span><span class="o">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="no">solid</span> <span class="nv">$grayMediumLight</span><span class="p">;</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nv">$grayLight</span><span class="p">;</span>
+  <span class="nt">a</span> <span class="p">{</span>
+    <span class="na">color</span><span class="o">:</span> <span class="nv">$gray</span><span class="p">;</span>
+    <span class="k">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
+      <span class="na">color</span><span class="o">:</span> <span class="nv">$grayDarker</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nt">small</span> <span class="p">{</span>
+    <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nt">ul</span> <span class="p">{</span>
+    <span class="na">float</span><span class="o">:</span> <span class="no">right</span><span class="p">;</span>
+    <span class="na">list-style</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+    <span class="nt">li</span> <span class="p">{</span>
+      <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+      <span class="na">margin-left</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div></div>
+
+
+<p>Sass gives us even more ways to simplify our stylesheets, but the code in <a class="ref" href="filling-in-the-layout?version=4.0#code-refactored_scss">Listing&nbsp;5.16</a> uses the most important features and gives us a great start. See the <a href="http://sass-lang.com/">Sass website</a> for more details.</p>
+
+<div class="label" id="sec-layout_links"></div>
+
+
+<h2><a id="sec-5_3" href="filling-in-the-layout?version=4.0#sec-layout_links" class="heading"><span class="number">5.3</span> Layout links</a></h2>
+
+
+<p>Now that we&rsquo;ve finished a site layout with decent styling, it&rsquo;s time to start filling in the links we&rsquo;ve stubbed out with <code>&rsquo;#&rsquo;</code>. Of course, we could hard-code links like</p>
+
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/static_pages/about&quot;</span><span class="nt">&gt;</span>About<span class="nt">&lt;/a&gt;</span>
+</pre></div>
+</div>
+
+
+<p>but that isn&rsquo;t the Rails Way. For one, it would be nice if the URL for the about page were /about rather than /static_pages/about. Moreover, Rails conventionally uses <em>named routes</em>, which involves code like</p>
+
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;About&quot;</span><span class="p">,</span> <span class="n">about_path</span> <span class="cp">%&gt;</span>
+</pre></div>
+</div>
+
+
+<p>This way the code has a more transparent meaning, and it&rsquo;s also more flexible since we can change the definition of <code>about_path</code> and have the URL change everywhere <code>about_path</code> is used.</p>
+
+<p>The full list of our planned links appears in <a class="ref" href="filling-in-the-layout?version=4.0#table-url_mapping">Table&nbsp;5.1</a>, along with their mapping to URLs and routes. We&rsquo;ll implement all but the last one by the end of this chapter. (We&rsquo;ll make the last one in <a class="ref" href="sign-in-sign-out?version=4.0#top">Chapter&nbsp;8</a>.)</p>
+
+<div class="label" id="table-url_mapping"></div>
+
+
+<div class="table"><div class="center">
+<table class="tabular"><tr><th class="align_left"><strong>Page</strong></th><th class="align_left"><strong>URL</strong></th><th class="align_right"><strong>Named route</strong></th></tr><tr class="top_bar"><td class="align_left">Home</td><td class="align_left">/</td><td class="align_right"><code>root_path</code></td></tr><tr><td class="align_left">About</td><td class="align_left">/about</td><td class="align_right"><code>about_path</code></td></tr><tr><td class="align_left">Help</td><td class="align_left">/help</td><td class="align_right"><code>help_path</code></td></tr><tr><td class="align_left">Contact</td><td class="align_left">/contact</td><td class="align_right"><code>contact_path</code></td></tr><tr><td class="align_left">Sign up</td><td class="align_left">/signup</td><td class="align_right"><code>signup_path</code></td></tr><tr><td class="align_left">Sign in</td><td class="align_left">/signin</td><td class="align_right"><code>signin_path</code></td></tr></table></div><div class="caption"><span class="header">Table 5.1: </span><span class="description">Route and URL mapping for site links.</span></div></div>
+
+
+<p>Before moving on, let&rsquo;s add a Contact page (left as an exercise in <a class="ref" href="static-pages?version=4.0#top">Chapter&nbsp;3</a>). The test appears as in <a class="ref" href="filling-in-the-layout?version=4.0#code-contact_page_test">Listing&nbsp;5.17</a>, which simply follows the model last seen in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.20</a>.</p>
+
+<div class="label" id="code-contact_page_test"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.17.</span> <span class="description">Tests for a Contact page. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">describe</span> <span class="s2">&quot;Contact page&quot;</span> <span class="k">do</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should have the content &#39;Contact&#39;&quot;</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="s1">&#39;/static_pages/contact&#39;</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Contact&#39;</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should have the title &#39;Contact&#39;&quot;</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="s1">&#39;/static_pages/contact&#39;</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;Ruby on Rails Tutorial Sample App | Contact&quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>You should verify that these tests fail:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
+</pre></div>
+</div>
+
+
+<p>The application code parallels the addition of the About page in <a class="ref" href="static-pages?version=4.0#sec-adding_a_page">Section&nbsp;3.2.2</a>: first we update the routes (<a class="ref" href="filling-in-the-layout?version=4.0#code-contact_route">Listing&nbsp;5.18</a>), then we add a <code>contact</code> action to the StaticPages controller (<a class="ref" href="filling-in-the-layout?version=4.0#code-contact_action">Listing&nbsp;5.19</a>), and finally we create a Contact view (<a class="ref" href="filling-in-the-layout?version=4.0#code-contact_view">Listing&nbsp;5.20</a>).</p>
+
+<div class="label" id="code-contact_route"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.18.</span> <span class="description">Adding a route for the Contact page. <br /> <code>config/routes.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+  <span class="n">get</span> <span class="s2">&quot;static_pages/home&quot;</span>
+  <span class="n">get</span> <span class="s2">&quot;static_pages/help&quot;</span>
+  <span class="n">get</span> <span class="s2">&quot;static_pages/about&quot;</span>
+  <span class="n">get</span> <span class="s2">&quot;static_pages/contact&quot;</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="code-contact_action"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.19.</span> <span class="description">Adding an action for the Contact page. <br /> <code>app/controllers/static_pages_controller.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">StaticPagesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="k">def</span> <span class="nf">contact</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="code-contact_view"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.20.</span> <span class="description">The view for the Contact page. <br /> <code>app/views/static_pages/contact.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Contact&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;h1&gt;</span>Contact<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>
+  Contact Ruby on Rails Tutorial about the sample app at the
+  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.org/contact&quot;</span><span class="nt">&gt;</span>contact page<span class="nt">&lt;/a&gt;</span>.
+<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>Now make sure that the tests pass:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
+</pre></div>
+</div>
+
+
+
+
+<div class="label" id="sec-route_tests"></div>
+
+
+<h3><a id="sec-5_3_1" href="filling-in-the-layout?version=4.0#sec-route_tests" class="heading"><span class="number">5.3.1</span> Route tests</a></h3>
+
+
+<p>With the work we&rsquo;ve done writing integration tests for the static pages, writing tests for the routes is simple: we just replace each occurrence of a hard-coded address with the desired named route from <a class="ref" href="filling-in-the-layout?version=4.0#table-url_mapping">Table&nbsp;5.1</a>. In other words, we change</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">visit</span> <span class="s1">&#39;/static_pages/about&#39;</span>
+</pre></div>
+</div>
+
+
+<p>to</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">visit</span> <span class="n">about_path</span>
+</pre></div>
+</div>
+
+
+<p>and so on for the other pages. The result appears in <a class="ref" href="filling-in-the-layout?version=4.0#code-route_tests">Listing&nbsp;5.21</a>.</p>
+
+<div class="label" id="code-route_tests"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.21.</span> <span class="description">Tests for the named routes. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should have the h1 &#39;Sample App&#39;&quot;</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="n">root_path</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Sample App&#39;</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should have the base title&quot;</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="n">root_path</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;Ruby on Rails Tutorial Sample App&quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should not have a custom page title&quot;</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="n">root_path</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;| Home&#39;</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;Help page&quot;</span> <span class="k">do</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should have the h1 &#39;Help&#39;&quot;</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="n">help_path</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Help&#39;</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should have the title &#39;Help&#39;&quot;</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="n">help_path</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;Ruby on Rails Tutorial Sample App | Help&quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;About page&quot;</span> <span class="k">do</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should have the h1 &#39;About Us&#39;&quot;</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="n">about_path</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;About Us&#39;</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should have the title &#39;About Us&#39;&quot;</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="n">about_path</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;Ruby on Rails Tutorial Sample App | About Us&quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;Contact page&quot;</span> <span class="k">do</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should have the content &#39;Contact&#39;&quot;</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="n">contact_path</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Contact&#39;</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should have the title &#39;Contact&#39;&quot;</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="n">contact_path</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;Ruby on Rails Tutorial Sample App | Contact&quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>As usual, you should check that the tests are now red:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
+</pre></div>
+</div>
+
+
+<p>By the way, if the code in <a class="ref" href="filling-in-the-layout?version=4.0#code-route_tests">Listing&nbsp;5.21</a> strikes you as repetitive and verbose, you&rsquo;re not alone. We&rsquo;ll refactor this mess into a beautiful jewel in <a class="ref" href="filling-in-the-layout?version=4.0#sec-pretty_rspec">Section&nbsp;5.3.4</a>.</p>
+
+<div class="label" id="sec-rails_routes"></div>
+
+
+<h3><a id="sec-5_3_2" href="filling-in-the-layout?version=4.0#sec-rails_routes" class="heading"><span class="number">5.3.2</span> Rails routes</a></h3>
+
+
+<p>Now that we have tests for the URLs we want, it&rsquo;s time to get them to work. As noted in <a class="ref" href="static-pages?version=4.0#sec-static_pages">Section&nbsp;3.1</a>, the file Rails uses for URL mappings is <code>config/routes.rb</code>. If you take a look at the default routes file, you&rsquo;ll see that it&rsquo;s quite a mess, but it&rsquo;s a useful mess&mdash;full of commented-out example route mappings. I suggest reading through it at some point, and I also suggest taking a look at the <a href="http://guides.rubyonrails.org/routing.html">Rails Guides article &ldquo;Rails Routing from the outside in&rdquo;</a> for a much more in-depth treatment of routes.</p>
+
+<p>To define the named routes, we need to replace rules such as</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">get</span> <span class="s1">&#39;static_pages/help&#39;</span>
+</pre></div>
+</div>
+
+
+<p>with</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">match</span> <span class="s1">&#39;/help&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#help&#39;</span><span class="p">,</span> <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+</pre></div>
+</div>
+
+
+<p>This arranges both for a valid page at <code>/help</code> (responding to <tt>GET</tt> requests) and a named route called <code>help_path</code> that returns the path to that page. (Actually, using <code>get</code> in place of <code>match</code> gives the same named routes, but using <code>match</code> is more conventional.)</p>
+
+<p>Applying this pattern to the other static pages gives <a class="ref" href="filling-in-the-layout?version=4.0#code-static_page_routes">Listing&nbsp;5.22</a>. The only exception is the Home page, which we&rsquo;ll take care of in <a class="ref" href="filling-in-the-layout?version=4.0#code-root_route">Listing&nbsp;5.24</a>.</p>
+
+<div class="label" id="code-static_page_routes"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.22.</span> <span class="description">Routes for static pages. <br /> <code>config/routes.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+  <span class="n">match</span> <span class="s1">&#39;/help&#39;</span><span class="p">,</span>    <span class="ss">to:</span> <span class="s1">&#39;static_pages#help&#39;</span><span class="p">,</span>    <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span>   <span class="ss">to:</span> <span class="s1">&#39;static_pages#about&#39;</span><span class="p">,</span>   <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/contact&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#contact&#39;</span><span class="p">,</span> <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>If you read the code in <a class="ref" href="filling-in-the-layout?version=4.0#code-static_page_routes">Listing&nbsp;5.22</a> carefully, you can probably figure out what it does; for example, you can see that</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">match</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#about&#39;</span><span class="p">,</span>  <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+</pre></div>
+</div>
+
+
+<p>matches at <tt>GET</tt> request for <code>&rsquo;/about&rsquo;</code> and routes it to the <code>about</code> action in the StaticPages controller.  Before, this was more explicit: we used</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">get</span> <span class="s1">&#39;static_pages/about&#39;</span>
+</pre></div>
+</div>
+
+
+<p>to get to the same place, but <code>/about</code> is more succinct. In addition, as mentioned above, the code <code>match &rsquo;/about&rsquo;</code> also automatically creates <em>named routes</em> for use in the controllers and views:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">about_path</span> <span class="o">-&gt;</span> <span class="s1">&#39;/about&#39;</span>
+<span class="n">about_url</span>  <span class="o">-&gt;</span> <span class="s1">&#39;http://localhost:3000/about&#39;</span>
+</pre></div>
+</div>
+
+
+<p>Note that <code>about_url</code> is the <em>full</em> URL http://localhost:3000/about (with <code>localhost:3000</code> being replaced with the domain name, such as <code>example.com</code>, for a fully deployed site). As discussed in <a class="ref" href="filling-in-the-layout?version=4.0#sec-layout_links">Section&nbsp;5.3</a>, to get just /about, you use <code>about_path</code>. In the <em>Rails Tutorial</em>, we&rsquo;ll follow the common convention of using the <code>path</code> form except when doing redirects, where we&rsquo;ll use the <code>url</code> form. This is because after redirects the HTTP standard technically requires a full URL, although in most browsers it will work either way.</p>
+
+<p>With these routes now defined, the tests for the Help, About, and Contact pages should pass:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
+</pre></div>
+</div>
+
+
+<p>This leaves the test for the Home page as the last one to fail.</p>
+
+<p>To establish the route mapping for the Home page, we <em>could</em> use code like this:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">match</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#home&#39;</span><span class="p">,</span> <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+</pre></div>
+</div>
+
+
+<p>This is unnecessary, though; Rails has special instructions for the root URL&nbsp;/ (&ldquo;slash&rdquo;) located lower down in the file (<a class="ref" href="filling-in-the-layout?version=4.0#code-root_route_hint">Listing&nbsp;5.23</a>).</p>
+
+<div class="label" id="code-root_route_hint"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.23.</span> <span class="description">The commented-out hint for defining the root route. <br /> <code>config/routes.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="c1"># You can have the root of your site routed with &quot;root&quot;</span>
+  <span class="c1"># just remember to delete public/index.html.</span>
+  <span class="c1"># root :to =&gt; &quot;welcome#index&quot;</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Using <a class="ref" href="filling-in-the-layout?version=4.0#code-root_route_hint">Listing&nbsp;5.23</a> as a model, we arrive at <a class="ref" href="filling-in-the-layout?version=4.0#code-root_route">Listing&nbsp;5.24</a> to route the root URL&nbsp;/ to the Home page.</p>
+
+<div class="label" id="code-root_route"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.24.</span> <span class="description">Adding a mapping for the root route. <br /> <code>config/routes.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+  <span class="n">root</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#home&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/help&#39;</span><span class="p">,</span>    <span class="ss">to:</span> <span class="s1">&#39;static_pages#help&#39;</span><span class="p">,</span>    <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span>   <span class="ss">to:</span> <span class="s1">&#39;static_pages#about&#39;</span><span class="p">,</span>   <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/contact&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#contact&#39;</span><span class="p">,</span> <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>This code maps the root URL&nbsp;/ to /static_pages/home, which means that <a href="http://localhost:3000/">http://localhost:3000/</a> is finally something other than the default Rails page from <a class="ref" href="beginning?version=4.0#fig-riding_rails">Figure&nbsp;1.3</a>.It also gives us URL helpers as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">root_path</span> <span class="o">-&gt;</span> <span class="s1">&#39;/&#39;</span>
+<span class="n">root_url</span>  <span class="o">-&gt;</span> <span class="s1">&#39;http://localhost:3000/&#39;</span>
+</pre></div>
+</div>
+
+
+<p>With that, all of the routes for static pages are working, and the tests should pass:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
+</pre></div>
+</div>
+
+
+<p>Now we just have to fill in the links in the layout.</p>
+
+<div class="label" id="sec-named_routes"></div>
+
+
+<h3><a id="sec-5_3_3" href="filling-in-the-layout?version=4.0#sec-named_routes" class="heading"><span class="number">5.3.3</span> Named routes</a></h3>
+
+
+<p>Let&rsquo;s put the named routes created in <a class="ref" href="filling-in-the-layout?version=4.0#sec-rails_routes">Section&nbsp;5.3.2</a> to work in our layout. This will entail filling in the second arguments of the <code>link_to</code> functions with the proper named routes. For example, we&rsquo;ll convert</p>
+
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;About&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span>
+</pre></div>
+</div>
+
+
+<p>to</p>
+
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;About&quot;</span><span class="p">,</span> <span class="n">about_path</span> <span class="cp">%&gt;</span>
+</pre></div>
+</div>
+
+
+<p>and so on.</p>
+
+<p>We&rsquo;ll start in the header partial, <code>_header.html.erb</code> (<a class="ref" href="filling-in-the-layout?version=4.0#code-header_partial_links">Listing&nbsp;5.25</a>), which has links to the Home and Help pages. While we&rsquo;re at it, we&rsquo;ll follow a common web convention and link the logo to the Home page as well.</p>
+
+<div class="label" id="code-header_partial_links"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.25.</span> <span class="description">Header partial with links. <br /> <code>app/views/layouts/_header.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;navbar navbar-fixed-top navbar-inverse&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;navbar-inner&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;sample app&quot;</span><span class="p">,</span> <span class="n">root_path</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="s2">&quot;logo&quot;</span> <span class="cp">%&gt;</span>
+      <span class="nt">&lt;nav&gt;</span>
+        <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;nav pull-right&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Home&quot;</span><span class="p">,</span>    <span class="n">root_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Help&quot;</span><span class="p">,</span>    <span class="n">help_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Sign in&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+      <span class="nt">&lt;/nav&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/header&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>We won&rsquo;t have a named route for the &ldquo;Sign in&rdquo; link until <a class="ref" href="sign-in-sign-out?version=4.0#top">Chapter&nbsp;8</a>, so we&rsquo;ve left it as <code>&rsquo;#&rsquo;</code> for now.</p>
+
+<p>The other place with links is the footer partial, <code>_footer.html.erb</code>, which has links for the About and Contact pages (<a class="ref" href="filling-in-the-layout?version=4.0#code-footer_partial_links">Listing&nbsp;5.26</a>).</p>
+
+<div class="label" id="code-footer_partial_links"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.26.</span> <span class="description">Footer partial with links. <br /> <code>app/views/layouts/_footer.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;footer</span> <span class="na">class=</span><span class="s">&quot;footer&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;small&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.org/&quot;</span><span class="nt">&gt;</span>Rails Tutorial<span class="nt">&lt;/a&gt;</span>
+    by Michael Hartl
+  <span class="nt">&lt;/small&gt;</span>
+  <span class="nt">&lt;nav&gt;</span>
+    <span class="nt">&lt;ul&gt;</span>
+      <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;About&quot;</span><span class="p">,</span>   <span class="n">about_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Contact&quot;</span><span class="p">,</span> <span class="n">contact_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://news.railstutorial.org/&quot;</span><span class="nt">&gt;</span>News<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/nav&gt;</span>
+<span class="nt">&lt;/footer&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>With that, our layout has links to all the static pages created in <a class="ref" href="static-pages?version=4.0#top">Chapter&nbsp;3</a>, so that, for example, <a href="http://localhost:3000/about">/about</a> goes to the About page (<a class="ref" href="filling-in-the-layout?version=4.0#fig-about_page">Figure&nbsp;5.8</a>).</p>
+
+<p>By the way, it&rsquo;s worth noting that, although we haven&rsquo;t actually tested for the presence of the links on the layout, our tests will fail if the routes aren&rsquo;t defined. You can check this by commenting out the routes in <a class="ref" href="filling-in-the-layout?version=4.0#code-static_page_routes">Listing&nbsp;5.22</a> and running your test suite. For a testing method that actually makes sure the links go to the right places, see <a class="ref" href="filling-in-the-layout?version=4.0#sec-layout_exercises">Section&nbsp;5.6</a>.</p>
+
+<div class="label" id="fig-about_page"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/about_page_styled.png" alt="about_page_styled" /></span></div><div class="caption"><span class="header">Figure 5.8: </span><span class="description">The About page at  <a href="http://localhost:3000/about">/about</a>.&nbsp;<a href="http://railstutorial.org/images/figures/about_page_styled-full.png">(full size)</a></span></div></div>
+
+
+
+
+<div class="label" id="sec-pretty_rspec"></div>
+
+
+<h3><a id="sec-5_3_4" href="filling-in-the-layout?version=4.0#sec-pretty_rspec" class="heading"><span class="number">5.3.4</span> Pretty RSpec</a></h3>
+
+
+<p>We noted in <a class="ref" href="filling-in-the-layout?version=4.0#sec-route_tests">Section&nbsp;5.3.1</a> that the tests for the static pages are getting a little verbose and repetitive (<a class="ref" href="filling-in-the-layout?version=4.0#code-route_tests">Listing&nbsp;5.21</a>). In this section we&rsquo;ll make use of the latest features of RSpec to make our tests more compact and elegant.</p>
+
+<p>Let&rsquo;s take a look at a couple of the examples to see how they can be improved:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
+
+  <span class="n">it</span> <span class="s2">&quot;should have the content &#39;Sample App&#39;&quot;</span> <span class="k">do</span>
+    <span class="n">visit</span> <span class="n">root_path</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Sample App&#39;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">&quot;should have the base title&quot;</span> <span class="k">do</span>
+    <span class="n">visit</span> <span class="n">root_path</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;Ruby on Rails Tutorial Sample App&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">&quot;should not have a custom page title&quot;</span> <span class="k">do</span>
+    <span class="n">visit</span> <span class="n">root_path</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;| Home&#39;</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>One thing we notice is that all three examples include a visit to the root path. We can eliminate this duplication with a <code>before</code> block:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">root_path</span> <span class="p">}</span>
+
+  <span class="n">it</span> <span class="s2">&quot;should have the content &#39;Sample App&#39;&quot;</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Sample App&#39;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">&quot;should have the base title&quot;</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;Ruby on Rails Tutorial Sample App&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">&quot;should not have a custom page title&quot;</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;| Home&#39;</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>This uses the line</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">root_path</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>to visit the root path before each example. (The <code>before</code> method can also be invoked with <code>before(:each)</code>, which is a synonym.)</p>
+
+<p>Another source of duplication appears in each example; we have both</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should have the content &#39;Sample App&#39;&quot;</span> <span class="k">do</span>
+</pre></div>
+</div>
+
+
+<p>and</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Sample App&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+<p>which say essentially the same thing. In addition, both examples reference the <code>page</code> variable. We can eliminate these sources of duplication by telling RSpec that <code>page</code> is the <em>subject</em> of the tests using</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">subject</span> <span class="p">{</span> <span class="n">page</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>and then using a variant of the <code>it</code> method to collapse the code and description into one line:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Sample App&#39;</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>Because of <code>subject { page }</code>, the call to <code>should</code> automatically uses the <code>page</code> variable supplied by Capybara (<a class="ref" href="static-pages?version=4.0#sec-TDD">Section&nbsp;3.2.1</a>).</p>
+
+<p>Applying these changes gives much more compact tests for the Home page:</p>
+
+<div class="code"><div class="highlight"><pre>  <span class="n">subject</span> <span class="p">{</span> <span class="n">page</span> <span class="p">}</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">root_path</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Sample App&#39;</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;Ruby on Rails Tutorial Sample App&quot;</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;| Home&#39;</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>This code looks nicer, but the title test is still a bit long. Indeed, most of the title tests in <a class="ref" href="filling-in-the-layout?version=4.0#code-route_tests">Listing&nbsp;5.21</a> have long title text of the form</p>
+
+<div class="code"><div class="highlight"><pre><span class="s2">&quot;Ruby on Rails Tutorial Sample App | About&quot;</span>
+</pre></div>
+</div>
+
+
+<p>An exercise in <a class="ref" href="static-pages?version=4.0#sec-static_pages_exercises">Section&nbsp;3.5</a> proposes eliminating some of this duplication by defining a <code>base_title</code> variable and using string interpolation (<a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_exercise">Listing&nbsp;3.32</a>). We can do even better by defining a <code>full_title</code>, which parallels the <code>full_title</code> helper from <a class="ref" href="rails-flavored-ruby?version=4.0#code-title_helper">Listing&nbsp;4.2</a>. We do this by creating both a <code>spec/support</code> directory and a <code>utilities.rb</code> file for RSpec utilities (<a class="ref" href="filling-in-the-layout?version=4.0#code-rspec_utilities">Listing&nbsp;5.27</a>).</p>
+
+<div class="label" id="code-rspec_utilities"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.27.</span> <span class="description">A file for RSpec utilities with a <code>full_title</code> function. <br /> <code>spec/support/utilities.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">full_title</span><span class="p">(</span><span class="n">page_title</span><span class="p">)</span>
+  <span class="n">base_title</span> <span class="o">=</span> <span class="s2">&quot;Ruby on Rails Tutorial Sample App&quot;</span>
+  <span class="k">if</span> <span class="n">page_title</span><span class="o">.</span><span class="n">empty?</span>
+    <span class="n">base_title</span>
+  <span class="k">else</span>
+    <span class="s2">&quot;</span><span class="si">#{</span><span class="n">base_title</span><span class="si">}</span><span class="s2"> | </span><span class="si">#{</span><span class="n">page_title</span><span class="si">}</span><span class="s2">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Of course, this is essentially a duplicate of the helper in <a class="ref" href="rails-flavored-ruby?version=4.0#code-title_helper">Listing&nbsp;4.2</a>, but having two independent methods allows us to catch any typos in the base title. This is dubious design, though, and a better (slightly more advanced) approach, which tests the original <code>full_title</code> helper directly, appears in the exercises (<a class="ref" href="filling-in-the-layout?version=4.0#sec-layout_exercises">Section&nbsp;5.6</a>).</p>
+
+<p>Files in the <code>spec/support</code> directory are automatically included by RSpec, which means that we can write the Home tests as follows:</p>
+
+<div class="code"><div class="highlight"><pre>  <span class="n">subject</span> <span class="p">{</span> <span class="n">page</span> <span class="p">}</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">root_path</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Sample App&#39;</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="p">}</span>
+  <span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>We can now simplify the tests for the Help, About, and Contact pages using the same methods used for the Home page. The results appear in <a class="ref" href="filling-in-the-layout?version=4.0#code-pretty_page_tests">Listing&nbsp;5.28</a>.</p>
+
+<div class="label" id="code-pretty_page_tests"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.28.</span> <span class="description">Prettier tests for the static pages. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
+
+  <span class="n">subject</span> <span class="p">{</span> <span class="n">page</span> <span class="p">}</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">root_path</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Sample App&#39;</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;| Home&#39;</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;Help page&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">help_path</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Help&#39;</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s1">&#39;Help&#39;</span><span class="p">))</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;About page&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">about_path</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;About&#39;</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s1">&#39;About Us&#39;</span><span class="p">))</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;Contact page&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">contact_path</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Contact&#39;</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s1">&#39;Contact&#39;</span><span class="p">))</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>You should now verify that the tests still pass:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
+</pre></div>
+</div>
+
+
+<p>This RSpec style in <a class="ref" href="filling-in-the-layout?version=4.0#code-pretty_page_tests">Listing&nbsp;5.28</a> is much pithier than the style in <a class="ref" href="filling-in-the-layout?version=4.0#code-route_tests">Listing&nbsp;5.21</a>&mdash;indeed, it can be made even pithier (<a class="ref" href="filling-in-the-layout?version=4.0#sec-layout_exercises">Section&nbsp;5.6</a>). We will use this more compact style whenever possible when developing the rest of the sample application.</p>
+
+<div class="label" id="sec-user_signup"></div>
+
+
+<h2><a id="sec-5_4" href="filling-in-the-layout?version=4.0#sec-user_signup" class="heading"><span class="number">5.4</span> User signup: A first step</a></h2>
+
+
+<p>As a capstone to our work on the layout and routing, in this section we&rsquo;ll make a route for the signup page, which will mean creating a second controller along the way. This is a first important step toward allowing users to register for our site; we&rsquo;ll take the next step, modeling users, in <a class="ref" href="modeling-users?version=4.0#top">Chapter&nbsp;6</a>, and we&rsquo;ll finish the job in <a class="ref" href="sign-up?version=4.0#top">Chapter&nbsp;7</a>.</p>
+
+<div class="label" id="sec-users_controller"></div>
+
+
+<h3><a id="sec-5_4_1" href="filling-in-the-layout?version=4.0#sec-users_controller" class="heading"><span class="number">5.4.1</span> Users controller</a></h3>
+
+
+<p>It&rsquo;s been a while since we created our first controller, the StaticPages controller, way back in <a class="ref" href="static-pages?version=4.0#sec-static_pages">Section&nbsp;3.1</a>. It&rsquo;s time to create a second one, the Users controller. As before, we&rsquo;ll use <code>generate</code> to make the simplest controller that meets our present needs, namely, one with a stub signup page for new users. Following the conventional <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST architecture</a> favored by Rails, we&rsquo;ll call the action for new users <code>new</code> and pass it as an argument to <code>generate controller</code> to create it automatically (<a class="ref" href="filling-in-the-layout?version=4.0#code-generate_users_controller">Listing&nbsp;5.29</a>).</p>
+
+<div class="label" id="code-generate_users_controller"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.29.</span> <span class="description">Generating a Users controller (with a <code>new</code> action).</span> </div>
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate controller Users new --no-test-framework
+<span class="go">      create  app/controllers/users_controller.rb</span>
+<span class="go">       route  get &quot;users/new&quot;</span>
+<span class="go">      invoke  erb</span>
+<span class="go">      create    app/views/users</span>
+<span class="go">      create    app/views/users/new.html.erb</span>
+<span class="go">      invoke  helper</span>
+<span class="go">      create    app/helpers/users_helper.rb</span>
+<span class="go">      invoke  assets</span>
+<span class="go">      invoke    coffee</span>
+<span class="go">      create      app/assets/javascripts/users.js.coffee</span>
+<span class="go">      invoke    scss</span>
+<span class="go">      create      app/assets/stylesheets/users.css.scss</span>
+</pre></div>
+</div></div>
+
+
+<p>This creates a Users controller with a <code>new</code> action (<a class="ref" href="filling-in-the-layout?version=4.0#code-initial_users_controller">Listing&nbsp;5.30</a>) and a stub user view (<a class="ref" href="filling-in-the-layout?version=4.0#code-initial_new_action">Listing&nbsp;5.31</a>).</p>
+
+<div class="label" id="code-initial_users_controller"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.30.</span> <span class="description">The initial Users controller, with a <code>new</code> action. <br /> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">new</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="code-initial_new_action"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.31.</span> <span class="description">The initial <code>new</code> action for Users. <br /> <code>app/views/users/new.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Users#new<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>Find me in app/views/users/new.html.erb<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="sec-signup_url"></div>
+
+
+<h3><a id="sec-5_4_2" href="filling-in-the-layout?version=4.0#sec-signup_url" class="heading"><span class="number">5.4.2</span> Signup URL</a></h3>
+
+
+<p>With the code from <a class="ref" href="filling-in-the-layout?version=4.0#sec-users_controller">Section&nbsp;5.4.1</a>, we already have a working page for new users at /users/new, but recall from <a class="ref" href="filling-in-the-layout?version=4.0#table-url_mapping">Table&nbsp;5.1</a> that we want the URL to be /signup instead. As in <a class="ref" href="filling-in-the-layout?version=4.0#sec-layout_links">Section&nbsp;5.3</a>, we&rsquo;ll first write some integration tests, which we&rsquo;ll now generate:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate integration_test user_pages
+</pre></div>
+</div>
+
+
+<p>Then, following the model of the static pages spec in <a class="ref" href="filling-in-the-layout?version=4.0#code-pretty_page_tests">Listing&nbsp;5.28</a>, we&rsquo;ll fill in the user pages test with code to test for the contents of the <code>h1</code> and <code>title</code> tags, as seen in <a class="ref" href="filling-in-the-layout?version=4.0#code-user_pages_spec">Listing&nbsp;5.32</a>.</p>
+
+<div class="label" id="code-user_pages_spec"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.32.</span> <span class="description">The initial spec for users, with a test for the signup page. <br /> <code>spec/requests/user_pages_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="s2">&quot;User pages&quot;</span> <span class="k">do</span>
+
+  <span class="n">subject</span> <span class="p">{</span> <span class="n">page</span> <span class="p">}</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;signup page&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">signup_path</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Sign up&#39;</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s1">&#39;Sign up&#39;</span><span class="p">))</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>We can run these tests using the <code>rspec</code> command as usual:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/user_pages_spec.rb
+</pre></div>
+</div>
+
+
+<p>It&rsquo;s worth noting that we can also run all the request specs by passing the whole directory instead of just one file:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/
+</pre></div>
+</div>
+
+
+<p>Based on this pattern, you may be able to guess how to run <em>all</em> the specs:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
+</pre></div>
+</div>
+
+
+<p>For completeness, we&rsquo;ll usually use this method to run the tests through the rest of the tutorial. By the way, it&rsquo;s worth noting (since you may see other people use it) that you can also run the test suite using the <code>spec</code> Rake task:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake spec
+</pre></div>
+</div>
+
+
+<p>(In fact, you can just type <code>rake</code> by itself; the default behavior of <code>rake</code> is to run the test suite.) The only caveat is that using <code>rake</code> to run the tests for the current sample application will raise an error since it requires the test database to be prepared properly, a step we&rsquo;ll defer to <a class="ref" href="modeling-users?version=4.0#sec-initial_user_tests">Section&nbsp;6.2.1</a>.</p>
+
+<p>By construction, the Users controller already has a <code>new</code> action, so to get the test to pass all we need is the right route and the right view content. We&rsquo;ll follow the examples from <a class="ref" href="filling-in-the-layout?version=4.0#code-static_page_routes">Listing&nbsp;5.22</a> and add a <code>match &rsquo;/signup&rsquo;</code> rule for the signup URL (<a class="ref" href="filling-in-the-layout?version=4.0#code-signup_route">Listing&nbsp;5.33</a>).</p>
+
+<div class="label" id="code-signup_route"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.33.</span> <span class="description">A route for the signup page. <br /> <code>config/routes.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+  <span class="n">get</span> <span class="s2">&quot;users/new&quot;</span>
+
+  <span class="n">root</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#home&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/signup&#39;</span><span class="p">,</span>  <span class="ss">to:</span> <span class="s1">&#39;users#new&#39;</span><span class="p">,</span>            <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/help&#39;</span><span class="p">,</span>    <span class="ss">to:</span> <span class="s1">&#39;static_pages#help&#39;</span><span class="p">,</span>    <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span>   <span class="ss">to:</span> <span class="s1">&#39;static_pages#about&#39;</span><span class="p">,</span>   <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/contact&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#contact&#39;</span><span class="p">,</span> <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Note that we have kept the rule <code>get "users/new"</code>, which was generated automatically by the Users controller generation in <a class="ref" href="filling-in-the-layout?version=4.0#code-generate_users_controller">Listing&nbsp;5.29</a>. Currently, this rule is necessary for the <code>&rsquo;users/new&rsquo;</code> routing to work, but it doesn&rsquo;t follow the proper REST conventions (<a class="ref" href="a-demo-app?version=4.0#table-demo_RESTful_users">Table&nbsp;2.2</a>), and we will eliminate it in <a class="ref" href="sign-up?version=4.0#sec-a_users_resource">Section&nbsp;7.1.2</a>.</p>
+
+<p>To get the tests to pass, all we need now is a view with the title and heading &ldquo;Sign up&rdquo; (<a class="ref" href="filling-in-the-layout?version=4.0#code-initial_signup_page">Listing&nbsp;5.34</a>).</p>
+
+<div class="label" id="code-initial_signup_page"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.34.</span> <span class="description">The initial (stub) signup page. <br /> <code>app/views/users/new.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Sign up&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;h1&gt;</span>Sign up<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;p&gt;</span>Find me in app/views/users/new.html.erb<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>At this point, the signup test in <a class="ref" href="filling-in-the-layout?version=4.0#code-user_pages_spec">Listing&nbsp;5.32</a> should pass. All that&rsquo;s left is to add the proper link to the button on the Home page. As with the other routes, <code>match &rsquo;/signup&rsquo;</code> gives us the named route <code>signup_path</code>, which we put to use in <a class="ref" href="filling-in-the-layout?version=4.0#code-home_page_signup_link">Listing&nbsp;5.35</a>.</p>
+
+<div class="label" id="code-home_page_signup_link"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.35.</span> <span class="description">Linking the button to the Signup page. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;center hero-unit&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Welcome to the Sample App<span class="nt">&lt;/h1&gt;</span>
+
+  <span class="nt">&lt;h2&gt;</span>
+    This is the home page for the
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.org/&quot;</span><span class="nt">&gt;</span>Ruby on Rails Tutorial<span class="nt">&lt;/a&gt;</span>
+    sample application.
+  <span class="nt">&lt;/h2&gt;</span>
+
+  <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Sign up now!&quot;</span><span class="p">,</span> <span class="n">signup_path</span><span class="p">,</span> <span class="ss">class:</span> <span class="s2">&quot;btn btn-large btn-primary&quot;</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">image_tag</span><span class="p">(</span><span class="s2">&quot;rails.png&quot;</span><span class="p">,</span> <span class="ss">alt:</span> <span class="s2">&quot;Rails&quot;</span><span class="p">),</span> <span class="s1">&#39;http://rubyonrails.org/&#39;</span> <span class="cp">%&gt;</span>
+</pre></div>
+</div></div>
+
+
+<p>With that, we&rsquo;re done with the links and named routes, at least until we add a route for signing in (<a class="ref" href="sign-in-sign-out?version=4.0#top">Chapter&nbsp;8</a>). The resulting new user page (at the URL /signup) appears in <a class="ref" href="filling-in-the-layout?version=4.0#fig-new_signup_page">Figure&nbsp;5.9</a>.</p>
+
+<div class="label" id="fig-new_signup_page"></div>
+
+
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/new_signup_page_bootstrap.png" alt="new_signup_page_bootstrap" /></span></div><div class="caption"><span class="header">Figure 5.9: </span><span class="description">The new signup page at <a href="http://localhost:3000/signup">/signup</a>.&nbsp;<a href="http://railstutorial.org/images/figures/new_signup_page_bootstrap-full.png">(full size)</a></span></div></div>
+
+
+<p>At this point the tests should pass:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
+</pre></div>
+</div>
+
+
+
+
+<div class="label" id="sec-layout_conclusion"></div>
+
+
+<h2><a id="sec-5_5" href="filling-in-the-layout?version=4.0#sec-layout_conclusion" class="heading"><span class="number">5.5</span> Conclusion</a></h2>
+
+
+<p>In this chapter, we&rsquo;ve hammered our application layout into shape and polished up the routes. The rest of the book is dedicated to fleshing out the sample application: first, by adding users who can sign up, sign in, and sign out; next, by adding user microposts; and, finally, by adding the ability to follow other users.</p>
+
+<p>At this point, if you are using Git you should merge the changes back into the master branch:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Finish layout and routes&quot;</span>
+<span class="gp">$</span> git checkout master
+<span class="gp">$</span> git merge filling-in-layout
+</pre></div>
+</div>
+
+
+<p>You can also push up to GitHub:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git push
+</pre></div>
+</div>
+
+
+<p>Finally, you can deploy to Heroku:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git push heroku
+</pre></div>
+</div>
+
+
+<p>The result should be a working sample application on the production server:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku open
+</pre></div>
+</div>
+
+
+<p>If you run into trouble, try running</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku logs
+</pre></div>
+</div>
+
+
+<p>to debug the error using the Heroku logfile. Also make sure that you&rsquo;ve made the necessary edit shown in <a class="ref" href="a-demo-app?version=4.0#code-serve_static_assets">Listing&nbsp;2.17</a>.</p>
+
+<div class="label" id="sec-layout_exercises"></div>
+
+
+<h2><a id="sec-5_6" href="filling-in-the-layout?version=4.0#sec-layout_exercises" class="heading"><span class="number">5.6</span> Exercises</a></h2>
+
+
+
+
+<ol>
+
+<li>The code in <a class="ref" href="filling-in-the-layout?version=4.0#code-pretty_page_tests">Listing&nbsp;5.28</a> for testing static pages is compact but is still a bit repetitive. RSpec supports a facility called <em>shared examples</em> to eliminate the kind of duplication. By following the example in <a class="ref" href="filling-in-the-layout?version=4.0#code-static_pages_spec_shared_example">Listing&nbsp;5.36</a>, fill in the missing tests for the Help, About, and Contact pages. Note that the <code>let</code> command, introduced briefly in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_exercise">Listing&nbsp;3.32</a>, creates a local variable with the given value on demand (i.e., when the variable is used), in contrast to an instance variable, which is created upon assignment.</li>
+
+<li>You may have noticed that our tests for the layout links test the routing but don&rsquo;t actually check that the links on the layout go to the right pages. One way to implement these tests is to use <code>visit</code> and <code>click_link</code> inside the RSpec integration test. Fill in the code in <a class="ref" href="filling-in-the-layout?version=4.0#code-layout_links_test">Listing&nbsp;5.37</a> to verify that all the layout links are properly defined.</li>
+
+<li>Eliminate the need for the <code>full_title</code> test helper in <a class="ref" href="filling-in-the-layout?version=4.0#code-rspec_utilities">Listing&nbsp;5.27</a> by writing tests for the original helper method, as shown in <a class="ref" href="filling-in-the-layout?version=4.0#code-full_title_helper_tests">Listing&nbsp;5.38</a>. (You will have to create both the <code>spec/helpers</code> directory and the <code>application_helper_spec.rb</code> file.) Then <code>include</code> it into the test using the code in <a class="ref" href="filling-in-the-layout?version=4.0#code-rspec_utilities_simplified">Listing&nbsp;5.39</a>.  Verify by running the test suite that the new code is still valid. <em>Note</em>: <a class="ref" href="filling-in-the-layout?version=4.0#code-full_title_helper_tests">Listing&nbsp;5.38</a> uses <em>regular expressions</em>, which we&rsquo;ll learn more about in <a class="ref" href="modeling-users?version=4.0#sec-format_validation">Section&nbsp;6.2.4</a>. (Thanks to <a href="http://alexchaffee.com/">Alex Chaffee</a> for the suggestion and code used in this exercise.)</li>
+
+</ol>
+
+
+
+
+<div class="label" id="code-static_pages_spec_shared_example"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.36.</span> <span class="description">Using an RSpec shared example to eliminate test duplication. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
+
+  <span class="n">subject</span> <span class="p">{</span> <span class="n">page</span> <span class="p">}</span>
+
+  <span class="n">shared_examples_for</span> <span class="s2">&quot;all static pages&quot;</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_content</span><span class="p">(</span><span class="n">heading</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="n">page_title</span><span class="p">))</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">root_path</span> <span class="p">}</span>
+    <span class="n">let</span><span class="p">(</span><span class="ss">:heading</span><span class="p">)</span>    <span class="p">{</span> <span class="s1">&#39;Sample App&#39;</span> <span class="p">}</span>
+    <span class="n">let</span><span class="p">(</span><span class="ss">:page_title</span><span class="p">)</span> <span class="p">{</span> <span class="s1">&#39;&#39;</span> <span class="p">}</span>
+
+    <span class="n">it_should_behave_like</span> <span class="s2">&quot;all static pages&quot;</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;| Home&#39;</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;Help page&quot;</span> <span class="k">do</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;About page&quot;</span> <span class="k">do</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+  <span class="k">end</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;Contact page&quot;</span> <span class="k">do</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="code-layout_links_test"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.37.</span> <span class="description">A test for the links on the layout. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">it</span> <span class="s2">&quot;should have the right links on the layout&quot;</span> <span class="k">do</span>
+    <span class="n">visit</span> <span class="n">root_path</span>
+    <span class="n">click_link</span> <span class="s2">&quot;About&quot;</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s1">&#39;About Us&#39;</span><span class="p">))</span>
+    <span class="n">click_link</span> <span class="s2">&quot;Help&quot;</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="c1"># fill in</span>
+    <span class="n">click_link</span> <span class="s2">&quot;Contact&quot;</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="c1"># fill in</span>
+    <span class="n">click_link</span> <span class="s2">&quot;Home&quot;</span>
+    <span class="n">click_link</span> <span class="s2">&quot;Sign up now!&quot;</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="c1"># fill in</span>
+    <span class="n">click_link</span> <span class="s2">&quot;sample app&quot;</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="c1"># fill in</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="code-full_title_helper_tests"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.38.</span> <span class="description">Tests for the <code>full_title</code> helper. <br /> <code>spec/helpers/application_helper_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">ApplicationHelper</span> <span class="k">do</span>
+
+  <span class="n">describe</span> <span class="s2">&quot;full_title&quot;</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">&quot;should include the page title&quot;</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">match</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should include the base title&quot;</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">match</span><span class="p">(</span><span class="sr">/^Ruby on Rails Tutorial Sample App/</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">&quot;should not include a bar for the home page&quot;</span> <span class="k">do</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">not_to</span> <span class="n">match</span><span class="p">(</span><span class="sr">/\|/</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="code-rspec_utilities_simplified"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 5.39.</span> <span class="description">Replacing the <code>full_title</code> test helper with a simple <code>include</code>. <br /> <code>spec/support/utilities.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="kp">include</span> <span class="no">ApplicationHelper</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="navigation">  <a class="prev_page" href="rails-flavored-ruby?version=4.0#top">
+    &laquo;&nbsp;<span class="number">Chapter 4</span> Rails-flavored Ruby
+  </a>
+  <a class="next_page" href="modeling-users?version=4.0#top">
+    <span class="number">Chapter 6</span> Modeling users&nbsp;&raquo;
+  </a>
+</div><div class="footnotes">
+<ol>
+<li id="fn-5_1">Thanks to reader <a href="https://twitter.com/colmtuite">Colm Tuite</a> for his excellent work in helping to convert the sample application over to Bootstrap.&nbsp;<a class="arrow" href="?version=4.0#fnref-5_1">&uarr;</a></li>
+<li id="fn-5_2">The mockups in the <em>Ruby on Rails Tutorial</em> are made with an excellent online mockup application called <a href="http://gomockingbird.com">Mockingbird</a>.&nbsp;<a class="arrow" href="?version=4.0#fnref-5_2">&uarr;</a></li>
+<li id="fn-5_3">These are completely unrelated to Ruby classes.&nbsp;<a class="arrow" href="?version=4.0#fnref-5_3">&uarr;</a></li>
+<li id="fn-5_4">You might notice that the <code>img</code> tag, rather than looking like <tt class="verb">&lt;img&gt;...&lt;/img&gt;</tt>, instead looks like <tt class="verb">&lt;img ... /&gt;</tt>. Tags that follow this form are known as <em>self-closing</em> tags.&nbsp;<a class="arrow" href="?version=4.0#fnref-5_4">&uarr;</a></li>
+<li id="fn-5_5">It is also possible to use LESS with the asset pipeline; see the <a href="http://rubygems.org/gems/less-rails-bootstrap"><tt>less-rails-bootstrap</tt> gem</a> for details.&nbsp;<a class="arrow" href="?version=4.0#fnref-5_5">&uarr;</a></li>
+<li id="fn-5_6">Many Rails developers use a <code>shared</code> directory for partials shared across different views. I prefer to use the <code>shared</code> folder for utility partials that are useful on multiple views, while putting partials that are literally on every page (as part of the site layout) in the <code>layouts</code> directory. (We&rsquo;ll create the <code>shared</code> directory starting in <a class="ref" href="sign-up?version=4.0#top">Chapter&nbsp;7</a>.) That seems to me a logical division, but putting them all in the <code>shared</code> folder certainly works fine, too.&nbsp;<a class="arrow" href="?version=4.0#fnref-5_6">&uarr;</a></li>
+<li id="fn-5_7">You may wonder why we use both the <code>footer</code> tag and <code>.footer</code> class. The answer is that the tag has a clear meaning to human readers, and the class is used by Bootstrap. Using a <code>div</code> tag in place of <code>footer</code> would work as well.&nbsp;<a class="arrow" href="?version=4.0#fnref-5_7">&uarr;</a></li>
+<li id="fn-5_8">The structure of this section is based on the excellent blog post <a href="http://2beards.net/2011/11/the-rails-3-asset-pipeline-in-about-5-minutes/">The Rails 3 Asset Pipeline in (about) 5 Minutes</a> by Michael Erasmus. For more details, see the <a href="http://guides.rubyonrails.org/asset_pipeline.html">Rails Guide on the Asset Pipeline</a>.&nbsp;<a class="arrow" href="?version=4.0#fnref-5_8">&uarr;</a></li>
+<li id="fn-5_9">The older <code>.sass</code> format, also supported by Sass, defines a new language which is less verbose (and has fewer curly braces) but is less convenient for existing projects and is harder to learn for those already familiar with CSS.&nbsp;<a class="arrow" href="?version=4.0#fnref-5_9">&uarr;</a></li>
+</ol>
+</div>
+
+
+
