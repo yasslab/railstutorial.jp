@@ -1,8 +1,8 @@
 ﻿<html dir="ltr">
   <head>
     <title>filling-in-the-layout</title>
-    <link rel="stylesheet" href="/chapters/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="/chapters/polytexnic.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/polytexnic.css" type="text/css" />
   </head>
   <body dir="ltr">
     <div id="book">
@@ -118,7 +118,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-home_page_mockup"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/home_page_mockup_bootstrap.png" alt="home_page_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図5.1</span><span class="description">サンプルアプリケーションのHomeページのモックアップ。<a href="http://railstutorial.org/images/figures/home_page_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/home_page_mockup_bootstrap.png" alt="home_page_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図5.1</span><span class="description">サンプルアプリケーションのHomeページのモックアップ。<a href="http://railstutorial.org/images/figures/home_page_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 <p>Gitでバージョン管理をしているのであれば、これまでと同様、この時点で新しいブランチを作成するのがよいでしょう。</p>
@@ -351,7 +351,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-layout_no_logo_or_custom_css"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/layout_no_logo_or_custom_css_bootstrap.png" alt="layout_no_logo_or_custom_css_bootstrap" /></span></div><div class="caption"><span class="header">図5.2</span>カスタムCSSを使用していない<span class="description">Homeページ (<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>)。<a href="http://railstutorial.org/images/figures/layout_no_logo_or_custom_css_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/layout_no_logo_or_custom_css_bootstrap.png" alt="layout_no_logo_or_custom_css_bootstrap" /></span></div><div class="caption"><span class="header">図5.2</span>カスタムCSSを使用していない<span class="description">Homeページ (<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>)。<a href="http://railstutorial.org/images/figures/layout_no_logo_or_custom_css_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -424,7 +424,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-sample_app_only_bootstrap"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/sample_app_only_bootstrap.png" alt="sample_app_only_bootstrap" /></span></div><div class="caption"><span class="header">図5.3</span><span class="description">Bootstrap CSSとサンプルアプリケーション。<a href="http://railstutorial.org/images/figures/sample_app_only_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sample_app_only_bootstrap.png" alt="sample_app_only_bootstrap" /></span></div><div class="caption"><span class="header">図5.3</span><span class="description">Bootstrap CSSとサンプルアプリケーション。<a href="http://railstutorial.org/images/figures/sample_app_only_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 <p>次に、<a class="ref" href="/chapters/filling-in-the-layout.html#code-universal_css">リスト5.5</a>に示したように、Webサイト全体にわたってレイアウトと個別のページにスタイルを与えるためのCSSを追加します。<a class="ref" href="/chapters/filling-in-the-layout.html#code-universal_css">リスト5.5</a>には多数の記述ルールがあります。CSSの記述ルールを把握するためには、関心のある箇所をコメントアウトして表示を確認することをお勧めします。CSSでは、<code>/* … */</code>でコメントアウトできるので、調べてみたいコードをこれで囲み、表示がどのように変わるかを確認してみてください。<a class="ref" href="/chapters/filling-in-the-layout.html#code-universal_css">リスト5.5</a>が反映された結果を<a class="ref" href="/chapters/filling-in-the-layout.html#fig-sample_app_universal">図5.4</a>に示します。</p>
@@ -470,7 +470,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-sample_app_universal"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/sample_app_universal.png" alt="sample_app_universal" /></span></div><div class="caption"><span class="header">図5.4</span><span class="description">スペースや共通スタイルを追加した結果。<a href="http://railstutorial.org/images/figures/sample_app_universal-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sample_app_universal.png" alt="sample_app_universal" /></span></div><div class="caption"><span class="header">図5.4</span><span class="description">スペースや共通スタイルを追加した結果。<a href="http://railstutorial.org/images/figures/sample_app_universal-full.png">(拡大)</a></span></div></div>
 
 
 <p><a href="/chapters/filling-in-the-layout.html#code-universal_css" class="ref">リスト5.5</a>のCSSの形式は一貫しています。CSSルールでは一般に、クラス、id、HTMLタグ、またはそれらの組み合わせ、のいずれかを指定します。そしてその後ろにスタイリングコマンドのリストを記述します。たとえば、以下のコードでは、</p>
@@ -540,7 +540,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-sample_app_typography"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/sample_app_typography.png" alt="sample_app_typography" /></span></div><div class="caption"><span class="header">図5.5</span><span class="description">タイポグラフィースタイルを追加する。<a href="http://railstutorial.org/images/figures/sample_app_typography-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sample_app_typography.png" alt="sample_app_typography" /></span></div><div class="caption"><span class="header">図5.5</span><span class="description">タイポグラフィースタイルを追加する。<a href="http://railstutorial.org/images/figures/sample_app_typography-full.png">(拡大)</a></span></div></div>
 
 
 <p>最後に、いくつかのルールをサイトロゴに追加します。このサイトロゴは「sample app」だけが表示されているシンプルなものです。<a class="ref" href="/chapters/filling-in-the-layout.html#code-logo_css">リスト5.7</a>のCSSは、テキストを大文字に変換し、サイズ、色、配置を変更します (サイトロゴがページで一度しか使用されないことを前提としてCSS idを使用していますが、代わりにクラスを使用することもできます)。</p>
@@ -582,7 +582,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-sample_app_logo"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/sample_app_logo.png" alt="sample_app_logo" /></span></div><div class="caption"><span class="header">図5.6</span><span class="description">デザインされたロゴとサンプルアプリ。<a href="http://railstutorial.org/images/figures/sample_app_logo-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sample_app_logo.png" alt="sample_app_logo" /></span></div><div class="caption"><span class="header">図5.6</span><span class="description">デザインされたロゴとサンプルアプリ。<a href="http://railstutorial.org/images/figures/sample_app_logo-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -772,7 +772,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-site_with_footer"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/site_with_footer_bootstrap.png" alt="site_with_footer_bootstrap" /></span></div><div class="caption"><span class="header">図5.7</span><span class="description">Homeページ (<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>) にフッタを追加する。<a href="http://railstutorial.org/images/figures/site_with_footer_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/site_with_footer_bootstrap.png" alt="site_with_footer_bootstrap" /></span></div><div class="caption"><span class="header">図5.7</span><span class="description">Homeページ (<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>) にフッタを追加する。<a href="http://railstutorial.org/images/figures/site_with_footer_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -1683,7 +1683,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-about_page"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/about_page_styled.png" alt="about_page_styled" /></span></div><div class="caption"><span class="header">図5.8</span><span class="description"><a href="http://localhost:3000/about">/about</a>で表示されるAboutページ。<a href="http://railstutorial.org/images/figures/about_page_styled-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/about_page_styled.png" alt="about_page_styled" /></span></div><div class="caption"><span class="header">図5.8</span><span class="description"><a href="http://localhost:3000/about">/about</a>で表示されるAboutページ。<a href="http://railstutorial.org/images/figures/about_page_styled-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -2100,7 +2100,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-new_signup_page"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/new_signup_page_bootstrap.png" alt="new_signup_page_bootstrap" /></span></div><div class="caption"><span class="header">図5.9</span><span class="description"><a href="http://localhost:3000/signup">/signup</a>で表示される新しいサインアップページ 。<a href="http://railstutorial.org/images/figures/new_signup_page_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/new_signup_page_bootstrap.png" alt="new_signup_page_bootstrap" /></span></div><div class="caption"><span class="header">図5.9</span><span class="description"><a href="http://localhost:3000/signup">/signup</a>で表示される新しいサインアップページ 。<a href="http://railstutorial.org/images/figures/new_signup_page_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 <p>この時点で、テストはパスするはずです。</p>

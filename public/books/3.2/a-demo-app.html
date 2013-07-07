@@ -1,8 +1,8 @@
 ﻿<html dir="ltr">
   <head>
     <title>a-demo-app</title>
-    <link rel="stylesheet" href="/chapters/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="/chapters/polytexnic.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/polytexnic.css" type="text/css" />
   </head>
   <body dir="ltr">
     <div id="book">
@@ -178,7 +178,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-create_demo_repo"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/create_demo_repo_new.png" alt="create_demo_repo_new" /></span></div><div class="caption"><span class="header">図2.1: </span><span class="description">GitHubでデモアプリ用リポジトリを作成する。<a href="http://railstutorial.org/images/figures/create_demo_repo_new-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/create_demo_repo_new.png" alt="create_demo_repo_new" /></span></div><div class="caption"><span class="header">図2.1: </span><span class="description">GitHubでデモアプリ用リポジトリを作成する。<a href="http://railstutorial.org/images/figures/create_demo_repo_new-full.png">(拡大)</a></span></div></div>
 
 
 <p>必須ではありませんが、リポジトリを新規作成して (<a class="ref" href="/chapters/a-demo-app.html#fig-create_demo_repo">図2.1</a>) GitHubにプッシュすることもできます。</p>
@@ -204,7 +204,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-demo_user_model"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_user_model.png" alt="demo_user_model" /></span></div><div class="caption"><span class="header">図2.2: </span><span class="description">ユーザー用のデータモデル</span>。</div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_user_model.png" alt="demo_user_model" /></span></div><div class="caption"><span class="header">図2.2: </span><span class="description">ユーザー用のデータモデル</span>。</div></div>
 
 
 <p><a class="ref" href="/chapters/modeling-users.html#sec-database_migrations">6.1.1</a>から詳しく解説しますが、<a class="ref" href="/chapters/a-demo-app.html#fig-demo_user_model">図2.2</a>のユーザー (<code>users</code>) はデータベースのテーブル (<em>table</em>) に相当します。また、<code>id</code>、<code>name</code>、<code>email</code>の属性はそれぞれテーブルの列 (<em>column</em>) に相当します。</p>
@@ -220,7 +220,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-demo_micropost_model"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_micropost_model.png" alt="demo_micropost_model" /></span></div><div class="caption"><span class="header">図2.3: </span><span class="description">マイクロポストのデータモデル</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_micropost_model.png" alt="demo_micropost_model" /></span></div><div class="caption"><span class="header">図2.3: </span><span class="description">マイクロポストのデータモデル</span></div></div>
 
 
 <p><a class="ref" href="/chapters/a-demo-app.html#sec-demo_user_has_many_microposts">2.3.3</a>では、<code>user_id</code>という属性を使用して、1人のユーザーに複数のマイクロポストが関連付けられるという構造を簡潔に説明します。詳細は<a class="ref" href="/chapters/user-microposts.html#top">第10章</a>で完全に説明します。</p>
@@ -341,7 +341,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-demo_blank_user_index_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_blank_user_index_rails_3.png" alt="demo_blank_user_index_rails_3" /></span></div><div class="caption"><span class="header">図2.4: </span><span class="description">Usersリソース (<a href="http://localhost:3000/users">/users</a>) ページの最初の状態。<a href="http://railstutorial.org/images/figures/demo_blank_user_index_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_blank_user_index_rails_3.png" alt="demo_blank_user_index_rails_3" /></span></div><div class="caption"><span class="header">図2.4: </span><span class="description">Usersリソース (<a href="http://localhost:3000/users">/users</a>) ページの最初の状態。<a href="http://railstutorial.org/images/figures/demo_blank_user_index_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 <p>ユーザーを新規作成するには、<a class="ref" href="/chapters/a-demo-app.html#fig-demo_new_user_rails_3">図2.5</a>の<a href="http://localhost:3000/users/new"><tt>new</tt></a>ページを表示します (注: ローカルのコンピュータで開発を行なっている場合は、URIのうちhttp://localhost:3000の部分は常に同じであるため、以後この部分は省略します)。 <a class="ref" href="/chapters/sign-up.html#top">第7章</a>では、このページをユーザー登録ページに転用します。</p>
@@ -349,7 +349,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-demo_new_user_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_new_user_rails_3.png" alt="demo_new_user_rails_3" /></span></div><div class="caption"><span class="header">図2.5: </span><span class="description">新規ユーザー作成ページ (<a href="http://localhost:3000/users/new">/users/new</a>)。<a href="http://railstutorial.org/images/figures/demo_new_user_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_new_user_rails_3.png" alt="demo_new_user_rails_3" /></span></div><div class="caption"><span class="header">図2.5: </span><span class="description">新規ユーザー作成ページ (<a href="http://localhost:3000/users/new">/users/new</a>)。<a href="http://railstutorial.org/images/figures/demo_new_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 <p>テキストフィールドに名前とメールアドレスを入力して [Create User] ボタンを押してください。ユーザーが作成され、<a class="ref" href="/chapters/a-demo-app.html#fig-demo_show_user_rails_3">図2.6</a>のように<a href="http://localhost:3000/users/1"><tt>show</tt></a>ページが表示されます (緑色のウェルカムメッセージは、 <a class="ref" href="/chapters/sign-up.html#sec-the_flash">7.4.2</a>で解説する<em>flash</em>という機能を使用して表示しています)。ここで、URIが<a href="http://localhost:3000/users/1">/users/1</a>と表示されていることに注目してください。ご想像のとおり、この数字<code>1</code>は<a class="ref" href="/chapters/a-demo-app.html#fig-demo_user_model">図2.2</a>の<code>id</code>属性そのものです。<a class="ref" href="/chapters/sign-up.html#sec-showing_users">7.1</a>では、このページをユーザーのプロファイルに作り変える予定です。</p>
@@ -357,7 +357,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-demo_show_user_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_show_user_rails_3.png" alt="demo_show_user_rails_3" /></span></div><div class="caption"><span class="header">図2.6: </span><span class="description">ユーザー表示用のページ (<a href="http://localhost:3000/users/1">/users/1</a>)。<a href="http://railstutorial.org/images/figures/demo_show_user_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_show_user_rails_3.png" alt="demo_show_user_rails_3" /></span></div><div class="caption"><span class="header">図2.6: </span><span class="description">ユーザー表示用のページ (<a href="http://localhost:3000/users/1">/users/1</a>)。<a href="http://railstutorial.org/images/figures/demo_show_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 <p>今度は、ユーザー情報を変更するために<a href="http://localhost:3000/users/1/edit"><tt>edit</tt></a>ページを表示してみましょう (<a class="ref" href="/chapters/a-demo-app.html#fig-demo_edit_user_rails_3">図2.7</a>)。この編集ページ上でユーザーに関する情報を変更し、[Update User] ボタンを押せば、デモアプリケーション内のユーザー情報が変更されます (<a class="ref" href="/chapters/a-demo-app.html#fig-demo_update_user_rails_3">図2.8</a>)。(詳細は<a class="ref" href="/chapters/modeling-users.html#top">第6章</a>で説明しますが、このユーザー情報は、Webアプリケーションの背後にあるデータベースに保存されています。) このサンプルアプリケーションでも、ユーザーを編集または更新する機能を<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-updating_users">9.1</a>で実装します。</p>
@@ -365,7 +365,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-demo_edit_user_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_edit_user_rails_3.png" alt="demo_edit_user_rails_3" /></span></div><div class="caption"><span class="header">図2.7: </span><span class="description">ユーザー編集用のページ (<a href="http://localhost:3000/users/1/edit">/users/1/edit</a>)。<a href="http://railstutorial.org/images/figures/demo_edit_user_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_edit_user_rails_3.png" alt="demo_edit_user_rails_3" /></span></div><div class="caption"><span class="header">図2.7: </span><span class="description">ユーザー編集用のページ (<a href="http://localhost:3000/users/1/edit">/users/1/edit</a>)。<a href="http://railstutorial.org/images/figures/demo_edit_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -373,7 +373,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-demo_update_user_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_update_user_rails_3.png" alt="demo_update_user_rails_3" /></span></div><div class="caption"><span class="header">図2.8: </span><span class="description">情報が更新されたユーザー。<a href="http://railstutorial.org/images/figures/demo_update_user_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_update_user_rails_3.png" alt="demo_update_user_rails_3" /></span></div><div class="caption"><span class="header">図2.8: </span><span class="description">情報が更新されたユーザー。<a href="http://railstutorial.org/images/figures/demo_update_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 <p>ここで<a href="http://localhost:3000/users/new"><tt>new</tt></a>ページに戻り、ユーザーをもう1人作成してみましょう。<a href="http://localhost:3000/users"><tt>index</tt></a>ページを表示してみると、<a class="ref" href="/chapters/a-demo-app.html#fig-demo_user_index_two_rails_3">2.9</a>のようにユーザーが追加されています。<a class="ref" href="/chapters/sign-up.html#sec-showing_users">7.1</a>ではもっと本格的なユーザー一覧ページを作成する予定です。</p>
@@ -381,7 +381,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-demo_user_index_two_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_user_index_two_rails_3.png" alt="demo_user_index_two_rails_3" /></span></div><div class="caption"><span class="header">図2.9: </span><span class="description">2人目のユーザーが追加された一覧ページ (<a href="http://localhost:3000/users">/users</a>) 。<a href="http://railstutorial.org/images/figures/demo_user_index_two_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_user_index_two_rails_3.png" alt="demo_user_index_two_rails_3" /></span></div><div class="caption"><span class="header">図2.9: </span><span class="description">2人目のユーザーが追加された一覧ページ (<a href="http://localhost:3000/users">/users</a>) 。<a href="http://railstutorial.org/images/figures/demo_user_index_two_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 <p>ユーザーの作成、表示、編集方法を説明しましたので、今度はユーザーを削除してみましょう (<a class="ref" href="/chapters/a-demo-app.html#fig-demo_destroy_user_rails_3">図2.10</a>)。
@@ -390,7 +390,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-demo_destroy_user_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_destroy_user_rails_3.png" alt="demo_destroy_user_rails_3" /></span></div><div class="caption"><span class="header">図2.10: </span><span class="description">ユーザーを削除する。<a href="http://railstutorial.org/images/figures/demo_destroy_user_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_destroy_user_rails_3.png" alt="demo_destroy_user_rails_3" /></span></div><div class="caption"><span class="header">図2.10: </span><span class="description">ユーザーを削除する。<a href="http://railstutorial.org/images/figures/demo_destroy_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -406,7 +406,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-mvc_detailed"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/mvc_detailed.png" alt="mvc_detailed" /></span></div><div class="caption"><span class="header">図2.11: </span><span class="description">RailsにおけるMVC。<a href="http://railstutorial.org/images/figures/mvc_detailed-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/mvc_detailed.png" alt="mvc_detailed" /></span></div><div class="caption"><span class="header">図2.11: </span><span class="description">RailsにおけるMVC。<a href="http://railstutorial.org/images/figures/mvc_detailed-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -756,7 +756,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-demo_new_micropost_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_new_micropost_rails_3.png" alt="demo_new_micropost_rails_3" /></span></div><div class="caption"><span class="header">図2.12: </span><span class="description">新しいマイクロポストの作成ページ (<a href="http://localhost:3000/microposts/new">/microposts/new</a>)。<a href="http://railstutorial.org/images/figures/demo_new_micropost-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_new_micropost_rails_3.png" alt="demo_new_micropost_rails_3" /></span></div><div class="caption"><span class="header">図2.12: </span><span class="description">新しいマイクロポストの作成ページ (<a href="http://localhost:3000/microposts/new">/microposts/new</a>)。<a href="http://railstutorial.org/images/figures/demo_new_micropost-full.png">(拡大)</a></span></div></div>
 
 
 <p>ここではひとまずマイクロポストを1つか2つ作成し、少なくとも片方の<code>user_id</code>が<code>1</code>になるようにして、<a class="ref" href="/chapters/a-demo-app.html#sec-a_user_tour">2.2.1</a>で作成した最初のユーザーのidと同じにします。結果は<a class="ref" href="/chapters/a-demo-app.html#fig-demo_micropost_index_rails_3">図2.13</a>のようになるはずです。</p>
@@ -764,7 +764,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-demo_micropost_index_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_micropost_index_rails_3.png" alt="demo_micropost_index_rails_3" /></span></div><div class="caption"><span class="header">図2.13: </span><span class="description">マイクロポストのindexページ (<a href="http://localhost:3000/microposts">/microposts</a>)。<a href="http://railstutorial.org/images/figures/demo_micropost_index_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_micropost_index_rails_3.png" alt="demo_micropost_index_rails_3" /></span></div><div class="caption"><span class="header">図2.13: </span><span class="description">マイクロポストのindexページ (<a href="http://localhost:3000/microposts">/microposts</a>)。<a href="http://railstutorial.org/images/figures/demo_micropost_index_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -795,7 +795,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-micropost_length_error_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/micropost_length_error_rails_3.png" alt="micropost_length_error_rails_3" /></span></div><div class="caption"><span class="header">図2.14: </span><span class="description">マイクロポストの作成に失敗した場合のエラーメッセージ。<a href="http://railstutorial.org/images/figures/micropost_length_error_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/micropost_length_error_rails_3.png" alt="micropost_length_error_rails_3" /></span></div><div class="caption"><span class="header">図2.14: </span><span class="description">マイクロポストの作成に失敗した場合のエラーメッセージ。<a href="http://railstutorial.org/images/figures/micropost_length_error_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -844,7 +844,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-micropost_user_association"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/micropost_user_association.png" alt="micropost_user_association" /></span></div><div class="caption"><span class="header">図2.15: </span><span class="description">マイクロポストとユーザーの関連付け。</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/micropost_user_association.png" alt="micropost_user_association" /></span></div><div class="caption"><span class="header">図2.15: </span><span class="description">マイクロポストとユーザーの関連付け。</span></div></div>
 
 
 <p><a class="ref" href="/chapters/user-microposts.html#top">第10章</a>と<a class="ref" href="/chapters/following-users.html#top">第11章</a>では、関連付けられたユーザーとマイクロポストを同時に表示し、Twitterのようなマイクロポストのフィードを作成する予定です。ここでは、Railsの<em>console</em>を使用して、ユーザーとマイクロポストの関連付けを確認するにとどめます。Railsのconsoleは、Railsアプリケーションを対話的に操作することができる便利なツールです。まず、ターミナルで<code>rails console</code>コマンドを入力します。続いて、<code>User.first</code>を使用してデータベースから1人目のユーザーの情報を取り出し、<code>first_user</code>変数に保存します<sup class="footnote" id="fnref-2_7"><a href="/chapters/a-demo-app.html#fn-2_7">7</a></sup>。</p>
@@ -911,7 +911,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 <div class="label" id="fig-demo_model_inheritance"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_model_inheritance.png" alt="demo_model_inheritance" /></span></div><div class="caption"><span class="header">図2.16: </span><span class="description">UserモデルとMicropostモデルの継承階層。</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_model_inheritance.png" alt="demo_model_inheritance" /></span></div><div class="caption"><span class="header">図2.16: </span><span class="description">UserモデルとMicropostモデルの継承階層。</span></div></div>
 
 
 <p>コントローラの継承構造はもう少しだけ複雑です。<a class="ref" href="/chapters/a-demo-app.html#code-demo_users_controller_class">リスト2.14</a>と<a class="ref" href="/chapters/a-demo-app.html#code-demo_microposts_controller_class">リスト2.15</a>を比較してみると、UsersコントローラとMicropostsコントローラはいずれもApplicationControllerを継承しています。<a class="ref" href="/chapters/a-demo-app.html#code-demo_application_controller_class">リスト2.16</a>を見ると、<code>ApplicationController</code>自身は<code>ActionController::Base</code>を継承しています。これはRailsのAction Packというライブラリが提供している、コントローラ用のベースクラスです。これらのクラス同士の関係を<a class="ref" href="/chapters/a-demo-app.html#fig-demo_controller_inheritance">図2.17</a>に示します。</p>
@@ -967,7 +967,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 <div class="label" id="fig-demo_controller_inheritance"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/demo_controller_inheritance.png" alt="demo_controller_inheritance" /></span></div><div class="caption"><span class="header">図2.17: </span><span class="description">UsersコントローラとMicropostsコントローラにおける継承関係。</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_controller_inheritance.png" alt="demo_controller_inheritance" /></span></div><div class="caption"><span class="header">図2.17: </span><span class="description">UsersコントローラとMicropostsコントローラにおける継承関係。</span></div></div>
 
 
 <p>モデルの継承関係と同様に、UsersコントローラもMicropostsコントローラも最終的には<code>ActionController::Base</code>を継承しており、モデルオブジェクトの操作、インバウンドHTTP requestのフィルタ、ビューをHTMLとして出力するなどの多彩な機能を実行できるようになっています。Railsのコントローラは必ず<code>ApplicationController</code>を継承しているので、Applicationコントローラで定義されたルールはアプリケーションのすべてのアクションに反映されます。たとえば<a class="ref" href="/chapters/sign-in-sign-out.html#sec-remember_me">8.2.1</a>では、サンプルアプリケーションのすべてのコントローラにサインインとサインアウト用のヘルパーを含めています。</p>

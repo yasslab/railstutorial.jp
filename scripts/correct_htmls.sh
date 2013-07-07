@@ -7,6 +7,9 @@
 #   - Replace specific terminologies with appropriate Japanese ones.
 
 re_array=("s/http:\/\/railstutorial-ja.herokuapp.com/\/chapters/g" \
+          "s/chapters\/images/images/g" \	  
+          "s/chapters\/pygments.css/stylesheets\/pygments.css/g" \
+          "s/chapters\/polytexnic.css/stylesheets\/polytexnic.css/g" \
           "s/,FITNESS/,<\/br>FITNESS/g" \
 	  "s/WHETHER/<\/br>WHETHER/g" \
 	  "s/IN CONNECTION WITH/<\/br>IN CONNECTION WITH/g" \

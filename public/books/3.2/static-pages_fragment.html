@@ -127,7 +127,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-create_repository"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/create_repository_new.png" alt="create_repository_new" /></span></div><div class="caption"><span class="header">図3.1</span><span class="description">サンプルアプリケーションのリポジトリをGitHub上に作成する。<a href="http://railstutorial.org/images/figures/create_repository_new-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/create_repository_new.png" alt="create_repository_new" /></span></div><div class="caption"><span class="header">図3.1</span><span class="description">サンプルアプリケーションのリポジトリをGitHub上に作成する。<a href="http://railstutorial.org/images/figures/create_repository_new-full.png">(拡大)</a></span></div></div>
 
 
 <p>本書では今後、このサンプルアプリケーションを使っていくことになるので、GitHub上にリポジトリを作成し (<a class="ref" href="/chapters/static-pages.html#fig-create_repository">図 3.1</a>)、プッシュしておくと良いでしょう。</p>
@@ -203,7 +203,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-public_index_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/public_index_rails_3.png" alt="public_index_rails_3" /></span></div><div class="caption"><span class="header">図3.2</span><span class="description"><code>public/index.html</code>ファイルの内容。<a href="http://railstutorial.org/images/figures/public_index_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/public_index_rails_3.png" alt="public_index_rails_3" /></span></div><div class="caption"><span class="header">図3.2</span><span class="description"><code>public/index.html</code>ファイルの内容。<a href="http://railstutorial.org/images/figures/public_index_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 <p>このページがどこから来ているかを学ぶために、<code>public/index.html</code> (<a class="ref" href="/chapters/static-pages.html#fig-public_index_rails_3">図 3.2</a>) ファイルを見てみてください。このファイルは、スタイルシートの情報を含んでいるので少し煩雑ですが、このファイルだけでページを描画することができています。これは、Railsはデフォルトで<code>public</code>ディレクトリ内にあるファイルを直接ブラウザに送信しているからです<sup class="footnote" id="fnref-3_5"><a href="/chapters/static-pages.html#fn-3_5">5</a></sup>。またデフォルトでは、今回使われている<code>index.html</code>ファイルについてはURLで<code>index.html</code>と指定する必要はありません。たとえば、URLにhttp://localhost:3000/と入力しても、http://localhost:3000/index.htmlと入力しても、表示される内容は同じです。</p>
@@ -247,7 +247,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-hello_world"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/hello_world.png" alt="&quot;hello world&quot;" /></span></div><div class="caption"><span class="header">図3.3</span><span class="description">新しい静的な HTML ファイル。<a href="http://railstutorial.org/images/figures/hello_world-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/hello_world.png" alt="&quot;hello world&quot;" /></span></div><div class="caption"><span class="header">図3.3</span><span class="description">新しい静的な HTML ファイル。<a href="http://railstutorial.org/images/figures/hello_world-full.png">(拡大)</a></span></div></div>
 
 
 <p>この静的ファイルはRailsの振る舞いを確かめるためのものなので、サンプルアプリケーションを開発するために必要なファイルではありません。誤って./public/hello.html が参照されてしまうことのないように、以下のように削除しておきましょう。</p>
@@ -370,7 +370,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-config_directory_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/config_directory_rails_3.png" alt="config_directory_rails_3" /></span></div><div class="caption"><span class="header">図3.4</span><span class="description">サンプルアプリケーションの<code>config</code>ディレクトリの内容。<a href="http://railstutorial.org/images/figures/config_directory_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/config_directory_rails_3.png" alt="config_directory_rails_3" /></span></div><div class="caption"><span class="header">図3.4</span><span class="description">サンプルアプリケーションの<code>config</code>ディレクトリの内容。<a href="http://railstutorial.org/images/figures/config_directory_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 <p>先ほど<code>home</code>アクションと<code>help</code>アクションを生成したので、<a class="ref" href="/chapters/static-pages.html#code-pages_routes">リスト 3.5</a>に示したように、routesファイルにはそれぞれのアクションで使用されるルールが定義されています。</p>
@@ -403,7 +403,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-raw_home_view"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/raw_home_view_31.png" alt="raw_home_view_31" /></span></div><div class="caption"><span class="header">図3.5</span><span class="description"><a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスした結果。<a href="http://railstutorial.org/images/figures/raw_home_view_31-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/raw_home_view_31.png" alt="raw_home_view_31" /></span></div><div class="caption"><span class="header">図3.5</span><span class="description"><a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスした結果。<a href="http://railstutorial.org/images/figures/raw_home_view_31-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -589,7 +589,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-red_failing_spec"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/red_failing_spec.png" alt="red_failing_spec" /></span></div><div class="caption"><span class="header">図3.6</span><span class="description">赤く表示されている (失敗した) テスト。<a href="http://railstutorial.org/images/figures/red_failing_spec-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/red_failing_spec.png" alt="red_failing_spec" /></span></div><div class="caption"><span class="header">図3.6</span><span class="description">赤く表示されている (失敗した) テスト。<a href="http://railstutorial.org/images/figures/red_failing_spec-full.png">(拡大)</a></span></div></div>
 
 
 <p>テストにパスするために、自動生成されたHomeページのHTMLを<a class="ref" href="/chapters/static-pages.html#code-home_page_passing">リスト3.10</a>のように書き換えてみましょう。</p>
@@ -628,7 +628,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-green_passing_spec"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/green_passing_spec.png" alt="green_passing_spec" /></span></div><div class="caption"><span class="header">図3.7</span><span class="description">緑色で表示されている (成功した) テスト。<a href="http://railstutorial.org/images/figures/green_passing_spec-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/green_passing_spec.png" alt="green_passing_spec" /></span></div><div class="caption"><span class="header">図3.7</span><span class="description">緑色で表示されている (成功した) テスト。<a href="http://railstutorial.org/images/figures/green_passing_spec-full.png">(拡大)</a></span></div></div>
 
 
 <p>Helpページについても、Homeページの例を参考にして、同じようなテストとアプリケーションコードを使用できることが推測できます。最初に、文字列を <code>’Help’</code> に書き換えたテストを追加してみましょう (<a class="ref" href="/chapters/static-pages.html#code-help_content_spec">リスト 3.11</a>)。</p>
@@ -873,7 +873,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-about_us"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/about_us_2nd_edition.png" alt="about_us_2nd_edition" /></span></div><div class="caption"><span class="header">図3.8</span><span class="description">作成したAboutページ (<a href="http://localhost:3000/static_pages/about">/static_pages/about</a>)。<a href="http://railstutorial.org/images/figures/about_us_2nd_edition-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/about_us_2nd_edition.png" alt="about_us_2nd_edition" /></span></div><div class="caption"><span class="header">図3.8</span><span class="description">作成したAboutページ (<a href="http://localhost:3000/static_pages/about">/static_pages/about</a>)。<a href="http://railstutorial.org/images/figures/about_us_2nd_edition-full.png">(拡大)</a></span></div></div>
 
 
 

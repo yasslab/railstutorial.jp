@@ -1,8 +1,8 @@
 ﻿<html dir="ltr">
   <head>
     <title>modeling-users</title>
-    <link rel="stylesheet" href="/chapters/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="/chapters/polytexnic.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/polytexnic.css" type="text/css" />
   </head>
   <body dir="ltr">
     <div id="book">
@@ -138,7 +138,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-signup_mockup_preview"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図6.1</span><span class="description">ユーザー登録ページのモックアップ。<a href="http://railstutorial.org/images/figures/signup_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図6.1</span><span class="description">ユーザー登録ページのモックアップ。<a href="http://railstutorial.org/images/figures/signup_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 <p>Railsでは、データモデルで使用するデフォルトのデータ構造のことを<em>モデル</em>と呼びます (<a class="ref" href="/chapters/beginning.html#sec-mvc">1.2.6</a>にあるMVCのMのことです)。Railsでは、データを永続化するデフォルトの解決策として、<em>データベース</em>を使用してデータを長期間保存します。また、データベースとやりとりするデフォルトのRailsライブラリは<em>Active Record</em>と呼ばれます<sup class="footnote" id="fnref-6_1"><a href="/chapters/modeling-users.html#fn-6_1">1</a></sup>。Active Recordは、データオブジェクトの作成/保存/検索のためのメソッドを持っています。これらのメソッドを使用するのに、<a href="http://en.wikipedia.org/wiki/Relational_database">リレーショナルデータベース</a>で使うSQL (Structured Query Language)<sup class="footnote" id="fnref-6_2"><a href="/chapters/modeling-users.html#fn-6_2">2</a></sup>を意識する必要はありません。さらに、Railsには<em>マイグレーション</em>という機能があります。データの定義をRubyで記述することができ、SQLのDDL (Data Definition Language)を新たに学ぶ必要がありません。Railsは、データストアの詳細からほぼ完全に私たちを切り離してくれます。本書では、SQLiteを開発 (development) 環境で使い、またPostgreSQLを (Herokuでの) 開発環境で使います (<a class="ref" href="/chapters/beginning.html#sec-deploying">1.4</a>)。Railsは、本番 (production) アプリケーションですら、データの保存方法の詳細についてほとんど考える必要がないくらいよくできています。</p>
@@ -219,7 +219,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-user_model_initial"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/user_model_initial.png" alt="user_model_initial" /></span></div><div class="caption"><span class="header">図6.2</span><span class="description"><a class="ref" href="/chapters/modeling-users.html#code-users_migration">リスト6.2</a>によるユーザーデータモデル</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/user_model_initial.png" alt="user_model_initial" /></span></div><div class="caption"><span class="header">図6.2</span><span class="description"><a class="ref" href="/chapters/modeling-users.html#code-users_migration">リスト6.2</a>によるユーザーデータモデル</span></div></div>
 
 
 <p>マイグレーションは、以下のように<code>rake</code>コマンド (<a class="ref" href="/chapters/a-demo-app.html#sidebar-rake">囲み2.1</a>) を使って実行することができます。これを“マイグレーションの適用 (migrating up)”と呼びます。</p>
@@ -234,7 +234,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-sqlite_database_browser"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/sqlite_database_browser.png" alt="sqlite_database_browser" /></span></div><div class="caption"><span class="header">図6.3</span><span class="description"><a href="http://sqlitebrowser.sourceforge.net/">SQLite Database Browser</a>と作成した<code>users</code>テーブル。<a href="http://railstutorial.org/images/figures/sqlite_database_browser-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sqlite_database_browser.png" alt="sqlite_database_browser" /></span></div><div class="caption"><span class="header">図6.3</span><span class="description"><a href="http://sqlitebrowser.sourceforge.net/">SQLite Database Browser</a>と作成した<code>users</code>テーブル。<a href="http://railstutorial.org/images/figures/sqlite_database_browser-full.png">(拡大)</a></span></div></div>
 
 
 <p><em>Railsチュートリアル</em>で使用されているものすべてを含め、ほとんどのマイグレーションが<em>可逆</em>です。これは、<code>db:rollback</code>というRakeタスクで変更を取り消せることを意味します。これを“マイグレーションの取り消し (migrate down)”と呼びます。</p>
@@ -1128,7 +1128,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-rubular"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/rubular.png" alt="rubular" /></span></div><div class="caption"><span class="header">図6.4</span><span class="description">素晴らしい正規表現エディタ<a href="http://www.rubular.com/">Rubular</a>。<a href="http://railstutorial.org/images/figures/rubular-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/rubular.png" alt="rubular" /></span></div><div class="caption"><span class="header">図6.4</span><span class="description">素晴らしい正規表現エディタ<a href="http://www.rubular.com/">Rubular</a>。<a href="http://railstutorial.org/images/figures/rubular-full.png">(拡大)</a></span></div></div>
 
 
 <p>これでテストはすべてパスするはずです(実際、この有効なメールアドレスのテストはこれまでいつもパスしてきました。正規表現のプログラミングは間違いが起こりやすいことで有名なので、ここで行なっている有効なメールアドレスのテストは、主として<code>VALID_EMAIL_REGEX</code>に対する形式的な健全性チェックに過ぎません)。残る制約は、メールアドレスが一意であることを強制するものだけとなりました。</p>
@@ -1375,7 +1375,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-user_model_password_digest"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/user_model_password_digest.png" alt="user_model_password_digest" /></span></div><div class="caption"><span class="header">図6.5</span><span class="description">Userモデルに<code>password_digest</code>属性を追加する。</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/user_model_password_digest.png" alt="user_model_password_digest" /></span></div><div class="caption"><span class="header">図6.5</span><span class="description">Userモデルに<code>password_digest</code>属性を追加する。</span></div></div>
 
 
 <p>ハッシュ関数には最新の<a href="http://en.wikipedia.org/wiki/Bcrypt">bcrypt</a>を使用し、パスワードを不可逆的に暗号化してパスワードハッシュを作成します。サンプルアプリケーションでbcryptを使用するために、<code>bcrypt-ruby</code> gemを<code>Gemfile</code>に追加します (<a class="ref" href="/chapters/modeling-users.html#code-bcrypt_ruby">リスト6.24</a>)。</p>
@@ -1904,7 +1904,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <div class="label" id="fig-sqlite_user_row"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/chapters/images/figures/sqlite_user_row_with_password.png" alt="sqlite_user_row_with_password" /></span></div><div class="caption"><span class="header">図6.6</span><span class="description">SQLiteデータベース<code>db/development.sqlite3</code>に登録されたユーザーの行。<a href="http://railstutorial.org/images/figures/sqlite_user_row_with_password-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/sqlite_user_row_with_password.png" alt="sqlite_user_row_with_password" /></span></div><div class="caption"><span class="header">図6.6</span><span class="description">SQLiteデータベース<code>db/development.sqlite3</code>に登録されたユーザーの行。<a href="http://railstutorial.org/images/figures/sqlite_user_row_with_password-full.png">(拡大)</a></span></div></div>
 
 
 <p>コンソールに戻って<code>password_digest</code>属性を参照してみると、<a class="ref" href="/chapters/modeling-users.html#code-password_implementation">リスト6.30</a>の<code>has_secure_password</code>の効果を確認できます。</p>
