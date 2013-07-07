@@ -4,6 +4,6 @@
 
 for chapter in `cat ../chapter_list.txt`
 do
-    rm ./$chapter.html
+    rm "$chapter".html "$chapter"_fragment.html
     wget -O "./$chapter.html" http://ruby.railstutorial.org/chapters/$chapter.html\?version=4.0
 done
