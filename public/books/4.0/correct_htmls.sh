@@ -20,12 +20,11 @@ do
     for re in "${re_array[@]}"
     do
 	cat $file.modified_$i | sed -e "$re" > $file.modified_`expr $i + 1`
+        rm  $file.modified_$i
 	i=`expr $i + 1`
     done
     
-    if [ $? -eq 0 ]; then
-        mv $file.modified_$i $file
-    fi
+    mv $file.modified_$i $file
 
     echo "corrected $file"
 done

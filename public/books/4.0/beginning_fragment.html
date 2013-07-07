@@ -6,7 +6,7 @@
 <h1 class="chapter"><a id="sec-1" href="beginning?version=4.0#top" class="heading"><span class="number">Chapter 1</span> From zero to deploy</a></h1>
 
 
-<p>Welcome to the <a href="http://ruby.railstutorial.org/ruby-on-rails-tutorial-book"><em>Ruby on Rails Tutorial</em></a>. The goal of this book is to be the best answer to the question, &ldquo;If I want to learn web development with <a href="http://rubyonrails.org/">Ruby on Rails</a>, where should I start?&rdquo; By the time you finish the <em>Ruby on Rails Tutorial</em>, you will have all the skills you need to develop and deploy your own custom web applications with Rails. You will also be ready to benefit from the many more advanced books, blogs, and screencasts that are part of the thriving Rails educational ecosystem. Finally, since the <em>Ruby on Rails Tutorial</em> uses Rails&nbsp;4, the knowledge you gain here represents the state of the art in web development. (The most up-to-date version of the <em>Ruby on Rails Tutorial</em> can be found on the book&rsquo;s website at <a href="http://railstutorial.org/">http://railstutorial.org/</a>; if you are reading this book offline, be sure to check the <a href="http://railstutorial.org/book">online version of the Rails Tutorial book</a> at <a href="http://railstutorial.org/book">http://railstutorial.org/book</a> for the latest updates.)</p>
+<p>Welcome to the <a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Rails Tutorial</em></a>. The goal of this book is to be the best answer to the question, &ldquo;If I want to learn web development with <a href="http://rubyonrails.org/">Ruby on Rails</a>, where should I start?&rdquo; By the time you finish the <em>Ruby on Rails Tutorial</em>, you will have all the skills you need to develop and deploy your own custom web applications with Rails. You will also be ready to benefit from the many more advanced books, blogs, and screencasts that are part of the thriving Rails educational ecosystem. Finally, since the <em>Ruby on Rails Tutorial</em> uses Rails&nbsp;4, the knowledge you gain here represents the state of the art in web development. (The most up-to-date version of the <em>Ruby on Rails Tutorial</em> can be found on the book&rsquo;s website at <a href="http://railstutorial.jp/">http://railstutorial.jp/</a>; if you are reading this book offline, be sure to check the <a href="http://railstutorial.jp/book">online version of the Rails Tutorial book</a> at <a href="http://railstutorial.jp/book">http://railstutorial.jp/book</a> for the latest updates.)</p>
 
 <p>Note that the goal of this book is <em>not</em> merely to teach Rails, but rather to teach <em>web development with Rails</em>, which means acquiring (or expanding) the skills needed to develop software for the World Wide Web. In addition to Ruby on Rails, this skillset includes HTML &amp; CSS, databases, version control, testing, and deployment. To accomplish this goal, the <em>Ruby on Rails Tutorial</em> takes an integrated approach: you will learn Rails by example by building a substantial sample application from scratch. As <a href="http://sivers.org">Derek Sivers</a> notes in the foreword, this book is structured as a linear narrative, designed to be read from start to finish. If you are used to skipping around in technical books, taking this linear approach might require some adjustment, but I suggest giving it a try. You can think of the <em>Ruby on Rails Tutorial</em> as a video game where you are the main character, and where you level up as a Rails developer in each chapter. (The exercises are the <a href="http://en.wikipedia.org/wiki/Boss_(video_gaming)#Miniboss">minibosses</a>.)</p>
 
@@ -58,7 +58,7 @@
 
 <p>Another common question is whether to use tests from the start. As noted in the introduction, the <em>Rails Tutorial</em> uses test-driven development (also called test-first development), which in my view is the best way to develop Rails applications, but it does introduce a substantial amount of overhead and complexity. If you find yourself getting bogged down by the tests, I suggest either skipping them on a first reading or (even better) using them as a tool to verify your code&rsquo;s correctness without worrying about how they work. This latter strategy involves creating the necessary test files (called <em>specs</em>) and filling them with the test code <em>exactly</em> as it appears in the book. You can then run the test suite (as described in <a class="ref" href="filling-in-the-layout?version=4.0#top">Chapter&nbsp;5</a>) to watch it fail, then write the application code as described in the tutorial, and finally re-run the test suite to watch it pass. <br /></p>
 
-<p><strong>Inexperienced programmers:</strong> The <em>Rails Tutorial</em> is not aimed principally at beginning programmers, and web applications, even relatively simple ones, are by their nature fairly complex. If you are completely new to web programming and find the <em>Rails Tutorial</em> too difficult, I suggest learning the basics of HTML and CSS and then giving the <em>Rails Tutorial</em> another go. (Unfortunately, I don&rsquo;t have a personal recommendation here, but <a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a> looks promising, and one reader recommends <a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a> by David Sawyer McFarland.) You might also consider reading the first few chapters of <a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a> by Peter Cooper, which starts with sample applications much smaller than a full-blown web app. That said, a surprising number of beginners have used this tutorial to learn web development, so I suggest giving it a try, and I especially recommend the <a href="http://railstutorial.org/screencasts"><em>Rails Tutorial</em> screencast series</a><sup class="footnote" id="fnref-1_4"><a href="?version=4.0#fn-1_4">4</a></sup> to give you an &ldquo;over-the-shoulder&rdquo; look at Rails software development. <br /></p>
+<p><strong>Inexperienced programmers:</strong> The <em>Rails Tutorial</em> is not aimed principally at beginning programmers, and web applications, even relatively simple ones, are by their nature fairly complex. If you are completely new to web programming and find the <em>Rails Tutorial</em> too difficult, I suggest learning the basics of HTML and CSS and then giving the <em>Rails Tutorial</em> another go. (Unfortunately, I don&rsquo;t have a personal recommendation here, but <a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a> looks promising, and one reader recommends <a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a> by David Sawyer McFarland.) You might also consider reading the first few chapters of <a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a> by Peter Cooper, which starts with sample applications much smaller than a full-blown web app. That said, a surprising number of beginners have used this tutorial to learn web development, so I suggest giving it a try, and I especially recommend the <a href="http://railstutorial.jp/screencasts"><em>Rails Tutorial</em> screencast series</a><sup class="footnote" id="fnref-1_4"><a href="?version=4.0#fn-1_4">4</a></sup> to give you an &ldquo;over-the-shoulder&rdquo; look at Rails software development. <br /></p>
 
 <p><strong>Experienced programmers new to web development:</strong> Your previous experience means you probably already understand ideas like classes, methods, data structures, etc., which is a big advantage. Be warned that if your background is in C/C++ or Java, you may find Ruby a bit of an odd duck, and it might take time to get used to it; just stick with it and eventually you&rsquo;ll be fine. (Ruby even lets you put semicolons at the ends of lines if you miss them too much.) The <em>Rails Tutorial</em> covers all the web-specific ideas you&rsquo;ll need, so don&rsquo;t worry if you don&rsquo;t currently know a <tt>POST</tt> from a <tt>PATCH</tt>.<br /></p>
 
@@ -101,7 +101,7 @@
 
 <p>The conventions in this book are mostly self-explanatory. In this section, I&rsquo;ll mention some that may not be.</p>
 
-<p>Both the <a href="http://railstutorial.org/book">HTML</a> and <a href="http://railstutorial.org/">PDF</a> editions of this book are full of links, both to internal sections (such as <a class="ref" href="beginning?version=4.0#sec-up_and_running">Section&nbsp;1.2</a>) and to external sites (such as the main <a href="http://rubyonrails.org/download">Ruby on Rails download</a> page).<sup class="footnote" id="fnref-1_5"><a href="?version=4.0#fn-1_5">5</a></sup></p>
+<p>Both the <a href="http://railstutorial.jp/book">HTML</a> and <a href="http://railstutorial.jp/">PDF</a> editions of this book are full of links, both to internal sections (such as <a class="ref" href="beginning?version=4.0#sec-up_and_running">Section&nbsp;1.2</a>) and to external sites (such as the main <a href="http://rubyonrails.org/download">Ruby on Rails download</a> page).<sup class="footnote" id="fnref-1_5"><a href="?version=4.0#fn-1_5">5</a></sup></p>
 
 <p>Many examples in this book use command-line commands. For simplicity, all command line examples use a Unix-style command line prompt (a dollar sign), as follows:</p>
 
@@ -180,7 +180,7 @@
 <p>The <em>Rails Tutorial</em> often shows output from various programs (shell commands, version control status, Ruby programs, etc.). Because of the innumerable small differences between different computer systems, the output you see may not always agree exactly with what is shown in the text,
 but this is not cause for concern.</p>
 
-<p>Some commands may produce errors depending on your system; rather than attempt the <a href="http://en.wikipedia.org/wiki/Sisyphus">Sisyphean</a> task of documenting all such errors in this tutorial, I will delegate to the &ldquo;Google the error message&rdquo; algorithm, which among other things is good practice for real-life software development. If you run into any problems while following the tutorial, I suggest consulting the resources listed on the <a href="http://railstutorial.org/help">Rails Tutorial help page</a>.<sup class="footnote" id="fnref-1_7"><a href="?version=4.0#fn-1_7">7</a></sup></p>
+<p>Some commands may produce errors depending on your system; rather than attempt the <a href="http://en.wikipedia.org/wiki/Sisyphus">Sisyphean</a> task of documenting all such errors in this tutorial, I will delegate to the &ldquo;Google the error message&rdquo; algorithm, which among other things is good practice for real-life software development. If you run into any problems while following the tutorial, I suggest consulting the resources listed on the <a href="http://railstutorial.jp/help">Rails Tutorial help page</a>.<sup class="footnote" id="fnref-1_7"><a href="?version=4.0#fn-1_7">7</a></sup></p>
 
 <div class="label" id="sec-up_and_running"></div>
 
@@ -226,7 +226,7 @@ but this is not cause for concern.</p>
 <div class="label" id="fig-editor_shell"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/editor_shell.png" alt="editor_shell" /></span></div><div class="caption"><span class="header">Figure 1.1: </span><span class="description">A text editor/command line development environment.  <a href="http://railstutorial.org/images/figures/editor_shell-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/editor_shell.png" alt="editor_shell" /></span></div><div class="caption"><span class="header">Figure 1.1: </span><span class="description">A text editor/command line development environment.  <a href="http://railstutorial.jp/images/figures/editor_shell-full.png">(full size)</a></span></div></div>
 
 
 
@@ -254,7 +254,7 @@ in the world is either broken or very difficult to use. So users dread software.
 </blockquote>
 
 
-<p>Now it&rsquo;s time to install Ruby and Rails. I&rsquo;ve done my best to cover as many bases as possible, but systems vary, and many things can go wrong during these steps. Be sure to Google the error message or consult the <a href="http://railstutorial.org/help">Rails Tutorial help page</a> if you run into trouble.</p>
+<p>Now it&rsquo;s time to install Ruby and Rails. I&rsquo;ve done my best to cover as many bases as possible, but systems vary, and many things can go wrong during these steps. Be sure to Google the error message or consult the <a href="http://railstutorial.jp/help">Rails Tutorial help page</a> if you run into trouble.</p>
 
 <p><strong>Unless otherwise noted, you should use the exact versions of all software used in the tutorial, including Rails itself, if you want the same results.</strong> Sometimes minor version differences will yield identical results, but you shouldn&rsquo;t count on this, especially with respect to Rails versions. The main exception is Ruby itself: 1.9.2, 1.9.3, and 2.0.0 are virtually identical for the purposes of this tutorial, so feel free to use any one.</p>
 
@@ -515,7 +515,7 @@ in the world is either broken or very difficult to use. So users dread software.
 <div class="label" id="fig-directory_structure_rails"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/directory_structure_rails_4_0.png" alt="directory_structure_rails_4_0" /></span></div><div class="caption"><span class="header">Figure 1.2: </span><span class="description">The directory structure for a newly created Rails app.&nbsp;<a href="http://railstutorial.org/images/figures/directory_structure_rails_4_0-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/directory_structure_rails_4_0.png" alt="directory_structure_rails_4_0" /></span></div><div class="caption"><span class="header">Figure 1.2: </span><span class="description">The directory structure for a newly created Rails app.&nbsp;<a href="http://railstutorial.jp/images/figures/directory_structure_rails_4_0-full.png">(full size)</a></span></div></div>
 
 
 
@@ -747,7 +747,7 @@ You are welcome to use the most up-to-date version of any gem, including using t
 <div class="label" id="fig-riding_rails"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/riding_rails_4_0.png" alt="riding_rails_4_0" /></span></div><div class="caption"><span class="header">Figure 1.3: </span><span class="description">The default Rails page.&nbsp;<a href="http://railstutorial.org/images/figures/riding_rails_4_0-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/riding_rails_4_0.png" alt="riding_rails_4_0" /></span></div><div class="caption"><span class="header">Figure 1.3: </span><span class="description">The default Rails page.&nbsp;<a href="http://railstutorial.jp/images/figures/riding_rails_4_0-full.png">(full size)</a></span></div></div>
 
 
 <p>To see information about our first application, click on the link &ldquo;About your application&rsquo;s environment&rdquo;. The result is shown in <a class="ref" href="beginning?version=4.0#fig-riding_rails_environment">Figure&nbsp;1.4</a>. (<a class="ref" href="beginning?version=4.0#fig-riding_rails_environment">Figure&nbsp;1.4</a> represents the environment on my machine when I made the screenshot; your results may differ.)</p>
@@ -755,7 +755,7 @@ You are welcome to use the most up-to-date version of any gem, including using t
 <div class="label" id="fig-riding_rails_environment"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/riding_rails_environment_4_0.png" alt="riding_rails_environment_4_0" /></span></div><div class="caption"><span class="header">Figure 1.4: </span><span class="description">The default page with the app environment.&nbsp;<a href="http://railstutorial.org/images/figures/riding_rails_environment_4_0-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/riding_rails_environment_4_0.png" alt="riding_rails_environment_4_0" /></span></div><div class="caption"><span class="header">Figure 1.4: </span><span class="description">The default page with the app environment.&nbsp;<a href="http://railstutorial.jp/images/figures/riding_rails_environment_4_0-full.png">(full size)</a></span></div></div>
 
 
 <p>Of course, we don&rsquo;t need the default Rails page in the long run, but it&rsquo;s nice to see it working for now. We&rsquo;ll remove the default page (and replace it with a custom home page) in <a class="ref" href="filling-in-the-layout?version=4.0#sec-rails_routes">Section&nbsp;5.3.2</a>.</p>
@@ -1021,7 +1021,7 @@ doc/
 <div class="label" id="fig-create_first_repository"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/create_first_repository_4_0.png" alt="create_first_repository_4_0" /></span></div><div class="caption"><span class="header">Figure 1.6: </span><span class="description">Creating the first app repository at GitHub.&nbsp;<a href="http://railstutorial.org/images/figures/create_first_repository_4_0-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/create_first_repository_4_0.png" alt="create_first_repository_4_0" /></span></div><div class="caption"><span class="header">Figure 1.6: </span><span class="description">Creating the first app repository at GitHub.&nbsp;<a href="http://railstutorial.jp/images/figures/create_first_repository_4_0-full.png">(full size)</a></span></div></div>
 
 
 <p>GitHub has a variety of paid plans, but for open-source code their services are free, so sign up for a <a href="https://github.com/signup/free">free GitHub account</a> if you don&rsquo;t have one already. (You might have to follow the <a href="http://help.github.com/key-setup-redirect">GitHub tutorial on creating SSH keys</a> first.) After signing up, click on the link to <a href="http://github.com/new">create a repository</a> and fill in the information as in <a class="ref" href="beginning?version=4.0#fig-create_first_repository">Figure&nbsp;1.6</a>. (Take care <em>not</em> to initialize the repository with a <code>README</code> file, as <code>rails new</code> creates one of those automatically.) After submitting the form, push up your first application as follows:</p>
@@ -1044,7 +1044,7 @@ doc/
 <div class="label" id="fig-github_repository_page"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/github_repository_page_4_0.png" alt="github_repository_page_4_0" /></span></div><div class="caption"><span class="header">Figure 1.7: </span><span class="description">A GitHub repository page.&nbsp;<a href="http://railstutorial.org/images/figures/github_repository_page_4_0-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/github_repository_page_4_0.png" alt="github_repository_page_4_0" /></span></div><div class="caption"><span class="header">Figure 1.7: </span><span class="description">A GitHub repository page.&nbsp;<a href="http://railstutorial.jp/images/figures/github_repository_page_4_0-full.png">(full size)</a></span></div></div>
 
 
 <p>GitHub also has native applications to augment the command-line interface, so if you&rsquo;re more comfortable with GUI apps you might want to check out <a href="http://windows.github.com/">GitHub for Windows</a> or <a href="http://mac.github.com/">GitHub for Mac</a>. (GitHub for Linux is still just Git, it seems.)</p>
@@ -1060,7 +1060,7 @@ doc/
 <div class="label" id="fig-rails_readme"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/rails_readme_4_0.png" alt="rails_readme_4_0" /></span></div><div class="caption"><span class="header">Figure 1.8: </span><span class="description">The initial <code>README</code> file for our project at GitHub.&nbsp;<a href="http://railstutorial.org/images/figures/rails_readme_4_0-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/rails_readme_4_0.png" alt="rails_readme_4_0" /></span></div><div class="caption"><span class="header">Figure 1.8: </span><span class="description">The initial <code>README</code> file for our project at GitHub.&nbsp;<a href="http://railstutorial.jp/images/figures/rails_readme_4_0-full.png">(full size)</a></span></div></div>
 
 
 
@@ -1110,7 +1110,7 @@ doc/
 <div class="code"><div class="highlight"><pre># Ruby on Rails Tutorial: first application
 
 This is the first application for the
-[*Ruby on Rails Tutorial*](http://railstutorial.org/)
+[*Ruby on Rails Tutorial*](http://railstutorial.jp/)
 by [Michael Hartl](http://michaelhartl.com/).
 </pre></div>
 </div></div>
@@ -1224,7 +1224,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-new_readme"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/new_readme_4_0.png" alt="new_readme_4_0" /></span></div><div class="caption"><span class="header">Figure 1.9: </span><span class="description">The improved <code>README</code> file formatted with Markdown.&nbsp;<a href="http://railstutorial.org/images/figures/new_readme_4_0-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/new_readme_4_0.png" alt="new_readme_4_0" /></span></div><div class="caption"><span class="header">Figure 1.9: </span><span class="description">The improved <code>README</code> file formatted with Markdown.&nbsp;<a href="http://railstutorial.jp/images/figures/new_readme_4_0-full.png">(full size)</a></span></div></div>
 
 
 
@@ -1364,7 +1364,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-heroku_app"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/heroku_app_4_0.png" alt="heroku_app_4_0" /></span></div><div class="caption"><span class="header">Figure 1.10: </span><span class="description">The first Rails Tutorial application running on Heroku.&nbsp;<a href="http://railstutorial.org/images/figures/heroku_app_4_0-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/heroku_app_4_0.png" alt="heroku_app_4_0" /></span></div><div class="caption"><span class="header">Figure 1.10: </span><span class="description">The first Rails Tutorial application running on Heroku.&nbsp;<a href="http://railstutorial.jp/images/figures/heroku_app_4_0-full.png">(full size)</a></span></div></div>
 
 
 <p>Once you&rsquo;ve deployed successfully, Heroku provides a beautiful interface for administering and configuring your application (<a class="ref" href="beginning?version=4.0#fig-heroku_info">Figure&nbsp;1.11</a>).</p>
@@ -1372,7 +1372,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-heroku_info"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/heroku_info_4_0.png" alt="heroku_info_4_0" /></span></div><div class="caption"><span class="header">Figure 1.11: </span><span class="description">The beautiful interface at Heroku.&nbsp;<a href="http://railstutorial.org/images/figures/heroku_info_4_0-full.png">(full size)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/heroku_info_4_0.png" alt="heroku_info_4_0" /></span></div><div class="caption"><span class="header">Figure 1.11: </span><span class="description">The beautiful interface at Heroku.&nbsp;<a href="http://railstutorial.jp/images/figures/heroku_info_4_0-full.png">(full size)</a></span></div></div>
 
 
 
@@ -1406,7 +1406,7 @@ jhyicevg.herokuapp.com</pre>
 
 <p>Pretty sweet.)</p>
 
-<p>In addition to supporting subdomains, Heroku also supports custom domains. (In fact, the <a href="http://railstutorial.org">Ruby on Rails Tutorial site</a> lives at Heroku; if you&rsquo;re reading this book online, you&rsquo;re looking at a Heroku-hosted site right now!) See the <a href="http://devcenter.heroku.com/">Heroku documentation</a> for more information about custom domains and other Heroku topics.</p>
+<p>In addition to supporting subdomains, Heroku also supports custom domains. (In fact, the <a href="http://railstutorial.jp">Ruby on Rails Tutorial site</a> lives at Heroku; if you&rsquo;re reading this book online, you&rsquo;re looking at a Heroku-hosted site right now!) See the <a href="http://devcenter.heroku.com/">Heroku documentation</a> for more information about custom domains and other Heroku topics.</p>
 
 <div class="label" id="sec-beginning_conclusion"></div>
 
@@ -1416,7 +1416,7 @@ jhyicevg.herokuapp.com</pre>
 
 <p>We&rsquo;ve come a long way in this chapter: installation, development environment setup, version control, and deployment. If you want to share your progress at this point, feel free to send a tweet or Facebook status update with something like this:</p>
 
-<div class="center"><a href="http://twitter.com/?status=I'm%20learning%20Ruby%20on%20Rails%20with%20@railstutorial!%20http://railstutorial.org/">I&rsquo;m learning Ruby on Rails with @railstutorial! http://railstutorial.org/</a></div>
+<div class="center"><a href="http://twitter.com/?status=I'm%20learning%20Ruby%20on%20Rails%20with%20@railstutorial!%20http://railstutorial.jp/">I&rsquo;m learning Ruby on Rails with @railstutorial! http://railstutorial.jp/</a></div>
 
 
 <p>&nbsp;</p>
@@ -1431,10 +1431,10 @@ jhyicevg.herokuapp.com</pre>
 <li id="fn-1_1"><em>URI</em> stands for Uniform Resource Identifier, while the slightly less general <em>URL</em> stands for Uniform Resource Locator. In practice, the URL is usually equivalent to &ldquo;the thing you see in the address bar of your browser&rdquo;.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_1">&uarr;</a></li>
 <li id="fn-1_2">http://tryruby.org/&nbsp;<a class="arrow" href="?version=4.0#fnref-1_2">&uarr;</a></li>
 <li id="fn-1_3">http://railsforzombies.org/&nbsp;<a class="arrow" href="?version=4.0#fnref-1_3">&uarr;</a></li>
-<li id="fn-1_4">http://railstutorial.org/screencasts&nbsp;<a class="arrow" href="?version=4.0#fnref-1_4">&uarr;</a></li>
+<li id="fn-1_4">http://railstutorial.jp/screencasts&nbsp;<a class="arrow" href="?version=4.0#fnref-1_4">&uarr;</a></li>
 <li id="fn-1_5">When reading the <em>Rails Tutorial</em>, you may find it convenient to follow an internal section link to look at the reference and then immediately go back to where you were before. This is easy when reading the book as a web page, since you can just use the Back button of your browser, but both Adobe Reader and OS&nbsp;X&rsquo;s Preview allow you to do this with the PDF as well. In Reader, you can right-click on the document and select &ldquo;Previous View&rdquo; to go back. In Preview, use the Go menu: <tt>Go &gt; Back</tt>.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_5">&uarr;</a></li>
 <li id="fn-1_6">Many people erroneously believe that <code>sudo</code> stands for &ldquo;superuser do&rdquo; because it runs commands as the superuser (root) by default. In fact, <code>sudo</code> is a concatenation of the <code>su</code> command and the English word &ldquo;do&rdquo;, and <code>su</code> stands for &ldquo;substitute user&rdquo;, as you can verify by typing <code>man su</code> in your shell.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_6">&uarr;</a></li>
-<li id="fn-1_7">http://railstutorial.org/help&nbsp;<a class="arrow" href="?version=4.0#fnref-1_7">&uarr;</a></li>
+<li id="fn-1_7">http://railstutorial.jp/help&nbsp;<a class="arrow" href="?version=4.0#fnref-1_7">&uarr;</a></li>
 <li id="fn-1_8">https://github.com/perfectionist/sample_project/wiki&nbsp;<a class="arrow" href="?version=4.0#fnref-1_8">&uarr;</a></li>
 <li id="fn-1_9">As of this writing, <a href="http://www.sublimetext.com/3">Sublime Text&nbsp;3</a> is in beta, available only to registered users of Sublime Text&nbsp;2. I recommend trying the newest Sublime Text only if you really want to be on the bleeding edge.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_9">&uarr;</a></li>
 <li id="fn-1_10">The vi editor is one of the most ancient yet powerful weapons in the Unix arsenal, and Vim is &ldquo;vi improved&rdquo;.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_10">&uarr;</a></li>
