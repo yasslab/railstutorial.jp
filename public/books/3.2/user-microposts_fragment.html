@@ -1365,7 +1365,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/home_page_with_micropost_form_mockup_bootstrap.png" alt="home_page_with_micropost_form_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.10</span><span class="description">マイクロポスト作成フォームのあるホームページのモックアップ。<a href="http://railstutorial.org/images/figures/home_page_with_micropost_form_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>最後にホームページを実装したときは(<a class="ref" href="/chapters/filling-in-the-layout.html#fig-sample_app_logo">図5.6</a>)、[Sign up now!] ボタンが中央にありました。マイクロポスト作成フォームは、サインインしている特定のユーザーのコンテキストでのみ機能するので、この節の一つの目標は、ユーザーのサインインの状態に応じて、ホームページの表示を変更することです。実装は<a class="ref" href="/chapters/user-microposts.html#code-microposts_home_page">リスト10.31</a>で行いますが、先にテストを作成しましょう。Usersリソースの場合と同様に、統合テストを使用します。</p>
+<p>最後にホームページを実装したときは(<a class="ref" href="/chapters/filling-in-the-layout.html#fig-sample_app_logo">図5.6</a>)、[Sign up now!] ボタンが中央にありました。マイクロポスト作成フォームは、サインインしている特定のユーザーのコンテキストでのみ機能するので、この節の一つの目標は、ユーザーのサインインの状態に応じて、ホームページの表示を変更することです。実装は<a class="ref" href="/chapters/user-microposts.html#code-microposts_home_page">リスト10.31</a>で行いますが、先にテストを作成しましょう。Usersリソースの場合と同様に、結合テストを使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate integration_test micropost_pages
 </pre></div>

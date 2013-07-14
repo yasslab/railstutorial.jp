@@ -5,7 +5,7 @@
 <h1 class="chapter"><a id="sec-7" href="/chapters/sign-up.html#top" class="heading"><span class="number">第7章</span>ユーザー登録</a></h1>
 
 
-<p>Userモデルができあがったので、いよいよWebサイトになくてはならないユーザー登録機能を追加しましょう。<a class="ref" href="/chapters/sign-up.html#sec-signup_form">7.2</a>ではHTML<em>フォーム</em>を使用して登録情報をWebアプリケーションに送信します。続いて<a class="ref" href="/chapters/sign-up.html#sec-signup_success">7.4</a>ではユーザーを新規作成して情報をデータベースに保存します。ユーザー登録手続きの最後には、作成されたユーザーの新しいプロファイルを表示できるようにするために、ユーザーを<em>表示する</em>ためのページを作成し、ユーザー用のRESTアーキテクチャを実装する第一歩を踏み出します (<a class="ref" href="/chapters/a-demo-app.html#sec-mvc_in_action">2.2.2</a>)。これまでと同様、開発と同時にテストも作成します。RSpecとCapybaraの適用範囲を拡大し、簡潔かつ表現力豊かな統合テストを作成します。</p>
+<p>Userモデルができあがったので、いよいよWebサイトになくてはならないユーザー登録機能を追加しましょう。<a class="ref" href="/chapters/sign-up.html#sec-signup_form">7.2</a>ではHTML<em>フォーム</em>を使用して登録情報をWebアプリケーションに送信します。続いて<a class="ref" href="/chapters/sign-up.html#sec-signup_success">7.4</a>ではユーザーを新規作成して情報をデータベースに保存します。ユーザー登録手続きの最後には、作成されたユーザーの新しいプロファイルを表示できるようにするために、ユーザーを<em>表示する</em>ためのページを作成し、ユーザー用のRESTアーキテクチャを実装する第一歩を踏み出します (<a class="ref" href="/chapters/a-demo-app.html#sec-mvc_in_action">2.2.2</a>)。これまでと同様、開発と同時にテストも作成します。RSpecとCapybaraの適用範囲を拡大し、簡潔かつ表現力豊かな結合テストを作成します。</p>
 
 <p>ユーザープロファイルページを作成するには、その前にデータベースにユーザーが登録されている必要があります。これはいわゆる「卵が先か鶏が先か」問題です。このWebサイトでは、登録ページがない状態でどうやってユーザーを登録しておけばよいでしょうか。幸い、この問題は既に解決されています。<a class="ref" href="/chapters/modeling-users.html#sec-creating_a_user">6.3.5</a>でRailsコンソールを使用してユーザーレコードを登録してありました。登録していない場合は、上記を参照して登録しておいてください。</p>
 
@@ -372,7 +372,7 @@
 
 <p>最小限のプロファイルが動作するようになりましたので、<a class="ref" href="/chapters/sign-up.html#fig-profile_mockup_profile_name">図7.1</a>のモックアップバージョンの作成を始めましょう。静的なページの作成 (<a class="ref" href="/chapters/static-pages.html#top">第3章</a>) やUserモデル (<a class="ref" href="/chapters/modeling-users.html#top">第6章</a>) のときと同様に、テスト駆動開発を行います。</p>
 
-<p><a class="ref" href="/chapters/filling-in-the-layout.html#sec-signup_url">5.4.2</a>では、Usersリソースに関連付けられたページに対して行った統合テストを思い出してください。ユーザー登録ページでは、<a class="ref" href="/chapters/filling-in-the-layout.html#code-user_pages_spec">リスト5.31</a>のように最初に<code>signup_path</code>をテストし、次に<code>h1</code>タグと<code>title</code>タグが正しいことをチェックしました。これを再現したものが<a class="ref" href="/chapters/sign-up.html#code-initial_signup_test">リスト7.6</a>です (<a class="ref" href="/chapters/filling-in-the-layout.html#sec-pretty_rspec">5.3.4</a>の<code>full_title</code>ヘルパーについては、フルタイトルが既にテスト済みであることから省略しました)。</p>
+<p><a class="ref" href="/chapters/filling-in-the-layout.html#sec-signup_url">5.4.2</a>では、Usersリソースに関連付けられたページに対して行った結合テストを思い出してください。ユーザー登録ページでは、<a class="ref" href="/chapters/filling-in-the-layout.html#code-user_pages_spec">リスト5.31</a>のように最初に<code>signup_path</code>をテストし、次に<code>h1</code>タグと<code>title</code>タグが正しいことをチェックしました。これを再現したものが<a class="ref" href="/chapters/sign-up.html#code-initial_signup_test">リスト7.6</a>です (<a class="ref" href="/chapters/filling-in-the-layout.html#sec-pretty_rspec">5.3.4</a>の<code>full_title</code>ヘルパーについては、フルタイトルが既にテスト済みであることから省略しました)。</p>
 
 <div class="label" id="code-initial_signup_test"></div>
 

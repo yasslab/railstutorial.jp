@@ -1817,7 +1817,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div></div>
 
 
-<p><a class="ref" href="/chapters/following-users.html#code-relationships_controller_spec_ajax">リスト11.37</a>のコードは、実は<em>コントローラ</em>用テストとしては初めてのものです。本書の以前の版ではコントローラ用のテストを多用していましたが、現在は統合テストの観点からコントローラ向けのテストは控えています。ただし、この場合<code>xhr</code>メソッドを統合テストで使用することがどういうわけかできないために、このコントローラでのテストを行なっています。<code>xhr</code>は先ほど登場したばかりですが、本書ではひとまずコードの文脈から以下のコードの動作を推測していただくようお願いします。</p>
+<p><a class="ref" href="/chapters/following-users.html#code-relationships_controller_spec_ajax">リスト11.37</a>のコードは、実は<em>コントローラ</em>用テストとしては初めてのものです。本書の以前の版ではコントローラ用のテストを多用していましたが、現在は結合テストの観点からコントローラ向けのテストは控えています。ただし、どういうわけかこの場合<code>xhr</code>メソッドを結合テストで使用することができないために、このコントローラでのテストを行なっています。<code>xhr</code>は先ほど登場したばかりですが、本書ではひとまずコードの文脈から以下のコードの動作を推測していただくようお願いします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">xhr</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">:create</span><span class="p">,</span> <span class="ss">relationship:</span> <span class="p">{</span> <span class="ss">followed_id:</span> <span class="n">other_user</span><span class="o">.</span><span class="n">id</span> <span class="p">}</span>
 </pre></div>

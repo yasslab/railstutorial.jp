@@ -596,7 +596,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h2><a id="sec-3_2" href="/chapters/static-pages.html#sec-first_tests" class="heading"><span class="number">3.2</span>最初のテスト</a></h2>
 
 
-<p><em>Railsチュートリアル</em> では、一字一句間違えることなく最初から正確に実装するのではなく、アプリケーションの振る舞いをテストしながら実装する直観的な手法を採用しています。この開発手法は、テスト駆動開発 (Test-Driven Develpment, TDD) から派生した振舞駆動開発 (Behavior-Driven Development, BDD) として知られています。本書でこれから頻繁に使うツールは、<em>統合テスト (integration test) </em>と<em>単体テスト (unit test) </em>の2つです。統合テストについてはこの節から、単体テストについては<a class="ref" href="/chapters/modeling-users.html#top">第6章</a>から解説していきます。統合テスト (RSpec では <em>request specs</em> と呼んでいます) は、ユーザがアプリケーションを使う際の一連のアクションをシミュレーションします。統合テストは、アプリケーションの各ページが正常に動作するかどうかをテストしてくれる強力なツールです。手動でブラウザを操作してテストする必要がなくなり、Capybaraを併用すれば自然言語 (英語) に近い文法でテストを記述する事もできます (Capybara以外にも、Cucumberという振舞駆動開発用ツールが有名です。詳細については<a class="ref" href="/chapters/sign-in-sign-out.html#sec-cucumber">8.3</a>で紹介します)。</p>
+<p><em>Railsチュートリアル</em> では、一字一句間違えることなく最初から正確に実装するのではなく、アプリケーションの振る舞いをテストしながら実装する直観的な手法を採用しています。この開発手法は、テスト駆動開発 (Test-Driven Develpment, TDD) から派生した振舞駆動開発 (Behavior-Driven Development, BDD) として知られています。本書でこれから頻繁に使うツールは、<em>結合テスト (integration test) </em>と<em>単体テスト (unit test) </em>の2つです。結合テストについてはこの節から、単体テストについては<a class="ref" href="/chapters/modeling-users.html#top">第6章</a>から解説していきます。結合テスト (RSpec では <em>リクエストspec</em> と呼んでいます) は、ユーザがアプリケーションを使う際の一連のアクションをシミュレーションします。結合テストは、アプリケーションの各ページが正常に動作するかどうかをテストしてくれる強力なツールです。手動でブラウザを操作してテストする必要がなくなり、Capybaraを併用すれば自然言語 (英語) に近い文法でテストを記述する事もできます (Capybara以外にも、Cucumberという振舞駆動開発用ツールが有名です。詳細については<a class="ref" href="/chapters/sign-in-sign-out.html#sec-cucumber">8.3</a>で紹介します)。</p>
 
 <p>テスト駆動開発の定義とは、アプリケーションを開発するときに<em>最初に</em>テストを作成し、次にコードを作成することです。この開発手法に慣れるまでには多少時間がかかるかもしれませんが、しかし一度慣れてしまえば大きなメリットを得られます。<em>失敗する</em>テストを最初に書き、テストにパスするコードを次に実装することで、しかるべき振る舞いがテストによって正しく検証されている、という自信が付きます。さらに、この「失敗-実装-成功」という開発サイクルは、「<a href="http://en.wikipedia.org/wiki/Flow_(psychology)">開発フロー</a>」を生み出します。そしてこの開発フローに乗ることで、コーディングが楽しくなり、開発の生産性も向上します。また、テストはアプリケーションのコードに対して<em>クライアント</em>として振る舞うので、ソフトウェア設計の改良につながることも多くなるでしょう。</p>
 
@@ -612,7 +612,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>テスト駆動開発で最初に書く、<em>失敗する</em>テストのことを、一般的なテストツールでは「赤色 (Red)」と表現します (失敗時に表示が赤くなるツールが多いため)。同様に、次に書く、テストにパスするコードのことを「緑色 (Green)」と表現します。最後に、必要に応じてコードをリファクタリング (動作を変えずにコードを改善すること) したりフォームを変更したりします。冗長なコードを削除したりするのもリファクタリングの例です。このサイクルのことを「Red/Green/Refactor」と呼びます。</p>
 
-<p>それでは、テスト駆動開発でいくつかのコンテンツをHomeページに追加してみましょう。トップレベルの見出し (<code>&lt;h1&gt;</code>) に &quot;<code>Sample App</code>&quot; という語を追加する作業もこの中に含まれます。 まず、静的なページに対する統合テスト (request spec) を生成するところから始めましょう。</p>
+<p>それでは、テスト駆動開発でいくつかのコンテンツをHomeページに追加してみましょう。トップレベルの見出し (<code>&lt;h1&gt;</code>) に &quot;<code>Sample App</code>&quot; という語を追加する作業もこの中に含まれます。 まず、静的なページに対する結合テスト (request spec) を生成するところから始めましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate integration_test static_pages
 <span class="go">      invoke  rspec</span>

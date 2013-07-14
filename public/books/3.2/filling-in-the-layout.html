@@ -1969,7 +1969,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-5_4_2" href="/chapters/filling-in-the-layout.html#sec-signup_url" class="heading"><span class="number">5.4.2</span>サインアップURI</a></h3>
 
 
-<p><a class="ref" href="/chapters/filling-in-the-layout.html#sec-users_controller">5.4.1</a>のコードにより、新規ユーザー用の動作するページが/users/new にできました。ここで<a class="ref" href="/chapters/filling-in-the-layout.html#table-url_mapping">表5.1</a>を思い出していただきたいのですが、URIは/users/newではなく表のとおりに/signupにしたいと思います。<a class="ref" href="/chapters/filling-in-the-layout.html#sec-layout_links">5.3</a>のときと同様、最初にいくつかの統合テストを作成しましょう。以下を実行してテスト用ファイルを生成します。</p>
+<p><a class="ref" href="/chapters/filling-in-the-layout.html#sec-users_controller">5.4.1</a>のコードにより、新規ユーザー用の動作するページが/users/new にできました。ここで<a class="ref" href="/chapters/filling-in-the-layout.html#table-url_mapping">表5.1</a>を思い出していただきたいのですが、URIは/users/newではなく表のとおりに/signupにしたいと思います。<a class="ref" href="/chapters/filling-in-the-layout.html#sec-layout_links">5.3</a>のときと同様、最初にいくつかの結合テストを作成しましょう。以下を実行してテスト用ファイルを生成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate integration_test user_pages
 </pre></div>
@@ -2172,7 +2172,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <li><a class="ref" href="/chapters/filling-in-the-layout.html#code-pretty_page_tests">リスト5.27</a>の静的ページのテストコードは簡潔ですが、まだ繰り返しが残っています。RSpecには、冗長性を排除するための<em>Shared Examples</em>と呼ばれる機能があります。<a class="ref" href="/chapters/filling-in-the-layout.html#code-static_pages_spec_shared_example">リスト5.35</a>の例に従い、Help、AboutとContactページで不足しているテストを補ってください。<a class="ref" href="/chapters/static-pages.html#code-pages_controller_spec_exercise">リスト3.30</a>で簡単に紹介した<code>let</code>コマンドは、要求 (変数が使用されるときなど) に応じて与えられた値を持つ「ローカル変数」を作成することにご注意ください。対照的にインスタンス変数は、要素代入 (assignment) されたときに作成されます。</li>
 
-<li>既にお気付きの方もいると思いますが、これまで行なってきた、レイアウト上のリンクのルーティングテストは、そのリンクが実際に正しいページへのリンクになっているかどうかをチェックしていません。このようなテストを実装する方法のひとつは、RSpecの統合テスト内で<code>visit</code>と<code>click_link</code>を使用することです。レイアウトのリンクが正しく定義されていることを確認するコードを追加して、<a class="ref" href="/chapters/filling-in-the-layout.html#code-layout_links_test">リスト5.36</a>を補ってください。</li>
+<li>既にお気付きの方もいると思いますが、これまで行なってきた、レイアウト上のリンクのルーティングテストは、そのリンクが実際に正しいページへのリンクになっているかどうかをチェックしていません。このようなテストを実装する方法のひとつは、RSpecの結合テスト内で<code>visit</code>と<code>click_link</code>を使用することです。レイアウトのリンクが正しく定義されていることを確認するコードを追加して、<a class="ref" href="/chapters/filling-in-the-layout.html#code-layout_links_test">リスト5.36</a>を補ってください。</li>
 
 <li><a class="ref" href="/chapters/filling-in-the-layout.html#code-full_title_helper_tests">リスト5.37</a>に示したように、<a class="ref" href="/chapters/filling-in-the-layout.html#code-rspec_utilities">リスト5.26</a>の<code>full_title</code>テストヘルパーへの依存性を、独自のヘルパーメソッドを書くことで排除してください (<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="/chapters/filling-in-the-layout.html#code-rspec_utilities_simplified">リスト5.38</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="/chapters/filling-in-the-layout.html#code-full_title_helper_tests">リスト5.37</a>では、<a class="ref" href="/chapters/modeling-users.html#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
 

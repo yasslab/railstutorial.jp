@@ -107,7 +107,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p>ユーザーがサインインすることでセキュリティモデルも実装され、サインインしているユーザーidに基づいて、特定のページへのアクセスを制限することもできます。<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#top">第9章</a>でも説明しますが、たとえばサインインしたユーザーのみがユーザー情報編集ページにアクセスできるようにします。サインインシステムを使用して、管理者ユーザーに特別な権限を与えることもできます。たとえば  (<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#top">第9章</a>で導入する) データベースからユーザーを削除する機能があります。</p>
 
-<p>コアとなる認証機能を実装した後は、少々回り道して、振舞駆動開発 (<a class="ref" href="/chapters/sign-in-sign-out.html#sec-cucumber">8.3</a>) で有名な<em>Cucumber</em>というツールを試してみます。特に、2つの開発手法を比較するために、RSpecによる統合テストの組み合わせをCucumberで再実装します。</p>
+<p>コアとなる認証機能を実装した後は、少々回り道して、振舞駆動開発 (<a class="ref" href="/chapters/sign-in-sign-out.html#sec-cucumber">8.3</a>) で有名な<em>Cucumber</em>というツールを試してみます。特に、2つの開発手法を比較するために、RSpecによる結合テストの組み合わせをCucumberで再実装します。</p>
 
 <p>前章同様に、トピックブランチで作業してから、最後に更新をマージします。</p>
 
@@ -132,7 +132,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-8_1_1" href="/chapters/sign-in-sign-out.html#sec-sessions_controller" class="heading"><span class="number">8.1.1</span> Sessionコントローラ</a></h3>
 
 
-<p>サインインとサインアウトの要素は、Sessionsコントローラの特定のRESTアクションにそれぞれ対応します。サインインのフォームは、この節の<code>new</code>アクションで処理されます。実際のサインイン処理は、<code>create</code>アクションに<tt>POST</tt>リクエストが送信されたときに処理されます (<a class="ref" href="/chapters/sign-in-sign-out.html#sec-signin_failure">8.1</a>および<a class="ref" href="/chapters/sign-in-sign-out.html#sec-signin_success">8.2</a>) 。サインアウトは、<code>destroy</code>アクションに<tt>DELETE</tt>リクエストを送信することで処理されます(<a class="ref" href="/chapters/sign-in-sign-out.html#sec-signing_out">8.2.6</a>)。(<a class="ref" href="/chapters/sign-up.html#table-RESTful_users">表7.1</a>のHTTPメソッドとRESTアクションの関連付けを思い出してください。) それでは最初に、Sessionsコントローラと認証システムをテストする統合テストを作成します。</p>
+<p>サインインとサインアウトの要素は、Sessionsコントローラの特定のRESTアクションにそれぞれ対応します。サインインのフォームは、この節の<code>new</code>アクションで処理されます。実際のサインイン処理は、<code>create</code>アクションに<tt>POST</tt>リクエストが送信されたときに処理されます (<a class="ref" href="/chapters/sign-in-sign-out.html#sec-signin_failure">8.1</a>および<a class="ref" href="/chapters/sign-in-sign-out.html#sec-signin_success">8.2</a>) 。サインアウトは、<code>destroy</code>アクションに<tt>DELETE</tt>リクエストを送信することで処理されます(<a class="ref" href="/chapters/sign-in-sign-out.html#sec-signing_out">8.2.6</a>)。(<a class="ref" href="/chapters/sign-up.html#table-RESTful_users">表7.1</a>のHTTPメソッドとRESTアクションの関連付けを思い出してください。) それでは最初に、Sessionsコントローラと認証システムをテストする結合テストを作成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate controller Sessions --no-test-framework
 <span class="gp">$</span> rails generate integration_test authentication_pages
@@ -668,7 +668,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>当然ながら、既知のバグが未修正の状態であれば、このテストはパスするべきではありません。この問題をキャッチする、失敗するテストを追加しましょう。幸い、統合テストはフラッシュメッセージ残留などの多くの問題解決において大活躍します。期待される動作は以下のテストで正確に表現されています。</p>
+<p>当然ながら、既知のバグが未修正の状態であれば、このテストはパスするべきではありません。この問題をキャッチする、失敗するテストを追加しましょう。幸い、結合テストはフラッシュメッセージ残留などの多くの問題解決において大活躍します。期待される動作は以下のテストで正確に表現されています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;after visiting another page&quot;</span> <span class="k">do</span>
   <span class="n">before</span> <span class="p">{</span> <span class="n">click_link</span> <span class="s2">&quot;Home&quot;</span> <span class="p">}</span>
@@ -1911,7 +1911,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-8_3_3" href="/chapters/sign-in-sign-out.html#sec-rspec_custom_matchers" class="heading"><span class="number">8.3.3</span>対比: RSpecのカスタムマッチャー</a></h3>
 
 
-<p>簡単なCucumberのシナリオをいくつか紹介したので、それらと同等のRSpecの例と比較してみましょう。まず、<a class="ref" href="/chapters/sign-in-sign-out.html#code-signin_features">リスト8.32</a>のCucumberフィーチャーと、それに対応する<a class="ref" href="/chapters/sign-in-sign-out.html#code-authentication_steps">リスト8.33</a>のステップ定義をもう一度見てみましょう。次に、以下のRSpecリクエストspec (統合テスト) を見てみましょう。</p>
+<p>簡単なCucumberのシナリオをいくつか紹介したので、それらと同等のRSpecの例と比較してみましょう。まず、<a class="ref" href="/chapters/sign-in-sign-out.html#code-signin_features">リスト8.32</a>のCucumberフィーチャーと、それに対応する<a class="ref" href="/chapters/sign-in-sign-out.html#code-authentication_steps">リスト8.33</a>のステップ定義をもう一度見てみましょう。次に、以下のRSpecリクエストspec (結合テスト) を見てみましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;Authentication&quot;</span> <span class="k">do</span>
 
@@ -1944,7 +1944,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 </div>
 
 
-<p>Cucumberと統合テストでそれぞれどのように実装されているかがおわかりいただけると思います。Cucumberのフィーチャーは非常に読みやすいのですが、その代わり実装されているコードから完全に切り離されていて、両刃の剣です。著者にとって、Cucumberは読みやすいが書くのは面倒、統合テストはプログラマーにとってはそれほど読みやすくない代わりに書くのは<em>はるかに</em>楽、という印象です。</p>
+<p>Cucumberと結合テストでそれぞれどのように実装されているかがおわかりいただけると思います。Cucumberのフィーチャーは非常に読みやすいのですが、その代わり実装されているコードから完全に切り離されていて、両刃の剣です。著者にとって、Cucumberは読みやすいが書くのは面倒、結合テストはプログラマーにとってはそれほど読みやすくない代わりに書くのは<em>はるかに</em>楽、という印象です。</p>
 
 <p>Cucumberではフィーチャーとステップが分離されていることにより、抽象度の高い記述が可能であるという効果があります。以下のフィーチャーは、エラーメッセージが表示されるはずであるということを記述しています。</p>
 

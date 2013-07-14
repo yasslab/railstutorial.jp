@@ -1024,7 +1024,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 
 <p>(<a class="ref" href="/chapters/sign-in-sign-out.html#top">第8章</a>の最初の演習が終わっている場合は、必ず<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-friendly_session_create">リスト9.20</a>の正しい<code>params</code> ハッシュを使用してください。)</p>
 
-<p>これで、<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-friendly_forwarding_test">リスト9.17</a>のフレンドリーフォワーディング用統合テストはパスするはずです。そうなれば、基本ユーザー認証機能とページ保護機能の実装は完了です。いつものように、以下を実行してテストスイートが緑色 (成功) になることを確認してから先に進みましょう。</p>
+<p>これで、<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-friendly_forwarding_test">リスト9.17</a>のフレンドリーフォワーディング用結合テストはパスするはずです。そうなれば、基本ユーザー認証機能とページ保護機能の実装は完了です。いつものように、以下を実行してテストスイートが緑色 (成功) になることを確認してから先に進みましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
@@ -1055,7 +1055,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY,
 <h3><a id="sec-9_3_1" href="/chapters/updating-showing-and-deleting-users.html#sec-user_index" class="heading"><span class="number">9.3.1</span>ユーザーインデックス</a></h3>
 
 
-<p>ユーザーの<code>show</code>ページについては、今後も (サインインしているかどうかにかかわらず) サイトを訪れたすべてのユーザーから見えるようにしておきますが、ユーザー<code>index</code>はサインインしたユーザーにしか見せないようにし、未登録のユーザーがデフォルトで表示できるページを制限します。そこで、<code>users_path</code> (<a class="ref" href="/chapters/sign-up.html#table-RESTful_users">表7.1</a>) にアクセスしたときに<code>index</code>アクションが保護され、サインインページにリダイレクトされることをテストすることから始めます。他の認可テストと同様、<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-protected_index_test">Listing 9.21</a>のように認証統合テストの中に例を置くことにします。</p>
+<p>ユーザーの<code>show</code>ページについては、今後も (サインインしているかどうかにかかわらず) サイトを訪れたすべてのユーザーから見えるようにしておきますが、ユーザー<code>index</code>はサインインしたユーザーにしか見せないようにし、未登録のユーザーがデフォルトで表示できるページを制限します。そこで、<code>users_path</code> (<a class="ref" href="/chapters/sign-up.html#table-RESTful_users">表7.1</a>) にアクセスしたときに<code>index</code>アクションが保護され、サインインページにリダイレクトされることをテストすることから始めます。他の認可テストと同様、<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-protected_index_test">Listing 9.21</a>のように認証の結合テストの中に例を置くことにします。</p>
 
 <div class="label" id="code-protected_index_test"></div>
 
