@@ -5,5 +5,10 @@
 for chapter in `cat ../chapter_list.txt`
 do
     rm "$chapter".html "$chapter"_fragment.html
-    wget -O "./$chapter.html" http://ruby.railstutorial.org/chapters/$chapter.html\?version=4.0
+    if [ "${chapter}" = "book" ]
+    then
+	wget -O "./$chapter.html" http://ruby.railstutorial.org/book/ruby-on-rails-tutorial\?version=4.0
+    else
+	wget -O "./$chapter.html" http://ruby.railstutorial.org/chapters/$chapter.html\?version=4.0
+    fi
 done

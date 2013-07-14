@@ -16,18 +16,18 @@ re_array=("s/railstutorial.org/railstutorial.jp/g" \
 	  "s/active_record_validations_callbacks/v3.2.13\/active_record_validations_callbacks/g" \
 )
 
-for file in `ls *.html`
+for chapter in `cat ../chapter_list.txt`
 do
-    cp $file $file.modified_0
+    cp $chapter.html $chapter.modified_0.html
     i=0
     for re in "${re_array[@]}"
     do
-	cat $file.modified_$i | sed -e "$re" > $file.modified_`expr $i + 1`
-        rm  $file.modified_$i
+	cat $chapter.modified_$i.html | sed -e "$re" > $chapter.modified_`expr $i + 1`.html
+        rm  $chapter.modified_$i.html
 	i=`expr $i + 1`
     done
     
-    mv $file.modified_$i $file
+    mv $chapter.modified_$i.html $chapter.html
 
-    echo "corrected $file"
+    echo "corrected: Chapter '$chapter'"
 done
