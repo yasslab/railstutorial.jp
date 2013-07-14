@@ -302,9 +302,9 @@ in the world is either broken or very difficult to use. So users dread software.
 
 <p>to see the version number. Rails&nbsp;4 requires Ruby&nbsp;1.9 or later and works best with Ruby&nbsp;2.0. (In particular, it won&rsquo;t work Ruby&nbsp;1.8.7.) This tutorial assumes that most readers are using Ruby&nbsp;1.9.3 or 2.0.0, but Ruby&nbsp;1.9.2 should work as well.</p>
 
-<p>As part of installing Ruby, if you are using OS&nbsp;X or Linux I strongly recommend using <a href="http://rvm.io/">Ruby Version Manager (RVM)</a>, which allows you to install and manage multiple versions of Ruby on the same machine. (The <a href="http://github.com/vertiginous/pik">Pik</a> project accomplishes a similar feat on Windows.) This is particularly important if you want to run different versions of Ruby or Rails on the same machine. If you run into any problems with RVM, you can often find its creator, Wayne&nbsp;E. Seguin, on the RVM IRC channel (<a href="http://webchat.freenode.net/?channels=rvm">#rvm on freenode.net</a>).<sup class="footnote" id="fnref-1_12"><a href="?version=4.0#fn-1_12">12</a></sup> If you are running Linux, I particularly recommend <a href="http://blog.sudobits.com/2012/05/02/how-to-install-ruby-on-rails-in-ubuntu-12-04-lts/">How to install Ruby on Rails in Ubuntu on the Sudobits Blog</a>.</p>
+<p>As part of installing Ruby, if you are using OS&nbsp;X or Linux I strongly recommend using <a href="http://rvm.io/">Ruby Version Manager (RVM)</a> or <a href="https://github.com/sstephenson/rbenv">rbenv</a>, which allow you to install and manage multiple versions of Ruby on the same machine. (The <a href="http://github.com/vertiginous/pik">Pik</a> project accomplishes a similar feat on Windows.) This is particularly important if you want to run different versions of Ruby or Rails on the same machine. Unfortunately, RVM and rbenv can&rsquo;t be used on the same system simultaneously, and since I&rsquo;ve been using RVM longer that&rsquo;s the one I use in this tutorial. I hear great things about rbenv, though, so you should feel free to use that if you alredy know it or if you have access to a local rbenv expert.</p>
 
-<p>As a prerequisite, OS&nbsp;X users may need to install the Xcode developer tools. To avoid the (huge) full installation, I recommend the much smaller <a href="https://developer.apple.com/downloads/">Command Line Tools for Xcode</a>.<sup class="footnote" id="fnref-1_13"><a href="?version=4.0#fn-1_13">13</a></sup></p>
+<p>As a prerequisite, OS&nbsp;X users may need to install the Xcode developer tools. To avoid the (huge) full installation, I recommend the much smaller <a href="https://developer.apple.com/downloads/">Command Line Tools for Xcode</a>.<sup class="footnote" id="fnref-1_12"><a href="?version=4.0#fn-1_12">12</a></sup></p>
 
 <p>To get started with the Ruby installation, first <a href="http://rvm.io/rvm/install/">install RVM</a>:</p>
 
@@ -617,6 +617,7 @@ in the world is either broken or very difficult to use. So users dread software.
 <div class="listing"><span class="header">Listing 1.5.</span> <span class="description">A <code>Gemfile</code> with an explicit version of each Ruby gem.</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+<span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
 
@@ -638,14 +639,15 @@ in the world is either broken or very difficult to use. So users dread software.
 </div></div>
 
 
-<p><a class="ref" href="beginning?version=4.0#code-gemfile_sqlite_version">Listing&nbsp;1.5</a> adds the line</p>
+<p><a class="ref" href="beginning?version=4.0#code-gemfile_sqlite_version">Listing&nbsp;1.5</a> adds the lines</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+<span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
 </pre></div>
 </div>
 
 
-<p>identifying the version of Ruby expected by the application, which is especially useful when deploying applications (<a class="ref" href="beginning?version=4.0#sec-deploying">Section&nbsp;1.4</a>). (If you are using a version of Ruby other than 2.0.0, you should change this line accordingly.)</p>
+<p>identifying the version of Ruby expected by the application, which is especially useful when deploying applications (<a class="ref" href="beginning?version=4.0#sec-deploying">Section&nbsp;1.4</a>), along with the RVM gemset in a Ruby comment (<a class="ref" href="beginning?version=4.0#sec-install_ruby">Section&nbsp;1.2.2.3</a>). The latter will be ignored if you aren&rsquo;t using RVM, but if you are RVM will conveniently use the right Ruby version/gemset combination upon entering the application directory. (If you are using a version of Ruby other than 2.0.0, you should change the Ruby version line accordingly.)</p>
 
 <p>The updated <code>Gemfile</code> also changes the line for jQuery, the default JavaScript library used by Rails, from</p>
 
@@ -716,11 +718,11 @@ in the world is either broken or very difficult to use. So users dread software.
 </div>
 
 
-<p>installs the gem <code>coffee-rails</code> (also needed by the asset pipeline) as long as it&rsquo;s newer than version&nbsp;<code>4.0.0</code>. In other words, the <tt class="verb">&gt;=</tt> notation always performs upgrades, whereas the <tt class="verb">~&gt; 4.0.0</tt> notation only performs upgrades to minor point releases (e.g., from <code>4.0.0</code> to <code>4.0.1</code>), but not to major point releases (e.g., from <code>4.0</code> to <code>4.1</code>). Unfortunately, experience shows that even minor point releases can break things, so for the <em>Rails Tutorial</em> we&rsquo;ll err on the side of caution by including exact version numbers for virtually all gems.
-You are welcome to use the most up-to-date version of any gem, including using to the <tt class="verb">~&gt;</tt> construction in the <code>Gemfile</code> (which I generally recommend for more advanced users), but be warned that this may cause the tutorial to act unpredictably.</p>
+<p>installs the gem <code>coffee-rails</code> (also needed by the asset pipeline) as long as it&rsquo;s newer than version&nbsp;<code>4.0.0</code> but not newer than <code>4.1</code>. In other words, the <tt class="verb">&gt;=</tt> notation always installs the latest gem when you run <code>bundle install</code>, whereas the <tt class="verb">~&gt; 4.0.0</tt> notation only installs updated gems representing minor point releases (e.g., from <code>4.0.0</code> to <code>4.0.1</code>), but not major point releases (e.g., from <code>4.0</code> to <code>4.1</code>). Unfortunately, experience shows that even minor point releases can break things, so for the <em>Rails Tutorial</em> we&rsquo;ll err on the side of caution by including exact version numbers for virtually all gems.
+You are welcome to use the most up-to-date version of any gem, including using the <tt class="verb">~&gt;</tt> construction in the <code>Gemfile</code> (which I generally recommend for more advanced users), but be warned that this may cause the tutorial to act unpredictably.</p>
 
 <p>Once you&rsquo;ve assembled the proper <code>Gemfile</code>, install the gems using
-<code>bundle update</code><sup class="footnote" id="fnref-1_14"><a href="?version=4.0#fn-1_14">14</a></sup> and <code>bundle install</code>:</p>
+<code>bundle update</code><sup class="footnote" id="fnref-1_13"><a href="?version=4.0#fn-1_13">13</a></sup> and <code>bundle install</code>:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle update
 <span class="gp">$</span> bundle install
@@ -751,7 +753,7 @@ You are welcome to use the most up-to-date version of any gem, including using t
 </div>
 
 
-<p>(If your system complains about the lack of a JavaScript runtime, visit the <a href="https://github.com/sstephenson/execjs">execjs page at GitHub</a> for a list of possibilities. I particularly recommend installing <a href="http://nodejs.org/">Node.js</a>.) This tells us that the application is running on <a href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">port number</a> 3000<sup class="footnote" id="fnref-1_15"><a href="?version=4.0#fn-1_15">15</a></sup> at the address <code>0.0.0.0</code>. This address tells the computer to listen on every available IP address configured on that specific machine; in particular, we can view the application using the special address <code>127.0.0.1</code>, which is also known as <code>localhost</code>. We can see the result of visiting <a href="http://localhost:3000/">http://localhost:3000/</a> in <a class="ref" href="beginning?version=4.0#fig-riding_rails">Figure&nbsp;1.3</a>.</p>
+<p>(If your system complains about the lack of a JavaScript runtime, visit the <a href="https://github.com/sstephenson/execjs">execjs page at GitHub</a> for a list of possibilities. I particularly recommend installing <a href="http://nodejs.org/">Node.js</a>.) This tells us that the application is running on <a href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">port number</a> 3000<sup class="footnote" id="fnref-1_14"><a href="?version=4.0#fn-1_14">14</a></sup> at the address <code>0.0.0.0</code>. This address tells the computer to listen on every available IP address configured on that specific machine; in particular, we can view the application using the special address <code>127.0.0.1</code>, which is also known as <code>localhost</code>. We can see the result of visiting <a href="http://localhost:3000/">http://localhost:3000/</a> in <a class="ref" href="beginning?version=4.0#fig-riding_rails">Figure&nbsp;1.3</a>.</p>
 
 <div class="label" id="fig-riding_rails"></div>
 
@@ -825,7 +827,7 @@ You are welcome to use the most up-to-date version of any gem, including using t
 
 <p>This tutorial will usually use the full <code>checkout</code> command, which works for systems that don&rsquo;t have <code>co</code> configured, but in real life I nearly always use <code>git co</code>.</p>
 
-<p>As a final setup step, you can optionally set the editor Git will use for commit messages. If you use a graphical editor such as Sublime Text, TextMate, gVim, or MacVim, you need to use a flag to make sure that the editor stays attached to the shell instead of detaching immediately:<sup class="footnote" id="fnref-1_16"><a href="?version=4.0#fn-1_16">16</a></sup></p>
+<p>As a final setup step, you can optionally set the editor Git will use for commit messages. If you use a graphical editor such as Sublime Text, TextMate, gVim, or MacVim, you need to use a flag to make sure that the editor stays attached to the shell instead of detaching immediately:<sup class="footnote" id="fnref-1_15"><a href="?version=4.0#fn-1_15">15</a></sup></p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git config --global core.editor <span class="s2">&quot;subl -w&quot;</span>
 </pre></div>
@@ -845,7 +847,7 @@ You are welcome to use the most up-to-date version of any gem, including using t
 </div>
 
 
-<p>The next step is to add the project files to the repository. There&rsquo;s a minor complication, though: by default Git tracks the changes of <em>all</em> the files, but there are some files we don&rsquo;t want to track. For example, Rails creates log files to record the behavior of the application; these files change frequently, and we don&rsquo;t want our version control system to have to update them constantly. Git has a simple mechanism to ignore such files: simply include a file called <code>.gitignore</code> in the application root directory with some rules telling Git which files to ignore.<sup class="footnote" id="fnref-1_17"><a href="?version=4.0#fn-1_17">17</a></sup></p>
+<p>The next step is to add the project files to the repository. There&rsquo;s a minor complication, though: by default Git tracks the changes of <em>all</em> the files, but there are some files we don&rsquo;t want to track. For example, Rails creates log files to record the behavior of the application; these files change frequently, and we don&rsquo;t want our version control system to have to update them constantly. Git has a simple mechanism to ignore such files: simply include a file called <code>.gitignore</code> in the application root directory with some rules telling Git which files to ignore.<sup class="footnote" id="fnref-1_16"><a href="?version=4.0#fn-1_16">16</a></sup></p>
 
 <p>Looking again at <a class="ref" href="beginning?version=4.0#table-rails_directory_structure">Table&nbsp;1.1</a>, we see that the <code>rails</code> command creates a default <code>.gitignore</code> file in the application root directory, as shown in <a class="ref" href="beginning?version=4.0#code-default_gitignore">Listing&nbsp;1.6</a>.</p>
 
@@ -876,7 +878,7 @@ You are welcome to use the most up-to-date version of any gem, including using t
 
 <p><a class="ref" href="beginning?version=4.0#code-default_gitignore">Listing&nbsp;1.6</a> causes Git to ignore files such as log files, Rails temporary (<code>tmp</code>) files, and SQLite databases. (For example, to ignore log files, which live in the <code>log/</code> directory, we use <code>log/*.log</code> to ignore all files that end in <code>.log</code>.) Most of these ignored files change frequently and automatically, so including them under version control is unnecessary. Moreover, when collaborating with others, these irrelevant changes can cause frustrating conflicts.</p>
 
-<p>The <code>.gitignore</code> file in <a class="ref" href="beginning?version=4.0#code-default_gitignore">Listing&nbsp;1.6</a> is a good start, but for convenience and security (<a class="ref" href="static-pages?version=4.0#code-secret_token">Listing&nbsp;3.2</a>) I recommend using <a class="ref" href="beginning?version=4.0#code-gitignore">Listing&nbsp;1.7</a> instead. This augmented <code>.gitignore</code> arranges to ignore Rails documentation files, Vim and Emacs swap files, and (for OS&nbsp;X users) the weird <code>.DS_Store</code> directories created by the Mac Finder application. If you want to use this broader set of ignored files, open up <code>.gitignore</code> in your favorite text editor and fill it with the contents of <a class="ref" href="beginning?version=4.0#code-gitignore">Listing&nbsp;1.7</a>.</p>
+<p>The <code>.gitignore</code> file in <a class="ref" href="beginning?version=4.0#code-default_gitignore">Listing&nbsp;1.6</a> is a good start, but for convenience and security (Listing&nbsp;code-secret_token I recommend using <a class="ref" href="beginning?version=4.0#code-gitignore">Listing&nbsp;1.7</a> instead. This augmented <code>.gitignore</code> arranges to ignore Rails documentation files, Vim and Emacs swap files, and (for OS&nbsp;X users) the weird <code>.DS_Store</code> directories created by the Mac Finder application. If you want to use this broader set of ignored files, open up <code>.gitignore</code> in your favorite text editor and fill it with the contents of <a class="ref" href="beginning?version=4.0#code-gitignore">Listing&nbsp;1.7</a>.</p>
 
 <div class="label" id="code-gitignore"></div>
 
@@ -921,7 +923,7 @@ doc/
 </div>
 
 
-<p>Here the dot &lsquo;<code>.</code>&rsquo; represents the current directory, and Git is smart enough to add the files <em>recursively</em>, so it automatically includes all the subdirectories. This command adds the project files to a <em>staging area</em>, which contains pending changes to your project; you can see which files are in the staging area using the <code>status</code> command:<sup class="footnote" id="fnref-1_18"><a href="?version=4.0#fn-1_18">18</a></sup></p>
+<p>Here the dot &lsquo;<code>.</code>&rsquo; represents the current directory, and Git is smart enough to add the files <em>recursively</em>, so it automatically includes all the subdirectories. This command adds the project files to a <em>staging area</em>, which contains pending changes to your project; you can see which files are in the staging area using the <code>status</code> command:<sup class="footnote" id="fnref-1_17"><a href="?version=4.0#fn-1_17">17</a></sup></p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git status
 <span class="gp">#</span> On branch master
@@ -1093,7 +1095,7 @@ doc/
 
 <p>Here the second command, <code>git branch</code>, just lists all the local branches, and the asterisk&nbsp;<code>*</code> identifies which branch we&rsquo;re currently on. Note that <code>git checkout -b modify-README</code> both creates a new branch and switches to it, as indicated by the asterisk in front of the <code>modify-README</code> branch. (If you set up the <code>co</code> alias in <a class="ref" href="beginning?version=4.0#sec-version_control">Section&nbsp;1.3</a>, you can use <code>git co -b modify-README</code> instead.)</p>
 
-<p>The full value of branching only becomes clear when working on a project with multiple developers,<sup class="footnote" id="fnref-1_19"><a href="?version=4.0#fn-1_19">19</a></sup> but branches are helpful even for a single-developer tutorial such as this one. In particular, the master branch is insulated from any changes we make to the topic branch, so even if we <em>really</em> screw things up we can always abandon the changes by checking out the master branch and deleting the topic branch. We&rsquo;ll see how to do this at the end of the section.</p>
+<p>The full value of branching only becomes clear when working on a project with multiple developers,<sup class="footnote" id="fnref-1_18"><a href="?version=4.0#fn-1_18">18</a></sup> but branches are helpful even for a single-developer tutorial such as this one. In particular, the master branch is insulated from any changes we make to the topic branch, so even if we <em>really</em> screw things up we can always abandon the changes by checking out the master branch and deleting the topic branch. We&rsquo;ll see how to do this at the end of the section.</p>
 
 <p>By the way, for a change as small as this one I wouldn&rsquo;t normally bother with a new branch, but it&rsquo;s never too early to start practicing good habits.</p>
 
@@ -1244,11 +1246,11 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h2><a id="sec-1_4" href="beginning?version=4.0#sec-deploying" class="heading"><span class="number">1.4</span> Deploying</a></h2>
 
 
-<p>Even at this early stage, we&rsquo;re already going to deploy our (still-empty) Rails application to production. This step is optional, but deploying early and often allows us to catch any deployment problems early in our development cycle. The alternative&mdash;deploying only after laborious effort sealed away in a development environment&mdash;often leads to terrible integration headaches when launch time comes.<sup class="footnote" id="fnref-1_20"><a href="?version=4.0#fn-1_20">20</a></sup></p>
+<p>Even at this early stage, we&rsquo;re already going to deploy our (still-empty) Rails application to production. This step is optional, but deploying early and often allows us to catch any deployment problems early in our development cycle. The alternative&mdash;deploying only after laborious effort sealed away in a development environment&mdash;often leads to terrible integration headaches when launch time comes.<sup class="footnote" id="fnref-1_19"><a href="?version=4.0#fn-1_19">19</a></sup></p>
 
-<p>Deploying Rails applications used to be a pain, but the Rails deployment ecosystem has matured rapidly in the past few years, and now there are several great options. These include shared hosts or virtual private servers running <a href="http://www.modrails.com/">Phusion Passenger</a> (a module for the Apache and Nginx<sup class="footnote" id="fnref-1_21"><a href="?version=4.0#fn-1_21">21</a></sup> web servers), full-service deployment companies such as <a href="http://engineyard.com/">Engine Yard</a> and <a href="http://railsmachine.com/">Rails Machine</a>, and cloud deployment services such as <a href="http://cloud.engineyard.com">Engine Yard Cloud</a> and <a href="http://heroku.com/">Heroku</a>.</p>
+<p>Deploying Rails applications used to be a pain, but the Rails deployment ecosystem has matured rapidly in the past few years, and now there are several great options. These include shared hosts or virtual private servers running <a href="http://www.modrails.com/">Phusion Passenger</a> (a module for the Apache and Nginx<sup class="footnote" id="fnref-1_20"><a href="?version=4.0#fn-1_20">20</a></sup> web servers), full-service deployment companies such as <a href="http://engineyard.com/">Engine Yard</a> and <a href="http://railsmachine.com/">Rails Machine</a>, and cloud deployment services such as <a href="http://cloud.engineyard.com">Engine Yard Cloud</a> and <a href="http://heroku.com/">Heroku</a>.</p>
 
-<p>My favorite Rails deployment option is Heroku, which is a hosted platform built specifically for deploying Rails and other web applications.<sup class="footnote" id="fnref-1_22"><a href="?version=4.0#fn-1_22">22</a></sup> Heroku makes deploying Rails applications ridiculously easy&mdash;as long as your source code is under version control with Git. (This is yet another reason to follow the Git setup steps in <a class="ref" href="beginning?version=4.0#sec-version_control">Section&nbsp;1.3</a> if you haven&rsquo;t already.) The rest of this section is dedicated to deploying our first application to Heroku.</p>
+<p>My favorite Rails deployment option is Heroku, which is a hosted platform built specifically for deploying Rails and other web applications.<sup class="footnote" id="fnref-1_21"><a href="?version=4.0#fn-1_21">21</a></sup> Heroku makes deploying Rails applications ridiculously easy&mdash;as long as your source code is under version control with Git. (This is yet another reason to follow the Git setup steps in <a class="ref" href="beginning?version=4.0#sec-version_control">Section&nbsp;1.3</a> if you haven&rsquo;t already.) The rest of this section is dedicated to deploying our first application to Heroku.</p>
 
 <div class="label" id="sec-heroku_setup"></div>
 
@@ -1260,19 +1262,23 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.15.1&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;rails_12factor&#39;</span><span class="p">,</span> <span class="s1">&#39;0.0.2&#39;</span>
 <span class="k">end</span>
 </pre></div>
 </div>
 
 
-<p>As noted in <a class="ref" href="beginning?version=4.0#sec-bundler">Section&nbsp;1.2.4</a>, it&rsquo;s also a good idea to specify explictly which version of Ruby our applications expects:</p>
+<p>Note also the addition of the <tt>rails_12factor</tt> gem, which is used by Heroku to serve static assets such as images and JavaScripts.</p>
+
+<p>As mentioned in <a class="ref" href="beginning?version=4.0#sec-bundler">Section&nbsp;1.2.4</a>, it&rsquo;s also a good idea to specify explictly which version of Ruby our applications expects:</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+<span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
 </pre></div>
 </div>
 
 
-<p>(You should substitute <code>&rsquo;1.9.3&rsquo;</code> if that&rsquo;s the version of Ruby you&rsquo;re using, though for this tutorial the difference shouldn&rsquo;t ever matter.) Applying these changes to the <code>Gemfile</code> from <a class="ref" href="beginning?version=4.0#code-gemfile_sqlite_version">Listing&nbsp;1.5</a> yields <a class="ref" href="beginning?version=4.0#code-gemfile_pg_gem">Listing&nbsp;1.9</a>.</p>
+<p>(Here I&rsquo;ve also added the optional RVM gemset line for convenience.) You should substitute <code>&rsquo;1.9.3&rsquo;</code> if that&rsquo;s the version of Ruby you&rsquo;re using, though for this tutorial the difference shouldn&rsquo;t ever matter.Applying these changes to the <code>Gemfile</code> from <a class="ref" href="beginning?version=4.0#code-gemfile_sqlite_version">Listing&nbsp;1.5</a> yields <a class="ref" href="beginning?version=4.0#code-gemfile_pg_gem">Listing&nbsp;1.9</a>.</p>
 
 <div class="label" id="code-gemfile_pg_gem"></div>
 
@@ -1281,6 +1287,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="listing"><span class="header">Listing 1.9.</span> <span class="description">A <code>Gemfile</code> with an added <tt>pg</tt> gem and explicit Ruby version.</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+<span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
 
@@ -1301,6 +1308,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.15.1&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;rails_12factor&#39;</span><span class="p">,</span> <span class="s1">&#39;0.0.2&#39;</span>
 <span class="k">end</span>
 </pre></div>
 </div></div>
@@ -1313,14 +1321,14 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>The <tt class="verb">--without production</tt> option prevents the local installation of any production gems, which in this case is just&nbsp;<tt>pg</tt>. (If Bundler complains about a <tt>readline</tt> error, try adding <code>gem &rsquo;rb-readline&rsquo;</code> to your <code>Gemfile</code>.) Because the only gem we&rsquo;ve added is restricted to a production environment, right now this command doesn&rsquo;t actually install any additional local gems, but it&rsquo;s needed to update <code>Gemfile.lock</code> with the <tt>pg</tt> gem and the specific Ruby version since that&rsquo;s what Heroku uses to infer the requirements of our application. We can commit the resulting change as follows:</p>
+<p>The <tt class="verb">--without production</tt> option prevents the local installation of any production gems, which in this case consists of&nbsp;<tt>pg</tt> and <tt>rails_12factor</tt>. (If Bundler complains about a <tt>readline</tt> error, try adding <code>gem &rsquo;rb-readline&rsquo;</code> to your <code>Gemfile</code>.) Because the only gems we&rsquo;ve added are restricted to a production environment, right now this command doesn&rsquo;t actually install any additional local gems, but it&rsquo;s needed to update <code>Gemfile.lock</code> with the <tt>pg</tt> and <tt>rails_12factor</tt> gems and the specific Ruby version. We can commit the resulting change as follows:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git commit -a -m <span class="s2">&quot;Update Gemfile.lock for Heroku&quot;</span>
 </pre></div>
 </div>
 
 
-<p>Next we have to create and configure a new Heroku account. The first step is to <a href="http://api.heroku.com/signup">sign up for Heroku</a>; after checking your email to complete the creation of your account, install the necessary Heroku software using the <a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>.<sup class="footnote" id="fnref-1_23"><a href="?version=4.0#fn-1_23">23</a></sup> Then use the <code>heroku</code> command to log in at the command line (you may have to exit and restart your terminal program first):</p>
+<p>Next we have to create and configure a new Heroku account. The first step is to <a href="http://api.heroku.com/signup">sign up for Heroku</a>; after checking your email to complete the creation of your account, install the necessary Heroku software using the <a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>.<sup class="footnote" id="fnref-1_22"><a href="?version=4.0#fn-1_22">22</a></sup> Then use the <code>heroku</code> command to log in at the command line (you may have to exit and restart your terminal program first):</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku login
 </pre></div>
@@ -1448,18 +1456,17 @@ jhyicevg.herokuapp.com</pre>
 <li id="fn-1_9">As of this writing, <a href="http://www.sublimetext.com/3">Sublime Text&nbsp;3</a> is in beta, available only to registered users of Sublime Text&nbsp;2. I recommend trying the newest Sublime Text only if you really want to be on the bleeding edge.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_9">&uarr;</a></li>
 <li id="fn-1_10">The vi editor is one of the most ancient yet powerful weapons in the Unix arsenal, and Vim is &ldquo;vi improved&rdquo;.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_10">&uarr;</a></li>
 <li id="fn-1_11">https://github.com/mhartl/rails_tutorial_sublime_text&nbsp;<a class="arrow" href="?version=4.0#fnref-1_11">&uarr;</a></li>
-<li id="fn-1_12">If you haven&rsquo;t used IRC before, I suggest you start by searching the web for &ldquo;irc client &lt;your platform&gt;&rdquo;. Two good native clients for OS&nbsp;X are <a href="http://colloquy.info/">Colloquy</a> and <a href="http://limechat.net/mac/">LimeChat</a>. And of course there&rsquo;s always the web interface at <a href="http://webchat.freenode.net/?channels=rvm">http://webchat.freenode.net/?channels=rvm</a>.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_12">&uarr;</a></li>
-<li id="fn-1_13">https://developer.apple.com/downloads/&nbsp;<a class="arrow" href="?version=4.0#fnref-1_13">&uarr;</a></li>
-<li id="fn-1_14">This step is necessary only if you&rsquo;ve changed the version of the Rails gem, which would likely happen only if you&rsquo;re using Rails Installer, but it does no harm to run it in other cases as well.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_14">&uarr;</a></li>
-<li id="fn-1_15">Normally, websites run on port 80, but this usually requires special privileges, so Rails picks a less restricted higher-numbered port for the development server.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_15">&uarr;</a></li>
-<li id="fn-1_16">Normally this is a feature, since it lets you continue to use the command line after launching your editor, but Git interprets the detachment as closing the file with an empty commit message, which prevents the commit from going through. I only mention this point because it can be seriously confusing if you try to set your editor to <code>subl</code> or <code>gvim</code> without the flag. If you find this note confusing, feel free to ignore it.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_16">&uarr;</a></li>
-<li id="fn-1_17">If you can&rsquo;t see the <code>.gitignore</code> file in your directory, you may need to configure your directory viewer to show hidden files.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_17">&uarr;</a></li>
-<li id="fn-1_18">If in the future any unwanted files start showing up when you type <code>git status</code>, just add them to your <code>.gitignore</code> file from <a class="ref" href="beginning?version=4.0#code-gitignore">Listing&nbsp;1.7</a>.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_18">&uarr;</a></li>
-<li id="fn-1_19">See the chapter <a href="http://progit.org/book/ch3-0.html">Git Branching in <em>Pro Git</em></a> for details.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_19">&uarr;</a></li>
-<li id="fn-1_20">Though it shouldn&rsquo;t matter for the example applications in the <em>Rails Tutorial</em>, if you&rsquo;re worried about accidentally making your app public too soon there are several options; see <a class="ref" href="beginning?version=4.0#sec-heroku_commands">Section&nbsp;1.4.4</a> for one.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_20">&uarr;</a></li>
-<li id="fn-1_21">Pronounced &ldquo;Engine X&rdquo;.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_21">&uarr;</a></li>
-<li id="fn-1_22">Heroku works with any Ruby web platform that uses <a href="http://rack.rubyforge.org/">Rack middleware</a>, which provides a standard interface between web frameworks and web servers. Adoption of the Rack interface has been extraordinarily strong in the Ruby community, including frameworks as varied as <a href="http://www.sinatrarb.com/">Sinatra</a>, <a href="http://ramaze.net/">Ramaze</a>, <a href="http://camping.rubyforge.org/files/README.html">Camping</a>, and Rails, which means that Heroku basically supports any Ruby web app.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_22">&uarr;</a></li>
-<li id="fn-1_23">https://toolbelt.heroku.com/&nbsp;<a class="arrow" href="?version=4.0#fnref-1_23">&uarr;</a></li>
+<li id="fn-1_12">https://developer.apple.com/downloads/&nbsp;<a class="arrow" href="?version=4.0#fnref-1_12">&uarr;</a></li>
+<li id="fn-1_13">This step is necessary only if you&rsquo;ve changed the version of the Rails gem, which would likely happen only if you&rsquo;re using Rails Installer, but it does no harm to run it in other cases as well.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_13">&uarr;</a></li>
+<li id="fn-1_14">Normally, websites run on port 80, but this usually requires special privileges, so Rails picks a less restricted higher-numbered port for the development server.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_14">&uarr;</a></li>
+<li id="fn-1_15">Normally this is a feature, since it lets you continue to use the command line after launching your editor, but Git interprets the detachment as closing the file with an empty commit message, which prevents the commit from going through. I only mention this point because it can be seriously confusing if you try to set your editor to <code>subl</code> or <code>gvim</code> without the flag. If you find this note confusing, feel free to ignore it.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_15">&uarr;</a></li>
+<li id="fn-1_16">If you can&rsquo;t see the <code>.gitignore</code> file in your directory, you may need to configure your directory viewer to show hidden files.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_16">&uarr;</a></li>
+<li id="fn-1_17">If in the future any unwanted files start showing up when you type <code>git status</code>, just add them to your <code>.gitignore</code> file from <a class="ref" href="beginning?version=4.0#code-gitignore">Listing&nbsp;1.7</a>.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_17">&uarr;</a></li>
+<li id="fn-1_18">See the chapter <a href="http://progit.org/book/ch3-0.html">Git Branching in <em>Pro Git</em></a> for details.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_18">&uarr;</a></li>
+<li id="fn-1_19">Though it shouldn&rsquo;t matter for the example applications in the <em>Rails Tutorial</em>, if you&rsquo;re worried about accidentally making your app public too soon there are several options; see <a class="ref" href="beginning?version=4.0#sec-heroku_commands">Section&nbsp;1.4.4</a> for one.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_19">&uarr;</a></li>
+<li id="fn-1_20">Pronounced &ldquo;Engine X&rdquo;.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_20">&uarr;</a></li>
+<li id="fn-1_21">Heroku works with any Ruby web platform that uses <a href="http://rack.rubyforge.org/">Rack middleware</a>, which provides a standard interface between web frameworks and web servers. Adoption of the Rack interface has been extraordinarily strong in the Ruby community, including frameworks as varied as <a href="http://www.sinatrarb.com/">Sinatra</a>, <a href="http://ramaze.net/">Ramaze</a>, <a href="http://camping.rubyforge.org/files/README.html">Camping</a>, and Rails, which means that Heroku basically supports any Ruby web app.&nbsp;<a class="arrow" href="?version=4.0#fnref-1_21">&uarr;</a></li>
+<li id="fn-1_22">https://toolbelt.heroku.com/&nbsp;<a class="arrow" href="?version=4.0#fnref-1_22">&uarr;</a></li>
 </ol>
 </div>
 

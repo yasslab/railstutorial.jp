@@ -38,7 +38,14 @@
 </div>
 
 
-<p>This produces a migration to create a <code>microposts</code> table in the database (<a class="ref" href="user-microposts?version=4.0#code-micropost_migration">Listing&nbsp;10.1</a>); compare it to the analogous migration for the <code>users</code> table from <a class="ref" href="modeling-users?version=4.0#code-users_migration">Listing&nbsp;6.2</a>.</p>
+<p>It&rsquo;s possible that this will generate a Micropost factory, which you should remove since we&rsquo;ll be making one later by hand (<a class="ref" href="user-microposts?version=4.0#sec-ordering_and_dependency">Section&nbsp;10.1.4</a>):</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rm -f spec/factories/microposts.rb
+</pre></div>
+</div>
+
+
+<p>The generate command produces a migration to create a <code>microposts</code> table in the database (<a class="ref" href="user-microposts?version=4.0#code-micropost_migration">Listing&nbsp;10.1</a>); compare it to the analogous migration for the <code>users</code> table from <a class="ref" href="modeling-users?version=4.0#code-users_migration">Listing&nbsp;6.2</a>.</p>
 
 <div class="label" id="code-micropost_migration"></div>
 

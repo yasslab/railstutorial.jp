@@ -271,6 +271,7 @@ the <code>home.html.erb</code> view (<a class="ref" href="filling-in-the-layout?
 <div class="listing"><span class="header">Listing 5.3.</span> <span class="description">Adding the <tt>bootstrap-sass</tt> gem to the <code>Gemfile</code>.</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+<span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
 <span class="n">gem</span> <span class="s1">&#39;bootstrap-sass&#39;</span><span class="p">,</span> <span class="s1">&#39;2.3.2.0&#39;</span>
@@ -1169,7 +1170,7 @@ The result of the CSS in <a class="ref" href="filling-in-the-layout?version=4.0#
 <table class="tabular"><tr><th class="align_left"><strong>Page</strong></th><th class="align_left"><strong>URL</strong></th><th class="align_right"><strong>Named route</strong></th></tr><tr class="top_bar"><td class="align_left">Home</td><td class="align_left">/</td><td class="align_right"><code>root_path</code></td></tr><tr><td class="align_left">About</td><td class="align_left">/about</td><td class="align_right"><code>about_path</code></td></tr><tr><td class="align_left">Help</td><td class="align_left">/help</td><td class="align_right"><code>help_path</code></td></tr><tr><td class="align_left">Contact</td><td class="align_left">/contact</td><td class="align_right"><code>contact_path</code></td></tr><tr><td class="align_left">Sign up</td><td class="align_left">/signup</td><td class="align_right"><code>signup_path</code></td></tr><tr><td class="align_left">Sign in</td><td class="align_left">/signin</td><td class="align_right"><code>signin_path</code></td></tr></table></div><div class="caption"><span class="header">Table 5.1: </span><span class="description">Route and URL mapping for site links.</span></div></div>
 
 
-<p>Before moving on, let&rsquo;s add a Contact page (left as an exercise in <a class="ref" href="static-pages?version=4.0#top">Chapter&nbsp;3</a>). The test appears as in <a class="ref" href="filling-in-the-layout?version=4.0#code-contact_page_test">Listing&nbsp;5.17</a>, which simply follows the model last seen in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.20</a>.</p>
+<p>Before moving on, let&rsquo;s add a Contact page (left as an exercise in <a class="ref" href="static-pages?version=4.0#top">Chapter&nbsp;3</a>). The test appears as in <a class="ref" href="filling-in-the-layout?version=4.0#code-contact_page_test">Listing&nbsp;5.17</a>, which simply follows the model last seen in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.19</a>.</p>
 
 <div class="label" id="code-contact_page_test"></div>
 
@@ -1466,8 +1467,7 @@ The result of the CSS in <a class="ref" href="filling-in-the-layout?version=4.0#
   <span class="o">.</span>
   <span class="o">.</span>
   <span class="c1"># You can have the root of your site routed with &quot;root&quot;</span>
-  <span class="c1"># just remember to delete public/index.html.</span>
-  <span class="c1"># root :to =&gt; &quot;welcome#index&quot;</span>
+  <span class="c1"># root &#39;welcome#index&#39;</span>
   <span class="o">.</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -1484,7 +1484,7 @@ The result of the CSS in <a class="ref" href="filling-in-the-layout?version=4.0#
 <div class="codelisting">
 <div class="listing"><span class="header">Listing 5.24.</span> <span class="description">Adding a mapping for the root route. <br /> <code>config/routes.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
-  <span class="n">root</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#home&#39;</span>
+  <span class="n">root</span>  <span class="s1">&#39;static_pages#home&#39;</span>
   <span class="n">match</span> <span class="s1">&#39;/help&#39;</span><span class="p">,</span>    <span class="ss">to:</span> <span class="s1">&#39;static_pages#help&#39;</span><span class="p">,</span>    <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
   <span class="n">match</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span>   <span class="ss">to:</span> <span class="s1">&#39;static_pages#about&#39;</span><span class="p">,</span>   <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
   <span class="n">match</span> <span class="s1">&#39;/contact&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#contact&#39;</span><span class="p">,</span> <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
@@ -1711,7 +1711,7 @@ The result of the CSS in <a class="ref" href="filling-in-the-layout?version=4.0#
 </div>
 
 
-<p>An exercise in <a class="ref" href="static-pages?version=4.0#sec-static_pages_exercises">Section&nbsp;3.5</a> proposes eliminating some of this duplication by defining a <code>base_title</code> variable and using string interpolation (<a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_exercise">Listing&nbsp;3.32</a>). We can do even better by defining a <code>full_title</code>, which parallels the <code>full_title</code> helper from <a class="ref" href="rails-flavored-ruby?version=4.0#code-title_helper">Listing&nbsp;4.2</a>. We do this by creating both a <code>spec/support</code> directory and a <code>utilities.rb</code> file for RSpec utilities (<a class="ref" href="filling-in-the-layout?version=4.0#code-rspec_utilities">Listing&nbsp;5.27</a>).</p>
+<p>An exercise in <a class="ref" href="static-pages?version=4.0#sec-static_pages_exercises">Section&nbsp;3.5</a> proposes eliminating some of this duplication by defining a <code>base_title</code> variable and using string interpolation (<a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_exercise">Listing&nbsp;3.31</a>). We can do even better by defining a <code>full_title</code>, which parallels the <code>full_title</code> helper from <a class="ref" href="rails-flavored-ruby?version=4.0#code-title_helper">Listing&nbsp;4.2</a>. We do this by creating both a <code>spec/support</code> directory and a <code>utilities.rb</code> file for RSpec utilities (<a class="ref" href="filling-in-the-layout?version=4.0#code-rspec_utilities">Listing&nbsp;5.27</a>).</p>
 
 <div class="label" id="code-rspec_utilities"></div>
 
@@ -1741,6 +1741,7 @@ The result of the CSS in <a class="ref" href="filling-in-the-layout?version=4.0#
 
     <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">&#39;Sample App&#39;</span><span class="p">)</span> <span class="p">}</span>
     <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;| Home&#39;</span><span class="p">)</span> <span class="p">}</span>
   <span class="k">end</span>
 </pre></div>
 </div>
@@ -1947,7 +1948,7 @@ The result of the CSS in <a class="ref" href="filling-in-the-layout?version=4.0#
 <div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
   <span class="n">get</span> <span class="s2">&quot;users/new&quot;</span>
 
-  <span class="n">root</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#home&#39;</span>
+  <span class="n">root</span>  <span class="s1">&#39;static_pages#home&#39;</span>
   <span class="n">match</span> <span class="s1">&#39;/signup&#39;</span><span class="p">,</span>  <span class="ss">to:</span> <span class="s1">&#39;users#new&#39;</span><span class="p">,</span>            <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
   <span class="n">match</span> <span class="s1">&#39;/help&#39;</span><span class="p">,</span>    <span class="ss">to:</span> <span class="s1">&#39;static_pages#help&#39;</span><span class="p">,</span>    <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
   <span class="n">match</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span>   <span class="ss">to:</span> <span class="s1">&#39;static_pages#about&#39;</span><span class="p">,</span>   <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
@@ -2075,7 +2076,7 @@ The result of the CSS in <a class="ref" href="filling-in-the-layout?version=4.0#
 
 <ol>
 
-<li>The code in <a class="ref" href="filling-in-the-layout?version=4.0#code-pretty_page_tests">Listing&nbsp;5.28</a> for testing static pages is compact but is still a bit repetitive. RSpec supports a facility called <em>shared examples</em> to eliminate the kind of duplication. By following the example in <a class="ref" href="filling-in-the-layout?version=4.0#code-static_pages_spec_shared_example">Listing&nbsp;5.36</a>, fill in the missing tests for the Help, About, and Contact pages. Note that the <code>let</code> command, introduced briefly in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_exercise">Listing&nbsp;3.32</a>, creates a local variable with the given value on demand (i.e., when the variable is used), in contrast to an instance variable, which is created upon assignment.</li>
+<li>The code in <a class="ref" href="filling-in-the-layout?version=4.0#code-pretty_page_tests">Listing&nbsp;5.28</a> for testing static pages is compact but is still a bit repetitive. RSpec supports a facility called <em>shared examples</em> to eliminate the kind of duplication. By following the example in <a class="ref" href="filling-in-the-layout?version=4.0#code-static_pages_spec_shared_example">Listing&nbsp;5.36</a>, fill in the missing tests for the Help, About, and Contact pages. Note that the <code>let</code> command, introduced briefly in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_exercise">Listing&nbsp;3.31</a>, creates a local variable with the given value on demand (i.e., when the variable is used), in contrast to an instance variable, which is created upon assignment.</li>
 
 <li>You may have noticed that our tests for the layout links test the routing but don&rsquo;t actually check that the links on the layout go to the right pages. One way to implement these tests is to use <code>visit</code> and <code>click_link</code> inside the RSpec integration test. Fill in the code in <a class="ref" href="filling-in-the-layout?version=4.0#code-layout_links_test">Listing&nbsp;5.37</a> to verify that all the layout links are properly defined.</li>
 

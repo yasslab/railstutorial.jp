@@ -112,6 +112,13 @@ in both the <code>followed_users</code> and <code>followers</code> tables.</p>
 </div>
 
 
+<p>It&rsquo;s possible that this will generate a Relationship factory, which you should remove:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rm -f spec/factories/relationship.rb
+</pre></div>
+</div>
+
+
 <p>Since we will be finding relationships by <code>follower_id</code> and by <code>followed_id</code>, we should add an index on each column for efficiency, as shown in <a class="ref" href="following-users?version=4.0#code-relationships_migration">Listing&nbsp;11.1</a>.</p>
 
 <div class="label" id="code-relationships_migration"></div>

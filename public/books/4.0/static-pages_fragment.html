@@ -32,6 +32,7 @@
 <div class="listing"><span class="header">Listing 3.1.</span> <span class="description">A <code>Gemfile</code> for the sample app.</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+<span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
 
@@ -58,15 +59,17 @@
 
 <span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.15.1&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;rails_12factor&#39;</span><span class="p">,</span> <span class="s1">&#39;0.0.2&#39;</span>
 <span class="k">end</span>
 </pre></div>
 </div></div>
 
 
-<p>This includes <tt>rspec-rails</tt> in a development environment so that we have access to RSpec-specific generators, and it includes it in test mode in order to run the tests. We don&rsquo;t have to install RSpec itself because it is a dependency of <tt>rspec-rails</tt> and will thus be installed automatically. We also include the <a href="https://github.com/jnicklas/capybara">Capybara gem</a>, which allows us to simulate a user&rsquo;s interaction with the sample application using a natural English-like syntax, together with <a href="http://docs.seleniumhq.org/projects/webdriver/">Selenium</a>, one of Capybara&rsquo;s dependencies.<sup class="footnote" id="fnref-3_1"><a href="?version=4.0#fn-3_1">1</a></sup> As in <a class="ref" href="a-demo-app?version=4.0#top">Chapter&nbsp;2</a>, we also must include the PostgreSQL gem in production for deployment to Heroku:</p>
+<p>This includes <tt>rspec-rails</tt> in a development environment so that we have access to RSpec-specific generators, and it includes it in test mode in order to run the tests. We don&rsquo;t have to install RSpec itself because it is a dependency of <tt>rspec-rails</tt> and will thus be installed automatically. We also include the <a href="https://github.com/jnicklas/capybara">Capybara gem</a>, which allows us to simulate a user&rsquo;s interaction with the sample application using a natural English-like syntax, together with <a href="http://docs.seleniumhq.org/projects/webdriver/">Selenium</a>, one of Capybara&rsquo;s dependencies.<sup class="footnote" id="fnref-3_1"><a href="?version=4.0#fn-3_1">1</a></sup> As in <a class="ref" href="a-demo-app?version=4.0#top">Chapter&nbsp;2</a>, we also must include the PostgreSQL and static assets gems in production for deployment to Heroku:</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.15.1&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;rails_12factor&#39;</span><span class="p">,</span> <span class="s1">&#39;0.0.2&#39;</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -84,44 +87,6 @@
 
 
 <p>As in <a class="ref" href="beginning?version=4.0#sec-heroku_setup">Section&nbsp;1.4.1</a> and <a class="ref" href="a-demo-app?version=4.0#top">Chapter&nbsp;2</a>, we suppress the installation of production gems using the option <tt class="verb">--without</tt> <tt class="verb">production</tt>. This is a &ldquo;remembered option&rdquo;, which means that we don&rsquo;t have to include it in future invocations of Bundler. Instead, we can write simply <code>bundle install</code> and production gems will be ignored automatically.<sup class="footnote" id="fnref-3_2"><a href="?version=4.0#fn-3_2">2</a></sup></p>
-
-<p>***Security. Be sure to use the augmented <code>.gitignore</code> file from <a class="ref" href="beginning?version=4.0#code-gitignore">Listing&nbsp;1.7</a> so that the <code>.secret</code> key isn&rsquo;t exposed in your repository.</p>
-
-<div class="label" id="code-secret_token"></div>
-
-
-<div class="codelisting">
-<div class="listing"><span class="header">Listing 3.2.</span> <span class="description">An improved <code>README</code> file for the sample app.</span> </div>
-<div class="code"><div class="highlight"><pre># Be sure to restart your server when you modify this file.
-
-# Your secret key is used for verifying the integrity of signed cookies.
-# If you change this key, all old signed cookies will become invalid!
-
-# Make sure the secret is at least 30 characters and all random,
-# no regular words or you&#39;ll be exposed to dictionary attacks.
-# You can use `rake secret` to generate a secure secret key.
-
-# Make sure your secret_key_base is kept private
-# if you&#39;re sharing your code publicly.
-require &#39;securerandom&#39;
-
-def secure_token
-  token_file = Rails.root.join(&#39;.secret&#39;)
-  if File.exist?(token_file)
-    # Use the existing token.
-    File.read(token_file).chomp
-  else
-    # Generate a new token and store it in token_file.
-    token = SecureRandom.hex(64)
-    File.write(token_file, token)
-    token
-  end
-end
-
-SampleApp::Application.config.secret_token = find_secure_token
-</pre></div>
-</div></div>
-
 
 <p>Next, we need to configure Rails to use RSpec in place of <code>Test::Unit</code>. This can be accomplished with <code>rails generate rspec:install</code>:</p>
 
@@ -141,13 +106,13 @@ SampleApp::Application.config.secret_token = find_secure_token
 </div>
 
 
-<p>As with the first application, I suggest updating the <code>README</code> file (located in the root directory of the application) to be more helpful and descriptive, as shown in <a class="ref" href="static-pages?version=4.0#code-sample_app_readme">Listing&nbsp;3.3</a>.</p>
+<p>As with the first application, I suggest updating the <code>README</code> file (located in the root directory of the application) to be more helpful and descriptive, as shown in <a class="ref" href="static-pages?version=4.0#code-sample_app_readme">Listing&nbsp;3.2</a>.</p>
 
 <div class="label" id="code-sample_app_readme"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.3.</span> <span class="description">An improved <code>README</code> file for the sample app.</span> </div>
+<div class="listing"><span class="header">Listing 3.2.</span> <span class="description">An improved <code>README</code> file for the sample app.</span> </div>
 <div class="code"><div class="highlight"><pre># Ruby on Rails Tutorial: sample application
 
 This is the sample application for
@@ -177,13 +142,13 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>As a result of my performing this step, you can find the <a href="https://github.com/railstutorial/sample_app_rails_4">Rails Tutorial sample application code on GitHub</a> (under the username <tt>railstutorial</tt> and the slightly different name <tt>sample_app_rails_4</tt>).<sup class="footnote" id="fnref-3_4"><a href="?version=4.0#fn-3_4">4</a></sup></p>
 
-<p>Of course, we can optionally deploy the app to Heroku even at this early stage. As in <a class="ref" href="a-demo-app?version=4.0#sec-deploying_the_demo_app">Section&nbsp;2.3.5</a>, this requires configuring Rails to serve static assets, as shown in <a class="ref" href="static-pages?version=4.0#code-serve_static_assets_redux">Listing&nbsp;3.4</a>.</p>
+<p>Of course, we can optionally deploy the app to Heroku even at this early stage. As in <a class="ref" href="a-demo-app?version=4.0#sec-deploying_the_demo_app">Section&nbsp;2.3.5</a>, this requires configuring Rails to serve static assets, as shown in <a class="ref" href="static-pages?version=4.0#code-serve_static_assets_redux">Listing&nbsp;3.3</a>.</p>
 
 <div class="label" id="code-serve_static_assets_redux"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.4.</span> <span class="description">Configuring Rails to serve static assets in production. <br /> <code>config/environments/production.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.3.</span> <span class="description">Configuring Rails to serve static assets in production. <br /> <code>config/environments/production.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -197,7 +162,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>With the change in <a class="ref" href="static-pages?version=4.0#code-serve_static_assets_redux">Listing&nbsp;3.4</a>, we&rsquo;re now ready to push up to Heroku.</p>
+<p>With the change in <a class="ref" href="static-pages?version=4.0#code-serve_static_assets_redux">Listing&nbsp;3.3</a>, we&rsquo;re now ready to push up to Heroku.</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git commit -am <span class="s2">&quot;Serve static assets&quot;</span>
 <span class="gp">$</span> heroku create
@@ -221,7 +186,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>Also be sure that you&rsquo;ve made the edit shown in <a class="ref" href="static-pages?version=4.0#code-serve_static_assets_redux">Listing&nbsp;3.4</a>.</p>
+<p>Also be sure that you&rsquo;ve made the edit shown in <a class="ref" href="static-pages?version=4.0#code-serve_static_assets_redux">Listing&nbsp;3.3</a>.</p>
 
 <p>With all the preparation finished, we&rsquo;re finally ready to get started developing the sample application.</p>
 
@@ -266,13 +231,13 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>Rails comes with a script for making controllers called <code>generate</code>; all it needs to work its magic is the controller&rsquo;s name. Since we&rsquo;ll be making a controller to handle static pages, we&rsquo;ll call it the StaticPages controller. We&rsquo;ll also plan to make actions for a Home page, a Help page, and an About page. The <code>generate</code> script takes an optional list of actions, so we&rsquo;ll include two of the initial actions directly on the command line (<a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.5</a>).</p>
+<p>Rails comes with a script for making controllers called <code>generate</code>; all it needs to work its magic is the controller&rsquo;s name. Since we&rsquo;ll be making a controller to handle static pages, we&rsquo;ll call it the StaticPages controller. We&rsquo;ll also plan to make actions for a Home page, a Help page, and an About page. The <code>generate</code> script takes an optional list of actions, so we&rsquo;ll include two of the initial actions directly on the command line (<a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.4</a>).</p>
 
 <div class="label" id="code-generating_pages"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.5.</span> <span class="description">Generating a StaticPages controller.</span> </div>
+<div class="listing"><span class="header">Listing 3.4.</span> <span class="description">Generating a StaticPages controller.</span> </div>
 <div class="code"><div class="highlight"><pre>$ rails generate controller StaticPages home help --no-test-framework
       create  app/controllers/static_pages_controller.rb
        route  get &quot;static_pages/help&quot;
@@ -292,9 +257,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>Here we&rsquo;ve used the option <tt class="verb">--no-test-framework</tt> to suppress the generation of the default RSpec tests, which we won&rsquo;t be using. Instead, we&rsquo;ll create the tests by hand starting in <a class="ref" href="static-pages?version=4.0#sec-first_tests">Section&nbsp;3.2</a>. We&rsquo;ve also intentionally left off the <code>about</code> action from the command line arguments in <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.5</a> so that we can see how to add it using test-driven development, or TDD (<a class="ref" href="static-pages?version=4.0#sec-first_tests">Section&nbsp;3.2</a>).</p>
+<p>Here we&rsquo;ve used the option <tt class="verb">--no-test-framework</tt> to suppress the generation of the default RSpec tests, which we won&rsquo;t be using. Instead, we&rsquo;ll create the tests by hand starting in <a class="ref" href="static-pages?version=4.0#sec-first_tests">Section&nbsp;3.2</a>. We&rsquo;ve also intentionally left off the <code>about</code> action from the command line arguments in <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.4</a> so that we can see how to add it using test-driven development, or TDD (<a class="ref" href="static-pages?version=4.0#sec-first_tests">Section&nbsp;3.2</a>).</p>
 
-<p>In <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.5</a>, note that we have passed the controller name as so-called <a href="https://en.wikipedia.org/wiki/CamelCase">CamelCase</a>, which leads to the creation of a controller file written in <a href="https://en.wikipedia.org/wiki/Snake_case">snake case</a>, so that a controller called StaticPages yields a file called <code>static_pages_controller.rb</code>. This is merely a convention, and in fact using snake case at the command line also works: the command</p>
+<p>In <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.4</a>, note that we have passed the controller name as so-called <a href="https://en.wikipedia.org/wiki/CamelCase">CamelCase</a>, which leads to the creation of a controller file written in <a href="https://en.wikipedia.org/wiki/Snake_case">snake case</a>, so that a controller called StaticPages yields a file called <code>static_pages_controller.rb</code>. This is merely a convention, and in fact using snake case at the command line also works: the command</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate controller static_pages ...
 </pre></div>
@@ -311,7 +276,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="sidebar"><span class="title"><span class="header">Box 3.2.</span><span class="description">Undoing things</span></span>
 <p>Even when you&rsquo;re very careful, things can sometimes go wrong when developing Rails applications. Happily, Rails has some facilities to help you recover.</p>
 
-<p>One common scenario is wanting to undo code generation&mdash;for example, if you change your mind on the name of a controller. When generating a controller, Rails creates many more files than the controller file itself (as seen in <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.5</a>). Undoing the generation means removing not only the principal generated file, but all the ancillary files as well. (In fact, we also want to undo any automatic edits made to the <tt>routes.rb</tt> file.) In Rails, this can be accomplished with <tt>rails destroy</tt>. In particular, these two commands cancel each other out:</p>
+<p>One common scenario is wanting to undo code generation&mdash;for example, if you change your mind on the name of a controller. When generating a controller, Rails creates many more files than the controller file itself (as seen in <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.4</a>). Undoing the generation means removing not only the principal generated file, but all the ancillary files as well. (In fact, we also want to undo any automatic edits made to the <tt>routes.rb</tt> file.) In Rails, this can be accomplished with <tt>rails destroy</tt>. In particular, these two commands cancel each other out:</p>
 
 <pre class="verbatim">  $ rails generate controller FooBars baz quux
   $ rails destroy  controller FooBars baz quux</pre>
@@ -350,7 +315,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>The StaticPages controller generation in <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.5</a> automatically updates the <em>routes</em> file, called <code>config/routes.rb</code>, which Rails uses to find the correspondence between URLs and web pages. This is our first encounter with the <code>config</code> directory, so it&rsquo;s helpful to take a quick look at it (<a class="ref" href="static-pages?version=4.0#fig-config_directory_rails">Figure&nbsp;3.1</a>). The <code>config</code> directory is where Rails collects files needed for the application configuration (hence the name).</p>
+<p>The StaticPages controller generation in <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.4</a> automatically updates the <em>routes</em> file, called <code>config/routes.rb</code>, which Rails uses to find the correspondence between URLs and web pages. This is our first encounter with the <code>config</code> directory, so it&rsquo;s helpful to take a quick look at it (<a class="ref" href="static-pages?version=4.0#fig-config_directory_rails">Figure&nbsp;3.1</a>). The <code>config</code> directory is where Rails collects files needed for the application configuration (hence the name).</p>
 
 <div class="label" id="fig-config_directory_rails"></div>
 
@@ -358,13 +323,13 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/config_directory_rails_4.png" alt="config_directory_rails_4" /></span></div><div class="caption"><span class="header">Figure 3.1: </span><span class="description">Contents of the sample app&rsquo;s <code>config</code> directory.&nbsp;<a href="http://railstutorial.jp/images/figures/config_directory_rails_4-full.png">(full size)</a></span></div></div>
 
 
-<p>Since we generated <code>home</code> and <code>help</code> actions, the routes file already has a rule for each one, as seen in <a class="ref" href="static-pages?version=4.0#code-pages_routes">Listing&nbsp;3.6</a>.</p>
+<p>Since we generated <code>home</code> and <code>help</code> actions, the routes file already has a rule for each one, as seen in <a class="ref" href="static-pages?version=4.0#code-pages_routes">Listing&nbsp;3.5</a>.</p>
 
 <div class="label" id="code-pages_routes"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.6.</span> <span class="description">The routes for the <code>home</code> and <code>help</code> actions in the StaticPages controller. <br /> <code>config/routes.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.5.</span> <span class="description">The routes for the <code>home</code> and <code>help</code> actions in the StaticPages controller. <br /> <code>config/routes.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
   <span class="n">get</span> <span class="s2">&quot;static_pages/home&quot;</span>
   <span class="n">get</span> <span class="s2">&quot;static_pages/help&quot;</span>
@@ -406,13 +371,13 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>To understand where this page comes from, let&rsquo;s start by taking a look at the StaticPages controller in a text editor; you should see something like <a class="ref" href="static-pages?version=4.0#code-static_pages_controller">Listing&nbsp;3.7</a>. You may note that, unlike the demo Users and Microposts controllers from <a class="ref" href="a-demo-app?version=4.0#top">Chapter&nbsp;2</a>, the StaticPages controller does not use the standard REST actions. This is normal for a collection of static pages&mdash;the REST architecture isn&rsquo;t the best solution to every problem.</p>
+<p>To understand where this page comes from, let&rsquo;s start by taking a look at the StaticPages controller in a text editor; you should see something like <a class="ref" href="static-pages?version=4.0#code-static_pages_controller">Listing&nbsp;3.6</a>. You may note that, unlike the demo Users and Microposts controllers from <a class="ref" href="a-demo-app?version=4.0#top">Chapter&nbsp;2</a>, the StaticPages controller does not use the standard REST actions. This is normal for a collection of static pages&mdash;the REST architecture isn&rsquo;t the best solution to every problem.</p>
 
 <div class="label" id="code-static_pages_controller"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.7.</span> <span class="description">The StaticPages controller made by <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.5</a>. <br /> <code>app/controllers/static_pages_controller.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.6.</span> <span class="description">The StaticPages controller made by <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.4</a>. <br /> <code>app/controllers/static_pages_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">StaticPagesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
 
   <span class="k">def</span> <span class="nf">home</span>
@@ -425,7 +390,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>We see from the <code>class</code> keyword in <a class="ref" href="static-pages?version=4.0#code-static_pages_controller">Listing&nbsp;3.7</a> that <code>static_pages_controller.rb</code> defines a <em>class</em>, in this case called <code>StaticPagesController</code>. Classes are simply a convenient way to organize <em>functions</em> (also called <em>methods</em>) like the <code>home</code> and <code>help</code> actions, which are defined using the <code>def</code> keyword. The angle bracket&nbsp;<code>&lt;</code> indicates that <code>StaticPagesController</code> <em>inherits</em> from the Rails class <code>ApplicationController</code>; as we&rsquo;ll see momentarily, this means that our pages come equipped with a large amount of Rails-specific functionality. (We&rsquo;ll learn more about both classes and inheritance in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-ruby_classes">Section&nbsp;4.4</a>.)</p>
+<p>We see from the <code>class</code> keyword in <a class="ref" href="static-pages?version=4.0#code-static_pages_controller">Listing&nbsp;3.6</a> that <code>static_pages_controller.rb</code> defines a <em>class</em>, in this case called <code>StaticPagesController</code>. Classes are simply a convenient way to organize <em>functions</em> (also called <em>methods</em>) like the <code>home</code> and <code>help</code> actions, which are defined using the <code>def</code> keyword. The angle bracket&nbsp;<code>&lt;</code> indicates that <code>StaticPagesController</code> <em>inherits</em> from the Rails class <code>ApplicationController</code>; as we&rsquo;ll see momentarily, this means that our pages come equipped with a large amount of Rails-specific functionality. (We&rsquo;ll learn more about both classes and inheritance in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-ruby_classes">Section&nbsp;4.4</a>.)</p>
 
 <p>In the case of the StaticPages controller, both its methods are initially empty:</p>
 
@@ -440,26 +405,26 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>In plain Ruby, these methods would simply do nothing. In Rails, the situation is different; <code>StaticPagesController</code> is a Ruby class, but because it inherits from <code>ApplicationController</code> the behavior of its methods is specific to Rails: when visiting the URL /static_pages/home, Rails looks in the StaticPages controller and executes the code in the <code>home</code> action, and then renders the <em>view</em> (the V in MVC from <a class="ref" href="beginning?version=4.0#sec-mvc">Section&nbsp;1.2.6</a>) corresponding to the action. In the present case, the <code>home</code> action is empty, so all visiting /static_pages/home does is render the view. So, what does a view look like, and how do we find it?</p>
 
-<p>If you take another look at the output in <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.5</a>, you might be able to guess the correspondence between actions and views: an action like <code>home</code> has a corresponding view called <code>home.html.erb</code>. We&rsquo;ll learn in <a class="ref" href="static-pages?version=4.0#sec-slightly_dynamic_pages">Section&nbsp;3.3</a> what the <code>.erb</code> part means; from the <code>.html</code> part you probably won&rsquo;t be surprised that it basically looks like HTML (<a class="ref" href="static-pages?version=4.0#code-raw_home_view">Listing&nbsp;3.8</a>).</p>
+<p>If you take another look at the output in <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.4</a>, you might be able to guess the correspondence between actions and views: an action like <code>home</code> has a corresponding view called <code>home.html.erb</code>. We&rsquo;ll learn in <a class="ref" href="static-pages?version=4.0#sec-slightly_dynamic_pages">Section&nbsp;3.3</a> what the <code>.erb</code> part means; from the <code>.html</code> part you probably won&rsquo;t be surprised that it basically looks like HTML (<a class="ref" href="static-pages?version=4.0#code-raw_home_view">Listing&nbsp;3.7</a>).</p>
 
 <div class="label" id="code-raw_home_view"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.8.</span> <span class="description">The generated view for the Home page. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.7.</span> <span class="description">The generated view for the Home page. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>StaticPages#home<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>Find me in app/views/static_pages/home.html.erb<span class="nt">&lt;/p&gt;</span>
 </pre></div>
 </div></div>
 
 
-<p>The view for the <code>help</code> action is analogous (<a class="ref" href="static-pages?version=4.0#code-raw_help_view">Listing&nbsp;3.9</a>).</p>
+<p>The view for the <code>help</code> action is analogous (<a class="ref" href="static-pages?version=4.0#code-raw_help_view">Listing&nbsp;3.8</a>).</p>
 
 <div class="label" id="code-raw_help_view"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.9.</span> <span class="description">The generated view for the Help page. <br /> <code>app/views/static_pages/help.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.8.</span> <span class="description">The generated view for the Help page. <br /> <code>app/views/static_pages/help.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>StaticPages#help<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>Find me in app/views/static_pages/help.html.erb<span class="nt">&lt;/p&gt;</span>
 </pre></div>
@@ -511,13 +476,13 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>This creates the <code>static_pages_spec.rb</code> in the <code>spec/requests</code> directory. As with most generated code, the result is not pretty, so let&rsquo;s open <code>static_pages_spec.rb</code> with a text editor and replace it with the contents of <a class="ref" href="static-pages?version=4.0#code-home_page_content_spec">Listing&nbsp;3.10</a>.</p>
+<p>This creates the <code>static_pages_spec.rb</code> in the <code>spec/requests</code> directory. As with most generated code, the result is not pretty, so let&rsquo;s open <code>static_pages_spec.rb</code> with a text editor and replace it with the contents of <a class="ref" href="static-pages?version=4.0#code-home_page_content_spec">Listing&nbsp;3.9</a>.</p>
 
 <div class="label" id="code-home_page_content_spec"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.10.</span> <span class="description">Code to test the contents of the Home page. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.9.</span> <span class="description">Code to test the contents of the Home page. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
@@ -534,9 +499,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>The code in <a class="ref" href="static-pages?version=4.0#code-home_page_content_spec">Listing&nbsp;3.10</a> is pure Ruby, but even if you&rsquo;ve studied Ruby before it might not look familiar. This is because RSpec uses the general malleability of Ruby to define a <em>domain-specific language</em> (DSL) built just for testing. The important point is that <em>you do not need to understand RSpec&rsquo;s syntax to be able to use RSpec</em>. It may seem like magic at first, but RSpec and Capybara are designed to read more or less like English, and if you follow the examples in this tutorial you&rsquo;ll pick it up fairly quickly.</p>
+<p>The code in <a class="ref" href="static-pages?version=4.0#code-home_page_content_spec">Listing&nbsp;3.9</a> is pure Ruby, but even if you&rsquo;ve studied Ruby before it might not look familiar. This is because RSpec uses the general malleability of Ruby to define a <em>domain-specific language</em> (DSL) built just for testing. The important point is that <em>you do not need to understand RSpec&rsquo;s syntax to be able to use RSpec</em>. It may seem like magic at first, but RSpec and Capybara are designed to read more or less like English, and if you follow the examples in this tutorial you&rsquo;ll pick it up fairly quickly.</p>
 
-<p><a class="ref" href="static-pages?version=4.0#code-home_page_content_spec">Listing&nbsp;3.10</a> contains a <code>describe</code> block with one <em>example</em>, i.e., a block starting with <code>it "&hellip;" do</code>:</p>
+<p><a class="ref" href="static-pages?version=4.0#code-home_page_content_spec">Listing&nbsp;3.9</a> contains a <code>describe</code> block with one <em>example</em>, i.e., a block starting with <code>it "&hellip;" do</code>:</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
 
@@ -565,13 +530,13 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>uses the <code>page</code> variable (also provided by Capybara) to express the expectation that the resulting page should have the right content.</p>
 
-<p>To get the test to run properly, we have to add a line to the <code>spec_helper.rb</code> file, as shown in <a class="ref" href="static-pages?version=4.0#code-capybara_dsl">Listing&nbsp;3.11</a>. (In a future draft of this book, I plan eliminate this requirement by adopting the newer technique of <a href="https://www.relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec">feature specs</a>.)</p>
+<p>To get the test to run properly, we have to add a line to the <code>spec_helper.rb</code> file, as shown in <a class="ref" href="static-pages?version=4.0#code-capybara_dsl">Listing&nbsp;3.10</a>. (In a future draft of this book, I plan eliminate this requirement by adopting the newer technique of <a href="https://www.relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec">feature specs</a>.)</p>
 
 <div class="label" id="code-capybara_dsl"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.11.</span></div>
+<div class="listing"><span class="header">Listing 3.10.</span></div>
 
 
 Adding the Capybara DSL to the RSpec helper file. <br />
@@ -605,13 +570,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 <div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/red_failing_spec_4_0.png" alt="red_failing_spec_4_0" /></span></div><div class="caption"><span class="header">Figure 3.3: </span><span class="description">A red (failing) test.&nbsp;<a href="http://railstutorial.jp/images/figures/red_failing_spec_4_0-full.png">(full size)</a></span></div></div>
 
 
-<p>To get the test to pass, we&rsquo;ll replace the default Home page test with the HTML in <a class="ref" href="static-pages?version=4.0#code-home_page_passing">Listing&nbsp;3.12</a>.</p>
+<p>To get the test to pass, we&rsquo;ll replace the default Home page test with the HTML in <a class="ref" href="static-pages?version=4.0#code-home_page_passing">Listing&nbsp;3.11</a>.</p>
 
 <div class="label" id="code-home_page_passing"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.12.</span> <span class="description">Code to get a passing test for the Home page. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.11.</span> <span class="description">Code to get a passing test for the Home page. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Sample App<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
   This is the home page for the
@@ -644,13 +609,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 <div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/green_passing_spec_4_0.png" alt="green_passing_spec_4_0" /></span></div><div class="caption"><span class="header">Figure 3.4: </span><span class="description">A green (passing) test.&nbsp;<a href="http://railstutorial.jp/images/figures/green_passing_spec_4_0-full.png">(full size)</a></span></div></div>
 
 
-<p>Based on the example for the Home page, you can probably guess the analogous test and application code for the Help page. We start by testing for the relevant content, in this case the string <code>&rsquo;Help&rsquo;</code> (<a class="ref" href="static-pages?version=4.0#code-help_content_spec">Listing&nbsp;3.13</a>).</p>
+<p>Based on the example for the Home page, you can probably guess the analogous test and application code for the Help page. We start by testing for the relevant content, in this case the string <code>&rsquo;Help&rsquo;</code> (<a class="ref" href="static-pages?version=4.0#code-help_content_spec">Listing&nbsp;3.12</a>).</p>
 
 <div class="label" id="code-help_content_spec"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.13.</span> <span class="description">Adding code to test the contents of the Help page. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.12.</span> <span class="description">Adding code to test the contents of the Help page. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
@@ -684,13 +649,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 <p>One test should fail. (Since systems will vary, and since keeping track of how many tests there are at each stage of the tutorial is a maintenance nightmare, I&rsquo;ll omit the RSpec output from now on.)</p>
 
-<p>The application code is similar to the code in <a class="ref" href="static-pages?version=4.0#code-home_page_passing">Listing&nbsp;3.12</a>, as seen in <a class="ref" href="static-pages?version=4.0#code-help_page_passing">Listing&nbsp;3.14</a>.</p>
+<p>The application code is similar to the code in <a class="ref" href="static-pages?version=4.0#code-home_page_passing">Listing&nbsp;3.11</a>, as seen in <a class="ref" href="static-pages?version=4.0#code-help_page_passing">Listing&nbsp;3.13</a>.</p>
 
 <div class="label" id="code-help_page_passing"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.14.</span> <span class="description">Code to get a passing test for the Help page. <br /> <code>app/views/static_pages/help.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.13.</span> <span class="description">Code to get a passing test for the Help page. <br /> <code>app/views/static_pages/help.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Help<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
   Get help on the Ruby on Rails Tutorial at the
@@ -723,13 +688,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 <h4><a id="sec-3_2_2_1" href="static-pages?version=4.0#sec-red" class="heading">Red</a></h4>
 
 
-<p>We&rsquo;ll get to the Red part of the Red-Green cycle by writing a failing test for the About page. Following the models from <a class="ref" href="static-pages?version=4.0#code-help_content_spec">Listing&nbsp;3.13</a>, you can probably guess the right test (<a class="ref" href="static-pages?version=4.0#code-about_page_content_spec">Listing&nbsp;3.15</a>).</p>
+<p>We&rsquo;ll get to the Red part of the Red-Green cycle by writing a failing test for the About page. Following the models from <a class="ref" href="static-pages?version=4.0#code-help_content_spec">Listing&nbsp;3.12</a>, you can probably guess the right test (<a class="ref" href="static-pages?version=4.0#code-about_page_content_spec">Listing&nbsp;3.14</a>).</p>
 
 <div class="label" id="code-about_page_content_spec"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.15.</span> <span class="description">Adding code to test the contents of the About page. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.14.</span> <span class="description">Adding code to test the contents of the About page. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
@@ -786,13 +751,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 </div>
 
 
-<p>This is a hint that we need to add <code>/static_pages/about</code> to the routes file, which we can accomplish by following the pattern in <a class="ref" href="static-pages?version=4.0#code-pages_routes">Listing&nbsp;3.6</a>, as shown in  <a class="ref" href="static-pages?version=4.0#code-about_route">Listing&nbsp;3.16</a>.</p>
+<p>This is a hint that we need to add <code>/static_pages/about</code> to the routes file, which we can accomplish by following the pattern in <a class="ref" href="static-pages?version=4.0#code-pages_routes">Listing&nbsp;3.5</a>, as shown in  <a class="ref" href="static-pages?version=4.0#code-about_route">Listing&nbsp;3.15</a>.</p>
 
 <div class="label" id="code-about_route"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.16.</span> <span class="description">Adding the <code>about</code> route. <br /> <code>config/routes.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.15.</span> <span class="description">Adding the <code>about</code> route. <br /> <code>config/routes.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
   <span class="n">get</span> <span class="s2">&quot;static_pages/home&quot;</span>
   <span class="n">get</span> <span class="s2">&quot;static_pages/help&quot;</span>
@@ -819,13 +784,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 </div>
 
 
-<p>To solve this problem, we follow the model provided by <code>home</code> and <code>help</code> from <a class="ref" href="static-pages?version=4.0#code-static_pages_controller">Listing&nbsp;3.7</a> by adding an <code>about</code> action in the StaticPages controller (<a class="ref" href="static-pages?version=4.0#code-adding_the_about_page">Listing&nbsp;3.17</a>).</p>
+<p>To solve this problem, we follow the model provided by <code>home</code> and <code>help</code> from <a class="ref" href="static-pages?version=4.0#code-static_pages_controller">Listing&nbsp;3.6</a> by adding an <code>about</code> action in the StaticPages controller (<a class="ref" href="static-pages?version=4.0#code-adding_the_about_page">Listing&nbsp;3.16</a>).</p>
 
 <div class="label" id="code-adding_the_about_page"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.17.</span> <span class="description">The StaticPages controller with added <code>about</code> action. <br /> <code>app/controllers/static_pages_controller.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.16.</span> <span class="description">The StaticPages controller with added <code>about</code> action. <br /> <code>app/controllers/static_pages_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">StaticPagesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
 
   <span class="k">def</span> <span class="nf">home</span>
@@ -855,13 +820,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 </div>
 
 
-<p>To solve this issue, we add the <code>about</code> view. This involves creating a new file called <code>about.html.erb</code> in the <code>app/views/static_pages</code> directory with the contents shown in <a class="ref" href="static-pages?version=4.0#code-about_view">Listing&nbsp;3.18</a>.</p>
+<p>To solve this issue, we add the <code>about</code> view. This involves creating a new file called <code>about.html.erb</code> in the <code>app/views/static_pages</code> directory with the contents shown in <a class="ref" href="static-pages?version=4.0#code-about_view">Listing&nbsp;3.17</a>.</p>
 
 <div class="label" id="code-about_view"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.18.</span> <span class="description">Code for the About page. <br /> <code>app/views/static_pages/about.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.17.</span> <span class="description">Code for the About page. <br /> <code>app/views/static_pages/about.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>About Us<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
   The <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.jp/&quot;</span><span class="nt">&gt;</span>Ruby on Rails Tutorial<span class="nt">&lt;/a&gt;</span>
@@ -908,7 +873,7 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 <p>Now that we&rsquo;ve created the actions and views for some static pages, we&rsquo;ll make them <em>very slightly</em> dynamic by adding some content that changes on a per-page basis: we&rsquo;ll have the title of each page change to reflect its content. Whether a changing title represents <em>truly</em> dynamic content is debatable, but in any case it lays the necessary foundation for unambiguously dynamic content in <a class="ref" href="sign-up?version=4.0#top">Chapter&nbsp;7</a>.</p>
 
-<p>If you skipped the TDD material in <a class="ref" href="static-pages?version=4.0#sec-first_tests">Section&nbsp;3.2</a>, be sure to create an About page at this point using the code from <a class="ref" href="static-pages?version=4.0#code-about_route">Listing&nbsp;3.16</a>, <a class="ref" href="static-pages?version=4.0#code-adding_the_about_page">Listing&nbsp;3.17</a>, and <a class="ref" href="static-pages?version=4.0#code-about_view">Listing&nbsp;3.18</a>.</p>
+<p>If you skipped the TDD material in <a class="ref" href="static-pages?version=4.0#sec-first_tests">Section&nbsp;3.2</a>, be sure to create an About page at this point using the code from <a class="ref" href="static-pages?version=4.0#code-about_route">Listing&nbsp;3.15</a>, <a class="ref" href="static-pages?version=4.0#code-adding_the_about_page">Listing&nbsp;3.16</a>, and <a class="ref" href="static-pages?version=4.0#code-about_view">Listing&nbsp;3.17</a>.</p>
 
 <div class="label" id="sec-testing_a_title_change"></div>
 
@@ -934,13 +899,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 <table class="tabular"><tr><th class="align_center"><strong>Page</strong></th><th class="align_left"><strong>URL</strong></th><th class="align_left"><strong>Base title</strong></th><th class="align_left"><strong>Variable title</strong></th></tr><tr class="top_bar"><td class="align_center">Home</td><td class="align_left">/static_pages/home</td><td class="align_left"><code>"Ruby on Rails Tutorial Sample App"</code></td><td class="align_left"><code>"Home"</code></td></tr><tr><td class="align_center">Help</td><td class="align_left">/static_pages/help</td><td class="align_left"><code>"Ruby on Rails Tutorial Sample App"</code></td><td class="align_left"><code>"Help"</code></td></tr><tr><td class="align_center">About</td><td class="align_left">/static_pages/about</td><td class="align_left"><code>"Ruby on Rails Tutorial Sample App"</code></td><td class="align_left"><code>"About"</code></td></tr></table></div><div class="caption"><span class="header">Table 3.1: </span><span class="description">The (mostly) static pages for the sample app.</span></div></div>
 
 
-<p>By the end of this section, all three of our static pages will have titles of the form &ldquo;Ruby on Rails Tutorial Sample App | Home&rdquo;, where the last part of the title will vary depending on the page (<a class="ref" href="static-pages?version=4.0#table-static_pages">Table&nbsp;3.1</a>). We&rsquo;ll build on the tests in <a class="ref" href="static-pages?version=4.0#code-about_page_content_spec">Listing&nbsp;3.15</a>, adding title tests following the model in <a class="ref" href="static-pages?version=4.0#code-title_test">Listing&nbsp;3.19</a>.</p>
+<p>By the end of this section, all three of our static pages will have titles of the form &ldquo;Ruby on Rails Tutorial Sample App | Home&rdquo;, where the last part of the title will vary depending on the page (<a class="ref" href="static-pages?version=4.0#table-static_pages">Table&nbsp;3.1</a>). We&rsquo;ll build on the tests in <a class="ref" href="static-pages?version=4.0#code-about_page_content_spec">Listing&nbsp;3.14</a>, adding title tests following the model in <a class="ref" href="static-pages?version=4.0#code-title_test">Listing&nbsp;3.18</a>.</p>
 
 <div class="label" id="code-title_test"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.19.</span> <span class="description">A title test.</span> </div>
+<div class="listing"><span class="header">Listing 3.18.</span> <span class="description">A title test.</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should have the right title&quot;</span> <span class="k">do</span>
   <span class="n">visit</span> <span class="s1">&#39;/static_pages/home&#39;</span>
   <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s2">&quot;Ruby on Rails Tutorial Sample App | Home&quot;</span><span class="p">)</span>
@@ -972,13 +937,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 <p>will also match the full title.</p>
 
-<p>Adding new tests for each of our three static pages, following the model of <a class="ref" href="static-pages?version=4.0#code-title_test">Listing&nbsp;3.19</a>, gives us our new StaticPages test (<a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.20</a>). Note that there is considerable repetition here, which we will eliminate in <a class="ref" href="filling-in-the-layout?version=4.0#sec-pretty_rspec">Section&nbsp;5.3.4</a>.</p>
+<p>Adding new tests for each of our three static pages, following the model of <a class="ref" href="static-pages?version=4.0#code-title_test">Listing&nbsp;3.18</a>, gives us our new StaticPages test (<a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.19</a>). Note that there is considerable repetition here, which we will eliminate in <a class="ref" href="filling-in-the-layout?version=4.0#sec-pretty_rspec">Section&nbsp;5.3.4</a>.</p>
 
 <div class="label" id="code-pages_controller_spec_title"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.20.</span> <span class="description">The StaticPages controller spec with title tests. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.19.</span> <span class="description">The StaticPages controller spec with title tests. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
@@ -1026,7 +991,7 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 </div></div>
 
 
-<p>With the tests from <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.20</a> in place, you should run</p>
+<p>With the tests from <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.19</a> in place, you should run</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
 </pre></div>
@@ -1058,13 +1023,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 <p>This structure includes a <em>document type</em>, or doctype, declaration at the top to tell browsers which version of HTML we&rsquo;re using (in this case, <a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a>);<sup class="footnote" id="fnref-3_8"><a href="?version=4.0#fn-3_8">8</a></sup> a <code>head</code> section, in this case with &ldquo;Greeting&rdquo; inside a <code>title</code> tag; and a <code>body</code> section, in this case with &ldquo;Hello, world!&rdquo; inside a <code>p</code> (paragraph) tag. (The indentation is optional&mdash;HTML is not sensitive to whitespace, and ignores both tabs and spaces&mdash;but it makes the document&rsquo;s structure easier to see.)</p>
 
-<p>Applying this basic structure to the Home page yields <a class="ref" href="static-pages?version=4.0#code-home_view_full_html">Listing&nbsp;3.21</a>.</p>
+<p>Applying this basic structure to the Home page yields <a class="ref" href="static-pages?version=4.0#code-home_view_full_html">Listing&nbsp;3.20</a>.</p>
 
 <div class="label" id="code-home_view_full_html"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.21.</span> <span class="description">The view for the Home page with full HTML structure. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.20.</span> <span class="description">The view for the Home page with full HTML structure. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -1083,20 +1048,20 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 </div></div>
 
 
-<p><a class="ref" href="static-pages?version=4.0#code-home_view_full_html">Listing&nbsp;3.21</a> uses the title tested for in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.20</a>:</p>
+<p><a class="ref" href="static-pages?version=4.0#code-home_view_full_html">Listing&nbsp;3.20</a> uses the title tested for in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.19</a>:</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;title&gt;</span>Ruby on Rails Tutorial Sample App | Home<span class="nt">&lt;/title&gt;</span>
 </pre></div>
 </div>
 
 
-<p>As a result, the tests for the Home page should now pass. We&rsquo;re still Red because of the failing Help and About tests, and we can get to Green with the code in <a class="ref" href="static-pages?version=4.0#code-help_view_full_html">Listing&nbsp;3.22</a> and <a class="ref" href="static-pages?version=4.0#code-about_view_full_html">Listing&nbsp;3.23</a>.</p>
+<p>As a result, the tests for the Home page should now pass. We&rsquo;re still Red because of the failing Help and About tests, and we can get to Green with the code in <a class="ref" href="static-pages?version=4.0#code-help_view_full_html">Listing&nbsp;3.21</a> and <a class="ref" href="static-pages?version=4.0#code-about_view_full_html">Listing&nbsp;3.22</a>.</p>
 
 <div class="label" id="code-help_view_full_html"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.22.</span> <span class="description">The view for the Help page with full HTML structure. <br /> <code>app/views/static_pages/help.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.21.</span> <span class="description">The view for the Help page with full HTML structure. <br /> <code>app/views/static_pages/help.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -1122,7 +1087,7 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.23.</span> <span class="description">The view for the About page with full HTML structure. <br /> <code>app/views/static_pages/about.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.22.</span> <span class="description">The view for the About page with full HTML structure. <br /> <code>app/views/static_pages/about.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
@@ -1163,13 +1128,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 <p>Paradoxically, we&rsquo;ll take the first step toward eliminating duplication by first adding some more: we&rsquo;ll make the titles of the pages, which are currently quite similar, match <em>exactly</em>. This will make it much simpler to remove all the repetition at a stroke.</p>
 
-<p>The technique involves using <em>Embedded Ruby</em> in our views. Since the Home, Help, and About page titles have a variable component, we&rsquo;ll use a special Rails function called <code>provide</code> to set a different title on each page. We can see how this works by replacing the literal title &ldquo;Home&rdquo; in the <code>home.html.erb</code> view with the code in <a class="ref" href="static-pages?version=4.0#code-home_view_erb_title">Listing&nbsp;3.24</a>.</p>
+<p>The technique involves using <em>Embedded Ruby</em> in our views. Since the Home, Help, and About page titles have a variable component, we&rsquo;ll use a special Rails function called <code>provide</code> to set a different title on each page. We can see how this works by replacing the literal title &ldquo;Home&rdquo; in the <code>home.html.erb</code> view with the code in <a class="ref" href="static-pages?version=4.0#code-home_view_erb_title">Listing&nbsp;3.23</a>.</p>
 
 <div class="label" id="code-home_view_erb_title"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.24.</span> <span class="description">The view for the Home page with an Embedded Ruby title. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.23.</span> <span class="description">The view for the Home page with an Embedded Ruby title. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Home&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
@@ -1189,7 +1154,7 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 </div></div>
 
 
-<p><a class="ref" href="static-pages?version=4.0#code-home_view_erb_title">Listing&nbsp;3.24</a> is our first example of Embedded Ruby, also called <em>ERb</em>. (Now you know why HTML views have the file extension <code>.html.erb</code>.) ERb is the primary template system for including dynamic content in web pages.<sup class="footnote" id="fnref-3_9"><a href="?version=4.0#fn-3_9">9</a></sup> The code</p>
+<p><a class="ref" href="static-pages?version=4.0#code-home_view_erb_title">Listing&nbsp;3.23</a> is our first example of Embedded Ruby, also called <em>ERb</em>. (Now you know why HTML views have the file extension <code>.html.erb</code>.) ERb is the primary template system for including dynamic content in web pages.<sup class="footnote" id="fnref-3_9"><a href="?version=4.0#fn-3_9">9</a></sup> The code</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Home&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -1212,13 +1177,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 </div>
 
 
-<p>Then we can make the corresponding replacements for the Help and About pages (<a class="ref" href="static-pages?version=4.0#code-help_view_erb_title">Listing&nbsp;3.25</a> and <a class="ref" href="static-pages?version=4.0#code-about_view_erb_title">Listing&nbsp;3.26</a>).</p>
+<p>Then we can make the corresponding replacements for the Help and About pages (<a class="ref" href="static-pages?version=4.0#code-help_view_erb_title">Listing&nbsp;3.24</a> and <a class="ref" href="static-pages?version=4.0#code-about_view_erb_title">Listing&nbsp;3.25</a>).</p>
 
 <div class="label" id="code-help_view_erb_title"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.25.</span> <span class="description">The view for the Help page with an Embedded Ruby title. <br /> <code>app/views/static_pages/help.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.24.</span> <span class="description">The view for the Help page with an Embedded Ruby title. <br /> <code>app/views/static_pages/help.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Help&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
@@ -1245,7 +1210,7 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.26.</span> <span class="description">The view for the About page with an Embedded Ruby title. <br /> <code>app/views/static_pages/about.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.25.</span> <span class="description">The view for the About page with an Embedded Ruby title. <br /> <code>app/views/static_pages/about.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;About Us&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
@@ -1306,13 +1271,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 </div>
 
 
-<p>The resulting layout appears in <a class="ref" href="static-pages?version=4.0#code-application_layout">Listing&nbsp;3.27</a>.</p>
+<p>The resulting layout appears in <a class="ref" href="static-pages?version=4.0#code-application_layout">Listing&nbsp;3.26</a>.</p>
 
 <div class="label" id="code-application_layout"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.27.</span> <span class="description">The sample application site layout. <br /> <code>app/views/layouts/application.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.26.</span> <span class="description">The sample application site layout. <br /> <code>app/views/layouts/application.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
 <span class="nt">&lt;head&gt;</span>
@@ -1352,13 +1317,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 <p>This code arranges to include the application stylesheet and JavaScript, which are part of the asset pipeline (<a class="ref" href="filling-in-the-layout?version=4.0#sec-the_asset_pipeline">Section&nbsp;5.2.1</a>), together with the Rails method <code>csrf_meta_tags</code>, which prevents <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">cross-site request forgery</a> (CSRF), a type of malicious web attack.</p>
 
-<p>Of course, the views in <a class="ref" href="static-pages?version=4.0#code-home_view_erb_title">Listing&nbsp;3.24</a>, <a class="ref" href="static-pages?version=4.0#code-help_view_erb_title">Listing&nbsp;3.25</a>, and <a class="ref" href="static-pages?version=4.0#code-about_view_erb_title">Listing&nbsp;3.26</a> are still filled with all the HTML structure included in the layout, so we have to remove it, leaving only the interior contents. The resulting cleaned-up views appear in <a class="ref" href="static-pages?version=4.0#code-home_view_interior">Listing&nbsp;3.28</a>, <a class="ref" href="static-pages?version=4.0#code-help_view_interior">Listing&nbsp;3.29</a>, and <a class="ref" href="static-pages?version=4.0#code-about_view_interior">Listing&nbsp;3.30</a>.</p>
+<p>Of course, the views in <a class="ref" href="static-pages?version=4.0#code-home_view_erb_title">Listing&nbsp;3.23</a>, <a class="ref" href="static-pages?version=4.0#code-help_view_erb_title">Listing&nbsp;3.24</a>, and <a class="ref" href="static-pages?version=4.0#code-about_view_erb_title">Listing&nbsp;3.25</a> are still filled with all the HTML structure included in the layout, so we have to remove it, leaving only the interior contents. The resulting cleaned-up views appear in <a class="ref" href="static-pages?version=4.0#code-home_view_interior">Listing&nbsp;3.27</a>, <a class="ref" href="static-pages?version=4.0#code-help_view_interior">Listing&nbsp;3.28</a>, and <a class="ref" href="static-pages?version=4.0#code-about_view_interior">Listing&nbsp;3.29</a>.</p>
 
 <div class="label" id="code-home_view_interior"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.28.</span> <span class="description">The Home page with HTML structure removed. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.27.</span> <span class="description">The Home page with HTML structure removed. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Home&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>Sample App<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
@@ -1376,7 +1341,7 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.29.</span> <span class="description">The Help page with HTML structure removed. <br /> <code>app/views/static_pages/help.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.28.</span> <span class="description">The Help page with HTML structure removed. <br /> <code>app/views/static_pages/help.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Help&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>Help<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
@@ -1395,7 +1360,7 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.30.</span> <span class="description">The About page with HTML structure removed. <br /> <code>app/views/static_pages/about.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.29.</span> <span class="description">The About page with HTML structure removed. <br /> <code>app/views/static_pages/about.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;About Us&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>About Us<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
@@ -1467,11 +1432,11 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 <ol>
 
-<li>Make a Contact page for the sample app. Following the model in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.20</a>, first write a test for the existence of a page at the URL /static_pages/contact by testing for the title &ldquo;Ruby on Rails Tutorial Sample App | Contact&rdquo;. Get your test to pass by filling the Contact page with the content from <a class="ref" href="static-pages?version=4.0#code-proposed_contact_page">Listing&nbsp;3.31</a>. (This exercise is solved as part of <a class="ref" href="filling-in-the-layout?version=4.0#sec-layout_links">Section&nbsp;5.3</a>.)</li>
+<li>Make a Contact page for the sample app. Following the model in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.19</a>, first write a test for the existence of a page at the URL /static_pages/contact by testing for the title &ldquo;Ruby on Rails Tutorial Sample App | Contact&rdquo;. Get your test to pass by filling the Contact page with the content from <a class="ref" href="static-pages?version=4.0#code-proposed_contact_page">Listing&nbsp;3.30</a>. (This exercise is solved as part of <a class="ref" href="filling-in-the-layout?version=4.0#sec-layout_links">Section&nbsp;5.3</a>.)</li>
 
-<li>You may have noticed some repetition in the StaticPages controller spec (<a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.20</a>). In particular, the base title, &ldquo;Ruby on Rails Tutorial Sample App&rdquo;, is the same for every title test. Using the RSpec <code>let</code> function, which creates a variable corresponding to its argument, verify that the tests in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_exercise">Listing&nbsp;3.32</a> still pass. <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_exercise">Listing&nbsp;3.32</a> introduces <em>string interpolation</em>, which is covered further in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-strings">Section&nbsp;4.2.2</a>.</li>
+<li>You may have noticed some repetition in the StaticPages controller spec (<a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_title">Listing&nbsp;3.19</a>). In particular, the base title, &ldquo;Ruby on Rails Tutorial Sample App&rdquo;, is the same for every title test. Using the RSpec <code>let</code> function, which creates a variable corresponding to its argument, verify that the tests in <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_exercise">Listing&nbsp;3.31</a> still pass. <a class="ref" href="static-pages?version=4.0#code-pages_controller_spec_exercise">Listing&nbsp;3.31</a> introduces <em>string interpolation</em>, which is covered further in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-strings">Section&nbsp;4.2.2</a>.</li>
 
-<li><strong>(advanced)</strong> As noted on the <a href="http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development">Heroku page on using <tt>sqlite3</tt> for development</a>, it&rsquo;s a good idea to use the same database in development, test, and production environments to minimize the possibility of subtle incompatibilities. Follow the <a href="http://devcenter.heroku.com/articles/local-postgresql">Heroku instructions for local PostgreSQL installation</a> to install the PostgreSQL database on your local system. Update your <code>Gemfile</code> to eliminate the <tt>sqlite3</tt> gem and use the <tt>pg</tt> gem exclusively, as shown in <a class="ref" href="static-pages?version=4.0#code-Gemfile_pg_gem">Listing&nbsp;3.33</a>. You will also have to learn about the <code>config/database.yml</code> file and how to run PostgreSQL locally. Your goal should be to create and configure both the development database and the test database to use PostgreSQL. I especially recommend using <a href="http://inductionapp.com/">Induction</a> to connect to and view the local PostgreSQL database. <strong>Warning:</strong> You may find this exercise challenging, and I recommend it only for advanced users. If you get stuck, don&rsquo;t hesitate to skip it; as noted previously, the sample application developed in this tutorial is fully compatible with both SQLite and PostgreSQL.</li>
+<li><strong>(advanced)</strong> As noted on the <a href="http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development">Heroku page on using <tt>sqlite3</tt> for development</a>, it&rsquo;s a good idea to use the same database in development, test, and production environments to minimize the possibility of subtle incompatibilities. Follow the <a href="http://devcenter.heroku.com/articles/local-postgresql">Heroku instructions for local PostgreSQL installation</a> to install the PostgreSQL database on your local system. Update your <code>Gemfile</code> to eliminate the <tt>sqlite3</tt> gem and use the <tt>pg</tt> gem exclusively, as shown in <a class="ref" href="static-pages?version=4.0#code-Gemfile_pg_gem">Listing&nbsp;3.32</a>. You will also have to learn about the <code>config/database.yml</code> file and how to run PostgreSQL locally. Your goal should be to create and configure both the development database and the test database to use PostgreSQL. I especially recommend using <a href="http://inductionapp.com/">Induction</a> to connect to and view the local PostgreSQL database. <strong>Warning:</strong> You may find this exercise challenging, and I recommend it only for advanced users. If you get stuck, don&rsquo;t hesitate to skip it; as noted previously, the sample application developed in this tutorial is fully compatible with both SQLite and PostgreSQL.</li>
 
 </ol>
 
@@ -1482,7 +1447,7 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.31.</span> <span class="description">Code for a proposed Contact page. <br /> <code>app/views/static_pages/contact.html.erb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.30.</span> <span class="description">Code for a proposed Contact page. <br /> <code>app/views/static_pages/contact.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Contact&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>Contact<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
@@ -1499,7 +1464,7 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.32.</span> <span class="description">The StaticPages controller spec with a base title. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.31.</span> <span class="description">The StaticPages controller spec with a base title. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
@@ -1568,9 +1533,10 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.33.</span> <span class="description">The <code>Gemfile</code> needed to use PostgreSQL instead of SQLite.</span> </div>
+<div class="listing"><span class="header">Listing 3.32.</span> <span class="description">The <code>Gemfile</code> needed to use PostgreSQL instead of SQLite.</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+<span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
 <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.15.1&#39;</span>
@@ -1659,13 +1625,13 @@ Adding the Capybara DSL to the RSpec helper file. <br />
 </div>
 
 
-<p>Together, these commands combine RVM and Bundler magic to ensure that commands such as <code>rake</code> and <code>rspec</code> are automatically executed in the right environment. Since these files are specific to your local setup, you should add the <code>bundler_stubs</code> directory to your <code>.gitignore</code> file (<a class="ref" href="static-pages?version=4.0#code-bundler_stubs_gitignore">Listing&nbsp;3.34</a>).</p>
+<p>Together, these commands combine RVM and Bundler magic to ensure that commands such as <code>rake</code> and <code>rspec</code> are automatically executed in the right environment. Since these files are specific to your local setup, you should add the <code>bundler_stubs</code> directory to your <code>.gitignore</code> file (<a class="ref" href="static-pages?version=4.0#code-bundler_stubs_gitignore">Listing&nbsp;3.33</a>).</p>
 
 <div class="label" id="code-bundler_stubs_gitignore"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.34.</span> <span class="description">Adding <code>bundler_stubs</code> to the <code>.gitignore</code> file.</span> </div>
+<div class="listing"><span class="header">Listing 3.33.</span> <span class="description">Adding <code>bundler_stubs</code> to the <code>.gitignore</code> file.</span> </div>
 <div class="code"><div class="highlight"><pre># Ignore bundler config.
 /.bundle
 
@@ -1739,15 +1705,16 @@ bundler_stubs/
 
 <p>One annoyance associated with using the <code>rspec</code> command is having to switch to the command line and run the tests by hand. (A second annoyance, the slow start-up time of the test suite, is addressed in <a class="ref" href="static-pages?version=4.0#sec-spork">Section&nbsp;3.6.3</a>.) In this section, we&rsquo;ll show how to use <a href="https://github.com/guard/guard">Guard</a> to automate the running of the tests. Guard monitors changes in the filesystem so that, for example, when we change the <code>static_pages_spec.rb</code> file only those tests get run. Even better, we can configure Guard so that when, say, the <code>home.html.erb</code> file is modified, the <code>static_pages_spec.rb</code> automatically runs.</p>
 
-<p>First we add <code>guard-rspec</code> to the <code>Gemfile</code> (<a class="ref" href="static-pages?version=4.0#code-gemfile_guard">Listing&nbsp;3.35</a>).</p>
+<p>First we add <code>guard-rspec</code> to the <code>Gemfile</code> (<a class="ref" href="static-pages?version=4.0#code-gemfile_guard">Listing&nbsp;3.34</a>).</p>
 
 <div class="label" id="code-gemfile_guard"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.35.</span> <span class="description">A <code>Gemfile</code> for the sample app, including Guard.</span> </div>
+<div class="listing"><span class="header">Listing 3.34.</span> <span class="description">A <code>Gemfile</code> for the sample app, including Guard.</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+<span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
 
@@ -1785,12 +1752,13 @@ bundler_stubs/
 
 <span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.15.1&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;rails_12factor&#39;</span><span class="p">,</span> <span class="s1">&#39;0.0.2&#39;</span>
 <span class="k">end</span>
 </pre></div>
 </div></div>
 
 
-<p>Be sure to uncomment the lines in the test group relevant for your system.</p>
+<p>Be sure to uncomment the lines in the test group relevant for your system. (Note that, if you want Growl notifications, you will have to purchase <a href="http://growl.info/downloads">Growl</a>, which is available in the Apple App Store for a nominal charge.)</p>
 
 <p>We next install the gems by running <code>bundle install</code>:</p>
 
@@ -1808,13 +1776,13 @@ bundler_stubs/
 </div>
 
 
-<p>Now edit the resulting <code>Guardfile</code> so that Guard will run the right tests when the integration tests and views are updated (<a class="ref" href="static-pages?version=4.0#code-guardfile">Listing&nbsp;3.36</a>).</p>
+<p>Now edit the resulting <code>Guardfile</code> so that Guard will run the right tests when the integration tests and views are updated (<a class="ref" href="static-pages?version=4.0#code-guardfile">Listing&nbsp;3.35</a>).</p>
 
 <div class="label" id="code-guardfile"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.36.</span> <span class="description">Additions to the default <code>Guardfile</code>. Note the added <code>require</code>.</span> </div>
+<div class="listing"><span class="header">Listing 3.35.</span> <span class="description">Additions to the default <code>Guardfile</code>. Note the added <code>require</code>.</span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;active_support/inflector&#39;</span>
 
 <span class="n">guard</span> <span class="s1">&#39;rspec&#39;</span><span class="p">,</span> <span class="ss">all_after_pass:</span> <span class="kp">false</span> <span class="k">do</span>
@@ -1879,15 +1847,16 @@ bundler_stubs/
 
 <p>When running <code>bundle exec rspec</code>, you may have noticed that it takes several seconds just to start running the tests, but once they start running they finish quickly. This is because each time RSpec runs the tests it has to reload the entire Rails environment. The <a href="http://github.com/sporkrb/spork">Spork test server</a><sup class="footnote" id="fnref-3_13"><a href="?version=4.0#fn-3_13">13</a></sup> aims to solve this problem. Spork loads the environment <em>once</em>, and then maintains a pool of processes for running future tests. Spork is particularly useful when combined with Guard (<a class="ref" href="static-pages?version=4.0#sec-guard">Section&nbsp;3.6.2</a>).</p>
 
-<p>The first step is to add the <code>spork</code> gem dependency to the <code>Gemfile</code> (<a class="ref" href="static-pages?version=4.0#code-gemfile_spork">Listing&nbsp;3.37</a>).</p>
+<p>The first step is to add the <code>spork</code> gem dependency to the <code>Gemfile</code> (<a class="ref" href="static-pages?version=4.0#code-gemfile_spork">Listing&nbsp;3.36</a>).</p>
 
 <div class="label" id="code-gemfile_spork"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.37.</span> <span class="description">A <code>Gemfile</code> for the sample app, including Spork.</span> </div>
+<div class="listing"><span class="header">Listing 3.36.</span> <span class="description">A <code>Gemfile</code> for the sample app, including Spork.</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+<span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
 
@@ -1920,13 +1889,13 @@ bundler_stubs/
 </div>
 
 
-<p>Now we need to edit the RSpec configuration file, located in <code>spec/spec_helper.rb</code>, so that the environment gets loaded in a <em>prefork</em> block, which arranges for it to be loaded only once (<a class="ref" href="static-pages?version=4.0#code-spork_spec_helper">Listing&nbsp;3.38</a>).</p>
+<p>Now we need to edit the RSpec configuration file, located in <code>spec/spec_helper.rb</code>, so that the environment gets loaded in a <em>prefork</em> block, which arranges for it to be loaded only once (<a class="ref" href="static-pages?version=4.0#code-spork_spec_helper">Listing&nbsp;3.37</a>).</p>
 
 <div class="label" id="code-spork_spec_helper"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.38.</span> <span class="description">Adding environment loading to the <code>Spork.prefork</code> block. <br /> <code>spec/spec_helper.rb</code></span> </div>
+<div class="listing"><span class="header">Listing 3.37.</span> <span class="description">Adding environment loading to the <code>Spork.prefork</code> block. <br /> <code>spec/spec_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 <span class="nb">require</span> <span class="s1">&#39;spork&#39;</span>
 
@@ -2021,13 +1990,13 @@ bundler_stubs/
 </div>
 
 
-<p>It&rsquo;s inconvenient to have to include the <tt class="verb">--drb</tt> option every time we run <code>rspec</code>, so I recommend adding it to the <code>.rspec</code> file in the application&rsquo;s root directory, as shown in <a class="ref" href="static-pages?version=4.0#code-rspec_drb">Listing&nbsp;3.39</a>.</p>
+<p>It&rsquo;s inconvenient to have to include the <tt class="verb">--drb</tt> option every time we run <code>rspec</code>, so I recommend adding it to the <code>.rspec</code> file in the application&rsquo;s root directory, as shown in <a class="ref" href="static-pages?version=4.0#code-rspec_drb">Listing&nbsp;3.38</a>.</p>
 
 <div class="label" id="code-rspec_drb"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.39.</span> <span class="description">Configuring RSpec to automatically use Spork. <br /> <code>.rspec</code></span> </div>
+<div class="listing"><span class="header">Listing 3.38.</span> <span class="description">Configuring RSpec to automatically use Spork. <br /> <code>.rspec</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="o">--</span><span class="n">colour</span>
 <span class="o">--</span><span class="n">drb</span>
 </pre></div>
@@ -2059,13 +2028,13 @@ bundler_stubs/
 </div>
 
 
-<p>We then need to change the <code>Guardfile</code> as in <a class="ref" href="static-pages?version=4.0#code-spork_guardfile">Listing&nbsp;3.40</a>.</p>
+<p>We then need to change the <code>Guardfile</code> as in <a class="ref" href="static-pages?version=4.0#code-spork_guardfile">Listing&nbsp;3.39</a>.</p>
 
 <div class="label" id="code-spork_guardfile"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.40.</span> <span class="description">The <code>Guardfile</code> updated for Spork.</span> </div>
+<div class="listing"><span class="header">Listing 3.39.</span> <span class="description">The <code>Guardfile</code> updated for Spork.</span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;active_support/inflector&#39;</span>
 
 <span class="n">guard</span> <span class="s1">&#39;spork&#39;</span><span class="p">,</span> <span class="ss">:cucumber_env</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s1">&#39;RAILS_ENV&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span> <span class="p">},</span>

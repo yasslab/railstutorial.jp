@@ -101,7 +101,7 @@
 </div></div>
 
 
-<p>(Note that, in contrast to the plural convention for controller names, model names are singular: a Users controller, but a User model.) By passing the optional parameters <code>name:string</code> and <code>email:string</code>, we tell Rails about the two attributes we want, along with what types those attributes should be (in this case, <code>string</code>). Compare this with including the action names in <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.5</a> and <a class="ref" href="filling-in-the-layout?version=4.0#code-generate_users_controller">Listing&nbsp;5.29</a>.</p>
+<p>(Note that, in contrast to the plural convention for controller names, model names are singular: a Users controller, but a User model.) By passing the optional parameters <code>name:string</code> and <code>email:string</code>, we tell Rails about the two attributes we want, along with what types those attributes should be (in this case, <code>string</code>). Compare this with including the action names in <a class="ref" href="static-pages?version=4.0#code-generating_pages">Listing&nbsp;3.4</a> and <a class="ref" href="filling-in-the-layout?version=4.0#code-generate_users_controller">Listing&nbsp;5.29</a>.</p>
 
 <p>One of the results of the <code>generate</code> command in <a class="ref" href="modeling-users?version=4.0#code-generate_user_model">Listing&nbsp;6.1</a> is a new file called a <em>migration</em>.  Migrations provide a way to alter the structure of the database incrementally, so that our data model can adapt to changing requirements. In the case of the User model, the migration is created automatically by the model generation script; it creates a <code>users</code> table with two columns, <code>name</code> and <code>email</code>, as shown in <a class="ref" href="modeling-users?version=4.0#code-users_migration">Listing&nbsp;6.2</a>. (We&rsquo;ll see in <a class="ref" href="modeling-users?version=4.0#sec-uniqueness_validation">Section&nbsp;6.2.5</a> and again in <a class="ref" href="modeling-users?version=4.0#sec-adding_a_secure_password">Section&nbsp;6.3</a> how to make a migration from scratch.)</p>
 
@@ -1211,6 +1211,7 @@
 <div class="listing"><span class="header">Listing 6.21.</span> <span class="description">Adding <code>bcrypt-ruby</code> to the <code>Gemfile</code>.</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+<span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
 
 <span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
 <span class="n">gem</span> <span class="s1">&#39;bootstrap-sass&#39;</span><span class="p">,</span> <span class="s1">&#39;2.3.2.0&#39;</span>

@@ -268,7 +268,7 @@
 <div class="listing"><span class="header">Listing 7.3.</span> <span class="description">Adding a Users resource to the routes file. <br /> <code>config/routes.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
   <span class="n">resources</span> <span class="ss">:users</span>
-  <span class="n">root</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#home&#39;</span>
+  <span class="n">root</span>  <span class="s1">&#39;static_pages#home&#39;</span>
   <span class="n">match</span> <span class="s1">&#39;/signup&#39;</span><span class="p">,</span>  <span class="ss">to:</span> <span class="s1">&#39;users#new&#39;</span><span class="p">,</span>            <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -1622,7 +1622,7 @@
 <h3><a id="sec-7_4_2" href="sign-up?version=4.0#sec-the_flash" class="heading"><span class="number">7.4.2</span> The flash</a></h3>
 
 
-<p>Before submitting a valid registration in a browser, we&rsquo;re going to add a bit of polish common in web applications: a message that appears on the subsequent page (in this case, welcoming our new user to the application) and then disappears upon visiting a second page or on page reload. The Rails way to accomplish this is to use a special variable called the <em>flash</em>, which operates like <a href="http://en.wikipedia.org/wiki/Flash_memory">flash memory</a> in that it stores its data temporarily. The <code>flash</code> variable is effectively a hash; you may even recall the console example in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">Section&nbsp;4.3.3</a>, where we saw how to iterate through a hash using a strategically named <code>flash</code> hash:</p>
+<p>Before submitting a valid registration in a browser, we&rsquo;re going to add a bit of polish common in web applications: a message that appears on the subsequent page (in this case, welcoming our new user to the application) and then disappears upon visiting a second page or on page reload. The Rails way to accomplish this is to use a special variable called the <em>flash</em>, which we can treat like a hash. You may even recall the console example in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">Section&nbsp;4.3.3</a>, where we saw how to iterate through a hash using a strategically named <code>flash</code> hash:</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="n">flash</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">success:</span> <span class="s2">&quot;It worked!&quot;</span><span class="p">,</span> <span class="ss">error:</span> <span class="s2">&quot;It failed.&quot;</span> <span class="p">}</span>

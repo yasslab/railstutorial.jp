@@ -18,7 +18,7 @@
 
 <p>As we saw in the last chapter, it&rsquo;s possible to develop the skeleton of a Rails application, and even start testing it, with essentially no knowledge of the underlying Ruby language. We did this by relying on the test code provided by the tutorial and addressing each error message until the test suite was passing. This situation can&rsquo;t last forever, though, and we&rsquo;ll open this chapter with an addition to the site that brings us face-to-face with our Ruby limitations.</p>
 
-<p>When we last saw our new application, we had just updated our mostly static pages to use Rails layouts to eliminate duplication in our views, as shown in <a class="ref" href="rails-flavored-ruby?version=4.0#code-application_layout_redux">Listing&nbsp;4.1</a> (which is a slightly reformatted version of <a class="ref" href="static-pages?version=4.0#code-application_layout">Listing&nbsp;3.27</a>).</p>
+<p>When we last saw our new application, we had just updated our mostly static pages to use Rails layouts to eliminate duplication in our views, as shown in <a class="ref" href="rails-flavored-ruby?version=4.0#code-application_layout_redux">Listing&nbsp;4.1</a> (which is a slightly reformatted version of <a class="ref" href="static-pages?version=4.0#code-application_layout">Listing&nbsp;3.26</a>).</p>
 
 <div class="label" id="code-application_layout_redux"></div>
 
@@ -530,7 +530,7 @@
 <h3><a id="sec-4_2_4" href="rails-flavored-ruby?version=4.0#sec-method_definitions" class="heading"><span class="number">4.2.4</span> Method definitions</a></h3>
 
 
-<p>The console allows us to define methods the same way we did with the <code>home</code> action from <a class="ref" href="static-pages?version=4.0#code-static_pages_controller">Listing&nbsp;3.7</a> or the <code>full_title</code> helper from <a class="ref" href="rails-flavored-ruby?version=4.0#code-title_helper">Listing&nbsp;4.2</a>. (Defining methods in the console is a bit cumbersome, and ordinarily you would use a file, but it&rsquo;s convenient for demonstration purposes.) For example, let&rsquo;s define a function <code>string_message</code> that takes a single <em>argument</em> and returns a message based on whether the argument is empty or not:</p>
+<p>The console allows us to define methods the same way we did with the <code>home</code> action from <a class="ref" href="static-pages?version=4.0#code-static_pages_controller">Listing&nbsp;3.6</a> or the <code>full_title</code> helper from <a class="ref" href="rails-flavored-ruby?version=4.0#code-title_helper">Listing&nbsp;4.2</a>. (Defining methods in the console is a bit cumbersome, and ordinarily you would use a file, but it&rsquo;s convenient for demonstration purposes.) For example, let&rsquo;s define a function <code>string_message</code> that takes a single <em>argument</em> and returns a message based on whether the argument is empty or not:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">def</span> <span class="nf">string_message</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">if</span> <span class="n">string</span><span class="o">.</span><span class="n">empty?</span>
@@ -1344,7 +1344,7 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 <h3><a id="sec-4_4_4" href="rails-flavored-ruby?version=4.0#sec-a_controller_class" class="heading"><span class="number">4.4.4</span> A controller class</a></h3>
 
 
-<p>All this talk about classes and inheritance may have triggered a flash of recognition, because we have seen both before, in the StaticPages controller (<a class="ref" href="static-pages?version=4.0#code-adding_the_about_page">Listing&nbsp;3.17</a>):</p>
+<p>All this talk about classes and inheritance may have triggered a flash of recognition, because we have seen both before, in the StaticPages controller (<a class="ref" href="static-pages?version=4.0#code-adding_the_about_page">Listing&nbsp;3.16</a>):</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">StaticPagesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
 
