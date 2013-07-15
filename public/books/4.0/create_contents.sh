@@ -7,8 +7,10 @@
 
 
 # Create '_contents.html.erb',
-cat beginning.html | sed -n '/<h1 class="title">/, /<\/pre><\/div>/p' \
-    > _contents.html.erb
+echo '<h1 class="title">Ruby on Rails 4.0 Tutorial </h1>' > _contents.html.erb
+cat beginning.html.original | \
+    sed -n '/<h1 class="subtitle">/, /<\/pre><\/div>/p' \
+    >> _contents.html.erb
 echo "</div>" >> _contents.html.erb
 echo "Created '_contents.html.erb"
 

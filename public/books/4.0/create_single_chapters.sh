@@ -10,3 +10,4 @@ do
     cat ../_foot.html               >> "$chapter".html
     echo made $chapter.html a single chapter
 done
+
