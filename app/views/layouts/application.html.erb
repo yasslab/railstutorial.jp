@@ -52,6 +52,16 @@
         <div id="main" class="withsidebar">
 	  <div id="book_menu">
 	    <a href="#main_content">コンテンツまでスキップする</a>
+	    <span class='division'>|</span>
+	    <% if request.path_info.include? "ruby-on-rails-tutorial" %>
+	      <%= link_to '１章ずつ読む',
+		  chapter_path(:id => 'beginning', :version => params[:version])
+		  %>
+	    <% else %>
+	      <%= link_to '全ての章をまとめて読む',
+		  :controller => 'chapters', :action => 'book', :version => params[:version]
+		  %>
+	    <% end %>
 	  </div>
 
 	  <%= yield %>
