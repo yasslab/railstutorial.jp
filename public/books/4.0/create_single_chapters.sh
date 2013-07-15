@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# Download and update HTML files from 'chapter_list.txt'.
+# Add header/footer to each chapter,
+# and complete each chapter as a HTML file.
 
 for chapter in `cat ../chapter_list.txt`
 do

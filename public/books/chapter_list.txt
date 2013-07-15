@@ -9,4 +9,3 @@ sign-in-sign-out
 updating-showing-and-deleting-users
 user-microposts
 following-users
-book
