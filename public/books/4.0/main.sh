@@ -12,5 +12,4 @@
 
 # For book (generated from chapters)
 ./create_book.sh
-./correct_book.sh
 
