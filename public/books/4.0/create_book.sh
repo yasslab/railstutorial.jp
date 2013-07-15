@@ -12,7 +12,9 @@ for chapter in `cat ../chapter_list.txt`
 do
     #echo "s/$chapter$VERSION#top/$VERSION#cha-$chapter/g"
     cat "$chapter"_fragment.html | \
-	sed -e "s/id=\"top\"/class=\"label\" id=\"cha-$chapter\"/g" \
+	sed -e "s/id=\"top\"/class=\"label\" id=\"cha-$chapter\"/g" | \
+	perl -pe "s/<\/div><div class=\"footnotes\">/<\/div>\n<div class=\"footnotes\">/g" | \
+	sed -n '/<div class="navigation">/,/^<\/div>/!p' \
 	>> book_fragment.html
 done
 echo "Created 'book_fragment.html'"
