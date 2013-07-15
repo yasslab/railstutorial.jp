@@ -9,14 +9,14 @@
 re_array=("s/href=\"(.+?)([?|#])/href=\"$2/g" \
 )
 
-for chapter in `ls book*`
+for chapter in `cat ../book_list.txt`
 do
     cp $chapter.html $chapter.modified_0.html
     i=0
     for re in "${re_array[@]}"
     do
 	cat $chapter.modified_$i.html | sed -e "$re" > $chapter.modified_`expr $i + 1`.html
-        rm  $chapter.modified_$i.html
+        # rm  $chapter.modified_$i.html
 	i=`expr $i + 1`
     done
     
