@@ -1,30 +1,23 @@
 class ChaptersController < ApplicationController
-  before_filter :heroku_cache
+  before_filter :heroku_cache, :default_params
   include ApplicationHelper
 
   def index
-    @version = params[:version]
-    if third_edition? @version
-      @content = File.open("public/books/4.0/index.html").read
-    else
-      @content = File.open("public/books/3.2/index.html").read
-    end
+    @content = File.open("public/books/#{@version}/index.html").read
   end
 
   def show
     chapter  = params[:id]
-    @version = params[:version]
-    if third_edition? @version
-      @content = File.open("public/books/4.0/#{chapter}_fragment.html").read
-    else
-      @content = File.open("public/books/3.2/#{chapter}_fragment.html").read
-    end
+    @content = File.open("public/books/#{@version}/#{chapter}_fragment.html").read
+  end
+
+  def book
+    @content = File.open("public/books/#{@version}/book_fragment.html").read
   end
 
   def old
     # redirect to the corresponding page if visited old URL
     chapter  = params[:chapter]
-    @version = params[:version]
 
     if File.exist?("public/books/#{@version}/#{chapter}_fragment.html")
       redirect_to "/chapters/#{chapter}?version=4.0#top"
@@ -33,4 +26,10 @@ class ChaptersController < ApplicationController
     end
   end
 
+  private
+
+  def default_params
+    @anchor  = params[:anchor]  || 'top'
+    @version = params[:version] || 3.2
+  end
 end

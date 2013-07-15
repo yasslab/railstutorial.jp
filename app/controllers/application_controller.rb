@@ -12,5 +12,4 @@ class ApplicationController < ActionController::Base
       response.headers['Cache-Control'] = "public, max-age=#{age}"
     end
   end
-
 end
