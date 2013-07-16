@@ -35,7 +35,8 @@ mv book_fragment.modified_$i.html book_fragment.html
 echo "Corrected 'book_fragment.html'"
 
 # Create a 'book.html'
-cat ../_head.html      >  book.html
-cat book_fragment.html >> book.html
-cat ../_foot.html      >> book.html
+cat ../_head.html               >  book.html
+cat _contents_for_book.html.erb >> book.html
+cat book_fragment.html          >> book.html
+cat ../_foot.html               >> book.html
 echo "Created 'book.html'"    
