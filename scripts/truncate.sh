@@ -6,7 +6,7 @@ then
 else
     #Start=99
     Start=`grep -n -w 'id="top"' $@ | cut -d ':' -f1`
-    Line=`cat $@ | awk 'END {print NR }'`
-    End=`expr $Line - 3`
+    End=`  grep -n -w '</body>' $@ | cut -d ':' -f1`
+    End=`expr $End - 2`
     cat $@ | head -n $End | tail -n +$Start
 fi
