@@ -5,7 +5,6 @@
 # and create '_contents_for_book.html.erb'
 # that all links point to inside tags.
 
-
 # Create '_contents.html.erb',
 echo '<h1 class="title">Ruby on Rails 4.0 Tutorial </h1>' > _contents.html.erb
 cat sample_chapter.html | \
@@ -13,6 +12,12 @@ cat sample_chapter.html | \
     >> _contents.html.erb
 echo "</div>" >> _contents.html.erb
 echo "Created '_contents.html.erb"
+
+# Make single page for the main contents that include table, foreword, etc.
+cat ../_head.html               >  contents.html
+cat _contents.html.erb          >> contents.html
+cat ../_foot.html               >> contents.html
+echo "Created 'contents.html'"
 
 # Create '_contents_for_book.html.erb'
 # that all links point to inside tags.
@@ -41,10 +46,3 @@ do
 done
 mv _contents_for_book.html.erb.modified_$i _contents_for_book.html.erb
 echo "Created '_contents_for_book.html.erb'"
-
-# Make single page for the main contents that include table,foreward, etc.
-cat ../_head.html               >  contents.html
-cat _contents.html.erb          >> contents.html
-cat ../_foot.html               >> contents.html
-echo "Created 'contents.html'"    
-

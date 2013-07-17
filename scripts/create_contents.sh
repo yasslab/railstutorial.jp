@@ -13,6 +13,12 @@ cat beginning.html | \
 echo "</div>" >> _contents.html.erb
 echo "Created '_contents.html.erb"
 
+# Make single page for the main contents that include table, foreword, etc.
+cat _head.html           >  contents.html
+cat _contents.html.erb   >> contents.html
+cat _foot.html           >> contents.html
+echo "Created 'contents.html'"
+
 # Create '_contents_for_book.html.erb'
 # that all links point to inside tags.
 for chapter in `cat chapter_list.txt`
