@@ -4,8 +4,10 @@
 # make anchor tags point to inside ones,
 # and create a book named 'book.html'.
 
+BOOK_PATH="../../public/books"
+
 echo "" >  book_fragment.html
-for chapter in `cat ../chapter_list.txt`
+for chapter in `cat $BOOK_PATH/chapter_list.txt`
 do
     # echo "s/$chapter#top/#cha-$chapter/g"
     cat "$chapter"_fragment.html | \
@@ -19,7 +21,7 @@ echo "Created 'book_fragment.html'"
 
 # Make anchor tags point to the corresponding ones inside a book.
 i=0
-for chapter in `cat ../chapter_list.txt`
+for chapter in `cat $BOOK_PATH/chapter_list.txt`
 do
     cat book_fragment.html.modified_$i | \
 	sed -e "s/\/chapters\/$chapter.html#top/#cha-$chapter/g" | \
@@ -32,8 +34,8 @@ mv book_fragment.html.modified_$i book_fragment.html
 echo "Corrected 'book_fragment.html'"
 
 # Create a 'book.html'
-cat ../_head.html               >  book.html
+cat $BOOK_PATH/_head.html       >  book.html
 cat _contents_for_book.html.erb >> book.html 
 cat book_fragment.html          >> book.html
-cat ../_foot.html               >> book.html
+cat $BOOK_PATH/_foot.html       >> book.html
 echo "Created 'book.html'"    

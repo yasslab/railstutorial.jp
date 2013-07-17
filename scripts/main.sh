@@ -8,9 +8,15 @@ unzip ./archive.zip
 cd archive/ja
 sh ../../scripts/correct_filenames.sh
 sh ../../scripts/correct_htmls.sh
-#cp ../../scripts/rasterize.js ./
-#sh ../../scripts/html2pdf.sh
 sh ../../scripts/truncate_htmls.sh
+
+# For table of contents
+sh ../../scripts/create_contents.sh
+sh ../../scripts/create_book.sh
+
+
+# Move generated files to Rails public/books/3.2/
+# and delete all temporary files.
 sh ../../scripts/update_htmls.sh
 cd ../../
 rm -rf archive
@@ -22,4 +28,9 @@ echo ""
 #./html2pdf.sh
 #echo "Finished creating pdf files."
 #echo ""
+
+### Scrapped code
+#cp ../../scripts/rasterize.js ./
+#sh ../../scripts/html2pdf.sh
+
 
