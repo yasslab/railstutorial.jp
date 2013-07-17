@@ -8,7 +8,7 @@
 ./download_3e_htmls.sh
 ./correct_htmls.sh
 ./truncate_all.sh
-cp beginning.html beginning.html.original   # For generating contents
+cp beginning.html sample_chapter.html   # For generating contents
 ./create_single_chapters.sh
 
 # Generate a table of contents and book from chapters
