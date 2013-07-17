@@ -1,7 +1,7 @@
 #!/bin/sh
 
-for file in `ls *.html`
+for chapter in `cat chapter_list.txt`
 do
-    mv $file ../../public/books/3.2/$file
-    echo "move archive/ja/$file to ../../public/books/3.2/$file"
+    mv $chapter.html ../../public/books/3.2/
+    echo "move archive/ja/$chapter.html \t -> ../../public/books/3.2/"
 done

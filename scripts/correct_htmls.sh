@@ -18,19 +18,19 @@ re_array=("s/http:\/\/railstutorial-ja.herokuapp.com/\/chapters/g" \
 	  "s/active_record_validations_callbacks/v3.2.13\/active_record_validations_callbacks/g" \
 )
 
-for file in `ls *.html`
+for chapter in `cat chapter_list.txt`
 do
-    cp $file $file.modified_0
+    cp $chapter.html.original $chapter.modified_0
     i=0
     for re in "${re_array[@]}"
     do
-	cat $file.modified_$i | sed -e "$re" > $file.modified_`expr $i + 1`
+	cat $chapter.modified_$i | sed -e "$re" > $chapter.modified_`expr $i + 1`
 	i=`expr $i + 1`
     done
     
     if [ $? -eq 0 ]; then
-        mv $file.modified_$i $file
+        mv $chapter.modified_$i $chapter.html
     fi
 
-    echo "corrected $file"
+    echo "corrected: $chapter.html.original \t -> $chapter.html"
 done

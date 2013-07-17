@@ -1,9 +1,9 @@
 #!/bin/sh
 
-#rm *fragment.html
-#echo "deleted *fragment.html"
-for file in `ls *.html`
+# Truncate all html files w/ truncate.sh
+
+for chapter in `cat chapter_list.txt`
 do
-    ../../scripts/truncate.sh $file > ${file%.*}_fragment.html
-    echo "truncated $file"
+    ../../scripts/truncate.sh $chapter.html > ${chapter%.*}_fragment.html
+    echo "truncated: $chapter.html \t -> ${chapter}_fragment.html"
 done
