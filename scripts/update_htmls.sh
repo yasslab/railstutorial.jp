@@ -5,3 +5,7 @@ do
     mv $chapter.html ../../public/books/3.2/
     echo "move archive/ja/$chapter.html \t -> ../../public/books/3.2/"
 done
+
+mv contents.html ../../public/books/3.2/
+echo "move archive/ja/contents.html \t -> ../../public/books/3.2/"
+
