@@ -8,8 +8,6 @@
   <body dir="ltr">
     <div id="book">
 
-
-
 <div id="top"></div>
 
 
@@ -419,7 +417,7 @@
 </div>
 
 
-<p>The <code>update_attributes</code> method accepts a hash of attributes, and on success performs both the update and the save in one step (returning <code>true</code> to indicate that the save went through). Note that if any of the validations fail, such as when a password is required to save a record (as implemented in <a class="ref" href="modeling-users?version=4.0#sec-adding_a_secure_password">Section&nbsp;6.3</a>), the call to <code>update_attributes</code> will fail. If we only need to update a single attribute, using singular <code>update_attribute</code> bypasses this restriction:</p>
+<p>The <code>update_attributes</code> method accepts a hash of attributes, and on success performs both the update and the save in one step (returning <code>true</code> to indicate that the save went through). Note that if any of the validations fail, such as when a password is required to save a record (as implemented in <a class="ref" href="modeling-users?version=4.0#sec-adding_a_secure_password">Section&nbsp;6.3</a>), the call to <code>update_attributes</code> will fail. If we only need to update a single attribute, using the singular <code>update_attribute</code> bypasses this restriction:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">update_attribute</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="s2">&quot;The Dude&quot;</span><span class="p">)</span>
 <span class="go">=&gt; true</span>
@@ -1687,7 +1685,9 @@
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">,</span>
 <span class="gp">?&gt; </span>            <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span> <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
-<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;, created_at: &quot;2013-03-11 20:45:19&quot;, updated_at: &quot;2013-03-11 20:45:19&quot;, password_digest: &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn5sKNaGTEmT0jU7.n...&quot;&gt;</span>
+<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
+<span class="go">created_at: &quot;2013-03-11 20:45:19&quot;, updated_at: &quot;2013-03-11 20:45:19&quot;,</span>
+<span class="go">password_digest: &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn5sKNaGTEmT0jU7.n...&quot;&gt;</span>
 </pre></div>
 </div>
 
@@ -1714,7 +1714,9 @@
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s2">&quot;invalid&quot;</span><span class="p">)</span>
 <span class="go">=&gt; false</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
-<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;, created_at: &quot;2013-03-11 20:45:19&quot;, updated_at: &quot;2013-03-11 20:45:19&quot;, password_digest: &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn5sKNaGTEmT0jU7.n...&quot;&gt;</span>
+<span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
+<span class="go">created_at: &quot;2013-03-11 20:45:19&quot;, updated_at: &quot;2013-03-11 20:45:19&quot;,</span>
+<span class="go">password_digest: &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn5sKNaGTEmT0jU7.n...&quot;&gt;</span>
 </pre></div>
 </div>
 
@@ -1758,7 +1760,7 @@
 
 <li>By running the test suite, verify that the <code>before_save</code> callback can be written as shown in <a class="ref" href="modeling-users?version=4.0#code-downcase_bang">Listing&nbsp;6.31</a>.</li>
 
-<li>As noted in <a class="ref" href="modeling-users?version=4.0#sec-format_validation">Section&nbsp;6.2.4</a>, the email regex in <a class="ref" href="modeling-users?version=4.0#code-validates_format_of_email">Listing&nbsp;6.14</a> allows invalid email addresses with consecutive dots matching the pattern &ldquo;foo@bar..com&rdquo;. Add this address to the list of invalid address in <a class="ref" href="modeling-users?version=4.0#code-email_format_validation_tests">Listing&nbsp;6.13</a> to get a failing test, and then use the more complicated regex shown in <a class="ref" href="modeling-users?version=4.0#code-better_email_regex">Listing&nbsp;6.32</a> to get the test to pass.</li>
+<li>As noted in <a class="ref" href="modeling-users?version=4.0#sec-format_validation">Section&nbsp;6.2.4</a>, the email regex in <a class="ref" href="modeling-users?version=4.0#code-validates_format_of_email">Listing&nbsp;6.14</a> allows invalid email addresses with consecutive dots, i.e., addresses of the form &ldquo;foo@bar..com&rdquo;. Add this address to the list of invalid address in <a class="ref" href="modeling-users?version=4.0#code-email_format_validation_tests">Listing&nbsp;6.13</a> to get a failing test, and then use the more complicated regex shown in <a class="ref" href="modeling-users?version=4.0#code-better_email_regex">Listing&nbsp;6.32</a> to get the test to pass.</li>
 
 <li>Read through the Rails API entry for <code>ActiveRecord::Base</code> to get a sense of its capabilities.</li>
 
@@ -1866,6 +1868,7 @@
 <li id="fn-6_17">http://railstutorial.jp/book?version=3.0&nbsp;<a class="arrow" href="?version=4.0#fnref-6_17">&uarr;</a></li>
 </ol>
 </div>
+
 
 
 

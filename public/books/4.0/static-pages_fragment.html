@@ -1,5 +1,3 @@
-
-
 <div id="top"></div>
 
 
@@ -88,6 +86,44 @@
 
 <p>As in <a class="ref" href="beginning?version=4.0#sec-heroku_setup">Section&nbsp;1.4.1</a> and <a class="ref" href="a-demo-app?version=4.0#top">Chapter&nbsp;2</a>, we suppress the installation of production gems using the option <tt class="verb">--without</tt> <tt class="verb">production</tt>. This is a &ldquo;remembered option&rdquo;, which means that we don&rsquo;t have to include it in future invocations of Bundler. Instead, we can write simply <code>bundle install</code> and production gems will be ignored automatically.<sup class="footnote" id="fnref-3_2"><a href="?version=4.0#fn-3_2">2</a></sup></p>
 
+<p>Because the sample application is shared as a public repository, it&rsquo;s important to update the so-called <em>secret token</em> used by Rails to encrypt session varibles so that it is dynamically generated rather than hard-coded (<a class="ref" href="static-pages?version=4.0#code-secret_token">Listing&nbsp;3.2</a>). (The code in <a class="ref" href="static-pages?version=4.0#code-secret_token">Listing&nbsp;3.2</a> is fairly advanced for so early in the tutorial, but because it&rsquo;s a potentially serious security issue I feel it&rsquo;s important to include it even at this early stage.) Be sure to use the augmented <code>.gitignore</code> file from <a class="ref" href="beginning?version=4.0#code-gitignore">Listing&nbsp;1.7</a> so that the <code>.secret</code> key isn&rsquo;t exposed in your repository.</p>
+
+<div class="label" id="code-secret_token"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 3.2.</span> <span class="description">Dynamically generating a secret token. <br /> <code>confi/initializers/secret_token.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="c1"># Be sure to restart your server when you modify this file.</span>
+
+<span class="c1"># Your secret key is used for verifying the integrity of signed cookies.</span>
+<span class="c1"># If you change this key, all old signed cookies will become invalid!</span>
+
+<span class="c1"># Make sure the secret is at least 30 characters and all random,</span>
+<span class="c1"># no regular words or you&#39;ll be exposed to dictionary attacks.</span>
+<span class="c1"># You can use `rake secret` to generate a secure secret key.</span>
+
+<span class="c1"># Make sure your secret_key_base is kept private</span>
+<span class="c1"># if you&#39;re sharing your code publicly.</span>
+<span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
+
+<span class="k">def</span> <span class="nf">secure_token</span>
+  <span class="n">token_file</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;.secret&#39;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="n">token_file</span><span class="p">)</span>
+    <span class="c1"># Use the existing token.</span>
+    <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">token_file</span><span class="p">)</span><span class="o">.</span><span class="n">chomp</span>
+  <span class="k">else</span>
+    <span class="c1"># Generate a new token and store it in token_file.</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">hex</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+    <span class="no">File</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">token_file</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+    <span class="n">token</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">secret_key_base</span> <span class="o">=</span> <span class="n">secure_token</span>
+</pre></div>
+</div></div>
+
+
 <p>Next, we need to configure Rails to use RSpec in place of <code>Test::Unit</code>. This can be accomplished with <code>rails generate rspec:install</code>:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate rspec:install
@@ -106,13 +142,13 @@
 </div>
 
 
-<p>As with the first application, I suggest updating the <code>README</code> file (located in the root directory of the application) to be more helpful and descriptive, as shown in <a class="ref" href="static-pages?version=4.0#code-sample_app_readme">Listing&nbsp;3.2</a>.</p>
+<p>As with the first application, I suggest updating the <code>README</code> file (located in the root directory of the application) to be more helpful and descriptive, as shown in <a class="ref" href="static-pages?version=4.0#code-sample_app_readme">Listing&nbsp;3.3</a>.</p>
 
 <div class="label" id="code-sample_app_readme"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 3.2.</span> <span class="description">An improved <code>README</code> file for the sample app.</span> </div>
+<div class="listing"><span class="header">Listing 3.3.</span> <span class="description">An improved <code>README</code> file for the sample app.</span> </div>
 <div class="code"><div class="highlight"><pre># Ruby on Rails Tutorial: sample application
 
 This is the sample application for
@@ -142,31 +178,11 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>As a result of my performing this step, you can find the <a href="https://github.com/railstutorial/sample_app_rails_4">Rails Tutorial sample application code on GitHub</a> (under the username <tt>railstutorial</tt> and the slightly different name <tt>sample_app_rails_4</tt>).<sup class="footnote" id="fnref-3_4"><a href="?version=4.0#fn-3_4">4</a></sup></p>
 
-<p>Of course, we can optionally deploy the app to Heroku even at this early stage. As in <a class="ref" href="a-demo-app?version=4.0#sec-deploying_the_demo_app">Section&nbsp;2.3.5</a>, this requires configuring Rails to serve static assets, as shown in <a class="ref" href="static-pages?version=4.0#code-serve_static_assets_redux">Listing&nbsp;3.3</a>.</p>
+<p>Of course, we can optionally deploy the app to Heroku even at this early stage:</p>
 
-<div class="label" id="code-serve_static_assets_redux"></div>
-
-
-<div class="codelisting">
-<div class="listing"><span class="header">Listing 3.3.</span> <span class="description">Configuring Rails to serve static assets in production. <br /> <code>config/environments/production.rb</code></span> </div>
-<div class="code"><div class="highlight"><pre><span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span>
-  <span class="o">.</span>
-  <span class="o">.</span>
-  <span class="o">.</span>
-  <span class="n">config</span><span class="o">.</span><span class="n">serve_static_assets</span> <span class="o">=</span> <span class="kp">true</span>
-  <span class="o">.</span>
-  <span class="o">.</span>
-  <span class="o">.</span>
-<span class="k">end</span>
-</pre></div>
-</div></div>
-
-
-<p>With the change in <a class="ref" href="static-pages?version=4.0#code-serve_static_assets_redux">Listing&nbsp;3.3</a>, we&rsquo;re now ready to push up to Heroku.</p>
-
-<div class="code"><div class="highlight"><pre><span class="gp">$</span> git commit -am <span class="s2">&quot;Serve static assets&quot;</span>
-<span class="gp">$</span> heroku create
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku create
 <span class="gp">$</span> git push heroku master
+<span class="gp">$</span> heroku run rake db:migrate
 </pre></div>
 </div>
 
@@ -175,6 +191,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push
 <span class="gp">$</span> git push heroku
+<span class="gp">$</span> heroku run rake db:migrate
 </pre></div>
 </div>
 
@@ -185,8 +202,6 @@ by [Michael Hartl](http://michaelhartl.com/).
 </pre></div>
 </div>
 
-
-<p>Also be sure that you&rsquo;ve made the edit shown in <a class="ref" href="static-pages?version=4.0#code-serve_static_assets_redux">Listing&nbsp;3.3</a>.</p>
 
 <p>With all the preparation finished, we&rsquo;re finally ready to get started developing the sample application.</p>
 
@@ -530,7 +545,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>uses the <code>page</code> variable (also provided by Capybara) to express the expectation that the resulting page should have the right content.</p>
 
-<p>To get the test to run properly, we have to add a line to the <code>spec_helper.rb</code> file, as shown in <a class="ref" href="static-pages?version=4.0#code-capybara_dsl">Listing&nbsp;3.10</a>. (In a future draft of this book, I plan eliminate this requirement by adopting the newer technique of <a href="https://www.relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec">feature specs</a>.)</p>
+<p>To get the test to run properly, we have to add a line to the <code>spec_helper.rb</code> file, as shown in <a class="ref" href="static-pages?version=4.0#code-capybara_dsl">Listing&nbsp;3.10</a>. (In the full third edition of the <em>Rails Tutorial</em>, I plan to eliminate this requirement by adopting the newer technique of <a href="https://www.relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec">feature specs</a>.)</p>
 
 <div class="label" id="code-capybara_dsl"></div>
 
@@ -2139,6 +2154,7 @@ bundler_stubs/
 <li id="fn-3_16">https://github.com/mhartl/rails_tutorial_sublime_text&nbsp;<a class="arrow" href="?version=4.0#fnref-3_16">&uarr;</a></li>
 </ol>
 </div>
+
 
 
 

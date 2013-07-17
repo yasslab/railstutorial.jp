@@ -1,12 +1,10 @@
-
-
 <div id="top"></div>
 
 
 <h1 class="chapter"><a id="sec-2" href="a-demo-app?version=4.0#top" class="heading"><span class="number">Chapter 2</span> A demo app</a></h1>
 
 
-<p>In this chapter, we&rsquo;ll develop a simple demonstration application to show off some of the power of Rails. The purpose is to get a high-level overview of Ruby on Rails programming (and web development in general) by rapidly generating an application using <em>scaffold generators</em>. As discussed in <a class="ref" href="beginning?version=4.0#sidebar-scaffolding">Box&nbsp;1.1</a>, the rest of the book will take the opposite approach, developing a full application incrementally and explaining each new concept as it arises, but for a quick overview (and some instant gratification) there is no substitute for scaffolding. The resulting demo app will allow us to interact with it through its URLs, giving us insight into the structure of a Rails application, including a first example of the <em>REST architecture</em> favored by Rails.</p>
+<p>In this chapter, we&rsquo;ll develop a simple demonstration application to show off some of the power of Rails. The purpose is to get a high-level overview of Ruby on Rails programming (and web development in general) by rapidly generating an application using <em>scaffold generators</em>. As discussed in <a class="ref" href="beginning?version=4.0#sidebar-scaffolding">Box&nbsp;1.2</a>, the rest of the book will take the opposite approach, developing a full application incrementally and explaining each new concept as it arises, but for a quick overview (and some instant gratification) there is no substitute for scaffolding. The resulting demo app will allow us to interact with it through its URLs, giving us insight into the structure of a Rails application, including a first example of the <em>REST architecture</em> favored by Rails.</p>
 
 <p>As with the forthcoming sample application, the demo app will consist of <em>users</em> and their associated <em>microposts</em> (thus constituting a minimalist Twitter-style app). The functionality will be utterly under-developed, and many of the steps will seem like magic, but worry not: the full sample app will develop a similar application from the ground up starting in <a class="ref" href="static-pages?version=4.0#top">Chapter&nbsp;3</a>, and I will provide plentiful forward-references to later material. In the mean time, have patience and a little faith&mdash;the whole point of this tutorial is to take you <em>beyond</em> this superficial, scaffold-driven approach to achieve a deeper understanding of Rails.</p>
 
@@ -909,48 +907,27 @@ page for making a new user is at <a href="http://localhost:3000/users/new">/user
 
 <p>Ordinarily, you should make smaller, more frequent commits, but for the purposes of this chapter a single big commit at the end is fine.</p>
 
-<p>At this point, you can also deploy the demo app to Heroku as in <a class="ref" href="beginning?version=4.0#sec-deploying">Section&nbsp;1.4</a>. For the demo app, this requires configuring Rails to serve static assets such as images and cascading stylesheets, which isn&rsquo;t enabled by default because many web servers do it automatically. To override this, we need to edit the configuration file <code>production.rb</code> in the <code>config/environments</code> directory, as shown in <a class="ref" href="a-demo-app?version=4.0#code-serve_static_assets">Listing&nbsp;2.17</a>.</p>
+<p>At this point, you can also deploy the demo app to Heroku as in <a class="ref" href="beginning?version=4.0#sec-deploying">Section&nbsp;1.4</a>:</p>
 
-<div class="label" id="code-serve_static_assets"></div>
-
-
-<div class="codelisting">
-<div class="listing"><span class="header">Listing 2.17.</span> <span class="description">Configuring Rails to serve static assets in production. <br /> <code>config/environments/production.rb</code></span> </div>
-<div class="code"><div class="highlight"><pre><span class="ss">DemoApp::Application</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span>
-  <span class="o">.</span>
-  <span class="o">.</span>
-  <span class="o">.</span>
-  <span class="n">config</span><span class="o">.</span><span class="n">serve_static_assets</span> <span class="o">=</span> <span class="kp">true</span>
-  <span class="o">.</span>
-  <span class="o">.</span>
-  <span class="o">.</span>
-<span class="k">end</span>
-</pre></div>
-</div></div>
-
-
-<p>With the change in <a class="ref" href="a-demo-app?version=4.0#code-serve_static_assets">Listing&nbsp;2.17</a>, we&rsquo;re now ready to push up to Heroku:</p>
-
-<div class="code"><div class="highlight"><pre><span class="gp">$</span> git commit -a -m <span class="s2">&quot;Serve static assets&quot;</span>
-<span class="gp">$</span> heroku create
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku create
 <span class="gp">$</span> git push heroku master
 </pre></div>
 </div>
 
 
-<p>Finally, migrate the production database (see below if you get a deprecation warning):</p>
+<p>To get the application&rsquo;s database to work, you&rsquo;ll also have to migrate the production database:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku run rake db:migrate
 </pre></div>
 </div>
 
 
-<p>This updates the database at Heroku with the necessary user/micropost data model. You may get a deprecation warning regarding assets in <code>vendor/plugins</code>, which you should ignore since there aren&rsquo;t any plugins in that directory.</p>
+<p>This updates the database at Heroku with the necessary user/micropost data model.</p>
 
 <h2><a id="sec-2_4" href="a-demo-app?version=4.0#sec-2_4" class="heading"><span class="number">2.4</span> Conclusion</a></h2>
 
 
-<p>We&rsquo;ve come now to the end of the 30,000-foot view of a Rails application. The demo app developed in this chapter has several strengths and a host of weaknesses. <br /></p>
+<p>We&rsquo;ve come now to the end of the 30,000-foot view of a Rails application. The demo app developed in this chapter has several strengths and a host of weaknesses.</p>
 
 <p><strong>Strengths</strong></p>
 
@@ -999,6 +976,7 @@ page for making a new user is at <a href="http://localhost:3000/users/new">/user
 <li id="fn-2_7">Your console prompt might be something like <code>ruby-2.0.0-head &gt;</code>, but the examples use&nbsp;<tt class="verb">&gt;&gt;</tt> since Ruby versions will vary.&nbsp;<a class="arrow" href="?version=4.0#fnref-2_7">&uarr;</a></li>
 </ol>
 </div>
+
 
 
 

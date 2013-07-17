@@ -8,8 +8,6 @@
   <body dir="ltr">
     <div id="book">
 
-
-
 <div id="top"></div>
 
 
@@ -346,7 +344,7 @@
 </div></div>
 
 
-<p>Note the use of <code>user_params</code> in the call to <code>update_attributes</code>, which uses strong parameters to prevent a mass assignment vulnerability (<a class="ref" href="sign-up?version=4.0#sec-strong_parameters">Section&nbsp;7.3.2</a>).</p>
+<p>Note the use of <code>user_params</code> in the call to <code>update_attributes</code>, which uses strong parameters to prevent mass assignment vulnerability (as described in <a class="ref" href="sign-up?version=4.0#sec-strong_parameters">Section&nbsp;7.3.2</a>).</p>
 
 <p>The resulting error message (<a class="ref" href="updating-showing-and-deleting-users?version=4.0#fig-edit_with_invalid_information">Figure&nbsp;9.3</a>) is the one needed to get the error message test to pass, as you should verify by running the test suite:</p>
 
@@ -438,7 +436,7 @@
 </div>
 
 
-<p>to the code in <a class="ref" href="updating-showing-and-deleting-users?version=4.0#code-user_update_action_unsuccessful">Listing&nbsp;9.8</a>. Note that we sign in the user as part of a successful profile update; this is because the remember token gets reset when the user is saved (<a class="ref" href="sign-in-sign-out?version=4.0#code-before_save_create_remember_token">Listing&nbsp;8.18</a>), which invalidates the user&rsquo;s session (<a class="ref" href="sign-in-sign-out?version=4.0#code-current_user_working">Listing&nbsp;8.22</a>). This is a nice security feature, as it means that any hijacked sessions will automatically expire when the user information is changed.</p>
+<p>to the code in <a class="ref" href="updating-showing-and-deleting-users?version=4.0#code-user_update_action_unsuccessful">Listing&nbsp;9.8</a>. Note that we sign in the user as part of a successful profile update; this is because the remember token gets reset when the user is saved (<a class="ref" href="sign-in-sign-out?version=4.0#code-before_create_remember_token">Listing&nbsp;8.18</a>), which invalidates the user&rsquo;s session (<a class="ref" href="sign-in-sign-out?version=4.0#code-current_user_working">Listing&nbsp;8.22</a>). This is a nice security feature, as it means that any hijacked sessions will automatically expire when the user information is changed.</p>
 
 <div class="label" id="code-user_update_action"></div>
 
@@ -773,7 +771,8 @@
   <span class="o">.</span>
   <span class="o">.</span>
   <span class="k">def</span> <span class="nf">current_user</span>
-    <span class="vi">@current_user</span> <span class="o">||=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">remember_token:</span> <span class="n">cookies</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span><span class="p">)</span>
+    <span class="n">remember_token</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">cookies</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span><span class="p">)</span>
+    <span class="vi">@current_user</span> <span class="o">||=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">remember_token:</span> <span class="n">remember_token</span><span class="p">)</span>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">current_user?</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
@@ -1904,14 +1903,16 @@ code appears in <a class="ref" href="updating-showing-and-deleting-users?version
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="ss">href:</span> <span class="n">user_path</span><span class="p">(</span><span class="no">User</span><span class="o">.</span><span class="n">first</span><span class="p">))</span> <span class="p">}</span>
 <span class="n">it</span> <span class="s2">&quot;should be able to delete another user&quot;</span> <span class="k">do</span>
-  <span class="n">expect</span> <span class="p">{</span> <span class="n">click_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">to</span> <span class="n">change</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="ss">:count</span><span class="p">)</span><span class="o">.</span><span class="n">by</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">expect</span> <span class="k">do</span>
+    <span class="n">click_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="ss">match:</span> <span class="ss">:first</span><span class="p">)</span>
+  <span class="k">end</span><span class="o">.</span><span class="n">to</span> <span class="n">change</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="ss">:count</span><span class="p">)</span><span class="o">.</span><span class="n">by</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">end</span>
 <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">have_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="ss">href:</span> <span class="n">user_path</span><span class="p">(</span><span class="n">admin</span><span class="p">))</span> <span class="p">}</span>
 </pre></div>
 </div>
 
 
-<p>Note that we have added a test to verify that the admin does not see a link to delete himself. The full set of delete link tests appears in <a class="ref" href="updating-showing-and-deleting-users?version=4.0#code-delete_link_tests">Listing&nbsp;9.43</a>.</p>
+<p>This includes the code <code>match: :first</code>, which tells Capybara that we don&rsquo;t care <em>which</em> delete link it clicks; it should just click the first one it sees. Note also that we have added a test to verify that the admin does not see a link to delete himself. The full set of delete link tests appears in <a class="ref" href="updating-showing-and-deleting-users?version=4.0#code-delete_link_tests">Listing&nbsp;9.43</a>.</p>
 
 <div class="label" id="code-delete_link_tests"></div>
 
@@ -1955,7 +1956,9 @@ code appears in <a class="ref" href="updating-showing-and-deleting-users?version
 
         <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="ss">href:</span> <span class="n">user_path</span><span class="p">(</span><span class="no">User</span><span class="o">.</span><span class="n">first</span><span class="p">))</span> <span class="p">}</span>
         <span class="n">it</span> <span class="s2">&quot;should be able to delete another user&quot;</span> <span class="k">do</span>
-          <span class="n">expect</span> <span class="p">{</span> <span class="n">click_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">to</span> <span class="n">change</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="ss">:count</span><span class="p">)</span><span class="o">.</span><span class="n">by</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+          <span class="n">expect</span> <span class="k">do</span>
+            <span class="n">click_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="ss">match:</span> <span class="ss">:first</span><span class="p">)</span>
+          <span class="k">end</span><span class="o">.</span><span class="n">to</span> <span class="n">change</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="ss">:count</span><span class="p">)</span><span class="o">.</span><span class="n">by</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">end</span>
         <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">have_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="ss">href:</span> <span class="n">user_path</span><span class="p">(</span><span class="n">admin</span><span class="p">))</span> <span class="p">}</span>
       <span class="k">end</span>
@@ -2392,6 +2395,7 @@ code appears in <a class="ref" href="updating-showing-and-deleting-users?version
 <li id="fn-9_8">http://api.rubyonrails.org/v4.0.0/classes/ActionDispatch/Request.html&nbsp;<a class="arrow" href="?version=4.0#fnref-9_8">&uarr;</a></li>
 </ol>
 </div>
+
 
 
 
