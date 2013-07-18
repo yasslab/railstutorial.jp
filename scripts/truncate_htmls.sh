@@ -4,8 +4,8 @@
 
 for chapter in `cat chapter_list.txt`
 do
-    ../../scripts/truncate.sh $chapter.html > ${chapter%.*}_fragment.html
-    echo "truncated: $chapter.html \t -> ${chapter}_fragment.html"
+    ../../scripts/truncate.sh ${chapter}_corrected.html > ${chapter}_fragment.html
+    echo "truncated: ${chapter}_corrected.html \t -> ${chapter}_fragment.html"
 
     # Create a single chapter HTML file
     cat _head.html                  >  $chapter.html

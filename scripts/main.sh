@@ -19,6 +19,7 @@ sh ../../scripts/correct_htmls.sh
 sh ../../scripts/truncate_htmls.sh
 
 # Create a table of contents and book
+cp beginning_corrected.html sample_chapter.html   # For generating contents
 sh ../../scripts/create_contents.sh
 sh ../../scripts/create_book.sh
 

@@ -29,7 +29,7 @@ do
     done
     
     if [ $? -eq 0 ]; then
-        mv $chapter.modified_$i $chapter.html
+        mv $chapter.modified_$i ${chapter}_corrected.html
     fi
 
     echo "corrected: $chapter.html.original \t -> $chapter.html"

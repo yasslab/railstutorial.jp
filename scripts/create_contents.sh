@@ -7,7 +7,7 @@
 
 # Create '_contents.html.erb',
 echo '<h1 class="title">Ruby on Rails 3.2 チュートリアル </h1>' > _contents.html.erb
-cat beginning.html | \
+cat sample_chapter.html | \
     sed -n '/<h1 class="subtitle">/, /<\/pre><\/div>/p' \
     >> _contents.html.erb
 echo "</div>" >> _contents.html.erb
