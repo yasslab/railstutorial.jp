@@ -87,7 +87,7 @@
 </div>
 
 
-<p><a class="ref" href="/chapters/beginning.html#sec-heroku_setup">1.4.1</a>や<a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>でも説明したように、<tt class="verb">--without</tt> <tt class="verb">production</tt>オプションを追加することで、本番環境にのみgemをインストールしないようにすることができます。注: このオプションは “remembered option” と呼ばれるもので、このオプションを一度実行するとコマンドに保存され、今後Bundlerを実行するときにオプションを追加する必要がなくなります。このため、今後は単に<code>bundle install</code>を実行するだけで、自動的に本番環境用gemをスキップできるようになります<sup class="footnote" id="fnref-3_2"><a href="/chapters/static-pages.html#fn-3_2">2</a></sup>。</p>
+<p><a class="ref" href="/chapters/beginning.html#sec-heroku_setup">1.4.1</a>や<a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>でも説明したように、<tt class="verb">--without</tt> <tt class="verb">production</tt>オプションを追加することで、本番環境のgemのみインストールしないようにすることができます。注: このオプションは “remembered option” と呼ばれるもので、このオプションを一度実行するとコマンドに保存され、今後Bundlerを実行するときにオプションを追加する必要がなくなります。このため、今後は単に<code>bundle install</code>を実行するだけで、自動的に本番環境用gemをスキップできるようになります<sup class="footnote" id="fnref-3_2"><a href="/chapters/static-pages.html#fn-3_2">2</a></sup>。</p>
 
 <p>次に、<code>Test::Unit</code>の代わりにRSpecを使うように、Railsの設定を変更します。これを行うには、<code>rails generate rspec:install</code> を実行します。</p>
 
