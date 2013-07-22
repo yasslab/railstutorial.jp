@@ -5,17 +5,19 @@
 # finally, make them a single chapter that can be imported from GTT.
 
 # Jump to the git root directory
-cd `pwd`/`git rev-parse --show-cdup`
+GIT_ROOT=`pwd`/`git rev-parse --show-cdup`
+SCRIPT="$GIT_ROOT/scripts/4.0"
+cd $GIT_ROOT
 cd public/books/4.0/
 
 # Generate chapters
 #./download_3e_htmls.sh
-./correct_htmls.sh
-./truncate_all.sh
+$SCRIPT/correct_htmls.sh
+$SCRIPT/truncate_all.sh
 cp beginning.html sample_chapter.html   # For generating contents
-./create_single_chapters.sh
+$SCRIPT/create_single_chapters.sh
 
 # Generate a table of contents and book from chapters
-./create_contents.sh
-./create_book.sh
+$SCRIPT/create_contents.sh
+$SCRIPT/create_book.sh
 
