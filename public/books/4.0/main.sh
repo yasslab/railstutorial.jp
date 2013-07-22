@@ -5,7 +5,7 @@
 # finally, make them a single chapter that can be imported from GTT.
 
 # Generate chapters
-./download_3e_htmls.sh
+#./download_3e_htmls.sh
 ./correct_htmls.sh
 ./truncate_all.sh
 cp beginning.html sample_chapter.html   # For generating contents
