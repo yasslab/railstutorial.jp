@@ -4,6 +4,9 @@
 # then, correct and truncate them for Japanese Edition,
 # finally, make them a single chapter that can be imported from GTT.
 
+# Jump to the git root directory
+cd `pwd`/`git rev-parse --show-cdup`
+
 # Generate chapters
 #./download_3e_htmls.sh
 ./correct_htmls.sh
