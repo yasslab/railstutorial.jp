@@ -6,6 +6,7 @@
 
 # Jump to the git root directory
 cd `pwd`/`git rev-parse --show-cdup`
+echo "Jump to Git root directory: `pwd`"
 
 # Unzip the translated HTML files
 unzip ./archive.zip
