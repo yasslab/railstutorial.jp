@@ -6,6 +6,7 @@
 
 # Jump to the git root directory
 cd `pwd`/`git rev-parse --show-cdup`
+cd public/books/4.0/
 
 # Generate chapters
 #./download_3e_htmls.sh

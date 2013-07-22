@@ -8,6 +8,7 @@
 
 re_array=("s/railstutorial.org/railstutorial.jp/g" \
           "s/http:\/\/railstutorial.jp\/screencasts/http:\/\/railstutorial.org\/screencasts/g" \
+	  "s/http:\/\/railstutorial.jp\/help/http:\/\/railstutorial.org\/help/g" \
           "s/chapters\/images/images/g" \
           "s/chapters\/pygments.css/stylesheets\/pygments.css/g" \
           "s/chapters\/polytexnic.css/stylesheets\/polytexnic.css/g" \
