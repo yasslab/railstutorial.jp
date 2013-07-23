@@ -18,7 +18,7 @@
 
 <p>Rails はデータベースと連携して動的なウェブサイトを開発するように設計されていますが、HTMLファイルだけで構成されている静的なページを作ることもできます。実際、静的なページをRailsで作ることのメリットもあります。たとえば、あとで<em>ほんの少し</em>動的なコンテンツを追加することができます。本章では、このような静的なページの作成について学んでいきます。まずは、<em>自動化テスト</em>の雰囲気を掴んでいきます。自動化テストは、私達のコードが正しく動いているという自信を与えてくれます。さらに、良いテストを書くことで、自信をもって<em>リファクタリング</em>を行うことができます。たとえば、フォームの振る舞いを変更せずに、フォーム内で使われている関数を書き換えたいときに便利です。</p>
 
-<p>本章には多くのサンプルコードがあります。特に <a class="ref" href="/chapters/static-pages?version=4.0#sec-first_tests">3.2</a> や <a class="ref" href="/chapters/static-pages?version=4.0#sec-slightly_dynamic_pages">3.3</a> で多くのコードを紹介していますが、Rubyが初めての方は、コードを隅々まで理解しなければならないのだろうかと心配する必要はありません。<a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a> で紹介したように、まずはテストをコピー&amp;ペーストしてみて、アプリケーションがうまく動くかどうか検証してみると良いでしょう。この時点では、テストどのようにして動くかは気にしなくても大丈夫です。また、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a>ではRubyについて解説します。そこではRubyの書き方やコンセプトについて学びます。最後に、本書ではRSpecを使ったテストを繰り返し実施していきます。ですから、もし途中でよく分からないテストがあったとしても、読み飛ばして先に進むことをお勧めします。1、2章先を読み進めた後に読み返してみると、あのときはよく分からなかったテストが、実はとてもシンプルであることを理解できるはずです (Code Schoolの<a href="http://www.codeschool.com/courses/testing-with-rspec">RSpecコース</a>の履修を検討してみるのもよいでしょう。このコースはRSpecに関する多くの疑問に答えてくれるという読者からの報告もあります)。</p>
+<p>本章には多くのサンプルコードがあります。特に <a class="ref" href="/chapters/static-pages?version=4.0#sec-first_tests">3.2</a> や <a class="ref" href="/chapters/static-pages?version=4.0#sec-slightly_dynamic_pages">3.3</a> で多くのコードを紹介していますが、Rubyが初めての方は、コードを隅々まで理解しなければならないのだろうかと心配する必要はありません。<a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a> で紹介したように、まずはテストをコピー&amp;ペーストしてみて、アプリケーションがうまく動くかどうか検証してみると良いでしょう。この時点では、テストどのようにして動くかは気にしなくても大丈夫です。また、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a>ではRubyについて解説します。そこではRubyの書き方やコンセプトについて学びます。最後に、本書ではRSpecを使ったテストを繰り返し実施していきます。ですから、もし途中でよく分からないテストがあったとしても、読み飛ばして先に進むことをお勧めします。1、2章先を読み進めた後に読み返してみると、当初はよく分からなかったテストが、実はとてもシンプルであることを理解できるはずです (Code Schoolの<a href="http://www.codeschool.com/courses/testing-with-rspec">RSpecコース</a>の履修を検討してみるのもよいでしょう。このコースはRSpecに関する多くの疑問に答えてくれるという読者からの報告もあります)。</p>
 
 <p>では、<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でもやったように、最初にRailsプロジェクトを作りましょう。今回は<code>sample_app</code>というプロジェクトを作成します。</p>
 
@@ -31,7 +31,7 @@
 
 <p>ここで使った<tt class="verb">rails</tt>の<code>--skip-test-unit</code>というオプションは、<tt class="verb">Test::Unit</tt>フレームワークと関連している<tt class="verb">test</tt>ディレクトリを作成しないようにするオプションです。これは「テストを書かないから」という理由ではありません。そうではなく、<a class="ref" href="/chapters/static-pages?version=4.0#sec-first_tests">3.2</a>以降では、もう1つのテストフレームワークである<em>RSpec</em>を使ってテストを書くからです。</p>
 
-<p>次は、<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-planning_the_application">2.1</a>と同じように、テキストエディタを使って<code>Gemfile</code>に必要なgemを書き足していきます。今回は、2つの新しいgemを使います。RSpecのためのgem と、RSpecのライブラリのためのgemです。これらのgemをGemfileに追加すると、<a class="ref" href="/chapters/static-pages?version=4.0#code-gemfile_rspec">リスト3.1</a>のようになります (<em>注</em>: もしサンプルアプリケーションの開発で必要になるgemを<em>すべて</em>知りたい場合は、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-final_gemfile">リスト9.48</a>を参照してください。これが最終的なGemfileになります)。</p>
+<p>次は、<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-planning_the_application">2.1</a>と同じように、テキストエディタを使って<code>Gemfile</code>に必要なgemを書き足していきます。今回は、2つの新しいgemを使います。RSpecのためのgemと、RSpecのライブラリのためのgemです。これらのgemをGemfileに追加すると、<a class="ref" href="/chapters/static-pages?version=4.0#code-gemfile_rspec">リスト3.1</a>のようになります (<em>注</em>: もしサンプルアプリケーションの開発で必要になるgemを<em>すべて</em>知りたい場合は、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-final_gemfile">リスト9.48</a>を参照してください。これが最終的なGemfileになります)。</p>
 
 <div class="label" id="code-gemfile_rspec"></div>
 
@@ -83,7 +83,7 @@
 </div>
 
 
-<p>Herokuは、開発環境とプロダクション環境とで同じデータベースを使うことを推奨していますが、今回開発するサンプルアプリケーションでは、データベースが異なっていても特に問題はありません。また、SQLiteはPostgreSQLに比べて<em>きわめて簡単に</em> セットアップできます。なお、ローカルの開発マシンへのPostgreSQLのインストールと構築については、<a class="ref" href="/chapters/static-pages?version=4.0#sec-static_pages_exercises">3.5</a>の演習課題に含めました。</p>
+<p>Herokuは、開発環境と本番環境とで同じデータベースを使うことを推奨していますが、今回開発するサンプルアプリケーションでは、データベースが異なっていても特に問題はありません。また、SQLiteはPostgreSQLに比べて<em>きわめて簡単に</em> セットアップできます。なお、ローカルの開発マシンへのPostgreSQLのインストールと構築については、<a class="ref" href="/chapters/static-pages?version=4.0#sec-static_pages_exercises">3.5</a>の演習課題に含めました。</p>
 
 <p>Gemfileに新しく追加したgemを実際にインストールするには、<code>bundle update</code>と<code>bundle install</code>を実行します。</p>
 
@@ -96,7 +96,7 @@
 
 <p><a class="ref" href="/chapters/beginning?version=4.0#sec-heroku_setup">1.4.1</a>や<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でも説明したように、<tt class="verb">--without</tt> <tt class="verb">production</tt>オプションを追加することで、本番環境のgemのみをインストールしないようにすることができます。注: このオプションは “remembered option” と呼ばれるもので、このオプションを一度実行するとコマンドに保存され、今後Bundlerを実行するときにオプションを追加する必要がなくなります。このため、今後は単に<code>bundle install</code>を実行するだけで、自動的に本番環境用gemをスキップできるようになります<sup class="footnote" id="fnref-3_2"><a href="/chapters/static-pages.html?version=4.0#fn-3_2">2</a></sup>。</p>
 
-<p>このサンプリアプリケーションは公共のリポジトリとして公開されるので、Railsでセッション変数の暗号化に使用するための、いわゆる<em>秘密トークン (secret token) </em>を必ず更新することが重要です。これにより、トークンをハードコードすることなく動的に生成します (<a class="ref" href="/chapters/static-pages?version=4.0#code-secret_token">リスト3.2</a>)。(<a class="ref" href="/chapters/static-pages?version=4.0#code-secret_token">リスト3.2</a>のコードはやや高度なもので、本書のこの段階では時期尚早ではありますが、重大なセキュリティ上の問題が発生する可能性を回避するために、あえてこの段階に含めておくのがよいと考えます)。この場合、必ず<a class="ref" href="/chapters/beginning?version=4.0#code-gitignore">リスト1.7</a>の改訂版<code>.gitignore</code>を使用するようにし、<code>.secret</code>キーをリポジトリでうっかり公開してしまうことのないようにしてください。</p>
+<p>このサンプルアプリケーションは公共のリポジトリとして公開されるので、Railsでセッション変数の暗号化に使用するための、いわゆる<em>秘密トークン (secret token) </em>を必ず更新することが重要です。<a class="ref" href="/chapters/static-pages?version=4.0#code-secret_token">リスト3.2</a>のコードを使用して、トークンをハードコードすることなく動的に生成するようにしてください。(<a class="ref" href="/chapters/static-pages?version=4.0#code-secret_token">リスト3.2</a>のコードはやや高度なもので、本書のこの段階では時期尚早ではありますが、重大なセキュリティ上の問題が発生する可能性を回避するために、あえてこの段階に含めておくのがよいと考えます)。この場合、必ず<a class="ref" href="/chapters/beginning?version=4.0#code-gitignore">リスト1.7</a>の改訂版<code>.gitignore</code>を使用するようにし、<code>.secret</code>キーをリポジトリでうっかり公開してしまうことのないようにしてください。</p>
 
 <div class="label" id="code-secret_token"></div>
 
@@ -134,7 +134,7 @@
 </div></div>
 
 
-<p>次に、<code>Test::Unit</code>の代わりにRSpecを使うように、Railsの設定を変更します。これを行うには、<code>rails generate rspec:install</code> を実行します。</p>
+<p>次に、<code>Test::Unit</code>の代わりにRSpecを使うように、Railsの設定を変更します。これを行うには、<code>rails generate rspec:install</code>を実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate rspec:install
 </pre></div>
@@ -178,7 +178,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p><a class="ref" href="/chapters/beginning?version=4.0#sec-git_commands">1.3.5</a>で<code>git commit -a -m &quot;Message&quot;</code>というGitコマンドを実行したことを思い出してください。あのときは “すべてを変更” (<code>-a</code>) オプションとコミットメッセージを追加するオプション (<code>-m</code>) を使用しました。上で実行したコマンドで示したように、実はこれらの2つのオプションを1つにまとめて<code>git commit -am &quot;Message&quot;</code>と実行することができます。</p>
 
-<p>本書では今後、このサンプルアプリケーションを使っていくことになるので、GitHub上にリポジトリを作成し (<a href="https://github.com/new">図 3.1</a>)、プッシュしておくと良いでしょう。</p>
+<p>本書では今後、このサンプルアプリケーションを使っていくことになるので、<a href="https://github.com/new">GitHub</a>上にリポジトリを作成し、プッシュしておくと良いでしょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git remote add origin https://github.com/&lt;ユーザー名&gt;/sample_app.git
 <span class="gp">$</span> git push -u origin master
@@ -232,7 +232,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <p>Railsのすべてのディレクトリを一覧できるテキストエディタまたはIDEが使用できると非常に便利です。残念ながら、テキストエディタや IDEの細かな使用法はそれぞれ異なりますが、どのツールを使ってもRailsアプリケーションのディレクトリを開くことができます。Unix系のシステムでは、ドット<code>.</code>でカレントディレクトリを表現できるので、コマンドライン上で以下を実行してRailsアプリケーションの現在のディレクトリを開き、使用するエディタを呼び出してみてください。</p>
 
 <pre class="verbatim">  $ cd ~/rails_projects/sample_app
-  $ &lt;editor name&gt; .</pre>
+  $ &lt;エディタ名&gt; .</pre>
 
 
 <p>たとえば、Sublime Text でサンプルアプリケーションを開く場合は、以下を実行します。</p>
@@ -301,7 +301,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="sidebar"><span class="title"><span class="header">囲み3.2</span></span><span class="title"><span class="description">元に戻す方法</span></span>
 <p>どれほど十分に気を付けていたとしても、Railsアプリケーションの開発中に何か失敗してしまうことはありえます。ありがたいことに、Railsにはそのような失敗をカバーする機能がいくつもあります。</p>
 
-<p>一般的なシナリオの1つは、生成したコードを元に戻したい場合です。たとえば、コントローラを生成した後で、もっといいコントローラ名を思い付いた場合などです。<a class="ref" href="/chapters/static-pages?version=4.0#code-generating_pages">リスト 3.4</a>に示したように、コントローラを生成すると、コントローラファイル以外にも多数のファイルが作成されます。自動生成されたコードを元に戻すためには、新規作成されたファイルを削除するだけではなく、既存のファイルに挿入されたコードも削除する必要があります (実際、<tt>routes.rb</tt> ファイルに自動的に追加されたコードも元に戻す必要があります) 。このようなときは、<tt>rails destroy</tt>コマンドを実行するだけで元に戻すことができます。たとえば次の2つのコマンドは、自動生成と、それに対応するとりけ処理の例です。</p>
+<p>一般的なシナリオの1つは、生成したコードを元に戻したい場合です。たとえば、コントローラを生成した後で、もっといいコントローラ名を思い付いた場合などです。<a class="ref" href="/chapters/static-pages?version=4.0#code-generating_pages">リスト 3.4</a>に示したように、コントローラを生成すると、コントローラファイル以外にも多数のファイルが作成されます。自動生成されたコードを元に戻すためには、新規作成されたファイルを削除するだけではなく、既存のファイルに挿入されたコードも削除する必要があります (実際、<tt>routes.rb</tt> ファイルに自動的に追加されたコードも元に戻す必要があります) 。このようなときは、<tt>rails destroy</tt>コマンドを実行するだけで元に戻すことができます。たとえば次の2つのコマンドは、自動生成と、それに対応する取り消し処理の例です。</p>
 
 <pre class="verbatim">  $ rails generate controller FooBars baz quux
   $ rails destroy  controller FooBars baz quux</pre>

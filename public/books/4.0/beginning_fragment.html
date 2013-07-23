@@ -851,7 +851,7 @@
 <h4><a id="sec-1_3_1_2" href="/chapters/beginning?version=4.0#sec-1_3_1_2" class="heading">最初のリポジトリセットアップ</a></h4>
 
 
-<p>今度は、<em>レポジトリ</em>を作成するたびに必要な作業を行います。まず、Railsアプリケーションのルートディレクトリに移動し、新しいリポジトリの初期化を行います。</p>
+<p>今度は、<em>リポジトリ</em>を作成するたびに必要な作業を行います。まず、Railsアプリケーションのルートディレクトリに移動し、新しいリポジトリの初期化を行います。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git init
 <span class="go">Initialized empty Git repository in /Users/mhartl/rails_projects/first_app/.git/</span>
@@ -1166,7 +1166,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>この時点で、<a class="ref" href="/chapters/beginning?version=4.0#sec-adding_and_committing">1.3.2</a>のように<code>git add .</code>を実行することもできますが、Gitには現存するすべてのファイル (git mvで作成したファイルも含む) への変更を一括でコミットする<code>-a</code>フラグがあります。このフラグは非常によく使われます。なお、<code>git mv</code>で作成されたファイルは、Gitでは新規ファイルではなく変更として扱われます。</p>
+<p>この時点で、<a class="ref" href="/chapters/beginning?version=4.0#sec-adding_and_committing">1.3.2</a>のように<code>git add .</code>を実行することもできますが、Gitには現存するすべてのファイル (git mvで作成したファイルも含む) への変更を一括でコミットする<code>-a</code>フラグがあります。このフラグは非常によく使われます。なお、<code>git mv</code>で作成されたファイルは、Gitによって新規ファイルではなく変更として扱われます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git commit -a -m <span class="s2">&quot;Improve the README file&quot;</span>
 <span class="go">2 files changed, 5 insertions(+), 243 deletions(-)</span>
@@ -1218,7 +1218,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <div class="code"><div class="highlight"><pre><span class="c"># これはあくまで例です。ブランチでミスをした時以外は実行しないで下さい。</span>
 <span class="nv">$ </span>git checkout -b topic-branch
-<span class="nv">$ </span>&lt;really screw up the branch&gt;
+<span class="nv">$ </span>&lt;ブランチをめちゃくちゃにしてみる&gt;
 <span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -a -m <span class="s2">&quot;Major screw up&quot;</span>
 <span class="nv">$ </span>git checkout master
@@ -1290,7 +1290,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>(著者の場合、RVMのgemsetも次の行で指定しています。たとえばRuby <code>’1.9.3’</code>を使用しているのであれば、そのバージョン番号に書き換えてください。本書での指定とは若干異なることになりますが、この変更は問題ありません)。上の一連のコードを<code>リスト1.5</code>の<a class="ref" href="/chapters/beginning?version=4.0#code-gemfile_sqlite_version">Gemfile</a>に適用すると、<a class="ref" href="/chapters/beginning?version=4.0#code-gemfile_pg_gem">リスト1.9</a>のようになります。</p>
+<p>(著者の場合、RVMのgemsetも次の行で指定しています。たとえばRuby <code>’1.9.3’</code>を使用しているのであれば、そのバージョン番号に書き換えてください。本書での指定とは若干異なることになりますが、この変更は問題ありません)。上の一連のコードを<a class="ref" href="/chapters/beginning?version=4.0#code-gemfile_sqlite_version">リスト1.5</a>の<code>Gemfile</code>に適用すると、<a class="ref" href="/chapters/beginning?version=4.0#code-gemfile_pg_gem">リスト1.9</a>のようになります。</p>
 
 <div class="label" id="code-gemfile_pg_gem"></div>
 
@@ -1340,7 +1340,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>次にHerokuのアカウントを新規作成して設定します。最初に<a href="http://api.heroku.com/signup">Herokuのユーザー登録</a>を行います。アカウント作成後に完了通知メールが届いたら、<a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>を使用して必要なHerokuソフトウェアをインストールします<sup class="footnote" id="fnref-1_22"><a href="/chapters/beginning.html?version=4.0#fn-1_22">22</a></sup> 。</p>
+<p>次にHerokuのアカウントを新規作成して設定します。最初に<a href="http://api.heroku.com/signup">Herokuのユーザー登録</a>を行います。アカウント作成後に完了通知メールが届いたら、<a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>を使用して必要なHerokuソフトウェアをインストールします<sup class="footnote" id="fnref-1_22"><a href="/chapters/beginning.html?version=4.0#fn-1_22">22</a></sup>。次にターミナルで以下の<code>heroku</code>コマンドを実行します (実行前にターミナルの終了と再起動が必要なことがあります)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku login
 </pre></div>
