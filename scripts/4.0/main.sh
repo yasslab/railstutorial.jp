@@ -33,7 +33,6 @@ $SCRIPT_ROOT/correct_filenames.sh
 # Generate chapters
 #./download_3e_htmls.sh
 #$SCRIPT_ROOT/correct_htmls.sh
-echo "_contents" >> chapter_list.txt
 $SCRIPT_ROOT/truncate_htmls.sh
 
 # For generating contents
@@ -45,9 +44,9 @@ $SCRIPT_ROOT/create_contents.sh
 $SCRIPT_ROOT/create_book.sh
 
 # Move generated files to 'public/books/4.0/'
-# and delete all temporary files.
 #$SCRIPT_ROOT/update_htmls.sh
 
+# Delete all temporary files.
 #cd $GIT_ROOT
 #rm -rf archive
 #echo "Finished updating html files."
