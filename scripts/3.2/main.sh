@@ -18,6 +18,7 @@ cd $GIT_ROOT
 echo "Jump to Git root directory: $GIT_ROOT"
 
 # Unzip the translated HTML files
+rm -rf archive
 unzip $@
 cd archive/ja
 # Get files to generate HTML files
@@ -40,7 +41,6 @@ $SCRIPT_ROOT/update_htmls.sh
 
 # Delete all temporary files.
 cd $GIT_ROOT
-rm -rf archive
 echo "Finished updating html files."
 echo ""
 
