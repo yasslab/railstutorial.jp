@@ -10,7 +10,6 @@ VERSION="?version=4.0"
 echo "" >  book_fragment.html
 for chapter in `cat chapter_list.txt`
 do
-    #echo "s/$chapter$VERSION#top/$VERSION#cha-$chapter/g"
     cat "$chapter"_fragment.html | \
 	sed -e "s/id=\"top\"/class=\"label\" id=\"cha-$chapter\"/g" | \
 	perl -pe "s/<\/div><div class=\"footnotes\">/<\/div>\n<div class=\"footnotes\">/g" | \

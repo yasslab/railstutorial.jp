@@ -12,3 +12,9 @@ do
     mv $contents ../../public/books/4.0/
     echo "move archive/ja/$contents \t -> ../../public/books/4.0/"
 done
+
+for books in `ls book*`
+do
+    mv $books ../../public/books/4.0/
+    echo "move archive/ja/$books \t -> ../../public/books/4.0/"
+done
