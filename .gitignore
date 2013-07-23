@@ -28,4 +28,5 @@ Icon
 .DS_Store
 config.json
 archive*.zip
+/archive
 .#*
