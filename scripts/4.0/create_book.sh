@@ -13,7 +13,8 @@ do
     cat "$chapter"_fragment.html | \
 	sed -e "s/id=\"top\"/class=\"label\" id=\"cha-$chapter\"/g" | \
 	perl -pe "s/<\/div><div class=\"footnotes\">/<\/div>\n<div class=\"footnotes\">/g" | \
-	sed -n '/<div class="navigation">/,/^<\/div>/!p' \
+	sed -n '/<div class="navigation">/,/^<\/div>/!p' | \
+	sed -e "s/href=\"\/chapters\//href=\"\/book\/ruby-on-rails-tutorial/g" \
 	>> book_fragment.html
 done
 echo "Created 'book_fragment.html'"
