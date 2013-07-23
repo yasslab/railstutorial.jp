@@ -5,25 +5,24 @@
 # and create '_contents_for_book.html.erb'
 # that all links point to inside tags.
 
-# Create '_contents.html.erb',
-echo '<h1 class="title">Ruby on Rails 4.0 Tutorial </h1>' > _contents.html.erb
-cat sample_chapter.html | \
-    sed -n '/<h1 class="subtitle">/, /<\/pre><\/div>/p' \
-    >> _contents.html.erb
-echo "</div>" >> _contents.html.erb
-echo "Created '_contents.html.erb"
+### Create '_contents.html.erb',
+#echo '<h1 class="title">Ruby on Rails 4.0 Tutorial </h1>' > _contents.html.erb
+#cat sample_chapter.html | \
+#    sed -n '/<h1 class="subtitle">/, /<\/pre><\/div>/p' \
+#    >> _contents.html.erb
+#echo "</div>" >> _contents.html.erb
+#echo "Created '_contents.html.erb"
 
-# Make single page for the main contents that include table, foreword, etc.
-cat ../_head.html               >  contents.html
-cat _contents.html.erb          >> contents.html
-cat ../_foot.html               >> contents.html
-echo "Created 'contents.html'"
+### Make single page for the main contents that include table, foreword, etc.
+#cat _head.html               >  contents.html
+#cat _contents.html.erb          >> contents.html
+#cat _foot.html               >> contents.html
+#echo "Created 'contents.html'"
 
-# Create '_contents_for_book.html.erb'
-# that all links point to inside tags.
+### Create '_contents_for_book.html.erb' that all links point to inside tags.
 VERSION="?version=4.0"
 #VERSION=""
-for chapter in `cat ../chapter_list.txt`
+for chapter in `cat chapter_list.txt`
 do
     #echo "s/$chapter$VERSION#top/$VERSION#cha-$chapter/g"
     cat _contents.html.erb | \
@@ -33,9 +32,9 @@ do
 	> _contents_for_book.html.erb.modified_0
 done
 
-# Make anchor tags point to the corresponding ones inside a book.
+### Make anchor tags point to the corresponding ones inside a book.
 i=0
-for chapter in `cat ../chapter_list.txt`
+for chapter in `cat chapter_list.txt`
 do
     cat _contents_for_book.html.erb.modified_$i | \
 	sed -e "s/$chapter$VERSION#top/$VERSION#cha-$chapter/g" | \
