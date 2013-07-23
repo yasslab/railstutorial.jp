@@ -44,10 +44,10 @@ $SCRIPT_ROOT/create_contents.sh
 $SCRIPT_ROOT/create_book.sh
 
 # Move generated files to 'public/books/4.0/'
-#$SCRIPT_ROOT/update_htmls.sh
+$SCRIPT_ROOT/update_htmls.sh
 
 # Delete all temporary files.
-#cd $GIT_ROOT
-#rm -rf archive
-#echo "Finished updating html files."
-#echo ""
+cd $GIT_ROOT
+rm -rf archive
+echo "Finished updating html files."
+echo ""
