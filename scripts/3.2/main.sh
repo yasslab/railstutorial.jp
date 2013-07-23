@@ -35,10 +35,10 @@ cp beginning_corrected.html sample_chapter.html   # For generating contents
 $SCRIPT_ROOT/create_contents.sh
 $SCRIPT_ROOT/create_book.sh
 
-# Move generated files to Rails public/books/3.2/
-# and delete all temporary files.
+# Move generated files to 'public/books/3.2/'
 $SCRIPT_ROOT/update_htmls.sh
 
+# Delete all temporary files.
 cd $GIT_ROOT
 rm -rf archive
 echo "Finished updating html files."
