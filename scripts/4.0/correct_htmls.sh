@@ -10,6 +10,9 @@ re_array=( \
     "s/http:\/\/railstutorial.jp\/screencasts/http:\/\/railstutorial.org\/screencasts/g" \
     "s/http:\/\/railstutorial.jp\/help/http:\/\/railstutorial.org\/help/g" \
     "s/http:\/\/railstutorial.jp\/books\/4.0/\/chapters/g" \
+    "s/,FITNESS/,<\/br>FITNESS/g" \
+    "s/WHETHER/<\/br>WHETHER/g" \
+    "s/IN CONNECTION WITH/<\/br>IN CONNECTION WITH/g" \
     )
 #          "s/railstutorial.org/railstutorial.jp/g" \
 #          "s/chapters\/images/images/g" \
@@ -19,9 +22,6 @@ re_array=( \
 
 
 ## Needless regular expressions for Rails 4.0
-#          "s/,FITNESS/,<\/br>FITNESS/g" \
-#	  "s/WHETHER/<\/br>WHETHER/g" \
-#	  "s/IN CONNECTION WITH/<\/br>IN CONNECTION WITH/g" \
 
 for chapter in `cat chapter_list.txt`
 do
