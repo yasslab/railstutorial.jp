@@ -1,17 +1,22 @@
 #!/bin/sh
 
-# Unzip `./archive.zip` downloaded from Google Translator Toolkit,
+# Unzip the given .zip file (Download from Google Translator Toolkit),
 # correct their html tags with `correct_html.sh`,
 # and replace existing html files with them.
+
+if [ $# -eq 0 ]
+then
+    echo "Usage: deploy_to_3.2.sh archive.zip"
+    exit
+fi
 
 # Jump to the git root directory
 cd `pwd`/`git rev-parse --show-cdup`
 echo "Jump to Git root directory: `pwd`"
 
 # Unzip the translated HTML files
-unzip ./archive.zip
+unzip $@
 cd archive/ja
-
 # Get files to generate HTML files
 cp ../../public/books/chapter_list.txt ./
 cp ../../public/books/_head.html ./
