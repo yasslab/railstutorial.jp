@@ -25,6 +25,7 @@ do
     for re in "${re_array[@]}"
     do
 	cat $chapter.modified_$i | sed -e "$re" > $chapter.modified_`expr $i + 1`
+	rm  $chapter.modified_$i
 	i=`expr $i + 1`
     done
     
