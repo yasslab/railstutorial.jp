@@ -19,6 +19,7 @@ cd $GIT_ROOT
 echo "Jump to Git root directory: $GIT_ROOT"
 
 # Unzip the translated HTML files
+rm -rf archive
 unzip $@
 cd archive/ja
 
@@ -31,8 +32,7 @@ cp $GIT_ROOT/public/books/_foot.html ./
 $SCRIPT_ROOT/correct_filenames.sh
 
 # Generate chapters
-#./download_3e_htmls.sh
-#$SCRIPT_ROOT/correct_htmls.sh
+$SCRIPT_ROOT/correct_htmls.sh
 $SCRIPT_ROOT/truncate_htmls.sh
 
 # For generating contents
@@ -46,8 +46,10 @@ $SCRIPT_ROOT/create_book.sh
 # Move generated files to 'public/books/4.0/'
 $SCRIPT_ROOT/update_htmls.sh
 
+exit
+
 # Delete all temporary files.
 cd $GIT_ROOT
-rm -rf archive
+#rm -rf archive
 echo "Finished updating html files."
 echo ""

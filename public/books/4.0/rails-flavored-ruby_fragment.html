@@ -1,29 +1,29 @@
 <div id="top"></div>
 
 
-<h1 class="chapter"><a id="sec-4" href="rails-flavored-ruby?version=4.0#top" class="heading"><span class="number">Chapter 4</span> Rails-flavored Ruby</a></h1>
+<h1 class="chapter"><a id="sec-4" href="/chapters/rails-flavored-ruby?version=4.0#top" class="heading"><span class="number">第4章</span>Rails風味のRuby</a></h1>
 
 
-<p>Grounded in examples from <a class="ref" href="static-pages?version=4.0#top">Chapter&nbsp;3</a>, this chapter explores some elements of Ruby important for Rails. Ruby is a big language, but fortunately the subset needed to be productive as a Rails developer is relatively small. Moreover, this subset is <em>different</em> from the usual approaches to learning Ruby, which is why, if your goal is making dynamic web applications, I recommend learning Rails first, picking up bits of Ruby along the way. To become a Rails <em>expert</em>, you need to understand Ruby more deeply, and this book gives you a good foundation for developing that expertise. As noted in <a class="ref" href="beginning?version=4.0#sec-comments_for_various_readers">Section&nbsp;1.1.1</a>, after finishing the <em>Rails Tutorial</em> I suggest reading a pure Ruby book such as <a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>, <a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a>, or <a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a>.</p>
+<p>この章では、<a class="ref" href="/chapters/static-pages?version=4.0#top">3章</a>で使用した例を基に、Railsにおいて重要となるRubyのさまざまな要素について探っていくことにしましょう。Rubyは巨大な仕様を持つ言語ですが、幸い、Rails開発者にとって必要な知識は比較的少なくて済みます。さらに、Railsのために必要なRubyの知識は、通常のRubyを学ぶ過程とは<em>異なります</em>。動的なWebアプリを作ることができればそれでよいというのであれば、まずRailsを学ぶようにし、Rubyについては当分の間、必要が生じた場合にのみ学習することをお勧めします。そうではなく、真のRails<em>エキスパート</em>になりたいのであれば、Rubyをさらに深いレベルまで理解する必要があります。本書は、そのための開発技術の基礎を築く助けになるでしょう。<a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a>でも示したように、<em>Railsチュートリアル</em> を終えた後には「 <a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」、「<a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a>」、「<a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a>」などの純粋なRubyについての本を読むことをお勧めします。</p>
 
-<p>This chapter covers a lot of material, and it&rsquo;s OK not to get it all on the first pass. I&rsquo;ll refer back to it frequently in future chapters.</p>
+<p>この章には多くの話題が盛り込まれていますが、一度読んだだけで理解する必要はまったくありません。今後もこの章には頻繁に立ち戻って参照します。</p>
 
 <div class="label" id="sec-motivation"></div>
 
 
-<h2><a id="sec-4_1" href="rails-flavored-ruby?version=4.0#sec-motivation" class="heading"><span class="number">4.1</span> Motivation</a></h2>
+<h2><a id="sec-4_1" href="/chapters/rails-flavored-ruby?version=4.0#sec-motivation" class="heading"><span class="number">4.1</span>動機</a></h2>
 
 
-<p>As we saw in the last chapter, it&rsquo;s possible to develop the skeleton of a Rails application, and even start testing it, with essentially no knowledge of the underlying Ruby language. We did this by relying on the test code provided by the tutorial and addressing each error message until the test suite was passing. This situation can&rsquo;t last forever, though, and we&rsquo;ll open this chapter with an addition to the site that brings us face-to-face with our Ruby limitations.</p>
+<p>前章でお見せしたとおり、Rubyの基礎知識がまったくない状態であったにもかかわらずRailsアプリケーションの骨組みを作り上げ、さらにテストまで行うことができました。このときは、本書が提供するテストコードと、テストスイートがパスするまでエラーメッセージの修正を繰り返すという方法だけを頼りに作業を進めました。しかしこのような初歩的な作業をいつまでも続けるわけにはいきませんので、今の私たちのRubyに関する知識と経験の限界に真正面から挑み、これを乗り越えるためにこの章を割り当てることにします。</p>
 
-<p>When we last saw our new application, we had just updated our mostly static pages to use Rails layouts to eliminate duplication in our views, as shown in <a class="ref" href="rails-flavored-ruby?version=4.0#code-application_layout_redux">Listing&nbsp;4.1</a> (which is a slightly reformatted version of <a class="ref" href="static-pages?version=4.0#code-application_layout">Listing&nbsp;3.26</a>).</p>
+<p>前章の終わりでは、Railsのレイアウトを使用してビューでの重複を取り除くために、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-application_layout_redux">リスト4.1</a>に示したように、ほぼ静的なページを単に更新したにとどまりました。これは、<a class="ref" href="/chapters/static-pages?version=4.0#code-application_layout">リスト3.26</a>をほんのわずか修正しただけのものです。</p>
 
 <div class="label" id="code-application_layout_redux"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.1.</span> <span class="description">The sample application site layout. <br /> <code>app/views/layouts/application.html.erb</code></span> </div>
-<div class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="listing"><span class="header">リスト4.1</span> <span class="description">サンプルアプリケーションのWebサイトのレイアウト。</span><br /><span class="description"> <code>app/views/layouts/application.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;title&gt;</span>Ruby on Rails Tutorial Sample App | <span class="cp">&lt;%=</span> <span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
@@ -40,7 +40,7 @@
 </div></div>
 
 
-<p>Let&rsquo;s focus on one particular line in <a class="ref" href="rails-flavored-ruby?version=4.0#code-application_layout_redux">Listing&nbsp;4.1</a>:</p>
+<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-application_layout_redux">リスト4.1</a>の以下の行にご注目ください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
                                        <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="cp">%&gt;</span>
@@ -48,47 +48,47 @@
 </div>
 
 
-<p>This uses the built-in Rails function <code>stylesheet_link_tag</code> (which you can read more about at the <a href="http://api.rubyonrails.org/v4.0.0/classes/ActionView/Helpers/AssetTagHelper/StylesheetTagHelpers.html#method-i-stylesheet_link_tag">Rails API</a>) to include <code>application.css</code> for all <a href="http://www.w3.org/TR/CSS2/media.html">media types</a> (including computer screens and printers). To an experienced Rails developer, this line looks simple, but there are at least four potentially confusing Ruby ideas: built-in Rails methods, method invocation with missing parentheses, symbols, and hashes. We&rsquo;ll cover all of these ideas in this chapter.</p>
+<p>ここでは、Railsの組み込み関数<code>stylesheet_link_tag</code> (詳細は<a href="http://api.rubyonrails.org/v4.0.0/classes/ActionView/Helpers/AssetTagHelper/StylesheetTagHelpers.html#method-i-stylesheet_link_tag">Rails API</a>を参照) を使用して、<code>application.css</code>をすべての<a href="http://www.w3.org/TR/CSS2/media.html">メディアタイプ</a>にインクルードしています (メディアタイプには、コンピュータの画面や印刷画面なども含まれます)。Rails開発経験者にとってこの行は実にシンプルですが、しかしここには少なくとも混乱を生じる可能性のあるRubyの概念が4つあります。Railsの組み込み関数、かっこを使わない関数呼び出し、シンボル、そしてハッシュです。これらの概念についてはこの章ですべて説明します。</p>
 
-<p>In addition to coming equipped with a large number of built-in functions for use in the views, Rails also allows the creation of new ones. Such functions are called <em>helpers</em>; to see how to make a custom helper, let&rsquo;s start by examining the title line from <a class="ref" href="rails-flavored-ruby?version=4.0#code-application_layout_redux">Listing&nbsp;4.1</a>:</p>
+<p>Railsのビューでは膨大な組み込み関数を使用することができますが、それに加えて新しい関数を作成することもできます。この関数は<em>ヘルパー</em>と呼ばれます。カスタムヘルパーを作成する方法を学ぶために、まず<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-application_layout_redux">リスト4.1</a>のタイトル行の部分に注目しましょう。</p>
 
 <div class="code"><div class="highlight"><pre>Ruby on Rails Tutorial Sample App | <span class="cp">&lt;%=</span> <span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">)</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>This relies on the definition of a page title (using  <code>provide</code>) in each view, as in</p>
+<p>上の行は、ページタイトルの定義に依存しています。この定義は、以下のようにビューで<code>provide</code>を使用して行われています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Home&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>Sample App<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
-  This is the home page for the
+    This is the home page for the
   <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.jp/&quot;</span><span class="nt">&gt;</span>Ruby on Rails Tutorial<span class="nt">&lt;/a&gt;</span>
-  sample application.
+    sample application.
 <span class="nt">&lt;/p&gt;</span>
 </pre></div>
 </div>
 
 
-<p>But what if we don&rsquo;t provide a title? It&rsquo;s a good convention to have a <em>base title</em> we use on every page, with an optional page title if we want to be more specific. We&rsquo;ve <em>almost</em> achieved that with our current layout, with one wrinkle: as you can see if you delete the <code>provide</code> call in one of the views, in the absence of a page-specific  title the full title appears as follows:</p>
+<p>このとき、もしタイトルをまったく与えていなければ、タイトルが空欄になってしまいます。これを防ぐには、すべてのページで使用する<em>基本タイトル</em>を定め、特定のページでは異なるタイトルに変更できるようなオプションを与えるのが常套手段です。これは現在のレイアウトでも、<em>ある点を除いて</em>達成されています。もしビューの1つから<code>provide</code>呼び出しを削除すると、そのページ固有のタイトルの代わりに以下のタイトルが表示されます。</p>
 
-<div class="code"><div class="highlight"><pre>Ruby on Rails Tutorial Sample App |
+<div class="code"><div class="highlight"><pre>Ruby on Rails Tutorial Sample App | 
 </pre></div>
 </div>
 
 
-<p>In other words, there&rsquo;s a suitable base title, but there&rsquo;s also a trailing vertical bar character <code>|</code> at the end.</p>
+<p>基本タイトルとしてはこれで正しいのですが、末尾に余分な縦棒<code>|</code>が残ってしまっています。</p>
 
-<p>To solve the problem of a missing page title, we&rsquo;ll define a custom helper called <code>full_title</code>. The <code>full_title</code> helper returns a base title, &ldquo;Ruby on Rails Tutorial Sample App&rdquo;, if no page title is defined, and adds a vertical bar followed by the page title if one is defined (<a class="ref" href="rails-flavored-ruby?version=4.0#code-title_helper">Listing&nbsp;4.2</a>).<sup class="footnote" id="fnref-4_1"><a href="?version=4.0#fn-4_1">1</a></sup></p>
+<p>ページタイトルが正しく表示されない問題を解決するために、 <code>full_title</code>というヘルパーを作成することにします。<code>full_title</code>ヘルパーは、ページタイトルが定義されていない場合は基本タイトル “Ruby on Rails Tutorial Sample App”を返し、定義されている場合は基本タイトルに縦棒と追加ページタイトルを追加して返します (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-title_helper">リスト4.2</a>)<sup class="footnote" id="fnref-4_1"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_1">1</a></sup>。</p>
 
 <div class="label" id="code-title_helper"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.2.</span> <span class="description">Defining a <code>full_title</code> helper. <br /> <code>app/helpers/application_helper.rb</code></span> </div>
+<div class="listing"><span class="header">リスト4.2</span> <span class="description"><code>full_title</code>ヘルパーを定義する。</span><br /><span class="description"> <code>app/helpers/application_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">ApplicationHelper</span>
 
-  <span class="c1"># Returns the full title on a per-page basis.</span>
+  <span class="c1"># ページごとの完全なタイトルを返します。</span>
   <span class="k">def</span> <span class="nf">full_title</span><span class="p">(</span><span class="n">page_title</span><span class="p">)</span>
     <span class="n">base_title</span> <span class="o">=</span> <span class="s2">&quot;Ruby on Rails Tutorial Sample App&quot;</span>
     <span class="k">if</span> <span class="n">page_title</span><span class="o">.</span><span class="n">empty?</span>
@@ -102,28 +102,28 @@
 </div></div>
 
 
-<p>Now that we have a helper, we can use it to simplify our layout by replacing</p>
+<p>ヘルパーを作成したので、これを使用してレイアウトをシンプルにすることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;title&gt;</span>Ruby on Rails Tutorial Sample App | <span class="cp">&lt;%=</span> <span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
 </pre></div>
 </div>
 
 
-<p>with</p>
+<p>上の行を以下で置き換えます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;title&gt;</span><span class="cp">&lt;%=</span> <span class="n">full_title</span><span class="p">(</span><span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
 </pre></div>
 </div>
 
 
-<p>as seen in <a class="ref" href="rails-flavored-ruby?version=4.0#code-application_layout_full_title">Listing&nbsp;4.3</a>.</p>
+<p>置き換えの結果を<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-application_layout_full_title">リスト4.3</a>に示します。</p>
 
 <div class="label" id="code-application_layout_full_title"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.3.</span> <span class="description">The sample application site layout. <br /> <code>app/views/layouts/application.html.erb</code></span> </div>
-<div class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="listing"><span class="header">リスト4.3</span> <span class="description">サンプルアプリケーションのWebサイトのレイアウト。</span><br /><span class="description"> <code>app/views/layouts/application.html.erb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;!</span><span class="cp">DOCTYPE html&gt;</span>
 <span class="nt">&lt;html&gt;</span>
   <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;title&gt;</span><span class="cp">&lt;%=</span> <span class="n">full_title</span><span class="p">(</span><span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
@@ -140,13 +140,13 @@
 </div></div>
 
 
-<p>To put our helper to work, we can eliminate the unnecessary word &ldquo;Home&rdquo; from the Home page, allowing it to revert to the base title. We do this by first updating our test with the code in <a class="ref" href="rails-flavored-ruby?version=4.0#code-home_base_title_spec">Listing&nbsp;4.4</a>, which updates the previous title test and adds one to test for the absence of the custom <code>&rsquo;Home&rsquo;</code> string in the title.</p>
+<p>このヘルパーを定義することで、Homeページにこれまで表示されていた余分な &quot;Home&quot; という単語を表示せず、基本タイトルのみを正しく表示することもできるようになります。これを行うには、まず<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-home_base_title_spec">リスト4.4</a>に示すように以前のテストコードを更新し、<code>&#39;Home&#39;</code>の文字が表示されていないことを確認するテストを追加します。</p>
 
 <div class="label" id="code-home_base_title_spec"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.4.</span> <span class="description">Updated tests for the Home page&rsquo;s title. <br /> <code>spec/requests/static_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト4.4</span> <span class="description">Homeページのタイトル確認用にテストを更新する。</span><br /><span class="description"> <code>spec/requests/static_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Static pages&quot;</span> <span class="k">do</span>
@@ -176,48 +176,48 @@
 </div></div>
 
 
-<p>See if you can figure out why we&rsquo;ve added a new test instead of just altering the current one. (<em>Hint</em>: The answer is in <a class="ref" href="static-pages?version=4.0#sec-testing_a_title_change">Section&nbsp;3.3.1</a>.)</p>
+<p>ここで、現在のテストを変更せずに新しいテストを追加した理由を考えてみてください (<em>ヒント</em>: 答えは<a class="ref" href="/chapters/static-pages?version=4.0#sec-testing_a_title_change">3.3.1</a>にあります)。</p>
 
-<p>Let&rsquo;s run the test suite to verify that one test fails:</p>
+<p>ここでテストスイートを実行して、テストが失敗することを確認します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
 </pre></div>
 </div>
 
 
-<p>To get the test suite to pass, we&rsquo;ll remove the <code>provide</code> line from the Home page&rsquo;s view, as seen in <a class="ref" href="rails-flavored-ruby?version=4.0#code-home_page_base_title">Listing&nbsp;4.5</a>.</p>
+<p>テストがパスするためには、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-home_page_base_title">リスト4.5</a>のようにHomeページのビューから<code>provide</code>の行を削除する必要があります。</p>
 
 <div class="label" id="code-home_page_base_title"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.5.</span> <span class="description">The Home page with no custom page title. <br /> <code>app/views/static_pages/home.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト4.5</span> <span class="description">ページタイトルをカスタマイズせずに表示するHomeページ。</span><br /><span class="description"> <code>app/views/static_pages/home.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Sample App<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
-  This is the home page for the
+    This is the home page for the
   <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.jp/&quot;</span><span class="nt">&gt;</span>Ruby on Rails Tutorial<span class="nt">&lt;/a&gt;</span>
-  sample application.
+    sample application.
 <span class="nt">&lt;/p&gt;</span>
 </pre></div>
 </div></div>
 
 
-<p>At this point the tests should pass:</p>
+<p>これでテストにパスするはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
 </pre></div>
 </div>
 
 
-<p>As with the line to include the application stylesheet, the code in <a class="ref" href="rails-flavored-ruby?version=4.0#code-title_helper">Listing&nbsp;4.2</a> may look simple to the eyes of an experienced Rails developer, but it&rsquo;s <em>full</em> of potentially confusing Ruby ideas: modules, comments, local variable assignment, booleans, control flow, string interpolation, and return values. This chapter will cover all of these ideas as well.</p>
+<p>Rails開発経験者にとっては、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-title_helper">リスト4.2</a>のコードはスタイルシートをインクルードするのと大差ない単純なものですが、ここにもRuby未経験者を混乱させる可能性のある概念が<em>多数</em>含まれています。モジュール、コメント、ローカル変数割り当て、論理値 (boolean)、制御フロー、文字列の挿入、戻り値です。これらの概念についても、この章ですべて説明します。</p>
 
 <div class="label" id="sec-strings_and_methods"></div>
 
 
-<h2><a id="sec-4_2" href="rails-flavored-ruby?version=4.0#sec-strings_and_methods" class="heading"><span class="number">4.2</span> Strings and methods</a></h2>
+<h2><a id="sec-4_2" href="/chapters/rails-flavored-ruby?version=4.0#sec-strings_and_methods" class="heading"><span class="number">4.2</span>文字列(string)とメソッド</a></h2>
 
 
-<p>Our principal tool for learning Ruby will be the <em>Rails console</em>, a command-line tool for interacting with Rails applications first seen in <a class="ref" href="a-demo-app?version=4.0#sec-demo_user_has_many_microposts">Section&nbsp;2.3.3</a>. The console itself is built on top of interactive Ruby (<code>irb</code>), and thus has access to the full power of the Ruby language. (As we&rsquo;ll see in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-a_controller_class">Section&nbsp;4.4.4</a>, the console also has access to the Rails environment.) Start the console at the command line as follows:</p>
+<p>Ruby を学ぶためのツールとして、主に<em>Railsコンソール</em>を使用することにします。これは<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_user_has_many_microposts">2.3.3</a> でも登場した、Railアプリケーションを対話的に操作するためのコマンドラインツールです。コンソールはインタラクティブRuby (<code>irb</code>) 上に構築されているため、Rubyの機能をすべて使うことができます (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_controller_class">4.4.4</a>でも説明しますが、コンソールからRails環境にアクセスすることもできます)。以下のコマンドをコマンドラインで実行し、Railsコンソールを起動しましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="go">Loading development environment</span>
@@ -226,19 +226,19 @@
 </div>
 
 
-<p>By default, the console starts in a <em>development environment</em>, which is one of three separate environments defined by Rails (the others are <em>test</em> and <em>production</em>). This distinction won&rsquo;t be important in this chapter, but we&rsquo;ll learn more about environments in <a class="ref" href="sign-up?version=4.0#sec-rails_environments">Section&nbsp;7.1.1</a>.</p>
+<p>デフォルトでは、コンソールは<em>開発 (development) 環境</em>という、Railsによって定義された3種類の環境のうちの1つで起動します (他の2つは<em>テスト環境</em>と<em>本番 (production) 環境</em>です)。この区別はこの章においては重要ではありませんが、<a class="ref" href="/chapters/sign-up?version=4.0#sec-rails_environments">7.1.1</a>でこれらの環境について詳細に説明します。</p>
 
-<p>The console is a great learning tool, and you should feel free to explore&mdash;don&rsquo;t worry, you (probably) won&rsquo;t break anything. When using the console, type Ctrl-C if you get stuck, or Ctrl-D to exit the console altogether. Throughout the rest of this chapter, you might find it helpful to consult the <a href="http://ruby-doc.org/core-2.0/">Ruby API</a>. It&rsquo;s packed (perhaps even <em>too</em> packed) with information; for example, to learn more about Ruby strings you can look at the Ruby API entry for the <code>String</code> class.</p>
+<p>Railsコンソールは素晴しい学習ツールであり、その中を自由に探索できます。コンソールの中で何をしようとも、何かを壊すことは (まず) ありえないので、ご安心ください。Railsコンソールでは、スタックから抜けるにはCtrl-C を押し、完全にコンソールを終了するにはCtrl-Dを押します。以後この章を進めるにあたり、有用なリソースである<a href="http://ruby-doc.org/core-2.0/">Ruby API</a>を参照しながら学習することをぜひお勧めします。Ruby APIには高濃縮の情報が詰まっています (少々<em>濃厚すぎる</em>とも言えます)。たとえば、Rubyの文字列の詳細を知りたい場合は、Ruby APIエントリの<code>String</code>クラスを参照すればよいのです。</p>
 
 <div class="label" id="sec-comments"></div>
 
 
-<h3><a id="sec-4_2_1" href="rails-flavored-ruby?version=4.0#sec-comments" class="heading"><span class="number">4.2.1</span> Comments</a></h3>
+<h3><a id="sec-4_2_1" href="/chapters/rails-flavored-ruby?version=4.0#sec-comments" class="heading"><span class="number">4.2.1</span>コメント</a></h3>
 
 
-<p>Ruby <em>comments</em> start with the pound sign&nbsp;<code>#</code> (also called the &ldquo;hash mark&rdquo; or, more poetically, the &ldquo;octothorpe&rdquo;) and extend to the end of the line. Ruby ignores comments, but they are useful for human readers (including, often, the original author!). In the code</p>
+<p>Rubyの<em>コメント</em> はナンバー記号<code>#</code> (&quot;ハッシュマーク&quot;や、&quot;オクトソープ&quot;とも呼ばれます) から始まり、行の終わりまでコメントとして扱われます。Rubyはコメントの内容を実行することはありませんが、適切なコメントはそれを読む人間にとって (コードの作者にとっても) 非常に有用です。以下のコードの場合、</p>
 
-<div class="code"><div class="highlight"><pre>  <span class="c1"># Returns the full title on a per-page basis.</span>
+<div class="code"><div class="highlight"><pre>  <span class="c1"># ページごとの完全なタイトルを返します。</span>
   <span class="k">def</span> <span class="nf">full_title</span><span class="p">(</span><span class="n">page_title</span><span class="p">)</span>
     <span class="o">.</span>
     <span class="o">.</span>
@@ -248,81 +248,81 @@
 </div>
 
 
-<p>the first line is a comment indicating the purpose of the subsequent function definition.</p>
+<p>最初の行が、その後に定義されている関数の目的を説明しているコメントです。</p>
 
-<p>You don&rsquo;t ordinarily include comments in console sessions, but for instructional purposes I&rsquo;ll include some comments in what follows, like this:</p>
+<p>コンソール内ではコメントを使わないのが普通ですが、ここでは学習のためにあえて以下のようにコメントを追加してみましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
-<span class="gp">&gt;&gt; </span><span class="mi">17</span> <span class="o">+</span> <span class="mi">42</span>   <span class="c1"># Integer addition</span>
+<span class="gp">&gt;&gt; </span><span class="mi">17</span> <span class="o">+</span> <span class="mi">42</span>   <span class="c1"># 整数の加算</span>
 <span class="go">=&gt; 59</span>
 </pre></div>
 </div>
 
 
-<p>If you follow along in this section typing or copying-and-pasting commands into your own console, you can of course omit the comments if you like; the console will ignore them in any case.</p>
+<p>この章のコードを (ファイルに保存するのでなく) Railsコンソールに入力したりコピペしたりするときであれば、コメントを省略してもかまいません。コメントをRailsにコンソールに入力しても、コメントは常に無視されるので問題ありません。</p>
 
 <div class="label" id="sec-strings"></div>
 
 
-<h3><a id="sec-4_2_2" href="rails-flavored-ruby?version=4.0#sec-strings" class="heading"><span class="number">4.2.2</span> Strings</a></h3>
+<h3><a id="sec-4_2_2" href="/chapters/rails-flavored-ruby?version=4.0#sec-strings" class="heading"><span class="number">4.2.2</span>文字列</a></h3>
 
 
-<p><em>Strings</em> are probably the most important data structure for web applications, since web pages ultimately consist of strings of characters sent from the server to the browser. Let&rsquo;s start exploring strings with the console, this time started with <code>rails&nbsp;c</code>, which is a shortcut for <code>rails console</code>:</p>
+<p><em>文字列 (string)</em>は、おそらくどのWeb アプリケーションにおいても最も重要なデータ構造です。これは、Web ページというものが究極的にはサーバからブラウザに送信された文字列にすぎないためです。それでは、コンソールで文字列について調べてみましょう。今回は<code>rails console</code>の代わりに、短縮版の<code>rails c</code>でコンソールを起動します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails c</span>
-<span class="gp">&gt;&gt; </span><span class="s2">&quot;&quot;</span>         <span class="c1"># An empty string</span>
+<span class="gp">&gt;&gt; </span><span class="s2">&quot;&quot;</span>         <span class="c1"># 空の文字列</span>
 <span class="go">=&gt; &quot;&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="s2">&quot;foo&quot;</span>      <span class="c1"># A nonempty string</span>
+<span class="gp">&gt;&gt; </span><span class="s2">&quot;foo&quot;</span>      <span class="c1"># 空でない文字列</span>
 <span class="go">=&gt; &quot;foo&quot;</span>
 </pre></div>
 </div>
 
 
-<p>These are <em>string literals</em> (also, amusingly, called <em>literal strings</em>), created using the double quote character&nbsp;<code>"</code>. The console prints the result of evaluating each line, which in the case of a string literal is just the string itself.</p>
+<p>ここで入力したものは<em>文字列リテラル</em>と呼ばれ (面白いことに<em>リテラル文字列</em>とも呼ばれます)、ダブルクォート<code>&quot;</code> で囲むことで作成できます。このコンソールは、入力したそれぞれの行を評価した結果を表示しており、文字列リテラルの場合には文字列自身が表示されます。</p>
 
-<p>We can also concatenate strings with the <code>+</code> operator:</p>
+<p><code>+</code> 演算子を使用して、文字列を結合することもできます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;foo&quot;</span> <span class="o">+</span> <span class="s2">&quot;bar&quot;</span>    <span class="c1"># String concatenation</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;foo&quot;</span> <span class="o">+</span> <span class="s2">&quot;bar&quot;</span>    <span class="c1"># 文字列の結合</span>
 <span class="go">=&gt; &quot;foobar&quot;</span>
 </pre></div>
 </div>
 
 
-<p>Here the result of evaluating <code>"foo"</code> plus <code>"bar"</code> is the string <code>"foobar"</code>.<sup class="footnote" id="fnref-4_2"><a href="?version=4.0#fn-4_2">2</a></sup></p>
+<p>評価の結果は、<code>&quot;foo&quot;</code> と <code>&quot;bar&quot;</code> を足した<code>&quot;foobar&quot;</code>になりました<sup class="footnote" id="fnref-4_2"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_2">2</a></sup>。</p>
 
-<p>Another way to build up strings is via <em>interpolation</em> using the special syntax <code>#{}</code>:<sup class="footnote" id="fnref-4_3"><a href="?version=4.0#fn-4_3">3</a></sup></p>
+<p>文字列を組み立てる他の方法として<em>式展開 (interpolation)</em>というものがあり、<code>#{}</code>という特殊な構文を使用します<sup class="footnote" id="fnref-4_3"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_3">3</a></sup>。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">first_name</span> <span class="o">=</span> <span class="s2">&quot;Michael&quot;</span>    <span class="c1"># Variable assignment</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">first_name</span> <span class="o">=</span> <span class="s2">&quot;Michael&quot;</span>    <span class="c1">#変数割り当て</span>
 <span class="go">=&gt; &quot;Michael&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> Hartl&quot;</span>     <span class="c1"># String interpolation</span>
+<span class="gp">&gt;&gt; </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> Hartl&quot;</span>     <span class="c1"># 文字列の式展開</span>
 <span class="go">=&gt; &quot;Michael Hartl&quot;</span>
 </pre></div>
 </div>
 
 
-<p>Here we&rsquo;ve <em>assigned</em> the value <code>"Michael"</code> to the variable <code>first_name</code> and then interpolated it into the string <code>"#{first_name} Hartl"</code>. We could also assign both strings a variable name:</p>
+<p>ここでは、<code>&quot;Michael&quot;</code> という値を<code>first_name</code>変数に<em>割り当て</em>、この変数が <code>&quot;#{first_name} Hartl&quot;</code> という文字列の中で式展開されます。苗字と名前の両方を変数に割り当てることもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">first_name</span> <span class="o">=</span> <span class="s2">&quot;Michael&quot;</span>
 <span class="go">=&gt; &quot;Michael&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="n">last_name</span> <span class="o">=</span> <span class="s2">&quot;Hartl&quot;</span>
 <span class="go">=&gt; &quot;Hartl&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="n">first_name</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">last_name</span>    <span class="c1"># Concatenation, with a space in between</span>
+<span class="gp">&gt;&gt; </span><span class="n">first_name</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">last_name</span>    <span class="c1"># スペースをはさんで結合する</span>
 <span class="go">=&gt; &quot;Michael Hartl&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>    <span class="c1"># The equivalent interpolation</span>
+<span class="gp">&gt;&gt; </span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">&quot;</span>    <span class="c1"># 式展開による同等のコード</span>
 <span class="go">=&gt; &quot;Michael Hartl&quot;</span>
 </pre></div>
 </div>
 
 
-<p>Note that the final two expressions are equivalent, but I prefer the interpolated version; having to add the single space <code>"&nbsp;"</code> seems a bit awkward.</p>
+<p>最後の2つの結果は同等であることにご注目ください。なお、著者は後者の式展開が好みです。空白を<code>&quot; &quot;</code>という形式で加えるのはぎこちなく思えます。</p>
 
 <div class="label" id="sec-printing"></div>
 
 
-<h4><a id="sec-4_2_2_1" href="rails-flavored-ruby?version=4.0#sec-printing" class="heading">Printing</a></h4>
+<h4><a id="sec-4_2_2_1" href="/chapters/rails-flavored-ruby?version=4.0#sec-printing" class="heading">出力</a></h4>
 
 
-<p>To <em>print</em> a string, the most commonly used Ruby function is <code>puts</code> (pronounced &ldquo;put ess&rdquo;, for &ldquo;put string&rdquo;):</p>
+<p>文字列を<em>出力</em>するために、Rubyの関数で最も一般に使われるのは<code>puts</code>です (putの三人称単数現在形ではなく “put string”なので、“put ess” と発音します)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="nb">puts</span> <span class="s2">&quot;foo&quot;</span>     <span class="c1"># put string</span>
 <span class="go">foo</span>
@@ -331,13 +331,13 @@
 </div>
 
 
-<p>The <code>puts</code> method operates as a <em>side-effect</em>: the expression <code>puts "foo"</code> prints the string to the screen and then returns <a href="http://www.answers.com/nil">literally nothing</a>: <code>nil</code> is a special Ruby value for &ldquo;nothing at all&rdquo;. (In what follows, I&rsquo;ll sometimes suppress the <code>=&gt; nil</code> part for simplicity.)</p>
+<p><code>puts</code> メソッドは<em>副作用</em>として動作します。<code>puts &quot;foo&quot;</code>は文字列をスクリーンに表示し、文字どおり「無を返します」(正確には<a href="http://www.answers.com/nil">nilというリテラル</a>を返します。<code>nil</code> は &quot;まったく無い&quot;ことを表すRubyの特別な値です)。(<code>=&gt; nil</code> という結果は、今後簡素化のために省略することがあります。)</p>
 
-<p>Using <code>puts</code> automatically appends a newline character&nbsp;<tt class="verb">\n</tt> to the output; the related <code>print</code> method does not:</p>
+<p><code>puts</code>を使用して出力すると、改行文字である<tt class="verb">\n</tt>が自動的に出力の末尾に追加されます。<code>print</code>メソッドも同様の出力を行いますが、以下のように、改行文字を追加しない点が異なります。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;foo&quot;</span>    <span class="c1"># print string (same as puts, but without the newline)</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;foo&quot;</span>    <span class="c1"># 文字列の出力 (putsと同じだが改行しない)</span>
 <span class="go">foo=&gt; nil</span>
-<span class="gp">&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;foo</span><span class="se">\n</span><span class="s2">&quot;</span>  <span class="c1"># Same as puts &quot;foo&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="nb">print</span> <span class="s2">&quot;foo</span><span class="se">\n</span><span class="s2">&quot;</span>  <span class="c1"># puts &quot;foo&quot; と同等</span>
 <span class="go">foo</span>
 <span class="go">=&gt; nil</span>
 </pre></div>
@@ -349,12 +349,12 @@
 <div class="label" id="sec-single_quoted_strings"></div>
 
 
-<h4><a id="sec-4_2_2_2" href="rails-flavored-ruby?version=4.0#sec-single_quoted_strings" class="heading">Single-quoted strings</a></h4>
+<h4><a id="sec-4_2_2_2" href="/chapters/rails-flavored-ruby?version=4.0#sec-single_quoted_strings" class="heading">シングルクォート内の文字列</a></h4>
 
 
-<p>All the examples so far have used <em>double-quoted strings</em>, but Ruby also supports <em>single-quoted</em> strings. For many uses, the two types of strings are effectively identical:</p>
+<p>これまでの例ではすべて<em>ダブルクォート文字列</em>を使用していましたが、Rubyでは<em>シングルクォート</em>もサポートしています。ほとんどの場合、ダブルクォートとシングルクォートのどちらを使用しても実質的に同じです。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;foo&#39;</span>          <span class="c1"># A single-quoted string</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;foo&#39;</span>          <span class="c1"># シングルクォートで囲んだ文字列</span>
 <span class="go">=&gt; &quot;foo&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="s1">&#39;foo&#39;</span> <span class="o">+</span> <span class="s1">&#39;bar&#39;</span>
 <span class="go">=&gt; &quot;foobar&quot;</span>
@@ -362,25 +362,25 @@
 </div>
 
 
-<p>There&rsquo;s an important difference, though; Ruby won&rsquo;t interpolate into single-quoted strings:</p>
+<p>ただし、1つ重要な違いがあります。Rubyはシングルクォート文字列の中では補間子の式展開を行いません。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;#{foo} bar&#39;</span>     <span class="c1"># Single-quoted strings don&#39;t allow interpolation</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;#{foo} bar&#39;</span>     <span class="c1"># シングルクォートで囲まれた文字列では展開されない</span>
 <span class="go">=&gt; &quot;\#{foo} bar&quot;</span>
 </pre></div>
 </div>
 
 
-<p>Note how the console returns values using double-quoted strings, which requires a backslash to <em>escape</em> special characters such as&nbsp;<code>#</code>.</p>
+<p>逆に言えば、ダブルクォート文字列を用いた文字列で<code>#</code>のような特殊な文字を使用する場合は、この文字をバックスラッシュで<em>エスケープ</em>する必要があります。</p>
 
-<p>If double-quoted strings can do everything that single-quoted strings can do, and interpolate to boot, what&rsquo;s the point of single-quoted strings? They are often useful because they are truly literal, and contain exactly the characters you type. For example, the &ldquo;backslash&rdquo; character is special on most systems, as in the literal newline&nbsp;<tt class="verb">\n</tt>. If you want a variable to contain a literal backslash, single quotes make it easier:</p>
+<p>ダブルクォート文字列でもシングルクォート文字列と同じことができ、ダブルクォート文字列では式展開もできるのであれば、シングルクォート文字列にはどのような使い道があるのでしょうか。シングルクォートは、入力した文字をエスケープせずに「そのまま」保持するときに便利です。たとえば、いわゆる “バックスラッシュ” 文字は、改行文字<tt class="verb">\n</tt>と同様多くのシステム上で特殊な文字として扱われます。シングルクオートで文字列を囲めば、簡単にバックスラッシュ文字のようなとくしゅもをそのまま変数に含めることができます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;\n&#39;</span>       <span class="c1"># A literal &#39;backslash n&#39; combination</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;\n&#39;</span>       <span class="c1"># バックスラッシュ n&#39; をそのまま扱う</span>
 <span class="go">=&gt; &quot;\\n&quot;</span>
 </pre></div>
 </div>
 
 
-<p>As with the&nbsp;<code>#</code> character in our previous example, Ruby needs to escape the backslash with an additional backslash; inside double-quoted strings, a literal backslash is represented with <em>two</em> backslashes. For a small example like this, there&rsquo;s not much savings, but if there are lots of things to escape it can be a real help:</p>
+<p>以前の例で扱った<code>#</code>文字と同様、Rubyではバックスラッシュをエスケープするためにバックスラッシュがもう1つ必要です。ダブルクォート文字列の中では、バックスラッシュ文字そのものは<em>2つ</em>のバックスラッシュによって表されます。このようなささいな例の場合はそれほど問題になりませんが、以下のようにエスケープの必要な文字が大量にある場合には、シングルクォートは非常に便利です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;Newlines (\n) and tabs (\t) both use the backslash character \.&#39;</span>
 <span class="go">=&gt; &quot;Newlines (\\n) and tabs (\\t) both use the backslash character \\.&quot;</span>
@@ -393,20 +393,21 @@
 <div class="label" id="sec-objects_and_message_passing"></div>
 
 
-<h3><a id="sec-4_2_3" href="rails-flavored-ruby?version=4.0#sec-objects_and_message_passing" class="heading"><span class="number">4.2.3</span> Objects and message passing</a></h3>
+<h3><a id="sec-4_2_3" href="/chapters/rails-flavored-ruby?version=4.0#sec-objects_and_message_passing" class="heading"><span class="number">4.2.3</span>オブジェクトとメッセージ受け渡し</a></h3>
 
 
-<p>Everything in Ruby, including strings and even <code>nil</code>, is an <em>object</em>. We&rsquo;ll see the technical meaning of this in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-a_class_of_our_own">Section&nbsp;4.4.2</a>, but I don&rsquo;t think anyone ever understood objects by reading the definition in a book; you have to build up your intuition for objects by seeing lots of examples.</p>
+<p>Rubyでは、あらゆるものが<em>オブジェクト</em>です。文字列や<code>nil</code>ですらオブジェクトです。このことの技術的な意味は<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_class_of_our_own">4.4.2</a>で説明しますが、オブジェクトについてのこのような定義は、本で読んだだけではわかりません。さまざまなオブジェクトの例に触れることで、オブジェクトとは何であるかという直感を時間をかけて養う必要があります。</p>
 
-<p>It&rsquo;s easier to describe what objects <em>do</em>, which is respond to messages. An object like a string, for example, can respond to the message <code>length</code>, which returns the number of characters in the string:</p>
+<p>逆に、オブジェクトが何を<em>する</em>かを説明するのは簡単です。オブジェクトとは (いついかなる場合にも) メッセージに応答するものです。文字列のようなオブジェクトは、たとえば <code>length</code>というメッセージに応答できますが、これは文字列の文字数を返します。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;foobar&quot;</span><span class="o">.</span><span class="n">length</span>        <span class="c1"># Passing the &quot;length&quot; message to a string</span>
-<span class="go">=&gt; 6</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;foobar&quot;</span><span class="o">.</span><span class="n">length</span>        <span class="c1"># 文字列に &quot;length&quot; というメッセージを渡す</span>
+<span class="go">  =&gt; 6
+</span>
 </pre></div>
 </div>
 
 
-<p>Typically, the messages that get passed to objects are <em>methods</em>, which are functions defined on those objects.<sup class="footnote" id="fnref-4_4"><a href="?version=4.0#fn-4_4">4</a></sup> Strings also respond to the <code>empty?</code> method:</p>
+<p>オブジェクトに渡されるメッセージは、一般には<em>メソッド</em>と呼ばれます。メソッドの実体は、そのオブジェクトに定義された関数です<sup class="footnote" id="fnref-4_4"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_4">4</a></sup>。Rubyの文字列は、以下のように<code>empty?</code>メソッドにも応答することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;foobar&quot;</span><span class="o">.</span><span class="n">empty?</span>
 <span class="go">=&gt; false</span>
@@ -416,7 +417,7 @@
 </div>
 
 
-<p>Note the question mark at the end of the <code>empty?</code> method. This is a Ruby convention indicating that the return value is <em>boolean</em>: <code>true</code> or <code>false</code>. Booleans are especially useful for <em>control flow</em>:</p>
+<p><code>empty?</code>メソッドの末尾にある疑問符にご注目ください。これは Rubyの慣習で、<code>true</code> もしくは <code>false</code>という<em>論理値 (boolean)</em>を返すことを示します。論理値は特に<em>制御フロー</em>において有用です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">empty?</span>
@@ -429,7 +430,7 @@
 </div>
 
 
-<p>Booleans can also be combined using the <code>&amp;&amp;</code> (&ldquo;and&rdquo;), <code>||</code> (&ldquo;or&rdquo;), and <code>!</code> (&ldquo;not&rdquo;) operators:</p>
+<p>論理値は、<code>&amp;&amp;</code> (“and”)、<code>||</code> (“or”)、そして<code>!</code> (&quot;not&quot;) 演算子によって結合することもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;foo&quot;</span>
 <span class="go">=&gt; &quot;foo&quot;</span>
@@ -447,7 +448,7 @@
 </div>
 
 
-<p>Since everything in Ruby is an object, it follows that <code>nil</code> is an object, so it too can respond to methods. One example is the <code>to_s</code> method that can convert virtually any object to a string:</p>
+<p>Rubyでは、あらゆるものがオブジェクトです。従って、<code>nil</code>もオブジェクトであり、これも多くのメソッドに応答できます。ほぼすべてのオブジェクトを文字列に変換する<code>to_s</code>メソッドを使用して、nilがメソッドに応答する例をお目にかけましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="kp">nil</span><span class="o">.</span><span class="n">to_s</span>
 <span class="go">=&gt; &quot;&quot;</span>
@@ -455,21 +456,21 @@
 </div>
 
 
-<p>This certainly appears to be an empty string, as we can verify by <em>chaining</em> the messages we pass to <code>nil</code>:</p>
+<p>確かに空文字列が出力されました。今度は<code>nil</code> に対してメッセージを<em>連鎖 (chain)</em>して渡せることを確認します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="kp">nil</span><span class="o">.</span><span class="n">empty?</span>
 <span class="go">NoMethodError: You have a nil object when you didn&#39;t expect it!</span>
 <span class="go">You might have expected an instance of Array.</span>
 <span class="go">The error occurred while evaluating nil.empty?</span>
-<span class="gp">&gt;&gt; </span><span class="kp">nil</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">empty?</span>      <span class="c1"># Message chaining</span>
+<span class="gp">&gt;&gt; </span><span class="kp">nil</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">empty?</span>      <span class="c1"># メッセージの連鎖</span>
 <span class="go">=&gt; true</span>
 </pre></div>
 </div>
 
 
-<p>We see here that the <code>nil</code> object doesn&rsquo;t itself respond to the <code>empty?</code> method, but <code>nil.to_s</code> does.</p>
+<p>このように、<code>nil</code> オブジェクトは<code>empty?</code> メソッドに応答しないですが、 <code>nil.to_s</code>にはすることがわかりました。</p>
 
-<p>There&rsquo;s a special method for testing for <code>nil</code>-ness, which you might be able to guess:</p>
+<p>推測できるかもしれませんが、<code>nil</code>かどうかを調べるメソッドもあります:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;foo&quot;</span><span class="o">.</span><span class="n">nil?</span>
 <span class="go">=&gt; false</span>
@@ -481,14 +482,14 @@
 </div>
 
 
-<p>The code</p>
+<p>ところで、以下のコードは</p>
 
 <div class="code"><div class="highlight"><pre><span class="nb">puts</span> <span class="s2">&quot;x is not empty&quot;</span> <span class="k">if</span> <span class="o">!</span><span class="n">x</span><span class="o">.</span><span class="n">empty?</span>
 </pre></div>
 </div>
 
 
-<p>also shows an alternate use of the <code>if</code> keyword: Ruby allows you to write a statement that is evaluated only if the statement following <code>if</code> is true. There&rsquo;s a complementary <code>unless</code> keyword that works the same way:</p>
+<p><code>if</code>キーワードの別の使い方を示しています。Rubyではこのように、<code>if</code> での条件式が真のときにだけ実行される式を書くことができ、コードが非常に簡潔になります。なお、<code>unless</code> キーワードも同様に使用できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="nb">puts</span> <span class="s2">&quot;The string &#39;</span><span class="si">#{</span><span class="n">string</span><span class="si">}</span><span class="s2">&#39; is nonempty.&quot;</span> <span class="k">unless</span> <span class="n">string</span><span class="o">.</span><span class="n">empty?</span>
@@ -498,22 +499,22 @@
 </div>
 
 
-<p>It&rsquo;s worth noting that the <code>nil</code> object is special, in that it is the <em>only</em> Ruby object that is false in a boolean context, apart from <code>false</code> itself:</p>
+<p>Rubyにおいて<code>nil</code>は特別なオブジェクトです。Rubyのオブジェクトのうち、オブジェクトそのものの論理値がfalseになるのは、(<code>false</code>というオブジェクト自身を除いて) nil<em>だけ</em>です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">if</span> <span class="kp">nil</span>
 <span class="gp">&gt;&gt; </span>  <span class="kp">true</span>
 <span class="gp">&gt;&gt; </span><span class="k">else</span>
-<span class="gp">&gt;&gt; </span>  <span class="kp">false</span>        <span class="c1"># nil is false</span>
+<span class="gp">&gt;&gt; </span>  <span class="kp">false</span>        <span class="c1"># nilはfalse</span>
 <span class="gp">&gt;&gt; </span><span class="k">end</span>
 <span class="go">=&gt; false</span>
 </pre></div>
 </div>
 
 
-<p>In particular, all other Ruby objects are <em>true</em>, even 0:</p>
+<p>その他のあらゆるRuby のオブジェクトは、ゼロですら<em>true</em>です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">if</span> <span class="mi">0</span>
-<span class="gp">&gt;&gt; </span>  <span class="kp">true</span>        <span class="c1"># 0 (and everything other than nil and false itself) is true</span>
+<span class="gp">&gt;&gt; </span>  <span class="kp">true</span>        <span class="c1"># 0 (を含むあらゆるオブジェクト、nilとfalseは除く) はtrue</span>
 <span class="gp">&gt;&gt; </span><span class="k">else</span>
 <span class="gp">&gt;&gt; </span>  <span class="kp">false</span>
 <span class="gp">&gt;&gt; </span><span class="k">end</span>
@@ -525,10 +526,10 @@
 <div class="label" id="sec-method_definitions"></div>
 
 
-<h3><a id="sec-4_2_4" href="rails-flavored-ruby?version=4.0#sec-method_definitions" class="heading"><span class="number">4.2.4</span> Method definitions</a></h3>
+<h3><a id="sec-4_2_4" href="/chapters/rails-flavored-ruby?version=4.0#sec-method_definitions" class="heading"><span class="number">4.2.4</span>メソッドの定義</a></h3>
 
 
-<p>The console allows us to define methods the same way we did with the <code>home</code> action from <a class="ref" href="static-pages?version=4.0#code-static_pages_controller">Listing&nbsp;3.6</a> or the <code>full_title</code> helper from <a class="ref" href="rails-flavored-ruby?version=4.0#code-title_helper">Listing&nbsp;4.2</a>. (Defining methods in the console is a bit cumbersome, and ordinarily you would use a file, but it&rsquo;s convenient for demonstration purposes.) For example, let&rsquo;s define a function <code>string_message</code> that takes a single <em>argument</em> and returns a message based on whether the argument is empty or not:</p>
+<p>Railsコンソールでも、<a class="ref" href="/chapters/static-pages?version=4.0#code-static_pages_controller">リスト3.6</a>の<code>home</code>アクションや、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-title_helper">リスト4.2</a>の<code>full_title</code>ヘルパーと同じ方法でメソッドを定義することができます (メソッドの定義はファイルで行うのが普通なので、コンソールで行うのは少々面倒ですが、デモンストーレション目的であれば十分です)。たとえば、<em>引数</em>を1つ取り、引数が空かどうかに基づいたメッセージを返す<code>string_message</code>という関数を定義してみましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">def</span> <span class="nf">string_message</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">if</span> <span class="n">string</span><span class="o">.</span><span class="n">empty?</span>
@@ -546,7 +547,7 @@
 </div>
 
 
-<p>Note that Ruby functions have an <em>implicit return</em>, meaning they return the last statement evaluated&mdash;in this case, one of the two message strings, depending on whether the method&rsquo;s argument <code>string</code> is empty or not. Ruby also has an explicit return option; the following function is equivalent to the one above:</p>
+<p>ここで、Rubyの関数は <em>暗黙の戻り値</em>を持つということにご注意ください。これは、最後に評価された式の値が自動的に返されることを意味します。この場合、引数の<code>string</code>が空かどうかに基づいた2つのメッセージ文字列のうちのいずれかが返されます。Rubyでは、戻り値を明示的に指定することもできます。以下の関数は上の関数と同じ結果を返します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">def</span> <span class="nf">string_message</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">return</span> <span class="s2">&quot;It&#39;s an empty string!&quot;</span> <span class="k">if</span> <span class="n">string</span><span class="o">.</span><span class="n">empty?</span>
@@ -556,25 +557,25 @@
 </div>
 
 
-<p>The alert reader might notice at this point that the second <code>return</code> here is actually unnecessary&mdash;being the last expression in the function, the string <code>"The string is nonempty."</code> will be returned regardless of the <code>return</code> keyword, but using <code>return</code> in both places has a pleasing symmetry to it.</p>
+<p>上の説明で気付いた方もいると思いますが、2番目の<code>return</code> は実はなくてもかまいません。関数中の最後の表現 <code>&quot;The string is nonempty.&quot;</code> は、<code>return</code>キーワードがあってもなくても値を返すためです。ここでは、両方に<code>return</code>を使用する方が見た目の対称性が保たれるので好ましいと言えます。</p>
 
 <div class="label" id="sec-back_to_the_title_helper"></div>
 
 
-<h3><a id="sec-4_2_5" href="rails-flavored-ruby?version=4.0#sec-back_to_the_title_helper" class="heading"><span class="number">4.2.5</span> Back to the title helper</a></h3>
+<h3><a id="sec-4_2_5" href="/chapters/rails-flavored-ruby?version=4.0#sec-back_to_the_title_helper" class="heading"><span class="number">4.2.5</span> title ヘルパー、再び</a></h3>
 
 
-<p>We are now in a position to understand the <code>full_title</code> helper from <a class="ref" href="rails-flavored-ruby?version=4.0#code-title_helper">Listing&nbsp;4.2</a>:<sup class="footnote" id="fnref-4_5"><a href="?version=4.0#fn-4_5">5</a></sup></p>
+<p>ここまでの解説でRubyの知識がある程度身についたので<sup class="footnote" id="fnref-4_5"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_5">5</a></sup>、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-title_helper">4.2</a>の<code>full_title</code>ヘルパーを理解できるようになったはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">ApplicationHelper</span>
 
-  <span class="c1"># Returns the full title on a per-page basis.       # Documentation comment</span>
-  <span class="k">def</span> <span class="nf">full_title</span><span class="p">(</span><span class="n">page_title</span><span class="p">)</span>                          <span class="c1"># Method definition</span>
-    <span class="n">base_title</span> <span class="o">=</span> <span class="s2">&quot;Ruby on Rails Tutorial Sample App&quot;</span>  <span class="c1"># Variable assignment</span>
-    <span class="k">if</span> <span class="n">page_title</span><span class="o">.</span><span class="n">empty?</span>                              <span class="c1"># Boolean test</span>
-      <span class="n">base_title</span>                                      <span class="c1"># Implicit return</span>
+  <span class="c1"># ページごとの完全なタイトルを返します。</span><span class="c1"># コメント行</span>
+  <span class="k">def</span> <span class="nf">full_title</span><span class="p">(</span><span class="n">page_title</span><span class="p">)</span>                          <span class="c1"># メソッド定義</span>
+    <span class="n">base_title</span> <span class="o">=</span> <span class="s2">&quot;Ruby on Rails Tutorial Sample App&quot;</span>  <span class="c1"># 変数に値を割り当てる</span>
+    <span class="k">if</span> <span class="n">page_title</span><span class="o">.</span><span class="n">empty?</span>                              <span class="c1"># 論理値テスト</span>
+      <span class="n">base_title</span>                                      <span class="c1"># 暗黙の返り値</span>
     <span class="k">else</span>
-      <span class="s2">&quot;</span><span class="si">#{</span><span class="n">base_title</span><span class="si">}</span><span class="s2"> | </span><span class="si">#{</span><span class="n">page_title</span><span class="si">}</span><span class="s2">&quot;</span>                 <span class="c1"># String interpolation</span>
+      <span class="s2">&quot;</span><span class="si">#{</span><span class="n">base_title</span><span class="si">}</span><span class="s2"> | </span><span class="si">#{</span><span class="n">page_title</span><span class="si">}</span><span class="s2">&quot;</span>                 <span class="c1"># 文字列の式展開</span>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
@@ -582,33 +583,33 @@
 </div>
 
 
-<p>These elements&mdash;function definition, variable assignment, boolean tests, control flow, and string interpolation&mdash;come together to make a compact helper method for use in our site layout. The final element is <code>module ApplicationHelper</code>: modules give us a way to package together related methods, which can then be <em>mixed in</em> to Ruby classes using <code>include</code>. When writing ordinary Ruby, you often write modules and include them explicitly yourself, but in the case of a helper module Rails handles the inclusion for us. The result is that the <code>full_title</code> method is <a href="http://catb.org/jargon/html/A/automagically.html">automagically</a> available in all our views.</p>
+<p>Webサイトのレイアウトで使用するコンパクトなヘルパーメソッドは、関数定義、変数割り当て、論理評価、制御フロー、そして文字列の式展開などのRubyの要素が一体となってできあがっています。最後に<code>module ApplicationHelper</code>という要素について解説します。このモジュールは、関連したメソッドをまとめる方法の1つで、Rubyのクラスに<code>include</code>を使うことで<em>ミックスイン (mixed in)</em>することができます。通常のRubyを書くときには、モジュールを書いてはこれを明示的にインクルードするという作業を頻繁に行いますが、このヘルパーモジュールの場合はRailsが自動的にインクルードしてくれます。つまり、この<code>full_title</code>メソッドは<a href="http://catb.org/jargon/html/A/automagically.html">自動的に</a>すべてのビューで利用できます。</p>
 
 <div class="label" id="sec-other_data_structures"></div>
 
 
-<h2><a id="sec-4_3" href="rails-flavored-ruby?version=4.0#sec-other_data_structures" class="heading"><span class="number">4.3</span> Other data structures</a></h2>
+<h2><a id="sec-4_3" href="/chapters/rails-flavored-ruby?version=4.0#sec-other_data_structures" class="heading"><span class="number">4.3</span>他のデータ構造</a></h2>
 
 
-<p>Although web apps are ultimately about strings, actually <em>making</em> those strings requires using other data structures as well. In this section, we&rsquo;ll learn about some Ruby data structures important for writing Rails applications.</p>
+<p>Webアプリケーションは突き詰めればただの文字列に過ぎませんが、実際にはこれらの文字列を<em>作る</em>ために文字列以外のデータ構造も必要となります。この節では、Railsアプリケーションを書くために重要となる、いくつかのRubyのデータ構造について説明します。</p>
 
 <div class="label" id="sec-arrays_and_ranges"></div>
 
 
-<h3><a id="sec-4_3_1" href="rails-flavored-ruby?version=4.0#sec-arrays_and_ranges" class="heading"><span class="number">4.3.1</span> Arrays and ranges</a></h3>
+<h3><a id="sec-4_3_1" href="/chapters/rails-flavored-ruby?version=4.0#sec-arrays_and_ranges" class="heading"><span class="number">4.3.1</span>配列と範囲演算子</a></h3>
 
 
-<p>An array is just a list of elements in a particular order. We haven&rsquo;t discussed arrays yet in the <em>Rails Tutorial</em>, but understanding them gives a good foundation for understanding hashes (<a class="ref" href="rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">Section&nbsp;4.3.3</a>) and for aspects of Rails data modeling (such as the <code>has_many</code> association seen in <a class="ref" href="a-demo-app?version=4.0#sec-demo_user_has_many_microposts">Section&nbsp;2.3.3</a> and covered more in <a class="ref" href="user-microposts?version=4.0#sec-user_micropost_associations">Section&nbsp;10.1.3</a>).</p>
+<p>配列 (array) は、特定の順序を持つ要素のリストです。本書<em>Railsチュートリアル</em>ではこれまで配列について解説していませんでしたが、配列を理解することは、ハッシュ (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">4.3.3</a>) やRailsのデータモデルを理解するための重要な基盤となります (データモデルとは<code>has_many</code>などの関連付けのことであり、詳細については<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_user_has_many_microposts">2.3.3</a>や<a class="ref" href="/chapters/user-microposts?version=4.0#sec-user_micropost_associations">10.1.3</a>で説明します)。</p>
 
-<p>So far we&rsquo;ve spent a lot of time understanding strings, and there&rsquo;s a natural way to get from strings to arrays using the <code>split</code> method:</p>
+<p>Rubyの文字列の理解にだいぶ時間を使ってしまいましたので、次に進むことにします。文字列から配列を得る自然な方法の1つとして、以下の<code>split</code>メソッドがあります。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span> <span class="s2">&quot;foo bar     baz&quot;</span><span class="o">.</span><span class="n">split</span>     <span class="c1"># Split a string into a three-element array.</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span> <span class="s2">&quot;foo bar     baz&quot;</span><span class="o">.</span><span class="n">split</span>     <span class="c1"># 文字列を3つの要素を持つ配列に分割する</span>
 <span class="go">=&gt; [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]</span>
 </pre></div>
 </div>
 
 
-<p>The result of this operation is an array of three strings. By default, <code>split</code> divides a string into an array by splitting on whitespace, but you can split on nearly anything else as well:</p>
+<p>この操作によって、3つの文字列からなる配列が得られます。デフォルトでは、<code>split</code>は文字列を空白で区切って配列にしますが、以下のように他の文字を指定して区切ることもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;fooxbarxbazx&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 <span class="go">=&gt; [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]</span>
@@ -616,26 +617,25 @@
 </div>
 
 
-<p>As is conventional in most computer languages, Ruby arrays are <em>zero-offset</em>, which means that the first element in the array has index&nbsp;0, the second has index&nbsp;1, and so on:</p>
+<p>多くのコンピュータ言語の慣習と同様、 Rubyの配列も<em>ゼロオフセット</em>を採用しています。これは、配列の最初の要素のインデックスは0、2番目は1...と続くことを意味します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="o">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">17</span><span class="o">]</span>
 <span class="go">=&gt; [42, 8, 17]</span>
-<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>               <span class="c1"># Ruby uses square brackets for array access.</span>
+<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>               <span class="c1"># 配列へのアクセスには [ ] を使用する</span>
 <span class="go">=&gt; 42</span>
 <span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
 <span class="go">=&gt; 8</span>
 <span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span>
 <span class="go">=&gt; 17</span>
-<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span>              <span class="c1"># Indices can even be negative!</span>
+<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span>              <span class="c1"># 負の値を持つインデックスも使用できる</span>
 <span class="go">=&gt; 17</span>
 </pre></div>
 </div>
 
 
-<p>We see here that Ruby uses square brackets to access array elements.
-In addition to this bracket notation, Ruby offers synonyms for some commonly accessed elements:<sup class="footnote" id="fnref-4_6"><a href="?version=4.0#fn-4_6">6</a></sup></p>
+<p>上で示したとおり、配列の要素にアクセスするには角かっこを使用します。Rubyでは、角かっこによるアクセス方法以外にも配列の要素にアクセスする方法が提供されています<sup class="footnote" id="fnref-4_6"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_6">6</a></sup>。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>                  <span class="c1"># Just a reminder of what &#39;a&#39; is</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>                  <span class="c1"># &#39;a&#39; の内容にご注目</span>
 <span class="go">=&gt; [42, 8, 17]</span>
 <span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">first</span>
 <span class="go">=&gt; 42</span>
@@ -643,21 +643,21 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 <span class="go">=&gt; 8</span>
 <span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">last</span>
 <span class="go">=&gt; 17</span>
-<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">last</span> <span class="o">==</span> <span class="n">a</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span>    <span class="c1"># Comparison using ==</span>
+<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">last</span> <span class="o">==</span> <span class="n">a</span><span class="o">[-</span><span class="mi">1</span><span class="o">]</span>    <span class="c1"># ==演算子による比較</span>
 <span class="go">=&gt; true</span>
 </pre></div>
 </div>
 
 
-<p>This last line introduces the equality comparison operator <code>==</code>, which Ruby shares with many other languages, along with the associated <code>!=</code> (&ldquo;not equal&rdquo;), etc.:</p>
+<p>最後の行では、等しいことを確認する比較演算子<code>==</code>を使ってみました。この演算子や <code>!=</code> (“等しくない”) などの演算子は、他の多くの言語と共通です。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">length</span>       <span class="c1"># Like strings, arrays respond to the &#39;length&#39; method.</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">length</span>       <span class="c1"># 配列も文字列と同様 &#39;length&#39; メソッドに応答する</span>
 <span class="go">=&gt; 3</span>
 <span class="gp">&gt;&gt; </span><span class="n">x</span> <span class="o">==</span> <span class="mi">3</span>
 <span class="go">=&gt; true</span>
 <span class="gp">&gt;&gt; </span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span>
 <span class="go">=&gt; false</span>
-<span class="gp">&gt;&gt; </span><span class="n">x</span> <span class="o">!=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt; </span><span class="n">x</span> <span class="o">!</span><span class="o">=</span> <span class="mi">1</span>
 <span class="go">=&gt; true</span>
 <span class="gp">&gt;&gt; </span><span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">1</span>
 <span class="go">=&gt; true</span>
@@ -667,7 +667,7 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>In addition to <code>length</code> (seen in the first line above), arrays respond to a wealth of other methods:</p>
+<p>配列は、上記コードの最初の行の<code>length</code>メソッド以外にも、さまざまなメソッドに応答します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>
 <span class="go">=&gt; [42, 8, 17]</span>
@@ -683,7 +683,7 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Note that none of the methods above changes <code>a</code> itself. To <em>mutate</em> the array, use the corresponding &ldquo;bang&rdquo; methods (so-called because the exclamation point is usually pronounced &ldquo;bang&rdquo; in this context):</p>
+<p>上のどのメソッドを実行した場合にも、<code>a</code>自身は変更されていないという点にご注目ください。配列の内容を<em>変更</em>したい場合は、そのメソッドに対応する “破壊的” メソッドを使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>
 <span class="go">=&gt; [42, 8, 17]</span>
@@ -695,49 +695,49 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>You can also add to arrays with the <code>push</code> method or its equivalent operator, <tt class="verb">&lt;&lt;</tt>:</p>
+<p>また、<code>push</code>メソッド (または同等の<tt class="verb">&lt;&lt;</tt>演算子) を使用して配列に追加することもできます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>                  <span class="c1"># Pushing 6 onto an array</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>                  <span class="c1"># 配列に6を追加</span>
 <span class="go">=&gt; [42, 8, 17, 6]</span>
-<span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span>                     <span class="c1"># Pushing 7 onto an array</span>
+<span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span>                     <span class="c1"># 配列に7を追加</span>
 <span class="go">=&gt; [42, 8, 17, 6, 7]</span>
-<span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;foo&quot;</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;bar&quot;</span>        <span class="c1"># Chaining array pushes</span>
+<span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;foo&quot;</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;bar&quot;</span>        <span class="c1"># 配列に連続プッシュ</span>
 <span class="go">=&gt; [42, 8, 17, 6, 7, &quot;foo&quot;, &quot;bar&quot;]</span>
 </pre></div>
 </div>
 
 
-<p>This last example shows that you can chain pushes together, and also that, unlike arrays in many other languages, Ruby arrays can contain a mixture of different types (in this case, integers and strings).</p>
+<p>最後の例では、要素の追加を連鎖 (chain) できることを示しました。また、Rubyの配列は、他の多くの言語の配列とは異なり、さまざまな型を共存させることができます (この場合は整数と文字列)。</p>
 
-<p>Before we saw <code>split</code> convert a string to an array. We can also go the other way with the <code>join</code> method:</p>
+<p>文字列を配列に変換するのに<code>split</code>を使用しました。<code>join</code>メソッドはこれと逆の動作d</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>
 <span class="go">=&gt; [42, 8, 17, 7, &quot;foo&quot;, &quot;bar&quot;]</span>
-<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">join</span>                       <span class="c1"># Join on nothing.</span>
+<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">join</span>                       <span class="c1"># 区切り文字なしで連結</span>
 <span class="go">=&gt; &quot;428177foobar&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>                 <span class="c1"># Join on comma-space.</span>
+<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>                 <span class="c1"># カンマとスペースで区切って連結</span>
 <span class="go">=&gt; &quot;42, 8, 17, 7, foo, bar&quot;</span>
 </pre></div>
 </div>
 
 
-<p>Closely related to arrays are <em>ranges</em>, which can probably most easily be understood by converting them to arrays using the <code>to_a</code> method:</p>
+<p><em>範囲 (range)</em>は、配列と密接に関係しています。<code>to_a</code>メソッドを使用して配列に変換すると理解しやすいと思います。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">9</span>
 <span class="go">=&gt; 0..9</span>
-<span class="gp">&gt;&gt; </span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">9</span><span class="o">.</span><span class="n">to_a</span>              <span class="c1"># Oops, call to_a on 9.</span>
+<span class="gp">&gt;&gt; </span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">9</span><span class="o">.</span><span class="n">to_a</span>              <span class="c1"># 配列でない数字の9にto_aを実行してしまった</span>
 <span class="go">NoMethodError: undefined method `to_a&#39; for 9:Fixnum</span>
-<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>            <span class="c1"># Use parentheses to call to_a on the range.</span>
-<span class="go">=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>            <span class="c1"># 範囲にto_aを実行するには丸かっこで囲む</span>
+<span class="go">=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] </span>
 </pre></div>
 </div>
 
 
-<p>Though <code>0..9</code> is a valid range, the second expression above shows that we need to add parentheses to call a method on it.</p>
+<p><code>0..9</code> は範囲として有効ですが、上の2番目の表記ではメソッドを呼ぶ際にかっこを追加する必要があることを示しています。</p>
 
-<p>Ranges are useful for pulling out array elements:</p>
+<p>範囲は、配列の要素を取り出すのに便利です。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="sx">%w[foo bar baz quux]</span>         <span class="c1"># Use %w to make a string array.</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="sx">%w[foo bar baz quux]</span>         <span class="c1"># %wを使用して文字列の配列に変換</span>
 <span class="go">=&gt; [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;, &quot;quux&quot;]</span>
 <span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">2</span><span class="o">]</span>
 <span class="go">=&gt; [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]</span>
@@ -745,19 +745,19 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>A particularly useful trick is to use the index -1 at the end of the range to select every element from the starting point to the end of the array <em>without</em> explicitly having to use the array&rsquo;s length:</p>
+<p>インデックスに-1という値を指定できるのはきわめて便利です。-1を使用すると、配列の長さを<em>知らなくても</em>配列の最後の要素を指定することができ、これにより配列を特定の開始位置の要素から最後の要素までを一度に選択することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>
-<span class="go">=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
-<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">[</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">]</span>               <span class="c1"># Explicitly use the array&#39;s length.</span>
+<span class="go">=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] </span>
+<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">[</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">]</span>               <span class="c1"># 配列の長さを明示的に使用している。</span>
 <span class="go">=&gt; [2, 3, 4, 5, 6, 7, 8, 9]</span>
-<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">[</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>                         <span class="c1"># Use the index -1 trick.</span>
+<span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">[</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>                         <span class="c1"># index -1の使用例。</span>
 <span class="go">=&gt; [2, 3, 4, 5, 6, 7, 8, 9]</span>
 </pre></div>
 </div>
 
 
-<p>Ranges also work with characters:</p>
+<p>以下のように、文字に対しても範囲を使用できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;e&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>
 <span class="go">=&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]</span>
@@ -768,10 +768,10 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 <div class="label" id="sec-blocks"></div>
 
 
-<h3><a id="sec-4_3_2" href="rails-flavored-ruby?version=4.0#sec-blocks" class="heading"><span class="number">4.3.2</span> Blocks</a></h3>
+<h3><a id="sec-4_3_2" href="/chapters/rails-flavored-ruby?version=4.0#sec-blocks" class="heading"><span class="number">4.3.2</span>ブロック</a></h3>
 
 
-<p>Both arrays and ranges respond to a host of methods that accept <em>blocks</em>, which are simultaneously one of Ruby&rsquo;s most powerful and most confusing features:</p>
+<p>配列と範囲はいずれも、<em>ブロック</em>を伴うさまざまなメソッドに対して応答することができます。ブロックとは、Rubyの極めて強力な機能であり、かつ混乱を呼びやすい機能でもあります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="nb">puts</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="p">}</span>
 <span class="go">2</span>
@@ -784,12 +784,12 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>This code calls the <code>each</code> method on the range <code>(1..5)</code> and passes it the block <code>{ |i| puts 2 * i }</code>. The vertical bars around the variable name in&nbsp;<code>|i|</code> are Ruby syntax for a block variable, and it&rsquo;s up to the method to know what to do with the block. In this case, the range&rsquo;s <code>each</code> method can handle a block with a single local variable, which we&rsquo;ve called&nbsp;<code>i</code>, and it just executes the block for each value in the range.</p>
+<p>上のコードは、範囲オブジェクトである<code>(1..5)</code>に対して<code>each</code>メソッドを呼び出します。そのときに、<code>{ |i| puts 2 * i }</code>というブロックを渡します。<code>|i|</code>では変数名が縦棒に囲まれていますが、これはブロック変数に対して使用するRubyの構文で、ブロックを操作するときに使用する変数を指定します。この場合、範囲オブジェクトの<code>each</code>メソッドは、<code>i</code>という1つのローカル変数を使用してブロックを操作できます。そして、範囲に含まれるそれぞれの値をこの変数に次々に代入してブロックを実行します。</p>
 
-<p>Curly braces are one way to indicate a block, but there is a second way as well:</p>
+<p>ブロックは波かっこ { } で囲んで示すことができますが、以下のようにdoとendで囲んで示すこともできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-<span class="gp">?&gt; </span>  <span class="nb">puts</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span>
+<span class="gp">?</span><span class="gp">&gt; </span>  <span class="nb">puts</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span>
 <span class="gp">&gt;&gt; </span><span class="k">end</span>
 <span class="go">2</span>
 <span class="go">4</span>
@@ -801,10 +801,10 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Blocks can be more than one line, and often are. In the <em>Rails Tutorial</em> we&rsquo;ll follow the common convention of using curly braces only for short one-line blocks and the <code>do..end</code> syntax for longer one-liners and for multi-line blocks:</p>
+<p>ブロックには複数の行を記述できます (実際ほとんどの場合複数です)。<em>Rails チュートリアル</em>では、波かっこを短い1行のブロックに使用し、<code>do..end</code>記法を長い1行や複数行のブロックに使用するという、Ruby共通の慣習に従っています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">number</span><span class="o">|</span>
-<span class="gp">?&gt; </span>  <span class="nb">puts</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">number</span>
+<span class="gp">?</span><span class="gp">&gt; </span>  <span class="nb">puts</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">number</span>
 <span class="gp">&gt;&gt; </span>  <span class="nb">puts</span> <span class="s1">&#39;--&#39;</span>
 <span class="gp">&gt;&gt; </span><span class="k">end</span>
 <span class="go">2</span>
@@ -822,18 +822,18 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Here I&rsquo;ve used <code>number</code> in place of&nbsp;<code>i</code> just to emphasize that any variable name will do.</p>
+<p>ここでは<code>number</code>を<code>i</code>と差し替えたことで、他の変数名を使用してもよいということを強調しています。</p>
 
-<p>Unless you already have a substantial programming background, there is no shortcut to understanding blocks; you just have to see them a lot, and eventually you&rsquo;ll get used to them.<sup class="footnote" id="fnref-4_7"><a href="?version=4.0#fn-4_7">7</a></sup> Luckily, humans are quite good at making generalizations from concrete examples; here are a few more, including a couple using the <code>map</code> method:</p>
+<p>ブロックは見た目に反して奥が深く、ブロックを十分に理解するためには相当なプログラミング経験が必要です。そのためには、ブロックを含むコードをたくさん読みこなすことでブロックの本質を会得する以外に方法はありません<sup class="footnote" id="fnref-4_7"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_7">7</a></sup>。幸いなことに、人間には個別の事例を一般化する能力というものがあります。ささやかですが、<code>map</code>メソッドなどを使用したブロックの使用例を参考のためにいくつか挙げてみます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Betelgeuse!&quot;</span> <span class="p">}</span>   <span class="c1"># 3.times takes a block with no variables.</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Betelgeuse!&quot;</span> <span class="p">}</span>   <span class="c1"># 3.timesではブロックに変数を使用していない</span>
 <span class="go">&quot;Betelgeuse!&quot;</span>
 <span class="go">&quot;Betelgeuse!&quot;</span>
 <span class="go">&quot;Betelgeuse!&quot;</span>
 <span class="go">=&gt; 3</span>
-<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="p">}</span>          <span class="c1"># The ** notation is for &#39;power&#39;.</span>
+<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="p">}</span>          <span class="c1"># **は累乗を表す</span>
 <span class="go">=&gt; [1, 4, 9, 16, 25]</span>
-<span class="gp">&gt;&gt; </span><span class="sx">%w[a b c]</span>                        <span class="c1"># Recall that %w makes string arrays.</span>
+<span class="gp">&gt;&gt; </span><span class="sx">%w[a b c]</span>                        <span class="c1"># %wは文字列配列への変換であることを思い出そう</span>
 <span class="go">=&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span>
 <span class="gp">&gt;&gt; </span><span class="sx">%w[a b c]</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">char</span><span class="o">|</span> <span class="n">char</span><span class="o">.</span><span class="n">upcase</span> <span class="p">}</span>
 <span class="go">=&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
@@ -843,26 +843,26 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>As you can see, the <code>map</code> method returns the result of applying the given block to each element in the array or range.</p>
+<p>上に示したように、<code>map</code> メソッドは、配列や範囲オブジェクトの各要素に対して、与えられたブロックを適用した結果を返します。</p>
 
-<p>By the way, we&rsquo;re now in a position to understand the line of Ruby I threw into <a class="ref" href="beginning?version=4.0#sec-heroku_commands">Section&nbsp;1.4.4</a> to generate random subdomains:</p>
+<p>ところで、<a class="ref" href="/chapters/beginning?version=4.0#sec-heroku_commands">1.4.4</a>でランダムなサブドメインを生成するために以下のRubyコードを紹介しましたが、今なら理解できる状態になったはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">shuffle</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">7</span><span class="o">].</span><span class="n">join</span>
 </pre></div>
 </div>
 
 
-<p>Let&rsquo;s build it up step-by-step:</p>
+<p>このコードを段階的に組み立ててみると、動作がよくわかります。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>                     <span class="c1"># An alphabet array</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>                     <span class="c1"># アルファベットの配列</span>
 <span class="go">=&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;, &quot;j&quot;, &quot;k&quot;, &quot;l&quot;, &quot;m&quot;, &quot;n&quot;, &quot;o&quot;,</span>
 <span class="go">&quot;p&quot;, &quot;q&quot;, &quot;r&quot;, &quot;s&quot;, &quot;t&quot;, &quot;u&quot;, &quot;v&quot;, &quot;w&quot;, &quot;x&quot;, &quot;y&quot;, &quot;z&quot;]</span>
-<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">shuffle</span>             <span class="c1"># Shuffle it.</span>
+<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">shuffle</span>             <span class="c1"># シャッフルする</span>
 <span class="go">=&gt; [&quot;c&quot;, &quot;g&quot;, &quot;l&quot;, &quot;k&quot;, &quot;h&quot;, &quot;z&quot;, &quot;s&quot;, &quot;i&quot;, &quot;n&quot;, &quot;d&quot;, &quot;y&quot;, &quot;u&quot;, &quot;t&quot;, &quot;j&quot;, &quot;q&quot;,</span>
 <span class="go">&quot;b&quot;, &quot;r&quot;, &quot;o&quot;, &quot;f&quot;, &quot;e&quot;, &quot;w&quot;, &quot;v&quot;, &quot;m&quot;, &quot;a&quot;, &quot;x&quot;, &quot;p&quot;]</span>
-<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">shuffle</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">7</span><span class="o">]</span>       <span class="c1"># Pull out the first eight elements.</span>
+<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">shuffle</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">7</span><span class="o">]</span>       <span class="c1"># 最初の8つの要素を取り出す</span>
 <span class="go">=&gt; [&quot;f&quot;, &quot;w&quot;, &quot;i&quot;, &quot;a&quot;, &quot;h&quot;, &quot;p&quot;, &quot;c&quot;, &quot;x&quot;]</span>
-<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">shuffle</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">7</span><span class="o">].</span><span class="n">join</span>  <span class="c1"># Join them together to make one string.</span>
+<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="o">.</span><span class="n">.</span><span class="s1">&#39;z&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">shuffle</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">7</span><span class="o">].</span><span class="n">join</span>  <span class="c1"># つなげて1つの文字列にする</span>
 <span class="go">=&gt; &quot;mznpybuj&quot;</span>
 </pre></div>
 </div>
@@ -873,28 +873,28 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 <div class="label" id="sec-hashes_and_symbols"></div>
 
 
-<h3><a id="sec-4_3_3" href="rails-flavored-ruby?version=4.0#sec-hashes_and_symbols" class="heading"><span class="number">4.3.3</span> Hashes and symbols</a></h3>
+<h3><a id="sec-4_3_3" href="/chapters/rails-flavored-ruby?version=4.0#sec-hashes_and_symbols" class="heading"><span class="number">4.3.3</span>ハッシュとシンボル</a></h3>
 
 
-<p>Hashes are essentially arrays that aren&rsquo;t limited to integer indices. (In fact, some languages, especially Perl, sometimes call hashes <em>associative arrays</em> for this reason.) Instead, hash indices, or <em>keys</em>, can be almost any object. For example, we can use strings as keys:</p>
+<p>ハッシュは、本質的には配列と同じですが、インデックスとして整数値以外のものも使用できる点が配列と異なります (この理由から、いくつかの言語 (特にPerl) ではハッシュを<em>連想配列</em>と呼ぶこともあります)。ハッシュのインデックス (<em>キー</em>と呼ぶのが普通です) は、通常何らかのオブジェクトです。たとえば、以下のように文字列をキーとして使用できます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="p">{}</span>                          <span class="c1"># {} is an empty hash.</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="p">{}</span>                          <span class="c1"># {}は空のハッシュ</span>
 <span class="go">=&gt; {}</span>
-<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="s2">&quot;first_name&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Michael&quot;</span>     <span class="c1"># Key &quot;first_name&quot;, value &quot;Michael&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="s2">&quot;first_name&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Michael&quot;</span>     <span class="c1">#キー: &quot;first_name&quot;、値: &quot;Michael&quot;</span>
 <span class="go">=&gt; &quot;Michael&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="s2">&quot;last_name&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Hartl&quot;</span>        <span class="c1"># Key &quot;last_name&quot;, value &quot;Hartl&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="s2">&quot;last_name&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Hartl&quot;</span>        <span class="c1"># キー: &quot;last_name&quot;、値: &quot;Hartl&quot;</span>
 <span class="go">=&gt; &quot;Hartl&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="s2">&quot;first_name&quot;</span><span class="o">]</span>                 <span class="c1"># Element access is like arrays.</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="s2">&quot;first_name&quot;</span><span class="o">]</span>                 <span class="c1"># 配列と同じ方法で要素にアクセスできる</span>
 <span class="go">=&gt; &quot;Michael&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="n">user</span>                               <span class="c1"># A literal representation of the hash</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span>                               <span class="c1"># ハッシュのリテラルな表記</span>
 <span class="go">=&gt; {&quot;last_name&quot;=&gt;&quot;Hartl&quot;, &quot;first_name&quot;=&gt;&quot;Michael&quot;}</span>
 </pre></div>
 </div>
 
 
-<p>Hashes are indicated with curly braces containing key-value pairs; a pair of braces with no key-value pairs&mdash;i.e., <code>{}</code>&mdash;is an empty hash. It&rsquo;s important to note that the curly braces for hashes have nothing to do with the curly braces for blocks. (Yes, this can be confusing.) Although hashes resemble arrays, one important difference is that hashes don&rsquo;t generally guarantee keeping their elements in a particular order.<sup class="footnote" id="fnref-4_8"><a href="?version=4.0#fn-4_8">8</a></sup> If order matters, use an array.</p>
+<p>ハッシュは、キーと値のペアを波かっこで囲んで表記します。キーと値のペアを持たないかっこの組 (<code>{}</code>) は空のハッシュです。ここで重要なのは、ハッシュの波かっこは、ブロックの波かっことはまったく別物であるという点です (これは確かに紛らわしいものです) 。ハッシュは配列と似ていますが、1つの重要な違いとして、ハッシュでは要素の「並び順」が保証されないという点があります<sup class="footnote" id="fnref-4_8"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_8">8</a></sup>。</p>
 
-<p>Instead of defining hashes one item at a time using square brackets, it&rsquo;s easy to use a literal representation with keys and values separated by&nbsp;<code>=&gt;</code>, called a &ldquo;hashrocket&rdquo;:</p>
+<p>ハッシュの要素を1つずつ角かっこを使って定義するよりも、キーと値をハッシュロケットと呼ばれる<code>=&gt;</code> によってリテラル表現するほうが簡単です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;first_name&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Michael&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Hartl&quot;</span> <span class="p">}</span>
 <span class="go">=&gt; {&quot;last_name&quot;=&gt;&quot;Hartl&quot;, &quot;first_name&quot;=&gt;&quot;Michael&quot;}</span>
@@ -902,9 +902,9 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Here I&rsquo;ve used the usual Ruby convention of putting an extra space at the two ends of the hash&mdash;a convention ignored by the console output. (Don&rsquo;t ask me why the spaces are conventional; probably some early influential Ruby programmer liked the look of the extra spaces, and the convention stuck.)</p>
+<p>ここではRubyにおける通常の慣習として、ハッシュの最初と最後に空白を追加しています。この空白はあってもなくてもよく、コンソールでは無視されます (なぜスペースを置くようになったのかはわかりません。おそらく初期の有力な Rubyプログラマが好んだ結果、慣習となったのでしょう)。</p>
 
-<p>So far we&rsquo;ve used strings as hash keys, but in Rails it is much more common to use <em>symbols</em> instead. Symbols look kind of like strings, but prefixed with a colon instead of surrounded by quotes. For example, <code>:name</code> is a symbol. You can think of symbols as basically strings without all the extra baggage:<sup class="footnote" id="fnref-4_9"><a href="?version=4.0#fn-4_9">9</a></sup></p>
+<p>ここまではハッシュのキーとして文字列を使用していましたが、Railsでは文字列よりも<em>シンボル</em>を使用する方が普通です。シンボルは文字列と似ていますが、クォートで囲む代わりにコロンが前に置かれている点が異なります。たとえば、<code>:name</code>はシンボルです。もちろん、余計なことを一切考えずに、シンボルを単なる文字列とみなしても構いません<sup class="footnote" id="fnref-4_9"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_9">9</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;name&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="go">=&gt; [&quot;n&quot;, &quot;a&quot;, &quot;m&quot;, &quot;e&quot;]</span>
@@ -918,23 +918,23 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Symbols are a special Ruby data type shared with very few other languages, so they may seem weird at first, but Rails uses them a lot, so you&rsquo;ll get used to them fast.</p>
+<p>シンボルは、Ruby以外ではごく一部の言語にしか採用されていない特殊なデータ形式です。最初は奇妙に思うかもしれませんが、Railsではシンボルをふんだんに使用していますので、すぐに慣れるでしょう。</p>
 
-<p>In terms of symbols as hash keys, we can define a <code>user</code> hash as follows:</p>
+<p>ハッシュのキーとしてシンボルを採用する場合、<code>user</code> のハッシュは以下のように定義できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">&quot;michael@example.com&quot;</span> <span class="p">}</span>
 <span class="go">=&gt; {:name=&gt;&quot;Michael Hartl&quot;, :email=&gt;&quot;michael@example.com&quot;}</span>
-<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span>              <span class="c1"># Access the value corresponding to :name.</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span>              <span class="c1"># :name に一致する値にアクセスします。</span>
 <span class="go">=&gt; &quot;Michael Hartl&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="ss">:password</span><span class="o">]</span>          <span class="c1"># Access the value of an undefined key.</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="ss">:password</span><span class="o">]</span>          <span class="c1"># 未定義のキーの値にアクセスします。</span>
 <span class="go">=&gt; nil</span>
 </pre></div>
 </div>
 
 
-<p>We see here from the last example that the hash value for an undefined key is simply <code>nil</code>.</p>
+<p>最後の例を見ると、未定義のハッシュ値は単純に<code>nil</code>であることがわかります。</p>
 
-<p>Since it&rsquo;s so common for hashes to use symbols as keys, Ruby&nbsp;1.9 supports a new syntax just for this special case:</p>
+<p>ハッシュではシンボルをキーとして使うことが一般的なので、Ruby 1.9ではこのような特殊な場合のための新しい記法をサポートしています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">h1</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">:email</span> <span class="o">=&gt;</span> <span class="s2">&quot;michael@example.com&quot;</span> <span class="p">}</span>
 <span class="go">=&gt; {:name=&gt;&quot;Michael Hartl&quot;, :email=&gt;&quot;michael@example.com&quot;}</span>
@@ -946,23 +946,23 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>The second syntax replaces the symbol/hashrocket combination with the name of the key followed by a colon and a value:</p>
+<p>2つ目の記法は、シンボルとハッシュロケットの組み合わせを、以下のようにキーの名前の (前ではなく) 後にコロンを置き、その後に値が続くように置き換えたものです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="p">{</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;michael@example.com&quot;</span> <span class="p">}</span>
 </pre></div>
 </div>
 
 
-<p>This construction more closely follows the hash notation in other languages (such as JavaScript) and enjoys growing popularity in the Rails community. Both syntaxes are still in common use, so it&rsquo;s essential to be able to recognize both of them.</p>
+<p>この構成は、JavaScriptなどの他の言語でのハッシュ記法により近いものになっており、Railsコミュニティでも人気が高まっています。どちらの記法もよく使われているので、両方の見分けがつくことが重要です。</p>
 
-<p>Hash values can be virtually anything, even other hashes, as seen in <a class="ref" href="rails-flavored-ruby?version=4.0#code-nested_hashes">Listing&nbsp;4.6</a>.</p>
+<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-nested_hashes">リスト4.6</a>に示したように、ハッシュの値にはほぼ何でも使用することができ、他のハッシュを使用することすらできます。</p>
 
 <div class="label" id="code-nested_hashes"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.6.</span> <span class="description">Nested hashes.</span> </div>
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>        <span class="c1"># Define a hash called &#39;params&#39; (short for &#39;parameters&#39;).</span>
+<div class="listing"><span class="header">リスト4.6</span> <span class="description">ハッシュをネストする。</span> </div>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>        <span class="c1"># &#39;params&#39; というハッシュを定義する (&#39;parameters&#39; の略)。</span>
 <span class="go">=&gt; {}</span>
 <span class="gp">&gt;&gt; </span><span class="n">params</span><span class="o">[</span><span class="ss">:user</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span> <span class="p">}</span>
 <span class="go">=&gt; {:name=&gt;&quot;Michael Hartl&quot;, :email=&gt;&quot;mhartl@example.com&quot;}</span>
@@ -974,14 +974,14 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div></div>
 
 
-<p>These sorts of hashes-of-hashes, or <em>nested hashes</em>, are heavily used by Rails, as we&rsquo;ll see starting in <a class="ref" href="sign-up?version=4.0#sec-signup_failure">Section&nbsp;7.3</a>.</p>
+<p>Railsでは、このようなハッシュのハッシュや<em>ネストされたハッシュ</em> が大量に使われています。実際の使用例は<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_failure">7.3</a>で説明します。</p>
 
-<p>As with arrays and ranges, hashes respond to the <code>each</code> method. For example, consider a hash named <code>flash</code> with keys for two conditions, <code>:success</code> and <code>:error</code>:</p>
+<p>配列や範囲オブジェクトと同様、ハッシュも<code>each</code>メソッドに応答します。たとえば、<code>:success</code>と<code>:error</code>という 2つの状態を持つ <code>flash</code> という名前のハッシュについて考えてみましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">flash</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">success:</span> <span class="s2">&quot;It worked!&quot;</span><span class="p">,</span> <span class="ss">error:</span> <span class="s2">&quot;It failed.&quot;</span> <span class="p">}</span>
 <span class="go">=&gt; {:success=&gt;&quot;It worked!&quot;, :error=&gt;&quot;It failed.&quot;}</span>
 <span class="gp">&gt;&gt; </span><span class="n">flash</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
-<span class="gp">?&gt; </span>  <span class="nb">puts</span> <span class="s2">&quot;Key </span><span class="si">#{</span><span class="n">key</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2"> has value </span><span class="si">#{</span><span class="n">value</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="gp">?</span><span class="gp">&gt; </span>  <span class="nb">puts</span> <span class="s2">&quot;Key </span><span class="si">#{</span><span class="n">key</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2"> has value </span><span class="si">#{</span><span class="n">value</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="k">end</span>
 <span class="go">Key :success has value &quot;It worked!&quot;</span>
 <span class="go">Key :error has value &quot;It failed.&quot;</span>
@@ -989,17 +989,17 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Note that, while the <code>each</code> method for arrays takes a block with only one variable, <code>each</code> for hashes takes two, a <em>key</em> and a <em>value</em>. Thus, the <code>each</code> method for a hash iterates through the hash one key-value <em>pair</em> at a time.</p>
+<p>ここで、配列の<code>each</code>メソッドでは、ブロックの変数は1つだけですが、ハッシュの<code>each</code>メソッドでは、ブロックの変数は<em>キー</em>と<em>値</em>の2つになっていることにご注意ください。従って、 ハッシュに対して<code>each</code>メソッドを実行すると、ハッシュの1つの「キーと値の<em>ペア</em>」ごとに処理を繰り返します。</p>
 
-<p>The last example uses the useful <code>inspect</code> method, which returns a string with a literal representation of the object it&rsquo;s called on:</p>
+<p>最後の例として、便利な<code>inspect</code>メソッドを紹介します。これは要求されたオブジェクトを表現する文字列を返します。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="nb">puts</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>            <span class="c1"># Put an array as a string.</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="nb">puts</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>            <span class="c1"># 配列を文字列として出力</span>
 <span class="go">1</span>
 <span class="go">2</span>
 <span class="go">3</span>
 <span class="go">4</span>
 <span class="go">5</span>
-<span class="gp">&gt;&gt; </span><span class="nb">puts</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">inspect</span>    <span class="c1"># Put a literal array.</span>
+<span class="gp">&gt;&gt; </span><span class="nb">puts</span> <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">inspect</span>    <span class="c1"># 配列のリテラルを出力</span>
 <span class="go">[1, 2, 3, 4, 5]</span>
 <span class="gp">&gt;&gt; </span><span class="nb">puts</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:name</span><span class="o">.</span><span class="n">inspect</span>
 <span class="go">name</span>
@@ -1011,9 +1011,9 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>By the way, using <code>inspect</code> to print an object is common enough that there&rsquo;s a shortcut for it, the <code>p</code> function:</p>
+<p>ところで、オブジェクトを表示するために<code>inspect</code>とputsを使用することは非常によくあることなので、 両者を合わせた<code>p</code>関数というショートカットがあります。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="nb">p</span> <span class="ss">:name</span>             <span class="c1"># Same as &#39;puts :name.inspect&#39;</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="nb">p</span> <span class="ss">:name</span>             <span class="c1"># &#39;puts :name.inspect&#39; と同等</span>
 <span class="go">:name</span>
 </pre></div>
 </div>
@@ -1024,10 +1024,10 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 <div class="label" id="sec-css_revisited"></div>
 
 
-<h3><a id="sec-4_3_4" href="rails-flavored-ruby?version=4.0#sec-css_revisited" class="heading"><span class="number">4.3.4</span> CSS revisited</a></h3>
+<h3><a id="sec-4_3_4" href="/chapters/rails-flavored-ruby?version=4.0#sec-css_revisited" class="heading"><span class="number">4.3.4</span> CSS、再び</a></h3>
 
 
-<p>It&rsquo;s time now to revisit the line from <a class="ref" href="rails-flavored-ruby?version=4.0#code-application_layout_redux">Listing&nbsp;4.1</a> used in the layout to include the cascading style sheets:</p>
+<p>それでは、もう一度<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-application_layout_redux">リスト4.1</a>に戻り、レイアウトに CSS (cascading style sheet) を追加する以下の行を見てみましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
                                        <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="cp">%&gt;</span>
@@ -1035,7 +1035,7 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>We are now nearly in a position to understand this. As mentioned briefly in <a class="ref" href="rails-flavored-ruby?version=4.0#sec-motivation">Section&nbsp;4.1</a>, Rails defines a special function to include stylesheets, and</p>
+<p>今なら、このコードを理解できるようになったはずです。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-motivation">4.1</a>でも簡単に説明したとおり、Railsではスタイルシートを追加するための特別な関数を使用しています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
                                    <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span>
@@ -1043,9 +1043,9 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>is a call to this function. But there are several mysteries. First, where are the parentheses? In Ruby, they are optional; these two are equivalent:</p>
+<p>上のコードは、その特別な関数を呼んでいます。しかし、ここで不思議な点がいくつもあります。まず、丸かっこがないのが不思議です。実は、Ruby では丸かっこは使用してもしなくても構いません。以下の2つの行は同等です。</p>
 
-<div class="code"><div class="highlight"><pre><span class="c1"># Parentheses on function calls are optional.</span>
+<div class="code"><div class="highlight"><pre><span class="c1"># 関数呼び出しの丸かっこは省略可能。</span>
 <span class="n">stylesheet_link_tag</span><span class="p">(</span><span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
                                    <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span>
 <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
@@ -1054,9 +1054,9 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Second, the <code>media</code> argument sure looks like a hash, but where are the curly braces? When hashes are the <em>last</em> argument in a function call, the curly braces are optional; these two are equivalent:</p>
+<p>次に、<code>:media</code>引数はハッシュのようですが、波かっこがない点が不思議です。実は、ハッシュが関数呼び出しの<em>最後の</em>引数である場合は、波かっこを省略できます。以下の2つの行は同等です。</p>
 
-<div class="code"><div class="highlight"><pre><span class="c1"># Curly braces on final hash arguments are optional.</span>
+<div class="code"><div class="highlight"><pre><span class="c1"># 最後の引数がハッシュの場合、波括弧は省略可能。</span>
 <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
                                      <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span>
 <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
@@ -1065,21 +1065,21 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Next, why does the <code>data-turbolinks-track</code> key/value pair use the old-style hashrocket syntax? This is because using the newer syntax to write</p>
+<p>次に、<code>data-turbolinks-track</code>におけるキーと値のペアの表記が、旧式のハッシュロケット (=&gt;) スタイルになっている点が不思議です。実は、以下のような新しいハッシュ記法を使用すると、</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">data</span><span class="o">-</span><span class="n">turbolinks</span><span class="o">-</span><span class="ss">track:</span> <span class="kp">true</span>
 </pre></div>
 </div>
 
 
-<p>would try to create the symbol <code>:data-turbolinks-track</code>, which (it turns out) is invalid because of the hyphens. This forces us to use the older syntax, yielding</p>
+<p><code>:data-turbolinks-track</code>というシンボルを作成しようとしますが、シンボルではハイフンを使用できないため、この記法は無効です。このため、以下のような旧式のハッシュロケット記法を使用するしかないのです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span>
 </pre></div>
 </div>
 
 
-<p>Finally, why does Ruby correctly interpret the lines</p>
+<p>最後に、Rubyが以下のようなコードを正常に実行できているのが不思議です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
                                    <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span>
@@ -1087,9 +1087,9 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>even with a line break between the final elements? The answer is that Ruby doesn&rsquo;t care about newlines.<sup class="footnote" id="fnref-4_10"><a href="?version=4.0#fn-4_10">10</a></sup> The <em>reason</em> I chose to break the code into pieces is that I prefer to keep lines of source code under 80 characters for legibility.<sup class="footnote" id="fnref-4_11"><a href="?version=4.0#fn-4_11">11</a></sup></p>
+<p>上のコードには途中に改行が含まれているにもかかわらずです。実は、Rubyは改行の有無に左右されません<sup class="footnote" id="fnref-4_10"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_10">10</a></sup>。著者が上のコードに改行を追加した<em>理由</em>は、コードの読みやすさを損なわないために1行あたり80文字までに制限していたためです<sup class="footnote" id="fnref-4_11"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_11">11</a></sup>。</p>
 
-<p>So, we see now that the line</p>
+<p>従って、</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
                                    <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span>
@@ -1097,38 +1097,38 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>calls the <code>stylesheet_link_tag</code> function with two arguments: a string, indicating the path to the stylesheet, and a hash with two elements, indicating the media type and telling Rails to use the <a href="https://github.com/rails/turbolinks">turbolinks</a> feature (new in Rails&nbsp;4). (Turbolinks will be described in more detail in a future draft of this book.) Because of the <tt class="verb">&lt;%= %&gt;</tt> brackets, the results are inserted into the template by ERb, and if you view the source of the page in your browser you should see the HTML needed to include a stylesheet (<a class="ref" href="rails-flavored-ruby?version=4.0#code-scss_source">Listing&nbsp;4.7</a>). (You may see some extra things, like <code>?body=1</code>, after the CSS filenames. These are inserted by Rails to ensure that browsers reload the CSS when it changes on the server.)</p>
+<p>上のコードでは<code>stylesheet_link_tag</code>関数を2つの引数で呼んでいます。最初の引数である文字列は、スタイルシートへのパスを示しています。次の引数であるハッシュには2つの要素があり、最初の要素はメディアタイプを示し、次の要素は<a href="https://github.com/rails/turbolinks">turbolinks</a>機能をオンにしています (Turbolinksについては、本書の次のドラフト版で詳細に説明いたします)。コードが<tt class="verb">&lt;%= %&gt;</tt>で囲まれていることによって、 このコードの実行結果はERbのテンプレートに挿入されます。ブラウザ上でこのページのソースを表示すると、必要なスタイルシートが含まれていることを確認できます (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-scss_source">リスト4.7</a>)。(CSSファイル名の後に、<code>?body=1</code>のような行が余分に表示されていることがあります。これらはRailsによって挿入されているもので、サーバ上で変更があった場合にブラウザがCSSを再読み込みするのに使用します。)</p>
 
 <div class="label" id="code-scss_source"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.7.</span> <span class="description">The HTML source produced by the CSS includes.</span> </div>
+<div class="listing"><span class="header">リスト4.7</span> <span class="description">インクルードされたCSSによって生成されたHTMLソース。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">data-turbolinks-track=</span><span class="s">&quot;true&quot;</span> <span class="na">href=</span><span class="s">&quot;/assets/application.css&quot;</span> <span class="na">media=</span><span class="s">&quot;all&quot;</span>
 <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 </div></div>
 
 
-<p>If you actually view the CSS file by navigating to <a href="http://localhost:3000/assets/application.css">http://localhost:3000/assets/application.css</a>, you&rsquo;ll see that (apart from some comments) it is empty. We&rsquo;ll set about changing this in <a class="ref" href="filling-in-the-layout?version=4.0#top">Chapter&nbsp;5</a>.</p>
+<p>実際に<a href="http://localhost:3000/assets/application.css">http://localhost:3000/assets/application.css</a>のCSSファイルにアクセスしてみると、わずかなコメントがある以外は空になっています。CSSの変更は<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>で行います。</p>
 
 <div class="label" id="sec-ruby_classes"></div>
 
 
-<h2><a id="sec-4_4" href="rails-flavored-ruby?version=4.0#sec-ruby_classes" class="heading"><span class="number">4.4</span> Ruby classes</a></h2>
+<h2><a id="sec-4_4" href="/chapters/rails-flavored-ruby?version=4.0#sec-ruby_classes" class="heading"><span class="number">4.4</span> Ruby におけるクラス</a></h2>
 
 
-<p>We&rsquo;ve said before that everything in Ruby is an object, and in this section we&rsquo;ll finally get to define some of our own. Ruby, like many object-oriented languages, uses <em>classes</em> to organize methods; these classes are then <em>instantiated</em> to create objects. If you&rsquo;re new to object-oriented programming, this may sound like gibberish, so let&rsquo;s look at some concrete examples.</p>
+<p>Rubyではあらゆるものがオブジェクトであるということは既に説明しましたが、この節では実際にオブジェクトをいくつか定義してみましょう。Rubyは、多くのオブジェクト指向言語と同様、メソッドをまとめるのに<em>クラス</em>を使用しています。これらのクラスから<em>インスタンスが生成される</em>ことでオブジェクトが作成されます。オブジェクト指向プログラミングの経験がない方にとっては何のことだかわからないと思いますので、いくつかの具体例を示すことにします。</p>
 
 <div class="label" id="sec-constructors"></div>
 
 
-<h3><a id="sec-4_4_1" href="rails-flavored-ruby?version=4.0#sec-constructors" class="heading"><span class="number">4.4.1</span> Constructors</a></h3>
+<h3><a id="sec-4_4_1" href="/chapters/rails-flavored-ruby?version=4.0#sec-constructors" class="heading"><span class="number">4.4.1</span>コンストラクタ</a></h3>
 
 
-<p>We&rsquo;ve seen lots of examples of using classes to instantiate objects, but we have yet to do so explicitly. For example, we instantiated a string using the double quote characters, which is a <em>literal constructor</em> for strings:</p>
+<p>実は、これまで示した多くの例の中でも、クラスを使用してオブジェクトのインスタンスを作成してきたのですが、オブジェクトを作成するところを明示的に説明していませんでした。たとえば、ダブルクォートを使って文字列のインスタンスを作成しましたが、これは文字列のオブジェクトを暗黙で作成する<em>リテラルコンストラクタ</em>です。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>       <span class="c1"># A literal constructor for strings using double quotes</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>       <span class="c1"></span># ダブルクォートを使用した、文字列のリテラルコンストラクタ
 <span class="go">=&gt; &quot;foobar&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span>
 <span class="go">=&gt; String</span>
@@ -1136,11 +1136,11 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>We see here that strings respond to the method <code>class</code>, and simply return the class they belong to.</p>
+<p>上のコードでは、文字列が<code>class</code>メソッドに応答しており、その文字列が所属するクラスを単に返していることがわかります。</p>
 
-<p>Instead of using a literal constructor, we can use the equivalent <em>named constructor</em>, which involves calling the <code>new</code> method on the class name:<sup class="footnote" id="fnref-4_12"><a href="?version=4.0#fn-4_12">12</a></sup></p>
+<p>暗黙のリテラルコンストラクタを使う代わりに、明示的に同等の<em>名前付きコンストラクタ</em>を使うことができます。名前付きコンストラクタは、クラス名に対して<code>new</code>メソッドを呼びだします<sup class="footnote" id="fnref-4_12"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_12">12</a></sup>。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="nb">String</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">)</span>   <span class="c1"># A named constructor for a string</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="nb">String</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">)</span>   <span class="c1"># 文字列の名前付きコンストラクタ</span>
 <span class="go">=&gt; &quot;foobar&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span>
 <span class="go">=&gt; String</span>
@@ -1150,9 +1150,9 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>This is equivalent to the literal constructor, but it&rsquo;s more explicit about what we&rsquo;re doing.</p>
+<p>この動作はリテラルコンストラクタと同等ですが、動作の内容が明確に示されています。</p>
 
-<p>Arrays work the same way as strings:</p>
+<p>配列でも、文字列と同様にインスタンスを生成できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="o">]</span><span class="p">)</span>
 <span class="go">=&gt; [1, 3, 2]</span>
@@ -1160,13 +1160,13 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Hashes, in contrast, are different. While the array constructor <code>Array.new</code> takes an initial value for the array, <code>Hash.new</code> takes a <em>default</em> value for the hash, which is the value of the hash for a nonexistent key:</p>
+<p>ただし、ハッシュの場合は若干異なります。配列のコンストラクタである<code>Array.new</code> は配列の初期値を引数に取りますが、 <code>Hash.new</code> はハッシュの<em>デフォルト</em> 値を引数に取ります。これは、キーが存在しない場合のデフォルト値です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">h</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span>
 <span class="go">=&gt; {}</span>
-<span class="gp">&gt;&gt; </span><span class="n">h</span><span class="o">[</span><span class="ss">:foo</span><span class="o">]</span>            <span class="c1"># Try to access the value for the nonexistent key :foo.</span>
+<span class="gp">&gt;&gt; </span><span class="n">h</span><span class="o">[</span><span class="ss">:foo</span><span class="o">]</span>            <span class="c1"># 存在しないキー :fooの値にわざとアクセスしてみる</span>
 <span class="go">=&gt; nil</span>
-<span class="gp">&gt;&gt; </span><span class="n">h</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># Arrange for nonexistent keys to return 0 instead of nil.</span>
+<span class="gp">&gt;&gt; </span><span class="n">h</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># キーが存在しない場合のデフォルト値をnilから0に変更する</span>
 <span class="go">=&gt; {}</span>
 <span class="gp">&gt;&gt; </span><span class="n">h</span><span class="o">[</span><span class="ss">:foo</span><span class="o">]</span>
 <span class="go">=&gt; 0</span>
@@ -1174,23 +1174,23 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>When a method gets called on the class itself, as in the case of <code>new</code>, it&rsquo;s called a <em>class method</em>. The result of calling <code>new</code> on a class is an object of that class, also called an <em>instance</em> of the class. A method called on an instance, such as <code>length</code>, is called an <em>instance method</em>.</p>
+<p>メソッドがクラス自身 (この場合は<code>new</code>) に対して呼び出されるとき、このメソッドを<em>クラスメソッド</em>と呼びます。クラスの<code>new</code>メソッドを呼び出した結果は、そのクラスのオブジェクトであり、これはクラスの<em>インスタンス</em>とも呼ばれます。<code>length</code>のように、インスタンスに対して呼び出すメソッドは<em>インスタンスメソッド</em>と呼ばれます。</p>
 
 <div class="label" id="sec-a_class_of_our_own"></div>
 
 
-<h3><a id="sec-4_4_2" href="rails-flavored-ruby?version=4.0#sec-a_class_of_our_own" class="heading"><span class="number">4.4.2</span> Class inheritance</a></h3>
+<h3><a id="sec-4_4_2" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_class_of_our_own" class="heading"><span class="number">4.4.2</span>クラス継承</a></h3>
 
 
-<p>When learning about classes, it&rsquo;s useful to find out the <em>class hierarchy</em> using the <code>superclass</code> method:</p>
+<p>クラスについて学ぶとき、<em>superclass</em>メソッドを使って<code>クラス階層</code>を調べてみるとよくわかります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="nb">String</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
 <span class="go">=&gt; &quot;foobar&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span>                        <span class="c1"># Find the class of s.</span>
+<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span>                        <span class="c1"># sのクラスを表示</span>
 <span class="go">=&gt; String</span>
-<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">superclass</span>             <span class="c1"># Find the superclass of String.</span>
+<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">superclass</span>             <span class="c1"># Stringクラスのスーパークラスを表示</span>
 <span class="go">=&gt; Object</span>
-<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">superclass</span><span class="o">.</span><span class="n">superclass</span>  <span class="c1"># Ruby 1.9 uses a new BasicObject base class</span>
+<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">superclass</span><span class="o">.</span><span class="n">superclass</span>  <span class="c1"># Ruby 1.9では新たにBasicObject基底クラスを使用</span>
 <span class="go">=&gt; BasicObject</span>
 <span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">superclass</span><span class="o">.</span><span class="n">superclass</span><span class="o">.</span><span class="n">superclass</span>
 <span class="go">=&gt; nil</span>
@@ -1198,15 +1198,15 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>A diagram of this inheritance hierarchy appears in <a class="ref" href="rails-flavored-ruby?version=4.0#fig-string_inheritance_ruby_1_9">Figure&nbsp;4.1</a>. We see here that the superclass of <code>String</code> is <code>Object</code> and the superclass of <code>Object</code> is <code>BasicObject</code>, but <code>BasicObject</code> has no superclass. This pattern is true of every Ruby object: trace back the class hierarchy far enough and every class in Ruby ultimately inherits from <code>BasicObject</code>, which has no superclass itself. This is the technical meaning of &ldquo;everything in Ruby is an object&rdquo;.</p>
+<p>継承階層を<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#fig-string_inheritance_ruby_1_9">図4.1</a>に示します。ここでは、<code>String</code>クラスのスーパークラスは<code>Object</code>クラスで、<code>Object</code>クラスのスーパークラスは<code>BasicObject</code>クラスですが、 <code>BasicObject</code>クラスはスーパークラスを持たないことがわかります。この図式は、すべての Ruby のオブジェクトにおいて成り立ちます。クラス階層をたどっていくと、 Rubyにおけるすべてのクラスは最終的にスーパークラスを持たない<code>BasicObject</code>クラスを継承しています。これが、&quot;Rubyではあらゆるものがオブジェクトである&quot; ということの技術的な意味です。</p>
 
 <div class="label" id="fig-string_inheritance_ruby_1_9"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/string_inheritance_ruby_1_9.png" alt="string_inheritance_ruby_1_9" /></span></div><div class="caption"><span class="header">Figure 4.1: </span><span class="description">The inheritance hierarchy for the <code>String</code> class.</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/string_inheritance_ruby_1_9.png" alt="string_inheritance_ruby_1_9" /></span></div><div class="caption"><span class="header">図4.1</span><span class="description"> <code>String</code>クラスの継承階層</span></div></div>
 
 
-<p>To understand classes a little more deeply, there&rsquo;s no substitute for making one of our own. Let&rsquo;s make a <code>Word</code> class with a <code>palindrome?</code> method that returns <code>true</code> if the word is the same spelled forward and backward:</p>
+<p>クラスについてもう少し深く知るためには、自分自身で作ってみるに代わるものはありません。<code>palindrome?</code> メソッドを持つ<code>Word</code> クラスを作ってみましょう method that returns <code>true</code> if the word is the same spelled forward and backward</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">class</span> <span class="nc">Word</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">def</span> <span class="nf">palindrome?</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
@@ -1218,29 +1218,29 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>We can use it as follows:</p>
+<p>このクラスとメソッドは以下のように使うことができます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="no">Word</span><span class="o">.</span><span class="n">new</span>              <span class="c1"># Make a new Word object.</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="no">Word</span><span class="o">.</span><span class="n">new</span>              <span class="c1"># Wordオブジェクトを作成する</span>
 <span class="go">=&gt; #&lt;Word:0x22d0b20&gt;</span>
-<span class="gp">&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">palindrome?</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">palindrome?</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">foobar&quot;</span><span class="p">)</span>
 <span class="go">=&gt; false</span>
-<span class="gp">&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">palindrome?</span><span class="p">(</span><span class="s2">&quot;level&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">palindrome?</span><span class="p">(</span><span class="s2">&quot;</span><span class="s2">level&quot;</span><span class="p">)</span>
 <span class="go">=&gt; true</span>
 </pre></div>
 </div>
 
 
-<p>If this example strikes you as a bit contrived, good; this is by design. It&rsquo;s odd to create a new class just to create a method that takes a string as an argument. Since a word <em>is a</em> string, it&rsquo;s more natural to have our <code>Word</code> class <em>inherit</em> from <code>String</code>, as seen in <a class="ref" href="rails-flavored-ruby?version=4.0#code-word_class">Listing&nbsp;4.8</a>. (You should exit the console and re-enter it to clear out the old definition of <code>Word</code>.)</p>
+<p>もし上の例が少し不自然に思えるならば、勘が鋭いといえます。これは仕様です。文字列を引数に取るメソッドを作るためだけに、わざわざ新しいクラスを作るのは変です。単語<em>は</em>文字列なので、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-word_class">リスト4.8</a>のように<code>Word</code>クラスは <code>String</code>クラスを<em>継承</em>するのが自然です (以下のリストを入力する前に、古い<code>Word</code>クラスの定義を消去するために、Railsコンソールをいったん終了してください)。</p>
 
 <div class="label" id="code-word_class"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.8.</span> <span class="description">Defining a <code>Word</code> class in the console.</span> </div>
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">class</span> <span class="nc">Word</span> <span class="o">&lt;</span> <span class="nb">String</span>             <span class="c1"># Word inherits from String.</span>
-<span class="gp">&gt;&gt; </span>  <span class="c1"># Returns true if the string is its own reverse.</span>
+<div class="listing"><span class="header">リスト4.8</span> <span class="description">コンソールで<code>Word</code>クラスを定義する。</span> </div>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">class</span> <span class="nc">Word</span> <span class="o">&lt;</span> <span class="nb">String</span>             <span class="c1"># WordクラスはStringクラスを継承する。</span>
+<span class="gp">&gt;&gt; </span>  <span class="c1"># 文字列が鏡文字であればtrueを返す。</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">def</span> <span class="nf">palindrome?</span>
-<span class="gp">&gt;&gt; </span>    <span class="nb">self</span> <span class="o">==</span> <span class="nb">self</span><span class="o">.</span><span class="n">reverse</span>        <span class="c1"># self is the string itself.</span>
+<span class="gp">&gt;&gt; </span>    <span class="nb">self</span> <span class="o">==</span> <span class="nb">self</span><span class="o">.</span><span class="n">reverse</span>        <span class="c1"># selfは文字列自身を表す。</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">end</span>
 <span class="gp">&gt;&gt; </span><span class="k">end</span>
 <span class="go">=&gt; nil</span>
@@ -1248,19 +1248,19 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div></div>
 
 
-<p>Here <code>Word &lt; String</code> is the Ruby syntax for inheritance (discussed briefly in <a class="ref" href="static-pages?version=4.0#sec-static_pages">Section&nbsp;3.1</a>), which ensures that, in addition to the new <code>palindrome?</code> method, words also have all the same methods as strings:</p>
+<p><a class="ref" href="/chapters/static-pages?version=4.0#sec-static_pages">3.1.2</a>でも簡単に説明しましたが、上のコードの<code>Word &lt; String</code>は継承のためのRubyの記法です。こうすることで、新しい<code>palindrome?</code>メソッドだけではなく、Stringsクラスで使用できるすべてのメソッドをWordクラスに対しても使用できるようになります。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="no">Word</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;level&quot;</span><span class="p">)</span>    <span class="c1"># Make a new Word, initialized with &quot;level&quot;.</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="no">Word</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;level&quot;</span><span class="p">)</span>    <span class="c1"># 新しいWordを作成し、&quot;level&quot; で初期化する</span>
 <span class="go">=&gt; &quot;level&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">palindrome?</span>            <span class="c1"># Words have the palindrome? method.</span>
+<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">palindrome?</span>            <span class="c1"># Wordが鏡文字かどうか</span><span class="c1">method.</span>
 <span class="go">=&gt; true</span>
-<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">length</span>                 <span class="c1"># Words also inherit all the normal string methods.</span>
+<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">length</span>                 <span class="c1"># Wordがstringのすべてのメソッドも継承している</span>
 <span class="go">=&gt; 5</span>
 </pre></div>
 </div>
 
 
-<p>Since the <code>Word</code> class inherits from <code>String</code>, we can use the console to see the class hierarchy explicitly:</p>
+<p><code>Word</code>クラスは<code>String</code>クラスを継承しているので、コンソールを使用してクラス階層を明示的に確認できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span>
 <span class="go">=&gt; Word</span>
@@ -1272,41 +1272,41 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>This hierarchy is illustrated in <a class="ref" href="rails-flavored-ruby?version=4.0#fig-word_inheritance_ruby_1_9">Figure&nbsp;4.2</a>.</p>
+<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#fig-word_inheritance_ruby_1_9">図4.2</a>にこのクラス階層を示します。</p>
 
 <div class="label" id="fig-word_inheritance_ruby_1_9"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/word_inheritance_ruby_1_9.png" alt="word_inheritance_ruby_1_9" /></span></div><div class="caption"><span class="header">Figure 4.2: </span><span class="description">The inheritance hierarchy for the (non-built-in) <code>Word</code> class from <a class="ref" href="rails-flavored-ruby?version=4.0#code-word_class">Listing&nbsp;4.8</a>.</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/word_inheritance_ruby_1_9.png" alt="word_inheritance_ruby_1_9" /></span></div><div class="caption"><span class="header">図4.2</span><span class="description"><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-word_class">リスト4.8</a>の (組み込みではない) <code>Word</code>クラスの継承階層</span>。</div></div>
 
 
-<p>In <a class="ref" href="rails-flavored-ruby?version=4.0#code-word_class">Listing&nbsp;4.8</a>, note that checking that the word is its own reverse involves accessing the word inside the <code>Word</code> class. Ruby allows us to do this using the <code>self</code> keyword: inside the <code>Word</code> class, <code>self</code> is the object itself, which means we can use</p>
+<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-word_class">リスト4.8</a>では、単語の文字を逆順にしたものが元の単語と同じであるかどうかのチェックを、<code>Word</code>クラスの中から自分自身が持つ単語にアクセスすることで行なっていることにご注目ください。Rubyでは、<code>self</code>キーワードを使用してこれを指定することができます。<code>Word</code>クラスの中では、<code>self</code>はオブジェクト自身を指します。これはつまり、以下のコードを使用して、</p>
 
 <div class="code"><div class="highlight"><pre><span class="nb">self</span> <span class="o">==</span> <span class="nb">self</span><span class="o">.</span><span class="n">reverse</span>
 </pre></div>
 </div>
 
 
-<p>to check if the word is a palindrome.<sup class="footnote" id="fnref-4_13"><a href="?version=4.0#fn-4_13">13</a></sup></p>
+<p>単語が回文であるかどうかを確認できるということです<sup class="footnote" id="fnref-4_13"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_13">11</a></sup>。</p>
 
 <div class="label" id="sec-modifying_built_in_classes"></div>
 
 
-<h3><a id="sec-4_4_3" href="rails-flavored-ruby?version=4.0#sec-modifying_built_in_classes" class="heading"><span class="number">4.4.3</span> Modifying built-in classes</a></h3>
+<h3><a id="sec-4_4_3" href="/chapters/rails-flavored-ruby?version=4.0#sec-modifying_built_in_classes" class="heading"><span class="number">4.4.3</span>組込みクラスの変更</a></h3>
 
 
-<p>While inheritance is a powerful idea, in the case of palindromes it might be even more natural to add the <code>palindrome?</code> method to the <code>String</code> class itself, so that (among other things) we can call <code>palindrome?</code> on a string literal, which we currently can&rsquo;t do:</p>
+<p>継承は強力な概念ですが、もし仮に継承を使用せずに<code>palindrome?</code>メソッドを<code>String</code>クラス自身に追加する (つまりStringクラスを拡張する) という、より自然な方法を使用することが可能だとしたら、わざわざWordクラスを作らなくても<code>palindrome?</code>をリテラル文字列に対して直接実行できるようになるはずです。そんなことが可能なのでしょうか (なお、現在のコードはそのようになっていないため、以下のようにエラーになります)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;level&quot;</span><span class="o">.</span><span class="n">palindrome?</span>
-<span class="go">NoMethodError: undefined method `palindrome?&#39; for &quot;level&quot;:String</span>
+<span class="go">NoMethodError: undefined method `palindrome?&#39;</span><span class="go">for &quot;level&quot;:String</span>
 </pre></div>
 </div>
 
 
-<p>Amazingly, Ruby lets you do just this; Ruby classes can be <em>opened</em> and modified, allowing ordinary mortals such as ourselves to add methods to them:<sup class="footnote" id="fnref-4_14"><a href="?version=4.0#fn-4_14">14</a></sup></p>
+<p>驚いたことに、Rubyでは組み込みの基本クラスの拡張が可能なのです。Ruby のクラスは<em>オープン</em>で変更可能であり、クラス設計者でない開発者でもこれらのクラスにメソッドを自由に追加することが許されています<sup class="footnote" id="fnref-4_14"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_14">14</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">class</span> <span class="nc">String</span>
-<span class="gp">&gt;&gt; </span>  <span class="c1"># Returns true if the string is its own reverse.</span>
+<span class="gp">&gt;&gt; </span>  <span class="c1"># 文字列が回文であればtrueを返す</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">def</span> <span class="nf">palindrome?</span>
 <span class="gp">&gt;&gt; </span>    <span class="nb">self</span> <span class="o">==</span> <span class="nb">self</span><span class="o">.</span><span class="n">reverse</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">end</span>
@@ -1318,9 +1318,9 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>(I don&rsquo;t know which is cooler: that Ruby lets you add methods to built-in classes, or that <code>"deified"</code> is a palindrome.)</p>
+<p>(Rubyで組み込みクラスにメソッドを追加できるということは実にクールですが、<code>&quot;deified&quot;</code> (=神格化された) という単語が回文になっていることも、それに劣らずクールではないでしょうか。)</p>
 
-<p>Modifying built-in classes is a powerful technique, but with great power comes great responsibility, and it&rsquo;s considered bad form to add methods to built-in classes without having a <em>really</em> good reason for doing so. Rails does have some good reasons; for example, in web applications we often want to prevent variables from being <em>blank</em>&mdash;e.g., a user&rsquo;s name should be something other than spaces and other <a href="http://en.wikipedia.org/wiki/Whitespace_(computer_science)">whitespace</a>&mdash;so Rails adds a <code>blank?</code> method to Ruby. Since the Rails console automatically includes the Rails extensions, we can see an example here (this won&rsquo;t work in plain <code>irb</code>):</p>
+<p>組み込みクラスの変更はきわめて強力なテクニックですが、大いなる力には大いなる責任が伴います (訳注: 「スパイダーマン」の名台詞)。従って、<em>真に</em>正当な理由がない限り、組み込みクラスにメソッドを追加することは無作法であると考えられています。Railsの場合、組み込みクラスの変更を正当化できる理由がいくつもあります。たとえば、Web アプリケーションでは、変数が絶対に<em>空白</em>にならないようにしたくなることがよくあります (ユーザ名などはスペースや<a href="http://en.wikipedia.org/wiki/Whitespace_(computer_science)">その他の空白文字</a>になって欲しくないものです) ので、Railsは<code>blank?</code>メソッドをRuby に追加しています。Railsの拡張は自動的にRailsコンソールにも取り込まれるので、以下のようにコンソールで拡張の結果を確認できます (注意: 以下のコードは純粋な <code>irb</code> では動作しません)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">blank?</span>
 <span class="go">=&gt; true</span>
@@ -1334,15 +1334,15 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>We see that a string of spaces is not <em>empty</em>, but it is <em>blank</em>. Note also that <code>nil</code> is blank; since <code>nil</code> isn&rsquo;t a string, this is a hint that Rails actually adds <code>blank?</code> to <code>String</code>&rsquo;s base class, which (as we saw at the beginning of this section) is <code>Object</code> itself. We&rsquo;ll see some other examples of Rails additions to Ruby classes in <a class="ref" href="sign-in-sign-out?version=4.0#sec-remember_me">Section&nbsp;8.2.1</a>.</p>
+<p>スペースが集まってできた文字列は<em>空 (empty) </em>とは認識されませんが、<em>空白 (blank) </em>であると認識されていることがわかります。ここで、<code>nil</code>は空白と認識されることにご注意ください。<code>nil</code>は文字列ではないので、Railsが実は<code>blank?</code>メソッドを<code>String</code>クラスではなく、そのさらに上の基底クラスに追加していることが推測できます。その基底クラスとは、(この章の最初で説明した) <code>Object</code>自身です。RailsによってRubyの組み込みクラスに追加が行われている例については、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>で説明します。</p>
 
 <div class="label" id="sec-a_controller_class"></div>
 
 
-<h3><a id="sec-4_4_4" href="rails-flavored-ruby?version=4.0#sec-a_controller_class" class="heading"><span class="number">4.4.4</span> A controller class</a></h3>
+<h3><a id="sec-4_4_4" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_controller_class" class="heading"><span class="number">4.4.4</span>コントローラクラス</a></h3>
 
 
-<p>All this talk about classes and inheritance may have triggered a flash of recognition, because we have seen both before, in the StaticPages controller (<a class="ref" href="static-pages?version=4.0#code-adding_the_about_page">Listing&nbsp;3.16</a>):</p>
+<p>これまでクラスや継承について説明してきましたが、これらの話は前の章にもあったような気がします。それもそのはずで、StaticPagesコントローラで継承やクラスについて触れたことがありました (<a class="ref" href="/chapters/static-pages?version=4.0#code-adding_the_about_page">リスト3.16</a>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">StaticPagesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
 
@@ -1359,7 +1359,7 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>You&rsquo;re now in a position to appreciate, at least vaguely, what this code means: <code>StaticPagesController</code> is a class that inherits from <code>ApplicationController</code>, and comes equipped with <code>home</code>, <code>help</code>, and <code>about</code> methods. Since each Rails console session loads the local Rails environment, we can even create a controller explicitly and examine its class hierarchy:<sup class="footnote" id="fnref-4_15"><a href="?version=4.0#fn-4_15">15</a></sup></p>
+<p>本書をここまで進めてきた今であれば、上のコードの意味は (たとえ漠然とであっても) 理解できるはずです。<code>StaticPagesController</code>クラスは<code>ApplicationController</code>を継承しており、<code>home</code>メソッド、<code>help</code>メソッド、<code>about</code>メソッドを備えています。 Rails コンソールは、セッションごとにローカルのRails環境を読み込むので、コンソール内で明示的にコントローラを作成したり、そのクラス階層を調べたりすることができます<sup class="footnote" id="fnref-4_15"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_15">15</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">controller</span> <span class="o">=</span> <span class="no">StaticPagesController</span><span class="o">.</span><span class="n">new</span>
 <span class="go">=&gt; #&lt;StaticPagesController:0x22855d0&gt;</span>
@@ -1379,15 +1379,15 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>A diagram of this hierarchy appears in <a class="ref" href="rails-flavored-ruby?version=4.0#fig-static_pages_controller_inheritance">Figure&nbsp;4.3</a>.</p>
+<p>継承の関係を<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#fig-static_pages_controller_inheritance">図4.3</a>に示します。</p>
 
 <div class="label" id="fig-static_pages_controller_inheritance"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/static_pages_controller_inheritance.png" alt="static_pages_controller_inheritance" /></span></div><div class="caption"><span class="header">Figure 4.3: </span><span class="description">The inheritance hierarchy for the StaticPages controller.</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/static_pages_controller_inheritance.png" alt="static_pages_controller_inheritance" /></span></div><div class="caption"><span class="header">図4.3</span><span class="description"> StaticPagesコントローラの継承階層。</span></div></div>
 
 
-<p>We can even call the controller actions inside the console, which are just methods:</p>
+<p>Railsコンソールでは、その中からコントローラのアクション (実はメソッド) を呼ぶこともできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">controller</span><span class="o">.</span><span class="n">home</span>
 <span class="go">=&gt; nil</span>
@@ -1395,27 +1395,27 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Here the return value is <code>nil</code> because the <code>home</code> action is blank.</p>
+<p>ここでは、<code>home</code>アクションの中身は空なので<code>nil</code>が返されます。</p>
 
-<p>But wait&mdash;actions don&rsquo;t have return values, at least not ones that matter. The point of the <code>home</code> action, as we saw in <a class="ref" href="static-pages?version=4.0#top">Chapter&nbsp;3</a>, is to render a web page, not to return a value. And I sure don&rsquo;t remember ever calling <code>StaticPagesController.new</code> anywhere. What&rsquo;s going on?</p>
+<p>ここで重要な点があります。Railsのアクションには返し値がありません。少なくとも、返される値は重要ではありません。<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>で示したとおり、<code>home</code>アクションはWebページを表示するためのものであり、値を返すためのものではありませんでした。しかも、第3章では一度も<code>StaticPagesController.new</code>を実行しませんでした。どうしてこれでうまくいっているのでしょうか。</p>
 
-<p>What&rsquo;s going on is that Rails is <em>written in</em> Ruby, but Rails isn&rsquo;t Ruby. Some Rails classes are used like ordinary Ruby objects, but some are just <a href="http://www.answers.com/grist">grist</a> for Rails&rsquo; magic mill. Rails is <a href="http://en.wikipedia.org/wiki/Sui_generis"><em>sui generis</em></a>, and should be studied and understood separately from Ruby. This is why, if your principal programming interest is writing web applications, I recommend learning Rails first, then learning Ruby, then looping back to Rails.</p>
+<p>実は、Railsは確かにRubyで<em>書かれて</em>いますが、既にRubyとは別物なのです。Railsのクラスは、普通のRubyオブジェクトと同様に振る舞うものもありますが、多くのクラスにはRailsの<a href="http://www.answers.com/grist">魔法の粉</a>が振りかけられています。Railsは<a href="http://en.wikipedia.org/wiki/Sui_generis"><em>独特</em></a>であり、 Rubyとは切り離して学習する必要があります。このため、とにかくWebアプリケーションを書けるようになりたい方は、最初にRailsを学び、次にRubyを学んでから再びRailsに戻ってくることをお勧めします。</p>
 
 <div class="label" id="sec-a_user_class"></div>
 
 
-<h3><a id="sec-4_4_5" href="rails-flavored-ruby?version=4.0#sec-a_user_class" class="heading"><span class="number">4.4.5</span> A user class</a></h3>
+<h3><a id="sec-4_4_5" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class" class="heading"><span class="number">4.4.5</span>ユーザークラス</a></h3>
 
 
-<p>We end our tour of Ruby with a complete class of our own, a <code>User</code> class that anticipates the User model coming up in <a class="ref" href="modeling-users?version=4.0#top">Chapter&nbsp;6</a>.</p>
+<p>最後に完全なクラスを作成して、この章を終わりにしましょう。そこで、<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>で使用する<code>User</code>クラスを最初から作成することにします。</p>
 
-<p>So far we&rsquo;ve entered class definitions at the console, but this quickly becomes tiresome; instead, create the file <code>example_user.rb</code> in your application root directory and fill it with the contents of <a class="ref" href="rails-flavored-ruby?version=4.0#code-example_user">Listing&nbsp;4.9</a>.</p>
+<p>これまではコンソール上でクラスを定義しましたが、このような面倒な作業はもう行いたくありません。これからは、アプリケーションのルートディレクトリに<code>example_user.rb</code>ファイルを作成し、そこに<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-example_user">リスト4.9</a>のように書くことにします。</p>
 
 <div class="label" id="code-example_user"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.9.</span> <span class="description">Code for an example user. <br /> <code>example_user.rb</code></span> </div>
+<div class="listing"><span class="header">リスト4.9</span> <span class="description">example_userで使用するコード。</span><br /><span class="description"> <code>example_user.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span>
   <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
 
@@ -1432,16 +1432,16 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div></div>
 
 
-<p>There&rsquo;s quite a bit going on here, so let&rsquo;s take it step by step. The first line,</p>
+<p>上のコードはこれまでよりもやや複雑になっていますので、順に見ていくことにします。以下の最初の行は、</p>
 
 <div class="code"><div class="highlight"><pre>  <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
 </pre></div>
 </div>
 
 
-<p>creates <em>attribute accessors</em> corresponding to a user&rsquo;s name and email address. This creates &ldquo;getter&rdquo; and &ldquo;setter&rdquo; methods that allow us to retrieve (get) and assign (set) <code>@name</code> and <code>@email</code> <em>instance variables</em>, which were mentioned briefly in <a class="ref" href="a-demo-app?version=4.0#sec-mvc_in_action">Section&nbsp;2.2.2</a>. In Rails, the principal importance of instance variables is that they are automatically available in the views, but in general they are used for variables that need to be available throughout a Ruby class. (We&rsquo;ll have more to say about this in a moment.) Instance variables always begin with an&nbsp;<code>@</code> sign, and are <code>nil</code> when undefined.</p>
+<p>ユーザ名とメールアドレスに対応する<em>アトリビュートアクセサ</em>をそれぞれ作成します。このコードは、<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-mvc_in_action">2.2.2</a>でも説明したように、<code>@name</code>および<code>@email</code><em>インスタンス変数</em>について、取り出し(get) と割り当て(set) を行う &quot;ゲッター&quot; と &quot;セッター&quot; というメソッドをそれぞれ作成します。Railsでは、インスタンス変数を作成するだけでビューで自動的に使えるようになるという点に主な利用価値がありますが、一般的には、インスタンス変数はRubyのそのクラス内のどこでも利用できるようにしたい変数として使われます (これについては後で詳しく説明します)。インスタンス変数は常に<code>@</code>記号で始まり、未定義の状態では値が<code>nil</code>になります。</p>
 
-<p>The first method, <code>initialize</code>, is special in Ruby: it&rsquo;s the method called when we execute <code>User.new</code>. This particular <code>initialize</code> takes one argument, <code>attributes</code>:</p>
+<p>最初の行にある<code>initialize</code>は、Rubyの特殊なメソッドです。これは <code>User.new</code>を実行すると自動的に呼び出されるメソッドです。この場合の<code>initialize</code>メソッドは、以下のように<code>attributes</code>という引数を1つ取ります。</p>
 
 <div class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">attributes</span> <span class="o">=</span> <span class="p">{})</span>
     <span class="vi">@name</span>  <span class="o">=</span> <span class="n">attributes</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span>
@@ -1451,9 +1451,9 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Here the <code>attributes</code> variable has a <em>default value</em> equal to the empty hash, so that we can define a user with no name or email address (recall from <a class="ref" href="rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">Section&nbsp;4.3.3</a> that hashes return <code>nil</code> for nonexistent keys, so <code>attributes[:name]</code> will be <code>nil</code> if there is no <code>:name</code> key, and similarly for <code>attributes[:email]</code>).</p>
+<p>上のコードで、<code>attributes</code>変数は空のハッシュを<em>デフォルトの値</em>として持つため、名前やメールアドレスのないユーザを作ることができます (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">4.3.3</a>を思い出してください。存在しないキーに対してハッシュは<code>nil</code>を返すので、<code>:name</code>キーがなければ<code>attributes[:name]</code>は<code>nil</code> になり、同じことが<code>attributes[:email]</code>にも言えます)。</p>
 
-<p>Finally, our class defines a method called <code>formatted_email</code> that uses the values of the assigned <code>@name</code> and <code>@email</code> variables to build up a nicely formatted version of the user&rsquo;s email address using string interpolation (<a class="ref" href="rails-flavored-ruby?version=4.0#sec-strings">Section&nbsp;4.2.2</a>):</p>
+<p>最後に、<code>formatted_email</code>メソッドを定義しましょう (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-strings">4.2.2</a>)。このメソッドは、文字列の式展開を利用して、<code>@name</code>と<code>@email</code>に割り当てられた値をユーザのメールアドレスとして構成します。</p>
 
 <div class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">formatted_email</span>
     <span class="s2">&quot;</span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2"> &lt;</span><span class="si">#{</span><span class="vi">@email</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
@@ -1462,19 +1462,19 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Because <code>@name</code> and <code>@email</code> are both instance variables (as indicated with the&nbsp;<code>@</code> sign), they are automatically available in the <code>formatted_email</code> method.</p>
+<p><code>@</code> 記号によって示されているとおり、<code>@name</code>と<code>@email</code>は両方ともインスタンス変数なので、自動的に<code>formatted_email</code>メソッドで使えるようになります。</p>
 
-<p>Let&rsquo;s fire up the console, <code>require</code> the example user code, and take our User class out for a spin:</p>
+<p>Railsコンソールを起動し、example_userのコードを<code>require</code>して、自作したクラスを試しに使ってみましょう。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="nb">require</span> <span class="s1">&#39;./example_user&#39;</span>     <span class="c1"># This is how you load the example_user code.</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="nb">require</span> <span class="s1">&#39;./example_user&#39;</span>     <span class="c1"># example_user のコードを読み込む方法</span>
 <span class="go">=&gt; [&quot;User&quot;]</span>
 <span class="gp">&gt;&gt; </span><span class="n">example</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span>
 <span class="go">=&gt; #&lt;User:0x224ceec @email=nil, @name=nil&gt;</span>
-<span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">name</span>                 <span class="c1"># nil since attributes[:name] is nil</span>
+<span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">name</span>                 <span class="c1"># attributes[:name]がnilなのでnilが返される</span>
 <span class="go">=&gt; nil</span>
-<span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Example User&quot;</span>           <span class="c1"># Assign a non-nil name</span>
+<span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Example User&quot;</span>           <span class="c1"># nilでない名前を割り当てる</span>
 <span class="go">=&gt; &quot;Example User&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;user@example.com&quot;</span>      <span class="c1"># and a non-nil email address</span>
+<span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;user@example.com&quot;</span>      <span class="c1"># nil でないメールアドレスも割り当てる</span>
 <span class="go">=&gt; &quot;user@example.com&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">formatted_email</span>
 <span class="go">=&gt; &quot;Example User &lt;user@example.com&gt;&quot;</span>
@@ -1482,16 +1482,16 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>Here the <code>&rsquo;.&rsquo;</code> is Unix for &ldquo;current directory&rdquo;, and <code>&rsquo;./example_user&rsquo;</code> tells Ruby to look for an example user file relative to that location. The subsequent code creates an empty example user and then fills in the name and email address by assigning directly to the corresponding attributes (assignments made possible by the <code>attr_accessor</code> line in <a class="ref" href="rails-flavored-ruby?version=4.0#code-example_user">Listing&nbsp;4.9</a>). When we write</p>
+<p>上のコードで、requireのパスにある<code>’.’</code>は、Unixの “カレントディレクトリ” (現在のディレクトリ) を表し、<code>’./example_user’</code>というパスは、カレントディレクトリからの相対パスでexample_userファイルを探すようにRubyに指示します。次のコードでは空のexample_userを作成します。次に、対応する属性にそれぞれ手動で値を代入することで、名前とメールアドレスを与えます (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-example_user">リスト4.9</a>で<code>attr_accessor</code>を使用しているので、アトリビュートアクセサを使用して代入できます)。以下のコードは、</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">example</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Example User&quot;</span>
 </pre></div>
 </div>
 
 
-<p>Ruby is setting the <code>@name</code> variable to <code>"Example User"</code> (and similarly for the <code>email</code> attribute), which we then use in the <code>formatted_email</code> method.</p>
+<p><code>@name</code>変数に<code>&quot;Example User&quot;</code>という値を設定します。同様に<code>email</code>属性にも値を設定します。これらの値は<code>formatted_email</code>メソッドで使用されます。</p>
 
-<p>Recalling from <a class="ref" href="rails-flavored-ruby?version=4.0#sec-css_revisited">Section&nbsp;4.3.4</a> we can omit the curly braces for final hash arguments, we can create another user by passing a hash to the <code>initialize</code> method to create a user with pre-defined attributes:</p>
+<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-css_revisited">4.3.4</a>では、最後のハッシュ引数の波かっこを省略できることを説明しました。それと同じ要領で<code>initialize</code>メソッドにハッシュを渡すことで、属性が定義済みの他のユーザを作成することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
 <span class="go">=&gt; #&lt;User:0x225167c @email=&quot;mhartl@example.com&quot;, @name=&quot;Michael Hartl&quot;&gt;</span>
@@ -1501,24 +1501,24 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 </div>
 
 
-<p>We will see starting in <a class="ref" href="sign-up?version=4.0#top">Chapter&nbsp;7</a> that initializing objects using a hash argument, a technique known as <em>mass assignment</em>, is common in Rails applications.</p>
+<p><a class="ref" href="/chapters/sign-up?version=4.0#top">7章</a> では、 ハッシュ引数を使用してオブジェクトを初期化します。これは一般に<em>マスアサインメント (mass assignment)</em> と呼ばれる技法で、Railsアプリケーションで多用されています。</p>
 
 <div class="label" id="sec-conclusion"></div>
 
 
-<h2><a id="sec-4_5" href="rails-flavored-ruby?version=4.0#sec-conclusion" class="heading"><span class="number">4.5</span> Conclusion</a></h2>
+<h2><a id="sec-4_5" href="/chapters/rails-flavored-ruby?version=4.0#sec-conclusion" class="heading"><span class="number">4.5</span>最後に</a></h2>
 
 
-<p>This concludes our overview of the Ruby language. In <a class="ref" href="filling-in-the-layout?version=4.0#top">Chapter&nbsp;5</a>, we&rsquo;ll start putting it to good use in developing the sample application.</p>
+<p>以上で、Ruby言語の概要の説明を終わります。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>では、この章で学んだ内容をサンプルアプリケーションの開発に生かしていきます。</p>
 
-<p>We won&rsquo;t be using the <code>example_user.rb</code> file from <a class="ref" href="rails-flavored-ruby?version=4.0#sec-a_user_class">Section&nbsp;4.4.5</a>, so I suggest removing it:</p>
+<p><code>4.4.5</code>で作成した<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">example_user.rb</a>ファイルは今後使用することはありませんので、削除してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rm example_user.rb
 </pre></div>
 </div>
 
 
-<p>Then commit the other changes to the main source code repository:</p>
+<p>その他の変更はリポジトリにコミットしましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
 <span class="gp">$</span> git commit -m <span class="s2">&quot;Add a full_title helper&quot;</span>
@@ -1531,22 +1531,22 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 <div class="label" id="sec-exercises"></div>
 
 
-<h2><a id="sec-4_6" href="rails-flavored-ruby?version=4.0#sec-exercises" class="heading"><span class="number">4.6</span> Exercises</a></h2>
+<h2><a id="sec-4_6" href="/chapters/rails-flavored-ruby?version=4.0#sec-exercises" class="heading"><span class="number">4.6</span>演習</a></h2>
 
 
 
 
 <ol>
 
-<li>By replacing the question marks in <a class="ref" href="rails-flavored-ruby?version=4.0#code-string_shuffle">Listing&nbsp;4.10</a> with the appropriate methods, combine <code>split</code>, <code>shuffle</code>, and <code>join</code> to write a function that shuffles the letters in a given string.</li>
+<li><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-string_shuffle">リスト4.10</a>のコードにある疑問符を適切なメソッドに置き換えて、与えられた文字列の文字をシャッフルする関数を作成してください。ヒント: <code>split</code>メソッド、<code>shuffle</code>メソッド、<code>join</code>メソッドを組み合わせてみましょう。</li>
 
-<li>Using <a class="ref" href="rails-flavored-ruby?version=4.0#code-string_shuffle_two">Listing&nbsp;4.11</a> as a guide, add a <code>shuffle</code> method to the <code>String</code> class.</li>
+<li><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-string_shuffle_two">リスト4.11</a>を参考にして、上で作成した<code>shuffle</code>メソッドを <code>String</code>クラスに追加してください。</li>
 
-<li>Create three hashes called <code>person1</code>, <code>person2</code>, and <code>person3</code>, with first and last names under the keys <code>:first</code> and <code>:last</code>. Then create a <code>params</code> hash so that <code>params[:father]</code> is <code>person1</code>, <code>params[:mother]</code> is <code>person2</code>, and <code>params[:child]</code> is <code>person3</code>. Verify that, for example, <code>params[:father][:first]</code> has the right value.</li>
+<li><code>person1</code>、<code>person2</code>、<code>person3</code>という3つのハッシュを作成してください。それぞれのハッシュには<code>:first</code>キーと<code>:last</code>キーを与え、さらにそれぞれのキーに名前と名字を値として割り当ててください。次に<code>params</code>ハッシュを作成し、<code>params[:father]</code>は<code>person1</code>、<code>params[:mother]</code>は<code>person2</code>、そして<code>params[:child]</code>は <code>person3</code>になるようにしてください。最後に、<code>params[:father][:first]</code>などが正しい値を持っていることを確認してください。</li>
 
-<li>Find an online version of the Ruby API and read about the <code>Hash</code> method <code>merge</code>.</li>
+<li>Ruby API のオンラインマニュアルを見つけて、<code>Hash</code>クラスの<code>merge</code>メソッドについて読んでみてください。</li>
 
-<li><strong>(optional)</strong> Follow the <a href="http://rubykoans.com/">Ruby Koans</a><sup class="footnote" id="fnref-4_16"><a href="?version=4.0#fn-4_16">16</a></sup> to seek Ruby enlightenment.</li>
+<li><strong>(自由課題)</strong> <a href="http://rubykoans.com/">Ruby Koans</a><sup class="footnote" id="fnref-4_16"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_16">16</a></sup> (訳注: TDDでRubyを学べる無料のコンテンツ) をやってみて、Rubyの感覚を掴んでみてください。</li>
 </ol>
 
 
@@ -1556,7 +1556,7 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.10.</span> <span class="description">Skeleton for a string shuffle function.</span> </div>
+<div class="listing"><span class="header">リスト4.10</span> <span class="description">文字列をシャッフルする関数の骨組み。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">def</span> <span class="nf">string_shuffle</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="gp">&gt;&gt; </span>  <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="sc">?.</span><span class="p">?</span>
 <span class="gp">&gt;&gt; </span><span class="k">end</span>
@@ -1572,7 +1572,7 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">Listing 4.11.</span> <span class="description">Skeleton for a <code>shuffle</code> method attached to the <code>String</code> class.</span> </div>
+<div class="listing"><span class="header">リスト4.11</span> <span class="description"><code>shuffle</code>メソッドを<code>String</code>クラスに追加するための骨組み。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">class</span> <span class="nc">String</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">def</span> <span class="nf">shuffle</span>
 <span class="gp">&gt;&gt; </span>    <span class="nb">self</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="sc">?.</span><span class="p">?</span>
@@ -1586,30 +1586,29 @@ In addition to this bracket notation, Ruby offers synonyms for some commonly acc
 
 
 
-<div class="navigation">  <a class="prev_page" href="static-pages?version=4.0#top">
-    &laquo;&nbsp;<span class="number">Chapter 3</span> Mostly static pages
-  </a>
-  <a class="next_page" href="filling-in-the-layout?version=4.0#top">
-    <span class="number">Chapter 5</span> Filling in the layout&nbsp;&raquo;
-  </a>
+<div class="navigation">  <a class="prev_page" href="/chapters/static-pages?version=4.0#top">
+</a><a class="prev_page" href="/chapters/static-pages?version=4.0#top">    « <span class="number">第3章</span>ほぼ静的なページの作成</a><a class="prev_page" href="/chapters/static-pages?version=4.0#top">  </a>
+  <a class="next_page" href="/chapters/filling-in-the-layout?version=4.0#top">
+</a><a class="next_page" href="/chapters/filling-in-the-layout?version=4.0#top">    <span class="number">第5章</span>レイアウトを作成する »
+</a><a class="next_page" href="/chapters/filling-in-the-layout?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-4_1">If a helper is specific to a particular controller, you should put it in the corresponding helper file; for example, helpers for the StaticPages controller generally go in <code>app/helpers/static_pages_helper.rb</code>. In our case, we expect the <code>full_title</code> helper to be used on all the site&rsquo;s pages, and Rails has a special helper file for this case: <code>app/helpers/application_helper.rb</code>.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_1">&uarr;</a></li>
-<li id="fn-4_2">For more on the origins of &ldquo;foo&rdquo; and &ldquo;bar&rdquo;&mdash;and, in particular, the possible <em>non</em>-relation of &ldquo;foobar&rdquo; to &ldquo;FUBAR&rdquo;&mdash;see the <a href="http://www.catb.org/jargon/html/F/foo.html">Jargon File entry on &ldquo;foo&rdquo;</a>.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_2">&uarr;</a></li>
-<li id="fn-4_3">Programmers familiar with Perl or PHP should compare this to the automatic interpolation of dollar sign variables in expressions like <code>"foo $bar"</code>.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_3">&uarr;</a></li>
-<li id="fn-4_4">Apologies in advance for switching haphazardly between <em>function</em> and <em>method</em> throughout this chapter; in Ruby, they&rsquo;re the same thing: all methods are functions, and all functions are methods, because everything is an object.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_4">&uarr;</a></li>
-<li id="fn-4_5">Well, there will still be <em>one</em> thing left that we don&rsquo;t understand, which is how Rails ties this all together: mapping URLs to actions, making the <code>full_title</code> helper available in views, etc. This is an interesting subject, and I encourage you to investigate it further, but knowing exactly <em>how</em> Rails works is not necessary when <em>using</em> Rails. (For a deeper understanding, I recommend <em>The Rails&nbsp;4 Way</em> by Obie Fernandez.)&nbsp;<a class="arrow" href="?version=4.0#fnref-4_5">&uarr;</a></li>
-<li id="fn-4_6">The <code>second</code> method used here isn&rsquo;t currently part of Ruby itself, but rather is added by Rails. It works in this case because the Rails console automatically includes the Rails extensions to Ruby.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_6">&uarr;</a></li>
-<li id="fn-4_7">Programming experts, on the other hand, might benefit from knowing that blocks are <em>closures</em>, which are one-shot anonymous functions with data attached.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_7">&uarr;</a></li>
-<li id="fn-4_8">Ruby 1.9 actually guarantees that hashes keep their elements in the same order entered, but it would be unwise ever to count on a particular ordering.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_8">&uarr;</a></li>
-<li id="fn-4_9">As a result of having less baggage, symbols are easier to compare to each other; strings need to be compared character by character, while symbols can be compared all in one go. This makes them ideal for use as hash keys.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_9">&uarr;</a></li>
-<li id="fn-4_10">A newline is what comes at the end of a line, thereby starting a new line. In code, it is represented by the character <tt class="verb">\n</tt>.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_10">&uarr;</a></li>
-<li id="fn-4_11">Actually <em>counting</em> columns could drive you crazy, which is why many text editors have a visual aid to help you. For example, if you take a look back at <a class="ref" href="beginning?version=4.0#fig-editor_shell">Figure&nbsp;1.1</a>, you&rsquo;ll see a small vertical line on the right to help keep code under 80 characters. (It&rsquo;s actually at 78 columns, which gives you a little margin for error.) If you use TextMate, you can find this feature under <tt>View &gt; Wrap Column &gt; 78</tt>. In Sublime Text, you can use <tt>View &gt; Ruler &gt; 78</tt> or <tt>View &gt; Ruler &gt; 80</tt>.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_11">&uarr;</a></li>
-<li id="fn-4_12">These results will vary based on the version of Ruby you are using. This example assumes you are using Ruby&nbsp;1.9.3.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_12">&uarr;</a></li>
-<li id="fn-4_13">For more on Ruby classes and the <code>self</code> keyword, see the <a href="http://railstips.org/">RailsTips</a> post &ldquo;<a href="http://railstips.org/blog/archives/2006/11/18/class-and-instance-variables-in-ruby/">Class and Instance Variables in Ruby</a>&rdquo;.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_13">&uarr;</a></li>
-<li id="fn-4_14">For those familiar with JavaScript, this functionality is comparable to using a built-in class prototype object to augment the class. (Thanks to reader <a href="http://getsatisfaction.com/railstutorial/topics/adding_methods_to_built_in_classes_comparable_to_using_javascripts_prototype_object">Erik Eldridge</a> for pointing this out.)&nbsp;<a class="arrow" href="?version=4.0#fnref-4_14">&uarr;</a></li>
-<li id="fn-4_15">You don&rsquo;t have to know what each class in this hierarchy does. <em>I</em> don&rsquo;t know what they all do, and I&rsquo;ve been programming in Ruby on Rails since 2005. This means either that (a) I&rsquo;m grossly incompetent or (b) you can be a skilled Rails developer without knowing all its innards. I hope for both our sakes that it&rsquo;s the latter.&nbsp;<a class="arrow" href="?version=4.0#fnref-4_15">&uarr;</a></li>
-<li id="fn-4_16">http://rubykoans.com/&nbsp;<a class="arrow" href="?version=4.0#fnref-4_16">&uarr;</a></li>
+<li id="fn-4_1">あるヘルパーが特定のコントローラでのみ使用するものであれば、それに対応するヘルパーファイルに置く必要があります。たとえばStaticPagesコントローラ用ヘルパーは、通常<code>app/helpers/static_pages_helper.rb</code>になります。今回の場合、<code>full_title</code>ヘルパーはサイトのすべてのページで使用することを前提にしていますが、Railsにはこのような場合のための特別なヘルパーファイル<code>app/helpers/application_helper.rb</code>があります。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_1">↑</a></li>
+<li id="fn-4_2">“foo”と“bar”という言葉の起源の詳細については、<em>Jargon Fileの “foo” の項</em>を参照してください。特に“foobar”は“FUBAR” (=めちゃくちゃ) とは何の関係も<a href="http://www.catb.org/jargon/html/F/foo.html">ない</a>ということについて。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_2">↑</a></li>
+<li id="fn-4_3">PerlやPHPに精通した開発者であれば、<code>&quot;foo $bar&quot;</code>のようなドル記号による自動的な挿入を連想して比較することでしょう。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_3">↑</a></li>
+<li id="fn-4_4">この章の全体にわたって、<em>関数</em>という言葉と<em>メソッド</em>という言葉が混在していることを前もってお詫びいたします。Rubyでは関数とメソッドには何の違いもありません。すべてのメソッドは関数であり、すべての関数はメソッドでもあります。それもこれも、あらゆるものがオブジェクトであるからです。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_4">↑</a></li>
+<li id="fn-4_5">とはいうものの、まだ理解のおよばない点が<em>1つ</em>残っています。Railsがこれらすべてを結びつけている方法です。URLがどのようにしてアクションにマップされているのか、<code>full_title</code>ヘルパーをどのようにしてビューで使用できるようにしているのかなどは、この時点では明かされていません。これは実に興味深いテーマであり、意欲のある方はぜひ自分で調べてみてください。ただし、Railsが<em>どのように</em>動いているかを正確に知らなくても、Railsを<em>使用する</em>うえでは何の問題もありません (この点を深く理解したい方には、「<em>The Rails 4 Way</em>」(Obie Fernandez著) がお勧めです) 。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_5">↑</a></li>
+<li id="fn-4_6">このコードで使用している<code>second</code>メソッドは、実はRuby自身の一部ではなく、Railsが追加したものです。このコードが動作するのは、RailsによるRubyの拡張がRailsコンソールによって自動的に反映されるからです。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_6">↑</a></li>
+<li id="fn-4_7">なおエキスパート向けには、ブロックが<em>クロージャ</em>になっているということを知っていただくと理解しやすいと思います。クロージャとは、データを伴う、その場限りの無名関数です。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_7">↑</a></li>
+<li id="fn-4_8">実はRuby 1.9では、ハッシュの要素の順序が入力順と同じであることを保証していますが、ハッシュを特定の順序に依存してカウントするのは得策ではありません。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_8">↑</a></li>
+<li id="fn-4_9">余計なものを削ぎ落した結果、シンボル同士の比較を容易に行えます。文字列は1文字ずつ比較する必要がありますが、シンボルは一度に全体を比較できます。これはハッシュのキーとして理想的な性質です。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_9">↑</a></li>
+<li id="fn-4_10">改行は、行の末尾と次の行の始まりを示します。コードの中では、<tt class="verb">\n</tt>の文字列で表します。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_10">↑</a></li>
+<li id="fn-4_11">もちろん、人間がいちいち文字数を<em>数えて</em>いたら頭がどうにかなってしまいます。だからこそ、多くのテキストエディタにはこれらを支援する機能が備わっています。たとえば、<a class="ref" href="/chapters/beginning?version=4.0#fig-editor_shell">図1.1</a>をもう一度見てみると、コードを80文字以下に抑えるための小さな縦線が右側に見えます (実際には少し余裕を持たせて78列にしてあります) 。TextMateを使用していれば、<tt>View &gt; Wrap Column &gt; 78</tt>で設定できます。Sublime Textを使用していれば、<tt>View &gt; Ruler &gt; 78</tt>、または<tt>View &gt; Ruler &gt; 80</tt>で設定できます。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_11">↑</a></li>
+<li id="fn-4_12">このメソッドの動作は、使用しているRubyのバージョンによって異なる可能性があります。この例ではRuby 1.9.3を前提としています。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_12">↑</a></li>
+<li id="fn-4_13">Rubyのクラスや<code>self</code>キーワードについての詳細は、<a href="http://railstips.org/">RailsTips</a>の “<a href="http://railstips.org/blog/archives/2006/11/18/class-and-instance-variables-in-ruby/">Ruby におけるクラスとインスタンス変数</a>” (英語) を参照してください。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_13">↑</a></li>
+<li id="fn-4_14">JavaScriptに精通している方のために補足すると、この機能は組み込みクラスのプロトタイプオブジェクトを使用してクラスを拡張することと似ています (読者の<a href="http://getsatisfaction.com/railstutorial/topics/adding_methods_to_built_in_classes_comparable_to_using_javascripts_prototype_object">Erik Eldridge</a>による指摘に感謝します)。 <a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_14">↑</a></li>
+<li id="fn-4_15">これらの階層にあるクラスの詳細を知る必要はないと思います。<em>私ですら</em>それらのクラスの詳細について知らないことがたくさんありますし、それでも私は2005年からRuby on Railsで問題なくプログラミングできています。これは (a) 私がよほど無能であるか、(b) Railsの内部を知りつくさなくても熟練したRails開発者になれる、ということのどちらかでしょう。私のためにも読者の皆様のためにも、後者であることを祈ります。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_15">↑</a></li>
+<li id="fn-4_16">http://rubykoans.com/ <a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_16">↑</a></li>
 </ol>
 </div>
 

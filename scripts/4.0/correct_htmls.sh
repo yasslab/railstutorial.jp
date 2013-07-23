@@ -9,6 +9,7 @@
 re_array=( \
     "s/http:\/\/railstutorial.jp\/screencasts/http:\/\/railstutorial.org\/screencasts/g" \
     "s/http:\/\/railstutorial.jp\/help/http:\/\/railstutorial.org\/help/g" \
+    "s/http:\/\/railstutorial.jp\/books\/4.0/\/chapters/g" \
     )
 #          "s/railstutorial.org/railstutorial.jp/g" \
 #          "s/chapters\/images/images/g" \
@@ -22,7 +23,7 @@ re_array=( \
 #	  "s/WHETHER/<\/br>WHETHER/g" \
 #	  "s/IN CONNECTION WITH/<\/br>IN CONNECTION WITH/g" \
 
-for chapter in `cat ../chapter_list.txt`
+for chapter in `cat chapter_list.txt`
 do
     cp $chapter.html.original $chapter.modified_0.html
     i=0
@@ -37,3 +38,17 @@ do
 
     echo "corrected: Chapter '$chapter'"
 done
+
+chapter="_contents"
+cp $chapter.html.original $chapter.modified_0.html
+i=0
+for re in "${re_array[@]}"
+do
+    cat $chapter.modified_$i.html | sed -e "$re" > $chapter.modified_`expr $i + 1`.html
+    rm  $chapter.modified_$i.html
+    i=`expr $i + 1`
+done
+
+mv $chapter.modified_$i.html $chapter.html
+
+echo "corrected: Chapter '$chapter'"
