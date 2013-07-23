@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# Unzip the given .zip file (Download from Google Translator Toolkit),
-# correct their html tags with `correct_html.sh`,
-# and replace existing html files with them.
+# 0. Download all chapters for 3.2 from Google Translator Toolkit
+# 1. Unzip the given .zip file (Download from Google Translator Toolkit)
+# 2. Correct their html tags with `correct_html.sh`,
+# 3. Replace existing html files with them.
 
 if [ $# -eq 0 ]
 then

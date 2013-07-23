@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# Download HTML files from the original 3rd Edition,
-# then, correct and truncate them for Japanese Edition,
-# finally, make them a single chapter that can be imported from GTT.
+# 1. Unzip the given .zip file (Download from Google Translator Toolkit),
+# 2. Correct their html tags with `correct_html.sh`,
+# 3. Make them a single chapter that can be imported from GTT.
+# 4. Replace existing html files with them.
 
 if [ $# -eq 0 ]
 then
