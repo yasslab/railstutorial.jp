@@ -30,6 +30,15 @@ do
         rm  $chapter.modified_$i.html
 	i=`expr $i + 1`
     done
+
+    for ch in `cat chapter_list.txt`
+    do
+	cat $chapter.modified_$i.html | sed -e \
+	    "s/href=\"\/chapters\/$ch\.html/href=\"\/chapters\/$ch/g" \
+	    > $chapter.modified_`expr $i + 1`.html
+        rm  $chapter.modified_$i.html
+	i=`expr $i + 1`
+    done
     
     mv $chapter.modified_$i.html $chapter.html
 

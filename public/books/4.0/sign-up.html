@@ -32,7 +32,7 @@
 <h2><a id="sec-7_1" href="/chapters/sign-up?version=4.0#sec-showing_users" class="heading"><span class="number">7.1</span>ユーザーを表示する</a></h2>
 
 
-<p>この節では、まずユーザーの名前とプロファイル写真を表示するためのページを作成します。モックアップを<a class="ref" href="/chapters/sign-up?version=4.0#fig-profile_mockup_profile_name">図7.1</a>に示しました<sup class="footnote" id="fnref-7_1"><a href="/chapters/sign-up.html?version=4.0#fn-7_1">1</a></sup>。 ユーザープロファイルページの最終的な目標は、<a class="ref" href="/chapters/sign-up?version=4.0#fig-profile_mockup">図7.2</a><sup class="footnote" id="fnref-7_2"><a href="/chapters/sign-up.html?version=4.0#fn-7_2">2</a></sup>のようにユーザーのプロファイル写真と基本ユーザーデータ、そしてマイクロポストの一覧を表示することです。(<a class="ref" href="/chapters/sign-up?version=4.0#fig-profile_mockup">図7.2</a>では、有名な<em>lorem ipsum</em>ダミーテキストを使用しています。このテキストの成り立ちには<a href="http://www.straightdope.com/columns/read/2290/what-does-the-filler-text-lorem-ipsum-mean">面白いエピソード</a>があるので機会がありましたらどうぞ。) このページを作成したら、<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>のサンプル・アプリケーションで使用する予定です。</p>
+<p>この節では、まずユーザーの名前とプロファイル写真を表示するためのページを作成します。モックアップを<a class="ref" href="/chapters/sign-up?version=4.0#fig-profile_mockup_profile_name">図7.1</a>に示しました<sup class="footnote" id="fnref-7_1"><a href="/chapters/sign-up?version=4.0#fn-7_1">1</a></sup>。 ユーザープロファイルページの最終的な目標は、<a class="ref" href="/chapters/sign-up?version=4.0#fig-profile_mockup">図7.2</a><sup class="footnote" id="fnref-7_2"><a href="/chapters/sign-up?version=4.0#fn-7_2">2</a></sup>のようにユーザーのプロファイル写真と基本ユーザーデータ、そしてマイクロポストの一覧を表示することです。(<a class="ref" href="/chapters/sign-up?version=4.0#fig-profile_mockup">図7.2</a>では、有名な<em>lorem ipsum</em>ダミーテキストを使用しています。このテキストの成り立ちには<a href="http://www.straightdope.com/columns/read/2290/what-does-the-filler-text-lorem-ipsum-mean">面白いエピソード</a>があるので機会がありましたらどうぞ。) このページを作成したら、<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>のサンプル・アプリケーションで使用する予定です。</p>
 
 <div class="label" id="fig-profile_mockup_profile_name"></div>
 
@@ -159,7 +159,7 @@
 </div>
 
 
-<p>これは<code>params</code>の内容で、YAML<sup class="footnote" id="fnref-7_3"><a href="/chapters/sign-up.html?version=4.0#fn-7_3">3</a></sup>というものです。YAMLは基本的にハッシュであり、コントローラとページのアクションを一意に指定します。<a class="ref" href="/chapters/sign-up?version=4.0#sec-a_users_resource">7.1.2</a>には別の例もあります。</p>
+<p>これは<code>params</code>の内容で、YAML<sup class="footnote" id="fnref-7_3"><a href="/chapters/sign-up?version=4.0#fn-7_3">3</a></sup>というものです。YAMLは基本的にハッシュであり、コントローラとページのアクションを一意に指定します。<a class="ref" href="/chapters/sign-up?version=4.0#sec-a_users_resource">7.1.2</a>には別の例もあります。</p>
 
 <p>本番環境に展開したアプリケーションではデバッグ情報を表示したくないので、<a class="ref" href="/chapters/sign-up?version=4.0#code-rails_debug">リスト7.1</a>には以下を記述してあります。</p>
 
@@ -168,7 +168,7 @@
 </div>
 
 
-<p>こうしておくと、デバッグ情報はRailsの3つのデフォルト環境のうち、<em>開発環境</em>でしか表示されなくなります (<a class="ref" href="/chapters/sign-up?version=4.0#sidebar-rails_environments">囲み7.1</a>)<sup class="footnote" id="fnref-7_4"><a href="/chapters/sign-up.html?version=4.0#fn-7_4">4</a></sup>。特に、<code>Rails.env.development?</code>が<code>true</code>になるのは開発環境に限られるため、以下の埋め込みRubyは</p>
+<p>こうしておくと、デバッグ情報はRailsの3つのデフォルト環境のうち、<em>開発環境</em>でしか表示されなくなります (<a class="ref" href="/chapters/sign-up?version=4.0#sidebar-rails_environments">囲み7.1</a>)<sup class="footnote" id="fnref-7_4"><a href="/chapters/sign-up?version=4.0#fn-7_4">4</a></sup>。特に、<code>Rails.env.development?</code>が<code>true</code>になるのは開発環境に限られるため、以下の埋め込みRubyは</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">debug</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -283,7 +283,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>この行は<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-signup_route">リスト5.33</a>にはありました。実は、<code>resources :users</code>という行は、動作する /users/1 URLを追加するためだけのものではありません。サンプルアプリケーションにこの行を追加すると、ユーザーのURLを生成するための多数の名前付きルート (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-named_routes">5.3.3</a>) に従って、RESTfulなUsersリソースで必要となる<em>すべての</em>アクションが利用できるようになります<sup class="footnote" id="fnref-7_5"><a href="/chapters/sign-up.html?version=4.0#fn-7_5">5</a></sup>。この行に対応するURL、アクション、名前付きルートは<a class="ref" href="/chapters/sign-up?version=4.0#table-RESTful_users">表7.1</a>のようになります (<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_users">表2.2</a>との違いを比較してみてください)。 次の3つの章に渡って、<a class="ref" href="/chapters/sign-up?version=4.0#table-RESTful_users">表7.1</a>の他の項目も利用して、Usersリソースを完全にRESTfulなリソースにするために必要なアクションをすべて作成する予定です。</p>
+<p>この行は<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-signup_route">リスト5.33</a>にはありました。実は、<code>resources :users</code>という行は、動作する /users/1 URLを追加するためだけのものではありません。サンプルアプリケーションにこの行を追加すると、ユーザーのURLを生成するための多数の名前付きルート (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-named_routes">5.3.3</a>) に従って、RESTfulなUsersリソースで必要となる<em>すべての</em>アクションが利用できるようになります<sup class="footnote" id="fnref-7_5"><a href="/chapters/sign-up?version=4.0#fn-7_5">5</a></sup>。この行に対応するURL、アクション、名前付きルートは<a class="ref" href="/chapters/sign-up?version=4.0#table-RESTful_users">表7.1</a>のようになります (<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_users">表2.2</a>との違いを比較してみてください)。 次の3つの章に渡って、<a class="ref" href="/chapters/sign-up?version=4.0#table-RESTful_users">表7.1</a>の他の項目も利用して、Usersリソースを完全にRESTfulなリソースにするために必要なアクションをすべて作成する予定です。</p>
 
 <div class="label" id="table-RESTful_users"></div>
 
@@ -565,7 +565,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>前節で基本的なユーザーページの定義は終わりましたので、今度は各ユーザーのプロファイル写真のあたりをもう少し肉付けし、サイドバーも作り始めましょう。ビューを作成するときは、ページの構造が正確であるかどうかよりもページの外観の方を重要視するのが普通なので、少なくとも今はビューをテストする必要はありません。ページネーション (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-pagination">9.3.3</a>) のような、エラーの起きやすい要素をビューで使用するようになったら、ビューでもテストドリブン開発を行います。</p>
 
-<p>ここでは<a href="http://gravatar.com/">Gravatar (globally recognized avatar) </a>をユーザープロファイルに導入してみましょう<sup class="footnote" id="fnref-7_6"><a href="/chapters/sign-up.html?version=4.0#fn-7_6">6</a></sup>。Gravatarは<a href="http://github.com/">GitHub</a>の共同設立者であるTom Preston-Wernerによって開発され、後に<a href="http://automattic.com/">Automattic</a> (<a href="http://wordpress.com/">WordPress</a>の作者) に買い取られました。Gravatarは無料のサービスで、プロファイル写真をアップロードして、指定したメールアドレスと関連付けることができます。Gravatarは、プロファイル写真をアップロードするときの面倒な作業や、写真が欠けたりなどのトラブル、置き場所の悩みを解決します。ユーザーのメールアドレスを組み込んだGravatar専用の画像パスを構成するだけで、対応するGravatarの画像が自動的に表示されます<sup class="footnote" id="fnref-7_7"><a href="/chapters/sign-up.html?version=4.0#fn-7_7">7</a></sup>。</p>
+<p>ここでは<a href="http://gravatar.com/">Gravatar (globally recognized avatar) </a>をユーザープロファイルに導入してみましょう<sup class="footnote" id="fnref-7_6"><a href="/chapters/sign-up?version=4.0#fn-7_6">6</a></sup>。Gravatarは<a href="http://github.com/">GitHub</a>の共同設立者であるTom Preston-Wernerによって開発され、後に<a href="http://automattic.com/">Automattic</a> (<a href="http://wordpress.com/">WordPress</a>の作者) に買い取られました。Gravatarは無料のサービスで、プロファイル写真をアップロードして、指定したメールアドレスと関連付けることができます。Gravatarは、プロファイル写真をアップロードするときの面倒な作業や、写真が欠けたりなどのトラブル、置き場所の悩みを解決します。ユーザーのメールアドレスを組み込んだGravatar専用の画像パスを構成するだけで、対応するGravatarの画像が自動的に表示されます<sup class="footnote" id="fnref-7_7"><a href="/chapters/sign-up?version=4.0#fn-7_7">7</a></sup>。</p>
 
 <p>ここでは、<a class="ref" href="/chapters/sign-up?version=4.0#code-user_show_view_with_gravatar">リスト7.12</a>のように<code>gravatar_for</code>ヘルパー関数を使用してGravatarの画像を利用できるようにします。</p>
 
@@ -769,7 +769,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>最後に、システムによっては変更を反映するためにターミナルで<tt>Ctrl-C</tt>を押してWebサーバーを再起動する必要が生じることもあります<sup class="footnote" id="fnref-7_8"><a href="/chapters/sign-up.html?version=4.0#fn-7_8">8</a></sup>。</p>
+<p>最後に、システムによっては変更を反映するためにターミナルで<tt>Ctrl-C</tt>を押してWebサーバーを再起動する必要が生じることもあります<sup class="footnote" id="fnref-7_8"><a href="/chapters/sign-up?version=4.0#fn-7_8">8</a></sup>。</p>
 
 <div class="label" id="sec-tests_for_user_signup"></div>
 
@@ -1457,7 +1457,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-objects_and_message_passing">4.2.3</a>では文字列に対して<code>empty?</code>メソッドを使用しましたが、Railsのエラーオブジェクトに対しても使用できます。オブジェクトが空の場合は<code>true</code>、 それ以外の場合は<code>false</code>を返します。<code>any?</code>メソッドはちょうど<code>empty?</code>と逆の動作で、要素が1つでもある場合は<code>true</code>、ない場合は<code>false</code>を返します (なお、これらの<code>count</code>、<code>empty?</code>、<code>any?</code>メソッドは、Rubyの配列に対してもそのまま使用できます。これは<a class="ref" href="/chapters/user-microposts?version=4.0#sec-showing_microposts">10.2</a>で応用する予定です)。</p>
 
-<p>さらに、<code>pluralize</code>という英語専用のテキストヘルパーが新たに登場しています。このヘルパーはデフォルトではコンソールでは使用できませんが、<code>ActionView::Helpers::TextHelper</code>を経由して明示的にインクルードできます<sup class="footnote" id="fnref-7_9"><a href="/chapters/sign-up.html?version=4.0#fn-7_9">9</a></sup>。</p>
+<p>さらに、<code>pluralize</code>という英語専用のテキストヘルパーが新たに登場しています。このヘルパーはデフォルトではコンソールでは使用できませんが、<code>ActionView::Helpers::TextHelper</code>を経由して明示的にインクルードできます<sup class="footnote" id="fnref-7_9"><a href="/chapters/sign-up?version=4.0#fn-7_9">9</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="kp">include</span> <span class="ss">ActionView::Helpers</span><span class="o">::</span><span class="no">TextHelper</span>
 <span class="gp">&gt;&gt; </span><span class="n">pluralize</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">)</span>
@@ -1684,7 +1684,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>(ハッシュの<code>:success</code>キーはシンボルである点にご注目ください。Rubyはシンボルを自動的に <code>&quot;success&quot;</code> という文字列に変換してからテンプレートに挿入します。) 使用するすべてのキーと値を列挙する理由は、他のフラッシュメッセージも使えるようにするためです。たとえば、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-rendering_with_a_flash_message">8.1.5</a>では<code>flash[:error]</code>を使用してサインインに失敗したことを表すメッセージを表示します<sup class="footnote" id="fnref-7_10"><a href="/chapters/sign-up.html?version=4.0#fn-7_10">10</a></sup>。</p>
+<p>(ハッシュの<code>:success</code>キーはシンボルである点にご注目ください。Rubyはシンボルを自動的に <code>&quot;success&quot;</code> という文字列に変換してからテンプレートに挿入します。) 使用するすべてのキーと値を列挙する理由は、他のフラッシュメッセージも使えるようにするためです。たとえば、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-rendering_with_a_flash_message">8.1.5</a>では<code>flash[:error]</code>を使用してサインインに失敗したことを表すメッセージを表示します<sup class="footnote" id="fnref-7_10"><a href="/chapters/sign-up?version=4.0#fn-7_10">10</a></sup>。</p>
 
 <p>フラッシュメッセージが正しく表示されているかどうかのテストは演習に回します (<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_exercises">7.6</a>)。<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_flash">リスト7.27</a>のように、<code>create</code>アクションで<code>flash[:success]</code>にウェルカムメッセージを割り当てれば 、テストにパスするようになります。</p>
 
@@ -1761,7 +1761,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_4_4" href="/chapters/sign-up?version=4.0#sec-deploying_to_production_with_ssl" class="heading"><span class="number">7.4.4</span> SSLを導入して本番環境を展開する</a></h3>
 
 
-<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境に展開しましょう (<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 本番展開の作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="/chapters/sign-up.html?version=4.0#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプリアプリケーションのユーザー登録 (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>)。</p>
+<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境に展開しましょう (<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 本番展開の作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="/chapters/sign-up?version=4.0#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプリアプリケーションのユーザー登録 (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>)。</p>
 
 <p>展開の下準備として、この時点で変更を<code>master</code>ブランチにマージしておきます。</p>
 
@@ -1980,17 +1980,17 @@ Loading development environment  &gt;&gt; Rails.env
 </a><a class="next_page" href="/chapters/sign-in-sign-out?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-7_1"><a href="http://gomockingbird.com/">Mockingbird</a>では<a class="ref" href="/chapters/sign-up?version=4.0#fig-profile_mockup_profile_name">図7.1</a>のプロファイル写真のようなカスタム画像はサポートされていません。ここでは<a href="http://www.adobe.com/products/fireworks/">Adobe Fireworks</a>を使用して手動で画像を置きました。<a class="arrow" href="/chapters/sign-up.html?version=4.0#fnref-7_1">↑</a></li>
-<li id="fn-7_2">このカバの写真は<a href="http://www.flickr.com/photos/43803060@N00/24308857/">http://www.flickr.com/photos/43803060@N00/24308857/</a>から引用しました。<a class="arrow" href="/chapters/sign-up.html?version=4.0#fnref-7_2">↑</a></li>
-<li id="fn-7_3">Railsの<code>デバッグ</code>情報は <a href="http://www.yaml.org/">YAML</a> (一種の<a href="http://catb.org/jargon/html/R/recursive-acronym.html">再帰的略語</a>であり、“YAML Ain’t Markup Language” の略とされています) 形式で表示されます。YAMLは人間<em>だけでなく</em>コンピュータにとっても読みやすい形式です。<a class="arrow" href="/chapters/sign-up.html?version=4.0#fnref-7_3">↑</a></li>
-<li id="fn-7_4">実は、この3つ以外にもカスタムの環境を作成することができます。詳細については「<a href="http://railscasts.com/episodes/72-adding-an-environment">環境を追加した場合のRailsCast</a> (英語)」を参照してください。<a class="arrow" href="/chapters/sign-up.html?version=4.0#fnref-7_4">↑</a></li>
-<li id="fn-7_5">この時点では、<em>ルーティング</em>は動作していますが、対応するページが動作しているとは限りません。たとえば、/users/1/edit がUsersコントローラの<code>edit</code>アクションに正常にルーティングされているとしても、<code>edit</code>アクションが存在しなければ、このURLにアクセスしたときにエラーになります。<a class="arrow" href="/chapters/sign-up.html?version=4.0#fnref-7_5">↑</a></li>
-<li id="fn-7_6">ヒンズー教では、アバターは人間や動物の形をとって神が顕現したものと考えられています。これを拡大解釈して、<em>アバター</em>という用語は、特にネット界隈で、その人物を表現するもの (かつその人そのものの一部でもある) という意味で使われます。もちろん、映画「<a href="http://www.imdb.com/title/tt0499549/">アバター</a>」を見た人にはこんな解説は不要でしょう。<a class="arrow" href="/chapters/sign-up.html?version=4.0#fnref-7_6">↑</a></li>
-<li id="fn-7_7">アプリケーションでカスタム画像を扱ったりその他のファイルをアップロードする必要がなければ、代わりに<a href="https://github.com/thoughtbot/paperclip">Paperclip</a> gemか<a href="https://github.com/jnicklas/carrierwave">CarrierWave</a> gemをお勧めします。<a class="arrow" href="/chapters/sign-up.html?version=4.0#fnref-7_7">↑</a></li>
-<li id="fn-7_8">どうにも気持ちの悪い動作だと思いませんか。私はどちらもやりません。<a class="arrow" href="/chapters/sign-up.html?version=4.0#fnref-7_8">↑</a></li>
-<li id="fn-7_9">私は<code>Rails API</code>で<a href="http://api.rubyonrails.org/v4.0.0/classes/ActionView/Helpers/TextHelper.html#method-i-pluralize">pluralize</a>を調べていてたまたま気付きました。<a class="arrow" href="/chapters/sign-up.html?version=4.0#fnref-7_9">↑</a></li>
-<li id="fn-7_10">実際には、これに非常に近い<code>flash.now</code>を使いますが、本当に必要になるまでは使わないようにしようかと思います。<a class="arrow" href="/chapters/sign-up.html?version=4.0#fnref-7_10">↑</a></li>
-<li id="fn-7_11">技術上は、SSLはTLS (Transport Layer Security) と名称が変わりましたが、未だに “SSL” と呼ばれ続けています。<a class="arrow" href="/chapters/sign-up.html?version=4.0#fnref-7_11">↑</a></li>
+<li id="fn-7_1"><a href="http://gomockingbird.com/">Mockingbird</a>では<a class="ref" href="/chapters/sign-up?version=4.0#fig-profile_mockup_profile_name">図7.1</a>のプロファイル写真のようなカスタム画像はサポートされていません。ここでは<a href="http://www.adobe.com/products/fireworks/">Adobe Fireworks</a>を使用して手動で画像を置きました。<a class="arrow" href="/chapters/sign-up?version=4.0#fnref-7_1">↑</a></li>
+<li id="fn-7_2">このカバの写真は<a href="http://www.flickr.com/photos/43803060@N00/24308857/">http://www.flickr.com/photos/43803060@N00/24308857/</a>から引用しました。<a class="arrow" href="/chapters/sign-up?version=4.0#fnref-7_2">↑</a></li>
+<li id="fn-7_3">Railsの<code>デバッグ</code>情報は <a href="http://www.yaml.org/">YAML</a> (一種の<a href="http://catb.org/jargon/html/R/recursive-acronym.html">再帰的略語</a>であり、“YAML Ain’t Markup Language” の略とされています) 形式で表示されます。YAMLは人間<em>だけでなく</em>コンピュータにとっても読みやすい形式です。<a class="arrow" href="/chapters/sign-up?version=4.0#fnref-7_3">↑</a></li>
+<li id="fn-7_4">実は、この3つ以外にもカスタムの環境を作成することができます。詳細については「<a href="http://railscasts.com/episodes/72-adding-an-environment">環境を追加した場合のRailsCast</a> (英語)」を参照してください。<a class="arrow" href="/chapters/sign-up?version=4.0#fnref-7_4">↑</a></li>
+<li id="fn-7_5">この時点では、<em>ルーティング</em>は動作していますが、対応するページが動作しているとは限りません。たとえば、/users/1/edit がUsersコントローラの<code>edit</code>アクションに正常にルーティングされているとしても、<code>edit</code>アクションが存在しなければ、このURLにアクセスしたときにエラーになります。<a class="arrow" href="/chapters/sign-up?version=4.0#fnref-7_5">↑</a></li>
+<li id="fn-7_6">ヒンズー教では、アバターは人間や動物の形をとって神が顕現したものと考えられています。これを拡大解釈して、<em>アバター</em>という用語は、特にネット界隈で、その人物を表現するもの (かつその人そのものの一部でもある) という意味で使われます。もちろん、映画「<a href="http://www.imdb.com/title/tt0499549/">アバター</a>」を見た人にはこんな解説は不要でしょう。<a class="arrow" href="/chapters/sign-up?version=4.0#fnref-7_6">↑</a></li>
+<li id="fn-7_7">アプリケーションでカスタム画像を扱ったりその他のファイルをアップロードする必要がなければ、代わりに<a href="https://github.com/thoughtbot/paperclip">Paperclip</a> gemか<a href="https://github.com/jnicklas/carrierwave">CarrierWave</a> gemをお勧めします。<a class="arrow" href="/chapters/sign-up?version=4.0#fnref-7_7">↑</a></li>
+<li id="fn-7_8">どうにも気持ちの悪い動作だと思いませんか。私はどちらもやりません。<a class="arrow" href="/chapters/sign-up?version=4.0#fnref-7_8">↑</a></li>
+<li id="fn-7_9">私は<code>Rails API</code>で<a href="http://api.rubyonrails.org/v4.0.0/classes/ActionView/Helpers/TextHelper.html#method-i-pluralize">pluralize</a>を調べていてたまたま気付きました。<a class="arrow" href="/chapters/sign-up?version=4.0#fnref-7_9">↑</a></li>
+<li id="fn-7_10">実際には、これに非常に近い<code>flash.now</code>を使いますが、本当に必要になるまでは使わないようにしようかと思います。<a class="arrow" href="/chapters/sign-up?version=4.0#fnref-7_10">↑</a></li>
+<li id="fn-7_11">技術上は、SSLはTLS (Transport Layer Security) と名称が変わりましたが、未だに “SSL” と呼ばれ続けています。<a class="arrow" href="/chapters/sign-up?version=4.0#fnref-7_11">↑</a></li>
 </ol>
 </div>
 

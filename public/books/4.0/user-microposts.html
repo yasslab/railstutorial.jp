@@ -14,7 +14,7 @@
 <h1 class="chapter"><a id="sec-10" href="/chapters/user-microposts?version=4.0#top" class="heading"><span class="number">第10章</span>ユーザーのマイクロポスト</a></h1>
 
 
-<p><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>ではUsersリソース用のRESTアクションを完成させました。次はいよいよ、ユーザーの<em>マイクロポスト</em>リソースをすべて追加しましょう<sup class="footnote" id="fnref-10_1"><a href="/chapters/user-microposts.html?version=4.0#fn-10_1">1</a></sup>。<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では、特定のユーザーに関連付けられたいくつかの簡単なメッセージがありました。この章では、<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-microposts_resource">2.3</a>で記述したMicropostデータモデルを作成し、Userモデルと<code>has_many</code>および<code>belongs_to</code>メソッドを使って関連付けを行い、さらに、結果を処理し表示するために必要なフォームとその部品を作成します。 <a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>では、マイクロポストの<em>フィード</em>を受け取るために、ユーザーを<em>フォロー</em>するという概念を導入し、Twitterのミニクローンを完成させます。</p>
+<p><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>ではUsersリソース用のRESTアクションを完成させました。次はいよいよ、ユーザーの<em>マイクロポスト</em>リソースをすべて追加しましょう<sup class="footnote" id="fnref-10_1"><a href="/chapters/user-microposts?version=4.0#fn-10_1">1</a></sup>。<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では、特定のユーザーに関連付けられたいくつかの簡単なメッセージがありました。この章では、<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-microposts_resource">2.3</a>で記述したMicropostデータモデルを作成し、Userモデルと<code>has_many</code>および<code>belongs_to</code>メソッドを使って関連付けを行い、さらに、結果を処理し表示するために必要なフォームとその部品を作成します。 <a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>では、マイクロポストの<em>フィード</em>を受け取るために、ユーザーを<em>フォロー</em>するという概念を導入し、Twitterのミニクローンを完成させます。</p>
 
 <p>Git をバージョン管理に使っている場合は、いつものようにトピックブランチを作成しておきましょう。</p>
 
@@ -39,7 +39,7 @@
 <h3><a id="sec-10_1_1" href="/chapters/user-microposts?version=4.0#sec-the_basic_model" class="heading"><span class="number">10.1.1</span>基本的なモデル</a></h3>
 
 
-<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/chapters/user-microposts.html?version=4.0#fn-10_2">2</a></sup>と、特定のユーザとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に (リスト<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
+<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/chapters/user-microposts?version=4.0#fn-10_2">2</a></sup>と、特定のユーザとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に (リスト<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate model Micropost content:string user_id:integer
 </pre></div>
@@ -967,7 +967,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-10_2_2" href="/chapters/user-microposts?version=4.0#sec-sample_microposts" class="heading"><span class="number">10.2.2</span>マイクロポストのサンプル</a></h3>
 
 
-<p><a class="ref" href="/chapters/user-microposts?version=4.0#sec-augmenting_the_user_show_page">10.2.1</a>のユーザーマイクロポストのテンプレート作成作業の成果は、何とも拍子抜けでした。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-sample_users">9.3.2</a>のサンプル生成にマイクロポストを追加し、この情けない状況を修正しましょう。<em>すべての</em>ユーザーにサンプルマイクロポストを追加しようとすると時間がかかりすぎるので、最初の6人のユーザー<sup class="footnote" id="fnref-10_3"><a href="/chapters/user-microposts.html?version=4.0#fn-10_3">3</a></sup>だけを選択しましょう。そのためには、<code>User.all</code>メソッドに<code>:limit</code>オプションを渡します<sup class="footnote" id="fnref-10_4"><a href="/chapters/user-microposts.html?version=4.0#fn-10_4">4</a></sup>。</p>
+<p><a class="ref" href="/chapters/user-microposts?version=4.0#sec-augmenting_the_user_show_page">10.2.1</a>のユーザーマイクロポストのテンプレート作成作業の成果は、何とも拍子抜けでした。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-sample_users">9.3.2</a>のサンプル生成にマイクロポストを追加し、この情けない状況を修正しましょう。<em>すべての</em>ユーザーにサンプルマイクロポストを追加しようとすると時間がかかりすぎるので、最初の6人のユーザー<sup class="footnote" id="fnref-10_3"><a href="/chapters/user-microposts?version=4.0#fn-10_3">3</a></sup>だけを選択しましょう。そのためには、<code>User.all</code>メソッドに<code>:limit</code>オプションを渡します<sup class="footnote" id="fnref-10_4"><a href="/chapters/user-microposts?version=4.0#fn-10_4">4</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="ss">limit:</span> <span class="mi">6</span><span class="p">)</span>
 </pre></div>
@@ -1007,7 +1007,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>それぞれのマイクロポストの情報を表示することによって、<a class="ref" href="/chapters/user-microposts?version=4.0#sec-augmenting_the_user_show_page">10.2.1</a>の地道な作業がやっと報われはじめました<sup class="footnote" id="fnref-10_5"><a href="/chapters/user-microposts.html?version=4.0#fn-10_5">5</a></sup>。実行結果を<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_microposts_no_styling">図10.6</a>に示します。</p>
+<p>それぞれのマイクロポストの情報を表示することによって、<a class="ref" href="/chapters/user-microposts?version=4.0#sec-augmenting_the_user_show_page">10.2.1</a>の地道な作業がやっと報われはじめました<sup class="footnote" id="fnref-10_5"><a href="/chapters/user-microposts?version=4.0#fn-10_5">5</a></sup>。実行結果を<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_microposts_no_styling">図10.6</a>に示します。</p>
 
 <div class="label" id="fig-user_profile_microposts_no_styling"></div>
 
@@ -1015,7 +1015,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_profile_microposts_no_styling_bootstrap.png" alt="user_profile_microposts_no_styling_bootstrap" /></span></div><div class="caption"><span class="header">図10.6</span><span class="description">ユーザプロファイル (<a href="http://localhost:3000/users/1">/users/1</a>) とスタイルのないマイクロポスト <a href="http://railstutorial.jp/images/figures/user_profile_microposts_no_styling_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p><a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_microposts_no_styling">図10.6</a>のページにはマイクロポスト固有のスタイルが与えられていないので、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_css">リスト10.21</a>を追加して、結果のページを見てみましょう<sup class="footnote" id="fnref-10_6"><a href="/chapters/user-microposts.html?version=4.0#fn-10_6">6</a></sup>。<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_with_microposts">図10.7</a>が1番目の (ログインした) ユーザのプロファイルページで、<a class="ref" href="/chapters/user-microposts?version=4.0#fig-other_profile_with_microposts">図10.8</a>が2番目のユーザのプロファイルページです。最後に<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_microposts_page_2_rails_3">図10.9</a>は、1番目のユーザーのためのマイクロポストの<em>2番目</em>のページと、下部に改ページのリンクを表示しています。各マイクロポストの表示には、3つのどの場合にも、それが作成されてからの時間 (&quot;1分​​前に投稿&quot; など) が表示されていることにご注目ください。これは<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_partial">リスト10.18</a>の<code>time_ago_in_words</code>メソッドによるものです。数分待ってからページを再度読み込むと、このテキストは自動的に新しい時間に基づいて更新されます。</p>
+<p><a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_microposts_no_styling">図10.6</a>のページにはマイクロポスト固有のスタイルが与えられていないので、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_css">リスト10.21</a>を追加して、結果のページを見てみましょう<sup class="footnote" id="fnref-10_6"><a href="/chapters/user-microposts?version=4.0#fn-10_6">6</a></sup>。<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_with_microposts">図10.7</a>が1番目の (ログインした) ユーザのプロファイルページで、<a class="ref" href="/chapters/user-microposts?version=4.0#fig-other_profile_with_microposts">図10.8</a>が2番目のユーザのプロファイルページです。最後に<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_microposts_page_2_rails_3">図10.9</a>は、1番目のユーザーのためのマイクロポストの<em>2番目</em>のページと、下部に改ページのリンクを表示しています。各マイクロポストの表示には、3つのどの場合にも、それが作成されてからの時間 (&quot;1分​​前に投稿&quot; など) が表示されていることにご注目ください。これは<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_partial">リスト10.18</a>の<code>time_ago_in_words</code>メソッドによるものです。数分待ってからページを再度読み込むと、このテキストは自動的に新しい時間に基づいて更新されます。</p>
 
 <div class="label" id="code-micropost_css"></div>
 
@@ -1088,7 +1088,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h2><a id="sec-10_3" href="/chapters/user-microposts?version=4.0#sec-manipulating_microposts" class="heading"><span class="number">10.3</span>マイクロポストを操作する</a></h2>
 
 
-<p>データモデリングとマイクロポスト表示テンプレートの両方が完成したので、次はWeb経由でそれらを作成するためのインターフェイスに取りかかりましょう。HTMLフォームを使用してリソース (今回の場合はMicropostsリソース) を作成する3番目の例になります<sup class="footnote" id="fnref-10_7"><a href="/chapters/user-microposts.html?version=4.0#fn-10_7">7</a></sup>。この節では、<em>ステータスフィード</em> (<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>で完成させます) の最初のヒントをお見せします。最後に、ユーザーがマイクロポストをWeb経由で破棄できるようにします。</p>
+<p>データモデリングとマイクロポスト表示テンプレートの両方が完成したので、次はWeb経由でそれらを作成するためのインターフェイスに取りかかりましょう。HTMLフォームを使用してリソース (今回の場合はMicropostsリソース) を作成する3番目の例になります<sup class="footnote" id="fnref-10_7"><a href="/chapters/user-microposts?version=4.0#fn-10_7">7</a></sup>。この節では、<em>ステータスフィード</em> (<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>で完成させます) の最初のヒントをお見せします。最後に、ユーザーがマイクロポストをWeb経由で破棄できるようにします。</p>
 
 <p>従来のRails開発の慣習と異なる箇所が1つあります。Micropostsリソースへのインターフェースは、主にユーザーと静的ページのコントローラを経由して実行されるので、Micropostsコントローラには<code>new</code>や<code>edit</code>のようなアクションは不要ということになります。<code>create</code>と<code>destroy</code>があれば十分です。従って、<a class="ref" href="/chapters/user-microposts?version=4.0#code-microposts_resource">リスト10.22</a>に示すように、Micropostsリソースへのルーティングは一層シンプルになります。その結果、<a class="ref" href="/chapters/user-microposts?version=4.0#code-microposts_resource">リスト10.22</a>のコードは、フルセットのルーティング (<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_microposts">表2.3</a>) のサブセットであるRESTfulルート (<a class="ref" href="/chapters/user-microposts?version=4.0#table-RESTful_microposts">表10.2</a>) になります。もちろん、シンプルになったということは完成度が<em>さらに</em>高まったということの証しであり、退化したわけではありません。<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でscaffoldに頼りきりだった頃からここに至るまでは長い道のりでしたが、今ではscaffoldが生成するような複雑なコードのほとんどは不要になりました。</p>
 
@@ -1170,7 +1170,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>未制作のマイクロポストのWebインターフェースと違い、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_access_control">リスト10.23</a>のコードは、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-edit_update_wrong_user_tests">リスト9.14</a>のときの手法と同様に、それぞれのマイクロポストアクションのレベルで動作します。サインインしていないユーザは、<tt>POST</tt>リクエストを/microposts (<code>post microposts_path</code>、<code>create</code>アクションが呼び出される) に送信した場合、または <tt>DELETE</tt>リクエストを/microposts/1 (<code>delete micropost_path(micropost)</code>、<code>destroy</code>アクションが呼び出される) に送信した場合にリダイレクトされます。</p>
 
-<p><a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_access_control">リスト10.23</a>のテストにパスするためのアプリケーションコードを作成する前に、少しリファクタリングを行いましょう。 <a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-requiring_signed_in_users">9.2.1</a>では、<code>signed_in_user</code>メソッドと呼ばれるbefore_filterを使用して、サインインを必須にしたことを思い出してください (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-authorize_before_filter">リスト9.12</a>)。あのときは、このメソッドをUsersコントローラ でしか使用しませんでしたが、今回はMicropostsコントローラでもこのメソッドが必要となることがわかったので、<a class="ref" href="/chapters/user-microposts?version=4.0#code-sessions_helper_authenticate">リスト10.24</a>に示すように、セッションヘルパーに移動します<sup class="footnote" id="fnref-10_8"><a href="/chapters/user-microposts.html?version=4.0#fn-10_8">8</a></sup>。</p>
+<p><a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_access_control">リスト10.23</a>のテストにパスするためのアプリケーションコードを作成する前に、少しリファクタリングを行いましょう。 <a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-requiring_signed_in_users">9.2.1</a>では、<code>signed_in_user</code>メソッドと呼ばれるbefore_filterを使用して、サインインを必須にしたことを思い出してください (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-authorize_before_filter">リスト9.12</a>)。あのときは、このメソッドをUsersコントローラ でしか使用しませんでしたが、今回はMicropostsコントローラでもこのメソッドが必要となることがわかったので、<a class="ref" href="/chapters/user-microposts?version=4.0#code-sessions_helper_authenticate">リスト10.24</a>に示すように、セッションヘルパーに移動します<sup class="footnote" id="fnref-10_8"><a href="/chapters/user-microposts?version=4.0#fn-10_8">8</a></sup>。</p>
 
 <div class="label" id="code-sessions_helper_authenticate"></div>
 
@@ -1653,7 +1653,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>このテストでは、与えられた要素が配列に含まれているかどうかをチェックする<code>include?</code>メソッドを使用しています<sup class="footnote" id="fnref-10_9"><a href="/chapters/user-microposts.html?version=4.0#fn-10_9">9</a></sup>。</p>
+<p>このテストでは、与えられた要素が配列に含まれているかどうかをチェックする<code>include?</code>メソッドを使用しています<sup class="footnote" id="fnref-10_9"><a href="/chapters/user-microposts?version=4.0#fn-10_9">9</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="ss">:bar</span><span class="o">]</span>
@@ -1669,7 +1669,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>上の例は、RSpecの論理値変換機能の柔軟性がきわめて高いことを示しています。<code>include</code>メソッドは本来、モジュールをインクルードするために使用するRubyキーワードであるにもかかわらず (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sessions_helper_include">リスト8.14</a>など)、このRSpecのコンテキストでは配列が要素を含んでいるかどうかをテストしたいという開発者の意図を正確に推測してくれます。</p>
 
-<p><a class="ref" href="/chapters/user-microposts?version=4.0#code-proto_status_feed">リスト10.36</a>で示すように、<code>user_id</code>が現在のユーザーidと等しいマイクロポストを見つけることによって、適切なマイクロポストの<code>feed</code>メソッドを実装することができます。これは<code>Micropost</code>モデルで<code>where</code>メソッドを使用することで実現できます<sup class="footnote" id="fnref-10_10"><a href="/chapters/user-microposts.html?version=4.0#fn-10_10">10</a></sup>。</p>
+<p><a class="ref" href="/chapters/user-microposts?version=4.0#code-proto_status_feed">リスト10.36</a>で示すように、<code>user_id</code>が現在のユーザーidと等しいマイクロポストを見つけることによって、適切なマイクロポストの<code>feed</code>メソッドを実装することができます。これは<code>Micropost</code>モデルで<code>where</code>メソッドを使用することで実現できます<sup class="footnote" id="fnref-10_10"><a href="/chapters/user-microposts?version=4.0#fn-10_10">10</a></sup>。</p>
 
 <div class="label" id="code-proto_status_feed"></div>
 
@@ -1874,7 +1874,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/home_with_proto_feed_bootstrap.png" alt="home_with_proto_feed_bootstrap" /></span></div><div class="caption"><span class="header">図10.14</span><span class="description"> (プロト) フィードのあるホームページ(<a href="http://localhost:3000/">/</a>)。<a href="http://railstutorial.jp/images/figures/home_with_proto_feed-full.png">(拡大)</a></span></div></div>
 
 
-<p>現時点では、新しいマイクロポストの作成は<a class="ref" href="/chapters/user-microposts?version=4.0#fig-micropost_created">図10.15</a>で示したように期待どおりに動作しています。ただしささいなことではありますが、マイクロポストの投稿が<em>失敗する</em>と、 Homeページは<code>@feed_items</code>インスタンス変数を期待しているため、現状では壊れてしまいます (このことはテストスイートを実行して確認できます)。最も簡単な解決方法は、<a class="ref" href="/chapters/user-microposts?version=4.0#code-microposts_create_action_with_feed">リスト10.42</a>のように空の配列を渡しておくことです<sup class="footnote" id="fnref-10_11"><a href="/chapters/user-microposts.html?version=4.0#fn-10_11">11</a></sup>。</p>
+<p>現時点では、新しいマイクロポストの作成は<a class="ref" href="/chapters/user-microposts?version=4.0#fig-micropost_created">図10.15</a>で示したように期待どおりに動作しています。ただしささいなことではありますが、マイクロポストの投稿が<em>失敗する</em>と、 Homeページは<code>@feed_items</code>インスタンス変数を期待しているため、現状では壊れてしまいます (このことはテストスイートを実行して確認できます)。最も簡単な解決方法は、<a class="ref" href="/chapters/user-microposts?version=4.0#code-microposts_create_action_with_feed">リスト10.42</a>のように空の配列を渡しておくことです<sup class="footnote" id="fnref-10_11"><a href="/chapters/user-microposts?version=4.0#fn-10_11">11</a></sup>。</p>
 
 <div class="label" id="fig-micropost_created"></div>
 
@@ -2225,17 +2225,17 @@ end</pre>
 </a><a class="next_page" href="/chapters/following-users?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-10_1">技術的には、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>でセッションをリソースとして扱いましたが、セッションはユーザーやマイクロポストと異なり、データベースには保存されません。<a class="arrow" href="/chapters/user-microposts.html?version=4.0#fnref-10_1">↑</a></li>
-<li id="fn-10_2"><code>content</code>属性は<code>string</code>型になりますが、 <a class="ref" href="/chapters/a-demo-app?version=4.0#sec-modeling_demo_microposts">2.1.2</a>で簡単に述べたように、長文用のテキストフィールドには<code>text</code>型を使用してください。<a class="arrow" href="/chapters/user-microposts.html?version=4.0#fnref-10_2">↑</a></li>
-<li id="fn-10_3">(ここではカスタムGravatarを持つ5人のユーザーと、デフォルトGravatarを持つ1人のユーザー) <a class="arrow" href="/chapters/user-microposts.html?version=4.0#fnref-10_3">↑</a></li>
-<li id="fn-10_4">もしこのメソッドが生成するSQLに興味があるのであれば、<code>log/development.log</code>をtailしてみてください (コマンドラインでファイルにtailコマンドを実行するという意味)。 <a class="arrow" href="/chapters/user-microposts.html?version=4.0#fnref-10_4">↑</a></li>
-<li id="fn-10_5">Faker gemの<em>lorem ipsum</em>サンプルテキストはランダムに生成される仕様になっているため、サンプルマイクロポストの内容はこの図と違っているはずです。<a class="arrow" href="/chapters/user-microposts.html?version=4.0#fnref-10_5">↑</a></li>
-<li id="fn-10_6">便宜上、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_css">リスト10.21</a>はこの章で必要なCSSを<em>すべて</em>含んでいます。<a class="arrow" href="/chapters/user-microposts.html?version=4.0#fnref-10_6">↑</a></li>
-<li id="fn-10_7">他の2つのリソースとは、<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_form">7.2</a>のUsersリソースと<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-signin_failure">8.1</a>のSessionsリソースです。<a class="arrow" href="/chapters/user-microposts.html?version=4.0#fnref-10_7">↑</a></li>
-<li id="fn-10_8"><a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>で、ヘルパーメソッドはデフォルトでは<em>ビュー</em>でのみ利用可能であると説明しましたが、<code>include SessionsHelper</code>をApplicationコントローラに追加してコントローラでも利用できるようにしました (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sessions_helper_include">リスト8.14</a>)。<a class="arrow" href="/chapters/user-microposts.html?version=4.0#fnref-10_8">↑</a></li>
-<li id="fn-10_9"><a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a>で、本書を読み終わったら次に純粋なRubyの本を読む事を薦めましたが、これは、<code>include?</code>などのメソッドを学んでいただきたいからというのが理由の一つです。<a class="arrow" href="/chapters/user-microposts.html?version=4.0#fnref-10_9">↑</a></li>
-<li id="fn-10_10"><code>where</code>やlikeの詳細については、Rails Guideの「<a href="http://guides.rubyonrails.org/active_record_querying.html">Active Record Query Interface</a> (英語)」を参照してください。<a class="arrow" href="/chapters/user-microposts.html?version=4.0#fnref-10_10">↑</a></li>
-<li id="fn-10_11">残念ですが、この場合はページ分割されたフィードを返してもうまく動きません。動かない理由を確認したい方は、実際に実装してページネーションリンクをクリックしてみてください。<a class="arrow" href="/chapters/user-microposts.html?version=4.0#fnref-10_11">↑</a></li>
+<li id="fn-10_1">技術的には、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>でセッションをリソースとして扱いましたが、セッションはユーザーやマイクロポストと異なり、データベースには保存されません。<a class="arrow" href="/chapters/user-microposts?version=4.0#fnref-10_1">↑</a></li>
+<li id="fn-10_2"><code>content</code>属性は<code>string</code>型になりますが、 <a class="ref" href="/chapters/a-demo-app?version=4.0#sec-modeling_demo_microposts">2.1.2</a>で簡単に述べたように、長文用のテキストフィールドには<code>text</code>型を使用してください。<a class="arrow" href="/chapters/user-microposts?version=4.0#fnref-10_2">↑</a></li>
+<li id="fn-10_3">(ここではカスタムGravatarを持つ5人のユーザーと、デフォルトGravatarを持つ1人のユーザー) <a class="arrow" href="/chapters/user-microposts?version=4.0#fnref-10_3">↑</a></li>
+<li id="fn-10_4">もしこのメソッドが生成するSQLに興味があるのであれば、<code>log/development.log</code>をtailしてみてください (コマンドラインでファイルにtailコマンドを実行するという意味)。 <a class="arrow" href="/chapters/user-microposts?version=4.0#fnref-10_4">↑</a></li>
+<li id="fn-10_5">Faker gemの<em>lorem ipsum</em>サンプルテキストはランダムに生成される仕様になっているため、サンプルマイクロポストの内容はこの図と違っているはずです。<a class="arrow" href="/chapters/user-microposts?version=4.0#fnref-10_5">↑</a></li>
+<li id="fn-10_6">便宜上、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_css">リスト10.21</a>はこの章で必要なCSSを<em>すべて</em>含んでいます。<a class="arrow" href="/chapters/user-microposts?version=4.0#fnref-10_6">↑</a></li>
+<li id="fn-10_7">他の2つのリソースとは、<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_form">7.2</a>のUsersリソースと<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-signin_failure">8.1</a>のSessionsリソースです。<a class="arrow" href="/chapters/user-microposts?version=4.0#fnref-10_7">↑</a></li>
+<li id="fn-10_8"><a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>で、ヘルパーメソッドはデフォルトでは<em>ビュー</em>でのみ利用可能であると説明しましたが、<code>include SessionsHelper</code>をApplicationコントローラに追加してコントローラでも利用できるようにしました (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sessions_helper_include">リスト8.14</a>)。<a class="arrow" href="/chapters/user-microposts?version=4.0#fnref-10_8">↑</a></li>
+<li id="fn-10_9"><a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a>で、本書を読み終わったら次に純粋なRubyの本を読む事を薦めましたが、これは、<code>include?</code>などのメソッドを学んでいただきたいからというのが理由の一つです。<a class="arrow" href="/chapters/user-microposts?version=4.0#fnref-10_9">↑</a></li>
+<li id="fn-10_10"><code>where</code>やlikeの詳細については、Rails Guideの「<a href="http://guides.rubyonrails.org/active_record_querying.html">Active Record Query Interface</a> (英語)」を参照してください。<a class="arrow" href="/chapters/user-microposts?version=4.0#fnref-10_10">↑</a></li>
+<li id="fn-10_11">残念ですが、この場合はページ分割されたフィードを返してもうまく動きません。動かない理由を確認したい方は、実際に実装してページネーションリンクをクリックしてみてください。<a class="arrow" href="/chapters/user-microposts?version=4.0#fnref-10_11">↑</a></li>
 </ol>
 </div>
 

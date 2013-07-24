@@ -4,7 +4,7 @@
 <h1 class="chapter"><a id="sec-5" href="/chapters/filling-in-the-layout?version=4.0#top" class="heading"><span class="number">第5章</span>レイアウトを作成する</a></h1>
 
 
-<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a> の簡単な Ruby ツアーの中で、サンプルアプリケーションへどのようにアプリケーションスタイルシートを含めるかを学びました。しかし、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-css_revisited">4.3.4</a> で述べているように、このスタイルシートは空のままです。この章では、アプリケーションに<em>Bootstrap</em>フレームワークを組み込み、そして、カスタムスタイルを追加します<sup class="footnote" id="fnref-5_1"><a href="/chapters/filling-in-the-layout.html?version=4.0#fn-5_1">1</a></sup>。また<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-structure">5.1</a>までに、作成するページ (HomeやAboutなど) へのリンクをレイアウトに追加します。その途中で、パーシャル、Railsのルーティング、Asset Pipelineについて学び、さらにSassについても紹介します(<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-sass_and_the_asset_pipeline">5.2</a>)。 また、<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a> で作成したテストを、最新のRSpecテクニックを用いてリファクタリングします。章の最後に、ユーザをサイトにログインさせるための重要な一歩を踏み出します。</p>
+<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a> の簡単な Ruby ツアーの中で、サンプルアプリケーションへどのようにアプリケーションスタイルシートを含めるかを学びました。しかし、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-css_revisited">4.3.4</a> で述べているように、このスタイルシートは空のままです。この章では、アプリケーションに<em>Bootstrap</em>フレームワークを組み込み、そして、カスタムスタイルを追加します<sup class="footnote" id="fnref-5_1"><a href="/chapters/filling-in-the-layout?version=4.0#fn-5_1">1</a></sup>。また<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-structure">5.1</a>までに、作成するページ (HomeやAboutなど) へのリンクをレイアウトに追加します。その途中で、パーシャル、Railsのルーティング、Asset Pipelineについて学び、さらにSassについても紹介します(<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-sass_and_the_asset_pipeline">5.2</a>)。 また、<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a> で作成したテストを、最新のRSpecテクニックを用いてリファクタリングします。章の最後に、ユーザをサイトにログインさせるための重要な一歩を踏み出します。</p>
 
 <div class="label" id="sec-structure"></div>
 
@@ -14,7 +14,7 @@
 
 <p><em>Railsチュートリアル</em>はWeb開発のための本であり、Webデザインの本ではありませんが、だからといって<em>何のスタイルもない</em>寒々しい外観のアプリケーションでいつまでも作業を続けていると憂鬱になってしまいます。そこで、この章ではレイアウトにいくつかの構造とCSSを与えて最小限のスタイルを追加します。カスタムCSSルールの他に、Twitter社によるオープンソースのウェブデザインフレームワークである<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>を利用します。また、<em>コード</em>そのものにもスタイルを与えます。つまり、散らかりはじめたコードレイアウトを<em>パーシャル</em>を使用して整えるということです。</p>
 
-<p>Webアプリケーションを作成するときに、ユーザーインターフェイスの概要をできるだけ早いうちに把握しておくことがしばしば有用です。本書の残りでは、<em>モックアップ</em> (Webの文脈ではよく <em>ワイヤーフレーム</em>と呼ばれます) という、最終的なアプリケーションの外観を示す一種のラフスケッチを使用することにします<sup class="footnote" id="fnref-5_2"><a href="/chapters/filling-in-the-layout.html?version=4.0#fn-5_2">2</a></sup>。この章では、 主に<a class="ref" href="/chapters/static-pages?version=4.0#sec-static_pages">3.1</a>で紹介したサイトロゴ、ナビゲーションヘッダー、サイトフッタを含む静的ページを開発します。これらのページの中で最も重要な、Homeページのモックアップを<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#fig-home_page_mockup">図5.1</a>に示します。モックアップに基いて作成した最終結果は<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#fig-site_with_footer">図5.7</a>で確認することができます。両者を見比べると、細部が若干異なることに気が付くでしょう (たとえば、実際には最後にRailsのロゴをページに追加します)。しかしモックアップは正確である必要はありませんので、これで十分です。</p>
+<p>Webアプリケーションを作成するときに、ユーザーインターフェイスの概要をできるだけ早いうちに把握しておくことがしばしば有用です。本書の残りでは、<em>モックアップ</em> (Webの文脈ではよく <em>ワイヤーフレーム</em>と呼ばれます) という、最終的なアプリケーションの外観を示す一種のラフスケッチを使用することにします<sup class="footnote" id="fnref-5_2"><a href="/chapters/filling-in-the-layout?version=4.0#fn-5_2">2</a></sup>。この章では、 主に<a class="ref" href="/chapters/static-pages?version=4.0#sec-static_pages">3.1</a>で紹介したサイトロゴ、ナビゲーションヘッダー、サイトフッタを含む静的ページを開発します。これらのページの中で最も重要な、Homeページのモックアップを<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#fig-home_page_mockup">図5.1</a>に示します。モックアップに基いて作成した最終結果は<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#fig-site_with_footer">図5.7</a>で確認することができます。両者を見比べると、細部が若干異なることに気が付くでしょう (たとえば、実際には最後にRailsのロゴをページに追加します)。しかしモックアップは正確である必要はありませんので、これで十分です。</p>
 
 <div class="label" id="fig-home_page_mockup"></div>
 
@@ -116,7 +116,7 @@
 </div>
 
 
-<p><code>header</code>タグは、ページのトップに来るべき要素を表します。この<code>header</code>タグには、<code>navbar</code>、<code>navbar-fixed-top</code>、<code>navbar-inverse</code>という3つの<em>CSSクラス</em><sup class="footnote" id="fnref-5_3"><a href="/chapters/filling-in-the-layout.html?version=4.0#fn-5_3">3</a></sup>がスペース区切りで与えられています。</p>
+<p><code>header</code>タグは、ページのトップに来るべき要素を表します。この<code>header</code>タグには、<code>navbar</code>、<code>navbar-fixed-top</code>、<code>navbar-inverse</code>という3つの<em>CSSクラス</em><sup class="footnote" id="fnref-5_3"><a href="/chapters/filling-in-the-layout?version=4.0#fn-5_3">3</a></sup>がスペース区切りで与えられています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;navbar navbar-fixed-top navbar-inverse&quot;</span><span class="nt">&gt;</span>
 </pre></div>
@@ -221,7 +221,7 @@
 
 <p><code>div</code>タグのCSSクラス<code>hero-unit</code>は、signupボタンの<code>btn</code>クラス、<code>btn-large</code>クラス、<code>btn-primary</code>クラスと同様、Bootstrapにおいて特別な意味を持ちます。</p>
 
-<p>2番目の<code>link_to</code>では、引数として画像ファイルのパスと任意のオプションハッシュをとる<code>image_tag</code>ヘルパーの能力が示されています。シンボルを使用して、この場合は<code>alt</code>属性を設定しています。わかりやすくするために、このタグによって生成されるHTMLを以下に示します<sup class="footnote" id="fnref-5_4"><a href="/chapters/filling-in-the-layout.html?version=4.0#fn-5_4">4</a></sup>。</p>
+<p>2番目の<code>link_to</code>では、引数として画像ファイルのパスと任意のオプションハッシュをとる<code>image_tag</code>ヘルパーの能力が示されています。シンボルを使用して、この場合は<code>alt</code>属性を設定しています。わかりやすくするために、このタグによって生成されるHTMLを以下に示します<sup class="footnote" id="fnref-5_4"><a href="/chapters/filling-in-the-layout?version=4.0#fn-5_4">4</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">&quot;Rails&quot;</span> <span class="na">src=</span><span class="s">&quot;/assets/rails.png&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
@@ -251,7 +251,7 @@
 <p><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-adding_to_the_layout">5.1.1</a>では、多くのHTML要素にCSSクラスを関連付けました。こうしておくことで、CSSベースでレイアウトを構成する際に高い柔軟性を与えてくれます。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-adding_to_the_layout">5.1.1</a>で述べたように、これらのクラスの多くは、Twitterが作成したフレームワークである<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>特有のものです。Bootstrapを使用すると、洗練されたWebデザインとユーザーインターフェイス要素を簡単にHTML5アプリケーションに追加することができます。このセクションでは、サンプルアプリケーションにスタイルを追加するために、カスタムCSSルールとBootstrapを組み合わせます。
 </p>
 
-<p>最初に、<tt>リスト5.3</tt>で示しているようにBootstrapを追加しましょう。これは、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-bootstrap_sass">bootstrap-sass</a> gemを使用してRailsアプリケーションに導入できます。Bootstrapフレームワークでは、動的なスタイルシートを生成するために<a href="http://lesscss.org/">LESS CSS</a>言語を使用していますが、RailsのAsset Pipelineはデフォルトでは (LESSと非常によく似た) Sass言語をサポートします (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-sass_and_the_asset_pipeline">5.2</a>)。そのため、<tt>bootstrap-sass</tt>は、LESSをSassへ変換し、必要なBootstrapファイルが現在のアプリケーションですべて利用できるようにします<sup class="footnote" id="fnref-5_5"><a href="/chapters/filling-in-the-layout.html?version=4.0#fn-5_5">5</a></sup>。</p>
+<p>最初に、<tt>リスト5.3</tt>で示しているようにBootstrapを追加しましょう。これは、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-bootstrap_sass">bootstrap-sass</a> gemを使用してRailsアプリケーションに導入できます。Bootstrapフレームワークでは、動的なスタイルシートを生成するために<a href="http://lesscss.org/">LESS CSS</a>言語を使用していますが、RailsのAsset Pipelineはデフォルトでは (LESSと非常によく似た) Sass言語をサポートします (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-sass_and_the_asset_pipeline">5.2</a>)。そのため、<tt>bootstrap-sass</tt>は、LESSをSassへ変換し、必要なBootstrapファイルが現在のアプリケーションですべて利用できるようにします<sup class="footnote" id="fnref-5_5"><a href="/chapters/filling-in-the-layout?version=4.0#fn-5_5">5</a></sup>。</p>
 
 <div class="label" id="code-bootstrap_sass"></div>
 
@@ -538,7 +538,7 @@
 </div>
 
 
-<p>この行では、<code>app/views/layouts/_shim.html.erb</code>というファイルを探してその内容を評価し、結果をビューに挿入しています<sup class="footnote" id="fnref-5_6"><a href="/chapters/filling-in-the-layout.html?version=4.0#fn-5_6">6</a></sup>。 (<tt class="verb">&lt;%= ... %&gt;</tt>は、テンプレート内でRubyの式を評価するための埋め込みRuby記法であることを思い出してください。評価した結果がテンプレートに挿入されます)。ファイル名<code>_shim.html.erb</code>の前のアンダースコアにご注目ください。このアンダースコアは、パーシャルで使用する普遍的な命名規約であり、また、一目見ただけでディレクトリ中のすべてのパーシャルを識別することが可能になります。</p>
+<p>この行では、<code>app/views/layouts/_shim.html.erb</code>というファイルを探してその内容を評価し、結果をビューに挿入しています<sup class="footnote" id="fnref-5_6"><a href="/chapters/filling-in-the-layout?version=4.0#fn-5_6">6</a></sup>。 (<tt class="verb">&lt;%= ... %&gt;</tt>は、テンプレート内でRubyの式を評価するための埋め込みRuby記法であることを思い出してください。評価した結果がテンプレートに挿入されます)。ファイル名<code>_shim.html.erb</code>の前のアンダースコアにご注目ください。このアンダースコアは、パーシャルで使用する普遍的な命名規約であり、また、一目見ただけでディレクトリ中のすべてのパーシャルを識別することが可能になります。</p>
 
 <p>もちろん、パーシャルが動作するためには、その中にコンテンツを記述しなければなりません。このshimパーシャルの場合は、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-layout_new_structure">リスト5.1</a>のわずか3行のshimコードだけです。追加した結果を<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-stylesheets_partial">リスト5.10</a>に示します。</p>
 
@@ -579,7 +579,7 @@
 </div></div>
 
 
-<p>これでパーシャルの作成方法がわかりましたので、今度はヘッダーに対応するフッタを同じ方法で追加しましょう。ここまでくれば、ファイル名は<code>_footer.html.erb</code>で、layoutsディレクトリ (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-footer_partial">リスト5.12</a>) に置けばよいということがわかると思います<sup class="footnote" id="fnref-5_7"><a href="/chapters/filling-in-the-layout.html?version=4.0#fn-5_7">7</a></sup>。</p>
+<p>これでパーシャルの作成方法がわかりましたので、今度はヘッダーに対応するフッタを同じ方法で追加しましょう。ここまでくれば、ファイル名は<code>_footer.html.erb</code>で、layoutsディレクトリ (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-footer_partial">リスト5.12</a>) に置けばよいということがわかると思います<sup class="footnote" id="fnref-5_7"><a href="/chapters/filling-in-the-layout?version=4.0#fn-5_7">7</a></sup>。</p>
 
 <div class="label" id="code-footer_partial"></div>
 
@@ -703,7 +703,7 @@
 <h3><a id="sec-5_2_1" href="/chapters/filling-in-the-layout?version=4.0#sec-the_asset_pipeline" class="heading"><span class="number">5.2.1</span>Asset Pipeline</a></h3>
 
 
-<p>Asset Pipelineは、Railsの流儀を守りながら多大な変化をもたらしますが、一般的なRails開発者の視点からは、アセットディレクトリ、マニフェストファイル、プリプロセッサエンジンという、3つの主要な機能が理解の対象となります<sup class="footnote" id="fnref-5_8"><a href="/chapters/filling-in-the-layout.html?version=4.0#fn-5_8">8</a></sup>。では、それぞれを順に見ていきましょう。</p>
+<p>Asset Pipelineは、Railsの流儀を守りながら多大な変化をもたらしますが、一般的なRails開発者の視点からは、アセットディレクトリ、マニフェストファイル、プリプロセッサエンジンという、3つの主要な機能が理解の対象となります<sup class="footnote" id="fnref-5_8"><a href="/chapters/filling-in-the-layout?version=4.0#fn-5_8">8</a></sup>。では、それぞれを順に見ていきましょう。</p>
 
 <h4><a id="sec-5_2_1_1" href="/chapters/filling-in-the-layout?version=4.0#sec-5_2_1_1" class="heading">アセットディレクトリ</a></h4>
 
@@ -820,7 +820,7 @@
 
 <p><em>Sass</em> は、スタイルシートを記述するための言語であり、CSSに比べて多くの点が強化されています。この節では、Sassが提供する2つの重要な機能、<em>ネスト</em>と<em>変数</em>について説明します。(3つ目の重要な機能である<em>ミックスイン</em>については、<a class="ref" href="/chapters/sign-up?version=4.0#sec-rails_environments">7.1.1</a>で紹介します)。</p>
 
-<p><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-custom_css">5.1.2</a>でも簡単に説明しましたが、SassはSCSSというフォーマットに対応しています (<code>.scss</code>という拡張子はSCSSをであることを表します)。SCSSは、厳密な意味で、CSS本体を抽象化したフォーマットです。具体的には、SCSS は CSS に新しい機能を<em>追加</em>しただけで、全く新しい構文を定義したようなものではありません<sup class="footnote" id="fnref-5_9"><a href="/chapters/filling-in-the-layout.html?version=4.0#fn-5_9">9</a></sup>。本書の例では、ブートストラップの恩恵を得るために、私達は最初から SCSS 使っていました。RailsのAsset Pipelineは、<code>.scss</code>という拡張子を持つファイルをSassを使って自動的に処理してくれます。このため、<code>custom.css.scss</code>ファイルはSassプリプロセッサによって前処理され、その後ブラウザでの配信に備えてパッケージ化されます。</p>
+<p><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-custom_css">5.1.2</a>でも簡単に説明しましたが、SassはSCSSというフォーマットに対応しています (<code>.scss</code>という拡張子はSCSSをであることを表します)。SCSSは、厳密な意味で、CSS本体を抽象化したフォーマットです。具体的には、SCSS は CSS に新しい機能を<em>追加</em>しただけで、全く新しい構文を定義したようなものではありません<sup class="footnote" id="fnref-5_9"><a href="/chapters/filling-in-the-layout?version=4.0#fn-5_9">9</a></sup>。本書の例では、ブートストラップの恩恵を得るために、私達は最初から SCSS 使っていました。RailsのAsset Pipelineは、<code>.scss</code>という拡張子を持つファイルをSassを使って自動的に処理してくれます。このため、<code>custom.css.scss</code>ファイルはSassプリプロセッサによって前処理され、その後ブラウザでの配信に備えてパッケージ化されます。</p>
 
 <h4><a id="sec-5_2_2_1" href="/chapters/filling-in-the-layout?version=4.0#sec-5_2_2_1" class="heading">ネスト</a></h4>
 
@@ -2205,15 +2205,15 @@
 </a><a class="next_page" href="/chapters/modeling-users?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-5_1">サンプルアプリケーションでBootstrapを使用するための変換作業で、目覚ましい活躍を見せて助けてくれた読者の<a href="https://twitter.com/colmtuite">Colm Tuite</a>に感謝します。<a class="arrow" href="/chapters/filling-in-the-layout.html?version=4.0#fnref-5_1">↑</a></li>
-<li id="fn-5_2"><em>Ruby on Railsチュートリアル</em>のモックアップは、<a href="http://gomockingbird.com">Mockingbird</a>というオンラインモックアップアプリケーションで作成しています。<a class="arrow" href="/chapters/filling-in-the-layout.html?version=4.0#fnref-5_2">↑</a></li>
-<li id="fn-5_3">CSSクラスは、Rubyのクラスとはまったく関係がありません。<a class="arrow" href="/chapters/filling-in-the-layout.html?version=4.0#fnref-5_3">↑</a></li>
-<li id="fn-5_4">既にお気付きだと思いますが、<code>img</code>タグは<tt class="verb">&lt;img&gt;...&lt;/img&gt;</tt>ではなく<tt class="verb">&lt;img ... </tt><tt class="verb">/&gt;</tt>と書きます。この書式に従うタグは <em>閉じタグ</em>として知られています。 <a class="arrow" href="/chapters/filling-in-the-layout.html?version=4.0#fnref-5_4">↑</a></li>
-<li id="fn-5_5">Asset PipelineでLESSを使うこともできます。詳細は<a href="http://rubygems.org/gems/less-rails-bootstrap"><tt>less-rails-bootstrap</tt> gem</a>を参照してください。<a class="arrow" href="/chapters/filling-in-the-layout.html?version=4.0#fnref-5_5">↑</a></li>
-<li id="fn-5_6">多くのRails開発者は、異なるビューの間で共通に使用するパーシャルを保存するディレクトリとして、<code>shared</code>ディレクトリを使用します。著者は、複数のビューで共有するユーティリティパーシャルについては<code>shared</code>フォルダに保存し、文字どおり全ページ (サイトレイアウトの一部として) 共通のパーシャルについては<code>layouts</code>ディレクトリへ保存することを好んでいます (<code>shared</code>ディレクトリは<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>で作成します)。著者はこのように分割保存するのが論理的であると考えますが、<code>shared</code>フォルダにすべて保存しても問題なく動作します。<a class="arrow" href="/chapters/filling-in-the-layout.html?version=4.0#fnref-5_6">↑</a></li>
-<li id="fn-5_7"><code>footer</code>タグと<code>.footer</code>クラスを両方使用していることについて疑問に思う方がいるかもしれません。その理由は、footerタグとする方が読み手にとって意味が明確であるのと、footerクラスはBootstrapで使用するためです。<code>footer</code>を<code>div</code>に置き換えても動作は変わりません。<a class="arrow" href="/chapters/filling-in-the-layout.html?version=4.0#fnref-5_7">↑</a></li>
-<li id="fn-5_8">このチュートリアル構成は、Michael Erasmusによる素晴らしいブログ記事「<a href="http://2beards.net/2011/11/the-rails-3-asset-pipeline-in-about-5-minutes/">5分でわかるRails 3のAsset Pipeline</a> (英語)」をもとにしています。詳細についてはRails Guideの「<a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a> (英語)」の項を参照してください。<a class="arrow" href="/chapters/filling-in-the-layout.html?version=4.0#fnref-5_8">↑</a></li>
-<li id="fn-5_9">Sassでもサポートされている古い<code>.sass</code>というフォーマットでは、冗長性の少ない (かっこの少ない)  新しい言語を定義しますが、既存のプロジェクトには若干不便であり、既にCSSに慣れ親しんだ人にとっては学習が面倒でもありす。<a class="arrow" href="/chapters/filling-in-the-layout.html?version=4.0#fnref-5_9">↑</a></li>
+<li id="fn-5_1">サンプルアプリケーションでBootstrapを使用するための変換作業で、目覚ましい活躍を見せて助けてくれた読者の<a href="https://twitter.com/colmtuite">Colm Tuite</a>に感謝します。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_1">↑</a></li>
+<li id="fn-5_2"><em>Ruby on Railsチュートリアル</em>のモックアップは、<a href="http://gomockingbird.com">Mockingbird</a>というオンラインモックアップアプリケーションで作成しています。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_2">↑</a></li>
+<li id="fn-5_3">CSSクラスは、Rubyのクラスとはまったく関係がありません。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_3">↑</a></li>
+<li id="fn-5_4">既にお気付きだと思いますが、<code>img</code>タグは<tt class="verb">&lt;img&gt;...&lt;/img&gt;</tt>ではなく<tt class="verb">&lt;img ... </tt><tt class="verb">/&gt;</tt>と書きます。この書式に従うタグは <em>閉じタグ</em>として知られています。 <a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_4">↑</a></li>
+<li id="fn-5_5">Asset PipelineでLESSを使うこともできます。詳細は<a href="http://rubygems.org/gems/less-rails-bootstrap"><tt>less-rails-bootstrap</tt> gem</a>を参照してください。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_5">↑</a></li>
+<li id="fn-5_6">多くのRails開発者は、異なるビューの間で共通に使用するパーシャルを保存するディレクトリとして、<code>shared</code>ディレクトリを使用します。著者は、複数のビューで共有するユーティリティパーシャルについては<code>shared</code>フォルダに保存し、文字どおり全ページ (サイトレイアウトの一部として) 共通のパーシャルについては<code>layouts</code>ディレクトリへ保存することを好んでいます (<code>shared</code>ディレクトリは<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>で作成します)。著者はこのように分割保存するのが論理的であると考えますが、<code>shared</code>フォルダにすべて保存しても問題なく動作します。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_6">↑</a></li>
+<li id="fn-5_7"><code>footer</code>タグと<code>.footer</code>クラスを両方使用していることについて疑問に思う方がいるかもしれません。その理由は、footerタグとする方が読み手にとって意味が明確であるのと、footerクラスはBootstrapで使用するためです。<code>footer</code>を<code>div</code>に置き換えても動作は変わりません。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_7">↑</a></li>
+<li id="fn-5_8">このチュートリアル構成は、Michael Erasmusによる素晴らしいブログ記事「<a href="http://2beards.net/2011/11/the-rails-3-asset-pipeline-in-about-5-minutes/">5分でわかるRails 3のAsset Pipeline</a> (英語)」をもとにしています。詳細についてはRails Guideの「<a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a> (英語)」の項を参照してください。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_8">↑</a></li>
+<li id="fn-5_9">Sassでもサポートされている古い<code>.sass</code>というフォーマットでは、冗長性の少ない (かっこの少ない)  新しい言語を定義しますが、既存のプロジェクトには若干不便であり、既にCSSに慣れ親しんだ人にとっては学習が面倒でもありす。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_9">↑</a></li>
 </ol>
 </div>
 

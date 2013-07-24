@@ -23,7 +23,7 @@
 <h2><a id="sec-8_1" href="/chapters/sign-in-sign-out?version=4.0#sec-signin_failure" class="heading"><span class="number">8.1</span>セッション、サインインの失敗</a></h2>
 
 
-<p><a href="http://en.wikipedia.org/wiki/Session_(computer_science)"><em>セッション</em></a>とは、2つのコンピュータの間、たとえばクライアント側のブラウザとサーバーで動作しているRailsとの間の、半永続的な接続のことです。ここでは、”サインイン” の共通パターンを実装するためにセッションを使用します。ここで、Webの世界にはセッションの振る舞いを表現するためのいくつかの異なったモデルがあります。ブラウザを閉じるとセッションを終了する「忘却モデル」、[パスワードを保存する] チェックボックスを使用してセッションを継続する「継続モデル」、ユーザーが明示的にサインアウトするまでセッションを継続する「永続モデル」などです<sup class="footnote" id="fnref-8_1"><a href="/chapters/sign-in-sign-out.html?version=4.0#fn-8_1">1</a></sup>。ここでは、最後の永続モデルを採用することにします。ユーザーがサインインすると、ユーザーが明示的にサウンアウトするまでサインインの状態を永続させます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>では、“永続” が実際にはどのぐらいの時間であるかをお見せします)。</p>
+<p><a href="http://en.wikipedia.org/wiki/Session_(computer_science)"><em>セッション</em></a>とは、2つのコンピュータの間、たとえばクライアント側のブラウザとサーバーで動作しているRailsとの間の、半永続的な接続のことです。ここでは、”サインイン” の共通パターンを実装するためにセッションを使用します。ここで、Webの世界にはセッションの振る舞いを表現するためのいくつかの異なったモデルがあります。ブラウザを閉じるとセッションを終了する「忘却モデル」、[パスワードを保存する] チェックボックスを使用してセッションを継続する「継続モデル」、ユーザーが明示的にサインアウトするまでセッションを継続する「永続モデル」などです<sup class="footnote" id="fnref-8_1"><a href="/chapters/sign-in-sign-out?version=4.0#fn-8_1">1</a></sup>。ここでは、最後の永続モデルを採用することにします。ユーザーがサインインすると、ユーザーが明示的にサウンアウトするまでサインインの状態を永続させます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>では、“永続” が実際にはどのぐらいの時間であるかをお見せします)。</p>
 
 <p>セッションは、RESTfulなリソースとして作成しておくと便利です。たとえばサインインページを<em>new</em>セッションで、サインインを<em>create</em>セッションで、サインアウトを<em>destroy</em>セッションでそれぞれ扱います。Usersリソースのように (Usersモデルを経由して) データベースをバックエンドに持つリソースとは異なり、このSessionsリソースでは<a href="http://en.wikipedia.org/wiki/HTTP_cookie"><em>cookies</em></a>を使用します。cookiesとは、ブラウザに保存される小さなテキストデータです。サインイン関連の作業の大半は、このcookiesをベースにして認証システムを構築することになります。この節と次の節では、セッション機能を作成する準備として、Sessionコントローラ、サインイン用のフォーム、そしてこれらに関連するコントローラのアクションを作成します。次の<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-signin_success">8.2</a>では、cookies管理のために必要なコードを追加して、ユーザーがサインインするための仕組みを完成させます。 </p>
 
@@ -238,7 +238,7 @@
 </ol>
 
 
-<p>([Setting] リンクについては<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-updating_users">9.1</a>で、[Users] リンクについては<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-showing_all_users">9.3</a>でそれぞれテストします) 。これらの変更を加えたモックアップを<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#fig-signin_success_mockup">図8.3</a>に示しました<sup class="footnote" id="fnref-8_2"><a href="/chapters/sign-in-sign-out.html?version=4.0#fn-8_2">2</a></sup>。サインアウトとプロファイルページヘのリンクは、[Account] メニューにドロップダウンで表示されます。Bootstrapを使用してドロップダウンメニューを作成する方法については<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-changing_the_layout_links">8.2.4</a>で説明します。</p>
+<p>([Setting] リンクについては<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-updating_users">9.1</a>で、[Users] リンクについては<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-showing_all_users">9.3</a>でそれぞれテストします) 。これらの変更を加えたモックアップを<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#fig-signin_success_mockup">図8.3</a>に示しました<sup class="footnote" id="fnref-8_2"><a href="/chapters/sign-in-sign-out?version=4.0#fn-8_2">2</a></sup>。サインアウトとプロファイルページヘのリンクは、[Account] メニューにドロップダウンで表示されます。Bootstrapを使用してドロップダウンメニューを作成する方法については<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-changing_the_layout_links">8.2.4</a>で説明します。</p>
 
 <div class="label" id="fig-signin_success_mockup"></div>
 
@@ -813,11 +813,11 @@
 </div>
 
 
-<p>ここで、記憶トークンに何を使用するかを決める必要があります。有力な候補としてさまざまなものが考えられますが、基本的には一意性を確保できる、長くてランダムな文字列でさえあればどんなものでも良いでしょう。Ruby標準ライブラリの<code>SecureRandom</code>モジュールにある<code>urlsafe_base64</code>メソッドならこの用途にぴったりです<sup class="footnote" id="fnref-8_3"><a href="/chapters/sign-in-sign-out.html?version=4.0#fn-8_3">3</a></sup>。このメソッドは、A–Z、a–z、0–9、“-”、“_”のいずれかの文字 (64種類) からなる長さ16のランダムな文字列を返します (そのため<a href="http://en.wikipedia.org/wiki/Base64">base64</a>と呼ばれています)。生成された2つの記憶トークンが偶然一致 (衝突) する確率は、64のマイナス16乗、2のマイナス96乗 (10のマイナス29乗) にほぼ等しく、トークンが衝突することはまずありません。</p>
+<p>ここで、記憶トークンに何を使用するかを決める必要があります。有力な候補としてさまざまなものが考えられますが、基本的には一意性を確保できる、長くてランダムな文字列でさえあればどんなものでも良いでしょう。Ruby標準ライブラリの<code>SecureRandom</code>モジュールにある<code>urlsafe_base64</code>メソッドならこの用途にぴったりです<sup class="footnote" id="fnref-8_3"><a href="/chapters/sign-in-sign-out?version=4.0#fn-8_3">3</a></sup>。このメソッドは、A–Z、a–z、0–9、“-”、“_”のいずれかの文字 (64種類) からなる長さ16のランダムな文字列を返します (そのため<a href="http://en.wikipedia.org/wiki/Base64">base64</a>と呼ばれています)。生成された2つの記憶トークンが偶然一致 (衝突) する確率は、64のマイナス16乗、2のマイナス96乗 (10のマイナス29乗) にほぼ等しく、トークンが衝突することはまずありません。</p>
 
 <p>ここでのねらいは、ブラウザにこのbase64トークンを保存しておき、データベースにはトークンを暗号化したものを保存することです。そして、cookiesからこのトークンを読みだして暗号化し、データベース上にある暗号化された記憶トークンと一致するものがあるかどうかを検索することにより、ユーザーを自動的にサインインさせることができます。暗号化したトークンだけをデータベースに保存する理由は、万が一データベースが不正アクセスを受けるようなことがあっても、攻撃者が記憶トークンを使用してサインインできないようにするためです。記憶トークンをさらにセキュアにするためには、新しいセッションを作成するたびにトークンを更新するのがよい方法です。この方法なら、攻撃者が盗んだcookiesを使用して本物のユーザーになりすましてサインインしようとする (<a href="http://en.wikipedia.org/wiki/Session_hijacking">セッションハイジャック</a>) ことがあっても、ユーザーが次回サインインするときにはトークンが期限切れになります。(セッションハイジャックは、セキュリティ上の注意を呼びかけるためにこれを実演する<a href="http://codebutler.com/firesheep">Firesheep</a>アプリケーションによって広く知られるようになりました。Firesheepを使用すると、公共Wi-Fiネットワーク経由で接続したときに多くの有名Webサイトの記憶トークンが丸見えになっていることがわかります。この問題を解決するには、<a class="ref" href="/chapters/sign-up?version=4.0#sec-deploying_to_production_with_ssl">7.4.4</a>で説明したようにWebサイト全体をSSLで暗号化することです。</p>
 
-<p>サンプルアプリケーションでは、新規作成されたユーザーをその場でサインインさせ、その副作用として記憶トークンがついでに作成されますが、この動作に依存すべきではありません。安全を確保するために、<em>すべての</em>ユーザーが必ず最初から有効な記憶トークンを持つようにする必要があります。これを確実に行うには、<em>コールバック</em>を使用して記憶トークンを生成します。このテクニックは、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-uniqueness_validation">6.2.5</a>でemailの一意性の文脈で紹介しました。あのときは<code>before_save</code>というコールバックを使用しましたが、ここではそれによく似た<code>before_create</code>というコールバックを使用して、ユーザー新規作成時に記憶トークンを設定することにします<sup class="footnote" id="fnref-8_4"><a href="/chapters/sign-in-sign-out.html?version=4.0#fn-8_4">4</a></sup>。</p>
+<p>サンプルアプリケーションでは、新規作成されたユーザーをその場でサインインさせ、その副作用として記憶トークンがついでに作成されますが、この動作に依存すべきではありません。安全を確保するために、<em>すべての</em>ユーザーが必ず最初から有効な記憶トークンを持つようにする必要があります。これを確実に行うには、<em>コールバック</em>を使用して記憶トークンを生成します。このテクニックは、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-uniqueness_validation">6.2.5</a>でemailの一意性の文脈で紹介しました。あのときは<code>before_save</code>というコールバックを使用しましたが、ここではそれによく似た<code>before_create</code>というコールバックを使用して、ユーザー新規作成時に記憶トークンを設定することにします<sup class="footnote" id="fnref-8_4"><a href="/chapters/sign-in-sign-out?version=4.0#fn-8_4">4</a></sup>。</p>
 
 <p>記憶トークンをテストするために、最初にテストユーザーを保存し (これまでは作成されても保存はされていませんでした)、次にユーザーの<code>remember_token</code>属性が空欄でないことを確認します。これにより、必要が生じたときにランダム文字列を変更するのに十分な柔軟性が得られます。このテストを<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-remember_token_should_not_be_blank">リスト8.17</a>に示します。</p>
 
@@ -1155,7 +1155,7 @@
 </div></div>
 
 
-<p>もしかすると、これを使用して<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>の<code>attr_accessor</code>を効率よく置き換えることができるのではないでしょうか<sup class="footnote" id="fnref-8_5"><a href="/chapters/sign-in-sign-out.html?version=4.0#fn-8_5">5</a></sup>。それをしないのは、このコードを使用すると今までの苦労が台無しになってしまうからです。<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-current_user_wrong">リスト8.21</a>のコードを使用すると、ユーザーが別のページに移動した瞬間にユーザーのサインイン情報が<em>きれいさっぱり</em>消滅してしまいます。セッションは終了し、ユーザーは自動的にサインアウトしてしまいます。この問題を回避するには、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sign_in_function">リスト8.22</a>に示したように、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-current_user_working">リスト8.19</a>のコードで作成した記憶トークンに対応するユーザーを検索します。データベース上の記憶トークンは暗号化されているので、cookiesから取り出した記憶トークンは、データベース上の記憶トークンを検索する前に暗号化する必要がある点にご注意ください。これを行うには、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-before_create_remember_token">リスト8.18</a>で定義した<code>User.encrypt</code>を使用します。</p>
+<p>もしかすると、これを使用して<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>の<code>attr_accessor</code>を効率よく置き換えることができるのではないでしょうか<sup class="footnote" id="fnref-8_5"><a href="/chapters/sign-in-sign-out?version=4.0#fn-8_5">5</a></sup>。それをしないのは、このコードを使用すると今までの苦労が台無しになってしまうからです。<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-current_user_wrong">リスト8.21</a>のコードを使用すると、ユーザーが別のページに移動した瞬間にユーザーのサインイン情報が<em>きれいさっぱり</em>消滅してしまいます。セッションは終了し、ユーザーは自動的にサインアウトしてしまいます。この問題を回避するには、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sign_in_function">リスト8.22</a>に示したように、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-current_user_working">リスト8.19</a>のコードで作成した記憶トークンに対応するユーザーを検索します。データベース上の記憶トークンは暗号化されているので、cookiesから取り出した記憶トークンは、データベース上の記憶トークンを検索する前に暗号化する必要がある点にご注意ください。これを行うには、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-before_create_remember_token">リスト8.18</a>で定義した<code>User.encrypt</code>を使用します。</p>
 
 <div class="label" id="code-current_user_working"></div>
 
@@ -1179,14 +1179,14 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-current_user_working">リスト8.22</a>では、Rubyでは定番の (しかし最初はまごつきやすい) <code>||=</code> (“or equals”) 代入演算子を使用しています (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sidebar-or_equals">囲み8.2</a>)。この代入演算子は、<code>@current_user</code>が未定義の場合にのみ、<code>@current_user</code>インスタンス変数に記憶トークンを設定します<sup class="footnote" id="fnref-8_6"><a href="/chapters/sign-in-sign-out.html?version=4.0#fn-8_6">6</a></sup>。</p>
+<p><a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-current_user_working">リスト8.22</a>では、Rubyでは定番の (しかし最初はまごつきやすい) <code>||=</code> (“or equals”) 代入演算子を使用しています (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sidebar-or_equals">囲み8.2</a>)。この代入演算子は、<code>@current_user</code>が未定義の場合にのみ、<code>@current_user</code>インスタンス変数に記憶トークンを設定します<sup class="footnote" id="fnref-8_6"><a href="/chapters/sign-in-sign-out?version=4.0#fn-8_6">6</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@current_user</span> <span class="o">||=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">remember_token:</span> <span class="n">remember_token</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>あるユーザーに対して<code>current_user</code>が初めて呼び出される場合は<code>find_by</code>メソッドを呼び出しますが、以後の呼び出しではデータベースにアクセスせずに<code>@current_user</code>を返します<sup class="footnote" id="fnref-8_7"><a href="/chapters/sign-in-sign-out.html?version=4.0#fn-8_7">7</a></sup>。このコードは、ひとつのユーザーリクエストに対して<code>current_user</code>が何度も使用される場合にのみ有用です。いずれの場合も、ユーザーがWebサイトにアクセスすると<code>find_by</code>は最低1回は呼び出されます。</p>
+<p>あるユーザーに対して<code>current_user</code>が初めて呼び出される場合は<code>find_by</code>メソッドを呼び出しますが、以後の呼び出しではデータベースにアクセスせずに<code>@current_user</code>を返します<sup class="footnote" id="fnref-8_7"><a href="/chapters/sign-in-sign-out?version=4.0#fn-8_7">7</a></sup>。このコードは、ひとつのユーザーリクエストに対して<code>current_user</code>が何度も使用される場合にのみ有用です。いずれの場合も、ユーザーがWebサイトにアクセスすると<code>find_by</code>は最低1回は呼び出されます。</p>
 
 <div class="label" id="sidebar-or_equals"></div>
 
@@ -1306,7 +1306,7 @@
 </div>
 
 
-<p>(上のコードでは、サインアウトのリンクがハッシュ引数を渡していることにご注目ください。このハッシュ引数は、HTTPの<tt>DELETE</tt>リクエストを使用して送信される必要があることを示しています<sup class="footnote" id="fnref-8_8"><a href="/chapters/sign-in-sign-out.html?version=4.0#fn-8_8">8</a></sup>)。</p>
+<p>(上のコードでは、サインアウトのリンクがハッシュ引数を渡していることにご注目ください。このハッシュ引数は、HTTPの<tt>DELETE</tt>リクエストを使用して送信される必要があることを示しています<sup class="footnote" id="fnref-8_8"><a href="/chapters/sign-in-sign-out?version=4.0#fn-8_8">8</a></sup>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Profile&quot;</span><span class="p">,</span> <span class="n">current_user</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -2015,14 +2015,14 @@
 </a><a class="next_page" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-8_1">他に、一定時間が経過するとセッションを期限切れにするモデルもあります。このモデルは、インターネットバンキングや金融取引口座などの重要な情報を扱うWebサイトに向いています。<a class="arrow" href="/chapters/sign-in-sign-out.html?version=4.0#fnref-8_1">↑</a></li>
-<li id="fn-8_2">画像は<a href="http://www.flickr.com/photos/hermanusbackpackers/3343254977/">http://www.flickr.com/photos/hermanusbackpackers/3343254977/</a>からの引用です。<a class="arrow" href="/chapters/sign-in-sign-out.html?version=4.0#fnref-8_2">↑</a></li>
-<li id="fn-8_3">このメソッドは、RailsCastの「<a href="http://railscasts.com/episodes/274-remember-me-reset-password">remember me</a>」の記事を元に選びました。<a class="arrow" href="/chapters/sign-in-sign-out.html?version=4.0#fnref-8_3">↑</a></li>
-<li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Rails Guidesの「<a href="http://guides.rubyonrails.org/v3.2.13/v3.2.13/active_record_validations_callbacks.html">コールバックについて</a> (英語)」を参照してください。<a class="arrow" href="/chapters/sign-in-sign-out.html?version=4.0#fnref-8_4">↑</a></li>
-<li id="fn-8_5">実は、この2つは完全に同等です。<code>attr_accessor</code>は、単にゲッターメソッドやセッターメソッドを自動的に作成する便利な方法でしかありません。<a class="arrow" href="/chapters/sign-in-sign-out.html?version=4.0#fnref-8_5">↑</a></li>
-<li id="fn-8_6">通常、これは初期値が<code>nil</code>である変数への代入を意味しますが、<code>false</code>値も<code>||=</code>演算子によって上書きされることにご注意ください。<a class="arrow" href="/chapters/sign-in-sign-out.html?version=4.0#fnref-8_6">↑</a></li>
-<li id="fn-8_7">これは、<em>囲み6.3</em>で説明した<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">メモ化 (memoization) </a>の例になっています。<a class="arrow" href="/chapters/sign-in-sign-out.html?version=4.0#fnref-8_7">↑</a></li>
-<li id="fn-8_8">Webブラウザは実際には<tt>DELETE</tt>リクエストを発行できないので、RailsではJavaScriptを使用してこのリクエストを偽造します。<a class="arrow" href="/chapters/sign-in-sign-out.html?version=4.0#fnref-8_8">↑</a></li>
+<li id="fn-8_1">他に、一定時間が経過するとセッションを期限切れにするモデルもあります。このモデルは、インターネットバンキングや金融取引口座などの重要な情報を扱うWebサイトに向いています。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_1">↑</a></li>
+<li id="fn-8_2">画像は<a href="http://www.flickr.com/photos/hermanusbackpackers/3343254977/">http://www.flickr.com/photos/hermanusbackpackers/3343254977/</a>からの引用です。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_2">↑</a></li>
+<li id="fn-8_3">このメソッドは、RailsCastの「<a href="http://railscasts.com/episodes/274-remember-me-reset-password">remember me</a>」の記事を元に選びました。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_3">↑</a></li>
+<li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Rails Guidesの「<a href="http://guides.rubyonrails.org/v3.2.13/v3.2.13/active_record_validations_callbacks.html">コールバックについて</a> (英語)」を参照してください。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_4">↑</a></li>
+<li id="fn-8_5">実は、この2つは完全に同等です。<code>attr_accessor</code>は、単にゲッターメソッドやセッターメソッドを自動的に作成する便利な方法でしかありません。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_5">↑</a></li>
+<li id="fn-8_6">通常、これは初期値が<code>nil</code>である変数への代入を意味しますが、<code>false</code>値も<code>||=</code>演算子によって上書きされることにご注意ください。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_6">↑</a></li>
+<li id="fn-8_7">これは、<em>囲み6.3</em>で説明した<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">メモ化 (memoization) </a>の例になっています。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_7">↑</a></li>
+<li id="fn-8_8">Webブラウザは実際には<tt>DELETE</tt>リクエストを発行できないので、RailsではJavaScriptを使用してこのリクエストを偽造します。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_8">↑</a></li>
 </ol>
 </div>
 

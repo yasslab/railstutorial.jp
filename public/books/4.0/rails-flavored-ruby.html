@@ -89,7 +89,7 @@
 
 <p>基本タイトルとしてはこれで正しいのですが、末尾に余分な縦棒<code>|</code>が残ってしまっています。</p>
 
-<p>ページタイトルが正しく表示されない問題を解決するために、 <code>full_title</code>というヘルパーを作成することにします。<code>full_title</code>ヘルパーは、ページタイトルが定義されていない場合は基本タイトル “Ruby on Rails Tutorial Sample App”を返し、定義されている場合は基本タイトルに縦棒と追加ページタイトルを追加して返します (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-title_helper">リスト4.2</a>)<sup class="footnote" id="fnref-4_1"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_1">1</a></sup>。</p>
+<p>ページタイトルが正しく表示されない問題を解決するために、 <code>full_title</code>というヘルパーを作成することにします。<code>full_title</code>ヘルパーは、ページタイトルが定義されていない場合は基本タイトル “Ruby on Rails Tutorial Sample App”を返し、定義されている場合は基本タイトルに縦棒と追加ページタイトルを追加して返します (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-title_helper">リスト4.2</a>)<sup class="footnote" id="fnref-4_1"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_1">1</a></sup>。</p>
 
 <div class="label" id="code-title_helper"></div>
 
@@ -298,9 +298,9 @@
 </div>
 
 
-<p>評価の結果は、<code>&quot;foo&quot;</code> と <code>&quot;bar&quot;</code> を足した<code>&quot;foobar&quot;</code>になりました<sup class="footnote" id="fnref-4_2"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_2">2</a></sup>。</p>
+<p>評価の結果は、<code>&quot;foo&quot;</code> と <code>&quot;bar&quot;</code> を足した<code>&quot;foobar&quot;</code>になりました<sup class="footnote" id="fnref-4_2"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_2">2</a></sup>。</p>
 
-<p>文字列を組み立てる他の方法として<em>式展開 (interpolation)</em>というものがあり、<code>#{}</code>という特殊な構文を使用します<sup class="footnote" id="fnref-4_3"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_3">3</a></sup>。</p>
+<p>文字列を組み立てる他の方法として<em>式展開 (interpolation)</em>というものがあり、<code>#{}</code>という特殊な構文を使用します<sup class="footnote" id="fnref-4_3"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_3">3</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">first_name</span> <span class="o">=</span> <span class="s2">&quot;Michael&quot;</span>    <span class="c1">#変数割り当て</span>
 <span class="go">=&gt; &quot;Michael&quot;</span>
@@ -417,7 +417,7 @@
 </div>
 
 
-<p>オブジェクトに渡されるメッセージは、一般には<em>メソッド</em>と呼ばれます。メソッドの実体は、そのオブジェクトに定義された関数です<sup class="footnote" id="fnref-4_4"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_4">4</a></sup>。Rubyの文字列は、以下のように<code>empty?</code>メソッドにも応答することができます。</p>
+<p>オブジェクトに渡されるメッセージは、一般には<em>メソッド</em>と呼ばれます。メソッドの実体は、そのオブジェクトに定義された関数です<sup class="footnote" id="fnref-4_4"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_4">4</a></sup>。Rubyの文字列は、以下のように<code>empty?</code>メソッドにも応答することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;foobar&quot;</span><span class="o">.</span><span class="n">empty?</span>
 <span class="go">=&gt; false</span>
@@ -575,7 +575,7 @@
 <h3><a id="sec-4_2_5" href="/chapters/rails-flavored-ruby?version=4.0#sec-back_to_the_title_helper" class="heading"><span class="number">4.2.5</span> title ヘルパー、再び</a></h3>
 
 
-<p>ここまでの解説でRubyの知識がある程度身についたので<sup class="footnote" id="fnref-4_5"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_5">5</a></sup>、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-title_helper">4.2</a>の<code>full_title</code>ヘルパーを理解できるようになったはずです。</p>
+<p>ここまでの解説でRubyの知識がある程度身についたので<sup class="footnote" id="fnref-4_5"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_5">5</a></sup>、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-title_helper">4.2</a>の<code>full_title</code>ヘルパーを理解できるようになったはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">ApplicationHelper</span>
 
@@ -643,7 +643,7 @@
 </div>
 
 
-<p>上で示したとおり、配列の要素にアクセスするには角かっこを使用します。Rubyでは、角かっこによるアクセス方法以外にも配列の要素にアクセスする方法が提供されています<sup class="footnote" id="fnref-4_6"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_6">6</a></sup>。</p>
+<p>上で示したとおり、配列の要素にアクセスするには角かっこを使用します。Rubyでは、角かっこによるアクセス方法以外にも配列の要素にアクセスする方法が提供されています<sup class="footnote" id="fnref-4_6"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_6">6</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>                  <span class="c1"># &#39;a&#39; の内容にご注目</span>
 <span class="go">=&gt; [42, 8, 17]</span>
@@ -834,7 +834,7 @@
 
 <p>ここでは<code>number</code>を<code>i</code>と差し替えたことで、他の変数名を使用してもよいということを強調しています。</p>
 
-<p>ブロックは見た目に反して奥が深く、ブロックを十分に理解するためには相当なプログラミング経験が必要です。そのためには、ブロックを含むコードをたくさん読みこなすことでブロックの本質を会得する以外に方法はありません<sup class="footnote" id="fnref-4_7"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_7">7</a></sup>。幸いなことに、人間には個別の事例を一般化する能力というものがあります。ささやかですが、<code>map</code>メソッドなどを使用したブロックの使用例を参考のためにいくつか挙げてみます。</p>
+<p>ブロックは見た目に反して奥が深く、ブロックを十分に理解するためには相当なプログラミング経験が必要です。そのためには、ブロックを含むコードをたくさん読みこなすことでブロックの本質を会得する以外に方法はありません<sup class="footnote" id="fnref-4_7"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_7">7</a></sup>。幸いなことに、人間には個別の事例を一般化する能力というものがあります。ささやかですが、<code>map</code>メソッドなどを使用したブロックの使用例を参考のためにいくつか挙げてみます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s2">&quot;Betelgeuse!&quot;</span> <span class="p">}</span>   <span class="c1"># 3.timesではブロックに変数を使用していない</span>
 <span class="go">&quot;Betelgeuse!&quot;</span>
@@ -902,7 +902,7 @@
 </div>
 
 
-<p>ハッシュは、キーと値のペアを波かっこで囲んで表記します。キーと値のペアを持たないかっこの組 (<code>{}</code>) は空のハッシュです。ここで重要なのは、ハッシュの波かっこは、ブロックの波かっことはまったく別物であるという点です (これは確かに紛らわしいものです) 。ハッシュは配列と似ていますが、1つの重要な違いとして、ハッシュでは要素の「並び順」が保証されないという点があります<sup class="footnote" id="fnref-4_8"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_8">8</a></sup>。</p>
+<p>ハッシュは、キーと値のペアを波かっこで囲んで表記します。キーと値のペアを持たないかっこの組 (<code>{}</code>) は空のハッシュです。ここで重要なのは、ハッシュの波かっこは、ブロックの波かっことはまったく別物であるという点です (これは確かに紛らわしいものです) 。ハッシュは配列と似ていますが、1つの重要な違いとして、ハッシュでは要素の「並び順」が保証されないという点があります<sup class="footnote" id="fnref-4_8"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_8">8</a></sup>。</p>
 
 <p>ハッシュの要素を1つずつ角かっこを使って定義するよりも、キーと値をハッシュロケットと呼ばれる<code>=&gt;</code> によってリテラル表現するほうが簡単です。</p>
 
@@ -914,7 +914,7 @@
 
 <p>ここではRubyにおける通常の慣習として、ハッシュの最初と最後に空白を追加しています。この空白はあってもなくてもよく、コンソールでは無視されます (なぜスペースを置くようになったのかはわかりません。おそらく初期の有力な Rubyプログラマが好んだ結果、慣習となったのでしょう)。</p>
 
-<p>ここまではハッシュのキーとして文字列を使用していましたが、Railsでは文字列よりも<em>シンボル</em>を使用する方が普通です。シンボルは文字列と似ていますが、クォートで囲む代わりにコロンが前に置かれている点が異なります。たとえば、<code>:name</code>はシンボルです。もちろん、余計なことを一切考えずに、シンボルを単なる文字列とみなしても構いません<sup class="footnote" id="fnref-4_9"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_9">9</a></sup>。</p>
+<p>ここまではハッシュのキーとして文字列を使用していましたが、Railsでは文字列よりも<em>シンボル</em>を使用する方が普通です。シンボルは文字列と似ていますが、クォートで囲む代わりにコロンが前に置かれている点が異なります。たとえば、<code>:name</code>はシンボルです。もちろん、余計なことを一切考えずに、シンボルを単なる文字列とみなしても構いません<sup class="footnote" id="fnref-4_9"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_9">9</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;name&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="go">=&gt; [&quot;n&quot;, &quot;a&quot;, &quot;m&quot;, &quot;e&quot;]</span>
@@ -1097,7 +1097,7 @@
 </div>
 
 
-<p>上のコードには途中に改行が含まれているにもかかわらずです。実は、Rubyは改行の有無に左右されません<sup class="footnote" id="fnref-4_10"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_10">10</a></sup>。著者が上のコードに改行を追加した<em>理由</em>は、コードの読みやすさを損なわないために1行あたり80文字までに制限していたためです<sup class="footnote" id="fnref-4_11"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_11">11</a></sup>。</p>
+<p>上のコードには途中に改行が含まれているにもかかわらずです。実は、Rubyは改行の有無に左右されません<sup class="footnote" id="fnref-4_10"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_10">10</a></sup>。著者が上のコードに改行を追加した<em>理由</em>は、コードの読みやすさを損なわないために1行あたり80文字までに制限していたためです<sup class="footnote" id="fnref-4_11"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_11">11</a></sup>。</p>
 
 <p>従って、</p>
 
@@ -1148,7 +1148,7 @@
 
 <p>上のコードでは、文字列が<code>class</code>メソッドに応答しており、その文字列が所属するクラスを単に返していることがわかります。</p>
 
-<p>暗黙のリテラルコンストラクタを使う代わりに、明示的に同等の<em>名前付きコンストラクタ</em>を使うことができます。名前付きコンストラクタは、クラス名に対して<code>new</code>メソッドを呼びだします<sup class="footnote" id="fnref-4_12"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_12">12</a></sup>。</p>
+<p>暗黙のリテラルコンストラクタを使う代わりに、明示的に同等の<em>名前付きコンストラクタ</em>を使うことができます。名前付きコンストラクタは、クラス名に対して<code>new</code>メソッドを呼びだします<sup class="footnote" id="fnref-4_12"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_12">12</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="nb">String</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">)</span>   <span class="c1"># 文字列の名前付きコンストラクタ</span>
 <span class="go">=&gt; &quot;foobar&quot;</span>
@@ -1297,7 +1297,7 @@
 </div>
 
 
-<p>単語が回文であるかどうかを確認できるということです<sup class="footnote" id="fnref-4_13"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_13">11</a></sup>。</p>
+<p>単語が回文であるかどうかを確認できるということです<sup class="footnote" id="fnref-4_13"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_13">11</a></sup>。</p>
 
 <div class="label" id="sec-modifying_built_in_classes"></div>
 
@@ -1313,7 +1313,7 @@
 </div>
 
 
-<p>驚いたことに、Rubyでは組み込みの基本クラスの拡張が可能なのです。Ruby のクラスは<em>オープン</em>で変更可能であり、クラス設計者でない開発者でもこれらのクラスにメソッドを自由に追加することが許されています<sup class="footnote" id="fnref-4_14"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_14">14</a></sup>。</p>
+<p>驚いたことに、Rubyでは組み込みの基本クラスの拡張が可能なのです。Ruby のクラスは<em>オープン</em>で変更可能であり、クラス設計者でない開発者でもこれらのクラスにメソッドを自由に追加することが許されています<sup class="footnote" id="fnref-4_14"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_14">14</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">class</span> <span class="nc">String</span>
 <span class="gp">&gt;&gt; </span>  <span class="c1"># 文字列が回文であればtrueを返す</span>
@@ -1369,7 +1369,7 @@
 </div>
 
 
-<p>本書をここまで進めてきた今であれば、上のコードの意味は (たとえ漠然とであっても) 理解できるはずです。<code>StaticPagesController</code>クラスは<code>ApplicationController</code>を継承しており、<code>home</code>メソッド、<code>help</code>メソッド、<code>about</code>メソッドを備えています。 Rails コンソールは、セッションごとにローカルのRails環境を読み込むので、コンソール内で明示的にコントローラを作成したり、そのクラス階層を調べたりすることができます<sup class="footnote" id="fnref-4_15"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_15">15</a></sup>。</p>
+<p>本書をここまで進めてきた今であれば、上のコードの意味は (たとえ漠然とであっても) 理解できるはずです。<code>StaticPagesController</code>クラスは<code>ApplicationController</code>を継承しており、<code>home</code>メソッド、<code>help</code>メソッド、<code>about</code>メソッドを備えています。 Rails コンソールは、セッションごとにローカルのRails環境を読み込むので、コンソール内で明示的にコントローラを作成したり、そのクラス階層を調べたりすることができます<sup class="footnote" id="fnref-4_15"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_15">15</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">controller</span> <span class="o">=</span> <span class="no">StaticPagesController</span><span class="o">.</span><span class="n">new</span>
 <span class="go">=&gt; #&lt;StaticPagesController:0x22855d0&gt;</span>
@@ -1556,7 +1556,7 @@
 
 <li>Ruby API のオンラインマニュアルを見つけて、<code>Hash</code>クラスの<code>merge</code>メソッドについて読んでみてください。</li>
 
-<li><strong>(自由課題)</strong> <a href="http://rubykoans.com/">Ruby Koans</a><sup class="footnote" id="fnref-4_16"><a href="/chapters/rails-flavored-ruby.html?version=4.0#fn-4_16">16</a></sup> (訳注: TDDでRubyを学べる無料のコンテンツ) をやってみて、Rubyの感覚を掴んでみてください。</li>
+<li><strong>(自由課題)</strong> <a href="http://rubykoans.com/">Ruby Koans</a><sup class="footnote" id="fnref-4_16"><a href="/chapters/rails-flavored-ruby?version=4.0#fn-4_16">16</a></sup> (訳注: TDDでRubyを学べる無料のコンテンツ) をやってみて、Rubyの感覚を掴んでみてください。</li>
 </ol>
 
 
@@ -1603,22 +1603,22 @@
 </a><a class="next_page" href="/chapters/filling-in-the-layout?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-4_1">あるヘルパーが特定のコントローラでのみ使用するものであれば、それに対応するヘルパーファイルに置く必要があります。たとえばStaticPagesコントローラ用ヘルパーは、通常<code>app/helpers/static_pages_helper.rb</code>になります。今回の場合、<code>full_title</code>ヘルパーはサイトのすべてのページで使用することを前提にしていますが、Railsにはこのような場合のための特別なヘルパーファイル<code>app/helpers/application_helper.rb</code>があります。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_1">↑</a></li>
-<li id="fn-4_2">“foo”と“bar”という言葉の起源の詳細については、<em>Jargon Fileの “foo” の項</em>を参照してください。特に“foobar”は“FUBAR” (=めちゃくちゃ) とは何の関係も<a href="http://www.catb.org/jargon/html/F/foo.html">ない</a>ということについて。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_2">↑</a></li>
-<li id="fn-4_3">PerlやPHPに精通した開発者であれば、<code>&quot;foo $bar&quot;</code>のようなドル記号による自動的な挿入を連想して比較することでしょう。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_3">↑</a></li>
-<li id="fn-4_4">この章の全体にわたって、<em>関数</em>という言葉と<em>メソッド</em>という言葉が混在していることを前もってお詫びいたします。Rubyでは関数とメソッドには何の違いもありません。すべてのメソッドは関数であり、すべての関数はメソッドでもあります。それもこれも、あらゆるものがオブジェクトであるからです。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_4">↑</a></li>
-<li id="fn-4_5">とはいうものの、まだ理解のおよばない点が<em>1つ</em>残っています。Railsがこれらすべてを結びつけている方法です。URLがどのようにしてアクションにマップされているのか、<code>full_title</code>ヘルパーをどのようにしてビューで使用できるようにしているのかなどは、この時点では明かされていません。これは実に興味深いテーマであり、意欲のある方はぜひ自分で調べてみてください。ただし、Railsが<em>どのように</em>動いているかを正確に知らなくても、Railsを<em>使用する</em>うえでは何の問題もありません (この点を深く理解したい方には、「<em>The Rails 4 Way</em>」(Obie Fernandez著) がお勧めです) 。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_5">↑</a></li>
-<li id="fn-4_6">このコードで使用している<code>second</code>メソッドは、実はRuby自身の一部ではなく、Railsが追加したものです。このコードが動作するのは、RailsによるRubyの拡張がRailsコンソールによって自動的に反映されるからです。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_6">↑</a></li>
-<li id="fn-4_7">なおエキスパート向けには、ブロックが<em>クロージャ</em>になっているということを知っていただくと理解しやすいと思います。クロージャとは、データを伴う、その場限りの無名関数です。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_7">↑</a></li>
-<li id="fn-4_8">実はRuby 1.9では、ハッシュの要素の順序が入力順と同じであることを保証していますが、ハッシュを特定の順序に依存してカウントするのは得策ではありません。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_8">↑</a></li>
-<li id="fn-4_9">余計なものを削ぎ落した結果、シンボル同士の比較を容易に行えます。文字列は1文字ずつ比較する必要がありますが、シンボルは一度に全体を比較できます。これはハッシュのキーとして理想的な性質です。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_9">↑</a></li>
-<li id="fn-4_10">改行は、行の末尾と次の行の始まりを示します。コードの中では、<tt class="verb">\n</tt>の文字列で表します。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_10">↑</a></li>
-<li id="fn-4_11">もちろん、人間がいちいち文字数を<em>数えて</em>いたら頭がどうにかなってしまいます。だからこそ、多くのテキストエディタにはこれらを支援する機能が備わっています。たとえば、<a class="ref" href="/chapters/beginning?version=4.0#fig-editor_shell">図1.1</a>をもう一度見てみると、コードを80文字以下に抑えるための小さな縦線が右側に見えます (実際には少し余裕を持たせて78列にしてあります) 。TextMateを使用していれば、<tt>View &gt; Wrap Column &gt; 78</tt>で設定できます。Sublime Textを使用していれば、<tt>View &gt; Ruler &gt; 78</tt>、または<tt>View &gt; Ruler &gt; 80</tt>で設定できます。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_11">↑</a></li>
-<li id="fn-4_12">このメソッドの動作は、使用しているRubyのバージョンによって異なる可能性があります。この例ではRuby 1.9.3を前提としています。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_12">↑</a></li>
-<li id="fn-4_13">Rubyのクラスや<code>self</code>キーワードについての詳細は、<a href="http://railstips.org/">RailsTips</a>の “<a href="http://railstips.org/blog/archives/2006/11/18/class-and-instance-variables-in-ruby/">Ruby におけるクラスとインスタンス変数</a>” (英語) を参照してください。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_13">↑</a></li>
-<li id="fn-4_14">JavaScriptに精通している方のために補足すると、この機能は組み込みクラスのプロトタイプオブジェクトを使用してクラスを拡張することと似ています (読者の<a href="http://getsatisfaction.com/railstutorial/topics/adding_methods_to_built_in_classes_comparable_to_using_javascripts_prototype_object">Erik Eldridge</a>による指摘に感謝します)。 <a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_14">↑</a></li>
-<li id="fn-4_15">これらの階層にあるクラスの詳細を知る必要はないと思います。<em>私ですら</em>それらのクラスの詳細について知らないことがたくさんありますし、それでも私は2005年からRuby on Railsで問題なくプログラミングできています。これは (a) 私がよほど無能であるか、(b) Railsの内部を知りつくさなくても熟練したRails開発者になれる、ということのどちらかでしょう。私のためにも読者の皆様のためにも、後者であることを祈ります。<a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_15">↑</a></li>
-<li id="fn-4_16">http://rubykoans.com/ <a class="arrow" href="/chapters/rails-flavored-ruby.html?version=4.0#fnref-4_16">↑</a></li>
+<li id="fn-4_1">あるヘルパーが特定のコントローラでのみ使用するものであれば、それに対応するヘルパーファイルに置く必要があります。たとえばStaticPagesコントローラ用ヘルパーは、通常<code>app/helpers/static_pages_helper.rb</code>になります。今回の場合、<code>full_title</code>ヘルパーはサイトのすべてのページで使用することを前提にしていますが、Railsにはこのような場合のための特別なヘルパーファイル<code>app/helpers/application_helper.rb</code>があります。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_1">↑</a></li>
+<li id="fn-4_2">“foo”と“bar”という言葉の起源の詳細については、<em>Jargon Fileの “foo” の項</em>を参照してください。特に“foobar”は“FUBAR” (=めちゃくちゃ) とは何の関係も<a href="http://www.catb.org/jargon/html/F/foo.html">ない</a>ということについて。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_2">↑</a></li>
+<li id="fn-4_3">PerlやPHPに精通した開発者であれば、<code>&quot;foo $bar&quot;</code>のようなドル記号による自動的な挿入を連想して比較することでしょう。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_3">↑</a></li>
+<li id="fn-4_4">この章の全体にわたって、<em>関数</em>という言葉と<em>メソッド</em>という言葉が混在していることを前もってお詫びいたします。Rubyでは関数とメソッドには何の違いもありません。すべてのメソッドは関数であり、すべての関数はメソッドでもあります。それもこれも、あらゆるものがオブジェクトであるからです。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_4">↑</a></li>
+<li id="fn-4_5">とはいうものの、まだ理解のおよばない点が<em>1つ</em>残っています。Railsがこれらすべてを結びつけている方法です。URLがどのようにしてアクションにマップされているのか、<code>full_title</code>ヘルパーをどのようにしてビューで使用できるようにしているのかなどは、この時点では明かされていません。これは実に興味深いテーマであり、意欲のある方はぜひ自分で調べてみてください。ただし、Railsが<em>どのように</em>動いているかを正確に知らなくても、Railsを<em>使用する</em>うえでは何の問題もありません (この点を深く理解したい方には、「<em>The Rails 4 Way</em>」(Obie Fernandez著) がお勧めです) 。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_5">↑</a></li>
+<li id="fn-4_6">このコードで使用している<code>second</code>メソッドは、実はRuby自身の一部ではなく、Railsが追加したものです。このコードが動作するのは、RailsによるRubyの拡張がRailsコンソールによって自動的に反映されるからです。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_6">↑</a></li>
+<li id="fn-4_7">なおエキスパート向けには、ブロックが<em>クロージャ</em>になっているということを知っていただくと理解しやすいと思います。クロージャとは、データを伴う、その場限りの無名関数です。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_7">↑</a></li>
+<li id="fn-4_8">実はRuby 1.9では、ハッシュの要素の順序が入力順と同じであることを保証していますが、ハッシュを特定の順序に依存してカウントするのは得策ではありません。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_8">↑</a></li>
+<li id="fn-4_9">余計なものを削ぎ落した結果、シンボル同士の比較を容易に行えます。文字列は1文字ずつ比較する必要がありますが、シンボルは一度に全体を比較できます。これはハッシュのキーとして理想的な性質です。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_9">↑</a></li>
+<li id="fn-4_10">改行は、行の末尾と次の行の始まりを示します。コードの中では、<tt class="verb">\n</tt>の文字列で表します。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_10">↑</a></li>
+<li id="fn-4_11">もちろん、人間がいちいち文字数を<em>数えて</em>いたら頭がどうにかなってしまいます。だからこそ、多くのテキストエディタにはこれらを支援する機能が備わっています。たとえば、<a class="ref" href="/chapters/beginning?version=4.0#fig-editor_shell">図1.1</a>をもう一度見てみると、コードを80文字以下に抑えるための小さな縦線が右側に見えます (実際には少し余裕を持たせて78列にしてあります) 。TextMateを使用していれば、<tt>View &gt; Wrap Column &gt; 78</tt>で設定できます。Sublime Textを使用していれば、<tt>View &gt; Ruler &gt; 78</tt>、または<tt>View &gt; Ruler &gt; 80</tt>で設定できます。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_11">↑</a></li>
+<li id="fn-4_12">このメソッドの動作は、使用しているRubyのバージョンによって異なる可能性があります。この例ではRuby 1.9.3を前提としています。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_12">↑</a></li>
+<li id="fn-4_13">Rubyのクラスや<code>self</code>キーワードについての詳細は、<a href="http://railstips.org/">RailsTips</a>の “<a href="http://railstips.org/blog/archives/2006/11/18/class-and-instance-variables-in-ruby/">Ruby におけるクラスとインスタンス変数</a>” (英語) を参照してください。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_13">↑</a></li>
+<li id="fn-4_14">JavaScriptに精通している方のために補足すると、この機能は組み込みクラスのプロトタイプオブジェクトを使用してクラスを拡張することと似ています (読者の<a href="http://getsatisfaction.com/railstutorial/topics/adding_methods_to_built_in_classes_comparable_to_using_javascripts_prototype_object">Erik Eldridge</a>による指摘に感謝します)。 <a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_14">↑</a></li>
+<li id="fn-4_15">これらの階層にあるクラスの詳細を知る必要はないと思います。<em>私ですら</em>それらのクラスの詳細について知らないことがたくさんありますし、それでも私は2005年からRuby on Railsで問題なくプログラミングできています。これは (a) 私がよほど無能であるか、(b) Railsの内部を知りつくさなくても熟練したRails開発者になれる、ということのどちらかでしょう。私のためにも読者の皆様のためにも、後者であることを祈ります。<a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_15">↑</a></li>
+<li id="fn-4_16">http://rubykoans.com/ <a class="arrow" href="/chapters/rails-flavored-ruby?version=4.0#fnref-4_16">↑</a></li>
 </ol>
 </div>
 

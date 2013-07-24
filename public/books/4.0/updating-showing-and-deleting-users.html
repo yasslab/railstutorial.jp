@@ -37,7 +37,7 @@
 <h3><a id="sec-9_1_1" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-edit_form" class="heading"><span class="number">9.1.1</span>編集フォーム</a></h3>
 
 
-<p>まずは編集用のフォームを作成しましょう。モックアップを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#fig-edit_user_mockup">図9.1</a>に示します<sup class="footnote" id="fnref-9_1"><a href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fn-9_1">1</a></sup>。いつものようにテストから始めます。最初に、Gravatar画像を変更するリンクに注目してください。GravatarのWebサイトを探してみると、<a href="http://gravatar.com/emails">http://gravatar.com/emails</a>に画像の追加と編集を行えるページがありましたので、<code>edit</code>ページ上のこのURL<sup class="footnote" id="fnref-9_2"><a href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fn-9_2">2</a></sup>へのリンクについて テストを行なうことにします。</p>
+<p>まずは編集用のフォームを作成しましょう。モックアップを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#fig-edit_user_mockup">図9.1</a>に示します<sup class="footnote" id="fnref-9_1"><a href="/chapters/updating-showing-and-deleting-users?version=4.0#fn-9_1">1</a></sup>。いつものようにテストから始めます。最初に、Gravatar画像を変更するリンクに注目してください。GravatarのWebサイトを探してみると、<a href="http://gravatar.com/emails">http://gravatar.com/emails</a>に画像の追加と編集を行えるページがありましたので、<code>edit</code>ページ上のこのURL<sup class="footnote" id="fnref-9_2"><a href="/chapters/updating-showing-and-deleting-users?version=4.0#fn-9_2">2</a></sup>へのリンクについて テストを行なうことにします。</p>
 
 <div class="label" id="fig-edit_user_mockup"></div>
 
@@ -180,7 +180,7 @@
 </div>
 
 
-<p>Webブラウザはネイティブでは<tt>PATCH</tt>リクエスト (<a class="ref" href="/chapters/sign-up?version=4.0#table-RESTful_users">表7.1</a>でRESTの慣習として要求されている) を送信できないので、Railsは<tt>POST</tt>リクエストと隠し<code>input</code>フィールドを利用してPATCHリクエストを「偽造」しています<sup class="footnote" id="fnref-9_3"><a href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fn-9_3">3</a></sup>。</p>
+<p>Webブラウザはネイティブでは<tt>PATCH</tt>リクエスト (<a class="ref" href="/chapters/sign-up?version=4.0#table-RESTful_users">表7.1</a>でRESTの慣習として要求されている) を送信できないので、Railsは<tt>POST</tt>リクエストと隠し<code>input</code>フィールドを利用してPATCHリクエストを「偽造」しています<sup class="footnote" id="fnref-9_3"><a href="/chapters/updating-showing-and-deleting-users?version=4.0#fn-9_3">3</a></sup>。</p>
 
 <p>ここでもう1つ微妙な点を指摘しておきたいと思います。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_edit_view">リスト9.3</a>の<code>form_for(@user)</code>のコードは、<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_form">リスト7.17</a>のコードと<em>完全に</em>同じです。だとすると、Railsはどうやって新規ユーザー用の<tt>POST</tt>リクエストとユーザー編集用の<tt>PATCH</tt>リクエストを区別するのでしょうか。その答えは、Railsは、ユーザーが新規なのか、それともデータベースに存在する既存のユーザーであるかを、Active Recordの<code>new_record?</code> 論理値メソッドを使用して区別できるからです。</p>
 
@@ -860,7 +860,7 @@
 </div></div>
 
 
-<p>いよいよ実装です<sup class="footnote" id="fnref-9_4"><a href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fn-9_4">4</a></sup>。 この動作を、<code>store_location</code>と<code>redirect_back_or</code>の2つのメソッドを使用して実現します。これらのメソッドは、セッションヘルパーで定義されています (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-friendly_forwarding_code">リスト9.18</a>)。</p>
+<p>いよいよ実装です<sup class="footnote" id="fnref-9_4"><a href="/chapters/updating-showing-and-deleting-users?version=4.0#fn-9_4">4</a></sup>。 この動作を、<code>store_location</code>と<code>redirect_back_or</code>の2つのメソッドを使用して実現します。これらのメソッドは、セッションヘルパーで定義されています (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-friendly_forwarding_code">リスト9.18</a>)。</p>
 
 <div class="label" id="code-friendly_forwarding_code"></div>
 
@@ -982,7 +982,7 @@
 <h2><a id="sec-9_3" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-showing_all_users" class="heading"><span class="number">9.3</span>すべてのユーザーを表示する</a></h2>
 
 
-<p>この節では、いよいよ<a href="http://www.answers.com/penultimate">最後から2番目の</a>ユーザーアクションである<code>index</code>アクションを追加しましょう。このアクションは、<em>すべての</em>ユーザーを一覧表示します。その際、データベースにサンプルデータを追加する方法や、将来ユーザー数が膨大になってもindexページを問題なく表示できるようにするためのユーザー出力の<em>ページネーション (pagenation=ページ分割)</em> の方法を学びます。ユーザーの一覧、ページネーション用リンク、移動用の [Users]リンクのモックアップを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#fig-user_index_mockup">図9.7</a>に示します<sup class="footnote" id="fnref-9_5"><a href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fn-9_5">5</a></sup>。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-destroying_users">9.4</a>では、ユーザーのインデックスページに管理用のインターフェイスを追加し、トラブルを起こしているユーザーなどをそこで削除できるようにします。</p>
+<p>この節では、いよいよ<a href="http://www.answers.com/penultimate">最後から2番目の</a>ユーザーアクションである<code>index</code>アクションを追加しましょう。このアクションは、<em>すべての</em>ユーザーを一覧表示します。その際、データベースにサンプルデータを追加する方法や、将来ユーザー数が膨大になってもindexページを問題なく表示できるようにするためのユーザー出力の<em>ページネーション (pagenation=ページ分割)</em> の方法を学びます。ユーザーの一覧、ページネーション用リンク、移動用の [Users]リンクのモックアップを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#fig-user_index_mockup">図9.7</a>に示します<sup class="footnote" id="fnref-9_5"><a href="/chapters/updating-showing-and-deleting-users?version=4.0#fn-9_5">5</a></sup>。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-destroying_users">9.4</a>では、ユーザーのインデックスページに管理用のインターフェイスを追加し、トラブルを起こしているユーザーなどをそこで削除できるようにします。</p>
 
 <div class="label" id="fig-user_index_mockup"></div>
 
@@ -1627,7 +1627,7 @@
 </div></div>
 
 
-<p>ここでは、<code>render</code>をパーシャルの名前の文字列に対してではなく、<code>User</code>クラスの<code>user</code>変数に対して実行していることに注意してください<sup class="footnote" id="fnref-9_6"><a href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fn-9_6">6</a></sup>。この場合、Railsは自動的に<code>_user.html.erb</code>という名前のパーシャルを探します。このパーシャルを作成する必要があります (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_partial">リスト9.37</a>)。</p>
+<p>ここでは、<code>render</code>をパーシャルの名前の文字列に対してではなく、<code>User</code>クラスの<code>user</code>変数に対して実行していることに注意してください<sup class="footnote" id="fnref-9_6"><a href="/chapters/updating-showing-and-deleting-users?version=4.0#fn-9_6">6</a></sup>。この場合、Railsは自動的に<code>_user.html.erb</code>という名前のパーシャルを探します。このパーシャルを作成する必要があります (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_partial">リスト9.37</a>)。</p>
 
 <div class="label" id="code-user_partial"></div>
 
@@ -1837,7 +1837,7 @@
 <h4><a id="sec-9_4_1_1" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-revisiting_strong_parameters" class="heading">Strong Parameters、再び</a></h4>
 
 
-<p><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-populator_with_admin">リスト9.41</a>では、初期化ハッシュに<code>admin: true</code>を設定することでユーザーを管理者にしていることにお気付きになりましたでしょうか。ここでは、荒れ狂うWeb世界にオブジェクトをさらすことの危険性を改めて強調しています。もし、任意のWebリクエストの初期化ハッシュをオブジェクトに渡せるとなると、攻撃者は以下のような<tt>PATCH</tt>リクエストを送信してくるかもしれません<sup class="footnote" id="fnref-9_7"><a href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fn-9_7">7</a></sup>。</p>
+<p><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-populator_with_admin">リスト9.41</a>では、初期化ハッシュに<code>admin: true</code>を設定することでユーザーを管理者にしていることにお気付きになりましたでしょうか。ここでは、荒れ狂うWeb世界にオブジェクトをさらすことの危険性を改めて強調しています。もし、任意のWebリクエストの初期化ハッシュをオブジェクトに渡せるとなると、攻撃者は以下のような<tt>PATCH</tt>リクエストを送信してくるかもしれません<sup class="footnote" id="fnref-9_7"><a href="/chapters/updating-showing-and-deleting-users?version=4.0#fn-9_7">7</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre>patch /users/17?admin=1
 </pre></div>
@@ -2231,7 +2231,7 @@
 
 <li>サインインしたユーザーは、もはやUsersコントローラの<code>new</code>アクションや <code>create</code>アクションにアクセスする必要はありません。サインインしたユーザーがこれらのアクションをブラウザで開こうとしたら、ルートURLにリダイレクトするようにしてください。</li>
 
-<li><code>request</code>オブジェクトについて調べてください。具体的には、<a href="http://api.rubyonrails.org/v4.0.0/classes/ActionDispatch/Request.html">Rails API</a><sup class="footnote" id="fnref-9_8"><a href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fn-9_8">8</a></sup>の一覧に記載されているメソッドのうちいくつかをサイトのレイアウトに挿入することによってこれを調べます (やり方がわからない場合は<a class="ref" href="/chapters/sign-up?version=4.0#code-rails_debug">リスト7.1</a>を参照してください)。</li>
+<li><code>request</code>オブジェクトについて調べてください。具体的には、<a href="http://api.rubyonrails.org/v4.0.0/classes/ActionDispatch/Request.html">Rails API</a><sup class="footnote" id="fnref-9_8"><a href="/chapters/updating-showing-and-deleting-users?version=4.0#fn-9_8">8</a></sup>の一覧に記載されているメソッドのうちいくつかをサイトのレイアウトに挿入することによってこれを調べます (やり方がわからない場合は<a class="ref" href="/chapters/sign-up?version=4.0#code-rails_debug">リスト7.1</a>を参照してください)。</li>
 
 <li>フレンドリーフォワーディングで、最初に与えられたURLにのみ確実に転送されていることを確認するテストを作成してください。続けてサインインを行った後、転送先のURLはデフォルト (ユーザープロファイルページ) に戻る必要もありますので、これもテストで確認してください。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-friendly_forgetting_test">リスト9.52</a>がヒントです (と言いつつそこで全部やってしまってますが)。</li>
 
@@ -2384,14 +2384,14 @@
 </a><a class="next_page" href="/chapters/user-microposts?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-9_1">画像は<a href="http://www.flickr.com/photos/sashawolff/4598355045/">http://www.flickr.com/photos/sashawolff/4598355045/</a>より引用しました。<a class="arrow" href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fnref-9_1">↑</a></li>
-<li id="fn-9_2">Gravatarサイトにアクセスすると、実際には<a href="http://en.gravatar.com/emails">http://en.gravatar.com/emails</a>にリダイレクトされます。ここは英語ユーザー向けですが、他の言語を考慮し、<tt>en</tt>をURLに含めませんでした。<a class="arrow" href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fnref-9_2">↑</a></li>
-<li id="fn-9_3">この動作の詳細を気にする必要はありません (悪いことをしているわけでもありません)。この詳細に関心を抱くのはRailsフレームワークそのものの開発者ぐらいであり、Railsでアプリケーションを開発する人にとっては重要ではありません。<a class="arrow" href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fnref-9_3">↑</a></li>
-<li id="fn-9_4">この節のコードは、<a href="http://github.com/thoughtbot/clearance">thoughtbot</a>が作成した<a href="http://thoughtbot.com/">Clearance</a> gemに合わせたものです。<a class="arrow" href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fnref-9_4">↑</a></li>
-<li id="fn-9_5">赤ちゃんの写真は<a href="http://www.flickr.com/photos/glasgows/338937124/">http://www.flickr.com/photos/glasgows/338937124/</a>より引用しました。<a class="arrow" href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fnref-9_5">↑</a></li>
-<li id="fn-9_6">この<code>user</code>という名前そのものはまったく重要ではないことにご注意ください。たとえばuserをfoobarに置き換え、<code>@users.each do |foobar|</code>と書いてから<code>render foobar</code>と呼び出しても問題なく動作します。重要なのは、そのオブジェクトそのものではなく、そのオブジェクトが属している<em>クラス</em> (この場合は<code>User</code>クラス) の方です。<a class="arrow" href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fnref-9_6">↑</a></li>
-<li id="fn-9_7"><tt>curl</tt>などのコマンドラインツールを使用すると、<tt>PATCH</tt>リクエストをこの形式で送信することができます。<a class="arrow" href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fnref-9_7">↑</a></li>
-<li id="fn-9_8">http://api.rubyonrails.org/v4.0.0/classes/ActionDispatch/Request.html <a class="arrow" href="/chapters/updating-showing-and-deleting-users.html?version=4.0#fnref-9_8">↑</a></li>
+<li id="fn-9_1">画像は<a href="http://www.flickr.com/photos/sashawolff/4598355045/">http://www.flickr.com/photos/sashawolff/4598355045/</a>より引用しました。<a class="arrow" href="/chapters/updating-showing-and-deleting-users?version=4.0#fnref-9_1">↑</a></li>
+<li id="fn-9_2">Gravatarサイトにアクセスすると、実際には<a href="http://en.gravatar.com/emails">http://en.gravatar.com/emails</a>にリダイレクトされます。ここは英語ユーザー向けですが、他の言語を考慮し、<tt>en</tt>をURLに含めませんでした。<a class="arrow" href="/chapters/updating-showing-and-deleting-users?version=4.0#fnref-9_2">↑</a></li>
+<li id="fn-9_3">この動作の詳細を気にする必要はありません (悪いことをしているわけでもありません)。この詳細に関心を抱くのはRailsフレームワークそのものの開発者ぐらいであり、Railsでアプリケーションを開発する人にとっては重要ではありません。<a class="arrow" href="/chapters/updating-showing-and-deleting-users?version=4.0#fnref-9_3">↑</a></li>
+<li id="fn-9_4">この節のコードは、<a href="http://github.com/thoughtbot/clearance">thoughtbot</a>が作成した<a href="http://thoughtbot.com/">Clearance</a> gemに合わせたものです。<a class="arrow" href="/chapters/updating-showing-and-deleting-users?version=4.0#fnref-9_4">↑</a></li>
+<li id="fn-9_5">赤ちゃんの写真は<a href="http://www.flickr.com/photos/glasgows/338937124/">http://www.flickr.com/photos/glasgows/338937124/</a>より引用しました。<a class="arrow" href="/chapters/updating-showing-and-deleting-users?version=4.0#fnref-9_5">↑</a></li>
+<li id="fn-9_6">この<code>user</code>という名前そのものはまったく重要ではないことにご注意ください。たとえばuserをfoobarに置き換え、<code>@users.each do |foobar|</code>と書いてから<code>render foobar</code>と呼び出しても問題なく動作します。重要なのは、そのオブジェクトそのものではなく、そのオブジェクトが属している<em>クラス</em> (この場合は<code>User</code>クラス) の方です。<a class="arrow" href="/chapters/updating-showing-and-deleting-users?version=4.0#fnref-9_6">↑</a></li>
+<li id="fn-9_7"><tt>curl</tt>などのコマンドラインツールを使用すると、<tt>PATCH</tt>リクエストをこの形式で送信することができます。<a class="arrow" href="/chapters/updating-showing-and-deleting-users?version=4.0#fnref-9_7">↑</a></li>
+<li id="fn-9_8">http://api.rubyonrails.org/v4.0.0/classes/ActionDispatch/Request.html <a class="arrow" href="/chapters/updating-showing-and-deleting-users?version=4.0#fnref-9_8">↑</a></li>
 </ol>
 </div>
 

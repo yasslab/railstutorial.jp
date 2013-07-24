@@ -131,7 +131,7 @@
 <h3><a id="sec-2_1_2" href="/chapters/a-demo-app?version=4.0#sec-modeling_demo_microposts" class="heading"><span class="number">2.1.2</span>マイクロポストのモデル設計</a></h3>
 
 
-<p>マイクロポストのデータモデルはユーザー用のデータモデルよりもさらにシンプルです。<code>id</code>と、マイクロポストのテキスト内容を格納する<code>string</code>型の<code>content</code>だけで構成されています<sup class="footnote" id="fnref-2_1"><a href="/chapters/a-demo-app.html?version=4.0#fn-2_1">1</a></sup>。しかし実際には、マイクロポストをユーザーと<em>関連付ける (associate)</em> 必要があるため、ポストのオーナーを記録するための<code>user_id</code>も追加します。これにより、データモデルは<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-demo_micropost_model">図2.3</a>のようになります。</p>
+<p>マイクロポストのデータモデルはユーザー用のデータモデルよりもさらにシンプルです。<code>id</code>と、マイクロポストのテキスト内容を格納する<code>string</code>型の<code>content</code>だけで構成されています<sup class="footnote" id="fnref-2_1"><a href="/chapters/a-demo-app?version=4.0#fn-2_1">1</a></sup>。しかし実際には、マイクロポストをユーザーと<em>関連付ける (associate)</em> 必要があるため、ポストのオーナーを記録するための<code>user_id</code>も追加します。これにより、データモデルは<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-demo_micropost_model">図2.3</a>のようになります。</p>
 
 <div class="label" id="fig-demo_micropost_model"></div>
 
@@ -150,7 +150,7 @@
 <p>ここでは、<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-modeling_demo_users">2.1.1</a>で説明したユーザー用のデータモデルを、そのモデルを表示するためのWebインターフェイスに従って実装します。
 このデータモデルとWebインターフェイスは、組み合わさって<em>Usersリソース</em>となり、ユーザーというものを、<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTPプロトコル</a>経由で自由に作成/読み出し/更新/削除できるオブジェクトとみなすことができるようになります。「はじめに」で約束したとおり、このUsersリソースはすべてのRailsプロジェクトに標準装備されているscaffoldジェネレータで生成します。scaffoldで生成された膨大なコードを今詳細に読む必要はありません。今の段階ではおそらく混乱するだけでしょう。</p>
 
-<p>Railsのscaffoldは、<code>rails generate</code>スクリプトに<code>scaffold</code>コマンドを渡すことで生成されます。<code>scaffold</code>コマンドの引数には、リソース名を単数形にしたもの (この場合は<code>User</code>) を使用し、必要に応じてデータモデルの属性をオプションとしてパラメータに追加します<sup class="footnote" id="fnref-2_2"><a href="/chapters/a-demo-app.html?version=4.0#fn-2_2">2</a></sup>。</p>
+<p>Railsのscaffoldは、<code>rails generate</code>スクリプトに<code>scaffold</code>コマンドを渡すことで生成されます。<code>scaffold</code>コマンドの引数には、リソース名を単数形にしたもの (この場合は<code>User</code>) を使用し、必要に応じてデータモデルの属性をオプションとしてパラメータに追加します<sup class="footnote" id="fnref-2_2"><a href="/chapters/a-demo-app?version=4.0#fn-2_2">2</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre>$ rails generate scaffold User name:string email:string
       invoke  active_record
@@ -337,7 +337,7 @@
 <li>Userモデルはユーザーの一覧をコントローラに返す。</li>
 <li>コントローラはユーザーの一覧を<code>@users</code>変数に保存し、<code>index</code>ビューに渡す。</li>
 <li>ビューは、その中に埋め込まれているRubyを使用してHTMLを生成する。</li>
-<li>コントローラは、生成されたHTMLをブラウザに返す<sup class="footnote" id="fnref-2_3"><a href="/chapters/a-demo-app.html?version=4.0#fn-2_3">3</a></sup>。</li>
+<li>コントローラは、生成されたHTMLをブラウザに返す<sup class="footnote" id="fnref-2_3"><a href="/chapters/a-demo-app?version=4.0#fn-2_3">3</a></sup>。</li>
 </ol>
 
 
@@ -416,7 +416,7 @@
 </div></div>
 
 
-<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力してもよいのですが)。<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="/chapters/a-demo-app?version=4.0#sidebar-REST">囲み2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="/chapters/a-demo-app.html?version=4.0#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_users">表2.2</a>のURLには重複しているものがあることにご注目ください。たとえば、<code>show</code>アクションと <code>update</code>アクションは、どちらも/users/1というURLに対応しています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/chapters/static-pages?version=4.0#sec-TDD">3.2.1</a>で説明します。</p>
+<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力してもよいのですが)。<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="/chapters/a-demo-app?version=4.0#sidebar-REST">囲み2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="/chapters/a-demo-app?version=4.0#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_users">表2.2</a>のURLには重複しているものがあることにご注目ください。たとえば、<code>show</code>アクションと <code>update</code>アクションは、どちらも/users/1というURLに対応しています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/chapters/static-pages?version=4.0#sec-TDD">3.2.1</a>で説明します。</p>
 
 <div class="label" id="table-demo_RESTful_users"></div>
 
@@ -545,7 +545,7 @@
 <h3><a id="sec-2_3_1" href="/chapters/a-demo-app?version=4.0#sec-a_micropost_microtour" class="heading"><span class="number">2.3.1</span>マイクロポストのページを表示する</a></h3>
 
 
-<p>Usersリソースの場合と同様に、Micropostsリソースもscaffoldでコードを生成してみましょう。<code>rails generate scaffold</code>コマンドを使用して、<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-demo_micropost_model">図2.3</a>のデータモデルを実装してみます<sup class="footnote" id="fnref-2_5"><a href="/chapters/a-demo-app.html?version=4.0#fn-2_5">5</a></sup>。</p>
+<p>Usersリソースの場合と同様に、Micropostsリソースもscaffoldでコードを生成してみましょう。<code>rails generate scaffold</code>コマンドを使用して、<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-demo_micropost_model">図2.3</a>のデータモデルを実装してみます<sup class="footnote" id="fnref-2_5"><a href="/chapters/a-demo-app?version=4.0#fn-2_5">5</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre>$ rails generate scaffold Micropost content:string user_id:integer
       invoke  active_record
@@ -595,7 +595,7 @@
 </div>
 
 
-<p>これでMicropostsを作成する準備ができました。作成方法は<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-a_user_tour">2.2.1</a>と同じです。Railsのroutesファイルは期待どおりにscaffoldジェネレータによって更新され、<a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_microposts_resource">リスト2.7</a>のようにMicropostsリソース用のルールが追加されました<sup class="footnote" id="fnref-2_6"><a href="/chapters/a-demo-app.html?version=4.0#fn-2_6">6</a></sup>。ユーザーの場合と同様、<code>resources :microposts</code>というルーティングルールは、<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_microposts">表2.3</a>に示したようにマイクロポスト用のURLをMicropostsコントローラ内のアクションに割り当てます。</p>
+<p>これでMicropostsを作成する準備ができました。作成方法は<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-a_user_tour">2.2.1</a>と同じです。Railsのroutesファイルは期待どおりにscaffoldジェネレータによって更新され、<a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_microposts_resource">リスト2.7</a>のようにMicropostsリソース用のルールが追加されました<sup class="footnote" id="fnref-2_6"><a href="/chapters/a-demo-app?version=4.0#fn-2_6">6</a></sup>。ユーザーの場合と同様、<code>resources :microposts</code>というルーティングルールは、<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_microposts">表2.3</a>に示したようにマイクロポスト用のURLをMicropostsコントローラ内のアクションに割り当てます。</p>
 
 <div class="label" id="code-demo_microposts_resource"></div>
 
@@ -771,7 +771,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/micropost_user_association.png" alt="micropost_user_association" /></span></div><div class="caption"><span class="header">図2.15</span><span class="description">マイクロポストとユーザーの関連付け。</span></div></div>
 
 
-<p><a class="ref" href="/chapters/user-microposts?version=4.0#top">第10章</a>と<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>では、関連付けられたユーザーとマイクロポストを同時に表示し、Twitterのようなマイクロポストのフィードを作成する予定です。ここでは、Railsの<em>console</em>を使用して、ユーザーとマイクロポストの関連付けを確認するにとどめます。Railsのconsoleは、Railsアプリケーションを対話的に操作することができる便利なツールです。まず、ターミナルで<code>rails console</code>コマンドを入力します。続いて、<code>User.first</code>を使用してデータベースから1人目のユーザーの情報を取り出し、<code>first_user</code>変数に保存します<sup class="footnote" id="fnref-2_7"><a href="/chapters/a-demo-app.html?version=4.0#fn-2_7">7</a></sup>。</p>
+<p><a class="ref" href="/chapters/user-microposts?version=4.0#top">第10章</a>と<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>では、関連付けられたユーザーとマイクロポストを同時に表示し、Twitterのようなマイクロポストのフィードを作成する予定です。ここでは、Railsの<em>console</em>を使用して、ユーザーとマイクロポストの関連付けを確認するにとどめます。Railsのconsoleは、Railsアプリケーションを対話的に操作することができる便利なツールです。まず、ターミナルで<code>rails console</code>コマンドを入力します。続いて、<code>User.first</code>を使用してデータベースから1人目のユーザーの情報を取り出し、<code>first_user</code>変数に保存します<sup class="footnote" id="fnref-2_7"><a href="/chapters/a-demo-app?version=4.0#fn-2_7">7</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="n">first_user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">first</span>
@@ -972,13 +972,13 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 </a><a class="next_page" href="/chapters/static-pages?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-2_1">もっと普通の、マイクロでないポストを扱いたい場合は、<code>string</code>の代わりに<code>text</code>を指定します。<a class="arrow" href="/chapters/a-demo-app.html?version=4.0#fnref-2_1">↑</a></li>
-<li id="fn-2_2">scaffoldにおける命名は、<em>モデル</em>名の命名の習慣に従っています。リソースやコントローラは複数形で表し、モデルは単数形で表すのが普通です。<code>User</code>ではなく<code>Users</code>としたのはこのためです。<a class="arrow" href="/chapters/a-demo-app.html?version=4.0#fnref-2_2">↑</a></li>
-<li id="fn-2_3">ビューは、(ApacheやNginxなどのWebサーバーを経由してはいるが) ブラウザにHTMLを直接返すと説明している文献もあります。私は、Railsの実際の実装とは無関係に、コントローラを情報の流れの中心となるハブとみなすことを好んでいます。<a class="arrow" href="/chapters/a-demo-app.html?version=4.0#fnref-2_3">↑</a></li>
-<li id="fn-2_4">Fielding, Roy Thomas. <em>Architectural Styles and the Design of Network-based Software Architectures</em>.  Doctoral dissertation, University of California, Irvine, 2000. <a class="arrow" href="/chapters/a-demo-app.html?version=4.0#fnref-2_4">↑</a></li>
-<li id="fn-2_5">ユーザーでscaffoldを実行した場合と同様に、scaffoldジェネレータはマイクロポストでもRailsモデルを単数形とする習慣に従います。実行したコマンドが<code>generate Micropost</code>と単数形になっていたのはこのためです。<a class="arrow" href="/chapters/a-demo-app.html?version=4.0#fnref-2_5">↑</a></li>
-<li id="fn-2_6">scaffoldで生成したコードには<a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_microposts_resource">2.7</a>よりも多くの改行が追加されます。Rubyは単なる改行を無視するので、問題はありません。<a class="arrow" href="/chapters/a-demo-app.html?version=4.0#fnref-2_6">↑</a></li>
-<li id="fn-2_7">実際のターミナル上では、プロンプトが<code>ruby-2.0.0-head &gt;</code>などと表示される可能性がありますが、Rubyのバージョンが環境によって異なる可能性があるため、例のプロンプトは<tt class="verb">&gt;&gt;</tt>と表記しています。<a class="arrow" href="/chapters/a-demo-app.html?version=4.0#fnref-2_7">↑</a></li>
+<li id="fn-2_1">もっと普通の、マイクロでないポストを扱いたい場合は、<code>string</code>の代わりに<code>text</code>を指定します。<a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_1">↑</a></li>
+<li id="fn-2_2">scaffoldにおける命名は、<em>モデル</em>名の命名の習慣に従っています。リソースやコントローラは複数形で表し、モデルは単数形で表すのが普通です。<code>User</code>ではなく<code>Users</code>としたのはこのためです。<a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_2">↑</a></li>
+<li id="fn-2_3">ビューは、(ApacheやNginxなどのWebサーバーを経由してはいるが) ブラウザにHTMLを直接返すと説明している文献もあります。私は、Railsの実際の実装とは無関係に、コントローラを情報の流れの中心となるハブとみなすことを好んでいます。<a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_3">↑</a></li>
+<li id="fn-2_4">Fielding, Roy Thomas. <em>Architectural Styles and the Design of Network-based Software Architectures</em>.  Doctoral dissertation, University of California, Irvine, 2000. <a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_4">↑</a></li>
+<li id="fn-2_5">ユーザーでscaffoldを実行した場合と同様に、scaffoldジェネレータはマイクロポストでもRailsモデルを単数形とする習慣に従います。実行したコマンドが<code>generate Micropost</code>と単数形になっていたのはこのためです。<a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_5">↑</a></li>
+<li id="fn-2_6">scaffoldで生成したコードには<a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_microposts_resource">2.7</a>よりも多くの改行が追加されます。Rubyは単なる改行を無視するので、問題はありません。<a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_6">↑</a></li>
+<li id="fn-2_7">実際のターミナル上では、プロンプトが<code>ruby-2.0.0-head &gt;</code>などと表示される可能性がありますが、Rubyのバージョンが環境によって異なる可能性があるため、例のプロンプトは<tt class="verb">&gt;&gt;</tt>と表記しています。<a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_7">↑</a></li>
 </ol>
 </div>
 

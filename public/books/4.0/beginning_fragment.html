@@ -44,7 +44,7 @@
 
 <p>この第1章では、必要なソフトウェアをインストールし、開発環境 (<a class="ref" href="/chapters/beginning?version=4.0#sec-up_and_running">1.2</a>) を整えてRuby on Railsの準備をします。続いて、<code>first_app</code> という最初のRailsアプリの作成に着手します。<em>Railsチュートリアル</em>ではソフトウェア開発のベストプラクティスを重要視しているので、新しいRailsプロジェクトを作成後、ただちにGit (<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>) を使用してバージョン管理下に置きます。そして何と、この章では本番 (production) 環境 (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>) に<em>展開して一般公開する</em>ところまで行います。</p>
 
-<p><a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/chapters/beginning?version=4.0#sidebar-scaffolding">囲み1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/chapters/beginning.html?version=4.0#fn-1_1">1</a></sup>と呼ばれることもあります)を指定してデモアプリを使ってみます。</p>
+<p><a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/chapters/beginning?version=4.0#sidebar-scaffolding">囲み1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/chapters/beginning?version=4.0#fn-1_1">1</a></sup>と呼ばれることもあります)を指定してデモアプリを使ってみます。</p>
 
 <p>第3章以降では、<em>サンプルアプリケーション</em> (<code>sample_app</code>と呼びます) を作成します。このアプリはTDD(<em>テストドリブン開発</em> で開発を進め、<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>で静的ページ (と若干の動的コンテンツ) を追加するところから始めます。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a>では少し回り道をし、Railsを動かしているRuby言語について簡単に学びます。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>から<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>ではレイアウト、ユーザーのデータモデル、そしてユーザー登録・認証システムを作りサンプルアプリの基礎を完成させます。最後に<a class="ref" href="/chapters/user-microposts?version=4.0#top">第10章</a>と<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>ではマイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
 
@@ -86,11 +86,11 @@
 
 <p><em>Rails チュートリアル</em>にはRailsだけではなく、Ruby言語、<a href="http://en.wikipedia.org/wiki/HTML">HTML</a>、<a href="http://en.wikipedia.org/wiki/CSS">CSS</a>、若干の<a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a>、そしてさらにわずかの<a href="http://en.wikipedia.org/wiki/SQL">SQL</a>のためのチュートリアルを含んでいます。あなたの現時点のWeb開発の知識量にかかわらず、このチュートリアルを読み終える頃には、高度な情報源を難なく読みこなし、各トピックをさらにシステマチックに取り扱えるほどの実力が付く内容になっています。これは、本書で扱われているマテリアルが<em>極めて膨大である</em>ということでもあります。コンピュータのプログラミング経験があまりない人にとっては、その情報量に圧倒されることがあるかもしれません。読者の経験や知識に応じて<em>Railsチュートリアル</em>を習得するためのアドバイスを以下に用意しました。ぜひ参考にしてください。<br /></p>
 
-<p><strong>すべての読者へ: </strong>良く聞かれる質問の１つが、「Railsを覚える前にRubyを勉強しておいた方がいいでしょうか」です。答えは「あなた自身の学習スタイルとプログラミング経験によります」です。最初からすべてを体系的に学びたい、またはプログラミングの経験がまったくない場合には、おそらくRubyを最初に学んでおくのがよいでしょう。Rubyを学ぶのであれば、Peter Cooper「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」(邦訳は現時点ではなし) がお勧めです。一方、Rails開発初心者の多くは<em>Webアプリケーション</em>の作成にたちまち夢中になり、たった1つのWebページを作成するために500ページものRuby本を読み通す気にはなれないでしょう。このような方には、対話的に Rubyを学習できるWebサービス<a href="http://tryruby.org/">Try Ruby</a><sup class="footnote" id="fnref-1_2"><a href="/chapters/beginning.html?version=4.0#fn-1_2">2</a></sup>でRubyを大まかに理解し、必要に応じて<a href="http://railsforzombies.org/">Rails for Zombies</a><sup class="footnote" id="fnref-1_3"><a href="/chapters/beginning.html?version=4.0#fn-1_3">3</a></sup>でRailsでどんなことができるかを学んでおくことをお勧めします (いずれも日本語版はなし)。</p>
+<p><strong>すべての読者へ: </strong>良く聞かれる質問の１つが、「Railsを覚える前にRubyを勉強しておいた方がいいでしょうか」です。答えは「あなた自身の学習スタイルとプログラミング経験によります」です。最初からすべてを体系的に学びたい、またはプログラミングの経験がまったくない場合には、おそらくRubyを最初に学んでおくのがよいでしょう。Rubyを学ぶのであれば、Peter Cooper「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」(邦訳は現時点ではなし) がお勧めです。一方、Rails開発初心者の多くは<em>Webアプリケーション</em>の作成にたちまち夢中になり、たった1つのWebページを作成するために500ページものRuby本を読み通す気にはなれないでしょう。このような方には、対話的に Rubyを学習できるWebサービス<a href="http://tryruby.org/">Try Ruby</a><sup class="footnote" id="fnref-1_2"><a href="/chapters/beginning?version=4.0#fn-1_2">2</a></sup>でRubyを大まかに理解し、必要に応じて<a href="http://railsforzombies.org/">Rails for Zombies</a><sup class="footnote" id="fnref-1_3"><a href="/chapters/beginning?version=4.0#fn-1_3">3</a></sup>でRailsでどんなことができるかを学んでおくことをお勧めします (いずれも日本語版はなし)。</p>
 
 <p>もう１つよく聞かれる質問が「最初からテストしてもよいのか」というものです。「はじめに」で述べたように、<em>Rails チュートリアル</em>では最初からテスト駆動開発 (TDD) を採用しています。これは著者からみてRailsアプリケーションを開発するのに最適な方法ですが、その分かなり複雑になり、習得に時間もかかります。テストが面倒になったり、難しくて前に進めなくなった場合、思い切ってその箇所をスキップするか、テストはコード検証のためのツールと割りきって単に動かすだけにとどめ、理解は後回しにしてしまっても構いません。後者でいうテストとは、<em>spec</em>と呼ばれるテストファイルを作成し、そこにテストコードを本書で指示された<em>とおり</em>にコピペするということです。その後テストスイートを実行します。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>で実践しますが、最初はテストに失敗し、次にチュートリアルに従ってコードを書くと次のテストにはパスするようにシナリオが作られています。<br /></p>
 
-<p><strong>経験の浅いプログラマ: </strong> ご注意いただきたいのですが、<em>Railsチュートリアル</em>は、まったくのプログラミング初心者、Webアプリケーションの初心者を主な読者層としては想定していません。プログラミング言語やWebアプリケーションは、たとえどれほどシンプルなものであっても必ずある程度には複雑なものだからです。Webプログラミングについてまったくの初心者の方が、本書<em>Railsチュートリアル</em>が難しすぎると感じた場合は、まずHTMLとCSSの基礎を勉強してください。それから<em>Railsチュートリアル</em>に再度挑戦してください。(現時点でお勧めの学習教材を思いつかず恐縮ですが、HTMLの学習用として「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」はなかなかよさそうです。David Sawyer McFarlandによる「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>}」を推薦してくれた読者もいます)。Peter Cooperの「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の数章をやってみるのもよいでしょう。同書のサンプルアプリケーションは本格的なWebアプリケーションに比べて非常に小さいので、比較的やりやすいと思います。実のところ、驚くほど多くのプログラミング初心者の皆様が本書でWeb開発を学ぼうとしているのです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。そうした方には、「<a href="http://railstutorial.org/screencasts"><em>Rails Tutorial</em> screencastシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="/chapters/beginning.html?version=4.0#fn-1_4">4</a></sup>」(いずれも日本語版はなし) を特にお勧めします。このビデオチュートリアルは、Railsソフトウェア開発のベテランの作業を文字通り「肩越しに」学ぶことができます。<br /></p>
+<p><strong>経験の浅いプログラマ: </strong> ご注意いただきたいのですが、<em>Railsチュートリアル</em>は、まったくのプログラミング初心者、Webアプリケーションの初心者を主な読者層としては想定していません。プログラミング言語やWebアプリケーションは、たとえどれほどシンプルなものであっても必ずある程度には複雑なものだからです。Webプログラミングについてまったくの初心者の方が、本書<em>Railsチュートリアル</em>が難しすぎると感じた場合は、まずHTMLとCSSの基礎を勉強してください。それから<em>Railsチュートリアル</em>に再度挑戦してください。(現時点でお勧めの学習教材を思いつかず恐縮ですが、HTMLの学習用として「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」はなかなかよさそうです。David Sawyer McFarlandによる「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>}」を推薦してくれた読者もいます)。Peter Cooperの「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の数章をやってみるのもよいでしょう。同書のサンプルアプリケーションは本格的なWebアプリケーションに比べて非常に小さいので、比較的やりやすいと思います。実のところ、驚くほど多くのプログラミング初心者の皆様が本書でWeb開発を学ぼうとしているのです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。そうした方には、「<a href="http://railstutorial.org/screencasts"><em>Rails Tutorial</em> screencastシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="/chapters/beginning?version=4.0#fn-1_4">4</a></sup>」(いずれも日本語版はなし) を特にお勧めします。このビデオチュートリアルは、Railsソフトウェア開発のベテランの作業を文字通り「肩越しに」学ぶことができます。<br /></p>
 
 <p><strong>ソフトウェア開発経験があり、Web開発を始めたい方: </strong> プログラミングの経験がある方でクラス、メソッド、データ構造などに馴染みがあるなら、その知識は有利に働くはずです。JavaやC/C++とRubyではかなり記述スタイルが違うので少し違和感を感じるかもしれませんが、すぐに慣れるはずです (Rubyではセミコロン&#39;;&#39;も使えます)。<em>Railsチュートリアル</em>はWeb特有の概念をほぼカバーしているので、<tt>POST</tt>と<tt>PATCH</tt>の違いが分からなくても心配はいりません。<br /></p>
 
@@ -133,7 +133,7 @@
 
 <p>本書における取り決め (コマンドやコードの記述法などの統一) はできるだけ分かりやすく選んだつもりです。ここでは分かりにくいかもしれない部分を解説しておきます。</p>
 
-<p><a href="http://railstutorial.jp/book">HTML</a>版、<a href="http://railstutorial.jp/">PDF</a>版ともに、文中には内部リンク (<a class="ref" href="/chapters/beginning?version=4.0#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロード</a>ページなど) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="/chapters/beginning.html?version=4.0#fn-1_5">5</a></sup>。</p>
+<p><a href="http://railstutorial.jp/book">HTML</a>版、<a href="http://railstutorial.jp/">PDF</a>版ともに、文中には内部リンク (<a class="ref" href="/chapters/beginning?version=4.0#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロード</a>ページなど) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="/chapters/beginning?version=4.0#fn-1_5">5</a></sup>。</p>
 
 <p>本書の出てくる例の多くはコマンドライン (ターミナル) のコマンドを使っています。簡単にするため、すべてのコマンドライン例では、次のようにUnixスタイルの$プロンプトを使用しています。</p>
 
@@ -151,7 +151,7 @@
 </div>
 
 
-<p>Unix上では、コマンドを入力する際<code>sudo</code> (他のユーザーの特権レベルでプログラムを実行するためのコマンド) を使わなければならない場合があります<sup class="footnote" id="fnref-1_6"><a href="/chapters/beginning.html?version=4.0#fn-1_6">6</a></sup>。デフォルトで<code>sudo</code>コマンドで実行されたプログラムは、<a class="ref" href="/chapters/beginning?version=4.0#sec-rubygems">1.2.2</a>の例のように通常のユーザーはアクセスできないファイルやディレクトリへのアクセス権を持つ「管理者権限」で実行されます。</p>
+<p>Unix上では、コマンドを入力する際<code>sudo</code> (他のユーザーの特権レベルでプログラムを実行するためのコマンド) を使わなければならない場合があります<sup class="footnote" id="fnref-1_6"><a href="/chapters/beginning?version=4.0#fn-1_6">6</a></sup>。デフォルトで<code>sudo</code>コマンドで実行されたプログラムは、<a class="ref" href="/chapters/beginning?version=4.0#sec-rubygems">1.2.2</a>の例のように通常のユーザーはアクセスできないファイルやディレクトリへのアクセス権を持つ「管理者権限」で実行されます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> sudo ruby setup.rb</pre></div>
 </div>
@@ -203,7 +203,7 @@
 
 <p><em>Railsチュートリアル</em>には、シェルコマンドやバージョン管理ソフトウェア、Rubyプログラムなどが出力するさまざまな結果が多数掲載されています。出力結果はコンピュータシステムによって微妙に異なるのが普通であるため、本書に掲載されている出力結果が実際の出力と正確に同じであるとは限りませんが、このような違いについては問題ありません。</p>
 
-<p>システムの状態によっては、一部のコマンドを実行した時にエラーが発生することもあります。本書では、あらゆる場合を想定してエラー対策を事細かに記載するような<a href="http://en.wikipedia.org/wiki/Sisyphus">報われることのない苦労</a>を背負い込むことはやめました。代わりに、エラーメッセージを素直にGoogleで検索してください。これは実際のソフトウェア開発においても効果的なテクニックです。本書のチュートリアル実行中に何か問題が生じたら、<a href="http://railstutorial.org/help">RailsチュートリアルのHelpページ</a>に記載されているリソースを参照してください<sup class="footnote" id="fnref-1_7"><a href="/chapters/beginning.html?version=4.0#fn-1_7">7</a></sup>。</p>
+<p>システムの状態によっては、一部のコマンドを実行した時にエラーが発生することもあります。本書では、あらゆる場合を想定してエラー対策を事細かに記載するような<a href="http://en.wikipedia.org/wiki/Sisyphus">報われることのない苦労</a>を背負い込むことはやめました。代わりに、エラーメッセージを素直にGoogleで検索してください。これは実際のソフトウェア開発においても効果的なテクニックです。本書のチュートリアル実行中に何か問題が生じたら、<a href="http://railstutorial.org/help">RailsチュートリアルのHelpページ</a>に記載されているリソースを参照してください<sup class="footnote" id="fnref-1_7"><a href="/chapters/beginning?version=4.0#fn-1_7">7</a></sup>。</p>
 
 <div class="label" id="sec-up_and_running"></div>
 
@@ -230,7 +230,7 @@
 <h4><a id="sec-1_2_1_1" href="/chapters/beginning?version=4.0#sec-1_2_1_1" class="heading">IDE</a></h4>
 
 
-<p>Rails向けの統合開発環境 (IDE) として最も有名なのは<a href="http://www.aptana.com/rails/">RadRails</a>と<a href="http://www.jetbrains.com/ruby/index.html">RubyMine</a>です。特にRubyMineの評判がよいようです。さらに、David Loefflerという読者が「<a href="https://github.com/perfectionist/sample_project/wiki">RailsチュートリアルでRubyMineを使用する方法</a><sup class="footnote" id="fnref-1_8"><a href="/chapters/beginning.html?version=4.0#fn-1_8">8</a></sup>」というドキュメントまでまとめてくれました。IDEでの開発が好みという方は、自分のスタイルに合うかどうか上のリンクをチェックしてみるとよいでしょう。</p>
+<p>Rails向けの統合開発環境 (IDE) として最も有名なのは<a href="http://www.aptana.com/rails/">RadRails</a>と<a href="http://www.jetbrains.com/ruby/index.html">RubyMine</a>です。特にRubyMineの評判がよいようです。さらに、David Loefflerという読者が「<a href="https://github.com/perfectionist/sample_project/wiki">RailsチュートリアルでRubyMineを使用する方法</a><sup class="footnote" id="fnref-1_8"><a href="/chapters/beginning?version=4.0#fn-1_8">8</a></sup>」というドキュメントまでまとめてくれました。IDEでの開発が好みという方は、自分のスタイルに合うかどうか上のリンクをチェックしてみるとよいでしょう。</p>
 
 <h4><a id="sec-1_2_1_2" href="/chapters/beginning?version=4.0#sec-1_2_1_2" class="heading">テキストエディタとコマンドライン</a></h4>
 
@@ -238,13 +238,13 @@
 <p>著者自身は、すべてが整った強力なIDEの代わりに、<em>テキストエディタ</em>でテキストを編集し、<em>コマンドライン</em>でコマンドを実行するというシンプルな手段を好んでいます (<a class="ref" href="/chapters/beginning?version=4.0#fig-editor_shell">図 1.1</a>)。どの組み合わせを使うかは自身の好みとプラットフォームによりますが。</p>
 
 <ul>
-<li><strong>テキストエディタ</strong>: 断然<a href="http://www.sublimetext.com/2">Sublime Text 2</a>をお勧めします。これは非常によくできたクロスプラットフォームのテキストエディタであり、現段階ではまだベータ版ですが、とてもそうは思えないほどパワフルです<sup class="footnote" id="fnref-1_9"><a href="/chapters/beginning.html?version=4.0#fn-1_9">9</a></sup>。Sublime Textは<a href="http://macromates.com">TextMate</a>の影響を強く受けています。そして実際、スニペットやカラースキームなどについてはTextMateのカスタマイズ設定と互換性があります (あなたがMacユーザーであれば、TextMateは今でも良い選択であると言えます。OS X版しかありませんが)。2番目の選択肢にふさわしい<a href="http://www.vim.org/">Vim</a><sup class="footnote" id="fnref-1_10"><a href="/chapters/beginning.html?version=4.0#fn-1_10">10</a></sup>も多くのプラットフォームで動作します。Vimは無償で手に入りますが、Sublime Textは商用版を入手できます。どちらもプロの使用に耐えうるものですが、著者の経験ではSublime Textは初心者にとって<em>はるかに</em>扱いやすいものであると言えます。</li>
+<li><strong>テキストエディタ</strong>: 断然<a href="http://www.sublimetext.com/2">Sublime Text 2</a>をお勧めします。これは非常によくできたクロスプラットフォームのテキストエディタであり、現段階ではまだベータ版ですが、とてもそうは思えないほどパワフルです<sup class="footnote" id="fnref-1_9"><a href="/chapters/beginning?version=4.0#fn-1_9">9</a></sup>。Sublime Textは<a href="http://macromates.com">TextMate</a>の影響を強く受けています。そして実際、スニペットやカラースキームなどについてはTextMateのカスタマイズ設定と互換性があります (あなたがMacユーザーであれば、TextMateは今でも良い選択であると言えます。OS X版しかありませんが)。2番目の選択肢にふさわしい<a href="http://www.vim.org/">Vim</a><sup class="footnote" id="fnref-1_10"><a href="/chapters/beginning?version=4.0#fn-1_10">10</a></sup>も多くのプラットフォームで動作します。Vimは無償で手に入りますが、Sublime Textは商用版を入手できます。どちらもプロの使用に耐えうるものですが、著者の経験ではSublime Textは初心者にとって<em>はるかに</em>扱いやすいものであると言えます。</li>
 
 <li><strong>ターミナル: </strong> OS Xの場合、<a href="http://iterm.sourceforge.net/">iTerm</a>かシステム備え付けのTerminal appをお勧めします。Linuxの場合、デフォルトのターミナルで構いません。Windowsの場合、Rails環境をそのままインストールするよりも、Linuxが動作する仮想マシン上にインストールすることを好む人が多いようです。この場合、コマンドラインオプションは従来通りです。開発環境をWindows自身にインストールするのであれば、コマンドラインは<a href="http://railsinstaller.org/">Railsインストーラ</a>付属の物がおすすめです (<a class="ref" href="/chapters/beginning?version=4.0#sec-rails_installer_windows">1.2.2.1</a>)。</li>
 </ul>
 
 
-<p>Sublime Textを選んだ方のために、オプション設定方法を解説した<a href="https://github.com/mhartl/rails_tutorial_sublime_text">Railsチュートリアル: Sublime Text</a><sup class="footnote" id="fnref-1_11"><a href="/chapters/beginning.html?version=4.0#fn-1_11">11</a></sup>を用意してあります。(この種の設定はいろいろと面倒でエラーも起きやすいので、あくまで上級者向けです。Sublime Textはデフォルト設定のままでも依然としてRailsアプリケーションを編集するための良い選択肢です。)</p>
+<p>Sublime Textを選んだ方のために、オプション設定方法を解説した<a href="https://github.com/mhartl/rails_tutorial_sublime_text">Railsチュートリアル: Sublime Text</a><sup class="footnote" id="fnref-1_11"><a href="/chapters/beginning?version=4.0#fn-1_11">11</a></sup>を用意してあります。(この種の設定はいろいろと面倒でエラーも起きやすいので、あくまで上級者向けです。Sublime Textはデフォルト設定のままでも依然としてRailsアプリケーションを編集するための良い選択肢です。)</p>
 
 <div class="label" id="fig-editor_shell"></div>
 
@@ -317,7 +317,7 @@
 
 <p>OS X、またはLinuxを使う場合、<a href="http://rvm.io/">Ruby Version Manager (RVM)</a> または<a href="https://github.com/sstephenson/rbenv">rbenv</a>を使用してRubyをインストールすることを強くお勧めします。RVMを使うと、複数のRubyバージョンを共存させられるのでとても便利です (Windows上で動作する同様のソフトに<a href="http://github.com/vertiginous/pik">Pik</a>があります)。同じマシン上で異なるバージョンのRubyやRailsを実行したい場合、これは特に重要です。ただし、残念ながらRVMとrbenvは共存できませんのでご注意ください。著者は本書でRVMを使い続けているので、今回もRVMを使用します。rbenvもかなり評判がよいようなので、rbenvをよく知っているか、rbenvの達人が身近にいるのであればそちらをお使いいただいてもかまいません。</p>
 
-<p>Mac OS Xユーザーの場合、Xcodeという開発ツールのインストールが必要なことがあります。Xcodeのサイズは大きいので、それよりはるかにサイズの小さい<a href="https://developer.apple.com/downloads/">Command Line Tools for Xcode</a>をお勧めします<sup class="footnote" id="fnref-1_12"><a href="/chapters/beginning.html?version=4.0#fn-1_12">12</a></sup>。</p>
+<p>Mac OS Xユーザーの場合、Xcodeという開発ツールのインストールが必要なことがあります。Xcodeのサイズは大きいので、それよりはるかにサイズの小さい<a href="https://developer.apple.com/downloads/">Command Line Tools for Xcode</a>をお勧めします<sup class="footnote" id="fnref-1_12"><a href="/chapters/beginning?version=4.0#fn-1_12">12</a></sup>。</p>
 
 <p>Rubyをインストールする前に、以下を実行して<a href="http://rvm.io/rvm/install/">RVM</a>をインストールします。</p>
 
@@ -393,7 +393,7 @@
 </div>
 
 
-<p>RVMの詳細については、「<a href="http://strandcode.com/2013/07/11/ruby-version-manager-rvm-overview-for-rails-newbs/">Rails初心者のためのRuby Version Manager (RVM) の概要</a> (英語)」という記事を参考にしてください<sup class="footnote" id="fnref-1_13"><a href="/chapters/beginning.html?version=4.0#fn-1_13">13</a></sup>。</p>
+<p>RVMの詳細については、「<a href="http://strandcode.com/2013/07/11/ruby-version-manager-rvm-overview-for-rails-newbs/">Rails初心者のためのRuby Version Manager (RVM) の概要</a> (英語)」という記事を参考にしてください<sup class="footnote" id="fnref-1_13"><a href="/chapters/beginning?version=4.0#fn-1_13">13</a></sup>。</p>
 
 <div class="label" id="sec-install_rubygems"></div>
 
@@ -734,7 +734,7 @@
 
 <p><code>coffee-rails</code> (これもAsset Pipelineで使用するgemです) のバージョンが<code>4.0.0</code>より大きく、<code>4.1</code>より小さい場合にインストールします。つまり、<tt class="verb">&gt;=</tt>と書くと<code>bundle install</code>の実行時に必ずアップグレードが行われますが、<tt class="verb">~&gt; 4.0.0</tt>と書くとマイナーなアップグレードしか行われないことになります。この場合<code>4.0.0</code>から<code>4.0.1</code>へのアップグレードは行われますが、<code>4.0</code>から<code>4.1</code>へのアップグレードは行われません。経験上、残念ながらマイナーアップグレードですら問題を引き起こすことがあります。このため、<em>Railsチュートリアル</em>では基本的にすべてのgemでバージョンをピンポイントで指定してます。ベテラン開発者であれば、<code>Gemfile</code>で<tt class="verb">~&gt;</tt>が指定されているgemも含め、基本的に最新のgemを使用しても構いません。ただし、それによって本書に記載されているのと異なる挙動を示す可能性がありますので、その場合は各自でご対応願います。</p>
 
-<p><code>Gemfile</code>を正しく設定した後、<code>bundle update</code><sup class="footnote" id="fnref-1_14"><a href="/chapters/beginning.html?version=4.0#fn-1_14">14</a></sup>と<code>bundle install</code>を使用してgemをインストールします。</p>
+<p><code>Gemfile</code>を正しく設定した後、<code>bundle update</code><sup class="footnote" id="fnref-1_14"><a href="/chapters/beginning?version=4.0#fn-1_14">14</a></sup>と<code>bundle install</code>を使用してgemをインストールします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle update
 <span class="gp">$</span> bundle install
@@ -765,7 +765,7 @@
 </div>
 
 
-<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムを確認してください。<a href="http://nodejs.org/">Node.js</a>が特にお勧めです)。表示されたメッセージは、RailsアプリケーションがIPaddress <code>0.0.0.0</code>、<a href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">ポート番号</a>3000<sup class="footnote" id="fnref-1_15"><a href="/chapters/beginning.html?version=4.0#fn-1_15">15</a></sup>で動作していることを示しています。このIPアドレスは、このマシンに設定されているすべてのIPアドレスで受信待ち (listen) するように指定しています。これにより、<code>127.0.0.1</code>(<code>localhost</code>)という特別なアドレスでアプリケーションをブラウズできます。<a class="ref" href="/chapters/beginning?version=4.0#fig-riding_rails">図1.3</a>は、<a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示した時の結果です。</p>
+<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムを確認してください。<a href="http://nodejs.org/">Node.js</a>が特にお勧めです)。表示されたメッセージは、RailsアプリケーションがIPaddress <code>0.0.0.0</code>、<a href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">ポート番号</a>3000<sup class="footnote" id="fnref-1_15"><a href="/chapters/beginning?version=4.0#fn-1_15">15</a></sup>で動作していることを示しています。このIPアドレスは、このマシンに設定されているすべてのIPアドレスで受信待ち (listen) するように指定しています。これにより、<code>127.0.0.1</code>(<code>localhost</code>)という特別なアドレスでアプリケーションをブラウズできます。<a class="ref" href="/chapters/beginning?version=4.0#fig-riding_rails">図1.3</a>は、<a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示した時の結果です。</p>
 
 <div class="label" id="fig-riding_rails"></div>
 
@@ -839,7 +839,7 @@
 
 <p>本書では、<code>co</code>エイリアスを設定していないシステムでも動作するようにフルスペルの<code>checkout</code>を使用していますが、著者自身は実際の開発ではほとんどいつも<code>git co</code>を使ってプロジェクトをチェックアウトしています。</p>
 
-<p>手順の最後として、Gitのコミットメッセージを入力するときに使用するエディタを設定できます。Sublime Text、TextMate、gVim、MacVimなどのGUIエディタを使用する場合、シェルから離れずシェル内で起動するようフラグを付けてください<sup class="footnote" id="fnref-1_16"><a href="/chapters/beginning.html?version=4.0#fn-1_16">16</a></sup>。</p>
+<p>手順の最後として、Gitのコミットメッセージを入力するときに使用するエディタを設定できます。Sublime Text、TextMate、gVim、MacVimなどのGUIエディタを使用する場合、シェルから離れずシェル内で起動するようフラグを付けてください<sup class="footnote" id="fnref-1_16"><a href="/chapters/beginning?version=4.0#fn-1_16">16</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git config --global core.editor <span class="s2">&quot;subl -w&quot;</span>
 </pre></div>
@@ -859,7 +859,7 @@
 </div>
 
 
-<p>次に、プロジェクトのファイルをリポジトリに追加します。ここで１つ問題点があります。Gitは<em>すべての</em>ファイルの変更履歴を管理するようになっていますが、管理対象に含めたくないファイルもあります。たとえば、Railsによって作成されるログファイルは頻繁に内容が変わるので、いちいちバージョン管理に更新させたくありません。Gitにはこういったファイルを管理対象から除外する機能があります。<code>.gitignore</code>というファイルをアプリケーションのルートディレクトリに置き、除外したいファイルを指定するためのルールをそこに記載します<sup class="footnote" id="fnref-1_17"><a href="/chapters/beginning.html?version=4.0#fn-1_17">17</a></sup>。</p>
+<p>次に、プロジェクトのファイルをリポジトリに追加します。ここで１つ問題点があります。Gitは<em>すべての</em>ファイルの変更履歴を管理するようになっていますが、管理対象に含めたくないファイルもあります。たとえば、Railsによって作成されるログファイルは頻繁に内容が変わるので、いちいちバージョン管理に更新させたくありません。Gitにはこういったファイルを管理対象から除外する機能があります。<code>.gitignore</code>というファイルをアプリケーションのルートディレクトリに置き、除外したいファイルを指定するためのルールをそこに記載します<sup class="footnote" id="fnref-1_17"><a href="/chapters/beginning?version=4.0#fn-1_17">17</a></sup>。</p>
 
 <p><a class="ref" href="/chapters/beginning?version=4.0#table-rails_directory_structure">表1.1</a>をもう一度見てみると、<code>rails</code>コマンドを実行した時にRailsアプリケーションのルートディレクトリに<code>.gitignore</code>ファイルが作成されています (<a class="ref" href="/chapters/beginning?version=4.0#code-default_gitignore">リスト1.6</a>)。</p>
 
@@ -935,7 +935,7 @@ doc/
 </div>
 
 
-<p>ここで「<code>.</code>」は現在のディレクトリ (カレントディレクトリ) を指します。Gitは<em>再帰的に</em>ファイルを追加できるので、自動的にすべてのサブディレクトリも追加されます。このコマンドによりプロジェクトのファイルは、コミット待ちの変更が格納されている「<em>ステージングエリア</em>」という一種の待機場所に追加されます。ステージングエリアにあるファイルのリストを表示するには、<code>status</code>コマンドを実行します<sup class="footnote" id="fnref-1_18"><a href="/chapters/beginning.html?version=4.0#fn-1_18">18</a></sup>。</p>
+<p>ここで「<code>.</code>」は現在のディレクトリ (カレントディレクトリ) を指します。Gitは<em>再帰的に</em>ファイルを追加できるので、自動的にすべてのサブディレクトリも追加されます。このコマンドによりプロジェクトのファイルは、コミット待ちの変更が格納されている「<em>ステージングエリア</em>」という一種の待機場所に追加されます。ステージングエリアにあるファイルのリストを表示するには、<code>status</code>コマンドを実行します<sup class="footnote" id="fnref-1_18"><a href="/chapters/beginning?version=4.0#fn-1_18">18</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git status
 <span class="gp">#</span> On branch master
@@ -1107,7 +1107,7 @@ doc/
 
 <p>2つ目のコマンド (<code>git branch</code>) は、単にすべてのローカルブランチを一覧表示しているだけです。「<code>*</code>」はそのブランチが現在使用中であることを表します。1番目の<code>git checkout -b modify-README</code>コマンドで、ブランチの新規作成とそのブランチへの切り替えが同時に行われていることに注目してください。<code>modify-README</code>ブランチに*が付いていることで、このブランチが現在使用中であることが示されています (<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>で<code>co</code>エイリアスを設定した場合は、<code>git co -b modify-README</code>と入力することもできます)。</p>
 
-<p>ブランチの真価は他の開発者と共同で作業する時に発揮されますが<sup class="footnote" id="fnref-1_19"><a href="/chapters/beginning.html?version=4.0#fn-1_19">19</a></sup>、このチュートリアルのように一人で作業する時にも非常に有用です。マスターブランチはトピックブランチで行った変更に影響されないので、たとえブランチ上のコードが<em>めちゃくちゃ</em>になってしまっても、マスターブランチをチェックアウトしてトピックブランチを削除すれば、いつでも変更を破棄する事ができます。具体的な方法についてはこの章の最後で説明します。</p>
+<p>ブランチの真価は他の開発者と共同で作業する時に発揮されますが<sup class="footnote" id="fnref-1_19"><a href="/chapters/beginning?version=4.0#fn-1_19">19</a></sup>、このチュートリアルのように一人で作業する時にも非常に有用です。マスターブランチはトピックブランチで行った変更に影響されないので、たとえブランチ上のコードが<em>めちゃくちゃ</em>になってしまっても、マスターブランチをチェックアウトしてトピックブランチを削除すれば、いつでも変更を破棄する事ができます。具体的な方法についてはこの章の最後で説明します。</p>
 
 <p>ちなみに、通常このような小さな変更のためにわざわざブランチを作成する必要はありませんが、ブランチがよい習慣であることに変わりはないので、少しでも練習しておきましょう。</p>
 
@@ -1258,9 +1258,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h2><a id="sec-1_4" href="/chapters/beginning?version=4.0#sec-deploying" class="heading"><span class="number">1.4</span>展開する</a></h2>
 
 
-<p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境に展開 (デプロイ: deploy) してしまいましょう。アプリケーションの展開は必須ではありませんが、頻繁に本番展開することによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境に展開しないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_20"><a href="/chapters/beginning.html?version=4.0#fn-1_20">20</a></sup>。</p>
+<p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境に展開 (デプロイ: deploy) してしまいましょう。アプリケーションの展開は必須ではありませんが、頻繁に本番展開することによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境に展開しないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_20"><a href="/chapters/beginning?version=4.0#fn-1_20">20</a></sup>。</p>
 
-<p>かつてはRailsアプリの本番展開は大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx23<sup class="footnote" id="fnref-1_21"><a href="/chapters/beginning.html?version=4.0#fn-1_21">21</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスデプロイメントを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
+<p>かつてはRailsアプリの本番展開は大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx23<sup class="footnote" id="fnref-1_21"><a href="/chapters/beginning?version=4.0#fn-1_21">21</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスデプロイメントを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
 
 <p>著者のお気に入りはHerokuで、Railsを含むRuby Webアプリ用のホスティングプラットフォームです。Herokuは、ソースコードのバージョン管理にGitを使用していれば、Railsアプリケーションを簡単に本番環境に展開できます (Gitを導入したのは、まさにこのHerokuで使うためでもあります。まだGitをインストールしていない方は<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>を参照してください)。この章では、最初のアプリケーションをHerokuに展開します。</p>
 
@@ -1340,7 +1340,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>次にHerokuのアカウントを新規作成して設定します。最初に<a href="http://api.heroku.com/signup">Herokuのユーザー登録</a>を行います。アカウント作成後に完了通知メールが届いたら、<a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>を使用して必要なHerokuソフトウェアをインストールします<sup class="footnote" id="fnref-1_22"><a href="/chapters/beginning.html?version=4.0#fn-1_22">22</a></sup>。次にターミナルで以下の<code>heroku</code>コマンドを実行します (実行前にターミナルの終了と再起動が必要なことがあります)。</p>
+<p>次にHerokuのアカウントを新規作成して設定します。最初に<a href="http://api.heroku.com/signup">Herokuのユーザー登録</a>を行います。アカウント作成後に完了通知メールが届いたら、<a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>を使用して必要なHerokuソフトウェアをインストールします<sup class="footnote" id="fnref-1_22"><a href="/chapters/beginning?version=4.0#fn-1_22">22</a></sup>。次にターミナルで以下の<code>heroku</code>コマンドを実行します (実行前にターミナルの終了と再起動が必要なことがあります)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku login
 </pre></div>
@@ -1456,28 +1456,28 @@ jhyicevg.herokuapp.com</pre>
 </a><a class="next_page" href="/chapters/a-demo-app?version=4.0#top">    <span class="number">第2章</span>デモアプリケーション»</a><a class="next_page" href="/chapters/a-demo-app?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-1_1"><em>URI</em>はUniform Resource Identifierの略です。それよりやや一般性の低い<em>URL</em>はUniform Resource Locatorの略です。URIは、要するに「ブラウザのアドレスバーにあるあれ」と考えればだいたい合っています。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_1">↑</a></li>
-<li id="fn-1_2">http://tryruby.org/ <a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_2">↑</a></li>
-<li id="fn-1_3">http://railsforzombies.org/ <a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_3">↑</a></li>
-<li id="fn-1_4">http://railstutorial.org/screencasts <a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_4">↑</a></li>
-<li id="fn-1_5"><em>Railsチュートリアル</em>を読んでいて、チュートリアル内部の別セクション番号へのリンクをクリックして移動したら、なるべくすぐに元の場所に戻ることをお勧めします。Webページで読んでいる場合は、ブラウザの [戻る] ボタンで戻れます。Adobe ReaderやOS XのプレビューでPDF版を読んでいる場合でも、同様に戻る方法があります。Adobe Readerの場合は、ドキュメント画面を右クリックして [Previous View]をクリックします。OS X Previewの場合はメニューの <tt>[移動] &gt; [戻る]</tt> で戻れます。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_5">↑</a></li>
-<li id="fn-1_6"><code>sudo</code>コマンドを実行するとデフォルトでroot (スーパーユーザー) に切り替わるためか、多くの人がsudoコマンドを &quot;superuser do&quot; の略だと誤って信じています。正しくは、<code>sudo</code>は<code>su</code>コマンドと英語の “do” をつなげたものです。そして<code>su</code>コマンドは “substitute user” (ユーザーの切替) の略なのです。ターミナルで<code>man su</code>と入力すればこのことを確認できます。語源学の示すところによれば “SOO-doo” と発音しますが (“do” は “doo” と発音するので)、“SOO-doh” という発音もよく使われます。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_6">↑</a></li>
-<li id="fn-1_7">http://railstutorial.org/help <a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_7">↑</a></li>
-<li id="fn-1_8">https://github.com/perfectionist/sample_project/wiki <a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_8">↑</a></li>
-<li id="fn-1_9">本書執筆時点では、<a href="http://www.sublimetext.com/3">Sublime Text 3</a>はベータ版どまりです。最新のSublime Textは、新しもの好きの方以外にはお勧めしません。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_9">↑</a></li>
-<li id="fn-1_10">viは、Unixで古くから使用されているコマンドベースの強力なエディタです。Vimは &quot;vi improved&quot; の略です。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_10">↑</a></li>
-<li id="fn-1_11">https://github.com/mhartl/rails_tutorial_sublime_text <a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_11">↑</a></li>
-<li id="fn-1_12">https://developer.apple.com/downloads/ <a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_12">↑</a></li>
-<li id="fn-1_13">http://strandcode.com/2013/07/11/ruby-version-manager-rvm-overview-for-rails-newbs/ <a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_13">↑</a></li>
-<li id="fn-1_14">この手順が必要となるのは、Rails gemのバージョンを変更した場合に限られます。おそらくRailsインストーラを使用している場合にしかこういうことは起こらないでしょう。他の場合にこの手順を実行しても大丈夫です。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_14">↑</a></li>
-<li id="fn-1_15">通常、Webサイトは80番ポートで受信待ちしますが、このポートを使用するには特別な権限が必要になることが多いので、Railsの開発用サーバーでは制限の少ない、番号の大きいポート (いわゆるハイナンバーポート) を使用します。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_15">↑</a></li>
-<li id="fn-1_16">GUIエディタの起動後もターミナルを使用し続けることはできます。ただし、Gitはデタッチ時にコミットメッセージが空のままファイルを閉じたとみなすため、コミットは中断されます。Gitのエディタオプションで<code>subl</code>や<code>gvim</code>にフラグを付けないと、このあたりの動作で頭が混乱するかもしれません (訳注: gitのエディタ設定はGUIエディタとあまり相性がよくないらしく、vimやnanoのようなコマンドベースのエディタを選択するのが無難なようです)。この注釈の意味がよくわからない場合は、無視しても構いません。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_16">↑</a></li>
-<li id="fn-1_17"><code>.gitignore</code>がディレクトリに見当たらない場合は、ファイルブラウザやエクスプローラで隠しファイルを表示するよう設定を変更する必要があるかもしれません。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_17">↑</a></li>
-<li id="fn-1_18"><code>git status</code>を実行したときに表示して欲しくないファイルがあれば、それらのファイルを<a class="ref" href="/chapters/beginning?version=4.0#code-gitignore">1.7</a>の<code>.gitignore</code>ファイルに追加してください。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_18">↑</a></li>
-<li id="fn-1_19">詳細については<a href="http://progit.org/book/ch3-0.html"><em>Pro Git</em>の「Gitのブランチ機能」</a>を参照してください。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_19">↑</a></li>
-<li id="fn-1_20"><em>Railsチュートリアル</em>のサンプルアプリケーションでは気にする必要はありません。作りかけの恥ずかしいWebアプリケーションをネットにうっかり公開してしまわないだろうかと心配する方もいらっしゃるかと思いますが、それを防ぐための方法はいくつもありますのでご安心ください。<a class="ref" href="/chapters/beginning?version=4.0#sec-heroku_commands">1.4.4</a>はその方法の1つです。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_20">↑</a></li>
-<li id="fn-1_21">“Engine X&quot; と発音します。<a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_21">↑</a></li>
-<li id="fn-1_22">https://toolbelt.heroku.com/ <a class="arrow" href="/chapters/beginning.html?version=4.0#fnref-1_22">↑</a></li>
+<li id="fn-1_1"><em>URI</em>はUniform Resource Identifierの略です。それよりやや一般性の低い<em>URL</em>はUniform Resource Locatorの略です。URIは、要するに「ブラウザのアドレスバーにあるあれ」と考えればだいたい合っています。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_1">↑</a></li>
+<li id="fn-1_2">http://tryruby.org/ <a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_2">↑</a></li>
+<li id="fn-1_3">http://railsforzombies.org/ <a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_3">↑</a></li>
+<li id="fn-1_4">http://railstutorial.org/screencasts <a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_4">↑</a></li>
+<li id="fn-1_5"><em>Railsチュートリアル</em>を読んでいて、チュートリアル内部の別セクション番号へのリンクをクリックして移動したら、なるべくすぐに元の場所に戻ることをお勧めします。Webページで読んでいる場合は、ブラウザの [戻る] ボタンで戻れます。Adobe ReaderやOS XのプレビューでPDF版を読んでいる場合でも、同様に戻る方法があります。Adobe Readerの場合は、ドキュメント画面を右クリックして [Previous View]をクリックします。OS X Previewの場合はメニューの <tt>[移動] &gt; [戻る]</tt> で戻れます。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_5">↑</a></li>
+<li id="fn-1_6"><code>sudo</code>コマンドを実行するとデフォルトでroot (スーパーユーザー) に切り替わるためか、多くの人がsudoコマンドを &quot;superuser do&quot; の略だと誤って信じています。正しくは、<code>sudo</code>は<code>su</code>コマンドと英語の “do” をつなげたものです。そして<code>su</code>コマンドは “substitute user” (ユーザーの切替) の略なのです。ターミナルで<code>man su</code>と入力すればこのことを確認できます。語源学の示すところによれば “SOO-doo” と発音しますが (“do” は “doo” と発音するので)、“SOO-doh” という発音もよく使われます。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_6">↑</a></li>
+<li id="fn-1_7">http://railstutorial.org/help <a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_7">↑</a></li>
+<li id="fn-1_8">https://github.com/perfectionist/sample_project/wiki <a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_8">↑</a></li>
+<li id="fn-1_9">本書執筆時点では、<a href="http://www.sublimetext.com/3">Sublime Text 3</a>はベータ版どまりです。最新のSublime Textは、新しもの好きの方以外にはお勧めしません。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_9">↑</a></li>
+<li id="fn-1_10">viは、Unixで古くから使用されているコマンドベースの強力なエディタです。Vimは &quot;vi improved&quot; の略です。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_10">↑</a></li>
+<li id="fn-1_11">https://github.com/mhartl/rails_tutorial_sublime_text <a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_11">↑</a></li>
+<li id="fn-1_12">https://developer.apple.com/downloads/ <a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_12">↑</a></li>
+<li id="fn-1_13">http://strandcode.com/2013/07/11/ruby-version-manager-rvm-overview-for-rails-newbs/ <a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_13">↑</a></li>
+<li id="fn-1_14">この手順が必要となるのは、Rails gemのバージョンを変更した場合に限られます。おそらくRailsインストーラを使用している場合にしかこういうことは起こらないでしょう。他の場合にこの手順を実行しても大丈夫です。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_14">↑</a></li>
+<li id="fn-1_15">通常、Webサイトは80番ポートで受信待ちしますが、このポートを使用するには特別な権限が必要になることが多いので、Railsの開発用サーバーでは制限の少ない、番号の大きいポート (いわゆるハイナンバーポート) を使用します。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_15">↑</a></li>
+<li id="fn-1_16">GUIエディタの起動後もターミナルを使用し続けることはできます。ただし、Gitはデタッチ時にコミットメッセージが空のままファイルを閉じたとみなすため、コミットは中断されます。Gitのエディタオプションで<code>subl</code>や<code>gvim</code>にフラグを付けないと、このあたりの動作で頭が混乱するかもしれません (訳注: gitのエディタ設定はGUIエディタとあまり相性がよくないらしく、vimやnanoのようなコマンドベースのエディタを選択するのが無難なようです)。この注釈の意味がよくわからない場合は、無視しても構いません。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_16">↑</a></li>
+<li id="fn-1_17"><code>.gitignore</code>がディレクトリに見当たらない場合は、ファイルブラウザやエクスプローラで隠しファイルを表示するよう設定を変更する必要があるかもしれません。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_17">↑</a></li>
+<li id="fn-1_18"><code>git status</code>を実行したときに表示して欲しくないファイルがあれば、それらのファイルを<a class="ref" href="/chapters/beginning?version=4.0#code-gitignore">1.7</a>の<code>.gitignore</code>ファイルに追加してください。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_18">↑</a></li>
+<li id="fn-1_19">詳細については<a href="http://progit.org/book/ch3-0.html"><em>Pro Git</em>の「Gitのブランチ機能」</a>を参照してください。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_19">↑</a></li>
+<li id="fn-1_20"><em>Railsチュートリアル</em>のサンプルアプリケーションでは気にする必要はありません。作りかけの恥ずかしいWebアプリケーションをネットにうっかり公開してしまわないだろうかと心配する方もいらっしゃるかと思いますが、それを防ぐための方法はいくつもありますのでご安心ください。<a class="ref" href="/chapters/beginning?version=4.0#sec-heroku_commands">1.4.4</a>はその方法の1つです。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_20">↑</a></li>
+<li id="fn-1_21">“Engine X&quot; と発音します。<a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_21">↑</a></li>
+<li id="fn-1_22">https://toolbelt.heroku.com/ <a class="arrow" href="/chapters/beginning?version=4.0#fnref-1_22">↑</a></li>
 </ol>
 </div>
 

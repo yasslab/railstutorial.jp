@@ -63,7 +63,7 @@
 </div></div>
 
 
-<p>このGemfileでは、開発環境とテスト環境で<tt>rspec-rails</tt>を使うようにしています。このため、開発環境ではRSpec固有のジェネレーターにアクセスすることができます。同様に、テスト環境でもRSpecを使用してテストを実行できるようになります。Gemfileに記述した<tt>rspec-rails</tt>が依存関係を解決してくれるため、 個々の環境にRSpec自身を手動でインストールする必要がなくなり、自動的にインストールされるようになります。同様の理由で、<a href="https://github.com/jnicklas/capybara">Capybara</a> gemもGemfileに記述しています。これは、英語に近い文法を使って、ユーザーとサンプルアプリケーションの対話的操作をシミュレーションできるGemです<sup class="footnote" id="fnref-3_1"><a href="/chapters/static-pages.html?version=4.0#fn-3_1">1</a></sup>。Capybaraは<a href="http://docs.seleniumhq.org/projects/webdriver/">Selenium</a>などのgemに依存しています。</p>
+<p>このGemfileでは、開発環境とテスト環境で<tt>rspec-rails</tt>を使うようにしています。このため、開発環境ではRSpec固有のジェネレーターにアクセスすることができます。同様に、テスト環境でもRSpecを使用してテストを実行できるようになります。Gemfileに記述した<tt>rspec-rails</tt>が依存関係を解決してくれるため、 個々の環境にRSpec自身を手動でインストールする必要がなくなり、自動的にインストールされるようになります。同様の理由で、<a href="https://github.com/jnicklas/capybara">Capybara</a> gemもGemfileに記述しています。これは、英語に近い文法を使って、ユーザーとサンプルアプリケーションの対話的操作をシミュレーションできるGemです<sup class="footnote" id="fnref-3_1"><a href="/chapters/static-pages?version=4.0#fn-3_1">1</a></sup>。Capybaraは<a href="http://docs.seleniumhq.org/projects/webdriver/">Selenium</a>などのgemに依存しています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.15.1&#39;</span>
@@ -84,7 +84,7 @@
 </div>
 
 
-<p><a class="ref" href="/chapters/beginning?version=4.0#sec-heroku_setup">1.4.1</a>や<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でも説明したように、<tt class="verb">--without</tt> <tt class="verb">production</tt>オプションを追加することで、本番環境のgemのみをインストールしないようにすることができます。注: このオプションは “remembered option” と呼ばれるもので、このオプションを一度実行するとコマンドに保存され、今後Bundlerを実行するときにオプションを追加する必要がなくなります。このため、今後は単に<code>bundle install</code>を実行するだけで、自動的に本番環境用gemをスキップできるようになります<sup class="footnote" id="fnref-3_2"><a href="/chapters/static-pages.html?version=4.0#fn-3_2">2</a></sup>。</p>
+<p><a class="ref" href="/chapters/beginning?version=4.0#sec-heroku_setup">1.4.1</a>や<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でも説明したように、<tt class="verb">--without</tt> <tt class="verb">production</tt>オプションを追加することで、本番環境のgemのみをインストールしないようにすることができます。注: このオプションは “remembered option” と呼ばれるもので、このオプションを一度実行するとコマンドに保存され、今後Bundlerを実行するときにオプションを追加する必要がなくなります。このため、今後は単に<code>bundle install</code>を実行するだけで、自動的に本番環境用gemをスキップできるようになります<sup class="footnote" id="fnref-3_2"><a href="/chapters/static-pages?version=4.0#fn-3_2">2</a></sup>。</p>
 
 <p>このサンプルアプリケーションは公共のリポジトリとして公開されるので、Railsでセッション変数の暗号化に使用するための、いわゆる<em>秘密トークン (secret token) </em>を必ず更新することが重要です。<a class="ref" href="/chapters/static-pages?version=4.0#code-secret_token">リスト3.2</a>のコードを使用して、トークンをハードコードすることなく動的に生成するようにしてください。(<a class="ref" href="/chapters/static-pages?version=4.0#code-secret_token">リスト3.2</a>のコードはやや高度なもので、本書のこの段階では時期尚早ではありますが、重大なセキュリティ上の問題が発生する可能性を回避するために、あえてこの段階に含めておくのがよいと考えます)。この場合、必ず<a class="ref" href="/chapters/beginning?version=4.0#code-gitignore">リスト1.7</a>の改訂版<code>.gitignore</code>を使用するようにし、<code>.secret</code>キーをリポジトリでうっかり公開してしまうことのないようにしてください。</p>
 
@@ -133,7 +133,7 @@
 
 <p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムの一覧から入手してください。個人的には<a href="http://nodejs.org/">Node.js</a>をお勧めします。) </p>
 
-<p>ここまで進めたら、後はGitリポジトリを初期化するだけです<sup class="footnote" id="fnref-3_3"><a href="/chapters/static-pages.html?version=4.0#fn-3_3">3</a></sup>。</p>
+<p>ここまで進めたら、後はGitリポジトリを初期化するだけです<sup class="footnote" id="fnref-3_3"><a href="/chapters/static-pages?version=4.0#fn-3_3">3</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git init
 <span class="gp">$</span> git add .
@@ -176,7 +176,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>ここまで作業を進めると、<a href="https://github.com/railstutorial/sample_app_rails_4">著者がGitHubにアップロードしたRailsチュートリアルのサンプルアプリケーション</a>のようになります (ユーザー名は<tt>railstutorial</tt>で、アプリケーション名は<tt>sample_app_rails_4</tt>と若干異なります)<sup class="footnote" id="fnref-3_4"><a href="/chapters/static-pages.html?version=4.0#fn-3_4">4</a></sup>。</p>
+<p>ここまで作業を進めると、<a href="https://github.com/railstutorial/sample_app_rails_4">著者がGitHubにアップロードしたRailsチュートリアルのサンプルアプリケーション</a>のようになります (ユーザー名は<tt>railstutorial</tt>で、アプリケーション名は<tt>sample_app_rails_4</tt>と若干異なります)<sup class="footnote" id="fnref-3_4"><a href="/chapters/static-pages?version=4.0#fn-3_4">4</a></sup>。</p>
 
 <p>もちろん、この時点でHerokuに展開することもできます。</p>
 
@@ -211,7 +211,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h2><a id="sec-3_1" href="/chapters/static-pages?version=4.0#sec-static_pages" class="heading"><span class="number">3.1</span>静的ページ</a></h2>
 
 
-<p>この節では、後に動的なページを作成するための準備として、最初にRailsの<em>アクション</em>と<em>ビュー</em>に静的なHTMLだけを含めたものを作成します<sup class="footnote" id="fnref-3_5"><a href="/chapters/static-pages.html?version=4.0#fn-3_5">5</a></sup>。Railsのアクションは、<em>コントローラ</em> (<a class="ref" href="/chapters/beginning?version=4.0#sec-mvc">1.2.6</a>で紹介した MVCの Cに該当) の中に置かれる機能で、共通の目的を持つ一連のアクションをコントローラ内にまとめることができます。コントローラについては<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>で説明する<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST アーキテクチャ</a>を読むと、より深く理解することができます。一言で言うと、コントローラとは (基本的に動的な) Webページの集合を束ねるコンテナのことです。</p>
+<p>この節では、後に動的なページを作成するための準備として、最初にRailsの<em>アクション</em>と<em>ビュー</em>に静的なHTMLだけを含めたものを作成します<sup class="footnote" id="fnref-3_5"><a href="/chapters/static-pages?version=4.0#fn-3_5">5</a></sup>。Railsのアクションは、<em>コントローラ</em> (<a class="ref" href="/chapters/beginning?version=4.0#sec-mvc">1.2.6</a>で紹介した MVCの Cに該当) の中に置かれる機能で、共通の目的を持つ一連のアクションをコントローラ内にまとめることができます。コントローラについては<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>で説明する<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST アーキテクチャ</a>を読むと、より深く理解することができます。一言で言うと、コントローラとは (基本的に動的な) Webページの集合を束ねるコンテナのことです。</p>
 
 <p>現在どのディレクトリで作業しているかがわからなくなった場合は、<a class="ref" href="/chapters/beginning?version=4.0#sec-the_first_application">1.2.3</a> (<a class="ref" href="/chapters/beginning?version=4.0#fig-directory_structure_rails">図 1.2</a>)を再度参照して、Rails のディレクトリ構造を確認してください。この節では、主に<code>app/controllers</code>ディレクトリや<code>app/views</code>ディレクトリ内で作業を進めます (なお <a class="ref" href="/chapters/static-pages?version=4.0#sec-first_tests">3.2</a> では、新しいディレクトリをさらに１つ追加します)。好みのテキストエディタまたはIDEを使用してサンプリアプリケーションを開いてください (<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-opening_the_project">囲み3.1</a>)。</p>
 
@@ -569,14 +569,14 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div></div>
 
 
-<p>テストではさまざまなオプションが使用できます。さらに高度で便利なツールもあり、詳細については<a class="ref" href="/chapters/static-pages?version=4.0#sec-advanced_setup">3.6</a>で説明します。今回は、コマンドラインで<code>rspec</code>コマンドを実行してみてましょう (なお、<code>bundle exec</code>をこのコマンドの前に置くことで、<code>Gemfile</code>内で定義された環境でRSpecが実行されるように、明示的に指示することができます<sup class="footnote" id="fnref-3_6"><a href="/chapters/static-pages.html?version=4.0#fn-3_6">6</a></sup>)。</p>
+<p>テストではさまざまなオプションが使用できます。さらに高度で便利なツールもあり、詳細については<a class="ref" href="/chapters/static-pages?version=4.0#sec-advanced_setup">3.6</a>で説明します。今回は、コマンドラインで<code>rspec</code>コマンドを実行してみてましょう (なお、<code>bundle exec</code>をこのコマンドの前に置くことで、<code>Gemfile</code>内で定義された環境でRSpecが実行されるように、明示的に指示することができます<sup class="footnote" id="fnref-3_6"><a href="/chapters/static-pages?version=4.0#fn-3_6">6</a></sup>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
 </pre></div>
 </div>
 
 
-<p>上のコマンドを実行すると、「テストが失敗した」という結果が返ってきます。 結果の表示はシステムによって異なりますが、著者のシステムでは、<a class="ref" href="/chapters/static-pages?version=4.0#fig-red_failing_spec">図3.3</a>のように失敗したテストが赤く表示されます<sup class="footnote" id="fnref-3_7"><a href="/chapters/static-pages.html?version=4.0#fn-3_7">7</a></sup>。</p>
+<p>上のコマンドを実行すると、「テストが失敗した」という結果が返ってきます。 結果の表示はシステムによって異なりますが、著者のシステムでは、<a class="ref" href="/chapters/static-pages?version=4.0#fig-red_failing_spec">図3.3</a>のように失敗したテストが赤く表示されます<sup class="footnote" id="fnref-3_7"><a href="/chapters/static-pages?version=4.0#fn-3_7">7</a></sup>。</p>
 
 <div class="label" id="fig-red_failing_spec"></div>
 
@@ -1036,7 +1036,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>上の構造には次のものが含まれています。1) <em>document type</em> (doctype) は使用するHTMLのバージョン (ここでは<a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a>)<sup class="footnote" id="fnref-3_8"><a href="/chapters/static-pages.html?version=4.0#fn-3_8">8</a></sup>) をブラウザに対して宣言します。2) <code>head</code>セクション。ここでは<code>title</code>タグに囲まれた &quot;Greeting&quot; という文字があります。3) <code>body</code>セクション。ここでは<code>p</code> (paragraph) タグを使って、 “Hello, world!” と表示しています。(なお、HTMLではスペースやタブは無視されるので、インデントはあってもなくても大丈夫です。ただし、インデントがある方がHTMLのデータ構造を理解しやすくなります)。</p>
+<p>上の構造には次のものが含まれています。1) <em>document type</em> (doctype) は使用するHTMLのバージョン (ここでは<a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a>)<sup class="footnote" id="fnref-3_8"><a href="/chapters/static-pages?version=4.0#fn-3_8">8</a></sup>) をブラウザに対して宣言します。2) <code>head</code>セクション。ここでは<code>title</code>タグに囲まれた &quot;Greeting&quot; という文字があります。3) <code>body</code>セクション。ここでは<code>p</code> (paragraph) タグを使って、 “Hello, world!” と表示しています。(なお、HTMLではスペースやタブは無視されるので、インデントはあってもなくても大丈夫です。ただし、インデントがある方がHTMLのデータ構造を理解しやすくなります)。</p>
 
 <p>上のHTML基本構造をHomeページに適用すると<a class="ref" href="/chapters/static-pages?version=4.0#code-home_view_full_html">リスト3.20</a>のようになります。</p>
 
@@ -1169,14 +1169,14 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div></div>
 
 
-<p><a class="ref" href="/chapters/static-pages?version=4.0#code-home_view_erb_title">リスト3.23</a>は、<em>ERb</em>と呼ばれている、Rubyの埋め込みの最初の例です (これで、HTMLビューのファイルの拡張子が<code>.html.erb</code>となっている理由をおわかりいただけたと思います)。 ERbはウェブページに動的な要素を加えるときに使うテンプレートシステムです<sup class="footnote" id="fnref-3_9"><a href="/chapters/static-pages.html?version=4.0#fn-3_9">9</a></sup>。</p>
+<p><a class="ref" href="/chapters/static-pages?version=4.0#code-home_view_erb_title">リスト3.23</a>は、<em>ERb</em>と呼ばれている、Rubyの埋め込みの最初の例です (これで、HTMLビューのファイルの拡張子が<code>.html.erb</code>となっている理由をおわかりいただけたと思います)。 ERbはウェブページに動的な要素を加えるときに使うテンプレートシステムです<sup class="footnote" id="fnref-3_9"><a href="/chapters/static-pages?version=4.0#fn-3_9">9</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Home&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>上のコードに<tt class="verb">&lt;% ... %&gt;</tt>と書かれていることにご注目ください。Railsはこの中で<code>provide</code>関数を呼び出し、<code>:title</code>というラベルに <code>’Home’</code> という文字列を関連付けます<sup class="footnote" id="fnref-3_10"><a href="/chapters/static-pages.html?version=4.0#fn-3_10">10</a></sup>。次に、以下のコードでRubyの<code>yield</code>関数を使用し、それを<tt class="verb">&lt;%= ... %&gt;</tt>表記 (上と微妙に異なることにご注目ください) で囲むことにより、テンプレートにタイトルを挿入します<sup class="footnote" id="fnref-3_11"><a href="/chapters/static-pages.html?version=4.0#fn-3_11">15</a></sup>。</p>
+<p>上のコードに<tt class="verb">&lt;% ... %&gt;</tt>と書かれていることにご注目ください。Railsはこの中で<code>provide</code>関数を呼び出し、<code>:title</code>というラベルに <code>’Home’</code> という文字列を関連付けます<sup class="footnote" id="fnref-3_10"><a href="/chapters/static-pages?version=4.0#fn-3_10">10</a></sup>。次に、以下のコードでRubyの<code>yield</code>関数を使用し、それを<tt class="verb">&lt;%= ... %&gt;</tt>表記 (上と微妙に異なることにご注目ください) で囲むことにより、テンプレートにタイトルを挿入します<sup class="footnote" id="fnref-3_11"><a href="/chapters/static-pages?version=4.0#fn-3_11">15</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;title&gt;</span>Ruby on Rails Tutorial Sample App | <span class="cp">&lt;%=</span> <span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
 </pre></div>
@@ -1624,7 +1624,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 
 <p><code>bundle exec</code>を省略することができました。 このとおりにできた場合は、この節の残りはスキップしてください。</p>
 
-<p>新しいバージョンのRVMを使うことができない場合は、Ruby Version Managerがローカル環境で自動的に設定する適切な実行ファイルがあれば、<a href="http://rvm.io/integration/bundler/">RVM Bundler integration</a><sup class="footnote" id="fnref-3_12"><a href="/chapters/static-pages.html?version=4.0#fn-3_12">12</a></sup>で<code>bundle exec</code>を省略することができます。一見奇妙ですが、実行方法は簡単です。最初に以下の2つのコマンドを実行します。</p>
+<p>新しいバージョンのRVMを使うことができない場合は、Ruby Version Managerがローカル環境で自動的に設定する適切な実行ファイルがあれば、<a href="http://rvm.io/integration/bundler/">RVM Bundler integration</a><sup class="footnote" id="fnref-3_12"><a href="/chapters/static-pages?version=4.0#fn-3_12">12</a></sup>で<code>bundle exec</code>を省略することができます。一見奇妙ですが、実行方法は簡単です。最初に以下の2つのコマンドを実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm get head <span class="o">&amp;&amp;</span> rvm reload
 <span class="gp">$</span> chmod +x <span class="nv">$rvm_path</span>/hooks/after_cd_bundler
@@ -1860,7 +1860,7 @@ bundler_stubs/
 <h3><a id="sec-3_6_3" href="/chapters/static-pages?version=4.0#sec-spork" class="heading"><span class="number">3.6.3</span>Spork を使ったテストの高速化</a></h3>
 
 
-<p><code>bundle exec rspec</code>を実行すると、テストが開始されるまでしばらく時間がかかることにお気付きかもしれません。テストがいったん開始されればすぐに終了します。これは、RSpecを実行するたびにRailsの環境全体を読み込み直す必要があるためです。<a href="http://github.com/sporkrb/spork">Sporkテストサーバー</a><sup class="footnote" id="fnref-3_13"><a href="/chapters/static-pages.html?version=4.0#fn-3_13">13</a></sup>はこの問題を解決するためのものです。Sporkは環境を<em>1回だけ</em>読み込み、今後実行するテストのためのプロセスを管理します。Sporkは<a class="ref" href="/chapters/static-pages?version=4.0#sec-guard">3.6.2</a>のGuardと組み合わせるとさらに便利です。</p>
+<p><code>bundle exec rspec</code>を実行すると、テストが開始されるまでしばらく時間がかかることにお気付きかもしれません。テストがいったん開始されればすぐに終了します。これは、RSpecを実行するたびにRailsの環境全体を読み込み直す必要があるためです。<a href="http://github.com/sporkrb/spork">Sporkテストサーバー</a><sup class="footnote" id="fnref-3_13"><a href="/chapters/static-pages?version=4.0#fn-3_13">13</a></sup>はこの問題を解決するためのものです。Sporkは環境を<em>1回だけ</em>読み込み、今後実行するテストのためのプロセスを管理します。Sporkは<a class="ref" href="/chapters/static-pages?version=4.0#sec-guard">3.6.2</a>のGuardと組み合わせるとさらに便利です。</p>
 
 <p>最初に、<code>spork</code>に依存するgemを<code>Gemfile</code>に追加します (<a class="ref" href="/chapters/static-pages?version=4.0#code-gemfile_spork">リスト3.36</a>)。</p>
 
@@ -2085,7 +2085,7 @@ bundler_stubs/
 
 <p>Guardは自動的にSporkサーバーを起動するため、テスト実行時のオーバヘッドを劇的に削減できます。</p>
 
-<p>Guard、Spork、テスト通知機能 (オプション) を使用して便利なテスト環境を構築することで、テスト駆動開発がやみつきになることでしょう。詳細については、<a href="http://railstutorial.org/screencasts">Railsチュートリアルのスクリーンキャスト</a><sup class="footnote" id="fnref-3_14"><a href="/chapters/static-pages.html?version=4.0#fn-3_14">14</a></sup>を参照してください。</p>
+<p>Guard、Spork、テスト通知機能 (オプション) を使用して便利なテスト環境を構築することで、テスト駆動開発がやみつきになることでしょう。詳細については、<a href="http://railstutorial.org/screencasts">Railsチュートリアルのスクリーンキャスト</a><sup class="footnote" id="fnref-3_14"><a href="/chapters/static-pages?version=4.0#fn-3_14">14</a></sup>を参照してください。</p>
 
 <div class="label" id="sec-tests_inside_sublime_text"></div>
 
@@ -2093,7 +2093,7 @@ bundler_stubs/
 <h3><a id="sec-3_6_4" href="/chapters/static-pages?version=4.0#sec-tests_inside_sublime_text" class="heading"><span class="number">3.6.4</span>Sublime Text上でテストする</a></h3>
 
 
-<p>Sublime Textを使用していれば、エディタの中から直接テストを実行できる強力なヘルパーコマンドを利用できます。このテスト方法は著者のお気に入りです。最終的に大規模にスケールアップする可能性のある少数のテストを、長期間に渡って実施したいような場合に非常に有用であるためです。このコマンドを利用するには、<a href="https://github.com/maltize/sublime-text-2-ruby-tests">Sublime Text 2 Ruby Tests</a><sup class="footnote" id="fnref-3_15"><a href="/chapters/static-pages.html?version=4.0#fn-3_15">15</a></sup>に記載されている、自分の環境向けの説明に従って設定を行なって下さい。著者の環境 (Macintosh OS X) の場合、以下のようにコマンドをインストールします。</p>
+<p>Sublime Textを使用していれば、エディタの中から直接テストを実行できる強力なヘルパーコマンドを利用できます。このテスト方法は著者のお気に入りです。最終的に大規模にスケールアップする可能性のある少数のテストを、長期間に渡って実施したいような場合に非常に有用であるためです。このコマンドを利用するには、<a href="https://github.com/maltize/sublime-text-2-ruby-tests">Sublime Text 2 Ruby Tests</a><sup class="footnote" id="fnref-3_15"><a href="/chapters/static-pages?version=4.0#fn-3_15">15</a></sup>に記載されている、自分の環境向けの説明に従って設定を行なって下さい。著者の環境 (Macintosh OS X) の場合、以下のようにコマンドをインストールします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/Library/Application<span class="se">\ </span>Support/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2/Packages
 <span class="gp">$</span> git clone https://github.com/maltize/sublime-text-2-ruby-tests.git RubyTest
@@ -2101,7 +2101,7 @@ bundler_stubs/
 </div>
 
 
-<p>参考: <a href="https://github.com/mhartl/rails_tutorial_sublime_text">Rails Tutorial Sublime Text</a><sup class="footnote" id="fnref-3_16"><a href="/chapters/static-pages.html?version=4.0#fn-3_16">16</a></sup>にある説明に従って設定することもできます。</p>
+<p>参考: <a href="https://github.com/mhartl/rails_tutorial_sublime_text">Rails Tutorial Sublime Text</a><sup class="footnote" id="fnref-3_16"><a href="/chapters/static-pages?version=4.0#fn-3_16">16</a></sup>にある説明に従って設定することもできます。</p>
 
 <p>Sublime Textを再起動すると、以下のようなコマンドがRubyTestパッケージによって提供されます。</p>
 
@@ -2135,22 +2135,22 @@ bundler_stubs/
 </a><a class="next_page" href="/chapters/rails-flavored-ruby?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-3_1">Capybaraは<em>Webrat</em>の後続プロジェクトであり、世界<a href="http://en.wikipedia.org/wiki/Capybara">最大の齧歯類</a>が名前の由来です。<a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_1">↑</a></li>
-<li id="fn-3_2">なお、<code>install</code>は省略可能です。実は、<code>bundle</code>コマンドは<code>bundle install</code>のエイリアスでもあります。<a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_2">↑</a></li>
-<li id="fn-3_3">システムによっては、<a class="ref" href="/chapters/beginning?version=4.0#code-gitignore">リスト1.7</a>の.gitignoreを参考にして、さらに便利な設定にすることもできます。<a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_3">↑</a></li>
-<li id="fn-3_4">https://github.com/railstutorial/sample_app_rails_4 <a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_4">↑</a></li>
-<li id="fn-3_5">ここで静的なページを作るために採用した方法は、おそらく最もシンプルな方法です。ただし他にも方法はあります。最適な方法は状況によって異なり、たとえば<em>きわめて多数</em>の静的なページを1つのStaticPagesコントローラだけまかなおうとすると重荷になる可能性があります。今回はいくつかの静的なページを作るだけなので、重荷にはなりません。<a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_5">↑</a></li>
-<li id="fn-3_6">毎回<code>bundle exec</code>を追加するのは面倒ですが、<a class="ref" href="/chapters/static-pages?version=4.0#sec-advanced_setup">3.6</a>のオプションを使うと省略できます。<a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_6">↑</a></li>
-<li id="fn-3_7">筆者は普段、ターミナルやテキストエディタの背景は黒色にしていますが、明るい色の背景の方がスクリーンショットの見栄えが良いので、(一時的に) 明るい背景を使用しています。<a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_7">↑</a></li>
-<li id="fn-3_8">HTMLは常に変化しています。doctypeを明示的に宣言することで、今後もブラウザが正しくページを描画してくれる可能性が高まります。きわめてシンプルなdoctype宣言である<code>&lt;!DOCTYPE html&gt;</code>は、最新の標準HTML (HTML5) であることを示しています。<a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_8">↑</a></li>
-<li id="fn-3_9">2番目によく使われている<a href="http://haml-lang.com/">Haml</a>というテンプレートシステムもあります。Hamlは個人的に非常に気に入っているのですが、初心者向けのチュートリアルで使うには<em>やや</em>標準から外れています。<a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_9">↑</a></li>
-<li id="fn-3_10">Railsでの開発経験者であれば、この時点で<code>content_for</code>の使用を検討すると思いますが、残念ながらAsset Pipelineと併用すると正常に動作しないことがあります。<code>provide</code>関数はcontent_forの代替です。<a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_10">↑</a></li>
-<li id="fn-3_11">Rubyを勉強したことのある方であれば、Railsはブロックの内容を<em>yield</em>していると推測することでしょう。そして、その推測はおそらく正しいでしょう。しかし、Rails開発のためにこれらの詳細を知る必要はありません。<a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_11">↑</a></li>
-<li id="fn-3_12">http://rvm.io/integration/bundler/ <a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_12">↑</a></li>
-<li id="fn-3_13"><em>spork</em>はspoon-forkを組み合わせた造語です。このプロジェクト名は、<a href="http://en.wikipedia.org/wiki/POSIX">POSIX</a>の<a href="http://en.wikipedia.org/wiki/Fork_(software_development)">fork</a>におけるSporkの用法をもじったものです。<a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_13">↑</a></li>
-<li id="fn-3_14">http://railstutorial.org/screencasts <a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_14">↑</a></li>
-<li id="fn-3_15">https://github.com/maltize/sublime-text-2-ruby-tests <a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_15">↑</a></li>
-<li id="fn-3_16">https://github.com/mhartl/rails_tutorial_sublime_text <a class="arrow" href="/chapters/static-pages.html?version=4.0#fnref-3_16">↑</a></li>
+<li id="fn-3_1">Capybaraは<em>Webrat</em>の後続プロジェクトであり、世界<a href="http://en.wikipedia.org/wiki/Capybara">最大の齧歯類</a>が名前の由来です。<a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_1">↑</a></li>
+<li id="fn-3_2">なお、<code>install</code>は省略可能です。実は、<code>bundle</code>コマンドは<code>bundle install</code>のエイリアスでもあります。<a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_2">↑</a></li>
+<li id="fn-3_3">システムによっては、<a class="ref" href="/chapters/beginning?version=4.0#code-gitignore">リスト1.7</a>の.gitignoreを参考にして、さらに便利な設定にすることもできます。<a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_3">↑</a></li>
+<li id="fn-3_4">https://github.com/railstutorial/sample_app_rails_4 <a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_4">↑</a></li>
+<li id="fn-3_5">ここで静的なページを作るために採用した方法は、おそらく最もシンプルな方法です。ただし他にも方法はあります。最適な方法は状況によって異なり、たとえば<em>きわめて多数</em>の静的なページを1つのStaticPagesコントローラだけまかなおうとすると重荷になる可能性があります。今回はいくつかの静的なページを作るだけなので、重荷にはなりません。<a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_5">↑</a></li>
+<li id="fn-3_6">毎回<code>bundle exec</code>を追加するのは面倒ですが、<a class="ref" href="/chapters/static-pages?version=4.0#sec-advanced_setup">3.6</a>のオプションを使うと省略できます。<a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_6">↑</a></li>
+<li id="fn-3_7">筆者は普段、ターミナルやテキストエディタの背景は黒色にしていますが、明るい色の背景の方がスクリーンショットの見栄えが良いので、(一時的に) 明るい背景を使用しています。<a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_7">↑</a></li>
+<li id="fn-3_8">HTMLは常に変化しています。doctypeを明示的に宣言することで、今後もブラウザが正しくページを描画してくれる可能性が高まります。きわめてシンプルなdoctype宣言である<code>&lt;!DOCTYPE html&gt;</code>は、最新の標準HTML (HTML5) であることを示しています。<a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_8">↑</a></li>
+<li id="fn-3_9">2番目によく使われている<a href="http://haml-lang.com/">Haml</a>というテンプレートシステムもあります。Hamlは個人的に非常に気に入っているのですが、初心者向けのチュートリアルで使うには<em>やや</em>標準から外れています。<a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_9">↑</a></li>
+<li id="fn-3_10">Railsでの開発経験者であれば、この時点で<code>content_for</code>の使用を検討すると思いますが、残念ながらAsset Pipelineと併用すると正常に動作しないことがあります。<code>provide</code>関数はcontent_forの代替です。<a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_10">↑</a></li>
+<li id="fn-3_11">Rubyを勉強したことのある方であれば、Railsはブロックの内容を<em>yield</em>していると推測することでしょう。そして、その推測はおそらく正しいでしょう。しかし、Rails開発のためにこれらの詳細を知る必要はありません。<a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_11">↑</a></li>
+<li id="fn-3_12">http://rvm.io/integration/bundler/ <a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_12">↑</a></li>
+<li id="fn-3_13"><em>spork</em>はspoon-forkを組み合わせた造語です。このプロジェクト名は、<a href="http://en.wikipedia.org/wiki/POSIX">POSIX</a>の<a href="http://en.wikipedia.org/wiki/Fork_(software_development)">fork</a>におけるSporkの用法をもじったものです。<a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_13">↑</a></li>
+<li id="fn-3_14">http://railstutorial.org/screencasts <a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_14">↑</a></li>
+<li id="fn-3_15">https://github.com/maltize/sublime-text-2-ruby-tests <a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_15">↑</a></li>
+<li id="fn-3_16">https://github.com/mhartl/rails_tutorial_sublime_text <a class="arrow" href="/chapters/static-pages?version=4.0#fnref-3_16">↑</a></li>
 </ol>
 </div>
 

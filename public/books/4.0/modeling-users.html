@@ -52,7 +52,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図6.1</span><span class="description">ユーザー登録ページのモックアップ。<a href="http://railstutorial.jp/images/figures/signup_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>Railsでは、データモデルで使用するデフォルトのデータ構造のことを<em>モデル</em>と呼びます (<a class="ref" href="/chapters/beginning?version=4.0#sec-mvc">1.2.6</a>で言うMVCのMのことです)。Railsでは、データを永続化するデフォルトの解決策として、<em>データベース</em>を使用してデータを長期間保存します。また、データベースとやりとりするデフォルトのRailsライブラリは<em>Active Record</em>と呼ばれます<sup class="footnote" id="fnref-6_1"><a href="/chapters/modeling-users.html?version=4.0#fn-6_1">1</a></sup>。Active Recordは、データオブジェクトの作成/保存/検索のためのメソッドを持っています。これらのメソッドを使用するのに、<a href="http://en.wikipedia.org/wiki/Relational_database">リレーショナルデータベース</a>で使うSQL (Structured Query Language)<sup class="footnote" id="fnref-6_2"><a href="/chapters/modeling-users.html?version=4.0#fn-6_2">2</a></sup>を意識する必要はありません。さらに、Railsには<em>マイグレーション</em>という機能があります。データの定義をRubyで記述することができ、SQLのDDL (Data Definition Language)を新たに学ぶ必要がありません。Railsは、データストアの詳細からほぼ完全に私たちを切り離してくれます。本書では、SQLiteを開発 (development) 環境で使い、またPostgreSQLを (Herokuでの) 開発環境で使います (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>)。Railsは、本番 (production) アプリケーションですら、データの保存方法の詳細についてほとんど考える必要がないくらいよくできています。</p>
+<p>Railsでは、データモデルで使用するデフォルトのデータ構造のことを<em>モデル</em>と呼びます (<a class="ref" href="/chapters/beginning?version=4.0#sec-mvc">1.2.6</a>で言うMVCのMのことです)。Railsでは、データを永続化するデフォルトの解決策として、<em>データベース</em>を使用してデータを長期間保存します。また、データベースとやりとりするデフォルトのRailsライブラリは<em>Active Record</em>と呼ばれます<sup class="footnote" id="fnref-6_1"><a href="/chapters/modeling-users?version=4.0#fn-6_1">1</a></sup>。Active Recordは、データオブジェクトの作成/保存/検索のためのメソッドを持っています。これらのメソッドを使用するのに、<a href="http://en.wikipedia.org/wiki/Relational_database">リレーショナルデータベース</a>で使うSQL (Structured Query Language)<sup class="footnote" id="fnref-6_2"><a href="/chapters/modeling-users?version=4.0#fn-6_2">2</a></sup>を意識する必要はありません。さらに、Railsには<em>マイグレーション</em>という機能があります。データの定義をRubyで記述することができ、SQLのDDL (Data Definition Language)を新たに学ぶ必要がありません。Railsは、データストアの詳細からほぼ完全に私たちを切り離してくれます。本書では、SQLiteを開発 (development) 環境で使い、またPostgreSQLを (Herokuでの) 開発環境で使います (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>)。Railsは、本番 (production) アプリケーションですら、データの保存方法の詳細についてほとんど考える必要がないくらいよくできています。</p>
 
 <div class="label" id="sec-database_migrations"></div>
 
@@ -62,7 +62,7 @@
 
 <p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>で扱ったカスタムビルドクラスの<code>User</code>を思い出してください。このクラスは、<code>name</code>と<code>email</code>を属性に持つユーザーオブジェクトでした。このクラスは役に立つ例として提供されましたが、Railsにとってきわめて重要な部分である<em>永続性</em>という要素が欠けていました。RailsコンソールでUserクラスのオブジェクトを作っても、コンソールからexitするとそのオブジェクトはすぐに消えてしまいました。この節での目的は、簡単に消えることのないユーザーのモデルを構築することです。</p>
 
-<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>のユーザークラスと同様に、<code>name</code>と<code>email</code>の2つの属性からなるユーザーをモデリングするところから始めましょう。後者のemailを一意のユーザー名として使用します<sup class="footnote" id="fnref-6_3"><a href="/chapters/modeling-users.html?version=4.0#fn-6_3">3</a></sup> (パスワードのための属性は<a class="ref" href="/chapters/modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>で扱います) 。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-example_user">リスト4.9</a>では、以下のようにRubyの<code>attr_accessor</code>メソッドを使用しました。</p>
+<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>のユーザークラスと同様に、<code>name</code>と<code>email</code>の2つの属性からなるユーザーをモデリングするところから始めましょう。後者のemailを一意のユーザー名として使用します<sup class="footnote" id="fnref-6_3"><a href="/chapters/modeling-users?version=4.0#fn-6_3">3</a></sup> (パスワードのための属性は<a class="ref" href="/chapters/modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>で扱います) 。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-example_user">リスト4.9</a>では、以下のようにRubyの<code>attr_accessor</code>メソッドを使用しました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span>
   <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
@@ -125,7 +125,7 @@
 
 <p>マイグレーションファイル名の先頭には、それが生成された時間の<em>タイムスタンプ</em>が追加されます。以前はインクリメンタルな整数が追加されましたが、複数の開発者によるチームでは、複数のプログラマが同じ整数を持つマイグレーションを生成してしまい、コンフリクトを引き起こしていました。現在のタイムスタンプによる方法であれば、まったく同時にマイグレーションが生成されるという通常ではありえないことが起きない限り、そのようなコンフリクトを避けることができます。</p>
 
-<p>マイグレーション自体は、データベースに与える変更を定義した<code>change</code>メソッドの集まりです。<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>の場合、<code>change</code>メソッドは<code>create_table</code>というRailsのメソッドを呼び、ユーザーを保存するための<em>テーブル</em>をデータベースに作成します。<code>create_table</code>メソッドはブロック変数を1つ持つブロック (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-blocks">4.3.2</a>) を受け取ります。ここでは (“table”の頭文字を取って) <code>t</code>です。そのブロックの中で、<code>create_table</code>メソッドは<code>t</code>オブジェクトを使って、今度は<code>name</code>と<code>email</code>カラムをデータベースに作成します。型はいずれも<code>string</code>です<sup class="footnote" id="fnref-6_4"><a href="/chapters/modeling-users.html?version=4.0#fn-6_4">4</a></sup>。モデル名は単数形 (User) ですが、テーブル名は複数形 (<code>users</code>) です。これはRailsで用いられる言葉の慣習を反映しています。モデルはひとりのユーザーを表すのに対し、データベースのテーブルは複数のユーザーから構成されます。ブロックの最後の行<code>t.timestamps</code>は特別なコマンドで、<code>created_at</code>と<code>updated_at</code>という2つの<em>魔法のカラム</em>を作ります。これらは、あるユーザーが作られたり更新されたときに、その時間を自動的に記録するタイムスタンプです (このマジックカラムの使用例を<a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>から具体的に見ていきます)。 このマイグレーションで作られる完全なデータモデルを<a class="ref" href="/chapters/modeling-users?version=4.0#fig-user_model_initial">図6.2</a>に示します。</p>
+<p>マイグレーション自体は、データベースに与える変更を定義した<code>change</code>メソッドの集まりです。<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>の場合、<code>change</code>メソッドは<code>create_table</code>というRailsのメソッドを呼び、ユーザーを保存するための<em>テーブル</em>をデータベースに作成します。<code>create_table</code>メソッドはブロック変数を1つ持つブロック (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-blocks">4.3.2</a>) を受け取ります。ここでは (“table”の頭文字を取って) <code>t</code>です。そのブロックの中で、<code>create_table</code>メソッドは<code>t</code>オブジェクトを使って、今度は<code>name</code>と<code>email</code>カラムをデータベースに作成します。型はいずれも<code>string</code>です<sup class="footnote" id="fnref-6_4"><a href="/chapters/modeling-users?version=4.0#fn-6_4">4</a></sup>。モデル名は単数形 (User) ですが、テーブル名は複数形 (<code>users</code>) です。これはRailsで用いられる言葉の慣習を反映しています。モデルはひとりのユーザーを表すのに対し、データベースのテーブルは複数のユーザーから構成されます。ブロックの最後の行<code>t.timestamps</code>は特別なコマンドで、<code>created_at</code>と<code>updated_at</code>という2つの<em>魔法のカラム</em>を作ります。これらは、あるユーザーが作られたり更新されたときに、その時間を自動的に記録するタイムスタンプです (このマジックカラムの使用例を<a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>から具体的に見ていきます)。 このマイグレーションで作られる完全なデータモデルを<a class="ref" href="/chapters/modeling-users?version=4.0#fig-user_model_initial">図6.2</a>に示します。</p>
 
 <div class="label" id="fig-user_model_initial"></div>
 
@@ -140,7 +140,7 @@
 </div>
 
 
-<p>(<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_users_resource">2.2</a>で、このコマンドを似たような状況で実行したことを思い出してみてください) 。初めて<code>db:migrate</code>が実行されると、<code>db/development.sqlite3</code>という名前のファイルが生成されます。これは<a href="http://sqlite.org/">SQLite</a><sup class="footnote" id="fnref-6_5"><a href="/chapters/modeling-users.html?version=4.0#fn-6_5">5</a></sup>データベースです。<code>db/development.sqlite3</code>ファイルを開くための<a href="http://sourceforge.net/projects/sqlitebrowser/">SQLite Database Browser</a>という素晴らしいツールを使って、データベースの構造を詳しく参照することができます (<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>)。<a class="ref" href="/chapters/modeling-users?version=4.0#fig-user_model_initial">図6.2</a>の表と比べてみてください。<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>の中に<code>id</code>というマイグレーションのときに説明されなかったカラムの存在に気づいたかもしれません。<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_users_resource">2.2</a>で簡単に説明したとおり、このカラムは自動的に作成され、Railsが各行を一意に識別するために使用します。</p>
+<p>(<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_users_resource">2.2</a>で、このコマンドを似たような状況で実行したことを思い出してみてください) 。初めて<code>db:migrate</code>が実行されると、<code>db/development.sqlite3</code>という名前のファイルが生成されます。これは<a href="http://sqlite.org/">SQLite</a><sup class="footnote" id="fnref-6_5"><a href="/chapters/modeling-users?version=4.0#fn-6_5">5</a></sup>データベースです。<code>db/development.sqlite3</code>ファイルを開くための<a href="http://sourceforge.net/projects/sqlitebrowser/">SQLite Database Browser</a>という素晴らしいツールを使って、データベースの構造を詳しく参照することができます (<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>)。<a class="ref" href="/chapters/modeling-users?version=4.0#fig-user_model_initial">図6.2</a>の表と比べてみてください。<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>の中に<code>id</code>というマイグレーションのときに説明されなかったカラムの存在に気づいたかもしれません。<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_users_resource">2.2</a>で簡単に説明したとおり、このカラムは自動的に作成され、Railsが各行を一意に識別するために使用します。</p>
 
 <div class="label" id="fig-sqlite_database_browser"></div>
 
@@ -247,9 +247,9 @@
 </div>
 
 
-<p><code>id</code>には<code>1</code>という値が代入され、一方でマジックカラムには現在の日時が代入されているのがわかります<sup class="footnote" id="fnref-6_6"><a href="/chapters/modeling-users.html?version=4.0#fn-6_6">6</a></sup>。現在、作成と更新のタイムスタンプは同一ですが、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-updating_user_objects">6.1.5</a>では異なる値になります。</p>
+<p><code>id</code>には<code>1</code>という値が代入され、一方でマジックカラムには現在の日時が代入されているのがわかります<sup class="footnote" id="fnref-6_6"><a href="/chapters/modeling-users?version=4.0#fn-6_6">6</a></sup>。現在、作成と更新のタイムスタンプは同一ですが、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-updating_user_objects">6.1.5</a>では異なる値になります。</p>
 
-<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>のUserクラスと同様に、Userモデルのインスタンスはドット記法を用いてその属性にアクセスすることができます<sup class="footnote" id="fnref-6_7"><a href="/chapters/modeling-users.html?version=4.0#fn-6_7">7</a></sup>。</p>
+<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>のUserクラスと同様に、Userモデルのインスタンスはドット記法を用いてその属性にアクセスすることができます<sup class="footnote" id="fnref-6_7"><a href="/chapters/modeling-users?version=4.0#fn-6_7">7</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">name</span>
 <span class="go">Michael Hartl (マイケル・ハートル)</span>
@@ -320,7 +320,7 @@
 </div>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>で3番目のユーザーを削除したので、Active Recordはこのユーザーをデータベースの中から見つけることができませんでした。代わりに、<code>find</code>メソッドは<em>例外 (exception) </em>を発生します。例外はプログラムの実行時に何か例外的なイベントが発生したことを示すために使われます。この場合、存在しないActive Recordのidによって、<code>find</code>で<code>ActiveRecord::RecordNotFound</code>例外<sup class="footnote" id="fnref-6_8"><a href="/chapters/modeling-users.html?version=4.0#fn-6_8">8</a></sup>が発生しました。</p>
+<p><a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>で3番目のユーザーを削除したので、Active Recordはこのユーザーをデータベースの中から見つけることができませんでした。代わりに、<code>find</code>メソッドは<em>例外 (exception) </em>を発生します。例外はプログラムの実行時に何か例外的なイベントが発生したことを示すために使われます。この場合、存在しないActive Recordのidによって、<code>find</code>で<code>ActiveRecord::RecordNotFound</code>例外<sup class="footnote" id="fnref-6_8"><a href="/chapters/modeling-users?version=4.0#fn-6_8">8</a></sup>が発生しました。</p>
 
 <p>一般的な<code>find</code>メソッド以外に、Active Recordには特定の属性でユーザーを検索する方法もあります。</p>
 
@@ -614,7 +614,7 @@
 </div>
 
 
-<p>コンソールを起動して、Userモデルに検証を追加した効果を見てみましょう<sup class="footnote" id="fnref-6_9"><a href="/chapters/modeling-users.html?version=4.0#fn-6_9">9</a></sup>。</p>
+<p>コンソールを起動して、Userモデルに検証を追加した効果を見てみましょう<sup class="footnote" id="fnref-6_9"><a href="/chapters/modeling-users?version=4.0#fn-6_9">9</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console --sandbox</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
@@ -939,7 +939,7 @@
 
 <p>このパターンに一致するメールアドレスだけが有効であることをチェックします (<code>VALID_EMAIL_REGEX</code>は大文字で始まるので、Rubyの<em>定数</em>として扱われ、値は変更できません)。</p>
 
-<p>ところで、この正規表現パターンはどうやって作ればよいのでしょうか。正規表現は簡潔な (<a href="http://catb.org/jargon/html/L/line-noise.html">読めない</a>という人もいますが) テキストパターンマッチング言語から成ります。正規表現を組み立てることを学ぶのはそれだけでひとつの技術分野であり、手短に説明するのは簡単ではありませんが、ともあれ最初の説明のために<code>VALID_EMAIL_REGEX</code>をビットサイズの破片に分解しました (<a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>)<sup class="footnote" id="fnref-6_10"><a href="/chapters/modeling-users.html?version=4.0#fn-6_10">10</a></sup>。本当に正規表現を学びたいなら、素晴らしい正規表現エディタである<a href="http://www.rubular.com/">Rubular</a> (<a class="ref" href="/chapters/modeling-users?version=4.0#fig-rubular">図6.4</a>) が必要不可欠です<sup class="footnote" id="fnref-6_11"><a href="/chapters/modeling-users.html?version=4.0#fn-6_11">11</a></sup>。RubularのWebサイトは、正規表現を作るための美しく対話的なインターフェイスを持っています。また、手軽な正規表現のクイックリファレンスにもなります。Rubularのサイトをブラウザで開き、<a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>の表現をひとつずつ入力して結果を確かめながら正規表現を学ぶことをぜひともお勧めします。正規表現について学んだことがなくても、Rubularを使えば数時間で慣れることができます (<em>注</em>: <a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>の正規表現をRubularで使う場合、冒頭の<tt class="verb">\A</tt>と末尾の<tt class="verb">\z</tt>の文字は含めないでください)。</p>
+<p>ところで、この正規表現パターンはどうやって作ればよいのでしょうか。正規表現は簡潔な (<a href="http://catb.org/jargon/html/L/line-noise.html">読めない</a>という人もいますが) テキストパターンマッチング言語から成ります。正規表現を組み立てることを学ぶのはそれだけでひとつの技術分野であり、手短に説明するのは簡単ではありませんが、ともあれ最初の説明のために<code>VALID_EMAIL_REGEX</code>をビットサイズの破片に分解しました (<a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>)<sup class="footnote" id="fnref-6_10"><a href="/chapters/modeling-users?version=4.0#fn-6_10">10</a></sup>。本当に正規表現を学びたいなら、素晴らしい正規表現エディタである<a href="http://www.rubular.com/">Rubular</a> (<a class="ref" href="/chapters/modeling-users?version=4.0#fig-rubular">図6.4</a>) が必要不可欠です<sup class="footnote" id="fnref-6_11"><a href="/chapters/modeling-users?version=4.0#fn-6_11">11</a></sup>。RubularのWebサイトは、正規表現を作るための美しく対話的なインターフェイスを持っています。また、手軽な正規表現のクイックリファレンスにもなります。Rubularのサイトをブラウザで開き、<a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>の表現をひとつずつ入力して結果を確かめながら正規表現を学ぶことをぜひともお勧めします。正規表現について学んだことがなくても、Rubularを使えば数時間で慣れることができます (<em>注</em>: <a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>の正規表現をRubularで使う場合、冒頭の<tt class="verb">\A</tt>と末尾の<tt class="verb">\z</tt>の文字は含めないでください)。</p>
 
 <div class="label" id="table-valid_email_regex"></div>
 
@@ -948,7 +948,7 @@
 <table class="tabular"><tr><th class="align_left"><strong>表現</strong></th><th class="align_left"><strong>意味</strong></th></tr><tr class="top_bar"><td class="align_left"><tt class="verb">/\A[\w+\-.]+@[a-z\d\-.]</tt><tt class="verb">+\.[a-z]+\z/i</tt></td><td class="align_left">(完全な正規表現)</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">正規表現の開始を示す</td></tr><tr><td class="align_left"><tt class="verb">\A</tt></td><td class="align_left">文字列の先頭</td></tr><tr><td class="align_left"><tt class="verb">[\w+\-.]</tt><tt class="verb">+</tt></td><td class="align_left">英文字、数字、プラス記号、ハイフン、ドットのいずれかを少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">@</tt></td><td class="align_left">アットマーク</td></tr><tr><td class="align_left"><tt class="verb">[a-z\d\-.]</tt><tt class="verb">+</tt></td><td class="align_left">英小文字、数字、ハイフン、ドットのいずれかを少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">\.</tt></td><td class="align_left">ドット</td></tr><tr><td class="align_left"><tt class="verb">[a-z]+</tt></td><td class="align_left">英小文字を少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">\z</tt></td><td class="align_left">文字列の末尾</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">正規表現の終わりを示す</td></tr><tr><td class="align_left"><tt class="verb">i</tt></td><td class="align_left">大文字小文字を無視するオプション</td></tr></table></div><div class="caption"><span class="header">表6.1</span><span class="description"><a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>のメールの正規表現の分解。</span></div></div>
 
 
-<p>ところで、公式標準によるとメールアドレスに完全に一致する正規表現は存在するのだそうです。しかし、苦労して導入するほどの甲斐はありません。<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>の例は問題なく動作しますし、おそらく公式のものより良いでしょう<sup class="footnote" id="fnref-6_12"><a href="/chapters/modeling-users.html?version=4.0#fn-6_12">12</a></sup>。上の正規表現にはちょっとだけ残念な点があります。<code>foo@bar..com</code>のようなドットの連続を誤りとして検出できません。この問題の修正は、演習問題に回します (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-modeling_users_exercises">6.5</a>)。</p>
+<p>ところで、公式標準によるとメールアドレスに完全に一致する正規表現は存在するのだそうです。しかし、苦労して導入するほどの甲斐はありません。<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>の例は問題なく動作しますし、おそらく公式のものより良いでしょう<sup class="footnote" id="fnref-6_12"><a href="/chapters/modeling-users?version=4.0#fn-6_12">12</a></sup>。上の正規表現にはちょっとだけ残念な点があります。<code>foo@bar..com</code>のようなドットの連続を誤りとして検出できません。この問題の修正は、演習問題に回します (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-modeling_users_exercises">6.5</a>)。</p>
 
 <div class="label" id="fig-rubular"></div>
 
@@ -966,7 +966,7 @@
 
 <p>メールアドレスの一意性を強制するために (ユーザー名として使うために)、<code>validates</code>メソッドの<code>:unique</code>オプションを使います。ただしここで<em>重大な</em>警告があります。以下の文面は流し読みせず、必ず注意深く読んでください。</p>
 
-<p>今回もいつものようにテストを作成するところから始めます。モデルのテストではこれまで、主に<code>User.new</code>を使ってきました。このメソッドは単にメモリ上にRubyのオブジェクトを作るだけです。しかし、一意性のテストのためには、メモリ上だけではなく、実際にレコードをデータベースに登録する必要があります<sup class="footnote" id="fnref-6_13"><a href="/chapters/modeling-users.html?version=4.0#fn-6_13">13</a></sup>。(最初の段階の) 重複メールアドレスのテストを<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email_test">リスト6.15</a>に示します。</p>
+<p>今回もいつものようにテストを作成するところから始めます。モデルのテストではこれまで、主に<code>User.new</code>を使ってきました。このメソッドは単にメモリ上にRubyのオブジェクトを作るだけです。しかし、一意性のテストのためには、メモリ上だけではなく、実際にレコードをデータベースに登録する必要があります<sup class="footnote" id="fnref-6_13"><a href="/chapters/modeling-users?version=4.0#fn-6_13">13</a></sup>。(最初の段階の) 重複メールアドレスのテストを<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email_test">リスト6.15</a>に示します。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email_test"></div>
 
@@ -1016,7 +1016,7 @@
 </div></div>
 
 
-<p>実装の途中ですが、ここでひとつ補足します。通常、メールアドレスでは大文字小文字が区別されません。すなわち、<code>foo@bar.com</code>は<code>FOO@BAR.COM</code>や<code>FoO@BAr.coM</code>と書いても扱いは同じです。従って、メールアドレスの検証ではこのような場合も考慮する必要があります<sup class="footnote" id="fnref-6_14"><a href="/chapters/modeling-users.html?version=4.0#fn-6_14">14</a></sup> 。<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email_case_insensitive_test">リスト6.17</a>のコードでは、大文字小文字を区別せずにテストしています。</p>
+<p>実装の途中ですが、ここでひとつ補足します。通常、メールアドレスでは大文字小文字が区別されません。すなわち、<code>foo@bar.com</code>は<code>FOO@BAR.COM</code>や<code>FoO@BAr.coM</code>と書いても扱いは同じです。従って、メールアドレスの検証ではこのような場合も考慮する必要があります<sup class="footnote" id="fnref-6_14"><a href="/chapters/modeling-users?version=4.0#fn-6_14">14</a></sup> 。<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email_case_insensitive_test">リスト6.17</a>のコードでは、大文字小文字を区別せずにテストしています。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email_case_insensitive_test"></div>
 
@@ -1110,7 +1110,7 @@
 </div>
 
 
-<p>ユーザー用のマイグレーションと異なり、メールアドレスの一意性のマイグレーションは未定義になっています。<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_uniqueness_index">リスト6.19</a>のように定義を記述する必要があります<sup class="footnote" id="fnref-6_15"><a href="/chapters/modeling-users.html?version=4.0#fn-6_15">15</a></sup>。</p>
+<p>ユーザー用のマイグレーションと異なり、メールアドレスの一意性のマイグレーションは未定義になっています。<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_uniqueness_index">リスト6.19</a>のように定義を記述する必要があります<sup class="footnote" id="fnref-6_15"><a href="/chapters/modeling-users?version=4.0#fn-6_15">15</a></sup>。</p>
 
 <div class="label" id="code-email_uniqueness_index"></div>
 
@@ -1142,7 +1142,7 @@
 </div>
 
 
-<p>残念なことに、メールアドレスの一意性を保証するためには、もう1つやらなければならないことがあります。それは、メールアドレスをデータベースに保存する前にすべての文字を小文字に変換することです。その理由は、データベースのアダプタが常に大文字小文字を区別するインデックスを使っているとは限らないからです<sup class="footnote" id="fnref-6_16"><a href="/chapters/modeling-users.html?version=4.0#fn-6_16">16</a></sup>。これを行うには<a href="http://en.wikipedia.org/wiki/Callback_(computer_science)"><em>コールバック</em></a>というテクニックを利用します。コールバックとは、Active Recordオブジェクトが持続している間のどこかの時点で、Active Recordオブジェクトに呼び出してもらうメソッドです (Rails APIの「<a href="http://api.rubyonrails.org/v4.0.0/classes/ActiveRecord/Callbacks.html">コールバックの登録ポイント</a> (英語)」を参照してください)。今回の場合は、<code>before_save</code>コールバックを使います。<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase">リスト6.20</a>に示したように、ユーザーをデータベースに保存する前にemail属性を強制的に小文字に変換します。</p>
+<p>残念なことに、メールアドレスの一意性を保証するためには、もう1つやらなければならないことがあります。それは、メールアドレスをデータベースに保存する前にすべての文字を小文字に変換することです。その理由は、データベースのアダプタが常に大文字小文字を区別するインデックスを使っているとは限らないからです<sup class="footnote" id="fnref-6_16"><a href="/chapters/modeling-users?version=4.0#fn-6_16">16</a></sup>。これを行うには<a href="http://en.wikipedia.org/wiki/Callback_(computer_science)"><em>コールバック</em></a>というテクニックを利用します。コールバックとは、Active Recordオブジェクトが持続している間のどこかの時点で、Active Recordオブジェクトに呼び出してもらうメソッドです (Rails APIの「<a href="http://api.rubyonrails.org/v4.0.0/classes/ActiveRecord/Callbacks.html">コールバックの登録ポイント</a> (英語)」を参照してください)。今回の場合は、<code>before_save</code>コールバックを使います。<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase">リスト6.20</a>に示したように、ユーザーをデータベースに保存する前にemail属性を強制的に小文字に変換します。</p>
 
 <div class="label" id="code-email_downcase"></div>
 
@@ -1612,7 +1612,7 @@
 <h3><a id="sec-6_3_4" href="/chapters/modeling-users?version=4.0#sec-has_secure_password" class="heading"><span class="number">6.3.4</span>ユーザーがセキュアなパスワードを持っている</a></h3>
 
 
-<p>認証システムを最初からフル作成していた<a href="http://railstutorial.jp/book?version=3.0">Rails 3.0向け<em>Railsチュートリアル</em></a><sup class="footnote" id="fnref-6_17"><a href="/chapters/modeling-users.html?version=4.0#fn-6_17">17</a></sup>を参照いただくとわかるように、以前のバージョンのRailsでは、セキュアパスワードの実装は面倒で時間のかかる作業でした。しかし今では、Web開発者が認証システムというものを以前よりも深く理解するようになり、最新のRailsには認証システムも同梱されるようになりました。ここまで実装を進めてきたので、あとほんの数行を追加してセキュアパスワードの実装を完了し、テストスイートを緑色 (成功) にしましょう。</p>
+<p>認証システムを最初からフル作成していた<a href="http://railstutorial.jp/book?version=3.0">Rails 3.0向け<em>Railsチュートリアル</em></a><sup class="footnote" id="fnref-6_17"><a href="/chapters/modeling-users?version=4.0#fn-6_17">17</a></sup>を参照いただくとわかるように、以前のバージョンのRailsでは、セキュアパスワードの実装は面倒で時間のかかる作業でした。しかし今では、Web開発者が認証システムというものを以前よりも深く理解するようになり、最新のRailsには認証システムも同梱されるようになりました。ここまで実装を進めてきたので、あとほんの数行を追加してセキュアパスワードの実装を完了し、テストスイートを緑色 (成功) にしましょう。</p>
 
 <p>最初に、パスワードの長さ検証を行います。これには<code>:minimum</code>キーを使用しますが、これは<a class="ref" href="/chapters/modeling-users?version=4.0#code-length_validation">リスト6.12</a>で使用した<code>:maximum</code>キーから容易に想像がつきます。</p>
 
@@ -1848,23 +1848,23 @@
 </a><a class="next_page" href="/chapters/sign-up?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-6_1">この名前の由来は “<a href="http://en.wikipedia.org/wiki/Active_record_pattern">active record pattern</a>” です。Martin Fowler著「<em>エンタープライズ アプリケーションアーキテクチャパターン </em>」で特定および命名されました。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_1">↑</a></li>
-<li id="fn-6_2">「エスキューエル」と発音しますが、「スィークゥエル」もよく使われます。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_2">↑</a></li>
-<li id="fn-6_3">メールアドレスをユーザー名にしたことで、理屈の上では将来ユーザー同士で通信できるように拡張できる可能性が開かれます。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_3">↑</a></li>
-<li id="fn-6_4"><code>t</code>オブジェクトが具体的に何をしているのかを正確に知る必要はありませんので、どうか心配しないでください。<em>抽象化レイヤ</em>の素晴らしい点は、それが何であるかを知る必要がないという点です。安心して<code>t</code>オブジェクトに仕事を任せればよいのです。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_4">↑</a></li>
-<li id="fn-6_5">公式には「エスキューエライト」と発音しますが、(本来は誤りとされている)「スィークゥエライト」もよく使われています。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_5">↑</a></li>
-<li id="fn-6_6"><code>&quot;2013-03-11 00:57:46&quot;</code>というタイムスタンプが気になった方もいると思いますが、著者はこの箇所を真夜中過ぎに書いたわけではありません。実はこのタイムスタンプは<a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">協定世界時 (UTC)</a> に合わせてあります。これは<a href="http://en.wikipedia.org/wiki/Greenwich_Mean_Time">グリニッジ標準時 (GMT)</a> と同様、標準時間として使用されます。「<a href="http://tf.nist.gov/general/misc.htm">NIST時刻と周波数FAQ</a>」によると、<strong>問:</strong> 協定世界時 (Coordinated Universal Time) の略称がCUTではなくUTCなのはなぜですか。<strong>答え:</strong> 協定世界時システムは、1970年に国際電気通信連合 (ITU) の技術専門家の国際諮問グループによって考案されました。このときITUは、混乱を最小限にとどめるために、略称を1つだけにしたいと考えました。このとき、英語式のCUTもフランス式のTUCも満場一致とならず、両者の妥協案としてUTCという略語が採用されました。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_6">↑</a></li>
-<li id="fn-6_7"><code>user.updated_at</code>の値にご注目ください。上の脚注にも書いたとおり、このタイムスタンプはUTCベースです。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_7">↑</a></li>
-<li id="fn-6_8">例外と例外ハンドリングは、ある意味でRubyの高度なテーマです。本書では例外についてこれ以上言及しません。しかし例外が重要なものであることも確かなので、<a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a>で推薦したRuby本で例外について詳しく学ぶことをおすすめします<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_8">↑</a></li>
-<li id="fn-6_9">今後、コンソールコマンドの出力は、特に教育的効果が高いと思える場合 (ここでの<code>User.new</code>の場合など) を除いて省略いたします。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_9">↑</a></li>
-<li id="fn-6_10"><a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>の正規表現の説明における「文字」は、実は「小文字のみ」が対象になっていることにご注意ください。ただし、正規表現の末尾に<code>i</code>オプションを追加してあるので、大文字小文字が区別されずにマッチするようになっています。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_10">↑</a></li>
-<li id="fn-6_11">著者同様このツールを便利だと思ってくださる方は、<a href="http://lovitt.net/">Michael Lovitt</a>の素晴らしい成果に報いるために、どうか<a href="http://bit.ly/donate-to-rubular">Rubularへの寄付</a>をお願いいたします。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_11">↑</a></li>
-<li id="fn-6_12">驚いたことに、公式標準によると<code>&quot;Michael Hartl&quot;@example.com</code>のようなクォートとスペースを使用したメールアドレスも有効なのだそうです。まったく馬鹿げています。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_12">↑</a></li>
-<li id="fn-6_13">この節の冒頭で簡単に紹介したように、この目的に使用できる専用のテストデータベース<code>db/test.sqlite3</code>があります。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_13">↑</a></li>
-<li id="fn-6_14">技術的には、メールアドレスのうちドメイン名部分だけが (本当は) 大文字小文字を区別しません。foo@bar.comは、本来はdifferent from Foo@bar.comとは別のアドレスです。ただし現実的には、<a href="http://email.about.com/od/emailbehindthescenes/f/email_case_sens.htm">about.com</a>でも指摘されているように、メールアドレスの大文字小文字を区別することを前提にするのはまずい方法です。「メールアドレスの大文字小文字を区別すると、果てしない混乱と相互運用性の問題とひどい頭痛が発生する。メールアドレスの入力時に大文字小文字の区別を要求するのは賢い方法とは言えない。現実には、メールアドレスの大文字小文字の区別を強制するメールサービスやISPはめったに存在しない。メールアドレスのすべての文字を大文字にするなど、受信者のメールアドレスが誤って入力されていれば、メールは返送されるだけだ。」Riley Mosesによるご指摘に感謝いたします。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_14">↑</a></li>
-<li id="fn-6_15">もちろん、<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>の<code>users</code>テーブル用のマイグレーションファイルを単に編集することも可能なのですが、その場合ロールバックが必要となり、マイグレーションが戻ってしまいます。データモデルの変更が必要になったらその都度マイグレーションを行うのがRails流です。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_15">↑</a></li>
-<li id="fn-6_16">著者のシステム上のSQLiteとHeroku上のPostgreSQLで直接実験してみたところ、この手順は実際に必要であることがわかりました。<a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_16">↑</a></li>
-<li id="fn-6_17">http://railstutorial.jp/book?version=3.0 <a class="arrow" href="/chapters/modeling-users.html?version=4.0#fnref-6_17">↑</a></li>
+<li id="fn-6_1">この名前の由来は “<a href="http://en.wikipedia.org/wiki/Active_record_pattern">active record pattern</a>” です。Martin Fowler著「<em>エンタープライズ アプリケーションアーキテクチャパターン </em>」で特定および命名されました。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_1">↑</a></li>
+<li id="fn-6_2">「エスキューエル」と発音しますが、「スィークゥエル」もよく使われます。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_2">↑</a></li>
+<li id="fn-6_3">メールアドレスをユーザー名にしたことで、理屈の上では将来ユーザー同士で通信できるように拡張できる可能性が開かれます。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_3">↑</a></li>
+<li id="fn-6_4"><code>t</code>オブジェクトが具体的に何をしているのかを正確に知る必要はありませんので、どうか心配しないでください。<em>抽象化レイヤ</em>の素晴らしい点は、それが何であるかを知る必要がないという点です。安心して<code>t</code>オブジェクトに仕事を任せればよいのです。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_4">↑</a></li>
+<li id="fn-6_5">公式には「エスキューエライト」と発音しますが、(本来は誤りとされている)「スィークゥエライト」もよく使われています。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_5">↑</a></li>
+<li id="fn-6_6"><code>&quot;2013-03-11 00:57:46&quot;</code>というタイムスタンプが気になった方もいると思いますが、著者はこの箇所を真夜中過ぎに書いたわけではありません。実はこのタイムスタンプは<a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">協定世界時 (UTC)</a> に合わせてあります。これは<a href="http://en.wikipedia.org/wiki/Greenwich_Mean_Time">グリニッジ標準時 (GMT)</a> と同様、標準時間として使用されます。「<a href="http://tf.nist.gov/general/misc.htm">NIST時刻と周波数FAQ</a>」によると、<strong>問:</strong> 協定世界時 (Coordinated Universal Time) の略称がCUTではなくUTCなのはなぜですか。<strong>答え:</strong> 協定世界時システムは、1970年に国際電気通信連合 (ITU) の技術専門家の国際諮問グループによって考案されました。このときITUは、混乱を最小限にとどめるために、略称を1つだけにしたいと考えました。このとき、英語式のCUTもフランス式のTUCも満場一致とならず、両者の妥協案としてUTCという略語が採用されました。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_6">↑</a></li>
+<li id="fn-6_7"><code>user.updated_at</code>の値にご注目ください。上の脚注にも書いたとおり、このタイムスタンプはUTCベースです。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_7">↑</a></li>
+<li id="fn-6_8">例外と例外ハンドリングは、ある意味でRubyの高度なテーマです。本書では例外についてこれ以上言及しません。しかし例外が重要なものであることも確かなので、<a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a>で推薦したRuby本で例外について詳しく学ぶことをおすすめします<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_8">↑</a></li>
+<li id="fn-6_9">今後、コンソールコマンドの出力は、特に教育的効果が高いと思える場合 (ここでの<code>User.new</code>の場合など) を除いて省略いたします。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_9">↑</a></li>
+<li id="fn-6_10"><a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>の正規表現の説明における「文字」は、実は「小文字のみ」が対象になっていることにご注意ください。ただし、正規表現の末尾に<code>i</code>オプションを追加してあるので、大文字小文字が区別されずにマッチするようになっています。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_10">↑</a></li>
+<li id="fn-6_11">著者同様このツールを便利だと思ってくださる方は、<a href="http://lovitt.net/">Michael Lovitt</a>の素晴らしい成果に報いるために、どうか<a href="http://bit.ly/donate-to-rubular">Rubularへの寄付</a>をお願いいたします。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_11">↑</a></li>
+<li id="fn-6_12">驚いたことに、公式標準によると<code>&quot;Michael Hartl&quot;@example.com</code>のようなクォートとスペースを使用したメールアドレスも有効なのだそうです。まったく馬鹿げています。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_12">↑</a></li>
+<li id="fn-6_13">この節の冒頭で簡単に紹介したように、この目的に使用できる専用のテストデータベース<code>db/test.sqlite3</code>があります。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_13">↑</a></li>
+<li id="fn-6_14">技術的には、メールアドレスのうちドメイン名部分だけが (本当は) 大文字小文字を区別しません。foo@bar.comは、本来はdifferent from Foo@bar.comとは別のアドレスです。ただし現実的には、<a href="http://email.about.com/od/emailbehindthescenes/f/email_case_sens.htm">about.com</a>でも指摘されているように、メールアドレスの大文字小文字を区別することを前提にするのはまずい方法です。「メールアドレスの大文字小文字を区別すると、果てしない混乱と相互運用性の問題とひどい頭痛が発生する。メールアドレスの入力時に大文字小文字の区別を要求するのは賢い方法とは言えない。現実には、メールアドレスの大文字小文字の区別を強制するメールサービスやISPはめったに存在しない。メールアドレスのすべての文字を大文字にするなど、受信者のメールアドレスが誤って入力されていれば、メールは返送されるだけだ。」Riley Mosesによるご指摘に感謝いたします。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_14">↑</a></li>
+<li id="fn-6_15">もちろん、<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>の<code>users</code>テーブル用のマイグレーションファイルを単に編集することも可能なのですが、その場合ロールバックが必要となり、マイグレーションが戻ってしまいます。データモデルの変更が必要になったらその都度マイグレーションを行うのがRails流です。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_15">↑</a></li>
+<li id="fn-6_16">著者のシステム上のSQLiteとHeroku上のPostgreSQLで直接実験してみたところ、この手順は実際に必要であることがわかりました。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_16">↑</a></li>
+<li id="fn-6_17">http://railstutorial.jp/book?version=3.0 <a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_17">↑</a></li>
 </ol>
 </div>
 
