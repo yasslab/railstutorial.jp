@@ -26,7 +26,8 @@ for chapter in `cat chapter_list.txt`
 do
     cat book_fragment.modified_$i.html | \
 	sed -e "s/$chapter$VERSION#top/$VERSION#cha-$chapter/g" | \
-	sed -e "s/$chapter$VERSION/$VERSION/g" \
+	sed -e "s/$chapter$VERSION/$VERSION/g" | \
+	sed -e "s/book\/ruby-on-rails-tutorial$chapter\.html/book\/ruby-on-rails-tutorial/g" \
 	> book_fragment.modified_`expr $i + 1`.html
     rm  book_fragment.modified_$i.html
     i=`expr $i + 1`
