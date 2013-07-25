@@ -1531,7 +1531,7 @@
 <pre class="verbatim">let(:found_user) { User.find_by(email: @user.email) }</pre>
 
 
-<p><tt>found_user</tt>という変数が作成され、その値は<tt>find_by</tt>の返し値に等しくなります。これにより、この変数はテスト中すべての<tt>before</tt>または<tt>it</tt>ブロックで利用できるようになります。<tt>let</tt>では値が<em>メモ化 (memoize) </em>されるという特長があり、ある呼び出しから次の呼び出しに渡って値を利用できます (<a href="http://en.wikipedia.org/wiki/Memoization"><em>メモ化</em></a>は技術用語であり、決して &quot;memorize&quot; の誤りでは<em>ありません</em>) 。この場合、<tt>found_user</tt>変数は<tt>let</tt>によってメモ化され、<tt>find_by</tt>メソッドが実際に呼び出されるのはUserモデルのspecが実際に実行されるときだけとなります。</p>
+<p><tt>found_user</tt>という変数が作成され、その値は<tt>find_by</tt>の戻り値に等しくなります。これにより、この変数はテスト中すべての<tt>before</tt>または<tt>it</tt>ブロックで利用できるようになります。<tt>let</tt>では値が<em>メモ化 (memoize) </em>されるという特長があり、ある呼び出しから次の呼び出しに渡って値を利用できます (<a href="http://en.wikipedia.org/wiki/Memoization"><em>メモ化</em></a>は技術用語であり、決して &quot;memorize&quot; の誤りでは<em>ありません</em>) 。この場合、<tt>found_user</tt>変数は<tt>let</tt>によってメモ化され、<tt>find_by</tt>メソッドが実際に呼び出されるのはUserモデルのspecが実際に実行されるときだけとなります。</p>
 </div>
 
 

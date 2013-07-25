@@ -382,7 +382,7 @@
 
 <p>逆に言えば、ダブルクォート文字列を用いた文字列で<code>#</code>のような特殊な文字を使用する場合は、この文字をバックスラッシュで<em>エスケープ</em>する必要があります。</p>
 
-<p>ダブルクォート文字列でもシングルクォート文字列と同じことができ、ダブルクォート文字列では式展開もできるのであれば、シングルクォート文字列にはどのような使い道があるのでしょうか。シングルクォートは、入力した文字をエスケープせずに「そのまま」保持するときに便利です。たとえば、いわゆる “バックスラッシュ” 文字は、改行文字<tt class="verb">\n</tt>と同様多くのシステム上で特殊な文字として扱われます。シングルクオートで文字列を囲めば、簡単にバックスラッシュ文字のようなとくしゅもをそのまま変数に含めることができます。</p>
+<p>ダブルクォート文字列でもシングルクォート文字列と同じことができ、ダブルクォート文字列では式展開もできるのであれば、シングルクォート文字列にはどのような使い道があるのでしょうか。シングルクォートは、入力した文字をエスケープせずに「そのまま」保持するときに便利です。たとえば、いわゆる “バックスラッシュ” 文字は、改行文字<tt class="verb">\n</tt>と同様多くのシステム上で特殊な文字として扱われます。シングルクオートで文字列を囲めば、簡単にバックスラッシュ文字のような特殊文字をそのまま変数に含めることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;\n&#39;</span>       <span class="c1"># バックスラッシュ n&#39; をそのまま扱う</span>
 <span class="go">=&gt; &quot;\\n&quot;</span>
@@ -478,9 +478,9 @@
 </div>
 
 
-<p>このように、<code>nil</code> オブジェクトは<code>empty?</code> メソッドに応答しないですが、 <code>nil.to_s</code>にはすることがわかりました。</p>
+<p>上に示したように、<code>nil</code> オブジェクトは<code>empty?</code> メソッドに応答しませんが、<code>nil.to_s</code>には応答します。</p>
 
-<p>推測できるかもしれませんが、<code>nil</code>かどうかを調べるメソッドもあります:</p>
+<p>ご想像のとおり、<code>nil</code>かどうかを調べるメソッドもあります:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;foo&quot;</span><span class="o">.</span><span class="n">nil?</span>
 <span class="go">=&gt; false</span>
@@ -499,7 +499,7 @@
 </div>
 
 
-<p><code>if</code>キーワードの別の使い方を示しています。Rubyではこのように、<code>if</code> での条件式が真のときにだけ実行される式を書くことができ、コードが非常に簡潔になります。なお、<code>unless</code> キーワードも同様に使用できます。</p>
+<p><code>if</code>キーワードの別の使い方を示しています。Rubyではこのように、<code>if</code>での条件式が真のときにだけ実行される式を書くことができ、コードが非常に簡潔になります。なお、<code>unless</code>キーワードも同様に使用できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="nb">puts</span> <span class="s2">&quot;The string &#39;</span><span class="si">#{</span><span class="n">string</span><span class="si">}</span><span class="s2">&#39; is nonempty.&quot;</span> <span class="k">unless</span> <span class="n">string</span><span class="o">.</span><span class="n">empty?</span>
@@ -1107,7 +1107,7 @@
 </div>
 
 
-<p>上のコードでは<code>stylesheet_link_tag</code>関数を2つの引数で呼んでいます。最初の引数である文字列は、スタイルシートへのパスを示しています。次の引数であるハッシュには2つの要素があり、最初の要素はメディアタイプを示し、次の要素は<a href="https://github.com/rails/turbolinks">turbolinks</a>機能をオンにしています (Turbolinksについては、本書の次のドラフト版で詳細に説明いたします)。コードが<tt class="verb">&lt;%= %&gt;</tt>で囲まれていることによって、 このコードの実行結果はERbのテンプレートに挿入されます。ブラウザ上でこのページのソースを表示すると、必要なスタイルシートが含まれていることを確認できます (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-scss_source">リスト4.7</a>)。(CSSファイル名の後に、<code>?body=1</code>のような行が余分に表示されていることがあります。これらはRailsによって挿入されているもので、サーバ上で変更があった場合にブラウザがCSSを再読み込みするのに使用します。)</p>
+<p>上のコードでは<code>stylesheet_link_tag</code>関数を2つの引数で呼んでいます。最初の引数である文字列は、スタイルシートへのパスを示しています。次の引数であるハッシュには2つの要素があり、最初の要素はメディアタイプを示し、次の要素は<a href="https://github.com/rails/turbolinks">turbolinks</a>機能をオンにしています (Turbolinksの詳細については、本書の次のドラフト版で説明します)。コードが<tt class="verb">&lt;%= %&gt;</tt>で囲まれていることによって、 このコードの実行結果はERbのテンプレートに挿入されます。ブラウザ上でこのページのソースを表示すると、必要なスタイルシートが含まれていることを確認できます (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-scss_source">リスト4.7</a>)。(CSSファイル名の後に、<code>?body=1</code>のような行が余分に表示されていることがあります。これらはRailsによって挿入されているもので、サーバ上で変更があった場合にブラウザがCSSを再読み込みするのに使用します。)</p>
 
 <div class="label" id="code-scss_source"></div>
 
@@ -1192,7 +1192,7 @@
 <h3><a id="sec-4_4_2" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_class_of_our_own" class="heading"><span class="number">4.4.2</span>クラス継承</a></h3>
 
 
-<p>クラスについて学ぶとき、<em>superclass</em>メソッドを使って<code>クラス階層</code>を調べてみるとよくわかります。</p>
+<p>クラスについて学ぶとき、<code>superclass</code>メソッドを使って<em>クラス階層</em>を調べてみるとよくわかります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="nb">String</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
 <span class="go">=&gt; &quot;foobar&quot;</span>
@@ -1216,7 +1216,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/string_inheritance_ruby_1_9.png" alt="string_inheritance_ruby_1_9" /></span></div><div class="caption"><span class="header">図4.1</span><span class="description"> <code>String</code>クラスの継承階層</span></div></div>
 
 
-<p>クラスについてもう少し深く知るためには、自分自身で作ってみるに代わるものはありません。<code>palindrome?</code> メソッドを持つ<code>Word</code> クラスを作ってみましょう method that returns <code>true</code> if the word is the same spelled forward and backward</p>
+<p>クラスについてもっと深く知るためには、自分自身で作ってみるのが一番です。そこで、<code>Word</code>クラスを作成し、その中に、ある単語を前からと後ろからのどちらから読んでも同じ (つまり回文になっている) ならば<code>true</code>を返す<code>palindrome?</code>メソッドを作成してみましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">class</span> <span class="nc">Word</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">def</span> <span class="nf">palindrome?</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
@@ -1407,7 +1407,7 @@
 
 <p>ここでは、<code>home</code>アクションの中身は空なので<code>nil</code>が返されます。</p>
 
-<p>ここで重要な点があります。Railsのアクションには返し値がありません。少なくとも、返される値は重要ではありません。<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>で示したとおり、<code>home</code>アクションはWebページを表示するためのものであり、値を返すためのものではありませんでした。しかも、第3章では一度も<code>StaticPagesController.new</code>を実行しませんでした。どうしてこれでうまくいっているのでしょうか。</p>
+<p>ここで重要な点があります。Railsのアクションには戻り値がありません。少なくとも、返される値は重要ではありません。<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>で示したとおり、<code>home</code>アクションはWebページを表示するためのものであり、値を返すためのものではありませんでした。しかも、第3章では一度も<code>StaticPagesController.new</code>を実行しませんでした。どうしてこれでうまくいっているのでしょうか。</p>
 
 <p>実は、Railsは確かにRubyで<em>書かれて</em>いますが、既にRubyとは別物なのです。Railsのクラスは、普通のRubyオブジェクトと同様に振る舞うものもありますが、多くのクラスにはRailsの<a href="http://www.answers.com/grist">魔法の粉</a>が振りかけられています。Railsは<a href="http://en.wikipedia.org/wiki/Sui_generis"><em>独特</em></a>であり、 Rubyとは切り離して学習する必要があります。このため、とにかくWebアプリケーションを書けるようになりたい方は、最初にRailsを学び、次にRubyを学んでから再びRailsに戻ってくることをお勧めします。</p>
 
@@ -1548,7 +1548,7 @@
 
 <ol>
 
-<li><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-string_shuffle">リスト4.10</a>のコードにある疑問符を適切なメソッドに置き換えて、与えられた文字列の文字をシャッフルする関数を作成してください。ヒント: <code>split</code>メソッド、<code>shuffle</code>メソッド、<code>join</code>メソッドを組み合わせてみましょう。</li>
+<li><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-string_shuffle">リスト4.10</a>のコードにある色付きの疑問符を適切なメソッドに置き換えて、与えられた文字列の文字をシャッフルする関数を作成してください。ヒント: <code>split</code>メソッド、<code>shuffle</code>メソッド、<code>join</code>メソッドを組み合わせてみましょう。</li>
 
 <li><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-string_shuffle_two">リスト4.11</a>を参考にして、上で作成した<code>shuffle</code>メソッドを <code>String</code>クラスに追加してください。</li>
 

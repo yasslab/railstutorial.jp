@@ -467,7 +467,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p><em>Railsチュートリアル</em> では、一字一句間違えることなく最初から正確に実装するのではなく、アプリケーションの振る舞いをテストしながら実装する直観的な手法を採用しています。この開発手法は、テスト駆動開発 (Test-Driven Develpment, TDD) から派生した振舞駆動開発 (Behavior-Driven Development, BDD) として知られています。本書でこれから頻繁に使うツールは、<em>結合テスト (integration test) </em>と<em>単体テスト (unit test) </em>の2つです。結合テストについてはこの節から、単体テストについては<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>から解説していきます。結合テスト (RSpec では <em>リクエストspec</em> と呼んでいます) は、ユーザがアプリケーションを使う際の一連のアクションをシミュレーションします。結合テストは、アプリケーションの各ページが正常に動作するかどうかをテストしてくれる強力なツールです。手動でブラウザを操作してテストする必要がなくなり、Capybaraを併用すれば自然言語 (英語) に近い文法でテストを記述する事もできます (Capybara以外にも、Cucumberという振舞駆動開発用ツールが有名です。詳細については<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-cucumber">8.3</a>で紹介します)。</p>
 
-<p>テスト駆動開発の定義とは、アプリケーションを開発するときに<em>最初に</em>テストを作成し、次にコードを作成することです。この開発手法に慣れるまでには多少時間がかかるかもしれませんが、しかし一度慣れてしまえば大きなメリットを得られます。<em>失敗する</em>テストを最初に書き、テストにパスするコードを次に実装することで、しかるべき振る舞いがテストによって正しく検証されている、という自信が付きます。さらに、この「失敗-実装-成功」という開発サイクルは、「<a href="http://en.wikipedia.org/wiki/Flow_(psychology)">開発フロー</a>」を生み出します。そしてこの開発フローに乗ることで、コーディングが楽しくなり、開発の生産性も向上します。また、テストはアプリケーションのコードに対して<em>クライアント</em>として振る舞うので、ソフトウェア設計の改良につながることも多くなるでしょう。</p>
+<p>テスト駆動開発の定義とは、アプリケーションを開発するときに<em>最初に</em>テストを作成し、次にコードを作成することです。この開発手法に慣れるまでには多少時間がかかるかもしれませんが、一度慣れてしまえば大きなメリットを得られます。<em>失敗する</em>テストを最初に書き、テストにパスするコードを次に実装することで、しかるべき振る舞いがテストによって正しく検証されている、という自信が付きます。さらに、この「失敗-実装-成功」という開発サイクルは、「<a href="http://en.wikipedia.org/wiki/Flow_(psychology)">開発フロー</a>」を生み出します。そしてこの開発フローに乗ることで、コーディングが楽しくなり、開発の生産性も向上します。また、テストはアプリケーションのコードに対して<em>クライアント</em>として振る舞うので、ソフトウェア設計の改良につながることも多くなるでしょう。</p>
 
 <p>ただし、テスト駆動開発がどんな仕事に対しても常に正しい手法であるとは限りません。このことは十分に理解しておいてください。「最初にテストを書くべきである」、「テストはひとつひとつの機能を完全にカバーするべきである」、「すべての箇所をテストすべきである」などのような教条的な主張を正当化できる理由はどこにもありません。たとえば、与えられた課題の解決法に今ひとつ確信が持てないときは、(テストを書かずに) まず試しにアプリケーションコードだけを書いてみて、どんな解決方法があるのか模索してみる方が良い結果を得られることもあります (<a href="http://en.wikipedia.org/wiki/Extreme_Programming">エクストリームプログラミング (Extreme Programming, XP)</a> という開発手法では、この模索段階を<em>スパイク (spike) </em>と呼んでいます)。そして解決策が明確になった段階で、テスト駆動開発でコードを清書するという方法もありえます。</p>
 
@@ -875,7 +875,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <h4><a id="sec-3_2_2_3" href="/chapters/static-pages?version=4.0#sec-refactor" class="heading">リファクタリング</a></h4>
 
 
-<p>テストが緑色になったので、安心してコードをリファクタリングできるようになりました。多くの場合、コードを書き進めるうちに肥大化したり繰り返しが増えたりして、いつしか「悪臭を放つ」醜悪なコードになりはてるものです。コードが醜くてもコンピュータはそのことを気にかけませんが、開発者にとってはそうはいきません。だからこそ、頻繁にリファクタリングを実施し、コードを清潔な状態に保ち続けることが重要です。この点において、良いテストコードがあるということは非常に貴重です。リファクタリングする際にバグが混入する可能性を劇的に小さくしてくれるからです。</p>
+<p>テストが緑色になったので、安心してコードをリファクタリングできるようになりました。多くの場合、コードを書き進めるうちに肥大化したり繰り返しが増えたりして、いつしか「悪臭を放つ」醜悪なコードになりはてるものです。コンピュータはコードが醜くても気にしませんが、開発者にとってはそうはいきません。だからこそ、頻繁にリファクタリングを実施し、コードを清潔な状態に保ち続けることが重要です。この点において、良いテストコードがあるということは非常に貴重です。リファクタリングする際にバグが混入する可能性を劇的に小さくしてくれるからです。</p>
 
 <p>サンプルアプリケーションはかなり小規模なので、今のところリファクタリングの余地はありません。しかしコードの「悪臭」はやがてあらゆる箇所からただよいはじめ、そのうちにリファクタリングが必要になることでしょう。実際、<a class="ref" href="/chapters/static-pages?version=4.0#sec-layouts">3.3.4</a>で早くもリファクタリングに取りかかることになります。</p>
 
@@ -1332,7 +1332,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 
 <p>これらのコードは、スタイルシート、JavaScript、<code>csrf_meta_tags</code>メソッドをそれぞれページにインクルードするためのものです。スタイルシートとJavaScriptは、アセットパイプライン (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-the_asset_pipeline">5.2.1</a>) の一部です。csrf_meta_tagsは、Web攻撃手法のひとつである<a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">クロスサイトリクエストフォージェリー</a> (cross-site request forgery: CSRF)を防ぐために使われるRailsのメソッドです。</p>
 
-<p>もちろん、<a class="ref" href="/chapters/static-pages?version=4.0#code-home_view_erb_title">リスト3.23</a>、<a class="ref" href="/chapters/static-pages?version=4.0#code-help_view_erb_title">リスト3.24</a>、 <a class="ref" href="/chapters/static-pages?version=4.0#code-about_view_erb_title">リスト3.25</a>のビューには、レイアウトと重複するHTMLがまだ残っているので、それらを削除して、内部のコンテツだけ残します。これにより、 <a class="ref" href="/chapters/static-pages?version=4.0#code-home_view_interior">リスト3.27</a>、<a class="ref" href="/chapters/static-pages?version=4.0#code-help_view_interior">リスト3.28</a>、<a class="ref" href="/chapters/static-pages?version=4.0#code-about_view_interior">リスト 3.29</a>にそれぞれ示したように、ビューのコードが美しく簡潔なものになります。</p>
+<p>もちろん、<a class="ref" href="/chapters/static-pages?version=4.0#code-home_view_erb_title">リスト3.23</a>、<a class="ref" href="/chapters/static-pages?version=4.0#code-help_view_erb_title">リスト3.24</a>、 <a class="ref" href="/chapters/static-pages?version=4.0#code-about_view_erb_title">リスト3.25</a>のビューには、レイアウトと重複するHTMLがまだ残っているので、それらを削除して、内部のコンテンツだけ残します。これにより、 <a class="ref" href="/chapters/static-pages?version=4.0#code-home_view_interior">リスト3.27</a>、<a class="ref" href="/chapters/static-pages?version=4.0#code-help_view_interior">リスト3.28</a>、<a class="ref" href="/chapters/static-pages?version=4.0#code-about_view_interior">リスト 3.29</a>にそれぞれ示したように、ビューのコードが美しく簡潔なものになります。</p>
 
 <div class="label" id="code-home_view_interior"></div>
 
@@ -1981,7 +1981,7 @@ bundler_stubs/
 </div>
 
 
-<p>上の実行結果では、実際のテストは1/10秒以下で実行されますが、テストスイートは7秒以上かかっています。実行時間のスピートアップのため、別のターミナルウィンドウを開いてアプリケーションののルートディレクトリに移動し、以下のようにSporkサーバーを起動します。</p>
+<p>上の実行結果では、実際のテストは1/10秒以下で実行されますが、テストスイートは7秒以上かかっています。実行時間のスピートアップのため、別のターミナルウィンドウを開いてアプリケーションのルートディレクトリに移動し、以下のようにSporkサーバーを起動します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>spork
 <span class="go">Using RSpec</span>
