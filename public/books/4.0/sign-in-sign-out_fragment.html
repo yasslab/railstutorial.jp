@@ -8,7 +8,7 @@
 
 <p>ユーザーがサインインすることでセキュリティモデルも実装され、サインインしているユーザーidに基づいて、特定のページへのアクセスを制限することもできます。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>でも説明しますが、たとえばサインインしたユーザーのみがユーザー情報編集ページにアクセスできるようにします。サインインシステムを使用して、管理者ユーザーに特別な権限を与えることもできます。たとえば  (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>で導入する) データベースからユーザーを削除する機能があります。</p>
 
-<p>コアとなる認証機能を実装した後は、少々回り道して、振舞駆動開発 (<em>8.3</em>) で有名な<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-cucumber">Cucumber</a>というツールを試してみます。特に、2つの開発手法を比較するために、RSpecによる結合テストの組み合わせをCucumberで再実装します。</p>
+<p>コアとなる認証機能を実装した後は、少々回り道して、振舞駆動開発 (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-cucumber">8.3</a>) で有名な<em>Cucumber</em>というツールを試してみます。特に、2つの開発手法を比較するために、RSpecによる結合テストの組み合わせをCucumberで再実装します。</p>
 
 <p>前章同様に、トピックブランチで作業してから、最後に更新をマージします。</p>
 
@@ -87,7 +87,7 @@
 </div>
 
 
-<p>セッションを編集したりユーザーに表示したりする必要がないので、<code>resources</code>メソッドに<code>:only</code>オプションをつ近し、<code>new</code>、<code>create</code>、<code>destroy</code>の3つのアクションのみを有効にします。サインインとサインアウト用のルーティングを含む完全なコードを<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sessions_resource">リスト8.2</a>に示します。</p>
+<p>セッションを編集したりユーザーに表示したりする必要がないので、<code>resources</code>メソッドに<code>:only</code>オプションを追加し、<code>new</code>、<code>create</code>、<code>destroy</code>の3つのアクションのみを有効にします。サインインとサインアウト用のルーティングを含む完全なコードを<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sessions_resource">リスト8.2</a>に示します。</p>
 
 <div class="label" id="code-sessions_resource"></div>
 
@@ -109,7 +109,7 @@
 </div></div>
 
 
-<p>注: サインアウトのルーティングにある <code>via: :delete</code>は、このアクションが HTTPの<tt>DELETE</tt>リクエストによって呼び出されることを示しています。</p>
+<p>注: サインアウトのルーティングにある<code>via: ’delete’</code>は、このアクションが HTTPの<tt>DELETE</tt>リクエストによって呼び出されることを示しています。</p>
 
 <p><a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sessions_resource">リスト8.2</a>で定義されたリソースは、<a class="ref" href="/chapters/sign-up?version=4.0#table-RESTful_users">表8.1</a>に示したように、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#table-RESTful_sessions">表7.1</a>とよ似たURIとアクションを提供します。注：サインインとサインアウトのアクションのルーティングはカスタムで設定しますが、セッションの生成アクションへのルーティングはデフォルトを使います (i.e., <code>[resource name]_path</code>).</p>
 
@@ -187,7 +187,7 @@
 </div>
 
 
-<p>上のコードでは、<a class="ref" href="/chapters/sign-up?version=4.0#code-after_save_tests">リスト7.32</a>で導入したCapabaraの<code>have_selector</code>メソッドを使用しています (<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>の演習)。<code>have_selector</code>メソッドは、特定のセレクタ要素 (HTMLタグなど) があるかどうかをチェックします。なお、Capybara 2.0では<em>画面に表示される要素</em>しかチェックできません。セレクタ要素（つまりタグ）は以下のように指定します。</p>
+<p>上のコードでは、<a class="ref" href="/chapters/sign-up?version=4.0#code-after_save_tests">リスト7.32</a>で導入したCapybaraの<code>have_selector</code>メソッドを使用しています (<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>の演習)。<code>have_selector</code>メソッドは、特定のセレクタ要素 (HTMLタグなど) があるかどうかをチェックします。なお、Capybara 2.0では<em>画面に表示される要素</em>しかチェックできません。セレクタ要素（つまりタグ）は以下のように指定します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">div</span><span class="o">.</span><span class="n">alert</span><span class="o">.</span><span class="n">alert</span><span class="o">-</span><span class="n">error</span>
 </pre></div>
@@ -482,7 +482,7 @@
 <div class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">create</span>
   <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:email</span><span class="o">].</span><span class="n">downcase</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:password</span><span class="o">]</span><span class="p">)</span>
-    <span class="c1"># ユーザをサインインさせ、ユーザページ (show) にリダイレクトする。</span>
+    <span class="c1"># ユーザーをサインインさせ、ユーザーページ (show) にリダイレクトする。</span>
   <span class="k">else</span>
     <span class="c1"># エラーメッセージを表示し、サインインフォームを再描画する。</span>
   <span class="k">end</span>
@@ -530,7 +530,7 @@
   <span class="k">def</span> <span class="nf">create</span>
     <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:email</span><span class="o">].</span><span class="n">downcase</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:password</span><span class="o">]</span><span class="p">)</span>
-      <span class="c1"># ユーザをサインインさせ、ユーザページ (show) にリダイレクトする。</span>
+      <span class="c1"># ユーザーをサインインさせ、ユーザーページ (show) にリダイレクトする。</span>
     <span class="k">else</span>
       <span class="n">flash</span><span class="o">[</span><span class="ss">:error</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;Invalid email/password combination&#39;</span> <span class="c1"># 誤りあり!</span>
       <span class="n">render</span> <span class="s1">&#39;new&#39;</span>
@@ -638,7 +638,7 @@
   <span class="k">def</span> <span class="nf">create</span>
     <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:email</span><span class="o">].</span><span class="n">downcase</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:password</span><span class="o">]</span><span class="p">)</span>
-      <span class="c1"># ユーザをサインインさせ、ユーザページ (show) にリダイレクトする。</span>
+      <span class="c1"># ユーザーをサインインさせ、ユーザーページ (show) にリダイレクトする。</span>
     <span class="k">else</span>
       <span class="n">flash</span><span class="o">.</span><span class="n">now</span><span class="o">[</span><span class="ss">:error</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;Invalid email/password combination&#39;</span>
       <span class="n">render</span> <span class="s1">&#39;new&#39;</span>
@@ -668,7 +668,7 @@
 <h2><a id="sec-8_2" href="/chapters/sign-in-sign-out?version=4.0#sec-signin_success" class="heading"><span class="number">8.2、</span>サインイン成功</a></h2>
 
 
-<p> サインイン失敗をテストできるようにしたので、次は実際にユーザをサインインさせましょう。この節で必要なRubyのプログラミングは、本書の中ではこれまでで最も難易度が高くなっています。どうか最後まであきらめずにがんばってください。ここからの力仕事に備えておきましょう。幸い、はじめの一歩は簡単です。Sessionsコントローラの<code>create</code>アクションはすぐできあがります。残念ながら、少々ズルもしています。</p>
+<p> サインイン失敗をテストできるようにしたので、次は実際にユーザーをサインインさせましょう。この節で必要なRubyのプログラミングは、本書の中ではこれまでで最も難易度が高くなっています。どうか最後まであきらめずにがんばってください。ここからの力仕事に備えておきましょう。幸い、はじめの一歩は簡単です。Sessionsコントローラの<code>create</code>アクションはすぐできあがります。残念ながら、少々ズルもしています。</p>
 
 <p>サインインの実装 (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-correct_signin_failure">リスト8.12</a>) はシンプルです。サインインに成功すると、<code>sign_in</code>関数を使用して実際にユーザーをサインインさせ、プロファイルページにリダイレクトします (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sign_in_success_not_yet_working">リスト8.13</a>)。なぜこれがズルなのかというと、何と<code>sign_in</code>はこの時点では存在していないのです。この節の残りは、この関数を完成させることに費やされます。</p>
 
@@ -707,7 +707,7 @@
 <h3><a id="sec-8_2_1" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me" class="heading"><span class="number">8.2.1</span>[このアカウント設定を保存する]</a></h3>
 
 
-<p>これよりサインインモデルの実装を開始します。具体的には、サインイン状態を「永続化」し、ユーザが明示的にサインアウトしたときにのみセッションを終了します。サインイン関数そのものは伝統的なMVC (model-view-controller)) に帰着します。特に、いくつかのサインイン関数についてはコントローラとビューのどちらからも使用できるようにする必要があります。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-back_to_the_title_helper">4.2.5</a>を思い出してみてください。Rubyには、いくつもの関数をパッケージ化し、さまざまな場所でインクルードできるようにする<em>モジュール</em>という機能が提供されています。これを認証機能の実装に使用しましょう。認証のためにまったく新しいモジュールを作ることも可能ですが、Sessionsコントローラには既に<code>SessionsHelper</code>というモジュールが備わっています。さらに、ヘルパーはRailsのビューに自動的にインクルードされるので、Applicationコントローラにこのモジュールをインクルードするだけで、Sessionsヘルパー機能をコントローラ内で使用できるようになります (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sessions_helper_include">リスト8.14</a>)。</p>
+<p>これよりサインインモデルの実装を開始します。具体的には、サインイン状態を「永続化」し、ユーザーが明示的にサインアウトしたときにのみセッションを終了します。サインイン関数そのものは伝統的なMVC (model-view-controller)) に帰着します。特に、いくつかのサインイン関数についてはコントローラとビューのどちらからも使用できるようにする必要があります。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-back_to_the_title_helper">4.2.5</a>を思い出してみてください。Rubyには、いくつもの関数をパッケージ化し、さまざまな場所でインクルードできるようにする<em>モジュール</em>という機能が提供されています。これを認証機能の実装に使用しましょう。認証のためにまったく新しいモジュールを作ることも可能ですが、Sessionsコントローラには既に<code>SessionsHelper</code>というモジュールが備わっています。さらに、ヘルパーはRailsのビューに自動的にインクルードされるので、Applicationコントローラにこのモジュールをインクルードするだけで、Sessionsヘルパー機能をコントローラ内で使用できるようになります (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sessions_helper_include">リスト8.14</a>)。</p>
 
 <div class="label" id="code-sessions_helper_include"></div>
 
@@ -724,7 +724,7 @@
 
 <p>デフォルトでは、すべてのヘルパーはビューで使用できますが、コントローラでは使用できません。Sessionsヘルパーはビューとコントローラの両方でメソッドが必要となるので、コントローラでは上のように明示的にインクルードする必要があります。</p>
 
-<p>HTTPは<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP_session_state"><em>ステートレスなプロトコル</em></a>であり、そのままでは状態が保存されないので、Webアプリケーションのサインインは、ページからページの移動を追跡するという方法で実装する必要があります。ユーザのサインイン状態を保持するひとつの方法は、伝統的なRailsセッション (特殊な<code>session</code>関数を使用) を使って、ユーザIDに等しい「<em>記憶トークン (remember token)</em>」を保持することです。</p>
+<p>HTTPは<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP_session_state"><em>ステートレスなプロトコル</em></a>であり、そのままでは状態が保存されないので、Webアプリケーションのサインインは、ページからページの移動を追跡するという方法で実装する必要があります。ユーザーのサインイン状態を保持するひとつの方法は、伝統的なRailsセッション (特殊な<code>session</code>関数を使用) を使って、ユーザーIDに等しい「<em>記憶トークン (remember token)</em>」を保持することです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">session</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span>
 </pre></div>
@@ -740,7 +740,7 @@
 
 <p>これだけで、ユーザーを取り出すことができます。Railsでは、セッションがセキュアになるように扱っていますので、悪意のあるユーザーがidをなりすまそうとしても、Railsはセッションごとに生成される特別の<em>セッションid</em>によって不一致を検出します。</p>
 
-<p>私たちのアプリケーション設計では、<em>永続的な</em>セッションを採用します。つまり、ブラウザを閉じた後にもサインイン状態を保持するということであり、サインインしたユーザに対して何らかの<em>恒久的な</em>識別子を使用する必要があります。これを実現するために、ユーザーごとに一意かつ安全な記憶トークンを生成し、ブラウザを閉じても無効にならない<em>恒久的な</em>cookiesとして登録します。</p>
+<p>私たちのアプリケーション設計では、<em>永続的な</em>セッションを採用します。つまり、ブラウザを閉じた後にもサインイン状態を保持するということであり、サインインしたユーザーに対して何らかの<em>恒久的な</em>識別子を使用する必要があります。これを実現するために、ユーザーごとに一意かつ安全な記憶トークンを生成し、ブラウザを閉じても無効にならない<em>恒久的な</em>cookiesとして登録します。</p>
 
 <p>記憶トークンはユーザーに関連付けられる必要があります。また、今後使用するときのために保持しておく必要もあります。そこで、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#fig-user_model_remember_token">図8.8</a>に示すUserモデルの属性に記憶トークンの保存場所を追加しましょう。</p>
 
@@ -1134,7 +1134,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト8.21</span> <span class="description">魅力的だが役に立たない<code>current_user</code>のt</span> </div>
+<div class="listing"><span class="header">リスト8.21</span> <span class="description">魅力的だが役に立たない<code>current_user</code>の定義</span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">SessionsHelper</span>
 
   <span class="k">def</span> <span class="nf">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
@@ -1413,7 +1413,7 @@
 <h3><a id="sec-8_2_5" href="/chapters/sign-in-sign-out?version=4.0#sec-signin_upon_signup" class="heading"><span class="number">8.2.5</span>ユーザー登録と同時にサインインする</a></h3>
 
 
-<p>認証機能の基本的な部分はできましたが、ユーザーが登録を行ったあtそのユーザーがデフォルトではサインインしておらず、このままではユーザーが混乱する可能性があります。そこで、サインアウトの機能を実装する前にその部分をもう少し作り込みましょう。最初に、認証のテストを追加します (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sign_up_sign_in">リスト8.26</a>)。ここには、<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_exercises">7.6</a>の演習にある<a class="ref" href="/chapters/sign-up?version=4.0#code-after_save_tests">リスト7.32</a>でも使った “after saving the user” <code>describe</code>ブロックが含まれています。このリストに対応する演習を行なっていなかった方は、この時点で追加する必要があります。</p>
+<p>認証機能の基本的な部分はできましたが、ユーザーが登録を行った後、そのユーザーがデフォルトではサインインしておらず、このままではユーザーが混乱する可能性があります。そこで、サインアウトの機能を実装する前にその部分をもう少し作り込みましょう。最初に、認証のテストを追加します (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sign_up_sign_in">リスト8.26</a>)。ここには、<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_exercises">7.6</a>の演習にある<a class="ref" href="/chapters/sign-up?version=4.0#code-after_save_tests">リスト7.32</a>でも使った “after saving the user” <code>describe</code>ブロックが含まれています。このリストに対応する演習を行なっていなかった方は、この時点で追加する必要があります。</p>
 
 <div class="label" id="code-sign_up_sign_in"></div>
 
@@ -1598,7 +1598,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト8.31</span> <span class="description"><tt>cucumber-rails</tt> gemを<code>Gemfile.</code>に追加する。</span> </div>
+<div class="listing"><span class="header">リスト8.31</span> <span class="description"><tt>cucumber-rails</tt> gemを<code>Gemfile</code>に追加する。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="o">.</span>
 <span class="o">.</span>
 <span class="o">.</span>

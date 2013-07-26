@@ -1330,7 +1330,7 @@
 
 <p>(Rubyで組み込みクラスにメソッドを追加できるということは実にクールですが、<code>&quot;deified&quot;</code> (=神格化された) という単語が回文になっていることも、それに劣らずクールではないでしょうか。)</p>
 
-<p>組み込みクラスの変更はきわめて強力なテクニックですが、大いなる力には大いなる責任が伴います (訳注: 「スパイダーマン」の名台詞)。従って、<em>真に</em>正当な理由がない限り、組み込みクラスにメソッドを追加することは無作法であると考えられています。Railsの場合、組み込みクラスの変更を正当化できる理由がいくつもあります。たとえば、Web アプリケーションでは、変数が絶対に<em>空白</em>にならないようにしたくなることがよくあります (ユーザ名などはスペースや<a href="http://en.wikipedia.org/wiki/Whitespace_(computer_science)">その他の空白文字</a>になって欲しくないものです) ので、Railsは<code>blank?</code>メソッドをRuby に追加しています。Railsの拡張は自動的にRailsコンソールにも取り込まれるので、以下のようにコンソールで拡張の結果を確認できます (注意: 以下のコードは純粋な <code>irb</code> では動作しません)。</p>
+<p>組み込みクラスの変更はきわめて強力なテクニックですが、大いなる力には大いなる責任が伴います (訳注: 「スパイダーマン」の名台詞)。従って、<em>真に</em>正当な理由がない限り、組み込みクラスにメソッドを追加することは無作法であると考えられています。Railsの場合、組み込みクラスの変更を正当化できる理由がいくつもあります。たとえば、Web アプリケーションでは、変数が絶対に<em>空白</em>にならないようにしたくなることがよくあります (ユーザー名などはスペースや<a href="http://en.wikipedia.org/wiki/Whitespace_(computer_science)">その他の空白文字</a>になって欲しくないものです) ので、Railsは<code>blank?</code>メソッドをRuby に追加しています。Railsの拡張は自動的にRailsコンソールにも取り込まれるので、以下のようにコンソールで拡張の結果を確認できます (注意: 以下のコードは純粋な <code>irb</code> では動作しません)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">blank?</span>
 <span class="go">=&gt; true</span>
@@ -1449,7 +1449,7 @@
 </div>
 
 
-<p>ユーザ名とメールアドレスに対応する<em>アトリビュートアクセサ</em>をそれぞれ作成します。このコードは、<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-mvc_in_action">2.2.2</a>でも説明したように、<code>@name</code>および<code>@email</code><em>インスタンス変数</em>について、取り出し(get) と割り当て(set) を行う &quot;ゲッター&quot; と &quot;セッター&quot; というメソッドをそれぞれ作成します。Railsでは、インスタンス変数を作成するだけでビューで自動的に使えるようになるという点に主な利用価値がありますが、一般的には、インスタンス変数はRubyのそのクラス内のどこでも利用できるようにしたい変数として使われます (これについては後で詳しく説明します)。インスタンス変数は常に<code>@</code>記号で始まり、未定義の状態では値が<code>nil</code>になります。</p>
+<p>ユーザー名とメールアドレスに対応する<em>アトリビュートアクセサ</em>をそれぞれ作成します。このコードは、<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-mvc_in_action">2.2.2</a>でも説明したように、<code>@name</code>および<code>@email</code><em>インスタンス変数</em>について、取り出し(get) と割り当て(set) を行う &quot;ゲッター&quot; と &quot;セッター&quot; というメソッドをそれぞれ作成します。Railsでは、インスタンス変数を作成するだけでビューで自動的に使えるようになるという点に主な利用価値がありますが、一般的には、インスタンス変数はRubyのそのクラス内のどこでも利用できるようにしたい変数として使われます (これについては後で詳しく説明します)。インスタンス変数は常に<code>@</code>記号で始まり、未定義の状態では値が<code>nil</code>になります。</p>
 
 <p>最初の行にある<code>initialize</code>は、Rubyの特殊なメソッドです。これは <code>User.new</code>を実行すると自動的に呼び出されるメソッドです。この場合の<code>initialize</code>メソッドは、以下のように<code>attributes</code>という引数を1つ取ります。</p>
 
@@ -1461,9 +1461,9 @@
 </div>
 
 
-<p>上のコードで、<code>attributes</code>変数は空のハッシュを<em>デフォルトの値</em>として持つため、名前やメールアドレスのないユーザを作ることができます (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">4.3.3</a>を思い出してください。存在しないキーに対してハッシュは<code>nil</code>を返すので、<code>:name</code>キーがなければ<code>attributes[:name]</code>は<code>nil</code> になり、同じことが<code>attributes[:email]</code>にも言えます)。</p>
+<p>上のコードで、<code>attributes</code>変数は空のハッシュを<em>デフォルトの値</em>として持つため、名前やメールアドレスのないユーザーを作ることができます (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">4.3.3</a>を思い出してください。存在しないキーに対してハッシュは<code>nil</code>を返すので、<code>:name</code>キーがなければ<code>attributes[:name]</code>は<code>nil</code> になり、同じことが<code>attributes[:email]</code>にも言えます)。</p>
 
-<p>最後に、<code>formatted_email</code>メソッドを定義しましょう (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-strings">4.2.2</a>)。このメソッドは、文字列の式展開を利用して、<code>@name</code>と<code>@email</code>に割り当てられた値をユーザのメールアドレスとして構成します。</p>
+<p>最後に、<code>formatted_email</code>メソッドを定義しましょう (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-strings">4.2.2</a>)。このメソッドは、文字列の式展開を利用して、<code>@name</code>と<code>@email</code>に割り当てられた値をユーザーのメールアドレスとして構成します。</p>
 
 <div class="code"><div class="highlight"><pre>  <span class="k">def</span> <span class="nf">formatted_email</span>
     <span class="s2">&quot;</span><span class="si">#{</span><span class="vi">@name</span><span class="si">}</span><span class="s2"> &lt;</span><span class="si">#{</span><span class="vi">@email</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
@@ -1501,7 +1501,7 @@
 
 <p><code>@name</code>変数に<code>&quot;Example User&quot;</code>という値を設定します。同様に<code>email</code>属性にも値を設定します。これらの値は<code>formatted_email</code>メソッドで使用されます。</p>
 
-<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-css_revisited">4.3.4</a>では、最後のハッシュ引数の波かっこを省略できることを説明しました。それと同じ要領で<code>initialize</code>メソッドにハッシュを渡すことで、属性が定義済みの他のユーザを作成することができます。</p>
+<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-css_revisited">4.3.4</a>では、最後のハッシュ引数の波かっこを省略できることを説明しました。それと同じ要領で<code>initialize</code>メソッドにハッシュを渡すことで、属性が定義済みの他のユーザーを作成することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
 <span class="go">=&gt; #&lt;User:0x225167c @email=&quot;mhartl@example.com&quot;, @name=&quot;Michael Hartl&quot;&gt;</span>

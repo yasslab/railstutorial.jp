@@ -832,7 +832,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>ここで、<code>expect</code>が<code>click_button</code>を山かっこで囲んでブロックになっていることに注目してください (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-blocks">4.3.2</a>)。これは<code>change</code>メソッドで役に立ちます。このメソッドはオブジェクトとシンボルを引数に取り、シンボルを呼び出した結果を計算してオブジェクト上のメソッドとします。これはブロックの前と後いずれについても行われます。つまり、以下のコードは、つまり、以下のコードは</p>
+<p>ここで、<code>expect</code>が<code>click_button</code>を中かっこで囲んでブロックになっていることに注目してください (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-blocks">4.3.2</a>)。これは<code>change</code>メソッドで役に立ちます。このメソッドはオブジェクトとシンボルを引数に取り、シンボルを呼び出した結果を計算してオブジェクト上のメソッドとします。これはブロックの前と後いずれについても行われます。つまり、以下のコードは</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">expect</span> <span class="p">{</span> <span class="n">click_button</span> <span class="s2">&quot;Create my account&quot;</span> <span class="p">}</span><span class="o">.</span><span class="n">not_to</span> <span class="n">change</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="ss">:count</span><span class="p">)</span>
 </pre></div>
@@ -950,7 +950,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_2_2" href="/chapters/sign-up?version=4.0#sec-using_form_for" class="heading"><span class="number">7.2.2</span><tt>form_for</tt>を使用する</a></h3>
 
 
-<p>テストが正しく失敗したので、今度はユーザー登録の<em>フォーム</em>を作成してテストにパスするようにしましょう。これを行うには、Railsで<code>form_for</code>ヘルパーメソッドを使用します。このメソッドはActive Recordオブジェクトを取り込み、オブジェクトの属性を使用してフォームを構成します。変更の結果を<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_form">リスト7.17</a>に示します (Rails 2.xに慣れている方は、<code>form_for</code>ではコンテンツを挿入するときに “%=” を使用するERb方式の文法を使用していることに注意してください。Rails 2.xでは<tt class="verb">&lt;% form_for ... %&gt;</tt>を使用していましたが、,現在は代わりに<tt class="verb">&lt;%= form_for ... %&gt;</tt>を使用します)。</p>
+<p>テストが正しく失敗したので、今度はユーザー登録の<em>フォーム</em>を作成してテストにパスするようにしましょう。これを行うには、Railsで<code>form_for</code>ヘルパーメソッドを使用します。このメソッドはActive Recordオブジェクトを取り込み、オブジェクトの属性を使用してフォームを構成します。変更の結果を<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_form">リスト7.17</a>に示します (Rails 2.xに慣れている方は、<code>form_for</code>ではコンテンツを挿入するときに “%=” を使用するERb方式の文法を使用していることに注意してください。Rails 2.xでは<tt class="verb">&lt;% form_for ... %&gt;</tt>を使用していましたが、現在は代わりに<tt class="verb">&lt;%= form_for ... %&gt;</tt>を使用します)。</p>
 
 <div class="label" id="code-signup_form"></div>
 
@@ -1485,7 +1485,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>このコードはたとえば<code>&quot;0 errors&quot;</code>、<code>&quot;1 error&quot;</code>、<code>&quot;2 errors&quot;</code>などのように、エラーの数に応じて活用された単語を返します。これにより、<code>&quot;1 errors&quot;</code>のような英語の文法に合わない文字列を避けることができます (これは<a href="http://www.urbandictionary.com/define.php?term=interwebs">teh interwebs</a>にも載っている、どうしようもないほどよく見かけるエラーです)。</p>
+<p>このコードはたとえば <code>&quot;0 errors&quot;</code>、<code>&quot;1 error&quot;</code>、<code>&quot;2 errors&quot;</code> などのように、エラーの数に応じて活用された単語を返します。これにより、<code>&quot;1 errors&quot;</code> のような英語の文法に合わない文字列を避けることができます (これは<a href="http://www.urbandictionary.com/define.php?term=interwebs">teh interwebs</a>にも載っている、どうしようもないほどよく見かけるエラーです)。</p>
 
 <p><a class="ref" href="/chapters/sign-up?version=4.0#code-errors_partial">リスト7.24</a>には、エラーメッセージにスタイルを与えるためのCSS id <code>error_explanation</code>も含まれていることに注目してください (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-custom_css">5.1.2</a>のCSSでスタイルidに「<code>#</code>」記号を使用していることも思い出してください)。さらにRailsは、エラーページにある、<code>div</code>で囲まれたエラーCSSクラス<code>field_with_errors</code>を適用しています。これらのラベルによって、<a class="ref" href="/chapters/sign-up?version=4.0#code-error_messages_css">リスト7.24</a>のようにエラーメッセージをSCSSで整形することができます。ここでは、Sassの<code>@extend</code>関数を使用してBootstrapの<code>control-group</code>と<code>error</code>の2つのクラスの機能をインクルードしています。その結果、送信失敗時のエラーメッセージは<a class="ref" href="/chapters/sign-up?version=4.0#fig-signup_error_messages">図7.17</a>のように赤の背景で囲まれるようになります。これらのメッセージはモデルの検証時に生成されるので、メールアドレスのスタイルやパスワードの最小文字列などを変更すると、メッセージも自動的に変更されます。</p>
 

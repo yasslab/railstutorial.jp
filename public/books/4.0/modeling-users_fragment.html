@@ -1077,11 +1077,11 @@
 <h4><a id="sec-6_2_5_1" href="/chapters/modeling-users?version=4.0#sec-the_caveat" class="heading">一意性の警告</a></h4>
 
 
-<p>上で示した警告には、1つ小さな問題があります。There’s just one small problem, the caveat alluded to above:</p>
+<p>上で示した警告には、1つ小さな問題があります。</p>
 
 <p><strong><code>validates :uniqueness</code>を使用しても、一意性は保証されません。</strong></p>
 
-<p>えっ！何が問題になるのでしょうか。以下のシナリオを見てください。</p>
+<p>えっ?!いったい何が問題なのでしょうか。以下のシナリオを見てください。</p>
 
 <ol>
 <li>アリスはサンプルアプリケーションにユーザー登録します。メールアドレスはalice@wonderland.comです。</li>
@@ -1091,7 +1091,7 @@
 </ol>
 
 
-<p>上のシナリオが信じがたいもののように思えるかもしれませんが、どうか信じてください。RailsのWebサイトでは、トラフィックが多いときにこのような問題が発生する可能性があるのです。幸い、解決策の実装は簡単です。実は、データベースレベルでも一意性を強制するだけでこの問題は解決します。具体的には、emailカラムにデータベースの<em>インデックス</em>を作成し、そのインデックスが一意であることを要求します。</p>
+<p>上のシナリオが信じがたいもののように思えるかもしれませんが、どうか信じてください。RailsのWebサイトでは、トラフィックが多いときにこのような問題が発生する可能性があるのです。幸い、解決策の実装は簡単です。実は、この問題はデータベースレベルでも一意性を強制するだけで解決します。具体的には、emailカラムにデータベースの<em>インデックス</em>を作成し、そのインデックスが一意であることを要求します。</p>
 
 <p>emailインデックスを追加すると、データモデリングの変更が必要になります。Railsでは (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-database_migrations">6.1.1</a>で見たように) マイグレーションでインデックスを追加します。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-database_migrations">6.1.1</a>で、Userモデルを生成すると自動的に新しいマイグレーションが作成されたことを思い出してください (<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>)。今回の場合は、既に存在するモデルに構造を追加するので、以下のように<code>migration</code>ジェネレーターを使用してマイグレーションを直接作成する必要があります。</p>
 
@@ -1125,7 +1125,7 @@
 </div>
 
 
-<p>(上のコマンドが失敗した場合は、実行中のサンドボックスのコンソールセッションを終了してみてください。そのセッションがデータベースをロックしてマイグレーションを妨害していた可能性があります)。一意性を強制すると何が起きるかについて関心のある方は、<code>db/schema.rb</code>を開いてみると以下のような行があるはずです。</p>
+<p>(上のコマンドが失敗した場合は、実行中のサンドボックスのコンソールセッションを終了してみてください。そのセッションがデータベースをロックしてマイグレーションを妨げている可能性があります)。一意性を強制すると何が起きるかについて関心のある方は、<code>db/schema.rb</code>を開いてみると以下のような行があるはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">add_index</span> <span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;email&quot;</span><span class="o">]</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;index_users_on_email&quot;</span><span class="p">,</span> <span class="ss">unique:</span> <span class="kp">true</span>
 </pre></div>
@@ -1151,7 +1151,7 @@
 
 <p><a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase">リスト6.20</a>のコードは、<code>before_save</code>コールバックにブロックを渡してユーザーのメールアドレスを設定します。設定されるメールアドレスは、現在の値をStringクラスの<code>downcase</code>メソッドを使って小文字バージョンにしたものです。このコードは少し上級者向けなので、今はただ、このコードが動作することを信じてください。それでは気の済まない方は、<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email">リスト6.16</a>から一意性の検証部分をコメントアウトし、重複したメールアドレスを持つユーザーを試しに作成してみれば、エラーが発生するはずです (このテクニックについては<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>でもう一度取り上げます。そこではお勧めの<em>メソッド参照</em>方法の慣習について説明します)。<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase">リスト6.20</a>のコード用テストの作成は演習に回します (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-modeling_users_exercises">6.5</a>)。</p>
 
-<p>これで、先に述べたアリスのシナリオはうまくいくようになります。データベースは、最初のリクエストに基づいてユーザーのレコードを保存しますが、2度目の保存は一意性の制約に反するので拒否します (Railsのログにエラーが出力されますが、害は生じません。ここで発生した<code>ActiveRecord::StatementInvalid</code>例外を実際にキャッチすることもできますが、このチュートリアルでは解説しません)。インデックスをemail属性に追加したことで、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>で述べた2番目の目標も達成されます。これは、<code>find_by_email</code>の効率の問題がインデックスによって解決されたためです (<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-database_indices">囲み6.2</a>)。</p>
+<p>これで、先に述べたアリスのシナリオはうまくいくようになります。データベースは、最初のリクエストに基づいてユーザーのレコードを保存しますが、2度目の保存は一意性の制約に反するので拒否します (Railsのログにエラーが出力されますが、害は生じません。ここで発生した<code>ActiveRecord::StatementInvalid</code>例外を実際にキャッチすることもできますが、このチュートリアルでは解説しません)。インデックスをemail属性に追加したことで、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>で述べた2番目の目標 (エントリ多数の場合の検索効率向上) も達成されます。これは、<code>find_by</code>の効率の問題がインデックスによって解決されたためです (<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-database_indices">囲み6.2</a>)。</p>
 
 <div class="label" id="sidebar-database_indices"></div>
 
@@ -1219,7 +1219,7 @@
 </div>
 
 
-<p>ユーザーはpassword_digestカラムにアクセスしなければならないので、<a class="ref" href="/chapters/modeling-users?version=4.0#code-respond_to_password_digest">リスト6.25</a>に示したように、ユーザーオブジェクトは<code>password_digest</code>に応答する必要があります。</p>
+<p>ユーザーはpassword_digestカラムにアクセスしなければならないので、<a class="ref" href="/chapters/modeling-users?version=4.0#code-respond_to_password_digest">リスト6.22</a>に示すように、ユーザーオブジェクトは<code>password_digest</code>に応答する必要があります。</p>
 
 <div class="label" id="code-respond_to_password_digest"></div>
 
@@ -1289,7 +1289,7 @@
 <h3><a id="sec-6_3_2" href="/chapters/modeling-users?version=4.0#sec-password_and_confirmation" class="heading"><span class="number">6.3.2</span>パスワードと確認</a></h3>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#fig-signup_mockup_preview">図6.1</a>のモックアップに示したように、ユーザーにパスワードを確認させるようにしましょう。パスワードの確認入力は、入力ミスを減らすためにWebで広く使用されています。パスワード確認の強制はコントローラの階層でも行うことができますが、モデルの中でActive Recordを使用して制限を与えるのが慣習になっています。そのためには、<code>password</code>属性と<code>password_confirmation</code>属性をUserモデルに追加し、レコードをデータベースに保存する前に2つの属性が一致するように要求します。これまでに使用した属性と異なり、パスワード関連の属性は<em>仮想</em>にします。つまり、これらの属性は一時的にメモリ上に置き、データベースには保存されないようにします。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-has_secure_password">6.3.4</a>でも説明しますが、これらの仮想属性は<code>has_secure_password</code>では自動的に実装されます。</p>
+<p><a class="ref" href="/chapters/modeling-users?version=4.0#fig-signup_mockup_preview">図6.1</a>のモックアップに示したように、ユーザーにパスワードを確認させるようにしましょう。パスワードの確認入力は、入力ミスを減らすためにWebで広く使用されています。パスワード確認の強制はコントローラの階層でも行うことができますが、モデルの中でActive Recordを使用して制限を与えるのが慣習になっています。そのためには、<code>password</code>属性と<code>password_confirmation</code>属性をUserモデルに追加し、レコードをデータベースに保存する前に2つの属性が一致するように要求します。これまでに使用した属性と異なり、パスワード関連の属性は「<em>仮想</em>」にする点にご注意ください。つまり、これらの属性は一時的にメモリ上に置き、データベースには保存されないようにします。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-has_secure_password">6.3.4</a>でも説明しますが、これらの仮想属性は<code>has_secure_password</code>では自動的に実装されます。</p>
 
 <p>最初に、<code>respond_to</code>を使用してパスワードとパスワードの確認を<a class="ref" href="/chapters/modeling-users?version=4.0#code-user_respond_to_password">リスト6.24</a>のようにテストします。</p>
 
@@ -1428,13 +1428,13 @@
 </div>
 
 
-<p>現在のパスワード関連テストがすべてパスするようになり、他の多くのテストにもパスするようになります。このメソッドがあまりに目覚しい働きをするので、この後のテストで赤から青に状態を変えるチュートリアルが逆にやりにくくなってしまいます。そこで、上の1行はコメントアウトしておくことをお勧めします (<a class="ref" href="/chapters/modeling-users?version=4.0#code-commented_out_has_secure_password">リスト6.27</a>).</p>
+<p>現在のパスワード関連テストがすべてパスするようになり、他の多くのテストにもパスするようになります。このメソッドがあまりに目覚しい働きをするので、この後のテストで赤から青に状態を変えるチュートリアルが逆にやりにくくなってしまいます。そこで、一時的にコメントアウトしておいてください (<a class="ref" href="/chapters/modeling-users?version=4.0#code-commented_out_has_secure_password">リスト6.27</a>).</p>
 
 <div class="label" id="code-commented_out_has_secure_password"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト6.27</span> <span class="description">テスト駆動開発ように<code>has_secure_password</code>をコメントアウトする。</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.27</span> <span class="description">テスト駆動開発用に<code>has_secure_password</code>をコメントアウトする。</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -1453,9 +1453,9 @@
 <h3><a id="sec-6_3_3" href="/chapters/modeling-users?version=4.0#sec-user_authentication" class="heading"><span class="number">6.3.3</span>ユーザー認証</a></h3>
 
 
-<p>パスワード機構というパズルの最後のひとかけらは、ユーザーをメールアドレスとパスワードに基いて取得する手段です。この作業は2つに分けるのが自然です。最初に、ユーザーをメールアドレスで検索します。次に、受け取ったパスワードでユーザーを認証します。この節のテストは、最後の1つを除いてすべて<code>has_secure_password</code>メソッドによって実装できるので、<a class="ref" href="/chapters/modeling-users?version=4.0#code-commented_out_has_secure_password">リスト6.27</a>でコメントアウトした行は実装中はコメント解除し、テストがパスするようにしておいてください。</p>
+<p>パスワード機構というパズルの最後のひとかけらは、ユーザーをメールアドレスとパスワードに基いて取得する手段です。この作業は2つに分けるのが自然です。最初に、ユーザーをメールアドレスで検索します。次に、受け取ったパスワードでユーザーを認証します。この節のテストは、最後の1つを除いてすべて<code>has_secure_password</code>メソッドによって実装できるので、<a class="ref" href="/chapters/modeling-users?version=4.0#code-commented_out_has_secure_password">リスト6.27</a>でコメントアウトした行は実装中にコメント解除し、テストがパスするようにしてください。</p>
 
-<p>最初の手順の実装は簡単です。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>でも説明したように、<code>find_by_email</code>メソッドを使用すれば、受け取ったメールアドレスでユーザーを検索できます。</p>
+<p>最初の手順の実装は簡単です。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>でも説明したように、<code>find_by</code>メソッドを使用すれば、受け取ったメールアドレスでユーザーを検索できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="n">email</span><span class="p">)</span>
 </pre></div>

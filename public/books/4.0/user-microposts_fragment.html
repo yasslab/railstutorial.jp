@@ -29,7 +29,7 @@
 <h3><a id="sec-10_1_1" href="/chapters/user-microposts?version=4.0#sec-the_basic_model" class="heading"><span class="number">10.1.1</span>基本的なモデル</a></h3>
 
 
-<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/chapters/user-microposts?version=4.0#fn-10_2">2</a></sup>と、特定のユーザとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に (リスト<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
+<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/chapters/user-microposts?version=4.0#fn-10_2">2</a></sup>と、特定のユーザーとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に (リスト<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate model Micropost content:string user_id:integer
 </pre></div>
@@ -200,7 +200,7 @@
 <h3><a id="sec-10_1_3" href="/chapters/user-microposts?version=4.0#sec-user_micropost_associations" class="heading"><span class="number">10.1.3</span>User/Micropostの関連付け</a></h3>
 
 
-<p>Webアプリケーション用のデータモデルを構築するにあたって、個々のモデル間での<em>関連づけ</em>を十分考えておくことが重要です。今回の場合は、 <a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_user_has_many_microposts">2.3.3</a>でも示したように、それぞれのマイクロポストは１人のユーザと関連付けられ、それぞれのユーザは (潜在的に) 複数のマイクロポストと関連付けられます。この関連付けを<a class="ref" href="/chapters/user-microposts?version=4.0#fig-micropost_belongs_to_user">図10.2</a>と<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_has_many_microposts">図10.3</a>に示します。これらの関連付けを実装するための一環として、Micropostモデルに対するテストを作成し、さらにUserモデルにいくつかのテストを追加します。</p>
+<p>Webアプリケーション用のデータモデルを構築するにあたって、個々のモデル間での<em>関連づけ</em>を十分考えておくことが重要です。今回の場合は、 <a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_user_has_many_microposts">2.3.3</a>でも示したように、それぞれのマイクロポストは１人のユーザーと関連付けられ、それぞれのユーザーは (潜在的に) 複数のマイクロポストと関連付けられます。この関連付けを<a class="ref" href="/chapters/user-microposts?version=4.0#fig-micropost_belongs_to_user">図10.2</a>と<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_has_many_microposts">図10.3</a>に示します。これらの関連付けを実装するための一環として、Micropostモデルに対するテストを作成し、さらにUserモデルにいくつかのテストを追加します。</p>
 
 <div class="label" id="fig-micropost_belongs_to_user"></div>
 
@@ -222,7 +222,7 @@
 
 
 <div class="table"><div class="center">
-<table class="tabular"><tr><th class="align_left"><strong>メソッド</strong></th><th class="align_left"><strong>用途</strong></th></tr><tr class="top_bar"><td class="align_left"><code>micropost.user</code></td><td class="align_left">マイクロポストに関連付けられたユーザーオブジェクトを返す。</td></tr><tr><td class="align_left"><code>user.microposts</code></td><td class="align_left">ユーザのマイクロポストの配列を返す。</td></tr><tr><td class="align_left"><code>user.microposts.create(arg)</code></td><td class="align_left">マイクロポストを作成する (<code>user_id = user.id</code>)。</td></tr><tr><td class="align_left"><code>user.microposts.create!(arg)</code></td><td class="align_left">マイクロポストを作成する (失敗した場合は例外を発生する)。</td></tr><tr><td class="align_left"><code>user.microposts.build(arg)</code></td><td class="align_left">新しいMicropostオブジェクトを返す (<code>user_id = user.id</code>)。</td></tr></table></div><div class="caption"><span class="header">表10.1</span><span class="description">user/micropost関連メソッドのまとめ</span></div></div>
+<table class="tabular"><tr><th class="align_left"><strong>メソッド</strong></th><th class="align_left"><strong>用途</strong></th></tr><tr class="top_bar"><td class="align_left"><code>micropost.user</code></td><td class="align_left">マイクロポストに関連付けられたユーザーオブジェクトを返す。</td></tr><tr><td class="align_left"><code>user.microposts</code></td><td class="align_left">ユーザーのマイクロポストの配列を返す。</td></tr><tr><td class="align_left"><code>user.microposts.create(arg)</code></td><td class="align_left">マイクロポストを作成する (<code>user_id = user.id</code>)。</td></tr><tr><td class="align_left"><code>user.microposts.create!(arg)</code></td><td class="align_left">マイクロポストを作成する (失敗した場合は例外を発生する)。</td></tr><tr><td class="align_left"><code>user.microposts.build(arg)</code></td><td class="align_left">新しいMicropostオブジェクトを返す (<code>user_id = user.id</code>)。</td></tr></table></div><div class="caption"><span class="header">表10.1</span><span class="description">user/micropost関連メソッドのまとめ</span></div></div>
 
 
 <p><a class="ref" href="/chapters/user-microposts?version=4.0#table-association_methods">表10.1</a>では、以下のメソッドではなく</p>
@@ -262,9 +262,9 @@
 </div>
 
 
-<p>一度正しい関連付けを定義してしまえば、<code>@micropost</code>変数の<code>user_id</code>には、関連するユーザのidが自動的に設定されます。</p>
+<p>一度正しい関連付けを定義してしまえば、<code>@micropost</code>変数の<code>user_id</code>には、関連するユーザーのidが自動的に設定されます。</p>
 
-<p><a class="ref" href="/chapters/user-microposts?version=4.0#table-association_methods">表10.1</a>に示したように、ユーザーとマイクロポストの関連付けの結果には、単にマイクロポストのユーザを返す<code>micropost.user</code>メソッドもあり、これもテストが必要です。このメソッドは、<code>it</code>と<code>its</code>メソッドを以下のように使うことでテストできます。</p>
+<p><a class="ref" href="/chapters/user-microposts?version=4.0#table-association_methods">表10.1</a>に示したように、ユーザーとマイクロポストの関連付けの結果には、単にマイクロポストのユーザーを返す<code>micropost.user</code>メソッドもあり、これもテストが必要です。このメソッドは、<code>it</code>と<code>its</code>メソッドを以下のように使うことでテストできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
 <span class="n">its</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="n">should</span> <span class="n">eq</span> <span class="n">user</span> <span class="p">}</span>
@@ -278,7 +278,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト10.5</span> <span class="description">マイクロポストのユーザとの関連付けのテスト。</span><br /><span class="description"> <code>spec/models/micropost_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.5</span> <span class="description">マイクロポストのユーザーとの関連付けのテスト。</span><br /><span class="description"> <code>spec/models/micropost_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">Micropost</span> <span class="k">do</span>
@@ -310,7 +310,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト10.6</span> <span class="description">ユーザの<code>microposts</code>属性に対するテスト。</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.6</span> <span class="description">ユーザーの<code>microposts</code>属性に対するテスト。</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
@@ -340,7 +340,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト10.7</span> <span class="description">マイクロポストがユーザに所属する (<code>belongs_to</code>) 関連付け。</span><br /><span class="description"> <code>app/models/micropost.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.7</span> <span class="description">マイクロポストがユーザーに所属する (<code>belongs_to</code>) 関連付け。</span><br /><span class="description"> <code>app/models/micropost.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Micropost</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
   <span class="n">belongs_to</span> <span class="ss">:user</span>
   <span class="n">validates</span> <span class="ss">:user_id</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span>
@@ -355,7 +355,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト10.8</span> <span class="description">ユーザがマイクロポストを複数所有する (<code>has_many</code>) 関連付け。</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.8</span> <span class="description">ユーザーがマイクロポストを複数所有する (<code>has_many</code>) 関連付け。</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
   <span class="n">has_many</span> <span class="ss">:microposts</span>
   <span class="o">.</span>
@@ -411,7 +411,7 @@
 </div></div>
 
 
-<p>ここでは、以下のようにマイクロポスト用のファクトリーの定義にユーザを含めるだけで、マイクロポストに関連付けられるユーザーのことがFactory Girlに伝わります。</p>
+<p>ここでは、以下のようにマイクロポスト用のファクトリーの定義にユーザーを含めるだけで、マイクロポストに関連付けられるユーザーのことがFactory Girlに伝わります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">factory</span> <span class="ss">:micropost</span> <span class="k">do</span>
   <span class="n">content</span> <span class="s2">&quot;Lorem ipsum&quot;</span>
@@ -434,7 +434,7 @@
 <h4><a id="sec-10_1_4_1" href="/chapters/user-microposts?version=4.0#sec-default_scope" class="heading">デフォルトのスコープ</a></h4>
 
 
-<p>データベースからユーザのマイクロポストを読み出す<code>user.microposts</code>メソッドは、デフォルトでは読み出しの順序に対して何も保証しませんが、 ブログやTwitterの慣習に従って、作成時間の逆順、つまり最も新しいマイクロポストを最初に表示するようにしてみましょう。この順序をテストするために、次のようにマイクロポストをいくつか作成しておきます。</p>
+<p>データベースからユーザーのマイクロポストを読み出す<code>user.microposts</code>メソッドは、デフォルトでは読み出しの順序に対して何も保証しませんが、 ブログやTwitterの慣習に従って、作成時間の逆順、つまり最も新しいマイクロポストを最初に表示するようにしてみましょう。この順序をテストするために、次のようにマイクロポストをいくつか作成しておきます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:micropost</span><span class="p">,</span> <span class="ss">user:</span> <span class="vi">@user</span><span class="p">,</span> <span class="ss">created_at:</span> <span class="mi">1</span><span class="o">.</span><span class="n">day</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
 <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:micropost</span><span class="p">,</span> <span class="ss">user:</span> <span class="vi">@user</span><span class="p">,</span> <span class="ss">created_at:</span> <span class="mi">1</span><span class="o">.</span><span class="n">hour</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
@@ -450,7 +450,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト10.10</span> <span class="description">ユーザのマイクロポストの順序をテストする。</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.10</span> <span class="description">ユーザーのマイクロポストの順序をテストする。</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
@@ -529,7 +529,7 @@
 <h4><a id="sec-10_1_4_2" href="/chapters/user-microposts?version=4.0#sec-dependent_destroy" class="heading">Dependent: destroy</a></h4>
 
 
-<p>順序についてはひとまずここで区切ることにし、今度はマイクロポストに第二の要素を追加してみましょう。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-destroying_users">9.4</a>で書いたように、サイト管理者はユーザを<em>破棄する</em>権限を持ちます。ユーザが破棄された場合、ユーザのマイクロポストも同様に破棄されるべきです。最初のマイクロポストのユーザーを破棄した後、関連するマイクロポストもデータベースからなくなったことを確認することで、ユーザーの破棄をテストすることができます。</p>
+<p>順序についてはひとまずここで区切ることにし、今度はマイクロポストに第二の要素を追加してみましょう。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-destroying_users">9.4</a>で書いたように、サイト管理者はユーザーを<em>破棄する</em>権限を持ちます。ユーザーが破棄された場合、ユーザーのマイクロポストも同様に破棄されるべきです。最初のマイクロポストのユーザーを破棄した後、関連するマイクロポストもデータベースからなくなったことを確認することで、ユーザーの破棄をテストすることができます。</p>
 
 <p>適切にマイクロポストの破棄をテストするために、最初にローカル変数で指定されたユーザーのポストを取得し、次にユーザーを破棄します。シンプルな実装は以下のようになります。</p>
 
@@ -626,7 +626,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト10.13</span> <span class="description">ユーザのマイクロポストがユーザと一緒に破棄されることを保証するコード。</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.13</span> <span class="description">ユーザーのマイクロポストがユーザーと一緒に破棄されることを保証するコード。</span><br /><span class="description"> <code>app/models/user.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
   <span class="n">has_many</span> <span class="ss">:microposts</span><span class="p">,</span> <span class="ss">dependent:</span> <span class="ss">:destroy</span>
   <span class="o">.</span>
@@ -759,7 +759,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>ユーザーのマイクロポスト表示に対するテスト、すなわちユーザーに対するrequest specを作成するところから始めましょう。ユーザーに関連付けられているマイクロポストのファクトリーを作成し、それから表示ページが各ポストの内容を含んでいるか検証する戦略で進めます。また、<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_microposts_mockup">図 10.4</a>で示されているように, マイクロポストの総数が表示されているかどうかも検証します。</p>
 
-<p>ポストは<code>let</code>メソッドで作成できますが、ユーザ表示ページでポストがすぐに表示されるように、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_ordering_test">リスト10.10</a>と同様に即座に関連付けを作成できるようにしたいと思います。そこで、今回も<code>let!</code>を使います。</p>
+<p>ポストは<code>let</code>メソッドで作成できますが、ユーザー表示ページでポストがすぐに表示されるように、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_ordering_test">リスト10.10</a>と同様に即座に関連付けを作成できるようにしたいと思います。そこで、今回も<code>let!</code>を使います。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
 <span class="n">let!</span><span class="p">(</span><span class="ss">:m1</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:micropost</span><span class="p">,</span> <span class="ss">user:</span> <span class="n">user</span><span class="p">,</span> <span class="ss">content:</span> <span class="s2">&quot;Foo&quot;</span><span class="p">)</span> <span class="p">}</span>
@@ -776,7 +776,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト10.16</span> <span class="description">ユーザの<code>show</code>ページでマイクロポストが表示されていることをテストする。</span><br /><span class="description"> <code>spec/requests/user_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.16</span> <span class="description">ユーザーの<code>show</code>ページでマイクロポストが表示されていることをテストする。</span><br /><span class="description"> <code>spec/requests/user_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;User pages&quot;</span> <span class="k">do</span>
@@ -847,7 +847,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>すぐにもマイクロポスト一覧の実装に取りかかりますが、その前に注意すべき点がいくつかあります。<a class="ref" href="/chapters/user-microposts?version=4.0#code-user_show_microposts">リスト10.17</a>では、<code>if @user.microposts.any?</code>を使用することによって (以前<a class="ref" href="/chapters/sign-up?version=4.0#code-errors_partial">リスト7.24</a>でも使用した) ユーザのマイクロポストが1つもない場合に空のリストが表示されないようにしています。</p>
+<p>すぐにもマイクロポスト一覧の実装に取りかかりますが、その前に注意すべき点がいくつかあります。<a class="ref" href="/chapters/user-microposts?version=4.0#code-user_show_microposts">リスト10.17</a>では、<code>if @user.microposts.any?</code>を使用することによって (以前<a class="ref" href="/chapters/sign-up?version=4.0#code-errors_partial">リスト7.24</a>でも使用した) ユーザーのマイクロポストが1つもない場合に空のリストが表示されないようにしています。</p>
 
 <p><a class="ref" href="/chapters/user-microposts?version=4.0#code-user_show_microposts">リスト10.17</a>では、以下のようにマイクロポストに対するページネーションのコードを加えていたことにご注意ください。</p>
 
@@ -872,7 +872,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>前述のように、<code>@user.microposts.count</code>は、ユーザ/マイクロポスト関連付けを経由して、あるユーザーに属するマイクロポストをカウントすることを除けば、<code>User.count</code>に似ています。</p>
+<p>前述のように、<code>@user.microposts.count</code>は、ユーザー/マイクロポスト関連付けを経由して、あるユーザーに属するマイクロポストをカウントすることを除けば、<code>User.count</code>に似ています。</p>
 
 <p>やっとマイクロポスト一覧のコードそのものにたどり着きました。</p>
 
@@ -890,7 +890,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p><code>_user.html.erb</code>パーシャルを使って自動的に<code>@users</code>変数内のそれぞれのユーザを出力します。同様に以下のコードは、</p>
+<p><code>_user.html.erb</code>パーシャルを使って自動的に<code>@users</code>変数内のそれぞれのユーザーを出力します。同様に以下のコードは、</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">render</span> <span class="vi">@microposts</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -1002,10 +1002,10 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="label" id="fig-user_profile_microposts_no_styling"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_profile_microposts_no_styling_bootstrap.png" alt="user_profile_microposts_no_styling_bootstrap" /></span></div><div class="caption"><span class="header">図10.6</span><span class="description">ユーザプロファイル (<a href="http://localhost:3000/users/1">/users/1</a>) とスタイルのないマイクロポスト <a href="http://railstutorial.jp/images/figures/user_profile_microposts_no_styling_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_profile_microposts_no_styling_bootstrap.png" alt="user_profile_microposts_no_styling_bootstrap" /></span></div><div class="caption"><span class="header">図10.6</span><span class="description">ユーザープロファイル (<a href="http://localhost:3000/users/1">/users/1</a>) とスタイルのないマイクロポスト。<a href="http://railstutorial.jp/images/figures/user_profile_microposts_no_styling_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p><a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_microposts_no_styling">図10.6</a>のページにはマイクロポスト固有のスタイルが与えられていないので、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_css">リスト10.21</a>を追加して、結果のページを見てみましょう<sup class="footnote" id="fnref-10_6"><a href="/chapters/user-microposts?version=4.0#fn-10_6">6</a></sup>。<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_with_microposts">図10.7</a>が1番目の (ログインした) ユーザのプロファイルページで、<a class="ref" href="/chapters/user-microposts?version=4.0#fig-other_profile_with_microposts">図10.8</a>が2番目のユーザのプロファイルページです。最後に<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_microposts_page_2_rails_3">図10.9</a>は、1番目のユーザーのためのマイクロポストの<em>2番目</em>のページと、下部に改ページのリンクを表示しています。各マイクロポストの表示には、3つのどの場合にも、それが作成されてからの時間 (&quot;1分​​前に投稿&quot; など) が表示されていることにご注目ください。これは<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_partial">リスト10.18</a>の<code>time_ago_in_words</code>メソッドによるものです。数分待ってからページを再度読み込むと、このテキストは自動的に新しい時間に基づいて更新されます。</p>
+<p><a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_microposts_no_styling">図10.6</a>のページにはマイクロポスト固有のスタイルが与えられていないので、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_css">リスト10.21</a>を追加して、結果のページを見てみましょう<sup class="footnote" id="fnref-10_6"><a href="/chapters/user-microposts?version=4.0#fn-10_6">6</a></sup>。<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_with_microposts">図10.7</a>が1番目の (ログインした) ユーザーのプロファイルページで、<a class="ref" href="/chapters/user-microposts?version=4.0#fig-other_profile_with_microposts">図10.8</a>が2番目のユーザーのプロファイルページです。最後に<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_profile_microposts_page_2_rails_3">図10.9</a>は、1番目のユーザーのためのマイクロポストの<em>2番目</em>のページと、下部に改ページのリンクを表示しています。各マイクロポストの表示には、3つのどの場合にも、それが作成されてからの時間 (&quot;1分​​前に投稿&quot; など) が表示されていることにご注目ください。これは<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_partial">リスト10.18</a>の<code>time_ago_in_words</code>メソッドによるものです。数分待ってからページを再度読み込むと、このテキストは自動的に新しい時間に基づいて更新されます。</p>
 
 <div class="label" id="code-micropost_css"></div>
 
@@ -1051,7 +1051,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="label" id="fig-user_profile_with_microposts"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_profile_with_microposts_bootstrap.png" alt="user_profile_with_microposts_bootstrap" /></span></div><div class="caption"><span class="header">図10.7</span><span class="description">ユーザプロファイル (<a href="http://localhost:3000/users/1">/users/1</a>) とマイクロポスト。<a href="http://railstutorial.jp/images/figures/user_profile_with_microposts_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_profile_with_microposts_bootstrap.png" alt="user_profile_with_microposts_bootstrap" /></span></div><div class="caption"><span class="header">図10.7</span><span class="description">ユーザープロファイル (<a href="http://localhost:3000/users/1">/users/1</a>) とマイクロポスト。<a href="http://railstutorial.jp/images/figures/user_profile_with_microposts_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -1059,7 +1059,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="label" id="fig-other_profile_with_microposts"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/other_profile_with_microposts_bootstrap.png" alt="other_profile_with_microposts_bootstrap" /></span></div><div class="caption"><span class="header">図10.8</span><span class="description">別ユーザのプロファイルとマイクロポスト (<a href="http://localhost:3000/users/5">/users/5</a>)。<a href="http://railstutorial.jp/images/figures/other_profile_with_microposts_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/other_profile_with_microposts_bootstrap.png" alt="other_profile_with_microposts_bootstrap" /></span></div><div class="caption"><span class="header">図10.8</span><span class="description">別ユーザーのプロファイルとマイクロポスト (<a href="http://localhost:3000/users/5">/users/5</a>)。<a href="http://railstutorial.jp/images/figures/other_profile_with_microposts_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -1116,7 +1116,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-10_3_1" href="/chapters/user-microposts?version=4.0#sec-access_control" class="heading"><span class="number">10.3.1</span>アクセス制御</a></h3>
 
 
-<p>Micropostsリソースの開発の手始めは、Micropostsコントローラ内のアクセス制御から始めることにしましょう。ここでのアクセス制御のポイントは単純です。<code>create</code>アクションと<code>destory</code>アクションは、いずれもユーザがサインインしていなければ実行できないものとします。これをテストするためのRSpecコードを<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_access_control">リスト10.23</a>に示します (マイクロポストをポストしたユーザーだけが削除できるようにする3番目の保護は<a class="ref" href="/chapters/user-microposts?version=4.0#sec-destroying_microposts">10.3.4</a>で追加します)。</p>
+<p>Micropostsリソースの開発の手始めは、Micropostsコントローラ内のアクセス制御から始めることにしましょう。ここでのアクセス制御のポイントは単純です。<code>create</code>アクションと<code>destory</code>アクションは、いずれもユーザーがサインインしていなければ実行できないものとします。これをテストするためのRSpecコードを<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_access_control">リスト10.23</a>に示します (マイクロポストをポストしたユーザーだけが削除できるようにする3番目の保護は<a class="ref" href="/chapters/user-microposts?version=4.0#sec-destroying_microposts">10.3.4</a>で追加します)。</p>
 
 <div class="label" id="code-micropost_access_control"></div>
 
@@ -1158,7 +1158,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>未制作のマイクロポストのWebインターフェースと違い、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_access_control">リスト10.23</a>のコードは、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-edit_update_wrong_user_tests">リスト9.14</a>のときの手法と同様に、それぞれのマイクロポストアクションのレベルで動作します。サインインしていないユーザは、<tt>POST</tt>リクエストを/microposts (<code>post microposts_path</code>、<code>create</code>アクションが呼び出される) に送信した場合、または <tt>DELETE</tt>リクエストを/microposts/1 (<code>delete micropost_path(micropost)</code>、<code>destroy</code>アクションが呼び出される) に送信した場合にリダイレクトされます。</p>
+<p>未制作のマイクロポストのWebインターフェースと違い、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_access_control">リスト10.23</a>のコードは、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-edit_update_wrong_user_tests">リスト9.14</a>のときの手法と同様に、それぞれのマイクロポストアクションのレベルで動作します。サインインしていないユーザーは、<tt>POST</tt>リクエストを/microposts (<code>post microposts_path</code>、<code>create</code>アクションが呼び出される) に送信した場合、または <tt>DELETE</tt>リクエストを/microposts/1 (<code>delete micropost_path(micropost)</code>、<code>destroy</code>アクションが呼び出される) に送信した場合にリダイレクトされます。</p>
 
 <p><a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_access_control">リスト10.23</a>のテストにパスするためのアプリケーションコードを作成する前に、少しリファクタリングを行いましょう。 <a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-requiring_signed_in_users">9.2.1</a>では、<code>signed_in_user</code>メソッドと呼ばれるbefore_filterを使用して、サインインを必須にしたことを思い出してください (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-authorize_before_filter">リスト9.12</a>)。あのときは、このメソッドをUsersコントローラ でしか使用しませんでしたが、今回はMicropostsコントローラでもこのメソッドが必要となることがわかったので、<a class="ref" href="/chapters/user-microposts?version=4.0#code-sessions_helper_authenticate">リスト10.24</a>に示すように、セッションヘルパーに移動します<sup class="footnote" id="fnref-10_8"><a href="/chapters/user-microposts?version=4.0#fn-10_8">8</a></sup>。</p>
 
@@ -1211,7 +1211,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>before_filterはデフォルトで両方のアクションに適用されるため、制限を適用するアクションを明示していないことにご注意ください。もし仮に<code>index</code>アクションを追加し、サインインしていないユーザでもアクセス可能にしたい場合は、以下のようにindexアクション以外のアクションを明示的に指定する必要があります。</p>
+<p>before_filterはデフォルトで両方のアクションに適用されるため、制限を適用するアクションを明示していないことにご注意ください。もし仮に<code>index</code>アクションを追加し、サインインしていないユーザーでもアクセス可能にしたい場合は、以下のようにindexアクション以外のアクションを明示的に指定する必要があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MicropostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_filter</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
@@ -1590,7 +1590,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-10_3_3" href="/chapters/user-microposts?version=4.0#sec-a_proto_feed" class="heading"><span class="number">10.3.3</span>フィードの原型</a></h3>
 
 
-<p><a class="ref" href="/chapters/user-microposts?version=4.0#sec-creating_microposts">10.3.2</a>の最後のコメントでも言及しましたが、現在のHomeページにはマイクロポストが1つも表示されていません。<a class="ref" href="/chapters/user-microposts?version=4.0#fig-home_with_form">図10.11</a>のフォームが正しく動作しているかどうかを確認したい場合、正しいエントリーを投稿した後、<a href="http://localhost:3000/users/1">プロファイルページ</a>に移動してポストを表示すればよいのですが、これはかなり面倒な作業です。 <em>図10.13</em>のモックアップで示したような、ユーザー自身のポストを含むマイクロポスト<a class="ref" href="/chapters/user-microposts?version=4.0#fig-proto_feed_mockup">フィード</a>がないと不便です (<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>ではフィードを汎用化し、現在のユーザによって<em>フォローされている</em>ユーザのマイクロポストも一緒に表示するフィードにする予定です)。</p>
+<p><a class="ref" href="/chapters/user-microposts?version=4.0#sec-creating_microposts">10.3.2</a>の最後のコメントでも言及しましたが、現在のHomeページにはマイクロポストが1つも表示されていません。<a class="ref" href="/chapters/user-microposts?version=4.0#fig-home_with_form">図10.11</a>のフォームが正しく動作しているかどうかを確認したい場合、正しいエントリーを投稿した後、<a href="http://localhost:3000/users/1">プロファイルページ</a>に移動してポストを表示すればよいのですが、これはかなり面倒な作業です。 <em>図10.13</em>のモックアップで示したような、ユーザー自身のポストを含むマイクロポスト<a class="ref" href="/chapters/user-microposts?version=4.0#fig-proto_feed_mockup">フィード</a>がないと不便です (<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>ではフィードを汎用化し、現在のユーザーによって<em>フォローされている</em>ユーザーのマイクロポストも一緒に表示するフィードにする予定です)。</p>
 
 <div class="label" id="fig-proto_feed_mockup"></div>
 
@@ -1598,7 +1598,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/proto_feed_mockup_bootstrap.png" alt="proto_feed_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.13</span><span class="description"> (プロト)フィードのあるホームページのモックアップ。<a href="http://railstutorial.jp/images/figures/proto_feed_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>すべてのユーザがフィードを持つので、<code>feed</code>メソッドはUserモデルに作るのが自然です。最終的にはそのfeedメソッドが、フォローしているユーザのマイクロポストも返すことをテストしますが、今は、<code>feed</code>メソッドが自分のマイクロポストは<em>含むが</em>他ユーザのマイクポストは<em>含まない</em>ことをテストすることにします。その要件をコード化したものを<a class="ref" href="/chapters/user-microposts?version=4.0#code-feed_specs">リスト10.35</a>に示します。</p>
+<p>すべてのユーザーがフィードを持つので、<code>feed</code>メソッドはUserモデルに作るのが自然です。最終的にはそのfeedメソッドが、フォローしているユーザーのマイクロポストも返すことをテストしますが、今は、<code>feed</code>メソッドが自分のマイクロポストは<em>含むが</em>他ユーザーのマイクポストは<em>含まない</em>ことをテストすることにします。その要件をコード化したものを<a class="ref" href="/chapters/user-microposts?version=4.0#code-feed_specs">リスト10.35</a>に示します。</p>
 
 <div class="label" id="code-feed_specs"></div>
 
@@ -1916,7 +1916,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-10_3_4" href="/chapters/user-microposts?version=4.0#sec-destroying_microposts" class="heading"><span class="number">10.3.4</span>マイクロポストを削除する</a></h3>
 
 
-<p>最後の機能として、マイクロポストリソースにポストを削除する機能を追加します。これはユーザ削除と同様に(<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-the_destroy_action">9.4.2</a>)、&quot;delete&quot; リンクで実現します (<a class="ref" href="/chapters/user-microposts?version=4.0#fig-micropost_delete_links_mockup">図10.16</a>)。ユーザーの削除は管理者ユーザのみが行えるように制限されていたのに対し、今回の場合はカレントユーザーが作成したマイクロポストに対してのみ削除リンクが動作するようにします。</p>
+<p>最後の機能として、マイクロポストリソースにポストを削除する機能を追加します。これはユーザー削除と同様に(<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-the_destroy_action">9.4.2</a>)、&quot;delete&quot; リンクで実現します (<a class="ref" href="/chapters/user-microposts?version=4.0#fig-micropost_delete_links_mockup">図10.16</a>)。ユーザーの削除は管理者ユーザーのみが行えるように制限されていたのに対し、今回の場合はカレントユーザーが作成したマイクロポストに対してのみ削除リンクが動作するようにします。</p>
 
 <div class="label" id="fig-micropost_delete_links_mockup"></div>
 
