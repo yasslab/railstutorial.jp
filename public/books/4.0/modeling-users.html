@@ -1604,7 +1604,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">囲み6.3</a>で解説したように、<code>let</code>では値がメモ化されます。これにより、<a class="ref" href="/chapters/modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>にある、最初のネストしている<code>describe</code>ブロックは<code>let</code>で<code>find_by</code>を使用してデータベースからユーザーを取得します。しかしその次のネストしている<code>describe</code>ブロックは (メモ化された値を利用するので) データベースにアクセスしません。</p>
+<p><a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">囲み6.3</a>で解説したように、<code>let</code>では値がメモ化されます。これにより、<a class="ref" href="/chapters/modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>にある、ネストしている最初の<code>describe</code>ブロックは<code>let</code>で<code>find_by</code>を使用してデータベースからユーザーを取得します。しかしその次のネストしている<code>describe</code>ブロックは (メモ化された値を利用するので) データベースにアクセスしません。</p>
 
 <div class="label" id="sec-has_secure_password"></div>
 
