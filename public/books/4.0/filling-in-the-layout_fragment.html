@@ -1718,7 +1718,7 @@
 </div></div>
 
 
-<p>もちろんこれは、基本的に<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-title_helper">リスト4.2</a>のヘルパーの複製です。しかし、2つの独立したメソッドがあることで基本タイトルのタイプミスを検出することができます。これはやや疑問の残る設計ですが、それでも、演習で登場する (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-layout_exercises">5.6</a>) オリジナルの<code>full_title</code>ヘルパーを直接テストしたときよりも良い (少しだけ高度な) アプローチです。</p>
+<p>もちろんこれは、基本的に<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-title_helper">リスト4.2</a>のヘルパーの複製です。しかし、2つの独立したメソッドがあることで基本タイトルのタイプミスを検出することができます。ヘルパーのコードとテストコードがまったく同じになっているというのは、やや疑問の残る設計であり、演習 (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-layout_exercises">5.6</a>) ではもっと良い (少しだけ高度な) アプローチとして、オリジナルの<code>full_title</code>ヘルパーを直接テストします。</p>
 
 <p><code>spec/support</code>ディレクトリはRSpecによって自動的に読み込まれるため、Homeテストは以下のように書くことができます。</p>
 
@@ -2068,7 +2068,7 @@
 
 <li>既にお気付きの方もいると思いますが、これまで行なってきた、レイアウト上のリンクのルーティングテストは、そのリンクが実際に正しいページへのリンクになっているかどうかをチェックしていません。このようなテストを実装する方法のひとつは、RSpecの結合テスト内で<code>visit</code>と<code>click_link</code>を使用することです。レイアウトのリンクが正しく定義されていることを確認するコードを追加して、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-layout_links_test">リスト5.37</a>を補ってください。</li>
 
-<li><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-full_title_helper_tests">リスト5.38</a>に示すように、独自のヘルパーメソッドを書き、それによって<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-rspec_utilities">リスト5.27</a>における<code>full_title</code>テストヘルパーへの依存を解消してください。(<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-rspec_utilities_simplified">リスト5.38</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-full_title_helper_tests">リスト5.38</a>では、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
+<li><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-full_title_helper_tests">リスト5.38</a>に示すように、元のヘルパーメソッドに対するテストを書き、それによって<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-rspec_utilities">リスト5.27</a>の<code>full_title</code>テストヘルパーへの依存を解消してください。(<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-rspec_utilities_simplified">リスト5.38</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-full_title_helper_tests">リスト5.38</a>では、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
 
 </ol>
 
@@ -2160,7 +2160,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト5.38</span> <span class="description"><code>full_title</code>ヘルパーのテスト。</span><br /><span class="description"> <code>spec/helpers/application_helper_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト5.38</span> <span class="description"><code>full_title</code>ヘルパーに対するテスト。</span><br /><span class="description"> <code>spec/helpers/application_helper_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">ApplicationHelper</span> <span class="k">do</span>
@@ -2211,7 +2211,7 @@
 <li id="fn-5_4">既にお気付きだと思いますが、<code>img</code>タグは<tt class="verb">&lt;img&gt;...&lt;/img&gt;</tt>ではなく<tt class="verb">&lt;img ... </tt><tt class="verb">/&gt;</tt>と書きます。この書式に従うタグは <em>閉じタグ</em>として知られています。 <a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_4">↑</a></li>
 <li id="fn-5_5">Asset PipelineでLESSを使うこともできます。詳細は<a href="http://rubygems.org/gems/less-rails-bootstrap"><tt>less-rails-bootstrap</tt> gem</a>を参照してください。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_5">↑</a></li>
 <li id="fn-5_6">多くのRails開発者は、異なるビューの間で共通に使用するパーシャルを保存するディレクトリとして、<code>shared</code>ディレクトリを使用します。著者は、複数のビューで共有するユーティリティパーシャルについては<code>shared</code>フォルダに保存し、文字どおり全ページ (サイトレイアウトの一部として) 共通のパーシャルについては<code>layouts</code>ディレクトリへ保存することを好んでいます (<code>shared</code>ディレクトリは<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>で作成します)。著者はこのように分割保存するのが論理的であると考えますが、<code>shared</code>フォルダにすべて保存しても問題なく動作します。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_6">↑</a></li>
-<li id="fn-5_7"><code>footer</code>タグと<code>.footer</code>クラスを両方使用していることについて疑問に思う方がいるかもしれません。その理由は、footerタグとする方が読み手にとって意味が明確であるのと、footerクラスはBootstrapで使用するためです。<code>footer</code>を<code>div</code>に置き換えても動作は変わりません。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_7">↑</a></li>
+<li id="fn-5_7"><code>footer</code>タグと<code>.footer</code>クラスを両方使用していることについて疑問に思う方がいるかもしれません。その理由は、footerタグとする方が読み手にとって意味が明確であるのと、.footerクラスはBootstrapで使用するためです。<code>footer</code>を<code>div</code>に置き換えても動作は変わりません。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_7">↑</a></li>
 <li id="fn-5_8">このチュートリアル構成は、Michael Erasmusによる素晴らしいブログ記事「<a href="http://2beards.net/2011/11/the-rails-3-asset-pipeline-in-about-5-minutes/">5分でわかるRails 3のAsset Pipeline</a> (英語)」をもとにしています。詳細についてはRails Guideの「<a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a> (英語)」の項を参照してください。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_8">↑</a></li>
 <li id="fn-5_9">Sassでもサポートされている古い<code>.sass</code>というフォーマットでは、冗長性の少ない (かっこの少ない)  新しい言語を定義しますが、既存のプロジェクトには若干不便であり、既にCSSに慣れ親しんだ人にとっては学習が面倒でもあります。<a class="arrow" href="/chapters/filling-in-the-layout?version=4.0#fnref-5_9">↑</a></li>
 </ol>

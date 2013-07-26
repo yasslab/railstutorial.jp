@@ -7940,7 +7940,7 @@ bundler_stubs/
 </div></div>
 
 
-<p>もちろんこれは、基本的に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-title_helper">リスト4.2</a>のヘルパーの複製です。しかし、2つの独立したメソッドがあることで基本タイトルのタイプミスを検出することができます。これはやや疑問の残る設計ですが、それでも、演習で登場する (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-layout_exercises">5.6</a>) オリジナルの<code>full_title</code>ヘルパーを直接テストしたときよりも良い (少しだけ高度な) アプローチです。</p>
+<p>もちろんこれは、基本的に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-title_helper">リスト4.2</a>のヘルパーの複製です。しかし、2つの独立したメソッドがあることで基本タイトルのタイプミスを検出することができます。ヘルパーのコードとテストコードがまったく同じになっているというのは、やや疑問の残る設計であり、演習 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-layout_exercises">5.6</a>) ではもっと良い (少しだけ高度な) アプローチとして、オリジナルの<code>full_title</code>ヘルパーを直接テストします。</p>
 
 <p><code>spec/support</code>ディレクトリはRSpecによって自動的に読み込まれるため、Homeテストは以下のように書くことができます。</p>
 
@@ -8290,7 +8290,7 @@ bundler_stubs/
 
 <li>既にお気付きの方もいると思いますが、これまで行なってきた、レイアウト上のリンクのルーティングテストは、そのリンクが実際に正しいページへのリンクになっているかどうかをチェックしていません。このようなテストを実装する方法のひとつは、RSpecの結合テスト内で<code>visit</code>と<code>click_link</code>を使用することです。レイアウトのリンクが正しく定義されていることを確認するコードを追加して、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-layout_links_test">リスト5.37</a>を補ってください。</li>
 
-<li><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-full_title_helper_tests">リスト5.38</a>に示すように、独自のヘルパーメソッドを書き、それによって<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rspec_utilities">リスト5.27</a>における<code>full_title</code>テストヘルパーへの依存を解消してください。(<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rspec_utilities_simplified">リスト5.38</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-full_title_helper_tests">リスト5.38</a>では、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
+<li><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-full_title_helper_tests">リスト5.38</a>に示すように、元のヘルパーメソッドに対するテストを書き、それによって<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rspec_utilities">リスト5.27</a>の<code>full_title</code>テストヘルパーへの依存を解消してください。(<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rspec_utilities_simplified">リスト5.38</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-full_title_helper_tests">リスト5.38</a>では、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
 
 </ol>
 
@@ -8382,7 +8382,7 @@ bundler_stubs/
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト5.38</span> <span class="description"><code>full_title</code>ヘルパーのテスト。</span><br /><span class="description"> <code>spec/helpers/application_helper_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト5.38</span> <span class="description"><code>full_title</code>ヘルパーに対するテスト。</span><br /><span class="description"> <code>spec/helpers/application_helper_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">ApplicationHelper</span> <span class="k">do</span>
@@ -8427,7 +8427,7 @@ bundler_stubs/
 <li id="fn-5_4">既にお気付きだと思いますが、<code>img</code>タグは<tt class="verb">&lt;img&gt;...&lt;/img&gt;</tt>ではなく<tt class="verb">&lt;img ... </tt><tt class="verb">/&gt;</tt>と書きます。この書式に従うタグは <em>閉じタグ</em>として知られています。 <a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-5_4">↑</a></li>
 <li id="fn-5_5">Asset PipelineでLESSを使うこともできます。詳細は<a href="http://rubygems.org/gems/less-rails-bootstrap"><tt>less-rails-bootstrap</tt> gem</a>を参照してください。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-5_5">↑</a></li>
 <li id="fn-5_6">多くのRails開発者は、異なるビューの間で共通に使用するパーシャルを保存するディレクトリとして、<code>shared</code>ディレクトリを使用します。著者は、複数のビューで共有するユーティリティパーシャルについては<code>shared</code>フォルダに保存し、文字どおり全ページ (サイトレイアウトの一部として) 共通のパーシャルについては<code>layouts</code>ディレクトリへ保存することを好んでいます (<code>shared</code>ディレクトリは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-up">第7章</a>で作成します)。著者はこのように分割保存するのが論理的であると考えますが、<code>shared</code>フォルダにすべて保存しても問題なく動作します。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-5_6">↑</a></li>
-<li id="fn-5_7"><code>footer</code>タグと<code>.footer</code>クラスを両方使用していることについて疑問に思う方がいるかもしれません。その理由は、footerタグとする方が読み手にとって意味が明確であるのと、footerクラスはBootstrapで使用するためです。<code>footer</code>を<code>div</code>に置き換えても動作は変わりません。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-5_7">↑</a></li>
+<li id="fn-5_7"><code>footer</code>タグと<code>.footer</code>クラスを両方使用していることについて疑問に思う方がいるかもしれません。その理由は、footerタグとする方が読み手にとって意味が明確であるのと、.footerクラスはBootstrapで使用するためです。<code>footer</code>を<code>div</code>に置き換えても動作は変わりません。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-5_7">↑</a></li>
 <li id="fn-5_8">このチュートリアル構成は、Michael Erasmusによる素晴らしいブログ記事「<a href="http://2beards.net/2011/11/the-rails-3-asset-pipeline-in-about-5-minutes/">5分でわかるRails 3のAsset Pipeline</a> (英語)」をもとにしています。詳細についてはRails Guideの「<a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a> (英語)」の項を参照してください。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-5_8">↑</a></li>
 <li id="fn-5_9">Sassでもサポートされている古い<code>.sass</code>というフォーマットでは、冗長性の少ない (かっこの少ない)  新しい言語を定義しますが、既存のプロジェクトには若干不便であり、既にCSSに慣れ親しんだ人にとっては学習が面倒でもあります。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-5_9">↑</a></li>
 </ol>
@@ -8450,7 +8450,7 @@ bundler_stubs/
 
 
 <div class="sidebar"><span class="title"><span class="header">囲み6.1</span></span><span class="title"><span class="description">自分で認証システムを作ってみる</span></span>
-<p>事実上、すべてのアプリは何らかのログイン/認証システムを必要とします。そのため、多くのWebフレームワークではこのようなログイン/認証システムを実装するための選択肢が多数提供されています。Railsもまた例外ではありません。認証 (authentication) と認可 (authorization) のシステムの例だと、<a href="http://github.com/thoughtbot/clearance">Clearance</a>、<a href="http://github.com/binarylogic/authlogic">Authlogic</a>、<a href="http://github.com/plataformatec/devise">Devise</a>、<a href="http://railscasts.com/episodes/192-authorization-with-cancan">CanCan</a>などがあります (Railsに限らなければ<a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a>や<a href="http://en.wikipedia.org/wiki/Oauth">OAuth</a>の上に構築する方法もあります)。 なぜ車輪の再発明をするのか、という質問があるのも当然です。自分でわざわざ作らなくても、いつも使える方法をただ利用するだけではいけないのでしょうか。</p>
+<p>事実上、すべてのWebアプリケーションは何らかのログイン/認証システムを必要とします。そのため、多くのWebフレームワークではこのようなログイン/認証システムを実装するための選択肢が多数提供されています。Railsもまた例外ではありません。認証 (authentication) と認可 (authorization) のシステムの例だと、<a href="http://github.com/thoughtbot/clearance">Clearance</a>、<a href="http://github.com/binarylogic/authlogic">Authlogic</a>、<a href="http://github.com/plataformatec/devise">Devise</a>、<a href="http://railscasts.com/episodes/192-authorization-with-cancan">CanCan</a>などがあります (Railsに限らなければ<a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a>や<a href="http://en.wikipedia.org/wiki/Oauth">OAuth</a>の上に構築する方法もあります)。 なぜ車輪の再発明をするのか、という質問があるのも当然です。自分でわざわざ作らなくても、いつも使える方法をただ利用するだけではいけないのでしょうか。</p>
 
 <p>ある実践的な実験によると、多くのサイトの認証システムは膨大なカスタマイズを必要とするため、サードパーティ製品を変更して導入する場合にはシステムをゼロから作成するよりも多くの仕事を要するという結果が出ています。加えて、既成品のシステムは内部がわかりづらいことが多く、ブラックボックスになっています。自分で作成したシステムであれば、それをとてもよく理解しているはずです。さらに言えば、最近のRailsへの変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-adding_a_secure_password">6.3</a>) により、カスタム認証システムを容易に作成できるようになりました。最後に、<em>あえて</em>最終的にサードパーティの認証システムを導入することになったとしても、自分自身で認証システムを構築した経験があれば、サードパーティ製品を理解して変更することがずっと容易になるはずです。</p>
 </div>
@@ -8480,7 +8480,7 @@ bundler_stubs/
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図6.1</span><span class="description">ユーザー登録ページのモックアップ。<a href="http://railstutorial.jp/images/figures/signup_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>Railsでは、データモデルで使用するデフォルトのデータ構造のことを<em>モデル</em>と呼びます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-mvc">1.2.6</a>で言うMVCのMのことです)。Railsでは、データを永続化するデフォルトの解決策として、<em>データベース</em>を使用してデータを長期間保存します。また、データベースとやりとりするデフォルトのRailsライブラリは<em>Active Record</em>と呼ばれます<sup class="footnote" id="fnref-6_1"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_1">1</a></sup>。Active Recordは、データオブジェクトの作成/保存/検索のためのメソッドを持っています。これらのメソッドを使用するのに、<a href="http://en.wikipedia.org/wiki/Relational_database">リレーショナルデータベース</a>で使うSQL (Structured Query Language)<sup class="footnote" id="fnref-6_2"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_2">2</a></sup>を意識する必要はありません。さらに、Railsには<em>マイグレーション</em>という機能があります。データの定義をRubyで記述することができ、SQLのDDL (Data Definition Language)を新たに学ぶ必要がありません。Railsは、データストアの詳細からほぼ完全に私たちを切り離してくれます。本書では、SQLiteを開発 (development) 環境で使い、またPostgreSQLを (Herokuでの) 開発環境で使います (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-deploying">1.4</a>)。Railsは、本番 (production) アプリケーションですら、データの保存方法の詳細についてほとんど考える必要がないくらいよくできています。</p>
+<p>Railsでは、データモデルで使用するデフォルトのデータ構造のことを<em>モデル</em>と呼びます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-mvc">1.2.6</a>で言うMVCのMのことです)。Railsでは、データを永続化するデフォルトの解決策として、<em>データベース</em>を使用してデータを長期間保存します。また、データベースとやりとりするデフォルトのRailsライブラリは<em>Active Record</em>と呼ばれます<sup class="footnote" id="fnref-6_1"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_1">1</a></sup>。Active Recordは、データオブジェクトの作成/保存/検索のためのメソッドを持っています。これらのメソッドを使用するのに、<a href="http://en.wikipedia.org/wiki/Relational_database">リレーショナルデータベース</a>で使うSQL (Structured Query Language)<sup class="footnote" id="fnref-6_2"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_2">2</a></sup>を意識する必要はありません。さらに、Railsには<em>マイグレーション</em>という機能があります。データの定義をRubyで記述することができ、SQLのDDL (Data Definition Language)を新たに学ぶ必要がありません。Railsは、データストアの詳細からほぼ完全に私たちを切り離してくれます。本書では、SQLiteを開発環境で使い、またPostgreSQLを (Herokuでの) 開発環境で使います (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-deploying">1.4</a>)。Railsは、本番アプリケーションですら、データの保存方法の詳細についてほとんど考える必要がないくらいよくできています。</p>
 
 <div class="label" id="sec-database_migrations"></div>
 
@@ -8530,7 +8530,7 @@ bundler_stubs/
 
 <p>(コントローラ名には複数形を使い、モデル名には単数形を用いるという慣習を頭に入れておいてください。コントローラはUsersでモデルはUserです)。<code>name:string</code>や<code>email:string</code>オプションのパラメータを渡すことによって、データベースで使用したい2つの属性をRailsに伝えます。このときに、これらの属性の型情報も一緒に渡します (この場合は<code>string</code>)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generating_pages">リスト3.4</a>や<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_users_controller">リスト5.29</a>でアクション名を使用して生成した例と比較してみてください。</p>
 
-<p><code>リスト6.1</code>にある<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">generate</a>コマンドの結果のひとつとして、<em>マイグレーション</em>と呼ばれる新しいファイルが生成されます。マイグレーションは、データベースの構造をインクリメンタルに変更する手段を提供します。それにより、要求が変更された場合にデータモデルを適合させることができます。このUserモデルの例の場合、マイグレーションはモデル生成スクリプトによって自動的に作られました。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-users_migration">リスト6.2</a>に示したように<code>name</code>と<code>email</code>の2つのカラムを持つ<code>users</code>テーブルを作成します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-uniqueness_validation">6.2.5</a>と<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-adding_a_secure_password">6.3</a>で、マイグレーションを一から手動で作成する方法について説明します)。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>にある<code>generate</code>コマンドの結果のひとつとして、<em>マイグレーション</em>と呼ばれる新しいファイルが生成されます。マイグレーションは、データベースの構造をインクリメンタルに変更する手段を提供します。それにより、要求が変更された場合にデータモデルを適合させることができます。このUserモデルの例の場合、マイグレーションはモデル生成スクリプトによって自動的に作られました。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-users_migration">リスト6.2</a>に示したように<code>name</code>と<code>email</code>の2つのカラムを持つ<code>users</code>テーブルを作成します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-uniqueness_validation">6.2.5</a>と<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-adding_a_secure_password">6.3</a>で、マイグレーションを一から手動で作成する方法について説明します)。</p>
 
 <div class="label" id="code-users_migration"></div>
 
@@ -8551,9 +8551,9 @@ bundler_stubs/
 </div></div>
 
 
-<p>マイグレーションファイル名の先頭には、それが生成された時間の<em>タイムスタンプ</em>が追加されます。以前はインクリメンタルな整数が追加されましたが、複数の開発者によるチームでは、複数のプログラマが同じ整数を持つマイグレーションを生成してしまい、コンフリクトを引き起こしていました。現在のタイムスタンプによる方法であれば、まったく同時にマイグレーションが生成されるという通常ではありえないことが起きない限り、そのようなコンフリクトを避けることができます。</p>
+<p>マイグレーションファイル名の先頭には、それが生成された時間の<em>タイムスタンプ</em>が追加されます。以前はインクリメンタルな整数が追加されましたが、複数の開発者によるチームでは、複数のプログラマが同じ整数を持つマイグレーションを生成してしまい、コンフリクトを引き起こしていました。現在のタイムスタンプによる方法であれば、まったく同時にマイグレーションが生成されるという通常ではありえないことが起きない限り、そのようなコンフリクトは避けられます。</p>
 
-<p>マイグレーション自体は、データベースに与える変更を定義した<code>change</code>メソッドの集まりです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-users_migration">リスト6.2</a>の場合、<code>change</code>メソッドは<code>create_table</code>というRailsのメソッドを呼び、ユーザーを保存するための<em>テーブル</em>をデータベースに作成します。<code>create_table</code>メソッドはブロック変数を1つ持つブロック (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-blocks">4.3.2</a>) を受け取ります。ここでは (“table”の頭文字を取って) <code>t</code>です。そのブロックの中で、<code>create_table</code>メソッドは<code>t</code>オブジェクトを使って、今度は<code>name</code>と<code>email</code>カラムをデータベースに作成します。型はいずれも<code>string</code>です<sup class="footnote" id="fnref-6_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_4">4</a></sup>。モデル名は単数形 (User) ですが、テーブル名は複数形 (<code>users</code>) です。これはRailsで用いられる言葉の慣習を反映しています。モデルはひとりのユーザーを表すのに対し、データベースのテーブルは複数のユーザーから構成されます。ブロックの最後の行<code>t.timestamps</code>は特別なコマンドで、<code>created_at</code>と<code>updated_at</code>という2つの<em>魔法のカラム</em>を作ります。これらは、あるユーザーが作られたり更新されたときに、その時間を自動的に記録するタイムスタンプです (このマジックカラムの使用例を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_user_objects">6.1.3</a>から具体的に見ていきます)。 このマイグレーションで作られる完全なデータモデルを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-user_model_initial">図6.2</a>に示します。</p>
+<p>マイグレーション自体は、データベースに与える変更を定義した<code>change</code>メソッドの集まりです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-users_migration">リスト6.2</a>の場合、<code>change</code>メソッドは<code>create_table</code>というRailsのメソッドを呼び、ユーザーを保存するための<em>テーブル</em>をデータベースに作成します。<code>create_table</code>メソッドはブロック変数を1つ持つブロック (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-blocks">4.3.2</a>) を受け取ります。ここでは (“table”の頭文字を取って) <code>t</code>です。そのブロックの中で、<code>create_table</code>メソッドは<code>t</code>オブジェクトを使って、今度は<code>name</code>と<code>email</code>カラムをデータベースに作成します。型はいずれも<code>string</code>です<sup class="footnote" id="fnref-6_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_4">4</a></sup>。モデル名は単数形 (User) ですが、テーブル名は複数形 (<code>users</code>) です。これはRailsで用いられる言葉の慣習を反映しています。モデルはひとりのユーザーを表すのに対し、データベースのテーブルは複数のユーザーから構成されます。ブロックの最後の行<code>t.timestamps</code>は特別なコマンドで、<code>created_at</code>と<code>updated_at</code>という2つの「<em>マジックカラム</em>」を作成します。これらは、あるユーザーが作成または更新されたときに、その時刻を自動的に記録するタイムスタンプです (このマジックカラムの使用例を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_user_objects">6.1.3</a>から具体的に見ていきます)。 このマイグレーションで作られる完全なデータモデルを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-user_model_initial">図6.2</a>に示します。</p>
 
 <div class="label" id="fig-user_model_initial"></div>
 
@@ -8561,7 +8561,7 @@ bundler_stubs/
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_model_initial.png" alt="user_model_initial" /></span></div><div class="caption"><span class="header">図6.2</span><span class="description"><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-users_migration">リスト6.2</a>によるユーザーデータモデル</span></div></div>
 
 
-<p>マイグレーションは、以下のように<code>rake</code>コマンド (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-rake">囲み2.1</a>) を使って実行することができます。これを“マイグレーションの適用 (migrating up)”と呼びます。</p>
+<p>マイグレーションは、以下のように<code>rake</code>コマンド (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-rake">囲み2.1</a>) を使って実行することができます。これを「マイグレーションの適用 (migrating up)」と呼びます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
 </pre></div>
@@ -8600,7 +8600,7 @@ bundler_stubs/
 <h3><a id="sec-6_1_2" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_model_file" class="heading"><span class="number">6.1.2</span>modelファイル</a></h3>
 
 
-<p>これまで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>のUserモデルの作成によってどのように (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-users_migration">リスト6.2</a>) のマイグレーションファイルが作成されるかを見てきました。そして<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-sqlite_database_browser">図6.3</a>でこのマイグレーションを実行した結果を見ました。<code>development.sqlite3</code>という名のファイルを<code>users</code>テーブルを作成することで更新し、<code>id</code>、<code>name</code>、<code>email</code>、<code>created_at</code>、<code>updated_at</code>を作成しました。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>ではモデル自体も作成しました。この節では、以後これらを理解することに専念します。</p>
+<p>これまで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>のUserモデルの作成によってどのように (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-users_migration">リスト6.2</a>) のマイグレーションファイルが作成されるかを見てきました。そして<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-sqlite_database_browser">図6.3</a>でこのマイグレーションを実行した結果を見ました。<code>users</code>テーブルを作成することで、<code>development.sqlite3</code>という名のファイルを更新し、<code>id</code>、<code>name</code>、<code>email</code>、<code>created_at</code>、<code>updated_at</code>を作成しました。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>ではモデル自体も作成しました。この節では、以後これらを理解することに専念します。</p>
 
 <p>まず、<code>app/models/</code>ディレクトリにある<code>user.rb</code>ファイルに書かれたUserモデルのコードを見てみましょう。これは控えめに言ってもとてもよくまとまっています (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-raw_user_model">リスト6.3</a>) </p>
 
@@ -8656,7 +8656,7 @@ bundler_stubs/
 
 <p>上のように、nameとemail属性が期待どおり設定されていることがわかります。</p>
 
-<p>開発ログをtailしたまま上を実行していた場合、実行後に新しい行が何も表示されないことに気付いた方もいると思います。これは、<code>User.new</code>を実行しても単にRubyオブジェクトをメモリ上に作成するだけで、データベースにはアクセスしないためです。このユーザーオブジェクトをデータベースに実際に保存するには、<code>user</code>変数に対して<code>save</code>メソッドを呼びます。</p>
+<p>開発ログ (log/development.log) をtail -fしたまま上を実行していた場合、実行後に新しい行が何も表示されないことに気付いた方もいると思います。これは、<code>User.new</code>を実行しても単にRubyオブジェクトをメモリ上に作成するだけで、データベースにはアクセスしないためです。このユーザーオブジェクトをデータベースに実際に保存するには、<code>user</code>変数に対して<code>save</code>メソッドを呼びます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">save</span>
 <span class="go">=&gt; true</span>
@@ -8768,7 +8768,7 @@ bundler_stubs/
 </div>
 
 
-<p>これまでメールアドレスをユーザー名として使用してきたので、このような<code>find</code>関連メソッドは、ユーザーをサイトにログインさせる方法を学ぶときに役に立ちます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-up">第7章</a>)。ユーザー数が膨大になると<code>find_by</code>では検索効率が低下するのではないかと心配する方もいるかもしれませんが、焦る必要はありません。この問題およびデータベースのインデックスを使った解決策については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-uniqueness_validation">6.2.5</a>で扱います。</p>
+<p>これまでメールアドレスをユーザー名として使用してきたので、このような<code>find</code>関連メソッドは、ユーザーをサイトにログインさせる方法を学ぶときに役に立ちます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-up">第7章</a>)。ユーザー数が膨大になると<code>find_by</code>では検索効率が低下するのではないかと心配する方もいるかもしれませんが、あせる必要はありません。この問題およびデータベースのインデックスを使った解決策については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-uniqueness_validation">6.2.5</a>で扱います。</p>
 
 <p>ユーザーを検索する一般的な方法をあと少しだけご紹介して、この節を終わりにすることにしましょう。まず初めに<code>first</code>メソッドです。</p>
 
@@ -8800,7 +8800,7 @@ bundler_stubs/
 
 <p>いったんオブジェクトを作成すれば、今度は何度でも更新したくなるものです。基本的な更新の方法は2つです。ひとつは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_user_class">4.4.5</a>でやったように属性を個別に代入する方法です。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span>           <span class="c1"># Just a reminder about our user&#39;s attributes</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span>           <span class="c1"># ユーザーの属性を保持している</span>
 <span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
 <span class="go">created_at: &quot;2013-03-11 00:57:46&quot;, updated_at: &quot;2013-03-11 00:57:46&quot;&gt;</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;mhartl@example.net&quot;</span>
@@ -8865,7 +8865,7 @@ bundler_stubs/
 
 <p>ついに、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-user_model">6.1</a>で作成したUserモデルに、アクセス可能な<code>name</code>と<code>email</code>属性が与えられました。しかし、これらの属性はどんな値でも取ることができてしまいます。現在は (空文字を含む) あらゆる文字列が有効です。名前とメールアドレスには、もう少し何らかの制限があってよいはずです。たとえば、<code>name</code>は空であってはならず、<code>email</code>はメールアドレスのフォーマットに従う必要があります。さらに、メールアドレスをユーザーがログインするときの一意のユーザー名として使おうとしているので、メールアドレスがデータベース内で重複することのないようにする必要もあります。</p>
 
-<p>要するに、<code>name</code>と<code>email</code>にあらゆる文字列を許すのは避けるべきです。これらの属性値には、何らかの制約を与える必要があります。Active Recordでは<em>検証 (バリデーション: validation) </em>きを使用してそのような制約を与えることができます。ここでは、よく使われるケースのうちのいくつかについて説明します。それらは<em>存在性 (presence)</em>の検証、<em>長さ (length)</em>の検証、<em>フォーマット (format)</em>の検証、<em>一意性 (uniqueness)</em>の検証です。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-has_secure_password">6.3.4</a>では、よく使われる最終検証として<em>確認 (confirmation)</em>を追加します。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_failure">7.3</a>では、ユーザーが制約に違反したときに、検証機能によって自動的に表示される有用なエラーメッセージをお見せします。</p>
+<p>要するに、<code>name</code>と<code>email</code>にあらゆる文字列を許すのは避けるべきです。これらの属性値には、何らかの制約を与える必要があります。Active Recordでは<em>検証 (バリデーション: validation) </em>を使用してそのような制約を与えることができます。ここでは、よく使われるケースのうちのいくつかについて説明します。それらは<em>存在性 (presence)</em>の検証、<em>長さ (length)</em>の検証、<em>フォーマット (format)</em>の検証、<em>一意性 (uniqueness)</em>の検証です。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-has_secure_password">6.3.4</a>では、よく使われる最終検証として<em>確認 (confirmation)</em>を追加します。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_failure">7.3</a>では、ユーザーが制約に違反したときに、検証機能によって自動的に表示される有用なエラーメッセージをお見せします。</p>
 
 <div class="label" id="sec-initial_user_tests"></div>
 
@@ -8878,7 +8878,7 @@ bundler_stubs/
 <pre class="verbatim">--no-test-framework</pre>
 
 
-<p>(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_users_controller">リスト5.2</a>などでは渡した) 上のフラグを渡さなかったからです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>のコマンドは、ユーザーをテストするための初期のspecを作成します。しかし今回の場合、specは実質的には空です (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-default_user_spec">リスト6.4</a>)。</p>
+<p>(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_users_controller">リスト5.2</a>などでは渡した) 上のフラグを渡さなかったからです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>のコマンドは、モデル作成の際に、ユーザーをテストするための初期のspecも同時に作成します。しかし今回の場合、specは実質的には空です (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-default_user_spec">リスト6.4</a>)。</p>
 
 <div class="label" id="code-default_user_spec"></div>
 
@@ -8922,7 +8922,7 @@ bundler_stubs/
 </div>
 
 
-<p>上のコマンドは、単に開発データベースのデータモデル<code>db/development.sqlite3</code>がテストデータベース<code>db/test.sqlite3</code>に反映されるようにするものです。よくある失敗のひとつに、マイグレーションの後でこのRakeタスクが実行できなくなるというのがあります。さらに、テストデータベースはたまに壊れることがあるので、その場合はリセットが必要です。もしテストスイートが理由もなく壊れるようなことがあれば、<code>rake test:prepare</code>を実行して、この問題が解決するか確認してみてください。</p>
+<p>上のコマンドは、単に開発データベースのデータモデル<code>db/development.sqlite3</code>がテストデータベース<code>db/test.sqlite3</code>に反映されるようにするものです。マイグレーションの後でたまにRakeタスクが実行できなくなることがあり、多くの人がこれに戸惑います。さらに、テストデータベースはたまに壊れることがあるので、その場合はリセットが必要です。もしテストスイートが理由もなく壊れるようなことがあれば、<code>rake test:prepare</code>を実行して、この問題が解決するか確認してみてください。</p>
 
 <p>デフォルトのspecのアドバイスに従い、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_spec">リスト6.8</a>に示したいくつかのRSpecの例に置き換えてみましょう。</p>
 
@@ -8946,7 +8946,7 @@ bundler_stubs/
 </div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-pretty_page_tests">リスト5.28</a>で見た<code>before</code>ブロックは前処理用で、各サンプルが実行される前にそのブロックの中のコードを実行します。この場合、<code>User.new</code>と初期化用の有効なハッシュを使って、新しい<code>@user</code>インスタンス変数を作成します。そして以下のコードは、</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-pretty_page_tests">リスト5.28</a>でも使用した<code>before</code>ブロックは前処理用で、各サンプルが実行される前にそのブロックの中のコードを実行します。この場合、<code>User.new</code>と初期化用の有効なハッシュを使って、新しい<code>@user</code>インスタンス変数を作成します。そして以下のコードは、</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">subject</span> <span class="p">{</span> <span class="vi">@user</span> <span class="p">}</span>
 </pre></div>
@@ -8982,7 +8982,7 @@ bundler_stubs/
 </div>
 
 
-<p>以下のRSpecのコードでテストされます。</p>
+<p>以下のRSpecのコードでテストできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should respond to &#39;name&#39;&quot;</span> <span class="k">do</span>
   <span class="n">expect</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
@@ -8998,7 +8998,7 @@ bundler_stubs/
 </div>
 
 
-<p>このようなテストのおかげで、テスト駆動開発をベースに新しい属性やメソッドをUserモデルに追加することができます。さらに、すべての<code>User</code>オブジェクトがこれらのメソッドに応答する必要があるという仕様もここで明らかになりました。</p>
+<p>このようなテストが行えるので、新しい属性やメソッドをUserモデルに一時的に追加してテスト駆動開発を行うことができます。さらに、すべての<code>User</code>オブジェクトがこれらのメソッドに応答する必要があるという仕様もここで明らかになりました。</p>
 
 <p><code>rake test:prepare</code>を実行してテスト環境用データベースを用意したので、テストはパスするはずです。</p>
 
@@ -9017,7 +9017,7 @@ bundler_stubs/
 
 <p>おそらく最も基本的な検証 (validation) は<em>プレゼンス (存在性) </em>です。これは単に、与えられた属性が存在することを検証します。たとえばこの節では、ユーザーがデータベースに保存される前にnameとemailフィールドの両方が存在することを保証します。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_error_messages">7.3.3</a>では、この要求を新しいユーザーを作るためのユーザー登録フォームにまで徹底させる方法を確認します。</p>
 
-<p>最初に<code>name</code>属性の存在を確認するテストを行いましょう。テスト駆動開発の最初のステップは<em>失敗する</em>テスト (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-TDD">3.2.1</a>) を書くことですが、今回は適切なテストを書くための検証機能についてまだ十分に理解していないので、まず最初に検証を書きます。検証についてはコンソールを使って理解することにします。次に、検証部分をコメントアウトし、失敗するテストを書いて、最後にコメントアウトを解除した検証でテストがパスするかどうかを確認します。この手続きは、このような単純なテストでは大げさで気取ったものに感じられるかもしれませんが、著者はこれまでにテストそのものが間違っている “単純な” テストを山ほど見てきました。テスト駆動開発を慎重に進めることは、テストが正しく進められているという自信を得る<em>唯一の</em>方法です (上で紹介したコメントアウトのテクニックは、コードはあってもテストがどこにもないような<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>ひどい</em></a>アプリケーションを急いで救出するときにも役に立ちます)。</p>
+<p>最初に<code>name</code>属性の存在を確認するテストを行いましょう。テスト駆動開発の最初のステップは<em>失敗する</em>テスト (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-TDD">3.2.1</a>) を書くことですが、今回は適切なテストを書くための検証機能についてまだ十分に理解していないので、まず最初に検証を書きます。検証についてはコンソールを使って理解することにします。次に、検証部分をコメントアウトし、失敗するテストを書いて、最後にコメントアウトを解除した検証でテストがパスするかどうかを確認します。この手続きは、このような単純なテストでは大げさで気取ったものに感じられるかもしれませんが、著者はこれまでにテストそのものに誤りのある「単純な」テストを山ほど見てきました。テスト駆動開発を慎重に進めることは、テストが正しく進められているという自信を得る<em>唯一の</em>方法です (上で紹介したコメントアウトのテクニックは、コードはあってもテストがどこにもないような<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>ひどい</em></a>アプリケーションを急いで救出するときにも役に立ちます)。</p>
 
 <p>name属性の存在を検査する方法は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_presence_of_name">リスト6.9</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波かっこを付けなくても問題ありません (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
 
@@ -9054,7 +9054,7 @@ bundler_stubs/
 </div>
 
 
-<p><code>user.save</code>は<code>false</code>を返しました。これは保存に失敗したことを意味します。最後のコマンドは、<code>valid?</code> メソッドで、オブジェクトがひとつ以上のバリデーションに失敗したときに<code>false</code>を返します。 また、すべてのバリデーションに通ったときに<code>true</code>を返します。この場合、バリデーションがひとつしかないので、どれが失敗したかわかります。しかし、失敗したときに作られる<code>errors</code>オブジェクトを使って確認すれば、もっと便利です。</p>
+<p><code>user.save</code>は<code>false</code>を返しました。これは保存に失敗したことを意味します。最後のコマンドは、<code>valid?</code>メソッドで、オブジェクトがひとつ以上の検証に失敗したときに<code>false</code>を返します。すべての検証がパスした場合は<code>true</code>を返します。今回の場合、検証がひとつしかないので、どの検証が失敗したかわかります。しかし、失敗したときに作られる<code>errors</code>オブジェクトを使って確認すれば、さらに便利です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">full_messages</span>
 <span class="go">=&gt; [&quot;Name can&#39;t be blank&quot;]</span>
@@ -9062,9 +9062,9 @@ bundler_stubs/
 </div>
 
 
-<p>(このエラーメッセージから、Railsが属性の存在性を検査するときに<code>blank?</code>メソッド (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-modifying_built_in_classes">4.4.3</a>の終わりに登場) を使用していることが伺えます。)</p>
+<p>(このエラーメッセージから、Railsが属性の存在性を検査するときに<code>blank?</code>メソッド (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-modifying_built_in_classes">4.4.3</a>の終わりに登場) を使用していることが推察できます。)</p>
 
-<p>次は失敗するテストです。最初に、テストが失敗することを確認するために、この時点 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-commented_out_validation">リスト6.7</a>) で検証をコメントアウトしてみましょう。</p>
+<p>次は失敗するテストです。最初に、テストが失敗することを確認するために、この時点 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-commented_out_validation">リスト6.7</a>) でいったん検証をコメントアウトしてみましょう。</p>
 
 <div class="label" id="code-commented_out_validation"></div>
 
@@ -9109,7 +9109,7 @@ bundler_stubs/
 </div></div>
 
 
-<p>最初の新しいサンプルは、基本となるただのテストです。これを使用して、まず<code>@user</code>というsubjectが有効かどうかを確認します。</p>
+<p>1番目の新しいテスト例は、単なる健全性チェックです。これを使用して、まず<code>@user</code>というsubjectが有効かどうかを確認します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_valid</span> <span class="p">}</span>
 </pre></div>
@@ -9123,7 +9123,7 @@ bundler_stubs/
 </div>
 
 
-<p>上のルーティングを下記のように置き換えます。</p>
+<p>上の呼び出しの結果を、以下のコードでテストできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should be valid&quot;</span> <span class="k">do</span>
   <span class="n">expect</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_valid</span>
@@ -9139,7 +9139,7 @@ bundler_stubs/
 </div>
 
 
-<p>2つ目のテストは、まずユーザーのnameに無効な値 (blank) を設定し、<code>@user</code>オブジェクトの結果も無効になることをテストして確認します。</p>
+<p>2番目のテストは、まずユーザーのnameに無効な値 (blank) を設定し、<code>@user</code>オブジェクトの結果も無効になることをテストして確認します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;when name is not present&quot;</span> <span class="k">do</span>
   <span class="n">before</span> <span class="p">{</span> <span class="vi">@user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span> <span class="p">}</span>
@@ -9218,7 +9218,7 @@ bundler_stubs/
 <h3><a id="sec-6_2_3" href="/book/ruby-on-rails-tutorial?version=4.0#sec-length_validation" class="heading"><span class="number">6.2.3</span>長さを検証する</a></h3>
 
 
-<p>各ユーザーは、Userモデル上に名前を持つよう強制されます。しかし、これだけでは十分ではありません。ユーザーの名前はサンプルWebサイトに表示されるものなので、名前の長さにも制限を与える必要があります。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-presence_validation">6.2.2</a>で既に同じような作業を行ったので、この実装は簡単です。</p>
+<p>各ユーザーは、Userモデル上に名前を持つことを強制されるようになりました。しかし、これだけでは十分ではありません。ユーザーの名前はサンプルWebサイトに表示されるものなので、名前の長さにも制限を与える必要があります。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-presence_validation">6.2.2</a>で既に同じような作業を行ったので、この実装は簡単です。</p>
 
 <p>まずはテストを作成します。最長のユーザー名の長さに科学的な根拠はありませんので、単に<code>50</code>という上限として手頃な値を使うことにします。つまりここでは、<code>51</code>文字の名前は長すぎることを検証します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-length_validation_test">リスト6.11</a>)。</p>
 
@@ -9281,7 +9281,7 @@ bundler_stubs/
 
 <p><code>name</code>属性の検証には、空文字でない、名前が51文字未満であるという最小限の制約しか与えていませんでした。<code>email</code>属性の場合は、もっと厳重な要求を満たさなければなりません。これまでは空のメールアドレスのみを禁止してきましたが、ここではメールアドレスにおなじみのパターン<code>user@example.com</code>に合っているかどうかも確認することを要求します。</p>
 
-<p>なお、ここで使用するテストや検証は、形式の有効なメールアドレスを受け入れ、形式の無効なものを拒否するだけであり、決して徹底的なものではないという点にご注意ください。最初に、有効なメールアドレスと無効なメールアドレスのコレクションに対するテストを行いましょう。このコレクションを作るために、以下のコンソールセッションに示したような、文字列の配列を簡単に作れる<code>%w[]</code>という便利なテクニックを知っておくと良いでしょう。</p>
+<p>なお、ここで使用するテストや検証は、形式がひとまず有効なメールアドレスを受け入れ、形式があからさまに無効なものを拒否するだけであり、すべての場合を網羅したものではないという点にご注意ください。最初に、有効なメールアドレスと無効なメールアドレスのコレクションに対するテストを行いましょう。このコレクションを作るために、以下のコンソールセッションに示したような、文字列の配列を簡単に作れる<code>%w[]</code>という便利なテクニックを知っておくと良いでしょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="sx">%w[foo bar baz]</span>
 <span class="go">=&gt; [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]</span>
@@ -9341,7 +9341,7 @@ bundler_stubs/
 
 <p>既に述べたとおり、上のテストはすべてを盛り込んだものではありませんが、一般的に有効なメールアドレスの形式である<code>user@foo.COM</code>、<code>THE_US-ER@foo.bar.org </code> (大文字、アンダースコア、複合ドメイン) 、<code>first.last@foo.jp</code> (一般的な企業のユーザー名「<code>名.姓</code>」と、2文字のトップレベルドメイン「<code>jp</code>」) を、いくつかの無効な形式と共に確認します。</p>
 
-<p>メールアドレスのフォーマット検証を行うアプリケーションコードでは、<em>validates</em>メソッドの<em>:format</em>引数に、フォーマットを定義するための<code>正規表現 (regular expression)</code> (または<code>regex</code>) を与えます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_format_of_email">リスト6.14</a>)。</p>
+<p>メールアドレスのフォーマット検証を行うアプリケーションコードでは、<code>validates</code>メソッドの<code>:format</code>引数に、フォーマットを定義するための<em>正規表現 (regular expression)</em> (<em>regex</em>とも書きます) を与えます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_format_of_email">リスト6.14</a>)。</p>
 
 <div class="label" id="code-validates_format_of_email"></div>
 
@@ -9367,7 +9367,7 @@ bundler_stubs/
 
 <p>このパターンに一致するメールアドレスだけが有効であることをチェックします (<code>VALID_EMAIL_REGEX</code>は大文字で始まるので、Rubyの<em>定数</em>として扱われ、値は変更できません)。</p>
 
-<p>ところで、この正規表現パターンはどうやって作ればよいのでしょうか。正規表現は簡潔な (<a href="http://catb.org/jargon/html/L/line-noise.html">読めない</a>という人もいますが) テキストパターンマッチング言語から成ります。正規表現を組み立てることを学ぶのはそれだけでひとつの技術分野であり、手短に説明するのは簡単ではありませんが、ともあれ最初の説明のために<code>VALID_EMAIL_REGEX</code>をビットサイズの破片に分解しました (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-valid_email_regex">表6.1</a>)<sup class="footnote" id="fnref-6_10"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_10">10</a></sup>。本当に正規表現を学びたいなら、素晴らしい正規表現エディタである<a href="http://www.rubular.com/">Rubular</a> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-rubular">図6.4</a>) が必要不可欠です<sup class="footnote" id="fnref-6_11"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_11">11</a></sup>。RubularのWebサイトは、正規表現を作るための美しく対話的なインターフェイスを持っています。また、手軽な正規表現のクイックリファレンスにもなります。Rubularのサイトをブラウザで開き、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-valid_email_regex">表6.1</a>の表現をひとつずつ入力して結果を確かめながら正規表現を学ぶことをぜひともお勧めします。正規表現について学んだことがなくても、Rubularを使えば数時間で慣れることができます (<em>注</em>: <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_format_of_email">リスト6.14</a>の正規表現をRubularで使う場合、冒頭の<tt class="verb">\A</tt>と末尾の<tt class="verb">\z</tt>の文字は含めないでください)。</p>
+<p>ところで、この正規表現パターンはどうやって作ればよいのでしょうか。正規表現は簡潔な (<a href="http://catb.org/jargon/html/L/line-noise.html">読めない</a>という人もいますが) テキストパターンマッチング言語から成ります。正規表現を組み立てることを学ぶのはそれだけでひとつの技術分野であり、手短に説明するのは簡単ではありませんが、ともあれ最初の説明のために<code>VALID_EMAIL_REGEX</code>をビットサイズの部品に分解しました (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-valid_email_regex">表6.1</a>)<sup class="footnote" id="fnref-6_10"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_10">10</a></sup>。本当に正規表現を学びたいなら、素晴らしい正規表現エディタである<a href="http://www.rubular.com/">Rubular</a> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-rubular">図6.4</a>) が必要不可欠です<sup class="footnote" id="fnref-6_11"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_11">11</a></sup>。RubularのWebサイトは、正規表現を作るための美しく対話的なインターフェイスを持っています。また、手軽な正規表現のクイックリファレンスにもなります。Rubularのサイトをブラウザで開き、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-valid_email_regex">表6.1</a>の表現をひとつずつ入力して結果を確かめながら正規表現を学ぶことをぜひともお勧めします。正規表現について学んだことがなくても、Rubularを使えば数時間で慣れることができます (<em>注</em>: <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_format_of_email">リスト6.14</a>の正規表現をRubularで使う場合、冒頭の<tt class="verb">\A</tt>と末尾の<tt class="verb">\z</tt>の文字は含めないでください)。</p>
 
 <div class="label" id="table-valid_email_regex"></div>
 
@@ -9376,7 +9376,7 @@ bundler_stubs/
 <table class="tabular"><tr><th class="align_left"><strong>表現</strong></th><th class="align_left"><strong>意味</strong></th></tr><tr class="top_bar"><td class="align_left"><tt class="verb">/\A[\w+\-.]+@[a-z\d\-.]</tt><tt class="verb">+\.[a-z]+\z/i</tt></td><td class="align_left">(完全な正規表現)</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">正規表現の開始を示す</td></tr><tr><td class="align_left"><tt class="verb">\A</tt></td><td class="align_left">文字列の先頭</td></tr><tr><td class="align_left"><tt class="verb">[\w+\-.]</tt><tt class="verb">+</tt></td><td class="align_left">英文字、数字、プラス記号、ハイフン、ドットのいずれかを少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">@</tt></td><td class="align_left">アットマーク</td></tr><tr><td class="align_left"><tt class="verb">[a-z\d\-.]</tt><tt class="verb">+</tt></td><td class="align_left">英小文字、数字、ハイフン、ドットのいずれかを少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">\.</tt></td><td class="align_left">ドット</td></tr><tr><td class="align_left"><tt class="verb">[a-z]+</tt></td><td class="align_left">英小文字を少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">\z</tt></td><td class="align_left">文字列の末尾</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">正規表現の終わりを示す</td></tr><tr><td class="align_left"><tt class="verb">i</tt></td><td class="align_left">大文字小文字を無視するオプション</td></tr></table></div><div class="caption"><span class="header">表6.1</span><span class="description"><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_format_of_email">リスト6.14</a>のメールの正規表現の分解。</span></div></div>
 
 
-<p>ところで、公式標準によるとメールアドレスに完全に一致する正規表現は存在するのだそうです。しかし、苦労して導入するほどの甲斐はありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_format_of_email">リスト6.14</a>の例は問題なく動作しますし、おそらく公式のものより良いでしょう<sup class="footnote" id="fnref-6_12"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_12">12</a></sup>。上の正規表現にはちょっとだけ残念な点があります。<code>foo@bar..com</code>のようなドットの連続を誤りとして検出できません。この問題の修正は、演習問題に回します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-modeling_users_exercises">6.5</a>)。</p>
+<p>ところで、公式標準によるとメールアドレスに完全に一致する正規表現は存在するのだそうです。しかし、苦労して導入するほどの甲斐はありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_format_of_email">リスト6.14</a>の例は問題なく動作しますし、おそらく公式のものより良いでしょう<sup class="footnote" id="fnref-6_12"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-6_12">12</a></sup>。上の正規表現には少しだけ残念な点があります。<code>foo@bar..com</code>のようなドットの連続を誤りとして検出できません。この問題の修正は、演習問題に回します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-modeling_users_exercises">6.5</a>)。</p>
 
 <div class="label" id="fig-rubular"></div>
 
