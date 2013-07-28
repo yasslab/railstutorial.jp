@@ -395,7 +395,7 @@
 </div></div>
 
 
-<p>ユーザー表示ページをテストするために、<code>show</code>アクションのコード (<a class="ref" href="/chapters/sign-up.html#code-user_show_action">リスト7.5</a>)の検索対象をUserモデルオブジェクトに置き換えてください。</p>
+<p>ユーザー表示ページをテストするために、<code>show</code>アクションのコード (<a class="ref" href="/chapters/sign-up.html#code-user_show_action">リスト7.5</a>) で検索を行うUserモデルオブジェクトが必要となります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;profile page&quot;</span> <span class="k">do</span>
   <span class="c1"># Code to make a user variable</span>
@@ -408,7 +408,7 @@
 </div>
 
 
-<p>コメントの部分に適切なコードを追加します。ここでは<code>user_path</code>という名前付きルート (<a class="ref" href="/chapters/sign-up.html#table-RESTful_users">表7.1</a>) を使用して、指定されたユーザーのページを表示するためのパスを生成します。これにより、<code>h1</code>タグと<code>title</code>タグの両方にユーザーの名前が含まれているかどうかをテストできます。</p>
+<p>これよりコメントの部分に適切なコードを追加します。ここでは<code>user_path</code>という名前付きルート (<a class="ref" href="/chapters/sign-up.html#table-RESTful_users">表7.1</a>) を使用して、指定されたユーザーのページを表示するためのパスを生成します。これにより、<code>h1</code>タグと<code>title</code>タグの両方にユーザーの名前が含まれているかどうかをテストできます。</p>
 
 <p>必要なUserモデルオブジェクトを作成するために、Active Recordを使用して<code>User.create</code>という形式でユーザーを作成することもできますが、経験上、ユーザーのオブジェクトを定義してそれをデータベースに挿入するには、ユーザーの<em>ファクトリー (factory)</em> を使用する方がはるかに便利です。ここでは、<a href="http://github.com/thoughtbot/factory_girl">Factory Girl</a>を使用して生成したファクトリーを使用します。Factory Girlは、<a href="http://thoughtbot.com/">thoughtbot</a>のメンバーが作成したRuby gemです。Factory Girlは、RSpecを使用してRubyで「ドメイン特化言語 (domain-specific language)」を定義します。ここでは、Active Recordのオブジェクトの定義に特化しています。このドメイン特化言語の文法はシンプルで、必要なオブジェクトの属性を定義するためにRubyのブロックとカスタムメソッドを使用しています。この章のサンプルアプリケーションでは、Active Recordのメリットはまだはっきりとはわからないかもしれませんが、この後の章ではファクトリーの機能をさらに活用する予定です。たとえば<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-pagination">9.3.3</a>では、複数のユーザーを作成し、それぞれに独自のメールアドレスを持たせる作業が重要となりますが、ファクトリーを使用することで簡単になります。</p>
 
