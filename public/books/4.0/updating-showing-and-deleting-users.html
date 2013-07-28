@@ -195,7 +195,7 @@
 
 <p>Railsは、<code>form_for(@user)</code>を使用してフォームを構成すると、<code>@user.new_record?</code>が<code>true</code>のときには<tt>POST</tt>を、<code>false</code>のときには<tt>PATCH</tt>を使用します。</p>
 
-<p>仕上げに、ユーザー設定のリンクにURLを1つ追加してサイト内を移動できるようにします。このリンクはユーザーのサインインしているかどうかによって異なるので、[Settings] リンクのテストは<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-settings_link_test">リスト9.5</a>のように他の認証テストと同じところで行います。(サインインしていないユーザーにはこのリンクが表示されて<em>いない</em>ことを確認するテストも追加しておくのがよいでしょう。これは演習のために残しておきます (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-updating_deleting_exercises">9.6</a>))。</p>
+<p>仕上げに、ユーザー設定のリンクにURLを1つ追加してサイト内を移動できるようにします。このリンクはユーザーがサインインしているかどうかによって異なるので、[Settings] リンクのテストは<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-settings_link_test">リスト9.5</a>のように他の認証テストと同じところで行います。(サインインしていないユーザーにはこのリンクが表示されて<em>いない</em>ことを確認するテストも追加しておくのがよいでしょう。これは演習のために残しておきます (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-updating_deleting_exercises">9.6</a>))。</p>
 
 <div class="label" id="code-settings_link_test"></div>
 
@@ -1866,7 +1866,7 @@
 
 <p>Usersリソースの最後の仕上げとして、<code>destroy</code>アクションへのリンクを追加しましょう。まず、ユーザーインデックスページの各ユーザーに削除用のリンクを追加し、続いて管理ユーザーへのアクセスを制限します。</p>
 
-<p>削除機能をテストするには、管理者を作成するファクトリーがあると便利です。これを行うには、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-admin_factory">リスト9.43</a>のように既存のファクトリーに<code>:admin</code>ブロックを追加します。</p>
+<p>削除機能をテストするには、管理者を作成するファクトリーがあると便利です。これを行うには、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-admin_factory">リスト9.42</a>のように既存のファクトリーに<code>:admin</code>ブロックを追加します。</p>
 
 <div class="label" id="code-admin_factory"></div>
 

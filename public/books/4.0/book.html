@@ -10505,7 +10505,7 @@ bundler_stubs/
 </div>
 
 
-<p>上を以下のように変更します。</p>
+<p>上が以下のように変換されます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nc">.debug_dump</span> <span class="p">{</span>
   <span class="na">.</span>
@@ -10591,7 +10591,7 @@ Loading development environment  &gt;&gt; Rails.env
 <pre class="verbatim">  $ bundle exec rake db:migrate RAILS_ENV=production</pre>
 
 
-<p>(注: console、server、migrateの3つのコマンドでは、デフォルト以外の環境を指定する方法がそれぞれ異なっており、混乱を招く可能性があります。このため、3つの場合の方法をすべて説明することを避けています。)</p>
+<p>(注: console、server、migrateの3つのコマンドでは、デフォルト以外の環境を指定する方法がそれぞれ異なっており、混乱を招く可能性があります。このため、3つの場合の方法をすべて説明することは避けました。)</p>
 
 <p>ところで、サンプルアプリケーションをHerokuに本番展開した場合は、<tt>heroku</tt>コマンドで環境を確認することができます。これを行うには、Herokuの (リモート) コンソールで以下を実行します。</p>
 
@@ -10617,7 +10617,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-modeling-users">第6章</a>の最後で、データベースに新しいユーザーを作成しました。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_a_user">6.3.5</a>でこのユーザーのidは<code>1</code>になっており、今の私たちの目標はこのユーザーの情報を表示するページを作成することです。ここでは、Railsアプリケーションで好まれているRESTアーキテクチャ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-REST">囲み2.2</a>) の習慣に従うことにしましょう。つまり、データを作成、表示、更新、削除可能な<em>リソース</em>として扱うということです。<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP標準</a>には、これらに対応する4つの基本操作 (<tt>POST</tt>、<tt>GET</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>)が定義されています (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">囲み 3.3</a>)。</p>
 
-<p>RESTの原則に従場合、リソースへの参照はリソース名とユニークIDを使用するのが普通です。ユーザーを<em>リソース</em>とみなす場合、id=<code>1</code>のユーザーを参照するということは、/users/1というURLに対して<tt>GET</tt>リクエストを発行するということを意味します。ここで<code>show</code>というアクションの種類は、<em>暗黙</em>のリクエストになります。RailsのREST機能が有効になっていると、<tt>GET</tt>リクエストは自動的に<code>show</code>アクションとして扱われます。</p>
+<p>RESTの原則に従う場合、リソースへの参照はリソース名とユニークIDを使用するのが普通です。ユーザーを<em>リソース</em>とみなす場合、id=<code>1</code>のユーザーを参照するということは、/users/1というURLに対して<tt>GET</tt>リクエストを発行するということを意味します。ここで<code>show</code>というアクションの種類は、<em>暗黙</em>のリクエストになります。RailsのREST機能が有効になっていると、<tt>GET</tt>リクエストは自動的に<code>show</code>アクションとして扱われます。</p>
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_user_tour">2.2.1</a>で説明したとおり、id=<code>1</code>のユーザーにアクセスするためのページのURIは/users/1となります。ただし、現時点でこのURIを使用してもエラーになります (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-profile_routing_error">図 7.4</a>)。</p>
 
@@ -10779,10 +10779,10 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>ユーザー表示ページをテストするために、<code>show</code>アクションのコード (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_show_action">リスト7.5</a>)の検索対象をUserモデルオブジェクトに置き換えてください。</p>
+<p>ユーザー表示ページをテストするために、<code>show</code>アクションのコード (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_show_action">リスト7.5</a>) で検索を行うUserモデルオブジェクトが必要となります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;profile page&quot;</span> <span class="k">do</span>
-  <span class="c1"># Replace with code to make a user variable</span>
+  <span class="c1"># ユーザー変数を作成するためのコードに置き換える。</span>
   <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">user_path</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="p">}</span>
 
   <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_content</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="p">}</span>
@@ -10792,7 +10792,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>コメントの部分に適切なコードを追加します。ここでは<code>user_path</code>という名前付きルート (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_users">表7.1</a>) を使用して、指定されたユーザーのページを表示するためのパスを生成します。これにより、ページのコンテンツとタイトルの両方にユーザーの名前が含まれているかどうかをテストできます。</p>
+<p>これからコメントの部分に適切なコードを追加します。ここでは<code>user_path</code>という名前付きルート (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_users">表7.1</a>) を使用して、指定されたユーザーのページを表示するためのパスを生成します。これにより、ページのコンテンツとタイトルの両方にユーザーの名前が含まれているかどうかをテストできます。</p>
 
 <p>必要なUserモデルオブジェクトを作成するために、Active Recordを使用して<code>User.create</code>という形式でユーザーを作成することもできますが、経験上、ユーザーのオブジェクトを定義してそれをデータベースに挿入するには、ユーザーの<em>ファクトリー (factory)</em> を使用する方がはるかに便利です。ここでは、<a href="http://github.com/thoughtbot/factory_girl">Factory Girl</a>を使用して生成したファクトリーを使用します。Factory Girlは、<a href="http://thoughtbot.com/">thoughtbot</a>のメンバーが作成したRuby gemです。Factory Girlは、RSpecを使用してRubyで「ドメイン特化言語 (domain-specific language)」を定義します。ここでは、Active Recordのオブジェクトの定義に特化しています。このドメイン特化言語の文法はシンプルで、必要なオブジェクトの属性を定義するためにRubyのブロックとカスタムメソッドを使用しています。この章のサンプルアプリケーションでは、Active Recordのメリットはまだはっきりとはわからないかもしれませんが、この後の章ではファクトリーの機能をさらに活用する予定です。たとえば<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-pagination">9.3.3</a>では、複数のユーザーを作成し、それぞれに独自のメールアドレスを持たせる作業が重要となりますが、ファクトリーを使用することで簡単になります。</p>
 
@@ -10914,7 +10914,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>Factory Girlを使用したテストを実行してみるとすぐに気が付くと思いますが、正直言って<em>遅い</em>です。 これはFactory Girlに問題があるわけではなく、あくまで<em>機能</em>の一部であり、バグではありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-an_encrypted_password">6.3.1</a>で使用したBCryptアルゴリズムによるセキュアパスワードのハッシュ生成そのものが仕様上遅いのが原因です。BCryptが遅いということは、裏を返せばそれだけ攻撃に強いということでもあります。残念ながら、このままではユーザーの作成をそのままテストに含めると遅くなってしまいます。幸いなことに、この問題は簡単に回避できます。<tt>BCrypt-ruby</tt>ライブラリでは、セキュアハッシュを生成する際の計算の負荷を<em>コストファクター (cost factor) </em>として指定できます。コストファクターのデフォルト値は速度よりセキュアであることを重視しています。これは本番環境では最適ですが、テスト環境では不利です。私たちはテストを<em>高速で</em>行いたいのであり、ユーザーのパスワードハッシュのセキュリティについてはテスト中は気にしたくありません。解決方法は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-test_bcrypt_cost_factor">リスト7.11</a>に示すように、テスト設定ファイル<code>config/environments/test.rb</code>に数行追加することです。これによりコストファクターが再定義され、デフォルトのセキュア重視から速度重視の最小値に変わります。 かなり小規模なテストであっても、この修正によって速度は相当向上します。<code>test.rb</code>にはいつも<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-test_bcrypt_cost_factor">リスト7.11</a>の数行を追加しておくことをぜひともお勧めします。</p>
+<p>Factory Girlを使用したテストを実行してみるとすぐに気が付くと思いますが、正直言って<em>遅い</em>です。 これはFactory Girlに問題があるわけではなく、あくまで<em>機能</em>の一部であり、バグではありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-an_encrypted_password">6.3.1</a>で使用したBCryptアルゴリズムによるセキュアパスワードのハッシュ生成そのものが仕様上遅いのが原因です。BCryptが遅いということは、裏を返せばそれだけ攻撃に強いということでもあります。残念ながら、このままではユーザーの作成をそのままテストに含めると遅くなってしまいます。幸いなことに、この問題は簡単に回避できます。<tt>BCrypt-ruby</tt>ライブラリでは、セキュアハッシュを生成する際の計算の負荷を<em>コストファクター (cost factor) </em>として指定できます。コストファクターのデフォルト値は速度よりセキュアであることを重視しています。これは本番環境では最適ですが、テスト環境では不利です。私たちはテストを<em>高速で</em>行いたいのであり、ユーザーのパスワードハッシュのセキュリティについてはテスト中は気にしたくありません。解決方法は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-test_bcrypt_cost_factor">リスト7.11</a>に示すように、テスト設定ファイル<code>config/environments/test.rb</code>に数行追加することです。これによりコストファクターが再定義され、デフォルトのセキュリティ重視から速度重視の最小値に変わります。 かなり小規模なテストであっても、この修正によって速度は相当向上します。<code>test.rb</code>にはいつも<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-test_bcrypt_cost_factor">リスト7.11</a>の数行を追加しておくことをぜひともお勧めします。</p>
 
 <div class="label" id="code-test_bcrypt_cost_factor"></div>
 
@@ -10925,7 +10925,7 @@ Loading development environment  &gt;&gt; Rails.env
   <span class="o">.</span>
   <span class="o">.</span>
   <span class="o">.</span>
-  <span class="c1"># Speed up tests by lowering BCrypt&#39;s cost function.</span>
+  <span class="c1"># bcrypt&#39;のコスト関数を下げることでテストの速度を向上させる。</span>
   <span class="ss">ActiveModel::SecurePassword</span><span class="o">.</span><span class="n">min_cost</span> <span class="o">=</span> <span class="kp">true</span>
 <span class="k">end</span>
 </pre></div>
@@ -10940,7 +10940,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_1_4" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_gravatar_image" class="heading"><span class="number">7.1.4</span>gravatar画像とサイドバー</a></h3>
 
 
-<p>前節で基本的なユーザーページの定義は終わりましたので、今度は各ユーザーのプロファイル写真のあたりをもう少し肉付けし、サイドバーも作り始めましょう。ビューを作成するときは、ページの構造が正確であるかどうかよりもページの外観の方を重要視するのが普通なので、少なくとも今はビューをテストする必要はありません。ページネーション (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-pagination">9.3.3</a>) のような、エラーの起きやすい要素をビューで使用するようになったら、ビューでもテストドリブン開発を行います。</p>
+<p>前節で基本的なユーザーページの定義は終わりましたので、今度は各ユーザーのプロファイル写真のあたりをもう少し肉付けし、サイドバーも作り始めましょう。ビューを作成するときは、ページの構造が正確であるかどうかよりもページの外観の方を重要視するのが普通なので、少なくとも今はビューをテストする必要はありません。ページネーション (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-pagination">9.3.3</a>) のような、エラーの起きやすい要素をビューで使用するようになったら、ビューでもテスト駆動開発を行います。</p>
 
 <p>ここでは<a href="http://gravatar.com/">Gravatar (globally recognized avatar) </a>をユーザープロファイルに導入してみましょう<sup class="footnote" id="fnref-7_6"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-7_6">6</a></sup>。Gravatarは<a href="http://github.com/">GitHub</a>の共同設立者であるTom Preston-Wernerによって開発され、後に<a href="http://automattic.com/">Automattic</a> (<a href="http://wordpress.com/">WordPress</a>の作者) に買い取られました。Gravatarは無料のサービスで、プロファイル写真をアップロードして、指定したメールアドレスと関連付けることができます。Gravatarは、プロファイル写真をアップロードするときの面倒な作業や、写真が欠けたりなどのトラブル、置き場所の悩みを解決します。ユーザーのメールアドレスを組み込んだGravatar専用の画像パスを構成するだけで、対応するGravatarの画像が自動的に表示されます<sup class="footnote" id="fnref-7_7"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-7_7">7</a></sup>。</p>
 
@@ -10969,7 +10969,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p><code>gravatar_for</code>メソッドが未定義のため、ユーザー表示ビューは現在動作していません。(このようなエラーを捉えることができるのが、ビューでSpecsを使用する大きなメリットです。だからこそ、どんなに小規模であってもよいのでビューで<em>何らかの</em>テストを行っておくことが重要なのです。)</p>
 
-<p>デフォルトでは、ヘルパーファイルで定義されているメソッドは自動的にすべてのビューで利用できます。ここでは、利便性を考えて<code>gravatar_for</code>をUsersコントローラに関連付けられているヘルパーファイルに置くことにしましょう。<a href="http://en.gravatar.com/site/implement/hash/">Gravatarのホームページ</a>にも書かれているように、GravatarのURIは<a href="http://en.wikipedia.org/wiki/MD5">MD5ハッシュ</a>を用いてユーザーのメールアドレスをハッシュ化しています。Rubyでは、<code>Digest</code>ライブラリの<code>hexdigest</code>メソッドを使用したMD5ハッシュアルゴリズムが実装されています。</p>
+<p>デフォルトでは、ヘルパーファイルで定義されているメソッドは自動的にすべてのビューで利用できます。ここでは、利便性を考えて<code>gravatar_for</code>をUsersコントローラに関連付けられているヘルパーファイルに置くことにしましょう。<a href="http://en.gravatar.com/site/implement/hash/">Gravatarのホームページ</a>にも書かれているように、GravatarのURLは<a href="http://en.wikipedia.org/wiki/MD5">MD5ハッシュ</a>を用いてユーザーのメールアドレスをハッシュ化しています。Rubyでは、<code>Digest</code>ライブラリの<code>hexdigest</code>メソッドを使用したMD5ハッシュアルゴリズムが実装されています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;MHARTL@example.</span><span class="s2">COM&quot;</span><span class="o">.</span>
 <span class="gp">&gt;&gt; </span><span class="ss">Digest::MD5</span><span class="o">::</span><span class="n">hexdigest</span><span class="p">(</span><span class="n">email</span><span class="o">.</span><span class="n">downcase</span><span class="p">)</span>
@@ -10998,7 +10998,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_for_helper">リスト7.13</a>のコードは、Gravatarの画像タグに<code>&quot;gravatar&quot;</code>クラスとユーザー名のaltテキストを追加したものを返します (altテキストを追加しておくと、視覚障害のあるユーザーがスクリーンリーダーを使用するときにも便利です)。今度は以下のテストスイートは成功するはずです。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_for_helper">リスト7.13</a>のコードは、Gravatarの画像タグに<code>&quot;gravatar&quot;</code>クラスとユーザー名のaltテキストを追加したものを返します (altテキストを追加しておくと、視覚障害のあるユーザーがスクリーンリーダーを使用するときにも役に立ちます)。今度は以下のテストスイートは成功するはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
@@ -11018,7 +11018,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">first</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">update_attributes</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span>
-<span class="gp">?</span><span class="gp">&gt; </span>                       <span class="ss">email:</span> <span class="s2">&quot;example@railstutorial.jp&quot;</span><span class="p">,</span>
+<span class="gp">?</span><span class="gp">&gt; </span>                       <span class="ss">email:</span> <span class="s2">&quot;example@railstutorial.org&quot;</span><span class="p">,</span>
 <span class="gp">?</span><span class="gp">&gt; </span>                       <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span>
 <span class="gp">?</span><span class="gp">&gt; </span>                       <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
 <span class="go">=&gt; true</span>
@@ -11116,12 +11116,12 @@ Loading development environment  &gt;&gt; Rails.env
 <h2><a id="sec-7_2" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_form" class="heading"><span class="number">7.2</span>ユーザー登録フォーム</a></h2>
 
 
-<p>ここまででユーザープロファイルページがひとまず動作するようになりましたので、今度はサインアップフォームを作成しましょう。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-new_signup_page">図5.9</a> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-blank_signup_page_recap">図7.10</a>にも再録) に示したとおり、サインアップページはまだ空白のままなので、このままではサインアップできません。この節の目標は、このみっともないページを改造して<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_mockup">図7.11</a>のモックアップのようなページに変えることです。</p>
+<p>ここまででユーザープロファイルページがひとまず動作するようになりましたので、今度はユーザー登録フォームを作成しましょう。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-new_signup_page">図5.9</a> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-blank_signup_page_recap">図7.10</a>にも再録) に示したとおり、ユーザー登録ページはまだ空白のままなので、このままではユーザー登録できません。この節の目標は、このみっともないページを改造して<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_mockup">図7.11</a>のモックアップのようなページに変えることです。</p>
 
 <div class="label" id="fig-blank_signup_page_recap"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/new_signup_page_bootstrap.png" alt="new_signup_page_bootstrap" /></span></div><div class="caption"><span class="header">図7.10</span><span class="description">現状のサインアップページ  <a href="http://localhost:3000/signup">/signup</a>。<a href="http://railstutorial.jp/images/figures/new_signup_page_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/new_signup_page_bootstrap.png" alt="new_signup_page_bootstrap" /></span></div><div class="caption"><span class="header">図7.10</span><span class="description">現状のユーザー登録ページ  <a href="http://localhost:3000/signup">/signup</a>。<a href="http://railstutorial.jp/images/figures/new_signup_page_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -11129,7 +11129,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="label" id="fig-signup_mockup"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図7.11</span><span class="description">ユーザーサインアップページのモックアップ。<a href="http://railstutorial.jp/images/figures/signup_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図7.11</span><span class="description">ユーザー登録ページのモックアップ。<a href="http://railstutorial.jp/images/figures/signup_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 <p>Web経由でユーザーを作成する機能をこれから追加しますので、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_a_user">6.3.5</a>で作成したユーザーをここで削除しておきましょう。 最も簡単な方法は、Rakeの<code>db:reset</code>タスクを実行してデータベースをリセットすることです。</p>
@@ -11154,7 +11154,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_2_1" href="/book/ruby-on-rails-tutorial?version=4.0#sec-tests_for_user_signup" class="heading"><span class="number">7.2.1</span>ユーザー登録のためのテスト</a></h3>
 
 
-<p>完全なテスト機能を備えた強力なWebフレームワークがなかった頃は、テスティング作業は苦痛に満ち、しばしばそこでエラーが発生しました。たとえば、もし仮にサインアップページを手動でテストしなければならないとしたら、ブラウザでそのページを表示し、有効なデータと無効なデータを交互に流しこみ、どちらの場合にもアプリケーションが正常に動作することを確認しなければならないでしょう。さらに、アプリケーションに変更が生じるたびに、まったく同じテストを繰り返さなければなりません。RSpecとCapybaraを使用することで柔軟性の高いテストを作成し、従来手動で行うしかなかったこれらのテストを自動化できるようになりました。</p>
+<p>完全なテスト機能を備えた強力なWebフレームワークがなかった頃は、テスティング作業は苦痛に満ち、しばしばそこでエラーが発生しました。たとえば、もし仮にユーザー登録ページを手動でテストしなければならないとしたら、ブラウザでそのページを表示し、有効なデータと無効なデータを交互に流しこみ、どちらの場合にもアプリケーションが正常に動作することを確認しなければならないでしょう。さらに、アプリケーションに変更が生じるたびに、まったく同じテストを繰り返さなければなりません。RSpecとCapybaraを使用することで、柔軟性の高いテストを作成できるようになり、従来手動で行うしかなかったこれらのテストを自動化できるようになりました。</p>
 
 <p>私たちは、既にCapybaraがWeb操作の文法を直感的にサポートしているところを目の当たりにしてきました。これまでは、特定のページを参照するときに<code>visit</code>を使用することがほとんどでしたが、Capybaraの能力はそれだけにとどまりません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_mockup">図7.11</a>のフィールドに文字列を入力したり、ボタンをクリックしたりすることもできます。Capybaraの文法は以下のような感じです。</p>
 
@@ -11201,7 +11201,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>この節の冒頭でデータベースをリセットしてあるので、現時点では<code>User.count</code>は<code>0</code>になっています。</p>
 
-<p>無効なデータを送信した場合、ユーザーのカウントが変わらないことを期待しています。有効なデータを送信した場合には、ユーザーのカウントが1つ増えることを期待しています。このような動作は、RSpecで<code>expect</code>メソッドを<code>to</code>メソッドまたは <code>not_to</code>メソッドと組み合わせて実現できます。確認しやすいので、まずは無効な場合についてやってみましょう。ユーザー登録ページのパスをブラウザで開いてボタンをクリックしたら、ユーザーアカウントが変更<em>されない</em>という動作です。</p>
+<p>無効なデータを送信した場合、ユーザーのカウントが変わらないことが期待されます。有効なデータを送信した場合には、ユーザーのカウントが1つ増えることが期待されます。このような動作は、RSpecで<code>expect</code>メソッドを<code>to</code>メソッドまたは <code>not_to</code>メソッドと組み合わせて実現できます。まずは、確認しやすい無効な場合についてやってみましょう。ユーザー登録ページのパスをブラウザで開いてボタンをクリックしたら、ユーザーアカウントが変更<em>されない</em>という動作です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">visit</span> <span class="n">signup_path</span>
 <span class="n">expect</span> <span class="p">{</span> <span class="n">click_button</span> <span class="s2">&quot;Create my account&quot;</span> <span class="p">}</span><span class="o">.</span><span class="n">not_to</span> <span class="n">change</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="ss">:count</span><span class="p">)</span>
@@ -11230,7 +11230,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>この場合は、コードがカウントを変更<em>しない</em>ことを期待していますので、<code>not_to</code>メソッドで表現しています。実際には、以下の同等のコードを</p>
+<p>この場合は、コードがカウントを変更<em>しない</em>ことが期待されますので、<code>not_to</code>メソッドで表現しています。実際には、以下の同等のコードを</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">initial</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">count</span>
 <span class="n">click_button</span> <span class="s2">&quot;Create my account&quot;</span>
@@ -11408,14 +11408,14 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p><code>@user</code>変数が上記のように定義されれば、以下のユーザー登録のテストはパスするはずです。</p>
+<p><code>@user</code>変数が上記のように定義されれば、以下のユーザー登録ページのテストはパスするはずです (訳注: 以下のコマンドでは &quot;signup page&quot; のテストだけを行なっています)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/user_pages_spec.rb -e <span class="s2">&quot;signup page&quot;</span>
 </pre></div>
 </div>
 
 
-<p>この時点で、フォーム に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-form_css">リスト7.19</a>のようにスタイルが与えられていれば、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_form">図7.12</a>のように表示されます。<code>box_sizing</code>ミックスインを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-mixin_and_debug">リスト7.2</a>から再利用していることに注目してください。</p>
+<p>この時点で、フォーム に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-form_css">リスト7.19</a>のようにスタイルが与えられていれば、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_form">図7.12</a>のように表示されます。<code>box_sizing</code>ミックスインを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-mixin_and_debug">リスト7.2</a>から再利用していることにご注目ください。</p>
 
 <div class="label" id="code-form_css"></div>
 
@@ -11560,12 +11560,12 @@ Loading development environment  &gt;&gt; Rails.env
 <h2><a id="sec-7_3" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_failure" class="heading"><span class="number">7.3</span>ユーザー登録失敗</a></h2>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_form">図7.12</a>ではフォームのHTMLがどうなっているかを簡単に説明しました (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_form_html">リスト7.20</a>参照) が、フォームを理解するには<em>サインアップの失敗</em>のときが最も参考になります。この節では、無効なデータ送信を受け付けるサインアップフォームを作成し、サインアップフォームを更新してエラーの一覧を表示します。このモックアップを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_failure_mockup">図7.14</a>に示します。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_form">図7.12</a>ではフォームのHTMLがどうなっているかを簡単に説明しました (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_form_html">リスト7.20</a>参照) が、フォームを理解するには<em>ユーザー登録の失敗</em>のときが最も参考になります。この節では、無効なデータ送信を受け付けるユーザー登録フォームを作成し、ユーザー登録フォームを更新してエラーの一覧を表示します。このモックアップを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_failure_mockup">図7.14</a>に示します。</p>
 
 <div class="label" id="fig-signup_failure_mockup"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/signup_failure_mockup_bootstrap.png" alt="signup_failure_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図7.14</span><span class="description">サインアップが失敗したときのモックアップ。<a href="http://railstutorial.jp/images/figures/signup_failure_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/signup_failure_mockup_bootstrap.png" alt="signup_failure_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図7.14</span><span class="description">ユーザー登録が失敗したときのモックアップ。<a href="http://railstutorial.jp/images/figures/signup_failure_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -14581,7 +14581,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>Railsは、<code>form_for(@user)</code>を使用してフォームを構成すると、<code>@user.new_record?</code>が<code>true</code>のときには<tt>POST</tt>を、<code>false</code>のときには<tt>PATCH</tt>を使用します。</p>
 
-<p>仕上げに、ユーザー設定のリンクにURLを1つ追加してサイト内を移動できるようにします。このリンクはユーザーのサインインしているかどうかによって異なるので、[Settings] リンクのテストは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-settings_link_test">リスト9.5</a>のように他の認証テストと同じところで行います。(サインインしていないユーザーにはこのリンクが表示されて<em>いない</em>ことを確認するテストも追加しておくのがよいでしょう。これは演習のために残しておきます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_deleting_exercises">9.6</a>))。</p>
+<p>仕上げに、ユーザー設定のリンクにURLを1つ追加してサイト内を移動できるようにします。このリンクはユーザーがサインインしているかどうかによって異なるので、[Settings] リンクのテストは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-settings_link_test">リスト9.5</a>のように他の認証テストと同じところで行います。(サインインしていないユーザーにはこのリンクが表示されて<em>いない</em>ことを確認するテストも追加しておくのがよいでしょう。これは演習のために残しておきます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_deleting_exercises">9.6</a>))。</p>
 
 <div class="label" id="code-settings_link_test"></div>
 
@@ -16252,7 +16252,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>Usersリソースの最後の仕上げとして、<code>destroy</code>アクションへのリンクを追加しましょう。まず、ユーザーインデックスページの各ユーザーに削除用のリンクを追加し、続いて管理ユーザーへのアクセスを制限します。</p>
 
-<p>削除機能をテストするには、管理者を作成するファクトリーがあると便利です。これを行うには、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-admin_factory">リスト9.43</a>のように既存のファクトリーに<code>:admin</code>ブロックを追加します。</p>
+<p>削除機能をテストするには、管理者を作成するファクトリーがあると便利です。これを行うには、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-admin_factory">リスト9.42</a>のように既存のファクトリーに<code>:admin</code>ブロックを追加します。</p>
 
 <div class="label" id="code-admin_factory"></div>
 
