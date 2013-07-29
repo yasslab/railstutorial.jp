@@ -11417,7 +11417,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>上と以下はどちらも本質的には同じ内容です。</p>
+<p>さらに、以下のコードは</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:password</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">password_field</span> <span class="ss">:password</span> <span class="cp">%&gt;</span>
@@ -11494,7 +11494,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_form_html">7.2.3</a>で説明したように、このHTMLは<tt>POST</tt>リクエストを /usersというURLに送信します。</p>
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-first_create_action">リスト7.21</a>のコードがテストにパスするようにするためには、最初に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-basic_signup_tests">リスト7.16</a>にある無効な情報をテストします。このリストでは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-partials">5.1.3</a>の「パーシャル」のところでも使った<code>render</code>メソッドを再度使いまわしています。<code>render</code>はコントローラアクションの中でも正常に動作します。ここで、以前に説明した<code>if</code>-<code>else</code>分岐構造を思い出してください。この文を使用して、保存が成功したかどうかに応じて<code>@user.save</code>の値が<code>true</code>または<code>false</code> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_user_objects">6.1.3</a>) になるときに、それぞれ成功時の処理と失敗時の処理を場合分けすることができます。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-first_create_action">リスト7.21</a>のコードがテストにパスするようにするためには、最初に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-basic_signup_tests">リスト7.16</a>にある無効な情報をテストします。このリストでは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-partials">5.1.3</a>の「パーシャル」のところでも使った<code>render</code>メソッドを再度使いまわしています。<code>render</code>はコントローラのアクションの中でも正常に動作します。ここで、以前に説明した<code>if</code>-<code>else</code>分岐構造を思い出してください。この文を使用して、保存が成功したかどうかに応じて<code>@user.save</code>の値が<code>true</code>または<code>false</code> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_user_objects">6.1.3</a>) になるときに、それぞれ成功時の処理と失敗時の処理を場合分けすることができます。</p>
 
 <div class="label" id="code-first_create_action"></div>
 
@@ -11547,7 +11547,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>このハッシュはUsersコントローラに<code>params</code>として渡されます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_users_resource">7.1.2</a>で説明したとおり、この<code>params</code>ハッシュには各リクエストの情報が含まれています。/users/1のようなURIの場合、<code>params[:id]</code>の値は該当するユーザーの<code>id</code> (この例では<code>1</code>) になります。ユーザー登録情報の送信の場合、<code>params</code>には複数のハッシュに対するハッシュ (hash-of-hashes: 入れ子になったハッシュ) が含まれます (なお、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-hashes_and_symbols">4.3.3</a>ではhash-of-hashesの説明とともに、コンソールセッションで使用するためにあえて<code>params</code>という名前の変数を導入しました)。上のデバッグ情報では、フォーム送信の結果が、送信された値に対応する属性とともに<code>user</code>ハッシュに保存されています。ハッシュのキーは、<code>input</code>タグの<code>name</code>属性です (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_form">リスト7.17</a>)。</p>
+<p>このハッシュはUsersコントローラに<code>params</code>として渡されます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_users_resource">7.1.2</a>で説明したとおり、この<code>params</code>ハッシュには各リクエストの情報が含まれています。/users/1のようなURLの場合、<code>params[:id]</code>の値は該当するユーザーの<code>id</code> (この例では<code>1</code>) になります。ユーザー登録情報の送信の場合、<code>params</code>には複数のハッシュに対するハッシュ (hash-of-hashes: 入れ子になったハッシュ) が含まれます (なお、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-hashes_and_symbols">4.3.3</a>ではhash-of-hashesの説明とともに、コンソールセッションで使用するためにあえて<code>params</code>という名前の変数を導入しました)。上のデバッグ情報では、フォーム送信の結果が、送信された値に対応する属性とともに<code>user</code>ハッシュに保存されています。ハッシュのキーは、<code>input</code>タグの<code>name</code>属性です (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_form">リスト7.17</a>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;user_email&quot;</span> <span class="na">name=</span><span class="s">&quot;user[email]&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
@@ -11578,7 +11578,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>実際に動作しましたが、動作はデフォルトで不安定であり、悪意のあるユーザーによってアプリケーションのデータベースが書き換えられることのないように慎重な手続きによって使用しなければならず、しかもその手続はエラーを起こしやすいものでした。Rails 4.0では、上のコードはエラーになります (上の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_failure">図7.15</a>および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_failure_rails_debug">図7.16</a>を参照)。これにより、デフォルトでセキュリティが高められました。関連するテストが失敗することを確認することで、このことをダブルチェックできます。</p>
+<p>実際に動作しましたが、動作はデフォルトで不安定であり、悪意のあるユーザーによってアプリケーションのデータベースが書き換えられることのないように慎重な手続きによって使用しなければならず、しかもその手続はエラーを起こしやすいものでした。Rails 4.0では、上のコードはエラーになります (上の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_failure">図7.15</a>および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_failure_rails_debug">図7.16</a>を参照)。これにより、デフォルトでセキュリティが高められました。関連する以下のテストが失敗することを確認することで、このことをダブルチェックできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/user_pages_spec.rb <span class="se">\</span>
 <span class="go">-e &quot;signup with invalid information&quot;</span>
@@ -11614,7 +11614,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>このコードの戻り値は、<code>params</code>ハッシュのバージョンと、許可された属性です (<code>:user</code>属性がない場合はエラーになります)。</p>
 
-<p>これらのパラメータを使いやすくするために、<code>user_params</code>という外部メソッドを使用するのが慣習になっています。このメソッドは適切な初期化ハッシュを返します。このメソッドはUsersコントローラの内部でのみ実行され、Web経由で外部ユーザーにさらされることはないため、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-create_action_strong_parameters">リスト7.22</a>に示すようにRubyの<code>private</code>キーワードを使用して<em>private</em>に設定します (<code>private</code>キーワードの詳細については <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-remember_me">8.2.1</a>で説明します)。</p>
+<p>これらのパラメータを使いやすくするために、<code>user_params</code>という外部メソッドを使用するのが慣習になっています。このメソッドは適切な初期化ハッシュを返します。このメソッドはUsersコントローラの内部でのみ実行され、Web経由で外部ユーザーにさらされる必要はないため、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-create_action_strong_parameters">リスト7.22</a>に示すようにRubyの<code>private</code>キーワードを使用して<em>private</em>に設定します (<code>private</code>キーワードの詳細については <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-remember_me">8.2.1</a>で説明します)。</p>
 
 <div class="label" id="code-create_action_strong_parameters"></div>
 
@@ -11700,7 +11700,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>ここでは、<code>’shared/error_messages’</code>というパーシャルを<code>出力 (レンダリング) </code>している点にご注目ください。これはRails全般の慣習で、パーシャルは複数のコントローラにわたるビューに対し、専用の<code>shared/</code>ディレクトリを使用するようにしています (これは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-edit_form">9.1.1</a>で実現します)。 つまり、<code>app/views/shared</code>ディレクトリと<code>_error_messages.html.erb</code>パーシャルファイルの両方を作成する必要があるということです。パーシャル自身の内容を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-errors_partial">リスト7.24</a>に示します。</p>
+<p>ここでは、<code>’shared/error_messages’</code>というパーシャルを<code>render</code> (レンダリング) している点にご注目ください。これはRails全般の慣習で、パーシャルは複数のコントローラにわたるビューに対し、専用の<code>shared/</code>ディレクトリを使用するようにしています (これは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-edit_form">9.1.1</a>で実現します)。 つまり、<code>app/views/shared</code>ディレクトリと<code>_error_messages.html.erb</code>パーシャルファイルの両方を作成する必要があるということです。パーシャル自身の内容を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-errors_partial">リスト7.24</a>に示します。</p>
 
 <div class="label" id="code-errors_partial"></div>
 
@@ -11923,7 +11923,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-layout_flash">リスト7.27</a>のようにアプリケーションのレイアウトに含めれば、flash変数の内容をWebサイト全体にわたって表示できるようにすることもできます (このコードは、HTMLとERbがミックスされていて美しくありません。コードの改良は<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_exercises">7.6</a>で解説します)。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-layout_flash">リスト7.27</a>のようにアプリケーションのレイアウトに含めれば、flash変数の内容をWebサイト全体にわたって表示できるようにすることもできます (このコードは、HTMLとERbがミックスされていて美しくありません。コードの改良については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_exercises">7.6</a>で解説します)。</p>
 
 <div class="label" id="code-layout_flash"></div>
 
@@ -12070,9 +12070,8 @@ Loading development environment  &gt;&gt; Rails.env
   <span class="o">.</span>
   <span class="o">.</span>
   <span class="o">.</span>
-  <span class="c1"># アプリケーションへのすべてのアクセスをSSL経由にし、
-  # Strict-Transport-Securityを使用し、</span>
-  <span class="c1"># secure cookiesを使用する。</span>
+  <span class="c1"># Force all access to the app over SSL, use Strict-Transport-Security,</span>
+  <span class="c1"># and use secure cookies.</span>
   <span class="n">config</span><span class="o">.</span><span class="n">force_ssl</span> <span class="o">=</span> <span class="kp">true</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -12110,7 +12109,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_in_production">図7.22</a>では、通常の<tt>http://</tt>ではなく<tt>https://</tt>になっていることにご注目ください。この余分な ‘s’ はSSLが有効であることを表しています。</p>
 
-<p>今や好きなだけユーザー登録ページを表示して新規ユーザーを作成できます。何か問題が生じた場合は、以下を実行して</p>
+<p>これで、好きなだけユーザー登録ページを表示して新規ユーザーを作成できるようになりました。何か問題が生じた場合は、以下を実行して</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku logs
 </pre></div>
@@ -12142,7 +12141,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <ol>
 
-<li><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">リスト7.30</a>のコードで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_gravatar_image">7.1.4</a>で定義された<code>gravatar_for</code>ヘルパーにオプションの<code>size</code>パラメーターを取ることができる (<code>gravatar_for user, size: 40</code>のようなコードをビューで使用できる) ことを確認してください。</li>
+<li><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">リスト7.30</a>のコードを使用して、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_gravatar_image">7.1.4</a>で定義された<code>gravatar_for</code>ヘルパーにオプションの<code>size</code>パラメーターを取ることができる (<code>gravatar_for user, size: 40</code>のようなコードをビューで使用できる) ことを確認してください。</li>
 
 <li><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-f_error_messages">リスト7.23</a>で実装したエラーメッセージをテストするコードを書いてください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-error_messages_test">リスト7.31</a>のように書き始めるのがお勧めです。</li>
 
@@ -12390,7 +12389,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>注: サインアウトのルーティングにある<code>via: ’delete’</code>は、このアクションが HTTPの<tt>DELETE</tt>リクエストによって呼び出されることを示しています。</p>
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sessions_resource">リスト8.2</a>で定義されたリソースは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_users">表8.1</a>に示したように、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_sessions">表7.1</a>とよ似たURIとアクションを提供します。注：サインインとサインアウトのアクションのルーティングはカスタムで設定しますが、セッションの生成アクションへのルーティングはデフォルトを使います (i.e., <code>[resource name]_path</code>).</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sessions_resource">リスト8.2</a>で定義されたリソースは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_users">表8.1</a>に示したように、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_sessions">表7.1</a>とよく似たURLとアクションを提供します。注：サインインとサインアウトのアクションのルーティングはカスタムで設定しますが、セッションの生成アクションへのルーティングはデフォルトを使います (i.e., <code>[resource name]_path</code>).</p>
 
 <div class="label" id="table-RESTful_sessions"></div>
 
@@ -12459,7 +12458,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/signin_failure_mockup_bootstrap.png" alt="signin_failure_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図8.2</span><span class="description">サインイン失敗時のモックアップ。<a href="http://railstutorial.jp/images/figures/signin_failure_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signin_failure_mockup">図 8.2</a>に示されているように、サインインで入力した情報に誤りがあったときは、サインインページをもう一度表示して、エラーメッセージを出力します。エラーをフラッシュメッセージとして表示するときには、以下のようにテストできます。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signin_failure_mockup">図 8.2</a>に示されているように、サインインで入力した情報に誤りがあったときは、サインインページをもう一度表示して、エラーメッセージを出力します。ここではエラーをフラッシュメッセージとして表示するので、以下のようにテストできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;div.alert.alert-error&#39;</span><span class="p">,</span> <span class="ss">text:</span> <span class="s1">&#39;Invalid&#39;</span><span class="p">)</span> <span class="p">}</span>
 </pre></div>
@@ -12588,14 +12587,14 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>このユーザー登録フォームとサインインフォームの主な違いは、Sessionモデルがないために<code>@user</code>変数のような存在がないことです。 これはつまり、新しいセッションフォームをつくるときに<code>form_for</code>ヘルパーに追加の情報を渡す必要があるということです。</p>
+<p>このユーザー登録フォームとサインインフォームの主な違いは、サインインフォームにはSessionモデルがないために<code>@user</code>変数のような存在がないことです。 これはつまり、新しいセッションフォームを作成するときに<code>form_for</code>ヘルパーに追加の情報を渡す必要があるということです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">form_for</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>Railsでは、フォームの<code>action</code>の場合は/usersというURLへの <tt>POST</tt>だと判定しますが、Sessionの場合はリソースの<em>名前</em>とそれに対応するURLを指定する必要があります。</p>
+<p>Railsは上の場合、フォームの<code>action</code>は/usersというURLへの<tt>POST</tt>であると自動的に判定しますが、セッションの場合はリソースの<em>名前</em>とそれに対応するURLを指定する必要があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">form_for</span><span class="p">(</span><span class="ss">:session</span><span class="p">,</span> <span class="ss">url:</span> <span class="n">sessions_path</span><span class="p">)</span>
 </pre></div>
@@ -12674,9 +12673,9 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-8_1_4" href="/book/ruby-on-rails-tutorial?version=4.0#sec-reviewing_form_submission" class="heading"><span class="number">8.1.4</span>確認フォームを送信する</a></h3>
 
 
-<p>ユーザーを作成する (ユーザー登録) 場合と同様、セッションを作成する場合 (サインイン) で最初にやることは、<em>正しくない</em>入力の取り扱いです。ユーザー登録のテストは既に作成済みです (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-initial_failing_signin_test">リスト 8.5</a>)。そしてサインアップのアプリケーションコードは、いくつかの点においてユーザー登録のコードとわずかに異なります。最初に、フォームが送信されたとき何が起こるかを考えましょう。次に、サインインが失敗した場合に表示されるエラーメッセージを配置します (モックアップを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signin_failure_mockup">図8.2</a>に示しました)。次に、サインインが送信されるたびに、パスワードとメールアドレスの組み合わせが正しいかどうかを判定し、サインインに成功した場合に使用する土台 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signin_success">8.2</a>) を作成します。</p>
+<p>ユーザーを作成する (ユーザー登録) 場合と同様、セッションを作成する場合 (サインイン) で最初にやることは、<em>正しくない</em>入力の取り扱いです。ユーザー登録のテストは既に作成済みです (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-initial_failing_signin_test">リスト 8.5</a>)。そしてサインインのアプリケーションコードは、いくつかの点においてユーザー登録のコードとわずかに異なります。最初に、フォームが送信されたとき何が起こるかを考えましょう。次に、サインインが失敗した場合に表示されるエラーメッセージを配置します (モックアップを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signin_failure_mockup">図8.2</a>に示しました)。次に、サインインが送信されるたびに、パスワードとメールアドレスの組み合わせが正しいかどうかを判定し、サインインに成功した場合に使用する土台 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signin_success">8.2</a>) を作成します。</p>
 
-<p>最初に、Sessionsコントローラに最小限の<code>create</code>アクションを定義します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-initial_create_session">リスト8.9</a>) 。このアクションは何も実行しませんが、<code>new</code>ビューを表示します。<a href="http://localhost:3000/sessions/new">/sessions/new</a>フォームのフィールドを空白のまま送信すると<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-initial_failed_signin_rails_3">図8.5</a>のように表示されます。</p>
+<p>最初に、Sessionsコントローラに最小限の<code>create</code>アクションを定義します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-initial_create_session">リスト8.9</a>) 。このアクションは何も実行しませんが、<code>new</code>ビューを表示します。<a href="http://localhost:3000/sessions/new">/sessions/new</a>フォームを表示し、フィールドを空白のまま [Sign in] を押して送信すると<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-initial_failed_signin_rails_3">図8.5</a>のように表示されます。</p>
 
 <div class="label" id="code-initial_create_session"></div>
 
@@ -12703,7 +12702,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="label" id="fig-initial_failed_signin_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/initial_failed_signin_rails_3_bootstrap.png" alt="initial_failed_signin_rails_3_bootstrap" /></span></div><div class="caption"><span class="header">図8.5</span><span class="description"><code>リスト8.9</code>の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-initial_create_session">create</a>へのサインイン失敗結果。<a href="http://railstutorial.jp/images/figures/initial_failed_signin_rails_3_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/initial_failed_signin_rails_3_bootstrap.png" alt="initial_failed_signin_rails_3_bootstrap" /></span></div><div class="caption"><span class="header">図8.5</span><span class="description"><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-initial_create_session">リスト8.9</a>の<code>create</code>へのサインイン失敗結果。<a href="http://railstutorial.jp/images/figures/initial_failed_signin_rails_3_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-initial_failed_signin_rails_3">図8.5</a> に表示されているデバッグ情報にご注目ください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signin_form">8.1.3</a> の終わりにもヒントがありましたが、<code>params</code>ハッシュはメールアドレスとパスワードを以下のように<code>:session</code>キーの下に持ちます。</p>
@@ -13001,7 +13000,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>デフォルトでは、すべてのヘルパーはビューで使用できますが、コントローラでは使用できません。Sessionsヘルパーはビューとコントローラの両方でメソッドが必要となるので、コントローラでは上のように明示的にインクルードする必要があります。</p>
+<p>デフォルトでは、すべてのヘルパーはビューで使用できますが、コントローラでは使用可能になっていません。Sessionsヘルパーはビューとコントローラの両方でメソッドが必要となるので、コントローラでは上のように明示的にインクルードする必要があります。</p>
 
 <p>HTTPは<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP_session_state"><em>ステートレスなプロトコル</em></a>であり、そのままでは状態が保存されないので、Webアプリケーションのサインインは、ページからページの移動を追跡するという方法で実装する必要があります。ユーザーのサインイン状態を保持するひとつの方法は、伝統的なRailsセッション (特殊な<code>session</code>関数を使用) を使って、ユーザーIDに等しい「<em>記憶トークン (remember token)</em>」を保持することです。</p>
 
@@ -13094,7 +13093,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>ここで、記憶トークンに何を使用するかを決める必要があります。有力な候補としてさまざまなものが考えられますが、基本的には一意性を確保できる、長くてランダムな文字列でさえあればどんなものでも良いでしょう。Ruby標準ライブラリの<code>SecureRandom</code>モジュールにある<code>urlsafe_base64</code>メソッドならこの用途にぴったりです<sup class="footnote" id="fnref-8_3"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-8_3">3</a></sup>。このメソッドは、A–Z、a–z、0–9、“-”、“_”のいずれかの文字 (64種類) からなる長さ16のランダムな文字列を返します (そのため<a href="http://en.wikipedia.org/wiki/Base64">base64</a>と呼ばれています)。生成された2つの記憶トークンが偶然一致 (衝突) する確率は、64のマイナス16乗、2のマイナス96乗 (10のマイナス29乗) にほぼ等しく、トークンが衝突することはまずありません。</p>
 
-<p>ここでのねらいは、ブラウザにこのbase64トークンを保存しておき、データベースにはトークンを暗号化したものを保存することです。そして、cookiesからこのトークンを読みだして暗号化し、データベース上にある暗号化された記憶トークンと一致するものがあるかどうかを検索することにより、ユーザーを自動的にサインインさせることができます。暗号化したトークンだけをデータベースに保存する理由は、万が一データベースが不正アクセスを受けるようなことがあっても、攻撃者が記憶トークンを使用してサインインできないようにするためです。記憶トークンをさらにセキュアにするためには、新しいセッションを作成するたびにトークンを更新するのがよい方法です。この方法なら、攻撃者が盗んだcookiesを使用して本物のユーザーになりすましてサインインしようとする (<a href="http://en.wikipedia.org/wiki/Session_hijacking">セッションハイジャック</a>) ことがあっても、ユーザーが次回サインインするときにはトークンが期限切れになります。(セッションハイジャックは、セキュリティ上の注意を呼びかけるためにこれを実演する<a href="http://codebutler.com/firesheep">Firesheep</a>アプリケーションによって広く知られるようになりました。Firesheepを使用すると、公共Wi-Fiネットワーク経由で接続したときに多くの有名Webサイトの記憶トークンが丸見えになっていることがわかります。この問題を解決するには、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-deploying_to_production_with_ssl">7.4.4</a>で説明したようにWebサイト全体をSSLで暗号化することです。</p>
+<p>ここでのねらいは、ブラウザにこのbase64トークンを保存しておき、データベースにはトークンを暗号化したものを保存することです。そして、cookiesからこのトークンを読みだして暗号化し、データベース上にある暗号化された記憶トークンと一致するものがあるかどうかを検索することにより、ユーザーを自動的にサインインさせることができます。暗号化したトークンだけをデータベースに保存する理由は、万が一データベースが不正アクセスを受けるようなことがあっても、攻撃者が記憶トークンを使用してサインインできないようにするためです。記憶トークンをさらにセキュアにするためには、新しいセッションを作成するたびにトークンを更新するのがよい方法です。この方法なら、攻撃者が盗んだcookiesを使用して本物のユーザーになりすましてサインインしようとする (<a href="http://en.wikipedia.org/wiki/Session_hijacking">セッションハイジャック</a>) ことがあっても、ユーザーが次回サインインするときにはトークンが期限切れになります。(セッションハイジャックは、セキュリティ上の注意を呼びかけるためにこれを実演する<a href="http://codebutler.com/firesheep">Firesheep</a>アプリケーションによって広く知られるようになりました。Firesheepを使用すると、公共Wi-Fiネットワーク経由で接続したときに多くの有名Webサイトの記憶トークンが丸見えになっていることがわかります。この問題を解決するには、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-deploying_to_production_with_ssl">7.4.4</a>で説明したようにWebサイト全体をSSLで暗号化することです。)</p>
 
 <p>サンプルアプリケーションでは、新規作成されたユーザーをその場でサインインさせ、その副作用として記憶トークンがついでに作成されますが、この動作に依存すべきではありません。安全を確保するために、<em>すべての</em>ユーザーが必ず最初から有効な記憶トークンを持つようにする必要があります。これを確実に行うには、<em>コールバック</em>を使用して記憶トークンを生成します。このテクニックは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-uniqueness_validation">6.2.5</a>でemailの一意性の文脈で紹介しました。あのときは<code>before_save</code>というコールバックを使用しましたが、ここではそれによく似た<code>before_create</code>というコールバックを使用して、ユーザー新規作成時に記憶トークンを設定することにします<sup class="footnote" id="fnref-8_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-8_4">4</a></sup>。</p>
 
@@ -13190,9 +13189,9 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>上のコードに<code>self</code>というキーワードがないと、要素代入によって<code>remember_token</code>という名前の<em>ローカル</em>変数が作成されてしまうので、注意が必要です (ここで本来必要なのはローカル変数ではなく、インスタンス変数です)。この動作は、Rubyにおけるオブジェクト内部への要素代入の仕様によるものです。<code>self</code>キーワードを与えることで、要素代入は正しくそのユーザーの<code>remember_token</code>属性を設定するようになり、その結果ユーザーが保存されるときに他の属性と一緒にこの属性もデータベースに保存されます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-email_downcase">リスト6.20</a>の他の<code>before_save</code>コールバックでも、<code>email</code>ではなく<code>self.email</code>と記述していた理由が、これでおわかりいただけたと思います)。</p>
 
-<p><a href="https://en.wikipedia.org/wiki/SHA-1">SHA1</a>を使用して記憶トークンを暗号化すると、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-an_encrypted_password">6.3.1</a>でユーザーのパスワード暗号化に使用していたBcryptアルゴリズムよりも動作がずっと高速である点にご注目ください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_working_sign_in_method">8.2.2</a>でも説明しますが、トークンの暗号化はユーザーがページを開くたびに行うので、暗号化アルゴリズムが高速であることは重要です。SHA1はBcryptと比べるとそれほどセキュアではありませんが、元となるトークンが既に16桁のランダムな文字列なので、これで十分です。このようなランダムな文字列をさらにSHA1でhexdigestしたものは、本質的にクラック不可能です (<em>to_s</em>メソッドを呼び出しているのは、<code>nil</code>トークンを扱えるようにするためです。ブラウザでnilトークンが発生することはあってはなりませんが、テスト中に発生することはありえるためです)。</p>
+<p><a href="https://en.wikipedia.org/wiki/SHA-1">SHA1</a>を使用して記憶トークンを暗号化すると、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-an_encrypted_password">6.3.1</a>でユーザーのパスワード暗号化に使用していたBcryptアルゴリズムよりも動作がはるかに高速である点にご注目ください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_working_sign_in_method">8.2.2</a>でも説明しますが、トークンの暗号化はユーザーがページを開くたびに行うので、暗号化アルゴリズムが高速であることは重要です。SHA1はBcryptと比べるとそれほどセキュアではありませんが、元となるトークンが既に16桁のランダムな文字列なので、これで十分です。このようなランダムな文字列をさらにSHA1でhexdigestしたものは、本質的にクラック不可能です (<em>to_s</em>メソッドを呼び出しているのは、<code>nil</code>トークンを扱えるようにするためです。ブラウザでnilトークンが発生することはあってはなりませんが、テスト中に発生することはありえるためです)。</p>
 
-<p><code>encrypt</code>メソッドと<code>new_remember_token</code>メソッドは、ユーザーのインスタンスに対して動作する必要がないので、インスタンスではなく<code>User</code>クラスに属します。また、これらのメソッドは<code>private</code>行より上にあるのでpublicになっていますが、これは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-current_user">8.2.3</a>でUserモデルの外で使用する必要があるためです。</p>
+<p><code>encrypt</code>メソッドと<code>new_remember_token</code>メソッドは、ユーザーのインスタンスに対して動作する必要がないので、インスタンスではなく<code>User</code>クラスに属します (クラスメソッド)。また、これらのメソッドは<code>private</code>行より上にあるのでpublicになっていますが、これは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-current_user">8.2.3</a>でUserモデルの外で使用する必要があるためです。</p>
 
 <p>以上の実装をまとめたUserモデルを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-before_create_remember_token">リスト8.18</a>に示します。</p>
 
@@ -13293,7 +13292,7 @@ Loading development environment  &gt;&gt; Rails.env
   =&gt; 5242880</pre>
 
 
-<p>上のヘルパーは、ファイルのアップロードに<tt>5.megabytes</tt>などと制限を与えるのに便利です。</p>
+<p>上のヘルパーは、ファイルのアップロードに<tt>5.megabytes</tt>などの制限を与えるのに便利です。</p>
 
 <p>メソッドを組み込みクラスに追加できる柔軟性の高さのおかげで、純粋なRubyをきわめて自然に拡張することができます (もちろん注意して使う必要はありますが)。実際、Railsのエレガントな仕様の多くは、背後にあるRubyの高い拡張性によって実現されているのです。</p>
 </div>
@@ -13315,7 +13314,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>もちろん、この<code>cookies</code>は<em>本物の</em>ハッシュではなく、実際には<code>cookies</code>に割り当てを行うとブラウザ上のテキストの断片を<em>保存</em>しているだけです。そうしたアプリケーションの実装の詳細を気にしなくてよい点に、Railsの美しさの一端が垣間見えます。</p>
+<p>もちろん、この<code>cookies</code>は<em>本物の</em>ハッシュではなく、実際には<code>cookies</code>に割り当てを行ったときにブラウザ上のテキストの断片を<em>保存</em>しているだけです。そうしたアプリケーションの実装の詳細を気にしなくてよい点に、Railsの美しさの一端が垣間見えます。</p>
 
 <div class="label" id="sec-current_user"></div>
 
@@ -13407,13 +13406,13 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>そして最終的に<code>current_user=</code>というメソッドが呼び出されます。その引数は要素代入の右側にひとつ置かれます (ここではサインインするユーザー)。この一行メソッドは、単に<code>@current_user</code>インスタンス変数を設定し、後に使用するためにユーザーを効率よく保存します。</p>
 
-<p>通常のRubyでは、2番目のメソッドである<code>current_user</code>を定義することができます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-current_user_wrong">リスト8.21</a>に示したように、このメソッドは<code>@current_user</code>の値を返すようになっています。</p>
+<p>通常のRubyでは、もうひとつのメソッドとして<code>current_user</code>を定義することができます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-current_user_wrong">リスト8.21</a>に示したように、このメソッドは<code>@current_user</code>の値を返すようになっています。</p>
 
 <div class="label" id="code-current_user_wrong"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト8.21</span> <span class="description">魅力的だが役に立たない<code>current_user</code>の定義</span> </div>
+<div class="listing"><span class="header">リスト8.21</span> <span class="description">つい使ってみたくなるが実際には役に立たない<code>current_user</code>の定義</span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">SessionsHelper</span>
 
   <span class="k">def</span> <span class="nf">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
@@ -13724,7 +13723,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>上のコードでは、ユーザー登録後にサインアップされていることを確認するために、サインアウト用のリンクが表示されているかどうかをテストしています。</p>
+<p>上のコードでは、ユーザー登録後にサインインしていることを確認するために、サインアウト用のリンクが表示されているかどうかをテストしています。</p>
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signin_success">8.2</a>で<code>sign_in</code>メソッドを作成してあるので、ユーザーをデータベースに保存した直後に<code>sign_in @user</code>を追加するだけで、ユーザーが実際にサインインしてテストにパスするようになります (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signin_upon_signup">リスト8.27</a>)。</p>
 

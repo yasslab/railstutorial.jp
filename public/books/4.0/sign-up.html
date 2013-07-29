@@ -1131,7 +1131,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>上と以下はどちらも本質的には同じ内容です。</p>
+<p>さらに、以下のコードは</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:password</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">password_field</span> <span class="ss">:password</span> <span class="cp">%&gt;</span>
@@ -1208,7 +1208,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p><a class="ref" href="/chapters/sign-up?version=4.0#sec-the_form_html">7.2.3</a>で説明したように、このHTMLは<tt>POST</tt>リクエストを /usersというURLに送信します。</p>
 
-<p><a class="ref" href="/chapters/sign-up?version=4.0#code-first_create_action">リスト7.21</a>のコードがテストにパスするようにするためには、最初に<a class="ref" href="/chapters/sign-up?version=4.0#code-basic_signup_tests">リスト7.16</a>にある無効な情報をテストします。このリストでは、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-partials">5.1.3</a>の「パーシャル」のところでも使った<code>render</code>メソッドを再度使いまわしています。<code>render</code>はコントローラアクションの中でも正常に動作します。ここで、以前に説明した<code>if</code>-<code>else</code>分岐構造を思い出してください。この文を使用して、保存が成功したかどうかに応じて<code>@user.save</code>の値が<code>true</code>または<code>false</code> (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>) になるときに、それぞれ成功時の処理と失敗時の処理を場合分けすることができます。</p>
+<p><a class="ref" href="/chapters/sign-up?version=4.0#code-first_create_action">リスト7.21</a>のコードがテストにパスするようにするためには、最初に<a class="ref" href="/chapters/sign-up?version=4.0#code-basic_signup_tests">リスト7.16</a>にある無効な情報をテストします。このリストでは、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-partials">5.1.3</a>の「パーシャル」のところでも使った<code>render</code>メソッドを再度使いまわしています。<code>render</code>はコントローラのアクションの中でも正常に動作します。ここで、以前に説明した<code>if</code>-<code>else</code>分岐構造を思い出してください。この文を使用して、保存が成功したかどうかに応じて<code>@user.save</code>の値が<code>true</code>または<code>false</code> (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>) になるときに、それぞれ成功時の処理と失敗時の処理を場合分けすることができます。</p>
 
 <div class="label" id="code-first_create_action"></div>
 
@@ -1261,7 +1261,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>このハッシュはUsersコントローラに<code>params</code>として渡されます。<a class="ref" href="/chapters/sign-up?version=4.0#sec-a_users_resource">7.1.2</a>で説明したとおり、この<code>params</code>ハッシュには各リクエストの情報が含まれています。/users/1のようなURIの場合、<code>params[:id]</code>の値は該当するユーザーの<code>id</code> (この例では<code>1</code>) になります。ユーザー登録情報の送信の場合、<code>params</code>には複数のハッシュに対するハッシュ (hash-of-hashes: 入れ子になったハッシュ) が含まれます (なお、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">4.3.3</a>ではhash-of-hashesの説明とともに、コンソールセッションで使用するためにあえて<code>params</code>という名前の変数を導入しました)。上のデバッグ情報では、フォーム送信の結果が、送信された値に対応する属性とともに<code>user</code>ハッシュに保存されています。ハッシュのキーは、<code>input</code>タグの<code>name</code>属性です (<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_form">リスト7.17</a>)。</p>
+<p>このハッシュはUsersコントローラに<code>params</code>として渡されます。<a class="ref" href="/chapters/sign-up?version=4.0#sec-a_users_resource">7.1.2</a>で説明したとおり、この<code>params</code>ハッシュには各リクエストの情報が含まれています。/users/1のようなURLの場合、<code>params[:id]</code>の値は該当するユーザーの<code>id</code> (この例では<code>1</code>) になります。ユーザー登録情報の送信の場合、<code>params</code>には複数のハッシュに対するハッシュ (hash-of-hashes: 入れ子になったハッシュ) が含まれます (なお、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">4.3.3</a>ではhash-of-hashesの説明とともに、コンソールセッションで使用するためにあえて<code>params</code>という名前の変数を導入しました)。上のデバッグ情報では、フォーム送信の結果が、送信された値に対応する属性とともに<code>user</code>ハッシュに保存されています。ハッシュのキーは、<code>input</code>タグの<code>name</code>属性です (<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_form">リスト7.17</a>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;user_email&quot;</span> <span class="na">name=</span><span class="s">&quot;user[email]&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
@@ -1292,7 +1292,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>実際に動作しましたが、動作はデフォルトで不安定であり、悪意のあるユーザーによってアプリケーションのデータベースが書き換えられることのないように慎重な手続きによって使用しなければならず、しかもその手続はエラーを起こしやすいものでした。Rails 4.0では、上のコードはエラーになります (上の<a class="ref" href="/chapters/sign-up?version=4.0#fig-signup_failure">図7.15</a>および<a class="ref" href="/chapters/sign-up?version=4.0#fig-signup_failure_rails_debug">図7.16</a>を参照)。これにより、デフォルトでセキュリティが高められました。関連するテストが失敗することを確認することで、このことをダブルチェックできます。</p>
+<p>実際に動作しましたが、動作はデフォルトで不安定であり、悪意のあるユーザーによってアプリケーションのデータベースが書き換えられることのないように慎重な手続きによって使用しなければならず、しかもその手続はエラーを起こしやすいものでした。Rails 4.0では、上のコードはエラーになります (上の<a class="ref" href="/chapters/sign-up?version=4.0#fig-signup_failure">図7.15</a>および<a class="ref" href="/chapters/sign-up?version=4.0#fig-signup_failure_rails_debug">図7.16</a>を参照)。これにより、デフォルトでセキュリティが高められました。関連する以下のテストが失敗することを確認することで、このことをダブルチェックできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/user_pages_spec.rb <span class="se">\</span>
 <span class="go">-e &quot;signup with invalid information&quot;</span>
@@ -1328,7 +1328,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>このコードの戻り値は、<code>params</code>ハッシュのバージョンと、許可された属性です (<code>:user</code>属性がない場合はエラーになります)。</p>
 
-<p>これらのパラメータを使いやすくするために、<code>user_params</code>という外部メソッドを使用するのが慣習になっています。このメソッドは適切な初期化ハッシュを返します。このメソッドはUsersコントローラの内部でのみ実行され、Web経由で外部ユーザーにさらされることはないため、<a class="ref" href="/chapters/sign-up?version=4.0#code-create_action_strong_parameters">リスト7.22</a>に示すようにRubyの<code>private</code>キーワードを使用して<em>private</em>に設定します (<code>private</code>キーワードの詳細については <a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>で説明します)。</p>
+<p>これらのパラメータを使いやすくするために、<code>user_params</code>という外部メソッドを使用するのが慣習になっています。このメソッドは適切な初期化ハッシュを返します。このメソッドはUsersコントローラの内部でのみ実行され、Web経由で外部ユーザーにさらされる必要はないため、<a class="ref" href="/chapters/sign-up?version=4.0#code-create_action_strong_parameters">リスト7.22</a>に示すようにRubyの<code>private</code>キーワードを使用して<em>private</em>に設定します (<code>private</code>キーワードの詳細については <a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>で説明します)。</p>
 
 <div class="label" id="code-create_action_strong_parameters"></div>
 
@@ -1414,7 +1414,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>ここでは、<code>’shared/error_messages’</code>というパーシャルを<code>出力 (レンダリング) </code>している点にご注目ください。これはRails全般の慣習で、パーシャルは複数のコントローラにわたるビューに対し、専用の<code>shared/</code>ディレクトリを使用するようにしています (これは<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-edit_form">9.1.1</a>で実現します)。 つまり、<code>app/views/shared</code>ディレクトリと<code>_error_messages.html.erb</code>パーシャルファイルの両方を作成する必要があるということです。パーシャル自身の内容を<a class="ref" href="/chapters/sign-up?version=4.0#code-errors_partial">リスト7.24</a>に示します。</p>
+<p>ここでは、<code>’shared/error_messages’</code>というパーシャルを<code>render</code> (レンダリング) している点にご注目ください。これはRails全般の慣習で、パーシャルは複数のコントローラにわたるビューに対し、専用の<code>shared/</code>ディレクトリを使用するようにしています (これは<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-edit_form">9.1.1</a>で実現します)。 つまり、<code>app/views/shared</code>ディレクトリと<code>_error_messages.html.erb</code>パーシャルファイルの両方を作成する必要があるということです。パーシャル自身の内容を<a class="ref" href="/chapters/sign-up?version=4.0#code-errors_partial">リスト7.24</a>に示します。</p>
 
 <div class="label" id="code-errors_partial"></div>
 
@@ -1637,7 +1637,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p><a class="ref" href="/chapters/sign-up?version=4.0#code-layout_flash">リスト7.27</a>のようにアプリケーションのレイアウトに含めれば、flash変数の内容をWebサイト全体にわたって表示できるようにすることもできます (このコードは、HTMLとERbがミックスされていて美しくありません。コードの改良は<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_exercises">7.6</a>で解説します)。</p>
+<p><a class="ref" href="/chapters/sign-up?version=4.0#code-layout_flash">リスト7.27</a>のようにアプリケーションのレイアウトに含めれば、flash変数の内容をWebサイト全体にわたって表示できるようにすることもできます (このコードは、HTMLとERbがミックスされていて美しくありません。コードの改良については<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_exercises">7.6</a>で解説します)。</p>
 
 <div class="label" id="code-layout_flash"></div>
 
@@ -1784,9 +1784,8 @@ Loading development environment  &gt;&gt; Rails.env
   <span class="o">.</span>
   <span class="o">.</span>
   <span class="o">.</span>
-  <span class="c1"># アプリケーションへのすべてのアクセスをSSL経由にし、
-  # Strict-Transport-Securityを使用し、</span>
-  <span class="c1"># secure cookiesを使用する。</span>
+  <span class="c1"># Force all access to the app over SSL, use Strict-Transport-Security,</span>
+  <span class="c1"># and use secure cookies.</span>
   <span class="n">config</span><span class="o">.</span><span class="n">force_ssl</span> <span class="o">=</span> <span class="kp">true</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -1824,7 +1823,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p><a class="ref" href="/chapters/sign-up?version=4.0#fig-signup_in_production">図7.22</a>では、通常の<tt>http://</tt>ではなく<tt>https://</tt>になっていることにご注目ください。この余分な ‘s’ はSSLが有効であることを表しています。</p>
 
-<p>今や好きなだけユーザー登録ページを表示して新規ユーザーを作成できます。何か問題が生じた場合は、以下を実行して</p>
+<p>これで、好きなだけユーザー登録ページを表示して新規ユーザーを作成できるようになりました。何か問題が生じた場合は、以下を実行して</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku logs
 </pre></div>
@@ -1856,7 +1855,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <ol>
 
-<li><a class="ref" href="/chapters/sign-up?version=4.0#code-gravatar_option">リスト7.30</a>のコードで、<a class="ref" href="/chapters/sign-up?version=4.0#sec-a_gravatar_image">7.1.4</a>で定義された<code>gravatar_for</code>ヘルパーにオプションの<code>size</code>パラメーターを取ることができる (<code>gravatar_for user, size: 40</code>のようなコードをビューで使用できる) ことを確認してください。</li>
+<li><a class="ref" href="/chapters/sign-up?version=4.0#code-gravatar_option">リスト7.30</a>のコードを使用して、<a class="ref" href="/chapters/sign-up?version=4.0#sec-a_gravatar_image">7.1.4</a>で定義された<code>gravatar_for</code>ヘルパーにオプションの<code>size</code>パラメーターを取ることができる (<code>gravatar_for user, size: 40</code>のようなコードをビューで使用できる) ことを確認してください。</li>
 
 <li><a class="ref" href="/chapters/sign-up?version=4.0#code-f_error_messages">リスト7.23</a>で実装したエラーメッセージをテストするコードを書いてください。<a class="ref" href="/chapters/sign-up?version=4.0#code-error_messages_test">リスト7.31</a>のように書き始めるのがお勧めです。</li>
 
