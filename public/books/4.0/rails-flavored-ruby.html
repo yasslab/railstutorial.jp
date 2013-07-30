@@ -186,7 +186,7 @@
 </div></div>
 
 
-<p>ここで、現在のテストを変更せずに新しいテストを追加した理由を考えてみてください (<em>ヒント</em>: 答えは<a class="ref" href="/chapters/static-pages?version=4.0#sec-testing_a_title_change">3.3.1</a>にあります)。</p>
+<p>ここで、既存のテストコードを修正するのではなく、新しいテストコードを追加した理由について考えてみてください (<em>ヒント</em>: 答えは<a class="ref" href="/chapters/static-pages?version=4.0#sec-testing_a_title_change">3.3.1</a>にあります)。</p>
 
 <p>ここでテストスイートを実行して、テストが失敗することを確認します。</p>
 
@@ -384,7 +384,7 @@
 
 <p>ダブルクォート文字列でもシングルクォート文字列と同じことができ、ダブルクォート文字列では式展開もできるのであれば、シングルクォート文字列にはどのような使い道があるのでしょうか。シングルクォートは、入力した文字をエスケープせずに「そのまま」保持するときに便利です。たとえば、いわゆる “バックスラッシュ” 文字は、改行文字<tt class="verb">\n</tt>と同様多くのシステム上で特殊な文字として扱われます。シングルクオートで文字列を囲めば、簡単にバックスラッシュ文字のような特殊文字をそのまま変数に含めることができます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;\n&#39;</span>       <span class="c1"># バックスラッシュ n&#39; をそのまま扱う</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;\n&#39;</span>       <span class="c1"># バックスラッシュ n をそのまま扱う</span>
 <span class="go">=&gt; &quot;\\n&quot;</span>
 </pre></div>
 </div>

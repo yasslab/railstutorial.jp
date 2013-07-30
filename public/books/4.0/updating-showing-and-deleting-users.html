@@ -139,7 +139,7 @@
 </div></div>
 
 
-<p>ここでは、<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_error_messages">7.3.2</a>で導入した<code>error_messages</code>パーシャルは使用していません。</p>
+<p>上のコードでは、<code>7.3.3</code>で導入した<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_error_messages">error_messages</a>パーシャルを再利用しています。</p>
 
 <p><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-initial_edit_action">リスト9.2</a>の<code>@user</code>インスタンス変数を使用することで、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_edit_specs">リスト9.1</a>の編集ページ用テストはパスするはずです。</p>
 
@@ -175,14 +175,14 @@
 
 <p>以下の入力フィールドに隠し属性があることにご注目ください。</p>
 
-<div class="code"><div class="highlight"><pre><span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;_method&quot;</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">value=</span><span class="s">&quot;put&quot;</span> <span class="nt">/&gt;</span>
+<div class="code"><div class="highlight"><pre><span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;_method&quot;</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">value=</span><span class="s">&quot;patch&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 </div>
 
 
 <p>Webブラウザはネイティブでは<tt>PATCH</tt>リクエスト (<a class="ref" href="/chapters/sign-up?version=4.0#table-RESTful_users">表7.1</a>でRESTの慣習として要求されている) を送信できないので、Railsは<tt>POST</tt>リクエストと隠し<code>input</code>フィールドを利用してPATCHリクエストを「偽造」しています<sup class="footnote" id="fnref-9_3"><a href="/chapters/updating-showing-and-deleting-users?version=4.0#fn-9_3">3</a></sup>。</p>
 
-<p>ここでもう1つ微妙な点を指摘しておきたいと思います。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_edit_view">リスト9.3</a>の<code>form_for(@user)</code>のコードは、<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_form">リスト7.17</a>のコードと<em>完全に</em>同じです。だとすると、Railsはどうやって新規ユーザー用の<tt>POST</tt>リクエストとユーザー編集用の<tt>PATCH</tt>リクエストを区別するのでしょうか。その答えは、Railsは、ユーザーが新規なのか、それともデータベースに存在する既存のユーザーであるかを、Active Recordの<code>new_record?</code> 論理値メソッドを使用して区別できるからです。</p>
+<p>ここでもう1つ微妙な点を指摘しておきたいと思います。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_edit_view">リスト9.3</a>の<code>form_for(@user)</code>のコードは、<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_form">リスト7.17</a>のコードと<em>完全に</em>同じです。だとすると、Railsはどうやって新規ユーザー用の<tt>POST</tt>リクエストとユーザー編集用の<tt>PATCH</tt>リクエストを区別するのでしょうか。その答えは、Railsは、ユーザーが新規なのか、それともデータベースに存在する既存のユーザーであるかを、Active Recordの<code>new_record?</code>論理値メソッドを使用して区別できるからです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">new_record?</span>
