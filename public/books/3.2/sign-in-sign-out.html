@@ -2000,7 +2000,7 @@
 
 <li><code>form_for</code>の代わりに<code>form_tag</code>を使用して、サインインフォームをリファクタリングしてください。テストスイートが以前と同様にパスすることも確認してください。<em>ヒント</em>: RailsCastの「<a href="http://railscasts.com/episodes/270-authentication-in-rails-3-1">Rails 3.1における認証</a> (英語)」を参照してください。特に、<code>params</code>ハッシュの構造の変更にご注目ください。</li>
 
-<li><a class="ref" href="/chapters/sign-in-sign-out.html#sec-rspec_custom_matchers">8.3.3</a>の例に従い、ユーザー認証リクエストspec (<code>spec/requests</code>ディレクトリの下にあるファイル) を見直し、<code>spec/support/utilities.rb</code>でユーティリティ関数を定義して、テストを実装から切り離してください。<em>課外活動:</em> サポートコードを独立したファイルとモジュールに再編成し、specヘルパーファイルでそれらのモジュールを適切にインクルードしてすべて動作するようにしてください。</li>
+<li><a class="ref" href="/chapters/sign-in-sign-out.html#sec-rspec_custom_matchers">8.3.3</a>の例に従い、ユーザー用のリクエストspecと認証リクエストspec (<code>spec/requests</code>ディレクトリの下にあるファイル) を見直し、<code>spec/support/utilities.rb</code>でユーティリティ関数を定義して、テストを実装から切り離してください。<em>課外活動:</em> サポートコードを独立したファイルとモジュールに再編成し、specヘルパーファイルでそれらのモジュールを適切にインクルードしてすべて動作するようにしてください。</li>
 
 </ol>
 
