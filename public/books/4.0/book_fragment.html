@@ -4984,7 +4984,7 @@ bundler_stubs/
 
 <p>ダブルクォート文字列でもシングルクォート文字列と同じことができ、ダブルクォート文字列では式展開もできるのであれば、シングルクォート文字列にはどのような使い道があるのでしょうか。シングルクォートは、入力した文字をエスケープせずに「そのまま」保持するときに便利です。たとえば、いわゆる “バックスラッシュ” 文字は、改行文字<tt class="verb">\n</tt>と同様多くのシステム上で特殊な文字として扱われます。シングルクオートで文字列を囲めば、簡単にバックスラッシュ文字のような特殊文字をそのまま変数に含めることができます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;\n&#39;</span>       <span class="c1"># バックスラッシュ n をそのまま扱う</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;\n&#39;</span>       <span class="c1"># &#39;バックスラッシュ n&#39; をそのまま扱う</span>
 <span class="go">=&gt; &quot;\\n&quot;</span>
 </pre></div>
 </div>
@@ -14881,7 +14881,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>デフォルトでは、before_filterはコントローラ内の<em>すべての</em>アクションに適用されるので、ここでは<code>:only</code>オプションハッシュを渡すことによって<code>:edit</code>と<code>:update</code>アクションにのみこのフィルタが適用されるように制限をかけています。</p>
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-authorize_before_filter">リスト9.12</a>では、<code>redirect_to</code>にオプションハッシュを渡すことによって、<code>flash[:notice]</code>の記述を簡素化していることに注目してください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-authorize_before_filter">リスト9.12</a>のその箇所をもっと冗長に書くと以下のようになります。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-authorize_before_filter">リスト9.12</a>では、<code>redirect_to</code>にオプションハッシュを渡すことによって、<code>flash[:notice]</code>の記述を簡素化していることにご注目ください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-authorize_before_filter">リスト9.12</a>のその箇所をもっと冗長に書くと以下のようになります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">unless</span> <span class="n">signed_in?</span>
   <span class="n">flash</span><span class="o">[</span><span class="ss">:notice</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Please sign in.&quot;</span>
@@ -15003,7 +15003,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>上のコードは、作成するユーザーのメールアドレスをデフォルトと異なるものに変更します。このテストでは、元のユーザーが別のユーザーの<code>edit</code>アクションや<code>update</code>アクションにアクセスできないことを確認します。</p>
 
-<p><code>リスト9.15</code>のアプリケーションコードでは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-correct_user_before_filter">correct_user</a>メソッドを呼び出すためにbefore_filterをもう1つ追加しています。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-correct_user_before_filter">リスト9.15</a>のアプリケーションコードでは、<code>correct_user</code>メソッドを呼び出すためにbefore_filterをもう1つ追加しています。</p>
 
 <div class="label" id="code-correct_user_before_filter"></div>
 
@@ -15080,7 +15080,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-correct_user_before_filter">リスト9.15</a>では、<code>edit</code>アクションと<code>update</code>アクションも更新されていることに注目してください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-initial_edit_action">リスト9.2</a>の時点では以下のようなコードでした。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-correct_user_before_filter">リスト9.15</a>では、<code>edit</code>アクションと<code>update</code>アクションも更新されていることにご注目ください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-initial_edit_action">リスト9.2</a>の時点では以下のようなコードでした。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">edit</span>
   <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
@@ -15393,7 +15393,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>デモアプリケーション (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-demo_index_action">リスト2.4</a>) にも同様のアクションがあったことを思い出した人もいると想います。このアプリケーションコードでも、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index">リスト9.24</a>のように<code>User.all</code>を使用してすべてのユーザーをデータベースから取り出し、それらを<code>@users</code>インスタンス変数に割り当ててビューで使用しています。(すべてのユーザーを一気に読みだすのはデータ量が多い場合に問題が生じるのではないかと思われる方、そのとおりです。このキズは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-pagination">9.3.3</a>で修正します。)</p>
+<p>デモアプリケーション (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-demo_index_action">リスト2.4</a>) にも同様のアクションがあったことを思い出した人もいると思います。このアプリケーションコードでも、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index">リスト9.24</a>のように<code>User.all</code>を使用してすべてのユーザーをデータベースから取り出し、それらを<code>@users</code>インスタンス変数に割り当ててビューで使用しています。(すべてのユーザーを一気に読みだすのはデータ量が多い場合に問題が生じるのではないかと思われる方、そのとおりです。このキズは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-pagination">9.3.3</a>で修正します。)</p>
 
 <div class="label" id="code-user_index"></div>
 
@@ -15848,7 +15848,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.35</span> <span class="description"><code>index</code>アクションのユーザーをページネーションs</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.35</span> <span class="description"><code>index</code>アクションのユーザーをページネーションする。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:index</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
   <span class="o">.</span>
