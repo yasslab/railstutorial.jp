@@ -1663,7 +1663,7 @@
 </div></div>
 
 
-<p>Railsは<code>@users</code>を<code>User</code>オブジェクトのリストであると推測します。さらに、ユーザーのコレクションを与えて呼び出すと、Railsは自動的にユーザーのコレクションを列挙し、それぞれのユーザーを<code>_user.html.erb</code>パーシャルで出力します (訳注: each doで囲む必要がなくなります)。これにより、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-index_final_refactoring">リスト9.38</a>のコードはきわめてコンパクトになります。これに限らず、リファクタリングを行う場合には、アプリケーションのコードを変更する前と後で必ずテストを実行し、いずれも緑色 (成功) になることを確認するようにしてください。</p>
+<p>Railsは<code>@users</code>を<code>User</code>オブジェクトのリストであると推測します。さらに、ユーザーのコレクションを与えて呼び出すと、Railsは自動的にユーザーのコレクションを列挙し、それぞれのユーザーを<code>_user.html.erb</code>パーシャルで出力します (訳注: each doとendで囲む必要がなくなります)。これにより、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-index_final_refactoring">リスト9.38</a>のコードはきわめてコンパクトになります。これに限らず、リファクタリングを行う場合には、アプリケーションのコードを変更する前と後で必ずテストを実行し、いずれも緑色 (成功) になることを確認するようにしてください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
@@ -1811,8 +1811,8 @@
     <span class="n">admin</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span>
                          <span class="ss">email:</span> <span class="s2">&quot;example@railstutorial.jp&quot;</span><span class="p">,</span>
                          <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span>
-                         <span class="ss">password_confirmation</span> <span class="s2">&quot;foobar&quot;</span>
-                         <span class="ss">admin</span> <span class="kp">true</span>
+                         <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span>
+                         <span class="ss">admin:</span> <span class="kp">true</span><span class="p">)</span>
     <span class="o">.</span>
     <span class="o">.</span>
     <span class="o">.</span>
@@ -1889,7 +1889,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-admin_factory">リスト9.43</a>のコードによって、<code>FactoryGirl.create(:admin)</code>を使用してテスト内に管理ユーザーを作成することができるようになります。</p>
+<p><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-admin_factory">リスト9.42</a>のコードによって、<code>FactoryGirl.create(:admin)</code>を使用してテスト内に管理ユーザーを作成することができるようになります。</p>
 
 <p>私たちのセキュリティモデルでは、一般ユーザーにはこの削除リンクを表示しないようにします。</p>
 
@@ -1971,7 +1971,7 @@
 </div></div>
 
 
-<p>上のアプリケーションコードは、現在のユーザーが管理者の場合に <code>[delete]</code> リンクを有効にします (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-delete_links">リスト9.44</a>)。ここで、必要な<tt>DELETE</tt>リクエストを発行するリンクの生成は<code>method: :delete</code>引数によって行われている点に注目してください。また、各リンクを<code>if</code>文で囲み、管理者にだけ削除リンクが表示されるようにしています。管理者から見えるページを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#fig-index_delete_links_rails_3">図9.14</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードは、現在のユーザーが管理者の場合に <code>[delete]</code> リンクを有効にします (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-delete_links">リスト9.44</a>)。ここで、必要な<tt>DELETE</tt>リクエストを発行するリンクの生成は<code>method: :delete</code>引数によって行われている点に注目してください。また、各リンクを<code>if</code>文で囲み、管理者にだけ削除リンクが表示されるようにしています。管理者から見えるページを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#fig-index_delete_links_rails_3">図9.14</a>に示します。</p>
 
 <div class="label" id="code-delete_links"></div>
 
@@ -2067,7 +2067,7 @@
 
 <p>原則に従えば、ここにはまだ小さなセキュリティホールが残っています。管理者がやろうと思えば、<tt>DELETE</tt>リクエストをコマンドラインで直接発行して自分自身を削除できてしまいます。単なる管理者の自業自得ではないかという考えもあるかと思いますが、こういう事故を未然に防ぐに越したことはありません。この対策については演習の課題に回します (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-updating_deleting_exercises">9.6</a>)。</p>
 
-<p>このアプリケーションコードではbefore_filterを使用していますが、ここでは<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用していることに気付いた方もいるかもしれません。変更後の<code>admin_user</code> before_filterを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-admin_destroy_before_filter">リスト9.48</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードではbefore_filterを使用していますが、ここでは<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用していることに気付いた方もいるかもしれません。変更後の<code>admin_user</code> before_filterを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-admin_destroy_before_filter">リスト9.48</a>に示します。</p>
 
 <div class="label" id="code-admin_destroy_before_filter"></div>
 
