@@ -11,7 +11,7 @@
 <div id="top"></div>
 
 
-<h1 class="chapter"><a id="sec-1" href="/chapters/beginning.html#top" class="heading"><span class="number">第1章</span> ゼロから本番展開まで</a></h1>
+<h1 class="chapter"><a id="sec-1" href="/chapters/beginning.html#top" class="heading"><span class="number">第1章</span> ゼロからデプロイまで</a></h1>
 
 
 <p><a href="http://ruby.railstutorial.org/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。この本の目的は、「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったウェブ開発を学びたいんだけど、どこから始めればいいの？」という質問に答えることです。<em>本書</em>を読み終わる頃には、あなたは自作のカスタムWebアプリケーションを開発し、展開 (deploy) するための知識をすべて得られるはずです。また、Railsの「教育エコシステム」なるものに含まれる、さらに高度な本、ブログ、スクリーンキャストなどの恩恵を受けるのにふさわしい実力を身につけられます。<em>Ruby on Railsチュートリアル</em>はRails 3を使用しているため、ここで学んだ内容はRailsの最新バージョンに完全に対応しています。(最新の<em>Ruby on Railsチュートリアル</em>については、この本が掲載されている<a href="http://railstutorial.org/">http://railstutorial.org/</a>を参照してください。本書をオフラインで読んでいる方は、<a href="http://railstutorial.org/book">http://railstutorial.org/book</a>で<a href="http://railstutorial.org/book">オンライン版Rails Tutorial book</a>で最新版を確認してください。)</p>
@@ -20,7 +20,7 @@
 
 <p>この第1章では、必要なソフトウェアをインストールし、開発環境 (<a class="ref" href="/chapters/beginning.html#sec-up_and_running">1.2</a>) を整えてRuby on Railsの準備をします。続いて、<code>first_app</code> という最初のRailsアプリの作成に着手します。<em>Railsチュートリアル</em>ではソフトウェア開発のベストプラクティスを重要視しているので、新しいRailsプロジェクトを作成後、ただちにGit (<a class="ref" href="/chapters/beginning.html#sec-version_control">1.3</a>) を使用してバージョン管理下に置きます。そして何と、この章では本番 (production) 環境 (<a class="ref" href="/chapters/beginning.html#sec-deploying">1.4</a>) に<em>展開</em>して一般公開するところまで行います。</p>
 
-<p><a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/chapters/beginning.html#sidebar-scaffolding">囲み1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/chapters/beginning.html#fn-1_1">1</a></sup>と呼ばれることもあります)を通してデモアプリを使ってみます。</p>
+<p><a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/chapters/beginning.html#sidebar-scaffolding">コラム 1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/chapters/beginning.html#fn-1_1">1</a></sup>と呼ばれることもあります)を通してデモアプリを使ってみます。</p>
 
 <p>第3章以降では、<em>サンプルアプリケーション</em> (<code>sample_app</code>と呼びます) を作成します。このアプリはTDD(<em>テスト駆動開発</em> で開発し、<a class="ref" href="/chapters/static-pages.html#top">第3章</a>で静的ページ(と少しの動的コンテンツ)を追加する事から始めます。<a class="ref" href="/chapters/rails-flavored-ruby.html#top">第4章</a> では少し回り道をし、Railsを動かしているRuby言語について簡単に学びます。<a class="ref" href="/chapters/filling-in-the-layout.html#top">第5章</a>から<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#top">第9章</a>ではレイアウト、ユーザーのデータモデル、そしてユーザー登録・認証システムを作りサンプルアプリの基礎を完成させます。最後に<a class="ref" href="/chapters/user-microposts.html#top">第10章</a>と<a class="ref" href="/chapters/following-users.html#top">第11章</a>ではマイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
 
@@ -29,7 +29,7 @@
 <div class="label" id="sidebar-scaffolding"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み1.1</span></span><span class="title"><span class="description">早くて簡単なScaffoldの甘い誘惑</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 1.1</span></span><span class="title"><span class="description">早くて簡単なScaffoldの甘い誘惑</span></span>
 <p>Railsの作者David Heinemer Hansson氏による有名な「<a href="http://www.youtube.com/watch?v=Gzj723LkRJY">15分で作るブログ</a>」ビデオ (現在はRyan Bates氏による「Rails 2による15分で作るブログ」に更新されています) などを見ていただければわかるように、Railsは誕生したときから刺激的なフレームワークです。これらのビデオはRailsのパワーを目の当たりにするには最適であり、ぜひ視聴する事をお勧めします。しかし、これらのビデオでは15分でブログを作るという離れ業を、<em>scaffold</em>という機能を利用して成し遂げています。このscaffoldという機能は、Railsの<code>generate</code>コマンドによる<em>自動生成コード</em>に強く依存します。</p>
 
 <p>Ruby on Railsのチュートリアルを書いていて、<a href="http://en.wikipedia.org/wiki/Dark_side_(Star_Wars)">あまりにも素早く簡単にコードが生成できる</a>scaffoldの機能を私もついあてにしてしまいそうになります。しかし、初心者は生成されたコードの複雑さとその量の多さに圧倒されてしまうことでしょう。どうにか動いても、ソースコードを見ても何が行われているのか理解できないことでしょう。scaffoldのコード自動生成に頼っていると、スクリプト作成の達人にはなるかもしれませんが、Rails自体の知識はほとんど身に付きません。</p>
@@ -1197,9 +1197,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h2><a id="sec-1_4" href="/chapters/beginning.html#sec-deploying" class="heading"><span class="number">1.4</span>展開する</a></h2>
 
 
-<p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境に展開 (デプロイ: deploy) してしまいましょう。アプリケーションの展開は必須ではありませんが、頻繁に本番展開することによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境に展開しないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_22"><a href="/chapters/beginning.html#fn-1_22">22</a></sup>。</p>
+<p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境に展開 (デプロイ: deploy) してしまいましょう。アプリケーションの展開は必須ではありませんが、頻繁にデプロイすることによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境に展開しないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_22"><a href="/chapters/beginning.html#fn-1_22">22</a></sup>。</p>
 
-<p>かつてはRailsアプリの本番展開は大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx<sup class="footnote" id="fnref-1_23"><a href="/chapters/beginning.html#fn-1_23">23</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスホスティングを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
+<p>かつてはRailsアプリのデプロイは大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx<sup class="footnote" id="fnref-1_23"><a href="/chapters/beginning.html#fn-1_23">23</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスホスティングを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
 
 <p>私のお気に入りはHerokuで、Railsを含むRuby Webアプリ用のホスティングプラットフォームです<sup class="footnote" id="fnref-1_24"><a href="/chapters/beginning.html#fn-1_24">24</a></sup>。Herokuは、ソースコードのバージョン管理にGitを使用していれば、Railsアプリケーションを簡単に本番環境に展開できます (Gitを導入したのは、まさにこのHerokuで使うためでもあります。まだGitをインストールしていなければ、<a class="ref" href="/chapters/beginning.html#sec-version_control">1.3</a>を参照してください)。この章では、私たちの最初のアプリケーションをHerokuに展開します。</p>
 

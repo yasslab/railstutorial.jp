@@ -327,12 +327,12 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>先ほどと同様に<code>static_pages_controller.rb</code>というコントローラが生成されます。これは、Rubyがクラス名にキャメルケースを使う慣習があり (詳細は<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-ruby_classes">4.4</a>で説明します)、また、キャメルケースの名前を使うことが好まれているためです。これらの慣習に必ず従わなければいけないということではありません。(同様にRubyでは、ファイル名をスネークケースで記述する慣習があります。このため Railsのgenerateスクリプトでは、 <a href="http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-underscore"><tt>underscore</tt></a>メソッドを使ってキャメルケースをスネークケースに変換しています。)</p>
 
-<p>ところで、自動生成に失敗するようなことがあれば、元に戻す処理を学ぶ良い機会になります。以下の<a class="ref" href="/chapters/static-pages.html#sidebar-undoing_things">囲み3.1</a>で元に戻す方法を紹介しています。</p>
+<p>ところで、自動生成に失敗するようなことがあれば、元に戻す処理を学ぶ良い機会になります。以下の<a class="ref" href="/chapters/static-pages.html#sidebar-undoing_things">コラム 3.1</a>で元に戻す方法を紹介しています。</p>
 
 <div class="label" id="sidebar-undoing_things"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み3.1</span></span><span class="title"><span class="description">元に戻す方法</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 3.1</span></span><span class="title"><span class="description">元に戻す方法</span></span>
 <p>どれほど十分に気を付けていたとしても、Railsアプリケーションの開発中に何か失敗してしまうことはありえます。ありがたいことに、Railsにはそのような失敗をカバーする機能がいくつもあります。</p>
 
 <p>一般的なシナリオの1つは、生成したコードを元に戻したい場合です。たとえば、コントローラを生成した後で、もっといいコントローラ名を思い付いた場合などです。<a class="ref" href="/chapters/static-pages.html#code-generating_pages">リスト 3.4</a>に示したように、コントローラを生成すると、コントローラファイル以外にも多数のファイルが作成されます。自動生成されたコードを元に戻すためには、新規作成されたファイルを削除するだけではなく、既存のファイルに挿入されたコードも削除する必要があります (実際、<tt>routes.rb</tt> ファイルに自動的に追加されたコードも元に戻す必要があります) 。このようなときは、<tt>rails destroy</tt>コマンドを実行するだけで元に戻すことができます。たとえば次の2つのコマンドは、自動生成と、それに対応する取り消し処理の例です。</p>
@@ -407,7 +407,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>このルールは、/static_pages/homeに対するリクエストを、StaticPagesコントローラの<code>home</code>アクションと結びつけています。具体的には、<code>get</code>と書くことで、<tt>GET</tt>リクエストに対して該当するアクションを結びつけています。なお、ここでいう GETリクエストとは、<em>HTTP (HyperText Transfer Protocol) </em> (<a class="ref" href="/chapters/static-pages.html#sidebar-get_etc">囲み 3.2</a>) が対応しているメソッドの1つです。今回の場合は、StaticPagesコントローラ内に<code>home</code>アクションを追加したので、/static_pages/homeにアクセスすることでページを取得 (GET) できるようになりました。<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスして結果を表示します (<a class="ref" href="/chapters/static-pages.html#fig-raw_home_view">図3.5</a>)。</p>
+<p>このルールは、/static_pages/homeに対するリクエストを、StaticPagesコントローラの<code>home</code>アクションと結びつけています。具体的には、<code>get</code>と書くことで、<tt>GET</tt>リクエストに対して該当するアクションを結びつけています。なお、ここでいう GETリクエストとは、<em>HTTP (HyperText Transfer Protocol) </em> (<a class="ref" href="/chapters/static-pages.html#sidebar-get_etc">コラム  3.2</a>) が対応しているメソッドの1つです。今回の場合は、StaticPagesコントローラ内に<code>home</code>アクションを追加したので、/static_pages/homeにアクセスすることでページを取得 (GET) できるようになりました。<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスして結果を表示します (<a class="ref" href="/chapters/static-pages.html#fig-raw_home_view">図3.5</a>)。</p>
 
 <div class="label" id="fig-raw_home_view"></div>
 
@@ -420,7 +420,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sidebar-get_etc"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み3.2</span></span><span class="title"><span class="description"><tt>GET</tt>やその他のHTTPメソッドについて</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 3.2</span></span><span class="title"><span class="description"><tt>GET</tt>やその他のHTTPメソッドについて</span></span>
 <p><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP</a> (HyperText Transfer Protocol) には4つの基本的な操作があり、それぞれ<em>get</em>、<em>post</em>、<em>put</em>、<em>delete</em>という４つの動詞に対応づけられています。<em>クライアント</em> (通常、FirefoxやSafariなどのウェブブラウザ) と<em>サーバー</em> (ApacheやNginxなどのWebサーバー) は、上で述べた4つの基本操作を互いに認識できるようになっています (ローカル環境でRailsアプリケーションを開発しているときは、クライアントとサーバーが同じコンピュータ上で動いていますが、一般的には、それぞれ別のコンピュータで動作している点を理解しておいてください)。Railsを含む多くのWebフレームワークは、HTTPの各操作を発展させた<em>REST アーキテクチャ</em>の影響を受けています。<a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="/chapters/sign-up.html#top">第7章</a>では、より深い内容について学びます。</p>
 
 <p><tt>GET</tt> は、最も頻繁に使用されるHTTP操作で、主にWeb上のデータを<em>読み取る</em>際に使われます。“ページを取得する” という意味のとおり、ブラウザはgoogle.comやwikipedia.orgなどのWebサイトを開くたびに<tt>GET</tt>リクエストを送信します。<tt>POST</tt> は、GETの次によく使用される操作で、ページ上のフォームに入力した値を、ブラウザから送信する時に送られるリクエストです。Railsアプリケーションでは、<tt>POST</tt>リクエストは何かを<em>作成する</em>ときによく使われます (なお本来のHTTPでは、<tt>POST</tt>を更新に使ってもよいとしています)。たとえば、ユーザー登録フォームで新しいユーザを作成するときは、<tt>POST</tt>リクエストを送信します。他にも、<tt>PUT</tt>と <tt>DELETE</tt>という2つの操作があり、それぞれサーバー上の何かを<em>更新</em>したり<em>削除</em>したりするときに使われます。これら2つの操作は、<tt>GET</tt>や<tt>POST</tt>ほどは使用されていません。これは、ブラウザがPUTとDELETEをネイティブでは送信しないからです。しかし、Ruby on Railsなどの多くのWebフレームワークは、ブラウザがこれらの操作のリクエストを<em>送信しているかのように見せかける</em>技術 (偽装) を駆使して、PUTとDELETEという操作を実現しています。</p>

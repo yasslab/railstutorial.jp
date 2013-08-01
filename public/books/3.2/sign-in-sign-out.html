@@ -798,7 +798,7 @@
 </div>
 
 
-<p>次に、上で生成されたマイグレーションに<a class="ref" href="/chapters/sign-in-sign-out.html#code-add_remember_token_to_users">リスト8.16</a>のコードを記入します。ユーザーを記憶トークンで検索できるように、インデックス (<a class="ref" href="/chapters/modeling-users.html#sidebar-database_indices">囲み6.2</a>) を<code>remember_token</code>カラムに追加していることにご注目ください。</p>
+<p>次に、上で生成されたマイグレーションに<a class="ref" href="/chapters/sign-in-sign-out.html#code-add_remember_token_to_users">リスト8.16</a>のコードを記入します。ユーザーを記憶トークンで検索できるように、インデックス (<a class="ref" href="/chapters/modeling-users.html#sidebar-database_indices">コラム 6.2</a>) を<code>remember_token</code>カラムに追加していることにご注目ください。</p>
 
 <div class="label" id="code-add_remember_token_to_users"></div>
 
@@ -983,12 +983,12 @@
 </div>
 
 
-<p>(上のコードではRailsの便利なtimeヘルパーを使用しています。<a class="ref" href="/chapters/sign-in-sign-out.html#sidebar-time_helpers">囲み8.1</a>を参照してください。)</p>
+<p>(上のコードではRailsの便利なtimeヘルパーを使用しています。<a class="ref" href="/chapters/sign-in-sign-out.html#sidebar-time_helpers">コラム 8.1</a>を参照してください。)</p>
 
 <div class="label" id="sidebar-time_helpers"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み8.1</span></span><span class="title"><span class="description">cookiesは今から20年後に切れる (<tt>20.years.from_now</tt>)</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 8.1</span></span><span class="title"><span class="description">cookiesは今から20年後に切れる (<tt>20.years.from_now</tt>)</span></span>
 <p>Rubyでは、組み込みクラスを含む<em>あらゆる</em>クラスにメソッドを追加できることを<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-a_class_of_our_own">4.4.2</a>で学んだことを思い出してください。あのときは、<tt>palindrome?</tt>メソッドを<tt>String</tt>クラスに追加しました (ついでに<tt>&quot;deified&quot;</tt>も回文になっていることを発見しました)。また、Railsが実は<tt>blank?</tt>メソッドを<tt>Object</tt>クラスに追加していることも判明しました (これにより、<tt>&quot;&quot;.blank?</tt>、<tt>&quot; &quot;.blank?</tt>、<tt>nil.blank?</tt>はいずれも<tt>true</tt>になります)。<a class="ref" href="/chapters/sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>のコードでは、cookiesが20年後に期限切れになる (<tt>20.years.from_now</tt>) ように指定していますが、これはRailsの<em>timeヘルパー</em>を使用した格好の例題になります。timeヘルパーはRailsによって、数値関連の基底クラスである<tt>Fixnum</tt>クラスに追加されます。</p>
 
 <pre class="verbatim">  $ rails console
@@ -1168,7 +1168,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_working">リスト8.22</a>では、Rubyでは定番の (しかし最初はまごつきやすい) <code>||=</code> (“or equals”) 代入演算子を使用しています (<a class="ref" href="/chapters/sign-in-sign-out.html#sidebar-or_equals">囲み8.2</a>)。この代入演算子は、<code>@current_user</code>が未定義の場合にのみ、<code>@current_user</code>インスタンス変数に記憶トークンを設定します<sup class="footnote" id="fnref-8_6"><a href="/chapters/sign-in-sign-out.html#fn-8_6">6</a></sup>。つまり、以下のコードは</p>
+<p><a class="ref" href="/chapters/sign-in-sign-out.html#code-current_user_working">リスト8.22</a>では、Rubyでは定番の (しかし最初はまごつきやすい) <code>||=</code> (“or equals”) 代入演算子を使用しています (<a class="ref" href="/chapters/sign-in-sign-out.html#sidebar-or_equals">コラム 8.2</a>)。この代入演算子は、<code>@current_user</code>が未定義の場合にのみ、<code>@current_user</code>インスタンス変数に記憶トークンを設定します<sup class="footnote" id="fnref-8_6"><a href="/chapters/sign-in-sign-out.html#fn-8_6">6</a></sup>。つまり、以下のコードは</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@current_user</span> <span class="o">||=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by_remember_token</span><span class="p">(</span><span class="n">cookies</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span><span class="p">)</span>
 </pre></div>
@@ -1180,7 +1180,7 @@
 <div class="label" id="sidebar-or_equals"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み8.2</span></span><span class="title"><span class="description"></span></span><span class="title"><span class="description"><tt>||=</tt>とは一体何か</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 8.2</span></span><span class="title"><span class="description"></span></span><span class="title"><span class="description"><tt>||=</tt>とは一体何か</span></span>
 <p><tt>||=</tt>という記法は非常にRuby的であり、Rubyという言語を強く特徴づけるものです。Rubyプログラミングの達人になりたいのであれば、この記法を習得することが重要です。<em>or equals</em>という概念は一見神妙不可思議に見えますが、他のものになぞらえて考えることで理解できます。</p>
 
 <p>最初は、現在定義されている変数を変更するというありふれたコードについて説明します。多くのコンピュータプログラムでは、以下のようにして変数の値を1つ増やすことができます。</p>
@@ -2019,7 +2019,7 @@
 <li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Rails Guidesの「<a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#callbacks-overview">コールバックについて</a> (英語)」を参照してください。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_4">↑</a></li>
 <li id="fn-8_5">実は、この2つは完全に同等です。<code>attr_accessor</code>は、単にゲッターメソッドやセッターメソッドを自動的に作成する便利な方法でしかありません。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_5">↑</a></li>
 <li id="fn-8_6">通常、これは初期値が<code>nil</code>である変数への代入を意味しますが、<code>false</code>値も<code>||=</code>演算子によって上書きされることにご注意ください。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_6">↑</a></li>
-<li id="fn-8_7">これは、<a class="ref" href="/chapters/modeling-users.html#sidebar-let">囲み6.3</a>で説明した<em>メモ化 (memoization) </em>の例になっています。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_7">↑</a></li>
+<li id="fn-8_7">これは、<a class="ref" href="/chapters/modeling-users.html#sidebar-let">コラム 6.3</a>で説明した<em>メモ化 (memoization) </em>の例になっています。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_7">↑</a></li>
 <li id="fn-8_8">Webブラウザは実際には<tt>DELETE</tt>リクエストを発行できないので、RailsではJavaScriptを使用してこのリクエストを偽造します。<a class="arrow" href="/chapters/sign-in-sign-out.html#fnref-8_8">↑</a></li>
 </ol>
 </div>

@@ -68,7 +68,7 @@
 </div></div>
 
 
-<p>ここで、<a class="ref" href="/chapters/user-microposts.html#code-micropost_migration">リスト10.1</a>では<code>user_id</code>と<code>created_at</code>カラムにインデックスが付与されていることにご注目ください (<a class="ref" href="/chapters/modeling-users.html#sidebar-database_indices">囲み 6.2</a>)。user idに関連付けられたすべてのマイクロポストを作成時刻の逆順で取り出すためです。</p>
+<p>ここで、<a class="ref" href="/chapters/user-microposts.html#code-micropost_migration">リスト10.1</a>では<code>user_id</code>と<code>created_at</code>カラムにインデックスが付与されていることにご注目ください (<a class="ref" href="/chapters/modeling-users.html#sidebar-database_indices">コラム  6.2</a>)。user idに関連付けられたすべてのマイクロポストを作成時刻の逆順で取り出すためです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">add_index</span> <span class="ss">:microposts</span><span class="p">,</span> <span class="o">[</span><span class="ss">:user_id</span><span class="p">,</span> <span class="ss">:created_at</span><span class="o">]</span>
 </pre></div>
@@ -533,7 +533,7 @@
 </div>
 
 
-<p>(<a class="ref" href="/chapters/sign-in-sign-out.html#sidebar-time_helpers">囲み8.1</a>で説明した時間指定用ヘルパーメソッドを使うことで) 2番目のポストの作成時刻がより新しく (<code>1時間前</code>)、最初のポストの作成日時が<code>1日前</code>になります。Factory Girlを使用すると、<code>attr_accessible</code>をバイパスすることによってマスアサインメントを使ってユーザーを設定することもできますし、Active Recordがアクセスを許可しないような<code>created_at</code>属性も手動で設定できるので大変便利です (<code>created_at</code>や<code>updated_at</code>などは通常のカラムと異なる “マジック”カラムであり、これらの作成タイムスタンプや更新タイムスタンプは自動的に設定されてしまうため、明示的に値を設定しても上書きされてしまうことを思い出してください)。</p>
+<p>(<a class="ref" href="/chapters/sign-in-sign-out.html#sidebar-time_helpers">コラム 8.1</a>で説明した時間指定用ヘルパーメソッドを使うことで) 2番目のポストの作成時刻がより新しく (<code>1時間前</code>)、最初のポストの作成日時が<code>1日前</code>になります。Factory Girlを使用すると、<code>attr_accessible</code>をバイパスすることによってマスアサインメントを使ってユーザーを設定することもできますし、Active Recordがアクセスを許可しないような<code>created_at</code>属性も手動で設定できるので大変便利です (<code>created_at</code>や<code>updated_at</code>などは通常のカラムと異なる “マジック”カラムであり、これらの作成タイムスタンプや更新タイムスタンプは自動的に設定されてしまうため、明示的に値を設定しても上書きされてしまうことを思い出してください)。</p>
 
 <p>(SQLiteを含む) ほとんどのデータベースアダプターは、マイクロポストを id順で返すため、<a class="ref" href="/chapters/user-microposts.html#code-micropost_ordering_test">リスト10.13</a>のようなテストはほぼ確実に失敗することになります。このコードでは<code>let</code>メソッドの代わりに<code>let!</code> (“let バン”と読みます) メソッドを使っています。これは、<code>let</code> 変数は「<em>lazy</em>」、つまり実際に参照されるまで初期化されない性質 (遅延) を持っており、そのことで不都合が生じるためです。ここでは、マイクロポストを遅延することなく即座に作成する必要があります。そのことにより、マイクロポストのタイムスタンプが常に正しい順序で作成されるように、かつ<code>@user.microposts</code>が空の状態が生じることのないようにしたいからです。<code>let!</code>を使用すれば、対応する変数を強制的に即座に作成できます。</p>
 
@@ -2232,7 +2232,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <li><code>if</code>-<code>else</code>文の2つの分岐に対して、それぞれ異なるパーシャルを使用するようにホームページをリファクタリングしてください。</li>
 <li>削除リンクが、現在のユーザーによって作成されていないマイクロポストには表示されないことを確認するためのテストを作成してください。</li>
 <li>パーシャルを使用して、<a class="ref" href="/chapters/user-microposts.html#code-micropost_partial_with_delete">リスト10.46</a>および<a class="ref" href="/chapters/user-microposts.html#code-feed_item_partial_with_delete">リスト10.47</a>から削除リンクの重複を削除してください。</li>
-<li><a class="ref" href="/chapters/user-microposts.html#fig-long_word_micropost">図10.18</a>に示すように、非常に長い単語を入力するとレイアウトが崩れてしまいます。<a class="ref" href="/chapters/user-microposts.html#code-wrap">リスト10.50</a>で定義した<code>wrap</code>ヘルパーを使用して、この問題を修正してください。このとき、出力されたHTMLがRailsによってエスケープされるのを防ぐために<code>raw</code>メソッドを使用してください。また、クロスサイトスクリプティング (XSS) を防ぐために<code>sanitize</code>メソッドも使用してください。さらに、このコードでは<em>3項演算子</em> (<a class="ref" href="/chapters/user-microposts.html#sidebar-ternary_operator">囲み 10.1</a>) も使用してください。3項演算子は一見奇妙ですが、きわめて便利なものです。</li>
+<li><a class="ref" href="/chapters/user-microposts.html#fig-long_word_micropost">図10.18</a>に示すように、非常に長い単語を入力するとレイアウトが崩れてしまいます。<a class="ref" href="/chapters/user-microposts.html#code-wrap">リスト10.50</a>で定義した<code>wrap</code>ヘルパーを使用して、この問題を修正してください。このとき、出力されたHTMLがRailsによってエスケープされるのを防ぐために<code>raw</code>メソッドを使用してください。また、クロスサイトスクリプティング (XSS) を防ぐために<code>sanitize</code>メソッドも使用してください。さらに、このコードでは<em>3項演算子</em> (<a class="ref" href="/chapters/user-microposts.html#sidebar-ternary_operator">コラム  10.1</a>) も使用してください。3項演算子は一見奇妙ですが、きわめて便利なものです。</li>
 <li><strong>(チャレンジ)</strong> 入力できる残り文字数を140 文字からカウントダウンするためのJavaScriptをHomeページに追加してください。</li>
 </ol>
 
@@ -2242,7 +2242,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="label" id="sidebar-ternary_operator"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み10.1</span><span class="description">10種類の人々</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 10.1</span><span class="description">10種類の人々</span></span>
 <p>この世には10種類の人々がいます。3項演算子を好きな人、嫌いな人、3項演算子を知らない人です。(もし3番目に該当したとしても、すぐそのカテゴリの人ではなくなりますので心配ご無用です。)</p>
 
 <p>プログラミング経験を重ねるうちに、以下のような制御フローが最もよく使用される、ありふれたものであることはすぐにわかると思います。</p>
