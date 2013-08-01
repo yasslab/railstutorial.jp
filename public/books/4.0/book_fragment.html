@@ -2,17 +2,17 @@
 <div class="label" id="cha-beginning"></div>
 
 
-<h1 class="chapter"><a id="sec-1" href="/book/ruby-on-rails-tutorial?version=4.0#cha-beginning" class="heading"><span class="number">第1章</span> ゼロから本番展開まで</a></h1>
+<h1 class="chapter"><a id="sec-1" href="/book/ruby-on-rails-tutorial?version=4.0#cha-beginning" class="heading"><span class="number">第1章</span> ゼロからデプロイまで</a></h1>
 
 
 <p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。この本の目的は、「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったウェブ開発を学びたいんだけど、何から始めればよいのでしょうか。」という質問に答えることです。<em>本書</em>を読み終わる頃には、あなたは自作のカスタムWebアプリケーションを開発し、展開 (deploy) するための知識をすべて得られるはずです。また、Railsの「教育エコシステム」なるものに含まれる、さらに高度な本、ブログ、スクリーンキャストなどの恩恵を受けるのにふさわしい実力を身につけられます。<em>Ruby on Railsチュートリアル</em>はRails 4を使用しているため、ここで学んだ内容はRailsの最新バージョンに完全に対応しています。(最新の<em>Ruby on Railsチュートリアル</em>については、この本が掲載されている<a href="http://railstutorial.jp/">http://railstutorial.jp/</a>を参照してください。本書をオフラインで読んでいる方は、<a href="http://railstutorial.jp/book">http://railstutorial.jp/book</a>の<a href="http://railstutorial.jp/book">オンライン版Rails Tutorial book</a>で最新版を確認してください。)</p>
 
-<p>(<em>注</em>: 最新のチュートリアルは、Rails 4.0という<em>バージョン</em>に向けられたものです。本書はRail 4.0向けに改定されましたが、<em>版 (エディション) </em>は更新されていませんのでご注意ください。Rails 4.0における変更は、本書の版を改めるほどではないと判断したためです。導入のためのチュートリアルという本書の立場から見て、Rail 4.0と旧Rails 3.2の違いはわずかです。もちろん、以下の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-diffs">囲み1.1</a>に示したように、細かな変更は膨大な数にのぼりますが、本書にとって重要な違いは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>という新しいセキュリティ上の技法しかありません。今後Railsで重要な変更が生じれば、<em>Railsチュートリアル</em>の完全に新しい次期版の制作を計画します。そのときには、<em>Turbolinks</em>や<em>Russian doll caching</em>、<em>feature specs</em>などのRSpecの新しい側面も記事に取り込まれるでしょう。)</p>
+<p>(<em>注</em>: 最新のチュートリアルは、Rails 4.0という<em>バージョン</em>に向けられたものです。本書はRail 4.0向けに改定されましたが、<em>版 (エディション) </em>は更新されていませんのでご注意ください。Rails 4.0における変更は、本書の版を改めるほどではないと判断したためです。導入のためのチュートリアルという本書の立場から見て、Rail 4.0と旧Rails 3.2の違いはわずかです。もちろん、以下の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-diffs">コラム 1.1</a>に示したように、細かな変更は膨大な数にのぼりますが、本書にとって重要な違いは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>という新しいセキュリティ上の技法しかありません。今後Railsで重要な変更が生じれば、<em>Railsチュートリアル</em>の完全に新しい次期版の制作を計画します。そのときには、<em>Turbolinks</em>や<em>Russian doll caching</em>、<em>feature specs</em>などのRSpecの新しい側面も記事に取り込まれるでしょう。)</p>
 
 <div class="label" id="sidebar-diffs"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み1.1</span></span><span class="title"><span class="description">第2版との違いについて</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 1.1</span></span><span class="title"><span class="description">第2版との違いについて</span></span>
 <p>以下は、<em>Ruby on Railsチュートリアル</em>の第2版と現行のバージョンの違いについての (ほぼ) 網羅的なリストです (重要な違いはStrong Parametersだけであり、その他の違いはどちらかといえば些細なものです) 。このリストは、第2版の読者またはRails 3.2に慣れ親しんた方向けに違いをまとめたものです。Rails 3.2を扱ったことがない方は、以下のリストを読み飛ばしてもかまいません。</p>
 
 <p>以下のリストには、関連する節へのリンクまたは変更コード例へのリンクを含めてあります。</p>
@@ -22,7 +22,7 @@
 <li>Capybara DSLを明示的にインクルード (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-capybara_dsl">リスト3.10</a>)</li>
 <li>RSpecの<code>.should</code>を<code>expect().to</code>に変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-TDD">3.2.1</a>)</li>
 <li><code>have_selector(’title’, …)</code>を<code>have_title(…)</code>に変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-testing_a_title_change">3.3.1</a>)</li>
-<li>HTTP verbを<tt>PUT</tt>から<tt>PATCH</tt>に変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">囲み3.3</a>)</li>
+<li>HTTP verbを<tt>PUT</tt>から<tt>PATCH</tt>に変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">コラム 3.3</a>)</li>
 <li>Turbolinks用のハッシュ引数をスタイルシートとJavaScriptに追加 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-application_layout">リスト3.26</a>)</li>
 <li><code>root to: ’path’</code>を<code>root ’path’</code>に変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-root_route">リスト5.24</a>)</li>
 <li><code>find_by_thing(…)</code>を<code>find_by(thing: …)</code>に変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-finding_user_objects">6.1.4</a>)</li>
@@ -45,7 +45,7 @@
 
 <p>この第1章では、必要なソフトウェアをインストールし、開発環境 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-up_and_running">1.2</a>) を整えてRuby on Railsの準備をします。続いて、<code>first_app</code> という最初のRailsアプリの作成に着手します。<em>Railsチュートリアル</em>ではソフトウェア開発のベストプラクティスを重要視しているので、新しいRailsプロジェクトを作成後、ただちにGit (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-version_control">1.3</a>) を使用してバージョン管理下に置きます。そして何と、この章では本番 (production) 環境 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-deploying">1.4</a>) に<em>展開して一般公開する</em>ところまで行います。</p>
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-scaffolding">囲み1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_1">1</a></sup>と呼ばれることもあります)を指定してデモアプリを使ってみます。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-scaffolding">コラム 1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_1">1</a></sup>と呼ばれることもあります)を指定してデモアプリを使ってみます。</p>
 
 <p>第3章以降では、<em>サンプルアプリケーション</em> (<code>sample_app</code>と呼びます) を作成します。このアプリはTDD(<em>テストドリブン開発</em> で開発を進め、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-static-pages">第3章</a>で静的ページ (と若干の動的コンテンツ) を追加するところから始めます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-rails-flavored-ruby">第4章</a>では少し回り道をし、Railsを動かしているRuby言語について簡単に学びます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-filling-in-the-layout">第5章</a>から<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-updating-showing-and-deleting-users">第9章</a>ではレイアウト、ユーザーのデータモデル、そしてユーザー登録・認証システムを作りサンプルアプリの基礎を完成させます。最後に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-user-microposts">第10章</a>と<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-following-users">第11章</a>ではマイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
 
@@ -54,7 +54,7 @@
 <div class="label" id="sidebar-scaffolding"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み1.2</span></span><span class="title"><span class="description">早くて簡単なScaffoldの甘い誘惑</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 1.2</span></span><span class="title"><span class="description">早くて簡単なScaffoldの甘い誘惑</span></span>
 <p>Railsの作者David Heinemer Hansson氏による有名な「<a href="http://www.youtube.com/watch?v=Gzj723LkRJY">15分で作るブログ</a>」ビデオ (現在はRyan Bates氏による「Rails 2による15分で作るブログ」に更新されています) などを見ていただければわかるように、Railsは誕生したときから刺激的なフレームワークです。これらのビデオはRailsのパワーを目の当たりにするには最適であり、ぜひ視聴する事をお勧めします。しかし、これらのビデオでは15分でブログを作るという離れ業を、<em>scaffold</em>という機能を利用して成し遂げています。このscaffoldという機能は、Railsの<code>generate</code>コマンドによる<em>自動生成コード</em>に強く依存します。</p>
 
 <p>Ruby on Railsのチュートリアルを書いていて、<a href="http://en.wikipedia.org/wiki/Dark_side_(Star_Wars)">あまりにも素早く簡単にコードが生成できる</a> (訳注: 原文「quicker, easier, more seductive」はスターウォーズ (エピソードV) のヨーダの台詞の引用) scaffoldの機能を著者もついあてにしてしまいそうになります。しかし、初心者は生成されたコードの複雑さとその量の多さに圧倒されてしまうことでしょう。どうにか動いても、ソースコードを見ても何が行われているのか理解できないことでしょう。scaffoldのコード自動生成に頼っていると、スクリプト作成の達人にはなるかもしれませんが、Rails自体の知識はほとんど身に付きません。</p>
@@ -1259,9 +1259,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h2><a id="sec-1_4" href="/book/ruby-on-rails-tutorial?version=4.0#sec-deploying" class="heading"><span class="number">1.4</span>展開する</a></h2>
 
 
-<p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境に展開 (デプロイ: deploy) してしまいましょう。アプリケーションの展開は必須ではありませんが、頻繁に本番展開することによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境に展開しないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_20"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_20">20</a></sup>。</p>
+<p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境に展開 (デプロイ: deploy) してしまいましょう。アプリケーションの展開は必須ではありませんが、頻繁にデプロイすることによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境に展開しないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_20"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_20">20</a></sup>。</p>
 
-<p>かつてはRailsアプリの本番展開は大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx23<sup class="footnote" id="fnref-1_21"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_21">21</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスデプロイメントを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
+<p>かつてはRailsアプリのデプロイは大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx23<sup class="footnote" id="fnref-1_21"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_21">21</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスデプロイメントを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
 
 <p>著者のお気に入りはHerokuで、Railsを含むRuby Webアプリ用のホスティングプラットフォームです。Herokuは、ソースコードのバージョン管理にGitを使用していれば、Railsアプリケーションを簡単に本番環境に展開できます (Gitを導入したのは、まさにこのHerokuで使うためでもあります。まだGitをインストールしていない方は<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-version_control">1.3</a>を参照してください)。この章では、最初のアプリケーションをHerokuに展開します。</p>
 
@@ -1489,7 +1489,7 @@ jhyicevg.herokuapp.com</pre>
 <h1 class="chapter"><a id="sec-2" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app" class="heading"><span class="number">第2章</span>デモアプリケーション</a></h1>
 
 
-<p>この章では、Railsの強力な機能をいくつか紹介するためのデモアプリケーションを作成します。<em>scaffold</em>ジェネレータというスクリプトを使ってアプリケーションをすばやく生成する事により、 高度なRailsプログラミングとWebプログラミングの概要を学びます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-scaffolding">囲み1.1</a>で述べたように、本書の以後の章では基本的にこの逆のアプローチを取り、少しずつアプリケーションを作りながら各段階と概念を説明して行きますが、scaffoldはRailsアプリケーションの概要を素早くつかむには最適なのでこの章ではあえて使用することにします。生成されたRailsアプリケーションはブラウザのアドレスバーにURLを入力すれば動かすことができるので、これによりRailsアプリの構造、そしてRailsで推奨されている<em>RESTアーキテクチャ</em>に関する洞察を得ることにします。</p>
+<p>この章では、Railsの強力な機能をいくつか紹介するためのデモアプリケーションを作成します。<em>scaffold</em>ジェネレータというスクリプトを使ってアプリケーションをすばやく生成する事により、 高度なRailsプログラミングとWebプログラミングの概要を学びます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-scaffolding">コラム 1.1</a>で述べたように、本書の以後の章では基本的にこの逆のアプローチを取り、少しずつアプリケーションを作りながら各段階と概念を説明して行きますが、scaffoldはRailsアプリケーションの概要を素早くつかむには最適なのでこの章ではあえて使用することにします。生成されたRailsアプリケーションはブラウザのアドレスバーにURLを入力すれば動かすことができるので、これによりRailsアプリの構造、そしてRailsで推奨されている<em>RESTアーキテクチャ</em>に関する洞察を得ることにします。</p>
 
 <p>後に作成するサンプルアプリケーションと同様、デモアプリケーションは、<em>ユーザー</em>と、それに関連している<em>マイクロポスト</em>から成り立っています。 このデモアプリケーションはもちろん動きますが完成品ではなく、しかも多くの手順が「魔法」のように思えるかもしれません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-static-pages">第3章</a>以降で作成するサンプルアプリケーションでは同等の機能を1つ1つ手動で作成しますので、ご安心ください。その分時間がかかることになりますが、どうか最後まで本書にお付き合いいただければと思います。本書の目的は、scaffoldを使用した即席のアプローチによる表面的な理解ではなく、そこを<em>突破して</em>Railsを深いレベルまで理解することにあります。</p>
 
@@ -1665,7 +1665,7 @@ jhyicevg.herokuapp.com</pre>
 
 <p><code>name:string</code>と<code>email:string</code>オプションを追加することで、Userモデルの内容が<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-demo_user_model">図2.2</a>の表のとおりになるようにします (なお、<code>id</code>パラメータはRailsによって自動的に<em>主キー</em>としてデータベースに追加されるため、追加不要です)。</p>
 
-<p>続いてデモアプリケーションの開発を進めるには、以下のように<em>Rake</em>を使用してデータベースをマイグレート (<em>migrate</em>) する必要があります (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-rake">囲み2.1</a>)。</p>
+<p>続いてデモアプリケーションの開発を進めるには、以下のように<em>Rake</em>を使用してデータベースをマイグレート (<em>migrate</em>) する必要があります (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-rake">コラム 2.1</a>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
 <span class="go">==  CreateUsers: migrating =================================</span>
@@ -1690,7 +1690,7 @@ jhyicevg.herokuapp.com</pre>
 <div class="label" id="sidebar-rake"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み2.1</span></span><span class="title"><span class="description">Rake</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 2.1</span></span><span class="title"><span class="description">Rake</span></span>
 <p>Unixでは、ソースコードから実行用プログラムをビルドするために主に<a href="http://en.wikipedia.org/wiki/Make_(software)"><em>make</em></a>というツールが使われてきました。多くのプログラマーが、肉体レベルにまで刻み込まれた以下のようなコマンドを実行して</p>
 
 <pre class="verbatim">  $ ./configure &amp;&amp; make &amp;&amp; sudo make install</pre>
@@ -1816,7 +1816,7 @@ jhyicevg.herokuapp.com</pre>
 </ol>
 
 
-<p>まずはブラウザからのリクエストを見てみましょう。このリクエストは、アドレスバーにURLを入力したりリンクをクリックした時に発生します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-mvc_detailed">図2.11</a>の1)。 リクエストは<em>Railsルーター</em>に到達し (2)、ここでURL (とリクエストの種類: <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">囲み3.2</a>参照) に基づいて適切な<em>コントローラのアクション</em>に割り当てられます (ディスパッチ)。ユーザーのURLをUsersリソースで使用するコントローラアクションに割り当てる (マッピングする) ためのコードは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rails_routes">リスト2.2</a>です。このコードは、 URLとアクションの組み合わせ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-user_urls">表2.1</a>) を効率的に作成します。(<code>:users</code>という一見奇妙な記法は、 <em>シンボル</em>と呼ばれるものです。詳細は<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-hashes_and_symbols">4.3.3</a>で説明します。)</p>
+<p>まずはブラウザからのリクエストを見てみましょう。このリクエストは、アドレスバーにURLを入力したりリンクをクリックした時に発生します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-mvc_detailed">図2.11</a>の1)。 リクエストは<em>Railsルーター</em>に到達し (2)、ここでURL (とリクエストの種類: <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">コラム 3.2</a>参照) に基づいて適切な<em>コントローラのアクション</em>に割り当てられます (ディスパッチ)。ユーザーのURLをUsersリソースで使用するコントローラアクションに割り当てる (マッピングする) ためのコードは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rails_routes">リスト2.2</a>です。このコードは、 URLとアクションの組み合わせ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-user_urls">表2.1</a>) を効率的に作成します。(<code>:users</code>という一見奇妙な記法は、 <em>シンボル</em>と呼ばれるものです。詳細は<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-hashes_and_symbols">4.3.3</a>で説明します。)</p>
 
 <div class="label" id="code-rails_routes"></div>
 
@@ -1891,7 +1891,7 @@ jhyicevg.herokuapp.com</pre>
 </div></div>
 
 
-<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力してもよいのですが)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-REST">囲み2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_users">表2.2</a>のURLには重複しているものがあることにご注目ください。たとえば、<code>show</code>アクションと <code>update</code>アクションは、どちらも/users/1というURLに対応しています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-TDD">3.2.1</a>で説明します。</p>
+<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力してもよいのですが)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-REST">コラム 2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_users">表2.2</a>のURLには重複しているものがあることにご注目ください。たとえば、<code>show</code>アクションと <code>update</code>アクションは、どちらも/users/1というURLに対応しています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-TDD">3.2.1</a>で説明します。</p>
 
 <div class="label" id="table-demo_RESTful_users"></div>
 
@@ -1905,8 +1905,8 @@ jhyicevg.herokuapp.com</pre>
 <div class="label" id="sidebar-REST"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み2.2</span></span><span class="title"><span class="description">REpresentational State Transfer (REST)</span></span>
-<p>Rails関連の書籍を読んでいると “REST” という略語をよく見かけます。これはREpresentational State Transferの略です。RESTは、インターネットそのものやWebアプリケーションなどの、分散/ネットワーク化されたシステムやアプリケーションを構築するためのアーキテクチャのスタイルの1つです。REST理論そのものはかなり抽象的ですが、RailsアプリケーションにおけるRESTとは、アプリケーションを構成するコンポーネント (ユーザーやマイクロポストなど) を「<em>リソース</em>」としてモデル化することを指します。これらのリソースは、リレーショナルデータベースの<a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">作成/読み取り/更新/削除 (Create/Read/Update/Delete: CRUD) 操作</a>と、4つの基本的な<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a> (<tt>POST</tt>/<tt>GET</tt>/<tt>PATCH</tt>/<tt>DELETE</tt>) の両方に対応しています (HTTP requestメソッドの詳細については、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-TDD">3.2.1</a>、特に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">囲み3.3</a>で説明します)。</p>
+<div class="sidebar"><span class="title"><span class="header">コラム 2.2</span></span><span class="title"><span class="description">REpresentational State Transfer (REST)</span></span>
+<p>Rails関連の書籍を読んでいると “REST” という略語をよく見かけます。これはREpresentational State Transferの略です。RESTは、インターネットそのものやWebアプリケーションなどの、分散/ネットワーク化されたシステムやアプリケーションを構築するためのアーキテクチャのスタイルの1つです。REST理論そのものはかなり抽象的ですが、RailsアプリケーションにおけるRESTとは、アプリケーションを構成するコンポーネント (ユーザーやマイクロポストなど) を「<em>リソース</em>」としてモデル化することを指します。これらのリソースは、リレーショナルデータベースの<a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">作成/読み取り/更新/削除 (Create/Read/Update/Delete: CRUD) 操作</a>と、4つの基本的な<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a> (<tt>POST</tt>/<tt>GET</tt>/<tt>PATCH</tt>/<tt>DELETE</tt>) の両方に対応しています (HTTP requestメソッドの詳細については、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-TDD">3.2.1</a>、特に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">コラム 3.3</a>で説明します)。</p>
 
 <p>Rails開発者にとっては、RESTfulなスタイルを採用することで、作成すべきコントローラやアクションの決定が楽になります。作成(C)・読み取り(R)・更新(U)・削除(D)を行うリソースだけでアプリケーション全体を構成してしまうことすら可能です。ユーザーやマイクロポストなどに関しては自然にリソース化できるので問題ありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-following-users">第11章</a>では、「ユーザーをフォローする」というやや複雑な課題をREST理論でモデリングします。</p>
 </div>
@@ -2670,12 +2670,12 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>この節では、後に動的なページを作成するための準備として、最初にRailsの<em>アクション</em>と<em>ビュー</em>に静的なHTMLだけを含めたものを作成します<sup class="footnote" id="fnref-3_5"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-3_5">5</a></sup>。Railsのアクションは、<em>コントローラ</em> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-mvc">1.2.6</a>で紹介した MVCの Cに該当) の中に置かれる機能で、共通の目的を持つ一連のアクションをコントローラ内にまとめることができます。コントローラについては<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>でも簡単に触れましたが、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-modeling-users">第6章</a>で説明する<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST アーキテクチャ</a>を読むと、より深く理解することができます。一言で言うと、コントローラとは (基本的に動的な) Webページの集合を束ねるコンテナのことです。</p>
 
-<p>現在どのディレクトリで作業しているかがわからなくなった場合は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_first_application">1.2.3</a> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-directory_structure_rails">図 1.2</a>)を再度参照して、Rails のディレクトリ構造を確認してください。この節では、主に<code>app/controllers</code>ディレクトリや<code>app/views</code>ディレクトリ内で作業を進めます (なお <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-first_tests">3.2</a> では、新しいディレクトリをさらに１つ追加します)。好みのテキストエディタまたはIDEを使用してサンプリアプリケーションを開いてください (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-opening_the_project">囲み3.1</a>)。</p>
+<p>現在どのディレクトリで作業しているかがわからなくなった場合は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_first_application">1.2.3</a> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-directory_structure_rails">図 1.2</a>)を再度参照して、Rails のディレクトリ構造を確認してください。この節では、主に<code>app/controllers</code>ディレクトリや<code>app/views</code>ディレクトリ内で作業を進めます (なお <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-first_tests">3.2</a> では、新しいディレクトリをさらに１つ追加します)。好みのテキストエディタまたはIDEを使用してサンプリアプリケーションを開いてください (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-opening_the_project">コラム 3.1</a>)。</p>
 
 <div class="label" id="sidebar-opening_the_project"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み3.1</span></span><span class="title"><span class="description">プロジェクトを開く</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 3.1</span></span><span class="title"><span class="description">プロジェクトを開く</span></span>
 <p>Railsのすべてのディレクトリを一覧できるテキストエディタまたはIDEが使用できると非常に便利です。残念ながら、テキストエディタや IDEの細かな使用法はそれぞれ異なりますが、どのツールを使ってもRailsアプリケーションのディレクトリを開くことができます。Unix系のシステムでは、ドット<code>.</code>でカレントディレクトリを表現できるので、コマンドライン上で以下を実行してRailsアプリケーションの現在のディレクトリを開き、使用するエディタを呼び出してみてください。</p>
 
 <pre class="verbatim">  $ cd ~/rails_projects/sample_app
@@ -2740,12 +2740,12 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>先ほどと同様に<code>static_pages_controller.rb</code>というコントローラが生成されます。これは、Rubyがクラス名にキャメルケースを使う慣習があり (詳細は<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-ruby_classes">4.4</a>で説明します)、また、キャメルケースの名前を使うことが好まれているためです。これらの慣習に必ず従わなければいけないということではありません。(同様にRubyでは、ファイル名をスネークケースで記述する慣習があります。このため Railsのgenerateスクリプトでは、 <a href="http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-underscore"><tt>underscore</tt></a>メソッドを使ってキャメルケースをスネークケースに変換しています。)</p>
 
-<p>ところで、自動生成に失敗するようなことがあれば、元に戻す処理を学ぶ良い機会になります。以下の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-undoing_things">囲み3.2</a>で元に戻す方法を紹介しています。</p>
+<p>ところで、自動生成に失敗するようなことがあれば、元に戻す処理を学ぶ良い機会になります。以下の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-undoing_things">コラム 3.2</a>で元に戻す方法を紹介しています。</p>
 
 <div class="label" id="sidebar-undoing_things"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み3.2</span></span><span class="title"><span class="description">元に戻す方法</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 3.2</span></span><span class="title"><span class="description">元に戻す方法</span></span>
 <p>どれほど十分に気を付けていたとしても、Railsアプリケーションの開発中に何か失敗してしまうことはありえます。ありがたいことに、Railsにはそのような失敗をカバーする機能がいくつもあります。</p>
 
 <p>一般的なシナリオの1つは、生成したコードを元に戻したい場合です。たとえば、コントローラを生成した後で、もっといいコントローラ名を思い付いた場合などです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generating_pages">リスト 3.4</a>に示したように、コントローラを生成すると、コントローラファイル以外にも多数のファイルが作成されます。自動生成されたコードを元に戻すためには、新規作成されたファイルを削除するだけではなく、既存のファイルに挿入されたコードも削除する必要があります (実際、<tt>routes.rb</tt> ファイルに自動的に追加されたコードも元に戻す必要があります) 。このようなときは、<tt>rails destroy</tt>コマンドを実行するだけで元に戻すことができます。たとえば次の2つのコマンドは、自動生成と、それに対応する取り消し処理の例です。</p>
@@ -2820,7 +2820,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>このルールは、/static_pages/homeというURLに対するリクエストを、StaticPagesコントローラの<code>home</code>アクションと結びつけています。具体的には、<code>get</code>と書くことで、<tt>GET</tt>リクエストに対して該当するアクションを結びつけています。なお、ここでいう GETリクエストとは、<em>HTTP (HyperText Transfer Protocol) </em> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">囲み 3.3</a>) が対応しているメソッドの1つです。今回の場合は、StaticPagesコントローラ内に<code>home</code>アクションを追加したので、/static_pages/homeにアクセスすることでページを取得 (GET) できるようになりました。<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスして結果を表示します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-raw_home_view">図3.2</a>)。</p>
+<p>このルールは、/static_pages/homeというURLに対するリクエストを、StaticPagesコントローラの<code>home</code>アクションと結びつけています。具体的には、<code>get</code>と書くことで、<tt>GET</tt>リクエストに対して該当するアクションを結びつけています。なお、ここでいう GETリクエストとは、<em>HTTP (HyperText Transfer Protocol) </em> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">コラム  3.3</a>) が対応しているメソッドの1つです。今回の場合は、StaticPagesコントローラ内に<code>home</code>アクションを追加したので、/static_pages/homeにアクセスすることでページを取得 (GET) できるようになりました。<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスして結果を表示します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-raw_home_view">図3.2</a>)。</p>
 
 <div class="label" id="fig-raw_home_view"></div>
 
@@ -2833,7 +2833,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sidebar-get_etc"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み3.3</span></span><span class="title"><span class="description"><tt>GET</tt>やその他のHTTPメソッドについて</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 3.3</span></span><span class="title"><span class="description"><tt>GET</tt>やその他のHTTPメソッドについて</span></span>
 <p><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP</a> (HyperText Transfer Protocol) には4つの基本的な操作があり、それぞれ<tt>GET</tt>、<tt>POST</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>という4つの動詞に対応づけられています。(ローカル環境でRailsアプリケーションを開発しているときは、クライアントとサーバーが同じコンピュータ上で動いていますが、一般的には、それぞれ別のコンピュータで動作しているという点を理解しておいてください)。Railsを含む多くのWebフレームワークは、HTTPの各操作を発展させた<em>REST アーキテクチャ</em>の影響を受けています。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>でも簡単に触れましたが、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-up">第7章</a>では、より深い内容について学びます。</p>
 
 <p><tt>GET</tt> は、最も頻繁に使用されるHTTP操作で、主にWeb上のデータを<em>読み取る</em>際に使われます。“ページを取得する” という意味のとおり、ウェブブラウザはgoogle.comやwikipedia.orgのようなWebサイトを開くたびに<tt>GET</tt>リクエストを送信しています。Railsアプリケーションでは、<tt>POST</tt>リクエストは何かを<em>作成する</em>ときによく使われます (なお本来のHTTPでは、<tt>POST</tt>を更新に使ってもよいとしています)。たとえば、ユーザー登録フォームで新しいユーザーを作成するときは、<tt>POST</tt>リクエストを送信します。他にも、<tt>PATCH</tt>と <tt>DELETE</tt>という2つの操作があり、それぞれサーバー上の何かを<em>更新</em>したり<em>削除</em>したりするときに使われます。これら2つの操作は、<tt>GET</tt>や<tt>POST</tt>ほどは使用されていません。これは、ブラウザがPATCHとDELETEをネイティブでは送信しないからです。しかし、Ruby on Railsなどの多くのWebフレームワークは、ブラウザがこれらの操作のリクエストを<em>送信しているかのように見せかける</em>技術 (偽装) を駆使して、PATCHとDELETEという操作を実現しています。</p>
@@ -6559,7 +6559,7 @@ bundler_stubs/
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sample_app_only_bootstrap_4_0.png" alt="sample_app_only_bootstrap_4_0" /></span></div><div class="caption"><span class="header">図5.3</span><span class="description">Bootstrap CSSとサンプルアプリケーション。<a href="http://railstutorial.jp/images/figures/sample_app_only_bootstrap_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>次に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-universal_css">リスト5.6</a>に示したように、Webサイト全体にわたってレイアウトと個別のページにスタイルを与えるためのCSSを追加します。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-universal_css">リスト5.6</a>には多数の記述ルールがあります。CSSの記述ルールを把握するためには、関心のある箇所をコメントアウトして表示を確認することをお勧めします。CSSでは、<code>/* … */</code>でコメントアウトできるので、調べてみたいコードをこれで囲み、表示がどのように変わるかを確認してみてください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-universal_css">リスト5.6</a>が反映された結果を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-sample_app_universal">図5.4</a>に示します。</p>
+<p>次に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-universal_css">リスト5.6</a>に示したように、Webサイト全体にわたってレイアウトと個別のページにスタイルを与えるためのCSSを追加します。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-universal_css">リスト5.6</a>には多数の記述ルールがあります。CSSの記述ルールを把握するためには、関心のある箇所をコメントアウトして表示を確認することをお勧めします。CSSでは、<code>/* … */</code>でコメントアウトできるので、調べてみたいコードをこれでコラム 、表示がどのように変わるかを確認してみてください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-universal_css">リスト5.6</a>が反映された結果を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-sample_app_universal">図5.4</a>に示します。</p>
 
 <div class="label" id="code-universal_css"></div>
 
@@ -8442,14 +8442,14 @@ bundler_stubs/
 <h1 class="chapter"><a id="sec-6" href="/book/ruby-on-rails-tutorial?version=4.0#cha-modeling-users" class="heading"><span class="number">第6章</span>ユーザーのモデルを作成する</a></h1>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-filling-in-the-layout">第5章</a>では、新しいユーザーを作成するためのスタブページを作ったところで終わりました (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-user_signup">5.4</a>)。これから4つの章を通して、ユーザー登録ページを作っていくことにしましょう。最初の一番重要なステップは、サイトのユーザー用の<em>データモデル</em>の作成と、データを保存する手段の確保です。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-up">第7章</a>では、ユーザーがサイトにユーザー登録できるようにし、ユーザープロファイルのためのページを作成します。ユーザー登録ができるようになると、次にサインイン、サインアウトもできるようにします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-in-sign-out">第8章</a>)。そして<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-updating-showing-and-deleting-users">第9章</a> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-requiring_signed_in_users">9.2.1</a>) では、不正なアクセスから守る方法を学びます。まとめると、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-modeling-users">第6章</a>から<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-updating-showing-and-deleting-users">第9章</a>を通して、Railsのログインと認証のシステムをひととおり開発します。ご存知の方もいると思いますが、Railsでは既にさまざまな認証方法が利用可能です。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-roll_your_own">囲み6.1</a>では、最初に少なくとも一度は自分で認証システムを作ってみることをお勧めする理由について説明しています。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-filling-in-the-layout">第5章</a>では、新しいユーザーを作成するためのスタブページを作ったところで終わりました (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-user_signup">5.4</a>)。これから4つの章を通して、ユーザー登録ページを作っていくことにしましょう。最初の一番重要なステップは、サイトのユーザー用の<em>データモデル</em>の作成と、データを保存する手段の確保です。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-up">第7章</a>では、ユーザーがサイトにユーザー登録できるようにし、ユーザープロファイルのためのページを作成します。ユーザー登録ができるようになると、次にサインイン、サインアウトもできるようにします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-in-sign-out">第8章</a>)。そして<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-updating-showing-and-deleting-users">第9章</a> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-requiring_signed_in_users">9.2.1</a>) では、不正なアクセスから守る方法を学びます。まとめると、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-modeling-users">第6章</a>から<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-updating-showing-and-deleting-users">第9章</a>を通して、Railsのログインと認証のシステムをひととおり開発します。ご存知の方もいると思いますが、Railsでは既にさまざまな認証方法が利用可能です。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-roll_your_own">コラム 6.1</a>では、最初に少なくとも一度は自分で認証システムを作ってみることをお勧めする理由について説明しています。</p>
 
 <p>この章は長いうえに、学ぶことがたくさんあります。特に、これまでデータモデリングをしたことがない人にとっては、もしかすると、これまでとは違った難しさを感じるかもしれません。しかし、この章が終わるまでには、ユーザー情報の検証、保存、取得ができる極めて強力なシステムを作成します。</p>
 
 <div class="label" id="sidebar-roll_your_own"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み6.1</span></span><span class="title"><span class="description">自分で認証システムを作ってみる</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.1</span></span><span class="title"><span class="description">自分で認証システムを作ってみる</span></span>
 <p>事実上、すべてのWebアプリケーションは何らかのログイン/認証システムを必要とします。そのため、多くのWebフレームワークではこのようなログイン/認証システムを実装するための選択肢が多数提供されています。Railsもまた例外ではありません。認証 (authentication) と認可 (authorization) のシステムの例だと、<a href="http://github.com/thoughtbot/clearance">Clearance</a>、<a href="http://github.com/binarylogic/authlogic">Authlogic</a>、<a href="http://github.com/plataformatec/devise">Devise</a>、<a href="http://railscasts.com/episodes/192-authorization-with-cancan">CanCan</a>などがあります (Railsに限らなければ<a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a>や<a href="http://en.wikipedia.org/wiki/Oauth">OAuth</a>の上に構築する方法もあります)。 なぜ車輪の再発明をするのか、という質問があるのも当然です。自分でわざわざ作らなくても、いつも使える方法をただ利用するだけではいけないのでしょうか。</p>
 
 <p>ある実践的な実験によると、多くのサイトの認証システムは膨大なカスタマイズを必要とするため、サードパーティ製品を変更して導入する場合にはシステムをゼロから作成するよりも多くの仕事を要するという結果が出ています。加えて、既成品のシステムは内部がわかりづらいことが多く、ブラックボックスになっています。自分で作成したシステムであれば、それをとてもよく理解しているはずです。さらに言えば、最近のRailsへの変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-adding_a_secure_password">6.3</a>) により、カスタム認証システムを容易に作成できるようになりました。最後に、<em>あえて</em>最終的にサードパーティの認証システムを導入することになったとしても、自分自身で認証システムを構築した経験があれば、サードパーティ製品を理解して変更することがずっと容易になるはずです。</p>
@@ -8561,7 +8561,7 @@ bundler_stubs/
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_model_initial.png" alt="user_model_initial" /></span></div><div class="caption"><span class="header">図6.2</span><span class="description"><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-users_migration">リスト6.2</a>によるユーザーデータモデル</span></div></div>
 
 
-<p>マイグレーションは、以下のように<code>rake</code>コマンド (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-rake">囲み2.1</a>) を使って実行することができます。これを「マイグレーションの適用 (migrating up)」と呼びます。</p>
+<p>マイグレーションは、以下のように<code>rake</code>コマンド (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-rake">コラム 2.1</a>) を使って実行することができます。これを「マイグレーションの適用 (migrating up)」と呼びます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
 </pre></div>
@@ -8583,7 +8583,7 @@ bundler_stubs/
 </div>
 
 
-<p>(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-undoing_things">囲み3.2</a>では、マイグレーションを元に戻すための便利なテクニックを他にも紹介しています)。上のコマンドでは、データベースからusersテーブルを削除するために<code>drop_table</code>コマンドを内部で呼び出しています。これがうまくいくのは、<code>change</code>メソッドは<code>drop_table</code>が<code>create_table</code>の逆であることを知っているからです。つまり、ロールバック用の逆方向マイグレーションを簡単に導くことができるのです。あるカラムを削除するような不可逆なマイグレーションの場合は、<code>change</code>メソッドの代わりに、<code>up</code>と<code>down</code>のメソッドを別々に定義する必要があります。詳細については、「<a href="http://guides.rubyonrails.org/migrations.html">Rails Guidesのマイグレーション</a> (英語)」を参照してください。</p>
+<p>(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-undoing_things">コラム 3.2</a>では、マイグレーションを元に戻すための便利なテクニックを他にも紹介しています)。上のコマンドでは、データベースからusersテーブルを削除するために<code>drop_table</code>コマンドを内部で呼び出しています。これがうまくいくのは、<code>change</code>メソッドは<code>drop_table</code>が<code>create_table</code>の逆であることを知っているからです。つまり、ロールバック用の逆方向マイグレーションを簡単に導くことができるのです。あるカラムを削除するような不可逆なマイグレーションの場合は、<code>change</code>メソッドの代わりに、<code>up</code>と<code>down</code>のメソッドを別々に定義する必要があります。詳細については、「<a href="http://guides.rubyonrails.org/migrations.html">Rails Guidesのマイグレーション</a> (英語)」を参照してください。</p>
 
 <p>もし今の時点でデータベースのロールバックを実行していた場合は、先に進む前にもう一度以下のようにマイグレーションを適用して元に戻してください。</p>
 
@@ -9589,12 +9589,12 @@ bundler_stubs/
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-email_downcase">リスト6.20</a>のコードは、<code>before_save</code>コールバックにブロックを渡してユーザーのメールアドレスを設定します。設定されるメールアドレスは、現在の値をStringクラスの<code>downcase</code>メソッドを使って小文字バージョンにしたものです。このコードは少し上級者向けなので、今はただ、このコードが動作することを信じてください。それでは気の済まない方は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_uniqueness_of_email">リスト6.16</a>から一意性の検証部分をコメントアウトし、重複したメールアドレスを持つユーザーを試しに作成してみれば、エラーが発生するはずです (このテクニックについては<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-remember_me">8.2.1</a>でもう一度取り上げます。そこではお勧めの<em>メソッド参照</em>方法の慣習について説明します)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-email_downcase">リスト6.20</a>のコード用テストの作成は演習に回します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-modeling_users_exercises">6.5</a>)。</p>
 
-<p>これで、先に述べたアリスのシナリオはうまくいくようになります。データベースは、最初のリクエストに基づいてユーザーのレコードを保存しますが、2度目の保存は一意性の制約に反するので拒否します (Railsのログにエラーが出力されますが、害は生じません。ここで発生した<code>ActiveRecord::StatementInvalid</code>例外を実際にキャッチすることもできますが、このチュートリアルでは解説しません)。インデックスをemail属性に追加したことで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-finding_user_objects">6.1.4</a>で述べた2番目の目標 (エントリ多数の場合の検索効率向上) も達成されます。これは、<code>find_by</code>の効率の問題がインデックスによって解決されたためです (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-database_indices">囲み6.2</a>)。</p>
+<p>これで、先に述べたアリスのシナリオはうまくいくようになります。データベースは、最初のリクエストに基づいてユーザーのレコードを保存しますが、2度目の保存は一意性の制約に反するので拒否します (Railsのログにエラーが出力されますが、害は生じません。ここで発生した<code>ActiveRecord::StatementInvalid</code>例外を実際にキャッチすることもできますが、このチュートリアルでは解説しません)。インデックスをemail属性に追加したことで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-finding_user_objects">6.1.4</a>で述べた2番目の目標 (エントリ多数の場合の検索効率向上) も達成されます。これは、<code>find_by</code>の効率の問題がインデックスによって解決されたためです (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-database_indices">コラム 6.2</a>)。</p>
 
 <div class="label" id="sidebar-database_indices"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み6.2</span></span><span class="title"><span class="description">データベースのインデックス</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.2</span></span><span class="title"><span class="description">データベースのインデックス</span></span>
 <p>データベースにカラムを作成するとき、そのカラムでレコードを<em>検索する (find) </em>必要があるかどうかを考えることは重要です。たとえば、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-users_migration">リスト6.2</a>のマイグレーションによって作成された<tt>email</tt>属性について考えてみましょう。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-up">第7章</a>ではユーザーをサンプルアプリにログインできるようにしますが、このとき、送信されたものと一致するメールアドレスのユーザーのレコードをデータベースの中から探しだす必要があります。残念なことに、(インデックスなどの機能を持たない) 素朴なデータモデルにおいてユーザーをメールアドレスで検索するには、データベースの<em>ひとりひとりの</em>ユーザーの行を端から順に読み出し、そのemail属性と与えられたメールアドレスを比較するという非効率的な方法しかありません。これは、データベースの世界では<em>全表スキャン</em>として知られており、数千のユーザーがいる実際のサイトでは<a href="http://catb.org/jargon/html/B/Bad-Thing.html">きわめて不都合</a>です。</p>
 
 <p>emailカラムにインデックスを追加することで、この問題を解決することができます。データベースのインデックスを理解するためには、本の索引との類似性を考えるとよいでしょう。本の中で、与えられた言葉 (例えば、“foobar”) が出てくる箇所をすべて見つけるためには、ページを端から順にめくって最後まで探す必要があります。本の索引を利用すれば、“foobar”を含むすべてのページを索引の中から探すだけで済みます。データベースのインデックスも本質的には本の索引と同じように動作します。</p>
@@ -9944,7 +9944,7 @@ bundler_stubs/
 </div>
 
 
-<p>これまでいくつかの演習で<code>let</code>メソッドを使用してきましたが、今回のようにチュートリアルの本文で言及するのはこれが初めてです。<code>let</code>メソッドの詳細については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-let">囲み6.3</a>を参照してください。</p>
+<p>これまでいくつかの演習で<code>let</code>メソッドを使用してきましたが、今回のようにチュートリアルの本文で言及するのはこれが初めてです。<code>let</code>メソッドの詳細については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-let">コラム 6.3</a>を参照してください。</p>
 
 <p>2つの<code>describe</code>ブロックでは、<code>@user</code>と<code>found_user</code>が一致する (パスワードが一致する) 場合と一致しない (パスワードが一致しない) 場合についてそれぞれテストします。コードで使用されている<code>eq</code>は、オブジェクト同士が同値であるかどうかを調べます (eqの内部では<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-arrays_and_ranges">4.3.1</a>で説明した二重等号演算子<code>==</code>を使用してオブジェクトが同値であるかどうかを確認しています)。以下のコードにご注目ください。</p>
 
@@ -9963,7 +9963,7 @@ bundler_stubs/
 <div class="label" id="sidebar-let"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み6.3</span></span><span class="title"><span class="description"><tt>let</tt>メソッド</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.3</span></span><span class="title"><span class="description"><tt>let</tt>メソッド</span></span>
 <p>RSpecの<tt>let</tt>メソッドを使用すると、テスト内で簡単にローカル変数を作成することができます。文法は一見奇妙ですが、動作は変数への割り当てと似ています。<tt>let</tt>の引数はシンボルであり、さらにブロックを引数に取ります。そのブロックは、このシンボル名を持つローカル変数に値を返します。つまり、以下のコードを実行すると、</p>
 
 <pre class="verbatim">let(:found_user) { User.find_by(email: @user.email) }</pre>
@@ -10032,7 +10032,7 @@ bundler_stubs/
 </div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-let">囲み6.3</a>で解説したように、<code>let</code>では値がメモ化されます。これにより、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-authenticate_spec">リスト6.28</a>にある、ネストしている最初の<code>describe</code>ブロックは<code>let</code>で<code>find_by</code>を使用してデータベースからユーザーを取得します。しかしその次のネストしている<code>describe</code>ブロックは (メモ化された値を利用するので) データベースにアクセスしません。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-let">コラム 6.3</a>で解説したように、<code>let</code>では値がメモ化されます。これにより、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-authenticate_spec">リスト6.28</a>にある、ネストしている最初の<code>describe</code>ブロックは<code>let</code>で<code>find_by</code>を使用してデータベースからユーザーを取得します。しかしその次のネストしている<code>describe</code>ブロックは (メモ化された値を利用するので) データベースにアクセスしません。</p>
 
 <div class="label" id="sec-has_secure_password"></div>
 
@@ -10454,7 +10454,7 @@ bundler_stubs/
 </div>
 
 
-<p>こうしておくと、デバッグ情報はRailsの3つのデフォルト環境のうち、<em>開発環境</em>でしか表示されなくなります (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-rails_environments">囲み7.1</a>)<sup class="footnote" id="fnref-7_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-7_4">4</a></sup>。特に、<code>Rails.env.development?</code>が<code>true</code>になるのは開発環境に限られるため、以下の埋め込みRubyは</p>
+<p>こうしておくと、デバッグ情報はRailsの3つのデフォルト環境のうち、<em>開発環境</em>でしか表示されなくなります (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-rails_environments">コラム 7.1</a>)<sup class="footnote" id="fnref-7_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-7_4">4</a></sup>。特に、<code>Rails.env.development?</code>が<code>true</code>になるのは開発環境に限られるため、以下の埋め込みRubyは</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">debug</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -10466,7 +10466,7 @@ bundler_stubs/
 <div class="label" id="sidebar-rails_environments"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み7.1</span></span><span class="title"><span class="description">Railsの3つの環境</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 7.1</span></span><span class="title"><span class="description">Railsの3つの環境</span></span>
 <p>Railsにはテスト環境 (<tt>test</tt>)、開発環境 (<tt>development</tt>)、そして本番環境 (<tt>production</tt>) の3つの環境がデフォルトで装備されています。Rails consoleのデフォルトの環境は<tt>development</tt>です。</p>
 
 <pre class="verbatim">  $ rails console 
@@ -10502,7 +10502,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>(注: console、server、migrateの3つのコマンドでは、デフォルト以外の環境を指定する方法がそれぞれ異なっており、混乱を招く可能性があります。このため、3つの場合の方法をすべて説明することは避けました。)</p>
 
-<p>ところで、サンプルアプリケーションをHerokuに本番展開した場合は、<tt>heroku</tt>コマンドで環境を確認することができます。これを行うには、Herokuの (リモート) コンソールで以下を実行します。</p>
+<p>ところで、サンプルアプリケーションをHerokuにデプロイした場合は、<tt>heroku</tt>コマンドで環境を確認することができます。これを行うには、Herokuの (リモート) コンソールで以下を実行します。</p>
 
 <pre class="verbatim">  $ heroku run console
   Ruby console for yourapp.herokuapp.com
@@ -10524,7 +10524,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_1_2" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_users_resource" class="heading"><span class="number">7.1.2</span>ユーザーリソース</a></h3>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-modeling-users">第6章</a>の最後で、データベースに新しいユーザーを作成しました。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_a_user">6.3.5</a>でこのユーザーのidは<code>1</code>になっており、今の私たちの目標はこのユーザーの情報を表示するページを作成することです。ここでは、Railsアプリケーションで好まれているRESTアーキテクチャ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-REST">囲み2.2</a>) の習慣に従うことにしましょう。つまり、データを作成、表示、更新、削除可能な<em>リソース</em>として扱うということです。<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP標準</a>には、これらに対応する4つの基本操作 (<tt>POST</tt>、<tt>GET</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>)が定義されています (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">囲み 3.3</a>)。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-modeling-users">第6章</a>の最後で、データベースに新しいユーザーを作成しました。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_a_user">6.3.5</a>でこのユーザーのidは<code>1</code>になっており、今の私たちの目標はこのユーザーの情報を表示するページを作成することです。ここでは、Railsアプリケーションで好まれているRESTアーキテクチャ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-REST">コラム 2.2</a>) の習慣に従うことにしましょう。つまり、データを作成、表示、更新、削除可能な<em>リソース</em>として扱うということです。<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP標準</a>には、これらに対応する4つの基本操作 (<tt>POST</tt>、<tt>GET</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>)が定義されています (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">コラム  3.3</a>)。</p>
 
 <p>RESTの原則に従う場合、リソースへの参照はリソース名とユニークIDを使用するのが普通です。ユーザーを<em>リソース</em>とみなす場合、id=<code>1</code>のユーザーを参照するということは、/users/1というURLに対して<tt>GET</tt>リクエストを発行するということを意味します。ここで<code>show</code>というアクションの種類は、<em>暗黙</em>のリクエストになります。RailsのREST機能が有効になっていると、<tt>GET</tt>リクエストは自動的に<code>show</code>アクションとして扱われます。</p>
 
@@ -10757,7 +10757,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>シンボル<code>:user</code>が<code>factory</code>コマンドに渡されると、Factory Girlはそれに続く定義がUserモデルオブジェクトを対象としていることを認識します。</p>
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_factory">リスト7.8</a>の定義を使用することで、Factory Girlの<code>let</code>コマンドと<code>FactoryGirl</code>メソッド (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-let">囲み6.3</a>) を使用してUserのファクトリーを作成することができます。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_factory">リスト7.8</a>の定義を使用することで、Factory Girlの<code>let</code>コマンドと<code>FactoryGirl</code>メソッド (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-let">コラム 6.3</a>) を使用してUserのファクトリーを作成することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
 </pre></div>
@@ -11174,7 +11174,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>ここでは<code>to</code>メソッドを使用して、正しいデータを与えてユーザー登録ボタンを押したときにカウントが1つ<em>増える</em>ことを確認します。</p>
 
-<p>上の2つのテストを適切な<code>describe</code>ブロックで囲み、両者に共通する部分を<code>before</code>ブロックに移動すると、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-basic_signup_tests">リスト7.16</a>のようにユーザー登録を正しくテストできる基本的なテストのできあがりです。ここでは、送信ボタン用の共通部分を分解するために<code>let</code>メソッドを使用して<code>submit</code>変数を定義しています。</p>
+<p>上の2つのテストを適切な<code>describe</code>ブロックでコラム 、両者に共通する部分を<code>before</code>ブロックに移動すると、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-basic_signup_tests">リスト7.16</a>のようにユーザー登録を正しくテストできる基本的なテストのできあがりです。ここでは、送信ボタン用の共通部分を分解するために<code>let</code>メソッドを使用して<code>submit</code>変数を定義しています。</p>
 
 <div class="label" id="code-basic_signup_tests"></div>
 
@@ -11454,7 +11454,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>Railsはこれらの<code>name</code>の値を使用して、初期化ハッシュを (<code>params</code>変数経由で) 構成します。このハッシュは、ユーザーが入力した値に基づいてユーザーを作成するとき (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_failure">7.3</a>) に使用されます。</p>
 
-<p>次に重要な要素は、<code>form</code>タグ自身です。Railsは<code>form</code>タグを作成するときに<code>@user</code>オブジェクトを使用します。すべてのRubyオブジェクトは自分のクラスを知っている (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-constructors">4.4.1</a>) ので、Railsは<code>@user</code>のクラスが<code>User</code>であることを知ることができます。また、<code>@user</code>は<em>新しい</em>ユーザーなので、 Railsは<code>post</code>メソッドを使用してフォームを構成する方法を知っています。これは新しいオブジェクトを作成するための正式な動詞 (verb) です (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">囲み3.3</a>)。</p>
+<p>次に重要な要素は、<code>form</code>タグ自身です。Railsは<code>form</code>タグを作成するときに<code>@user</code>オブジェクトを使用します。すべてのRubyオブジェクトは自分のクラスを知っている (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-constructors">4.4.1</a>) ので、Railsは<code>@user</code>のクラスが<code>User</code>であることを知ることができます。また、<code>@user</code>は<em>新しい</em>ユーザーなので、 Railsは<code>post</code>メソッドを使用してフォームを構成する方法を知っています。これは新しいオブジェクトを作成するための正式な動詞 (verb) です (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">コラム 3.3</a>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/users&quot;</span> <span class="na">class=</span><span class="s">&quot;new_user&quot;</span> <span class="na">id=</span><span class="s">&quot;new_user&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
 </pre></div>
@@ -12047,7 +12047,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_4_4" href="/book/ruby-on-rails-tutorial?version=4.0#sec-deploying_to_production_with_ssl" class="heading"><span class="number">7.4.4</span> SSLを導入して本番環境を展開する</a></h3>
 
 
-<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境に展開しましょう (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-static-pages">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 本番展開の作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプリアプリケーションのユーザー登録 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-in-sign-out">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-remember_me">8.2.1</a>)。</p>
+<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境に展開しましょう (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-static-pages">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 デプロイの作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプリアプリケーションのユーザー登録 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-in-sign-out">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-remember_me">8.2.1</a>)。</p>
 
 <p>展開の下準備として、この時点で変更を<code>master</code>ブランチにマージしておきます。</p>
 
@@ -13059,7 +13059,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>次に、上で生成されたマイグレーションに<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-add_remember_token_to_users">リスト8.16</a>のコードを記入します。ユーザーを記憶トークンで検索できるように、インデックス (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-database_indices">囲み6.2</a>) を<code>remember_token</code>カラムに追加していることにご注目ください。</p>
+<p>次に、上で生成されたマイグレーションに<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-add_remember_token_to_users">リスト8.16</a>のコードを記入します。ユーザーを記憶トークンで検索できるように、インデックス (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-database_indices">コラム 6.2</a>) を<code>remember_token</code>カラムに追加していることにご注目ください。</p>
 
 <div class="label" id="code-add_remember_token_to_users"></div>
 
@@ -13269,12 +13269,12 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>(上のコードではRailsの便利なtimeヘルパーを使用しています。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-time_helpers">囲み8.1</a>を参照してください。)</p>
+<p>(上のコードではRailsの便利なtimeヘルパーを使用しています。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-time_helpers">コラム 8.1</a>を参照してください。)</p>
 
 <div class="label" id="sidebar-time_helpers"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み8.1</span></span><span class="title"><span class="description">cookiesは今から20年後に切れる (<tt>20.years.from_now</tt>)</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 8.1</span></span><span class="title"><span class="description">cookiesは今から20年後に切れる (<tt>20.years.from_now</tt>)</span></span>
 <p>Rubyは組み込みクラスを含む<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_class_of_our_own">あらゆる</a>クラスにメソッドを追加できることを<em>4.4.2</em>で学びました。あのときは、<tt>palindrome?</tt>メソッドを<tt>String</tt>クラスに追加しました (ついでに<tt>&quot;deified&quot;</tt>も回文になっていることを発見しました)。また、Railsが実は<tt>blank?</tt>メソッドを<tt>Object</tt>クラスに追加していることも判明しました (これにより、<tt>&quot;&quot;.blank?</tt>、<tt>&quot; &quot;.blank?</tt>、<tt>nil.blank?</tt>はいずれも<tt>true</tt>になります)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sign_in_function">リスト8.19</a>のコードでは、cookiesが20年後に期限切れになる (<tt>20.years.from_now</tt>) ように指定していますが、これはRailsの<em>timeヘルパー</em>を使用した格好の例題になります。timeヘルパーはRailsによって、数値関連の基底クラスである<tt>Fixnum</tt>クラスに追加されます。</p>
 
 <pre class="verbatim">  $ rails console
@@ -13457,7 +13457,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-current_user_working">リスト8.22</a>では、Rubyでは定番の (しかし最初はまごつきやすい) <code>||=</code> (“or equals”) 代入演算子を使用しています (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-or_equals">囲み8.2</a>)。この代入演算子は、<code>@current_user</code>が未定義の場合にのみ、<code>@current_user</code>インスタンス変数に記憶トークンを設定します<sup class="footnote" id="fnref-8_6"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-8_6">6</a></sup>。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-current_user_working">リスト8.22</a>では、Rubyでは定番の (しかし最初はまごつきやすい) <code>||=</code> (“or equals”) 代入演算子を使用しています (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-or_equals">コラム 8.2</a>)。この代入演算子は、<code>@current_user</code>が未定義の場合にのみ、<code>@current_user</code>インスタンス変数に記憶トークンを設定します<sup class="footnote" id="fnref-8_6"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-8_6">6</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@current_user</span> <span class="o">||=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">remember_token:</span> <span class="n">remember_token</span><span class="p">)</span>
 </pre></div>
@@ -13469,7 +13469,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="label" id="sidebar-or_equals"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み8.2</span></span><span class="title"><span class="description"></span></span><span class="title"><span class="description"><tt>||=</tt>とは何か</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 8.2</span></span><span class="title"><span class="description"></span></span><span class="title"><span class="description"><tt>||=</tt>とは何か</span></span>
 <p><tt>||=</tt>という記法は非常にRuby的であり、Rubyという言語を強く特徴づけるものです。Rubyプログラミングの達人になりたいのであれば、この記法を習得することが重要です。<em>or equals</em>という概念は一見神妙不可思議に見えますが、他のものになぞらえて考えることで理解できます。</p>
 
 <p>最初は、現在定義されている変数を変更するというありふれたコードについて説明します。多くのコンピュータプログラムでは、以下のようにして変数の値を1つ増やすことができます。</p>
@@ -14294,7 +14294,7 @@ Loading development environment  &gt;&gt; Rails.env
 <li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Rails Guidesの「<a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html">コールバックについて</a> (英語)」を参照してください。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_4">↑</a></li>
 <li id="fn-8_5">実は、この2つは完全に同等です。<code>attr_accessor</code>は、単にゲッターメソッドやセッターメソッドを自動的に作成する便利な方法でしかありません。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_5">↑</a></li>
 <li id="fn-8_6">通常、これは初期値が<code>nil</code>である変数への代入を意味しますが、<code>false</code>値も<code>||=</code>演算子によって上書きされることにご注意ください。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_6">↑</a></li>
-<li id="fn-8_7">これは、<em>囲み6.3</em>で説明した<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-let">メモ化 (memoization) </a>の例になっています。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_7">↑</a></li>
+<li id="fn-8_7">これは、<em>コラム 6.3</em>で説明した<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-let">メモ化 (memoization) </a>の例になっています。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_7">↑</a></li>
 <li id="fn-8_8">Webブラウザは実際には<tt>DELETE</tt>リクエストを発行できないので、RailsではJavaScriptを使用してこのリクエストを偽造します。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_8">↑</a></li>
 </ol>
 </div>
@@ -14323,7 +14323,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h2><a id="sec-9_1" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_users" class="heading"><span class="number">9.1</span>ユーザーを更新する</a></h2>
 
 
-<p>ユーザー情報を編集するパターンは、(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-up">第7章</a>)の新規ユーザーの作成ときわめて似通っています。新規ユーザー用のビューを出力する<code>new</code>アクションの代わりに、ユーザーを編集するための<code>edit</code>アクションを作成すればよいのです。 <tt>POST</tt>リクエストに応答する<code>create</code>の代わりに、<tt>PATCH</tt>リクエストに応答する<code>update</code>アクションを作成すればよいのです (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">囲み3.3</a>)。最大の違いは、ユーザー登録は誰でも実行できますが、ユーザー情報を更新できるのはそのユーザー自身に限られるということです。つまり、アクセス制御を行なって、認可された (authorized) ユーザーだけが編集と更新を行えるようにすればよいということです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-in-sign-out">第8章</a>の認証 (authentication) システムを使えば、<em>before_filter</em>を使用してこれを行えます。</p>
+<p>ユーザー情報を編集するパターンは、(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-up">第7章</a>)の新規ユーザーの作成ときわめて似通っています。新規ユーザー用のビューを出力する<code>new</code>アクションの代わりに、ユーザーを編集するための<code>edit</code>アクションを作成すればよいのです。 <tt>POST</tt>リクエストに応答する<code>create</code>の代わりに、<tt>PATCH</tt>リクエストに応答する<code>update</code>アクションを作成すればよいのです (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">コラム 3.3</a>)。最大の違いは、ユーザー登録は誰でも実行できますが、ユーザー情報を更新できるのはそのユーザー自身に限られるということです。つまり、アクセス制御を行なって、認可された (authorized) ユーザーだけが編集と更新を行えるようにすればよいということです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-in-sign-out">第8章</a>の認証 (authentication) システムを使えば、<em>before_filter</em>を使用してこれを行えます。</p>
 
 <div class="label" id="sec-edit_form"></div>
 
@@ -15416,7 +15416,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>実際のインデックスページを作成するには、ユーザーを列挙してユーザーごとに<code>li</code>タグで囲むビューを作成する必要があります。ここでは<code>each</code>メソッドを使用してこれを行います。それぞれの行を非序列リスト (<code>ul</code>)タグで囲みながら、各ユーザーのGravatarと名前を表示します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>では、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_exercises">7.6</a>の演習の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">リスト7.29</a>の結果を利用しています。これは、Gravatarヘルパーにデフォルト以外のサイズを指定するオプションを渡します。この演習をまだやっていない場合は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">7.29</a>に従ってUsersヘルパーファイルを更新してから先に進んでください。</p>
+<p>実際のインデックスページを作成するには、ユーザーを列挙してユーザーごとに<code>li</code>タグで囲むビューを作成する必要があります。ここでは<code>each</code>メソッドを使用してこれを行います。それぞれの行を非序列リスト (<code>ul</code>)タグでコラム ながら、各ユーザーのGravatarと名前を表示します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>では、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_exercises">7.6</a>の演習の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">リスト7.29</a>の結果を利用しています。これは、Gravatarヘルパーにデフォルト以外のサイズを指定するオプションを渡します。この演習をまだやっていない場合は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">7.29</a>に従ってUsersヘルパーファイルを更新してから先に進んでください。</p>
 
 <div class="label" id="code-user_index_view"></div>
 
@@ -16265,7 +16265,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>上のテストに対応するアプリケーションコードは、現在のユーザーが管理者の場合に <code>[delete]</code> リンクを有効にします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-delete_links">リスト9.44</a>)。ここで、必要な<tt>DELETE</tt>リクエストを発行するリンクの生成は<code>method: :delete</code>引数によって行われている点に注目してください。また、各リンクを<code>if</code>文で囲み、管理者にだけ削除リンクが表示されるようにしています。管理者から見えるページを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-index_delete_links_rails_3">図9.14</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードは、現在のユーザーが管理者の場合に <code>[delete]</code> リンクを有効にします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-delete_links">リスト9.44</a>)。ここで、必要な<tt>DELETE</tt>リクエストを発行するリンクの生成は<code>method: :delete</code>引数によって行われている点に注目してください。また、各リンクを<code>if</code>文でコラム 、管理者にだけ削除リンクが表示されるようにしています。管理者から見えるページを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-index_delete_links_rails_3">図9.14</a>に示します。</p>
 
 <div class="label" id="code-delete_links"></div>
 
@@ -16416,7 +16416,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>アプリケーションを本番展開したり、サンプルデータを本番データとして作成することもできます (本番データベースをリセットするには<code>pg:reset</code>タスクを使用します)。</p>
+<p>アプリケーションをデプロイしたり、サンプルデータを本番データとして作成することもできます (本番データベースをリセットするには<code>pg:reset</code>タスクを使用します)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push heroku
 <span class="gp">$</span> heroku pg:reset DATABASE
@@ -16754,7 +16754,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>ここで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_migration">リスト10.1</a>では<code>user_id</code>と<code>created_at</code>カラムにインデックスが付与されていることにご注目ください (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-database_indices">囲み 6.2</a>)。user idに関連付けられたすべてのマイクロポストを作成時刻の逆順で取り出すためです。</p>
+<p>ここで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_migration">リスト10.1</a>では<code>user_id</code>と<code>created_at</code>カラムにインデックスが付与されていることにご注目ください (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-database_indices">コラム  6.2</a>)。user idに関連付けられたすべてのマイクロポストを作成時刻の逆順で取り出すためです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">add_index</span> <span class="ss">:microposts</span><span class="p">,</span> <span class="o">[</span><span class="ss">:user_id</span><span class="p">,</span> <span class="ss">:created_at</span><span class="o">]</span>
 </pre></div>
@@ -17130,7 +17130,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-time_helpers">囲み8.1</a>で説明した時間指定用ヘルパーメソッドを使うことで) 2番目のポストの作成時刻がより新しく (<code>1.hour.ago</code>: 1時間前)、最初のポストの作成日時が<code>1.day.ago</code> (1日前) になります。Factory Girlを使用すると、Active Recordがアクセスを許可しないような<code>created_at</code>属性も手動で設定できるので大変便利です (<code>created_at</code>や<code>updated_at</code>などは通常のカラムと異なる “マジック”カラムであり、これらの作成タイムスタンプや更新タイムスタンプは自動的に設定されてしまうため、明示的に値を設定しても上書きされてしまうことを思い出してください)。</p>
+<p>(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-time_helpers">コラム 8.1</a>で説明した時間指定用ヘルパーメソッドを使うことで) 2番目のポストの作成時刻がより新しく (<code>1.hour.ago</code>: 1時間前)、最初のポストの作成日時が<code>1.day.ago</code> (1日前) になります。Factory Girlを使用すると、Active Recordがアクセスを許可しないような<code>created_at</code>属性も手動で設定できるので大変便利です (<code>created_at</code>や<code>updated_at</code>などは通常のカラムと異なる “マジック”カラムであり、これらの作成タイムスタンプや更新タイムスタンプは自動的に設定されてしまうため、明示的に値を設定しても上書きされてしまうことを思い出してください)。</p>
 
 <p>(SQLiteを含む) ほとんどのデータベースアダプターは、マイクロポストを id順で返すため、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_ordering_test">リスト10.10</a>のようなテストはほぼ確実に失敗することになります。このコードは <code>let!</code> (“let バン”と読みます) メソッドを<code>let</code>の場所で使っています。その理由は<code>let</code> 変数は<em>lazy</em>、つまり参照されたときにはじめて初期化されるためです。今回の場合は、タイムスタンプが正しい順番で<code>@user.microposts</code>が空にならないように、マイクロポストが即座に存在して欲しいので、<code>let!</code>を使用すれば、対応する変数を強制的に即座に作成できます。</p>
 
@@ -18807,7 +18807,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <li><code>if</code>-<code>else</code>文の2つの分岐に対して、それぞれ異なるパーシャルを使用するようにホームページをリファクタリングしてください。</li>
 <li>削除リンクが、現在のユーザーによって作成されていないマイクロポストには表示されないことを確認するためのテストを作成してください。</li>
 <li>パーシャルを使用して、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_partial_with_delete">リスト10.43</a>および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-feed_item_partial_with_delete">リスト10.44</a>から削除リンクの重複を削除してください。</li>
-<li><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-long_word_micropost">図10.18</a>に示すように、非常に長い単語を入力するとレイアウトが崩れてしまいます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-wrap">リスト10.47</a>で定義した<code>wrap</code>ヘルパーを使用して、この問題を修正してください。このとき、出力されたHTMLがRailsによってエスケープされるのを防ぐために<code>raw</code>メソッドを使用してください。また、クロスサイトスクリプティング (XSS) を防ぐために<code>sanitize</code>メソッドも使用してください。さらに、このコードでは<em>3項演算子</em> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-ternary_operator">囲み 10.1</a>) も使用してください。3項演算子は一見奇妙ですが、きわめて便利なものです。</li>
+<li><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-long_word_micropost">図10.18</a>に示すように、非常に長い単語を入力するとレイアウトが崩れてしまいます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-wrap">リスト10.47</a>で定義した<code>wrap</code>ヘルパーを使用して、この問題を修正してください。このとき、出力されたHTMLがRailsによってエスケープされるのを防ぐために<code>raw</code>メソッドを使用してください。また、クロスサイトスクリプティング (XSS) を防ぐために<code>sanitize</code>メソッドも使用してください。さらに、このコードでは<em>3項演算子</em> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-ternary_operator">コラム  10.1</a>) も使用してください。3項演算子は一見奇妙ですが、きわめて便利なものです。</li>
 <li><strong>(チャレンジ)</strong> 入力できる残り文字数を140 文字からカウントダウンするためのJavaScriptをHomeページに追加してください。</li>
 </ol>
 
@@ -18817,7 +18817,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="label" id="sidebar-ternary_operator"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み10.1</span><span class="description">10種類の人々</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 10.1</span><span class="description">10種類の人々</span></span>
 <p>この世には10種類の人々がいます。3項演算子を好きな人、嫌いな人、3項演算子を知らない人です。(もし3番目に該当したとしても、すぐそのカテゴリの人ではなくなりますので心配ご無用です。)</p>
 
 <p>プログラミング経験を重ねるうちに、以下のような制御フローが最もよく使用される、ありふれたものであることはすぐにわかると思います。</p>
@@ -19867,7 +19867,7 @@ end</pre>
 </div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-or_equals">囲み8.2</a>でも説明したとおり、<code>@user</code>が <code>nil</code>でない場合 (つまりプロファイルページの場合) は何もせず、nilの場合 (つまりHomeページの場合) には<code>@user</code>をカレントユーザーに設定します。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-or_equals">コラム 8.2</a>でも説明したとおり、<code>@user</code>が <code>nil</code>でない場合 (つまりプロファイルページの場合) は何もせず、nilの場合 (つまりHomeページの場合) には<code>@user</code>をカレントユーザーに設定します。</p>
 
 <p>フォローしているユーザーの人数と、フォロワーの人数は、以下の関連付けを使用して計算されます。</p>
 
@@ -21233,7 +21233,7 @@ end</pre>
 <h4><a id="sec-11_4_1_8" href="/book/ruby-on-rails-tutorial?version=4.0#sec-search" class="heading">検索機能</a></h4>
 
 
-<p>現在のサンプルアプリケーションには、ユーザーインデックスページを端から探すか、他のユーザーのフィードを表示する以外に、他のユーザーを検索する手段がありません。この点を強化するために、検索機能を実装してください。続いて、マイクロポストを検索する機能も追加してください。あらかじめRailsCast「<a href="http://railscasts.com/episodes/37-simple-search-form">簡単な検索フォーム</a> (英語)」を参照しておくとよいでしょう。このアプリケーションを共有ホストか専用のサーバーに本番展開するのであれば、<a href="http://freelancing-god.github.com/ts/en/">Thinking Sphinx</a>の導入をお勧めします (RailsCast「<a href="http://railscasts.com/episodes/120-thinking-sphinx">Thinking Sphinx</a> (英語)」も参照してください)。Herokuで本番展開するのであれば、「<a href="http://devcenter.heroku.com/articles/full-text-search">Heroku全文検索機能</a>」マニュアル (英語) に従う必要があります。</p>
+<p>現在のサンプルアプリケーションには、ユーザーインデックスページを端から探すか、他のユーザーのフィードを表示する以外に、他のユーザーを検索する手段がありません。この点を強化するために、検索機能を実装してください。続いて、マイクロポストを検索する機能も追加してください。あらかじめRailsCast「<a href="http://railscasts.com/episodes/37-simple-search-form">簡単な検索フォーム</a> (英語)」を参照しておくとよいでしょう。このアプリケーションを共有ホストか専用のサーバーにデプロイするのであれば、<a href="http://freelancing-god.github.com/ts/en/">Thinking Sphinx</a>の導入をお勧めします (RailsCast「<a href="http://railscasts.com/episodes/120-thinking-sphinx">Thinking Sphinx</a> (英語)」も参照してください)。Herokuでデプロイするのであれば、「<a href="http://devcenter.heroku.com/articles/full-text-search">Heroku全文検索機能</a>」マニュアル (英語) に従う必要があります。</p>
 
 <div class="label" id="sec-guide_to_further_resources"></div>
 

@@ -19,7 +19,7 @@
 <h2><a id="sec-9_1" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-updating_users" class="heading"><span class="number">9.1</span>ユーザーを更新する</a></h2>
 
 
-<p>ユーザー情報を編集するパターンは、(<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>)の新規ユーザーの作成ときわめて似通っています。新規ユーザー用のビューを出力する<code>new</code>アクションの代わりに、ユーザーを編集するための<code>edit</code>アクションを作成すればよいのです。 <tt>POST</tt>リクエストに応答する<code>create</code>の代わりに、<tt>PATCH</tt>リクエストに応答する<code>update</code>アクションを作成すればよいのです (<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">囲み3.3</a>)。最大の違いは、ユーザー登録は誰でも実行できますが、ユーザー情報を更新できるのはそのユーザー自身に限られるということです。つまり、アクセス制御を行なって、認可された (authorized) ユーザーだけが編集と更新を行えるようにすればよいということです。<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>の認証 (authentication) システムを使えば、<em>before_filter</em>を使用してこれを行えます。</p>
+<p>ユーザー情報を編集するパターンは、(<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>)の新規ユーザーの作成ときわめて似通っています。新規ユーザー用のビューを出力する<code>new</code>アクションの代わりに、ユーザーを編集するための<code>edit</code>アクションを作成すればよいのです。 <tt>POST</tt>リクエストに応答する<code>create</code>の代わりに、<tt>PATCH</tt>リクエストに応答する<code>update</code>アクションを作成すればよいのです (<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">コラム 3.3</a>)。最大の違いは、ユーザー登録は誰でも実行できますが、ユーザー情報を更新できるのはそのユーザー自身に限られるということです。つまり、アクセス制御を行なって、認可された (authorized) ユーザーだけが編集と更新を行えるようにすればよいということです。<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>の認証 (authentication) システムを使えば、<em>before_filter</em>を使用してこれを行えます。</p>
 
 <div class="label" id="sec-edit_form"></div>
 
@@ -1112,7 +1112,7 @@
 </div></div>
 
 
-<p>実際のインデックスページを作成するには、ユーザーを列挙してユーザーごとに<code>li</code>タグで囲むビューを作成する必要があります。ここでは<code>each</code>メソッドを使用してこれを行います。それぞれの行を非序列リスト (<code>ul</code>)タグで囲みながら、各ユーザーのGravatarと名前を表示します (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_index_view">リスト9.25</a>)。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_index_view">リスト9.25</a>では、<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_exercises">7.6</a>の演習の<a class="ref" href="/chapters/sign-up?version=4.0#code-gravatar_option">リスト7.29</a>の結果を利用しています。これは、Gravatarヘルパーにデフォルト以外のサイズを指定するオプションを渡します。この演習をまだやっていない場合は、<a class="ref" href="/chapters/sign-up?version=4.0#code-gravatar_option">7.29</a>に従ってUsersヘルパーファイルを更新してから先に進んでください。</p>
+<p>実際のインデックスページを作成するには、ユーザーを列挙してユーザーごとに<code>li</code>タグで囲むビューを作成する必要があります。ここでは<code>each</code>メソッドを使用してこれを行います。それぞれの行を非序列リスト (<code>ul</code>)タグでコラム ながら、各ユーザーのGravatarと名前を表示します (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_index_view">リスト9.25</a>)。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_index_view">リスト9.25</a>では、<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_exercises">7.6</a>の演習の<a class="ref" href="/chapters/sign-up?version=4.0#code-gravatar_option">リスト7.29</a>の結果を利用しています。これは、Gravatarヘルパーにデフォルト以外のサイズを指定するオプションを渡します。この演習をまだやっていない場合は、<a class="ref" href="/chapters/sign-up?version=4.0#code-gravatar_option">7.29</a>に従ってUsersヘルパーファイルを更新してから先に進んでください。</p>
 
 <div class="label" id="code-user_index_view"></div>
 
@@ -1961,7 +1961,7 @@
 </div></div>
 
 
-<p>上のテストに対応するアプリケーションコードは、現在のユーザーが管理者の場合に <code>[delete]</code> リンクを有効にします (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-delete_links">リスト9.44</a>)。ここで、必要な<tt>DELETE</tt>リクエストを発行するリンクの生成は<code>method: :delete</code>引数によって行われている点に注目してください。また、各リンクを<code>if</code>文で囲み、管理者にだけ削除リンクが表示されるようにしています。管理者から見えるページを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#fig-index_delete_links_rails_3">図9.14</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードは、現在のユーザーが管理者の場合に <code>[delete]</code> リンクを有効にします (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-delete_links">リスト9.44</a>)。ここで、必要な<tt>DELETE</tt>リクエストを発行するリンクの生成は<code>method: :delete</code>引数によって行われている点に注目してください。また、各リンクを<code>if</code>文でコラム 、管理者にだけ削除リンクが表示されるようにしています。管理者から見えるページを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#fig-index_delete_links_rails_3">図9.14</a>に示します。</p>
 
 <div class="label" id="code-delete_links"></div>
 
@@ -2112,7 +2112,7 @@
 </div>
 
 
-<p>アプリケーションを本番展開したり、サンプルデータを本番データとして作成することもできます (本番データベースをリセットするには<code>pg:reset</code>タスクを使用します)。</p>
+<p>アプリケーションをデプロイしたり、サンプルデータを本番データとして作成することもできます (本番データベースをリセットするには<code>pg:reset</code>タスクを使用します)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push heroku
 <span class="gp">$</span> heroku pg:reset DATABASE

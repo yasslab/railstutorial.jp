@@ -158,7 +158,7 @@
 </div>
 
 
-<p>こうしておくと、デバッグ情報はRailsの3つのデフォルト環境のうち、<em>開発環境</em>でしか表示されなくなります (<a class="ref" href="/chapters/sign-up?version=4.0#sidebar-rails_environments">囲み7.1</a>)<sup class="footnote" id="fnref-7_4"><a href="/chapters/sign-up?version=4.0#fn-7_4">4</a></sup>。特に、<code>Rails.env.development?</code>が<code>true</code>になるのは開発環境に限られるため、以下の埋め込みRubyは</p>
+<p>こうしておくと、デバッグ情報はRailsの3つのデフォルト環境のうち、<em>開発環境</em>でしか表示されなくなります (<a class="ref" href="/chapters/sign-up?version=4.0#sidebar-rails_environments">コラム 7.1</a>)<sup class="footnote" id="fnref-7_4"><a href="/chapters/sign-up?version=4.0#fn-7_4">4</a></sup>。特に、<code>Rails.env.development?</code>が<code>true</code>になるのは開発環境に限られるため、以下の埋め込みRubyは</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">debug</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -170,7 +170,7 @@
 <div class="label" id="sidebar-rails_environments"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み7.1</span></span><span class="title"><span class="description">Railsの3つの環境</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 7.1</span></span><span class="title"><span class="description">Railsの3つの環境</span></span>
 <p>Railsにはテスト環境 (<tt>test</tt>)、開発環境 (<tt>development</tt>)、そして本番環境 (<tt>production</tt>) の3つの環境がデフォルトで装備されています。Rails consoleのデフォルトの環境は<tt>development</tt>です。</p>
 
 <pre class="verbatim">  $ rails console 
@@ -206,7 +206,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>(注: console、server、migrateの3つのコマンドでは、デフォルト以外の環境を指定する方法がそれぞれ異なっており、混乱を招く可能性があります。このため、3つの場合の方法をすべて説明することは避けました。)</p>
 
-<p>ところで、サンプルアプリケーションをHerokuに本番展開した場合は、<tt>heroku</tt>コマンドで環境を確認することができます。これを行うには、Herokuの (リモート) コンソールで以下を実行します。</p>
+<p>ところで、サンプルアプリケーションをHerokuにデプロイした場合は、<tt>heroku</tt>コマンドで環境を確認することができます。これを行うには、Herokuの (リモート) コンソールで以下を実行します。</p>
 
 <pre class="verbatim">  $ heroku run console
   Ruby console for yourapp.herokuapp.com
@@ -228,7 +228,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_1_2" href="/chapters/sign-up?version=4.0#sec-a_users_resource" class="heading"><span class="number">7.1.2</span>ユーザーリソース</a></h3>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>の最後で、データベースに新しいユーザーを作成しました。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_a_user">6.3.5</a>でこのユーザーのidは<code>1</code>になっており、今の私たちの目標はこのユーザーの情報を表示するページを作成することです。ここでは、Railsアプリケーションで好まれているRESTアーキテクチャ (<a class="ref" href="/chapters/a-demo-app?version=4.0#sidebar-REST">囲み2.2</a>) の習慣に従うことにしましょう。つまり、データを作成、表示、更新、削除可能な<em>リソース</em>として扱うということです。<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP標準</a>には、これらに対応する4つの基本操作 (<tt>POST</tt>、<tt>GET</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>)が定義されています (<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">囲み 3.3</a>)。</p>
+<p><a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>の最後で、データベースに新しいユーザーを作成しました。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_a_user">6.3.5</a>でこのユーザーのidは<code>1</code>になっており、今の私たちの目標はこのユーザーの情報を表示するページを作成することです。ここでは、Railsアプリケーションで好まれているRESTアーキテクチャ (<a class="ref" href="/chapters/a-demo-app?version=4.0#sidebar-REST">コラム 2.2</a>) の習慣に従うことにしましょう。つまり、データを作成、表示、更新、削除可能な<em>リソース</em>として扱うということです。<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP標準</a>には、これらに対応する4つの基本操作 (<tt>POST</tt>、<tt>GET</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>)が定義されています (<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">コラム  3.3</a>)。</p>
 
 <p>RESTの原則に従う場合、リソースへの参照はリソース名とユニークIDを使用するのが普通です。ユーザーを<em>リソース</em>とみなす場合、id=<code>1</code>のユーザーを参照するということは、/users/1というURLに対して<tt>GET</tt>リクエストを発行するということを意味します。ここで<code>show</code>というアクションの種類は、<em>暗黙</em>のリクエストになります。RailsのREST機能が有効になっていると、<tt>GET</tt>リクエストは自動的に<code>show</code>アクションとして扱われます。</p>
 
@@ -461,7 +461,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>シンボル<code>:user</code>が<code>factory</code>コマンドに渡されると、Factory Girlはそれに続く定義がUserモデルオブジェクトを対象としていることを認識します。</p>
 
-<p><a class="ref" href="/chapters/sign-up?version=4.0#code-user_factory">リスト7.8</a>の定義を使用することで、Factory Girlの<code>let</code>コマンドと<code>FactoryGirl</code>メソッド (<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">囲み6.3</a>) を使用してUserのファクトリーを作成することができます。</p>
+<p><a class="ref" href="/chapters/sign-up?version=4.0#code-user_factory">リスト7.8</a>の定義を使用することで、Factory Girlの<code>let</code>コマンドと<code>FactoryGirl</code>メソッド (<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">コラム 6.3</a>) を使用してUserのファクトリーを作成することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
 </pre></div>
@@ -878,7 +878,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>ここでは<code>to</code>メソッドを使用して、正しいデータを与えてユーザー登録ボタンを押したときにカウントが1つ<em>増える</em>ことを確認します。</p>
 
-<p>上の2つのテストを適切な<code>describe</code>ブロックで囲み、両者に共通する部分を<code>before</code>ブロックに移動すると、<a class="ref" href="/chapters/sign-up?version=4.0#code-basic_signup_tests">リスト7.16</a>のようにユーザー登録を正しくテストできる基本的なテストのできあがりです。ここでは、送信ボタン用の共通部分を分解するために<code>let</code>メソッドを使用して<code>submit</code>変数を定義しています。</p>
+<p>上の2つのテストを適切な<code>describe</code>ブロックでコラム 、両者に共通する部分を<code>before</code>ブロックに移動すると、<a class="ref" href="/chapters/sign-up?version=4.0#code-basic_signup_tests">リスト7.16</a>のようにユーザー登録を正しくテストできる基本的なテストのできあがりです。ここでは、送信ボタン用の共通部分を分解するために<code>let</code>メソッドを使用して<code>submit</code>変数を定義しています。</p>
 
 <div class="label" id="code-basic_signup_tests"></div>
 
@@ -1158,7 +1158,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>Railsはこれらの<code>name</code>の値を使用して、初期化ハッシュを (<code>params</code>変数経由で) 構成します。このハッシュは、ユーザーが入力した値に基づいてユーザーを作成するとき (<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_failure">7.3</a>) に使用されます。</p>
 
-<p>次に重要な要素は、<code>form</code>タグ自身です。Railsは<code>form</code>タグを作成するときに<code>@user</code>オブジェクトを使用します。すべてのRubyオブジェクトは自分のクラスを知っている (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-constructors">4.4.1</a>) ので、Railsは<code>@user</code>のクラスが<code>User</code>であることを知ることができます。また、<code>@user</code>は<em>新しい</em>ユーザーなので、 Railsは<code>post</code>メソッドを使用してフォームを構成する方法を知っています。これは新しいオブジェクトを作成するための正式な動詞 (verb) です (<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">囲み3.3</a>)。</p>
+<p>次に重要な要素は、<code>form</code>タグ自身です。Railsは<code>form</code>タグを作成するときに<code>@user</code>オブジェクトを使用します。すべてのRubyオブジェクトは自分のクラスを知っている (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-constructors">4.4.1</a>) ので、Railsは<code>@user</code>のクラスが<code>User</code>であることを知ることができます。また、<code>@user</code>は<em>新しい</em>ユーザーなので、 Railsは<code>post</code>メソッドを使用してフォームを構成する方法を知っています。これは新しいオブジェクトを作成するための正式な動詞 (verb) です (<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">コラム 3.3</a>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/users&quot;</span> <span class="na">class=</span><span class="s">&quot;new_user&quot;</span> <span class="na">id=</span><span class="s">&quot;new_user&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
 </pre></div>
@@ -1751,7 +1751,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_4_4" href="/chapters/sign-up?version=4.0#sec-deploying_to_production_with_ssl" class="heading"><span class="number">7.4.4</span> SSLを導入して本番環境を展開する</a></h3>
 
 
-<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境に展開しましょう (<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 本番展開の作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="/chapters/sign-up?version=4.0#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプリアプリケーションのユーザー登録 (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>)。</p>
+<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境に展開しましょう (<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 デプロイの作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="/chapters/sign-up?version=4.0#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプリアプリケーションのユーザー登録 (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>)。</p>
 
 <p>展開の下準備として、この時点で変更を<code>master</code>ブランチにマージしておきます。</p>
 

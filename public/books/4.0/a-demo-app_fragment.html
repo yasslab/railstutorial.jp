@@ -4,7 +4,7 @@
 <h1 class="chapter"><a id="sec-2" href="/chapters/a-demo-app?version=4.0#top" class="heading"><span class="number">第2章</span>デモアプリケーション</a></h1>
 
 
-<p>この章では、Railsの強力な機能をいくつか紹介するためのデモアプリケーションを作成します。<em>scaffold</em>ジェネレータというスクリプトを使ってアプリケーションをすばやく生成する事により、 高度なRailsプログラミングとWebプログラミングの概要を学びます。<a class="ref" href="/chapters/beginning?version=4.0#sidebar-scaffolding">囲み1.1</a>で述べたように、本書の以後の章では基本的にこの逆のアプローチを取り、少しずつアプリケーションを作りながら各段階と概念を説明して行きますが、scaffoldはRailsアプリケーションの概要を素早くつかむには最適なのでこの章ではあえて使用することにします。生成されたRailsアプリケーションはブラウザのアドレスバーにURLを入力すれば動かすことができるので、これによりRailsアプリの構造、そしてRailsで推奨されている<em>RESTアーキテクチャ</em>に関する洞察を得ることにします。</p>
+<p>この章では、Railsの強力な機能をいくつか紹介するためのデモアプリケーションを作成します。<em>scaffold</em>ジェネレータというスクリプトを使ってアプリケーションをすばやく生成する事により、 高度なRailsプログラミングとWebプログラミングの概要を学びます。<a class="ref" href="/chapters/beginning?version=4.0#sidebar-scaffolding">コラム 1.1</a>で述べたように、本書の以後の章では基本的にこの逆のアプローチを取り、少しずつアプリケーションを作りながら各段階と概念を説明して行きますが、scaffoldはRailsアプリケーションの概要を素早くつかむには最適なのでこの章ではあえて使用することにします。生成されたRailsアプリケーションはブラウザのアドレスバーにURLを入力すれば動かすことができるので、これによりRailsアプリの構造、そしてRailsで推奨されている<em>RESTアーキテクチャ</em>に関する洞察を得ることにします。</p>
 
 <p>後に作成するサンプルアプリケーションと同様、デモアプリケーションは、<em>ユーザー</em>と、それに関連している<em>マイクロポスト</em>から成り立っています。 このデモアプリケーションはもちろん動きますが完成品ではなく、しかも多くの手順が「魔法」のように思えるかもしれません。<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>以降で作成するサンプルアプリケーションでは同等の機能を1つ1つ手動で作成しますので、ご安心ください。その分時間がかかることになりますが、どうか最後まで本書にお付き合いいただければと思います。本書の目的は、scaffoldを使用した即席のアプローチによる表面的な理解ではなく、そこを<em>突破して</em>Railsを深いレベルまで理解することにあります。</p>
 
@@ -180,7 +180,7 @@
 
 <p><code>name:string</code>と<code>email:string</code>オプションを追加することで、Userモデルの内容が<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-demo_user_model">図2.2</a>の表のとおりになるようにします (なお、<code>id</code>パラメータはRailsによって自動的に<em>主キー</em>としてデータベースに追加されるため、追加不要です)。</p>
 
-<p>続いてデモアプリケーションの開発を進めるには、以下のように<em>Rake</em>を使用してデータベースをマイグレート (<em>migrate</em>) する必要があります (<a class="ref" href="/chapters/a-demo-app?version=4.0#sidebar-rake">囲み2.1</a>)。</p>
+<p>続いてデモアプリケーションの開発を進めるには、以下のように<em>Rake</em>を使用してデータベースをマイグレート (<em>migrate</em>) する必要があります (<a class="ref" href="/chapters/a-demo-app?version=4.0#sidebar-rake">コラム 2.1</a>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
 <span class="go">==  CreateUsers: migrating =================================</span>
@@ -205,7 +205,7 @@
 <div class="label" id="sidebar-rake"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み2.1</span></span><span class="title"><span class="description">Rake</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 2.1</span></span><span class="title"><span class="description">Rake</span></span>
 <p>Unixでは、ソースコードから実行用プログラムをビルドするために主に<a href="http://en.wikipedia.org/wiki/Make_(software)"><em>make</em></a>というツールが使われてきました。多くのプログラマーが、肉体レベルにまで刻み込まれた以下のようなコマンドを実行して</p>
 
 <pre class="verbatim">  $ ./configure &amp;&amp; make &amp;&amp; sudo make install</pre>
@@ -331,7 +331,7 @@
 </ol>
 
 
-<p>まずはブラウザからのリクエストを見てみましょう。このリクエストは、アドレスバーにURLを入力したりリンクをクリックした時に発生します (<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-mvc_detailed">図2.11</a>の1)。 リクエストは<em>Railsルーター</em>に到達し (2)、ここでURL (とリクエストの種類: <a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">囲み3.2</a>参照) に基づいて適切な<em>コントローラのアクション</em>に割り当てられます (ディスパッチ)。ユーザーのURLをUsersリソースで使用するコントローラアクションに割り当てる (マッピングする) ためのコードは<a class="ref" href="/chapters/a-demo-app?version=4.0#code-rails_routes">リスト2.2</a>です。このコードは、 URLとアクションの組み合わせ (<a class="ref" href="/chapters/a-demo-app?version=4.0#table-user_urls">表2.1</a>) を効率的に作成します。(<code>:users</code>という一見奇妙な記法は、 <em>シンボル</em>と呼ばれるものです。詳細は<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">4.3.3</a>で説明します。)</p>
+<p>まずはブラウザからのリクエストを見てみましょう。このリクエストは、アドレスバーにURLを入力したりリンクをクリックした時に発生します (<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-mvc_detailed">図2.11</a>の1)。 リクエストは<em>Railsルーター</em>に到達し (2)、ここでURL (とリクエストの種類: <a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">コラム 3.2</a>参照) に基づいて適切な<em>コントローラのアクション</em>に割り当てられます (ディスパッチ)。ユーザーのURLをUsersリソースで使用するコントローラアクションに割り当てる (マッピングする) ためのコードは<a class="ref" href="/chapters/a-demo-app?version=4.0#code-rails_routes">リスト2.2</a>です。このコードは、 URLとアクションの組み合わせ (<a class="ref" href="/chapters/a-demo-app?version=4.0#table-user_urls">表2.1</a>) を効率的に作成します。(<code>:users</code>という一見奇妙な記法は、 <em>シンボル</em>と呼ばれるものです。詳細は<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">4.3.3</a>で説明します。)</p>
 
 <div class="label" id="code-rails_routes"></div>
 
@@ -406,7 +406,7 @@
 </div></div>
 
 
-<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力してもよいのですが)。<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="/chapters/a-demo-app?version=4.0#sidebar-REST">囲み2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="/chapters/a-demo-app?version=4.0#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_users">表2.2</a>のURLには重複しているものがあることにご注目ください。たとえば、<code>show</code>アクションと <code>update</code>アクションは、どちらも/users/1というURLに対応しています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/chapters/static-pages?version=4.0#sec-TDD">3.2.1</a>で説明します。</p>
+<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力してもよいのですが)。<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="/chapters/a-demo-app?version=4.0#sidebar-REST">コラム 2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="/chapters/a-demo-app?version=4.0#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_users">表2.2</a>のURLには重複しているものがあることにご注目ください。たとえば、<code>show</code>アクションと <code>update</code>アクションは、どちらも/users/1というURLに対応しています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/chapters/static-pages?version=4.0#sec-TDD">3.2.1</a>で説明します。</p>
 
 <div class="label" id="table-demo_RESTful_users"></div>
 
@@ -420,8 +420,8 @@
 <div class="label" id="sidebar-REST"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み2.2</span></span><span class="title"><span class="description">REpresentational State Transfer (REST)</span></span>
-<p>Rails関連の書籍を読んでいると “REST” という略語をよく見かけます。これはREpresentational State Transferの略です。RESTは、インターネットそのものやWebアプリケーションなどの、分散/ネットワーク化されたシステムやアプリケーションを構築するためのアーキテクチャのスタイルの1つです。REST理論そのものはかなり抽象的ですが、RailsアプリケーションにおけるRESTとは、アプリケーションを構成するコンポーネント (ユーザーやマイクロポストなど) を「<em>リソース</em>」としてモデル化することを指します。これらのリソースは、リレーショナルデータベースの<a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">作成/読み取り/更新/削除 (Create/Read/Update/Delete: CRUD) 操作</a>と、4つの基本的な<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a> (<tt>POST</tt>/<tt>GET</tt>/<tt>PATCH</tt>/<tt>DELETE</tt>) の両方に対応しています (HTTP requestメソッドの詳細については、<a class="ref" href="/chapters/static-pages?version=4.0#sec-TDD">3.2.1</a>、特に<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">囲み3.3</a>で説明します)。</p>
+<div class="sidebar"><span class="title"><span class="header">コラム 2.2</span></span><span class="title"><span class="description">REpresentational State Transfer (REST)</span></span>
+<p>Rails関連の書籍を読んでいると “REST” という略語をよく見かけます。これはREpresentational State Transferの略です。RESTは、インターネットそのものやWebアプリケーションなどの、分散/ネットワーク化されたシステムやアプリケーションを構築するためのアーキテクチャのスタイルの1つです。REST理論そのものはかなり抽象的ですが、RailsアプリケーションにおけるRESTとは、アプリケーションを構成するコンポーネント (ユーザーやマイクロポストなど) を「<em>リソース</em>」としてモデル化することを指します。これらのリソースは、リレーショナルデータベースの<a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">作成/読み取り/更新/削除 (Create/Read/Update/Delete: CRUD) 操作</a>と、4つの基本的な<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a> (<tt>POST</tt>/<tt>GET</tt>/<tt>PATCH</tt>/<tt>DELETE</tt>) の両方に対応しています (HTTP requestメソッドの詳細については、<a class="ref" href="/chapters/static-pages?version=4.0#sec-TDD">3.2.1</a>、特に<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">コラム 3.3</a>で説明します)。</p>
 
 <p>Rails開発者にとっては、RESTfulなスタイルを採用することで、作成すべきコントローラやアクションの決定が楽になります。作成(C)・読み取り(R)・更新(U)・削除(D)を行うリソースだけでアプリケーション全体を構成してしまうことすら可能です。ユーザーやマイクロポストなどに関しては自然にリソース化できるので問題ありません。<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>では、「ユーザーをフォローする」というやや複雑な課題をREST理論でモデリングします。</p>
 </div>
@@ -956,7 +956,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 <p>本書では以後、よい点を保ちつつこれらの弱点を克服していきます。</p>
 
 <div class="navigation">  <a class="prev_page" href="/chapters/beginning?version=4.0#top">
-</a><a class="prev_page" href="/chapters/beginning?version=4.0#top">    « <span class="number">第1章</span> ゼロから本番展開まで</a><a class="prev_page" href="/chapters/beginning?version=4.0#top">  </a>
+</a><a class="prev_page" href="/chapters/beginning?version=4.0#top">    « <span class="number">第1章</span> ゼロからデプロイまで</a><a class="prev_page" href="/chapters/beginning?version=4.0#top">  </a>
   <a class="next_page" href="/chapters/static-pages?version=4.0#top">
 </a><a class="next_page" href="/chapters/static-pages?version=4.0#top">    <span class="number">第3章</span>ほぼ静的なページの作成 »
 </a><a class="next_page" href="/chapters/static-pages?version=4.0#top">  </a>

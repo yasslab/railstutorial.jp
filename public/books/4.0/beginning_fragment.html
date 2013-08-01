@@ -1,17 +1,17 @@
 <div id="top"></div>
 
 
-<h1 class="chapter"><a id="sec-1" href="/chapters/beginning?version=4.0#top" class="heading"><span class="number">第1章</span> ゼロから本番展開まで</a></h1>
+<h1 class="chapter"><a id="sec-1" href="/chapters/beginning?version=4.0#top" class="heading"><span class="number">第1章</span> ゼロからデプロイまで</a></h1>
 
 
 <p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。この本の目的は、「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったウェブ開発を学びたいんだけど、何から始めればよいのでしょうか。」という質問に答えることです。<em>本書</em>を読み終わる頃には、あなたは自作のカスタムWebアプリケーションを開発し、展開 (deploy) するための知識をすべて得られるはずです。また、Railsの「教育エコシステム」なるものに含まれる、さらに高度な本、ブログ、スクリーンキャストなどの恩恵を受けるのにふさわしい実力を身につけられます。<em>Ruby on Railsチュートリアル</em>はRails 4を使用しているため、ここで学んだ内容はRailsの最新バージョンに完全に対応しています。(最新の<em>Ruby on Railsチュートリアル</em>については、この本が掲載されている<a href="http://railstutorial.jp/">http://railstutorial.jp/</a>を参照してください。本書をオフラインで読んでいる方は、<a href="http://railstutorial.jp/book">http://railstutorial.jp/book</a>の<a href="http://railstutorial.jp/book">オンライン版Rails Tutorial book</a>で最新版を確認してください。)</p>
 
-<p>(<em>注</em>: 最新のチュートリアルは、Rails 4.0という<em>バージョン</em>に向けられたものです。本書はRail 4.0向けに改定されましたが、<em>版 (エディション) </em>は更新されていませんのでご注意ください。Rails 4.0における変更は、本書の版を改めるほどではないと判断したためです。導入のためのチュートリアルという本書の立場から見て、Rail 4.0と旧Rails 3.2の違いはわずかです。もちろん、以下の<a class="ref" href="/chapters/beginning?version=4.0#sidebar-diffs">囲み1.1</a>に示したように、細かな変更は膨大な数にのぼりますが、本書にとって重要な違いは、<a class="ref" href="/chapters/sign-up?version=4.0#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>という新しいセキュリティ上の技法しかありません。今後Railsで重要な変更が生じれば、<em>Railsチュートリアル</em>の完全に新しい次期版の制作を計画します。そのときには、<em>Turbolinks</em>や<em>Russian doll caching</em>、<em>feature specs</em>などのRSpecの新しい側面も記事に取り込まれるでしょう。)</p>
+<p>(<em>注</em>: 最新のチュートリアルは、Rails 4.0という<em>バージョン</em>に向けられたものです。本書はRail 4.0向けに改定されましたが、<em>版 (エディション) </em>は更新されていませんのでご注意ください。Rails 4.0における変更は、本書の版を改めるほどではないと判断したためです。導入のためのチュートリアルという本書の立場から見て、Rail 4.0と旧Rails 3.2の違いはわずかです。もちろん、以下の<a class="ref" href="/chapters/beginning?version=4.0#sidebar-diffs">コラム 1.1</a>に示したように、細かな変更は膨大な数にのぼりますが、本書にとって重要な違いは、<a class="ref" href="/chapters/sign-up?version=4.0#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>という新しいセキュリティ上の技法しかありません。今後Railsで重要な変更が生じれば、<em>Railsチュートリアル</em>の完全に新しい次期版の制作を計画します。そのときには、<em>Turbolinks</em>や<em>Russian doll caching</em>、<em>feature specs</em>などのRSpecの新しい側面も記事に取り込まれるでしょう。)</p>
 
 <div class="label" id="sidebar-diffs"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み1.1</span></span><span class="title"><span class="description">第2版との違いについて</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 1.1</span></span><span class="title"><span class="description">第2版との違いについて</span></span>
 <p>以下は、<em>Ruby on Railsチュートリアル</em>の第2版と現行のバージョンの違いについての (ほぼ) 網羅的なリストです (重要な違いはStrong Parametersだけであり、その他の違いはどちらかといえば些細なものです) 。このリストは、第2版の読者またはRails 3.2に慣れ親しんた方向けに違いをまとめたものです。Rails 3.2を扱ったことがない方は、以下のリストを読み飛ばしてもかまいません。</p>
 
 <p>以下のリストには、関連する節へのリンクまたは変更コード例へのリンクを含めてあります。</p>
@@ -21,7 +21,7 @@
 <li>Capybara DSLを明示的にインクルード (<a class="ref" href="/chapters/static-pages?version=4.0#code-capybara_dsl">リスト3.10</a>)</li>
 <li>RSpecの<code>.should</code>を<code>expect().to</code>に変更 (<a class="ref" href="/chapters/static-pages?version=4.0#sec-TDD">3.2.1</a>)</li>
 <li><code>have_selector(’title’, …)</code>を<code>have_title(…)</code>に変更 (<a class="ref" href="/chapters/static-pages?version=4.0#sec-testing_a_title_change">3.3.1</a>)</li>
-<li>HTTP verbを<tt>PUT</tt>から<tt>PATCH</tt>に変更 (<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">囲み3.3</a>)</li>
+<li>HTTP verbを<tt>PUT</tt>から<tt>PATCH</tt>に変更 (<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">コラム 3.3</a>)</li>
 <li>Turbolinks用のハッシュ引数をスタイルシートとJavaScriptに追加 (<a class="ref" href="/chapters/static-pages?version=4.0#code-application_layout">リスト3.26</a>)</li>
 <li><code>root to: ’path’</code>を<code>root ’path’</code>に変更 (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-root_route">リスト5.24</a>)</li>
 <li><code>find_by_thing(…)</code>を<code>find_by(thing: …)</code>に変更 (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>)</li>
@@ -44,7 +44,7 @@
 
 <p>この第1章では、必要なソフトウェアをインストールし、開発環境 (<a class="ref" href="/chapters/beginning?version=4.0#sec-up_and_running">1.2</a>) を整えてRuby on Railsの準備をします。続いて、<code>first_app</code> という最初のRailsアプリの作成に着手します。<em>Railsチュートリアル</em>ではソフトウェア開発のベストプラクティスを重要視しているので、新しいRailsプロジェクトを作成後、ただちにGit (<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>) を使用してバージョン管理下に置きます。そして何と、この章では本番 (production) 環境 (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>) に<em>展開して一般公開する</em>ところまで行います。</p>
 
-<p><a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/chapters/beginning?version=4.0#sidebar-scaffolding">囲み1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/chapters/beginning?version=4.0#fn-1_1">1</a></sup>と呼ばれることもあります)を指定してデモアプリを使ってみます。</p>
+<p><a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/chapters/beginning?version=4.0#sidebar-scaffolding">コラム 1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/chapters/beginning?version=4.0#fn-1_1">1</a></sup>と呼ばれることもあります)を指定してデモアプリを使ってみます。</p>
 
 <p>第3章以降では、<em>サンプルアプリケーション</em> (<code>sample_app</code>と呼びます) を作成します。このアプリはTDD(<em>テストドリブン開発</em> で開発を進め、<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>で静的ページ (と若干の動的コンテンツ) を追加するところから始めます。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a>では少し回り道をし、Railsを動かしているRuby言語について簡単に学びます。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>から<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>ではレイアウト、ユーザーのデータモデル、そしてユーザー登録・認証システムを作りサンプルアプリの基礎を完成させます。最後に<a class="ref" href="/chapters/user-microposts?version=4.0#top">第10章</a>と<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>ではマイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
 
@@ -53,7 +53,7 @@
 <div class="label" id="sidebar-scaffolding"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み1.2</span></span><span class="title"><span class="description">早くて簡単なScaffoldの甘い誘惑</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 1.2</span></span><span class="title"><span class="description">早くて簡単なScaffoldの甘い誘惑</span></span>
 <p>Railsの作者David Heinemer Hansson氏による有名な「<a href="http://www.youtube.com/watch?v=Gzj723LkRJY">15分で作るブログ</a>」ビデオ (現在はRyan Bates氏による「Rails 2による15分で作るブログ」に更新されています) などを見ていただければわかるように、Railsは誕生したときから刺激的なフレームワークです。これらのビデオはRailsのパワーを目の当たりにするには最適であり、ぜひ視聴する事をお勧めします。しかし、これらのビデオでは15分でブログを作るという離れ業を、<em>scaffold</em>という機能を利用して成し遂げています。このscaffoldという機能は、Railsの<code>generate</code>コマンドによる<em>自動生成コード</em>に強く依存します。</p>
 
 <p>Ruby on Railsのチュートリアルを書いていて、<a href="http://en.wikipedia.org/wiki/Dark_side_(Star_Wars)">あまりにも素早く簡単にコードが生成できる</a> (訳注: 原文「quicker, easier, more seductive」はスターウォーズ (エピソードV) のヨーダの台詞の引用) scaffoldの機能を著者もついあてにしてしまいそうになります。しかし、初心者は生成されたコードの複雑さとその量の多さに圧倒されてしまうことでしょう。どうにか動いても、ソースコードを見ても何が行われているのか理解できないことでしょう。scaffoldのコード自動生成に頼っていると、スクリプト作成の達人にはなるかもしれませんが、Rails自体の知識はほとんど身に付きません。</p>
@@ -1258,9 +1258,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h2><a id="sec-1_4" href="/chapters/beginning?version=4.0#sec-deploying" class="heading"><span class="number">1.4</span>展開する</a></h2>
 
 
-<p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境に展開 (デプロイ: deploy) してしまいましょう。アプリケーションの展開は必須ではありませんが、頻繁に本番展開することによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境に展開しないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_20"><a href="/chapters/beginning?version=4.0#fn-1_20">20</a></sup>。</p>
+<p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境に展開 (デプロイ: deploy) してしまいましょう。アプリケーションの展開は必須ではありませんが、頻繁にデプロイすることによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境に展開しないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_20"><a href="/chapters/beginning?version=4.0#fn-1_20">20</a></sup>。</p>
 
-<p>かつてはRailsアプリの本番展開は大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx23<sup class="footnote" id="fnref-1_21"><a href="/chapters/beginning?version=4.0#fn-1_21">21</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスデプロイメントを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
+<p>かつてはRailsアプリのデプロイは大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx23<sup class="footnote" id="fnref-1_21"><a href="/chapters/beginning?version=4.0#fn-1_21">21</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスデプロイメントを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
 
 <p>著者のお気に入りはHerokuで、Railsを含むRuby Webアプリ用のホスティングプラットフォームです。Herokuは、ソースコードのバージョン管理にGitを使用していれば、Railsアプリケーションを簡単に本番環境に展開できます (Gitを導入したのは、まさにこのHerokuで使うためでもあります。まだGitをインストールしていない方は<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>を参照してください)。この章では、最初のアプリケーションをHerokuに展開します。</p>
 

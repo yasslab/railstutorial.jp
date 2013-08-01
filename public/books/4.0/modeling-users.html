@@ -14,14 +14,14 @@
 <h1 class="chapter"><a id="sec-6" href="/chapters/modeling-users?version=4.0#top" class="heading"><span class="number">第6章</span>ユーザーのモデルを作成する</a></h1>
 
 
-<p><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>では、新しいユーザーを作成するためのスタブページを作ったところで終わりました (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-user_signup">5.4</a>)。これから4つの章を通して、ユーザー登録ページを作っていくことにしましょう。最初の一番重要なステップは、サイトのユーザー用の<em>データモデル</em>の作成と、データを保存する手段の確保です。<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>では、ユーザーがサイトにユーザー登録できるようにし、ユーザープロファイルのためのページを作成します。ユーザー登録ができるようになると、次にサインイン、サインアウトもできるようにします (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>)。そして<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a> (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-requiring_signed_in_users">9.2.1</a>) では、不正なアクセスから守る方法を学びます。まとめると、<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>から<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>を通して、Railsのログインと認証のシステムをひととおり開発します。ご存知の方もいると思いますが、Railsでは既にさまざまな認証方法が利用可能です。<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-roll_your_own">囲み6.1</a>では、最初に少なくとも一度は自分で認証システムを作ってみることをお勧めする理由について説明しています。</p>
+<p><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>では、新しいユーザーを作成するためのスタブページを作ったところで終わりました (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-user_signup">5.4</a>)。これから4つの章を通して、ユーザー登録ページを作っていくことにしましょう。最初の一番重要なステップは、サイトのユーザー用の<em>データモデル</em>の作成と、データを保存する手段の確保です。<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>では、ユーザーがサイトにユーザー登録できるようにし、ユーザープロファイルのためのページを作成します。ユーザー登録ができるようになると、次にサインイン、サインアウトもできるようにします (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>)。そして<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a> (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-requiring_signed_in_users">9.2.1</a>) では、不正なアクセスから守る方法を学びます。まとめると、<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>から<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>を通して、Railsのログインと認証のシステムをひととおり開発します。ご存知の方もいると思いますが、Railsでは既にさまざまな認証方法が利用可能です。<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-roll_your_own">コラム 6.1</a>では、最初に少なくとも一度は自分で認証システムを作ってみることをお勧めする理由について説明しています。</p>
 
 <p>この章は長いうえに、学ぶことがたくさんあります。特に、これまでデータモデリングをしたことがない人にとっては、もしかすると、これまでとは違った難しさを感じるかもしれません。しかし、この章が終わるまでには、ユーザー情報の検証、保存、取得ができる極めて強力なシステムを作成します。</p>
 
 <div class="label" id="sidebar-roll_your_own"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み6.1</span></span><span class="title"><span class="description">自分で認証システムを作ってみる</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.1</span></span><span class="title"><span class="description">自分で認証システムを作ってみる</span></span>
 <p>事実上、すべてのWebアプリケーションは何らかのログイン/認証システムを必要とします。そのため、多くのWebフレームワークではこのようなログイン/認証システムを実装するための選択肢が多数提供されています。Railsもまた例外ではありません。認証 (authentication) と認可 (authorization) のシステムの例だと、<a href="http://github.com/thoughtbot/clearance">Clearance</a>、<a href="http://github.com/binarylogic/authlogic">Authlogic</a>、<a href="http://github.com/plataformatec/devise">Devise</a>、<a href="http://railscasts.com/episodes/192-authorization-with-cancan">CanCan</a>などがあります (Railsに限らなければ<a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a>や<a href="http://en.wikipedia.org/wiki/Oauth">OAuth</a>の上に構築する方法もあります)。 なぜ車輪の再発明をするのか、という質問があるのも当然です。自分でわざわざ作らなくても、いつも使える方法をただ利用するだけではいけないのでしょうか。</p>
 
 <p>ある実践的な実験によると、多くのサイトの認証システムは膨大なカスタマイズを必要とするため、サードパーティ製品を変更して導入する場合にはシステムをゼロから作成するよりも多くの仕事を要するという結果が出ています。加えて、既成品のシステムは内部がわかりづらいことが多く、ブラックボックスになっています。自分で作成したシステムであれば、それをとてもよく理解しているはずです。さらに言えば、最近のRailsへの変更 (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>) により、カスタム認証システムを容易に作成できるようになりました。最後に、<em>あえて</em>最終的にサードパーティの認証システムを導入することになったとしても、自分自身で認証システムを構築した経験があれば、サードパーティ製品を理解して変更することがずっと容易になるはずです。</p>
@@ -133,7 +133,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_model_initial.png" alt="user_model_initial" /></span></div><div class="caption"><span class="header">図6.2</span><span class="description"><a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>によるユーザーデータモデル</span></div></div>
 
 
-<p>マイグレーションは、以下のように<code>rake</code>コマンド (<a class="ref" href="/chapters/a-demo-app?version=4.0#sidebar-rake">囲み2.1</a>) を使って実行することができます。これを「マイグレーションの適用 (migrating up)」と呼びます。</p>
+<p>マイグレーションは、以下のように<code>rake</code>コマンド (<a class="ref" href="/chapters/a-demo-app?version=4.0#sidebar-rake">コラム 2.1</a>) を使って実行することができます。これを「マイグレーションの適用 (migrating up)」と呼びます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
 </pre></div>
@@ -155,7 +155,7 @@
 </div>
 
 
-<p>(<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-undoing_things">囲み3.2</a>では、マイグレーションを元に戻すための便利なテクニックを他にも紹介しています)。上のコマンドでは、データベースからusersテーブルを削除するために<code>drop_table</code>コマンドを内部で呼び出しています。これがうまくいくのは、<code>change</code>メソッドは<code>drop_table</code>が<code>create_table</code>の逆であることを知っているからです。つまり、ロールバック用の逆方向マイグレーションを簡単に導くことができるのです。あるカラムを削除するような不可逆なマイグレーションの場合は、<code>change</code>メソッドの代わりに、<code>up</code>と<code>down</code>のメソッドを別々に定義する必要があります。詳細については、「<a href="http://guides.rubyonrails.org/migrations.html">Rails Guidesのマイグレーション</a> (英語)」を参照してください。</p>
+<p>(<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-undoing_things">コラム 3.2</a>では、マイグレーションを元に戻すための便利なテクニックを他にも紹介しています)。上のコマンドでは、データベースからusersテーブルを削除するために<code>drop_table</code>コマンドを内部で呼び出しています。これがうまくいくのは、<code>change</code>メソッドは<code>drop_table</code>が<code>create_table</code>の逆であることを知っているからです。つまり、ロールバック用の逆方向マイグレーションを簡単に導くことができるのです。あるカラムを削除するような不可逆なマイグレーションの場合は、<code>change</code>メソッドの代わりに、<code>up</code>と<code>down</code>のメソッドを別々に定義する必要があります。詳細については、「<a href="http://guides.rubyonrails.org/migrations.html">Rails Guidesのマイグレーション</a> (英語)」を参照してください。</p>
 
 <p>もし今の時点でデータベースのロールバックを実行していた場合は、先に進む前にもう一度以下のようにマイグレーションを適用して元に戻してください。</p>
 
@@ -1161,12 +1161,12 @@
 
 <p><a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase">リスト6.20</a>のコードは、<code>before_save</code>コールバックにブロックを渡してユーザーのメールアドレスを設定します。設定されるメールアドレスは、現在の値をStringクラスの<code>downcase</code>メソッドを使って小文字バージョンにしたものです。このコードは少し上級者向けなので、今はただ、このコードが動作することを信じてください。それでは気の済まない方は、<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email">リスト6.16</a>から一意性の検証部分をコメントアウトし、重複したメールアドレスを持つユーザーを試しに作成してみれば、エラーが発生するはずです (このテクニックについては<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>でもう一度取り上げます。そこではお勧めの<em>メソッド参照</em>方法の慣習について説明します)。<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase">リスト6.20</a>のコード用テストの作成は演習に回します (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-modeling_users_exercises">6.5</a>)。</p>
 
-<p>これで、先に述べたアリスのシナリオはうまくいくようになります。データベースは、最初のリクエストに基づいてユーザーのレコードを保存しますが、2度目の保存は一意性の制約に反するので拒否します (Railsのログにエラーが出力されますが、害は生じません。ここで発生した<code>ActiveRecord::StatementInvalid</code>例外を実際にキャッチすることもできますが、このチュートリアルでは解説しません)。インデックスをemail属性に追加したことで、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>で述べた2番目の目標 (エントリ多数の場合の検索効率向上) も達成されます。これは、<code>find_by</code>の効率の問題がインデックスによって解決されたためです (<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-database_indices">囲み6.2</a>)。</p>
+<p>これで、先に述べたアリスのシナリオはうまくいくようになります。データベースは、最初のリクエストに基づいてユーザーのレコードを保存しますが、2度目の保存は一意性の制約に反するので拒否します (Railsのログにエラーが出力されますが、害は生じません。ここで発生した<code>ActiveRecord::StatementInvalid</code>例外を実際にキャッチすることもできますが、このチュートリアルでは解説しません)。インデックスをemail属性に追加したことで、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>で述べた2番目の目標 (エントリ多数の場合の検索効率向上) も達成されます。これは、<code>find_by</code>の効率の問題がインデックスによって解決されたためです (<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-database_indices">コラム 6.2</a>)。</p>
 
 <div class="label" id="sidebar-database_indices"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み6.2</span></span><span class="title"><span class="description">データベースのインデックス</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.2</span></span><span class="title"><span class="description">データベースのインデックス</span></span>
 <p>データベースにカラムを作成するとき、そのカラムでレコードを<em>検索する (find) </em>必要があるかどうかを考えることは重要です。たとえば、<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>のマイグレーションによって作成された<tt>email</tt>属性について考えてみましょう。<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>ではユーザーをサンプルアプリにログインできるようにしますが、このとき、送信されたものと一致するメールアドレスのユーザーのレコードをデータベースの中から探しだす必要があります。残念なことに、(インデックスなどの機能を持たない) 素朴なデータモデルにおいてユーザーをメールアドレスで検索するには、データベースの<em>ひとりひとりの</em>ユーザーの行を端から順に読み出し、そのemail属性と与えられたメールアドレスを比較するという非効率的な方法しかありません。これは、データベースの世界では<em>全表スキャン</em>として知られており、数千のユーザーがいる実際のサイトでは<a href="http://catb.org/jargon/html/B/Bad-Thing.html">きわめて不都合</a>です。</p>
 
 <p>emailカラムにインデックスを追加することで、この問題を解決することができます。データベースのインデックスを理解するためには、本の索引との類似性を考えるとよいでしょう。本の中で、与えられた言葉 (例えば、“foobar”) が出てくる箇所をすべて見つけるためには、ページを端から順にめくって最後まで探す必要があります。本の索引を利用すれば、“foobar”を含むすべてのページを索引の中から探すだけで済みます。データベースのインデックスも本質的には本の索引と同じように動作します。</p>
@@ -1516,7 +1516,7 @@
 </div>
 
 
-<p>これまでいくつかの演習で<code>let</code>メソッドを使用してきましたが、今回のようにチュートリアルの本文で言及するのはこれが初めてです。<code>let</code>メソッドの詳細については<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">囲み6.3</a>を参照してください。</p>
+<p>これまでいくつかの演習で<code>let</code>メソッドを使用してきましたが、今回のようにチュートリアルの本文で言及するのはこれが初めてです。<code>let</code>メソッドの詳細については<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">コラム 6.3</a>を参照してください。</p>
 
 <p>2つの<code>describe</code>ブロックでは、<code>@user</code>と<code>found_user</code>が一致する (パスワードが一致する) 場合と一致しない (パスワードが一致しない) 場合についてそれぞれテストします。コードで使用されている<code>eq</code>は、オブジェクト同士が同値であるかどうかを調べます (eqの内部では<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-arrays_and_ranges">4.3.1</a>で説明した二重等号演算子<code>==</code>を使用してオブジェクトが同値であるかどうかを確認しています)。以下のコードにご注目ください。</p>
 
@@ -1535,7 +1535,7 @@
 <div class="label" id="sidebar-let"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">囲み6.3</span></span><span class="title"><span class="description"><tt>let</tt>メソッド</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.3</span></span><span class="title"><span class="description"><tt>let</tt>メソッド</span></span>
 <p>RSpecの<tt>let</tt>メソッドを使用すると、テスト内で簡単にローカル変数を作成することができます。文法は一見奇妙ですが、動作は変数への割り当てと似ています。<tt>let</tt>の引数はシンボルであり、さらにブロックを引数に取ります。そのブロックは、このシンボル名を持つローカル変数に値を返します。つまり、以下のコードを実行すると、</p>
 
 <pre class="verbatim">let(:found_user) { User.find_by(email: @user.email) }</pre>
@@ -1604,7 +1604,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">囲み6.3</a>で解説したように、<code>let</code>では値がメモ化されます。これにより、<a class="ref" href="/chapters/modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>にある、ネストしている最初の<code>describe</code>ブロックは<code>let</code>で<code>find_by</code>を使用してデータベースからユーザーを取得します。しかしその次のネストしている<code>describe</code>ブロックは (メモ化された値を利用するので) データベースにアクセスしません。</p>
+<p><a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">コラム 6.3</a>で解説したように、<code>let</code>では値がメモ化されます。これにより、<a class="ref" href="/chapters/modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>にある、ネストしている最初の<code>describe</code>ブロックは<code>let</code>で<code>find_by</code>を使用してデータベースからユーザーを取得します。しかしその次のネストしている<code>describe</code>ブロックは (メモ化された値を利用するので) データベースにアクセスしません。</p>
 
 <div class="label" id="sec-has_secure_password"></div>
 

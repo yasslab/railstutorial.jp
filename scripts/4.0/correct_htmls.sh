@@ -11,6 +11,8 @@ re_array=( \
     "s/http:\/\/railstutorial.jp\/help/http:\/\/railstutorial.org\/help/g" \
     "s/http:\/\/railstutorial.jp\/books\/4.0/\/chapters/g" \
     "s/v3.2.13\/v3.2.13/v3.2.13/g" \
+    "s/本番展開/デプロイ/g" \
+    "s/囲み/コラム /g" \
     "s/confi\/initializers\/secret_token\.rb/config\/initializers\/secret_token\.rb/g"
     )
 #          "s/railstutorial.org/railstutorial.jp/g" \

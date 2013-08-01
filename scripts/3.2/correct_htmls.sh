@@ -12,6 +12,8 @@ re_array=("s/http:\/\/railstutorial-ja.herokuapp.com/\/chapters/g" \
           "s/chapters\/polytexnic.css/stylesheets\/polytexnic.css/g" \
 	  "s/フルサイズ/拡大/g" \
 	  "s/テストドリブン/テスト駆動/g" \
+	  "s/本番展開/デプロイ/g" \
+	  "s/囲み/コラム /g" \
 	  "s/active_record_validations_callbacks/v3.2.13\/active_record_validations_callbacks/g" \
 )
 
