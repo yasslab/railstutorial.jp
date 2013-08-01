@@ -2144,15 +2144,16 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>プログラミング経験を重ねるうちに、以下のような制御フローが最もよく使用される、ありふれたものであることはすぐにわかると思います。</p>
 
-<pre class="verbatim">  if boolean?
-    何かをする
-else    別のことをする
-end</pre>
+<pre class="verbatim">if boolean?
+  何かをする
+  else
+  別のことをする
+  end</pre>
 
 
 <p>Rubyや他の言語 (C/C++、Perl、PHP、Javaなど) では、上のようなフローをよりコンパクトな<em>3項演算子</em>と呼ばれる表現で置き換えることができます (3つの部分から構成されるためそのように呼ばれます)。</p>
 
-<pre class="verbatim">    boolean? ? 何かをする : 別のことをする</pre>
+<pre class="verbatim">  boolean? ? 何かをする : 別のことをする</pre>
 
 
 <p>また、3項演算子で代入文を置き換えることもできます。</p>
@@ -2161,7 +2162,7 @@ end</pre>
     var = foo
   else 
     var = bar
-end</pre>
+  end</pre>
 
 
 <p>上のコードは以下のように1行で書けます。</p>
@@ -2174,7 +2175,7 @@ end</pre>
 <pre class="verbatim">  def foo
     do_stuff
     boolean? ? &quot;bar&quot; : &quot;baz&quot;
-end</pre>
+  end</pre>
 
 
 <p>Rubyは暗黙的に関数の最後の式の値を返すので、ここでは<tt>foo</tt>メソッドは<tt>boolean?</tt>の値によって<tt>&quot;bar&quot;</tt>または<tt>&quot;baz&quot;</tt>を返します。この手法は<a class="ref" href="/chapters/user-microposts?version=4.0#code-wrap">リスト10.47</a>の最後の部分でも使用しています。</p>

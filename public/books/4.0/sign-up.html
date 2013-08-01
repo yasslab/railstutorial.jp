@@ -161,7 +161,7 @@
 
 <p>これは<code>params</code>の内容で、YAML<sup class="footnote" id="fnref-7_3"><a href="/chapters/sign-up?version=4.0#fn-7_3">3</a></sup>というものです。YAMLは基本的にハッシュであり、コントローラとページのアクションを一意に指定します。<a class="ref" href="/chapters/sign-up?version=4.0#sec-a_users_resource">7.1.2</a>には別の例もあります。</p>
 
-<p>本番環境に展開したアプリケーションではデバッグ情報を表示したくないので、<a class="ref" href="/chapters/sign-up?version=4.0#code-rails_debug">リスト7.1</a>には以下を記述してあります。</p>
+<p>本番環境にデプロイしたアプリケーションではデバッグ情報を表示したくないので、<a class="ref" href="/chapters/sign-up?version=4.0#code-rails_debug">リスト7.1</a>には以下を記述してあります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development?</span>
 </pre></div>
@@ -1758,12 +1758,12 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="label" id="sec-deploying_to_production_with_ssl"></div>
 
 
-<h3><a id="sec-7_4_4" href="/chapters/sign-up?version=4.0#sec-deploying_to_production_with_ssl" class="heading"><span class="number">7.4.4</span> SSLを導入して本番環境を展開する</a></h3>
+<h3><a id="sec-7_4_4" href="/chapters/sign-up?version=4.0#sec-deploying_to_production_with_ssl" class="heading"><span class="number">7.4.4</span> SSLを導入して本番環境をデプロイする</a></h3>
 
 
-<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境に展開しましょう (<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 デプロイの作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="/chapters/sign-up?version=4.0#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプリアプリケーションのユーザー登録 (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>)。</p>
+<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境にデプロイしましょう (<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 デプロイの作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="/chapters/sign-up?version=4.0#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプリアプリケーションのユーザー登録 (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>)。</p>
 
-<p>展開の下準備として、この時点で変更を<code>master</code>ブランチにマージしておきます。</p>
+<p>デプロイの下準備として、この時点で変更を<code>master</code>ブランチにマージしておきます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
 <span class="gp">$</span> git commit -m <span class="s2">&quot;Finish user signup&quot;</span>
@@ -1773,7 +1773,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>展開されたアプリケーションが期待どおりに動作するために、SSLが本番環境で動作するための行を1つ追加します。そのためには、<code>config/environments/production.rb</code>ファイルを <a class="ref" href="/chapters/sign-up?version=4.0#code-ssl_in_production">リスト7.29</a>のように変更します。</p>
+<p>デプロイされたアプリケーションが期待どおりに動作するために、SSLが本番環境で動作するための行を1つ追加します。そのためには、<code>config/environments/production.rb</code>ファイルを <a class="ref" href="/chapters/sign-up?version=4.0#code-ssl_in_production">リスト7.29</a>のように変更します。</p>
 
 <div class="label" id="code-ssl_in_production"></div>
 

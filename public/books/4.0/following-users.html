@@ -104,7 +104,7 @@
 </div>
 
 
-<p>このコードは自動的に、<code>user.followed_users</code>を「フォローしているユーザー」の配列を使用して展開します。このデータモデルの模式図を<a class="ref" href="/chapters/following-users?version=4.0#fig-user_has_many_following">図11.7</a>に示します。</p>
+<p>このコードは自動的に、<code>user.followed_users</code>を「フォローしているユーザー」の配列を使用してデプロイします。このデータモデルの模式図を<a class="ref" href="/chapters/following-users?version=4.0#fig-user_has_many_following">図11.7</a>に示します。</p>
 
 <div class="label" id="fig-user_has_many_following"></div>
 
@@ -591,7 +591,7 @@
 <h3><a id="sec-11_1_5" href="/chapters/following-users?version=4.0#sec-followers" class="heading"><span class="number">11.1.5</span>フォロワー</a></h3>
 
 
-<p>リレーションシップというパズルの最後の一片は、<code>user.followers</code>メソッドを追加することです。これは上の<code>user.followed_users</code>メソッドと対になります。<a class="ref" href="/chapters/following-users?version=4.0#fig-user_has_many_following">図11.7</a>を見ていて気付いた方もいると思いますが、フォロワーの配列を展開するために必要な情報は、<code>relationships</code>テーブルに既にあります。実は、<code>follower_id</code>と<code>followed_id</code>を入れ替えるだけで、フォロワーについてもユーザーのフォローのときとまったく同じ方法が使用できます。ということは、何らかの方法で2つのカラムを入れ替えた<code>reverse_relationships</code>テーブルを用意することができれば (<a class="ref" href="/chapters/following-users?version=4.0#fig-user_has_many_followers">図11.9</a>)、<code>user.followers</code>を最小限の手間で実装できることになります。</p>
+<p>リレーションシップというパズルの最後の一片は、<code>user.followers</code>メソッドを追加することです。これは上の<code>user.followed_users</code>メソッドと対になります。<a class="ref" href="/chapters/following-users?version=4.0#fig-user_has_many_following">図11.7</a>を見ていて気付いた方もいると思いますが、フォロワーの配列をデプロイするために必要な情報は、<code>relationships</code>テーブルに既にあります。実は、<code>follower_id</code>と<code>followed_id</code>を入れ替えるだけで、フォロワーについてもユーザーのフォローのときとまったく同じ方法が使用できます。ということは、何らかの方法で2つのカラムを入れ替えた<code>reverse_relationships</code>テーブルを用意することができれば (<a class="ref" href="/chapters/following-users?version=4.0#fig-user_has_many_followers">図11.9</a>)、<code>user.followers</code>を最小限の手間で実装できることになります。</p>
 
 <div class="label" id="fig-user_has_many_followers"></div>
 
@@ -2228,7 +2228,7 @@
 <h2><a id="sec-11_4" href="/chapters/following-users?version=4.0#sec-following_conclusion" class="heading"><span class="number">11.4</span>最後に</a></h2>
 
 
-<p>ステータスフィードが追加され、<em>Ruby on Railsチュートリアル</em>の中心となるサンプルアプリケーションがとうとう完成しました。このサンプルアプリケーションには、Railsの主要な機能 (モデル、ビュー、コントローラ、テンプレート、パーシャル、フィルタ、検証、コールバック、<code>has_many</code>/<code>belongs_to</code>/<code>has_many through</code>関連付け、セキュリティ、テスティング、展開) が多数含まれています。これだけでもかなりの量ですが、Railsについて学ぶべきことはまだまだたくさんあります。今後の学習の手始めとするために、この節ではサンプルアプリケーションのコア部分のさまざまな拡張方法を提案し、それぞれに必要な学習内容についても示します。</p>
+<p>ステータスフィードが追加され、<em>Ruby on Railsチュートリアル</em>の中心となるサンプルアプリケーションがとうとう完成しました。このサンプルアプリケーションには、Railsの主要な機能 (モデル、ビュー、コントローラ、テンプレート、パーシャル、フィルタ、検証、コールバック、<code>has_many</code>/<code>belongs_to</code>/<code>has_many through</code>関連付け、セキュリティ、テスティング、デプロイ) が多数含まれています。これだけでもかなりの量ですが、Railsについて学ぶべきことはまだまだたくさんあります。今後の学習の手始めとするために、この節ではサンプルアプリケーションのコア部分のさまざまな拡張方法を提案し、それぞれに必要な学習内容についても示します。</p>
 
 <p>アプリケーションの拡張に取りかかる前に、まずは現状の変更をマージしておきましょう。</p>
 
@@ -2240,7 +2240,7 @@
 </div>
 
 
-<p>必要であれば、いつものようにコードをプッシュして展開します。</p>
+<p>必要であれば、いつものようにコードをプッシュしてデプロイします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push
 <span class="gp">$</span> git push heroku

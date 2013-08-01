@@ -58,7 +58,7 @@
 </div></div>
 
 
-<p>このGemfileでは、開発環境とテスト環境で<tt>rspec-rails</tt>を使うようにしています。このため、開発環境ではRSpec固有のジェネレーターにアクセスすることができます。同様に、テスト環境ではRSpecを使用してテストを実行できるようになります。Gemfileに記述した<tt>rspec-rails</tt>が依存関係を解決してくれるため、 個々の環境にRSpec自身を手動でインストールする必要がなくなり、自動的にインストールされるようになります。同様の理由で、<a href="https://github.com/jnicklas/capybara">Capybara</a>もGemfileに記述しています。これは、英語に近い文法を使って、ユーザーの対話的操作をシミュレーションできるGemです<sup class="footnote" id="fnref-3_1"><a href="/chapters/static-pages.html#fn-3_1">1</a></sup>。また、<a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>でも扱ったように、Herokuに展開するときにはPostgreSQLのgemを本番環境に追加します。</p>
+<p>このGemfileでは、開発環境とテスト環境で<tt>rspec-rails</tt>を使うようにしています。このため、開発環境ではRSpec固有のジェネレーターにアクセスすることができます。同様に、テスト環境ではRSpecを使用してテストを実行できるようになります。Gemfileに記述した<tt>rspec-rails</tt>が依存関係を解決してくれるため、 個々の環境にRSpec自身を手動でインストールする必要がなくなり、自動的にインストールされるようになります。同様の理由で、<a href="https://github.com/jnicklas/capybara">Capybara</a>もGemfileに記述しています。これは、英語に近い文法を使って、ユーザーの対話的操作をシミュレーションできるGemです<sup class="footnote" id="fnref-3_1"><a href="/chapters/static-pages.html#fn-3_1">1</a></sup>。また、<a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>でも扱ったように、HerokuにデプロイするときにはPostgreSQLのgemを本番環境に追加します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.12.2&#39;</span>
@@ -139,7 +139,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>ここまで作業を進めると、<a href="https://github.com/railstutorial/sample_app_2nd_ed">GitHubに上がっているRailsチュートリアルのサンプルアプリケーション</a>のようになります (名前は若干異なりますが)<sup class="footnote" id="fnref-3_4"><a href="/chapters/static-pages.html#fn-3_4">4</a></sup>。</p>
 
-<p>もちろん、この時点でHerokuに展開することもできます。</p>
+<p>もちろん、この時点でHerokuにデプロイすることもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku create --stack cedar
 <span class="gp">$</span> git push heroku master
@@ -147,7 +147,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>なお、本書を進める間、アプリケーションを定期的にGitHubにプッシュしたり、Herokuに展開することをお勧めします。</p>
+<p>なお、本書を進める間、アプリケーションを定期的にGitHubにプッシュしたり、Herokuにデプロイすることをお勧めします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push
 <span class="gp">$</span> git push heroku
@@ -155,7 +155,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>これにより、リモート環境にバックアップを置くことができ、本番環境で発生するエラーをなるべく早期に発見することができます。なお、Herokuに展開するときにエラーが発生した場合は、以下のコマンドを実行して本番環境のログを取得してください。このログは、問題を特定するときに役立ちます。</p>
+<p>これにより、リモート環境にバックアップを置くことができ、本番環境で発生するエラーをなるべく早期に発見することができます。なお、Herokuにデプロイするときにエラーが発生した場合は、以下のコマンドを実行して本番環境のログを取得してください。このログは、問題を特定するときに役立ちます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku logs
 </pre></div>
@@ -1425,7 +1425,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>好みに応じて、更新したアプリケーションをHerokuに展開しても構いません。</p>
+<p>好みに応じて、更新したアプリケーションをHerokuにデプロイしても構いません。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push heroku
 </pre></div>

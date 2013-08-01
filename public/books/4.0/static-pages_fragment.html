@@ -178,7 +178,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>ここまで作業を進めると、<a href="https://github.com/railstutorial/sample_app_rails_4">著者がGitHubにアップロードしたRailsチュートリアルのサンプルアプリケーション</a>のようになります (ユーザー名は<tt>railstutorial</tt>で、アプリケーション名は<tt>sample_app_rails_4</tt>と若干異なります)<sup class="footnote" id="fnref-3_4"><a href="/chapters/static-pages?version=4.0#fn-3_4">4</a></sup>。</p>
 
-<p>もちろん、この時点でHerokuに展開することもできます。</p>
+<p>もちろん、この時点でHerokuにデプロイすることもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku create
 <span class="gp">$</span> git push heroku master
@@ -187,7 +187,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>なお、本書を進める間、アプリケーションを定期的にGitHubにプッシュしたり、Herokuに展開することをお勧めします。</p>
+<p>なお、本書を進める間、アプリケーションを定期的にGitHubにプッシュしたり、Herokuにデプロイすることをお勧めします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push
 <span class="gp">$</span> git push heroku
@@ -196,7 +196,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>これにより、リモート環境にバックアップを置くことができ、本番環境で発生するエラーをなるべく早期に発見することができます。なお、Herokuに展開するときにエラーが発生した場合は、以下のコマンドを実行して本番環境のログを取得してください。このログは、問題を特定するときに役立ちます。</p>
+<p>これにより、リモート環境にバックアップを置くことができ、本番環境で発生するエラーをなるべく早期に発見することができます。なお、Herokuにデプロイするときにエラーが発生した場合は、以下のコマンドを実行して本番環境のログを取得してください。このログは、問題を特定するときに役立ちます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku logs
 </pre></div>
@@ -1428,7 +1428,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>好みに応じて、更新したアプリケーションをHerokuに展開しても構いません。</p>
+<p>好みに応じて、更新したアプリケーションをHerokuにデプロイしても構いません。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push heroku
 </pre></div>

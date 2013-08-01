@@ -2132,7 +2132,7 @@
 </div>
 
 
-<p>アプリケーションを強制的に再起動するには、Herokuに再度展開する必要があります。以下は、Herokuでアプリケーションを強制再起動するためのちょっとしたハックです。</p>
+<p>アプリケーションを強制的に再起動するには、Herokuに再度デプロイする必要があります。以下は、Herokuでアプリケーションを強制再起動するためのちょっとしたハックです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> touch foo
 <span class="gp">$</span> git add foo
@@ -2221,7 +2221,7 @@
 
 <li>Web経由で<code>admin</code>属性を変更できないことを確認してください。<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-forbidden_admin_test">リスト9.49</a>に示したように、<tt>PATCH</tt>リクエストを <code>update</code>メソッドに直接発行するテストを作成してください。テストは最初は赤色 (失敗)、次に緑色 (成功) になるようにしてください (<em>ヒント</em>: 最初に、<code>user_params</code>の許可リストに<code>admin</code>を<em>追加</em>する必要があります)。</li>
 
-<li><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_edit_view">リスト9.3</a>の Gravatarの [change] リンクを改造し、別ウィンドウ (または別タブ) で開くようにしてください。<em>ヒント:</em> Webを検索してみましょう。この目的にピッタリの堅牢なメソッドが見つかるはずです。<code>_blank</code>という文字も一緒に検索してみてください。</li>
+<li><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_edit_view">リスト9.3</a>の Gravatarの [change] リンクを改造し、別ウィンドウ (または別タブ) で開くようにしてください。<em>ヒント:</em> Webを検索してみましょう。この目的にうってつけの堅牢なメソッドが見つかるはずです。<code>_blank</code>という文字も一緒に検索してみてください。</li>
 
 <li>現状の認証テストでは、ユーザーがサインインすると [Profile] や [Settings] などのリンクは表示されることをチェックしています。その逆に、ユーザーがサインインしていないときはこれらのリンクが表示<em>されない</em>ことを確認するテストも追加してください。</li>
 

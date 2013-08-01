@@ -13,6 +13,9 @@ re_array=( \
     "s/v3.2.13\/v3.2.13/v3.2.13/g" \
     "s/本番展開/デプロイ/g" \
     "s/囲み/コラム /g" \
+    "s/式展開/式典界/g" \
+    "s/展開/デプロイ/g" \
+    "s/式典界/式展開/g" \
     "s/confi\/initializers\/secret_token\.rb/config\/initializers\/secret_token\.rb/g"
     )
 #          "s/railstutorial.org/railstutorial.jp/g" \

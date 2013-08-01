@@ -14,7 +14,7 @@
 <h1 class="chapter"><a id="sec-1" href="/chapters/beginning?version=4.0#top" class="heading"><span class="number">第1章</span> ゼロからデプロイまで</a></h1>
 
 
-<p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。この本の目的は、「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったウェブ開発を学びたいんだけど、何から始めればよいのでしょうか。」という質問に答えることです。<em>本書</em>を読み終わる頃には、あなたは自作のカスタムWebアプリケーションを開発し、展開 (deploy) するための知識をすべて得られるはずです。また、Railsの「教育エコシステム」なるものに含まれる、さらに高度な本、ブログ、スクリーンキャストなどの恩恵を受けるのにふさわしい実力を身につけられます。<em>Ruby on Railsチュートリアル</em>はRails 4を使用しているため、ここで学んだ内容はRailsの最新バージョンに完全に対応しています。(最新の<em>Ruby on Railsチュートリアル</em>については、この本が掲載されている<a href="http://railstutorial.jp/">http://railstutorial.jp/</a>を参照してください。本書をオフラインで読んでいる方は、<a href="http://railstutorial.jp/book">http://railstutorial.jp/book</a>の<a href="http://railstutorial.jp/book">オンライン版Rails Tutorial book</a>で最新版を確認してください。)</p>
+<p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。この本の目的は、「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったウェブ開発を学びたいんだけど、何から始めればよいのでしょうか。」という質問に答えることです。<em>本書</em>を読み終わる頃には、あなたは自作のカスタムWebアプリケーションを開発し、デプロイ (deploy: 本番環境でアプリを動かし、一般公開すること) するための知識をすべて得られるはずです。また、Railsの「教育エコシステム」なるものに含まれる、さらに高度な本、ブログ、スクリーンキャストなどの恩恵を受けるのにふさわしい実力を身につけられます。<em>Ruby on Railsチュートリアル</em>はRails 4を使用しているため、ここで学んだ内容はRailsの最新バージョンに完全に対応しています。(最新の<em>Ruby on Railsチュートリアル</em>については、この本が掲載されている<a href="http://railstutorial.jp/">http://railstutorial.jp/</a>を参照してください。本書をオフラインで読んでいる方は、<a href="http://railstutorial.jp/book">http://railstutorial.jp/book</a>の<a href="http://railstutorial.jp/book">オンライン版Rails Tutorial book</a>で最新版を確認してください。)</p>
 
 <p>(<em>注</em>: 最新のチュートリアルは、Rails 4.0という<em>バージョン</em>に向けられたものです。本書はRail 4.0向けに改定されましたが、<em>版 (エディション) </em>は更新されていませんのでご注意ください。Rails 4.0における変更は、本書の版を改めるほどではないと判断したためです。導入のためのチュートリアルという本書の立場から見て、Rail 4.0と旧Rails 3.2の違いはわずかです。もちろん、以下の<a class="ref" href="/chapters/beginning?version=4.0#sidebar-diffs">コラム 1.1</a>に示したように、細かな変更は膨大な数にのぼりますが、本書にとって重要な違いは、<a class="ref" href="/chapters/sign-up?version=4.0#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>という新しいセキュリティ上の技法しかありません。今後Railsで重要な変更が生じれば、<em>Railsチュートリアル</em>の完全に新しい次期版の制作を計画します。そのときには、<em>Turbolinks</em>や<em>Russian doll caching</em>、<em>feature specs</em>などのRSpecの新しい側面も記事に取り込まれるでしょう。)</p>
 
@@ -50,9 +50,9 @@
 </div>
 
 
-<p>本書の目的は、単にRailsを教えることでは<em>ありません</em>。そうではなく、<em>Railsを使用したWeb開発</em>を教える、すなわちWorld Wide Web用ソフトウェアを開発できるスキルを獲得 (あるいは強化) できるようにすることが目的です。Ruby on Railsのみならず、HTML、CSS、データベース、バージョン管理、テスティング、展開のためのスキルセットも本書の対象となります。この目的達成のため、<em>Ruby on Railsチュートリアル</em>では統合的なアプローチを採用しています。つまり、実際に動作するサンプルアプリケーションを一から作成するという例題をこなすことによってRailsを習得します。<a href="http://sivers.org">Derek Sivers</a>が前書きで述べたとおり、本書は一貫した直線的なストーリーを持つように構成されており、最初から最後まで飛ばさずに読むことを前提としています。技術書を飛ばし読み/つまみ食いするのが習慣になっている方にとっては、本書のような直線的なアプローチを行うために多少頭の切り替えが必要になるかもしれませんが、その価値は十分にあります。ぜひトライしてみてください。<em>Ruby on Railsチュートリアル</em>をTVゲームにたとえれば、あなたは主人公であり、1章ごとにRails開発者としてレベルアップして行くとお考えください (演習は<a href="http://en.wikipedia.org/wiki/Boss_(video_gaming)#Miniboss">中ボス</a>です)。</p>
+<p>本書の目的は、単にRailsを教えることでは<em>ありません</em>。そうではなく、<em>Railsを使用したWeb開発</em>を教える、すなわちWorld Wide Web用ソフトウェアを開発できるスキルを獲得 (あるいは強化) できるようにすることが目的です。Ruby on Railsのみならず、HTML、CSS、データベース、バージョン管理、テスティング、デプロイのためのスキルセットも本書の対象となります。この目的達成のため、<em>Ruby on Railsチュートリアル</em>では統合的なアプローチを採用しています。つまり、実際に動作するサンプルアプリケーションを一から作成するという例題をこなすことによってRailsを習得します。<a href="http://sivers.org">Derek Sivers</a>が前書きで述べたとおり、本書は一貫した直線的なストーリーを持つように構成されており、最初から最後まで飛ばさずに読むことを前提としています。技術書を飛ばし読み/つまみ食いするのが習慣になっている方にとっては、本書のような直線的なアプローチを行うために多少頭の切り替えが必要になるかもしれませんが、その価値は十分にあります。ぜひトライしてみてください。<em>Ruby on Railsチュートリアル</em>をTVゲームにたとえれば、あなたは主人公であり、1章ごとにRails開発者としてレベルアップして行くとお考えください (演習は<a href="http://en.wikipedia.org/wiki/Boss_(video_gaming)#Miniboss">中ボス</a>です)。</p>
 
-<p>この第1章では、必要なソフトウェアをインストールし、開発環境 (<a class="ref" href="/chapters/beginning?version=4.0#sec-up_and_running">1.2</a>) を整えてRuby on Railsの準備をします。続いて、<code>first_app</code> という最初のRailsアプリの作成に着手します。<em>Railsチュートリアル</em>ではソフトウェア開発のベストプラクティスを重要視しているので、新しいRailsプロジェクトを作成後、ただちにGit (<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>) を使用してバージョン管理下に置きます。そして何と、この章では本番 (production) 環境 (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>) に<em>展開して一般公開する</em>ところまで行います。</p>
+<p>この第1章では、必要なソフトウェアをインストールし、開発環境 (<a class="ref" href="/chapters/beginning?version=4.0#sec-up_and_running">1.2</a>) を整えてRuby on Railsの準備をします。続いて、<code>first_app</code> という最初のRailsアプリの作成に着手します。<em>Railsチュートリアル</em>ではソフトウェア開発のベストプラクティスを重要視しているので、新しいRailsプロジェクトを作成後、ただちにGit (<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>) を使用してバージョン管理下に置きます。そして何と、この章では本番 (production) 環境 (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>) に<em>デプロイして一般公開する</em>ところまで行います。</p>
 
 <p><a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/chapters/beginning?version=4.0#sidebar-scaffolding">コラム 1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/chapters/beginning?version=4.0#fn-1_1">1</a></sup>と呼ばれることもあります)を指定してデモアプリを使ってみます。</p>
 
@@ -544,7 +544,7 @@
 
 <p><a class="ref" href="/chapters/beginning?version=4.0#code-rails_command">リスト1.3</a>の下の方にご注目ください。<code>rails new</code>を実行すると、ファイルの作成後に<code>bundle install</code>コマンドが自動的に実行されています。もしbundle installが実行されていなくても心配はいりません。落ち着いて<a class="ref" href="/chapters/beginning?version=4.0#sec-bundler">1.2.4</a>の手順に従えば実行できます。</p>
 
-<p><code>rails</code>コマンドによって非常に多くのファイルとディレクトリが作成されていることにご注目ください。ディレクトリとファイルの構造 ( <a class="ref" href="/chapters/beginning?version=4.0#fig-directory_structure_rails">図1.2</a>) がこのように標準化されていることは数あるRailsの利点の1つであり、何もない状態から実際に動かせるアプリケーションをただちに作成することができます。さらに、この構造はすべてのRailsアプリに共通しているので、他の開発者の書いたコードの挙動を容易に推察できます。Railsがデフォルトで作成するファイルについては<a class="ref" href="/chapters/beginning?version=4.0#table-rails_directory_structure">表1.1</a>を参照してください。これらのファイルやディレクトリの目的については本書全体に渡って説明いたします。特に、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-the_asset_pipeline">5.2.1</a>以降ではRails 3.1の新機能である<em>Asset Pipeline</em>の一部となる<code>app/assets</code>ディレクトリについて詳しく説明します。Asset Pipelineによって、CSS (Cascading Style Sheet) やJavaScriptファイルなどのアセットを簡単に編成したり展開することができます。</p>
+<p><code>rails</code>コマンドによって非常に多くのファイルとディレクトリが作成されていることにご注目ください。ディレクトリとファイルの構造 ( <a class="ref" href="/chapters/beginning?version=4.0#fig-directory_structure_rails">図1.2</a>) がこのように標準化されていることは数あるRailsの利点の1つであり、何もない状態から実際に動かせるアプリケーションをただちに作成することができます。さらに、この構造はすべてのRailsアプリに共通しているので、他の開発者の書いたコードの挙動を容易に推察できます。Railsがデフォルトで作成するファイルについては<a class="ref" href="/chapters/beginning?version=4.0#table-rails_directory_structure">表1.1</a>を参照してください。これらのファイルやディレクトリの目的については本書全体に渡って説明いたします。特に、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-the_asset_pipeline">5.2.1</a>以降ではRails 3.1の新機能である<em>Asset Pipeline</em>の一部となる<code>app/assets</code>ディレクトリについて詳しく説明します。Asset Pipelineによって、CSS (Cascading Style Sheet) やJavaScriptファイルなどのアセットを簡単に編成したりデプロイすることができます。</p>
 
 <div class="label" id="fig-directory_structure_rails"></div>
 
@@ -671,7 +671,7 @@
 </div>
 
 
-<p>上の行は、アプリケーションが前提とするRubyのバージョンを指定しています。この指定は、特定のRVM gemset (<a class="ref" href="/chapters/beginning?version=4.0#sec-install_ruby">1.2.2.3</a>) に合わせてアプリケーションを展開する (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>) ときに特に便利です。上の行のうち、<code>#</code>で始まる行はRubyのコメントです。RVMを使用しない場合はこのコメント行は無視されますが、RVMを使用している場合はこの行で指定しているgemsetが使用されます (2.0.0以外のバージョンのRubyを使用する場合は、Rubyのバージョンを書き換えてください)。</p>
+<p>上の行は、アプリケーションが前提とするRubyのバージョンを指定しています。この指定は、特定のRVM gemset (<a class="ref" href="/chapters/beginning?version=4.0#sec-install_ruby">1.2.2.3</a>) に合わせてアプリケーションをデプロイする (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>) ときに特に便利です。上の行のうち、<code>#</code>で始まる行はRubyのコメントです。RVMを使用しない場合はこのコメント行は無視されますが、RVMを使用している場合はこの行で指定しているgemsetが使用されます (2.0.0以外のバージョンのRubyを使用する場合は、Rubyのバージョンを書き換えてください)。</p>
 
 <p>更新された<code>Gemfile</code>では、JQueryに関する以下の行も変更します。JQueryはRailsのデフォルトのJavaScriptライブラリです。</p>
 
@@ -819,7 +819,7 @@
 
 <p>新しく動作するRailsアプリが完成したところで、さっそくアプリケーションのソースコードを<em>バージョン管理</em>下に置きましょう。これを行わないとアプリケーションが動かないということではありませんが、ほとんどのRails開発者はバージョン管理は開発現場において必要不可欠であると考えています。バージョン管理システムを導入しておけば、プロジェクトのコードの履歴を追ったり、うっかり削除してしまったファイルを復旧 (ロールバック) したりという作業が行えるようになります。バージョン管理システムを熟知することは、今やあらゆるソフトウェア開発者にとって必須のスキルであると言ってよいでしょう。</p>
 
-<p>バージョン管理システムにもさまざまなものがありますが、RailsコミュニティではLinuxカーネル用にLinus Torvaldsにより開発された分散バージョン管理システムである<a href="http://git-scm.com/">Git</a>が主流になっています。Git (というよりバージョン管理) はそれだけで大きなテーマなので、すべてを説明しようとすると軽く一冊の本を超えてしまいます。本書では簡単に言及するにとどめますが、幸いネット上には無償で利用できるリソースがあふれています。その中でも特に「<a href="http://progit.org"><em>Pro Git</em></a>」Scott Chacon (Apress, 2009) をお勧めいたします (訳注: Pro Gitには素晴らしい日本語版があります: http://git-scm.com/book/ja/ )。ソースコードのバージョン管理は<em>何としても</em>導入してください。バージョン管理はRailsを使用するどんな場面でも必要になりますし、バージョン管理システムを応用して、自分の作成したコードを他の開発者と簡単に共有したり <a class="ref" href="/chapters/beginning?version=4.0#sec-github">1.3.4</a>)、最初の章で作成したアプリケーションを本番サーバーへ展開したりすることもできる (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>) からです。</p>
+<p>バージョン管理システムにもさまざまなものがありますが、RailsコミュニティではLinuxカーネル用にLinus Torvaldsにより開発された分散バージョン管理システムである<a href="http://git-scm.com/">Git</a>が主流になっています。Git (というよりバージョン管理) はそれだけで大きなテーマなので、すべてを説明しようとすると軽く一冊の本を超えてしまいます。本書では簡単に言及するにとどめますが、幸いネット上には無償で利用できるリソースがあふれています。その中でも特に「<a href="http://progit.org"><em>Pro Git</em></a>」Scott Chacon (Apress, 2009) をお勧めいたします (訳注: Pro Gitには素晴らしい日本語版があります: http://git-scm.com/book/ja/ )。ソースコードのバージョン管理は<em>何としても</em>導入してください。バージョン管理はRailsを使用するどんな場面でも必要になりますし、バージョン管理システムを応用して、自分の作成したコードを他の開発者と簡単に共有したり <a class="ref" href="/chapters/beginning?version=4.0#sec-github">1.3.4</a>)、最初の章で作成したアプリケーションを本番サーバーへデプロイしたりすることもできる (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>) からです。</p>
 
 <div class="label" id="sec-git_setup"></div>
 
@@ -1265,14 +1265,14 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sec-deploying"></div>
 
 
-<h2><a id="sec-1_4" href="/chapters/beginning?version=4.0#sec-deploying" class="heading"><span class="number">1.4</span>展開する</a></h2>
+<h2><a id="sec-1_4" href="/chapters/beginning?version=4.0#sec-deploying" class="heading"><span class="number">1.4</span>デプロイする</a></h2>
 
 
-<p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境に展開 (デプロイ: deploy) してしまいましょう。アプリケーションの展開は必須ではありませんが、頻繁にデプロイすることによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境に展開しないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_20"><a href="/chapters/beginning?version=4.0#fn-1_20">20</a></sup>。</p>
+<p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境にデプロイしてしまいましょう。アプリケーションのデプロイは必須ではありませんが、頻繁にデプロイすることによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境にデプロイしないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_20"><a href="/chapters/beginning?version=4.0#fn-1_20">20</a></sup>。</p>
 
 <p>かつてはRailsアプリのデプロイは大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx23<sup class="footnote" id="fnref-1_21"><a href="/chapters/beginning?version=4.0#fn-1_21">21</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスデプロイメントを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
 
-<p>著者のお気に入りはHerokuで、Railsを含むRuby Webアプリ用のホスティングプラットフォームです。Herokuは、ソースコードのバージョン管理にGitを使用していれば、Railsアプリケーションを簡単に本番環境に展開できます (Gitを導入したのは、まさにこのHerokuで使うためでもあります。まだGitをインストールしていない方は<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>を参照してください)。この章では、最初のアプリケーションをHerokuに展開します。</p>
+<p>著者のお気に入りはHerokuで、Railsを含むRuby Webアプリ用のホスティングプラットフォームです。Herokuは、ソースコードのバージョン管理にGitを使用していれば、Railsアプリケーションを簡単に本番環境にデプロイできます (Gitを導入したのは、まさにこのHerokuで使うためでもあります。まだGitをインストールしていない方は<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>を参照してください)。この章では、最初のアプリケーションをHerokuにデプロイします。</p>
 
 <div class="label" id="sec-heroku_setup"></div>
 
@@ -1373,25 +1373,25 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>この<code>heroku</code>コマンドを実行すると、Railsアプリケーション専用のサブドメインが作成され、ただちにブラウザで表示可能になります。今はまだ何もありませんが、すぐに展開してWebページを表示させましょう。</p>
+<p>この<code>heroku</code>コマンドを実行すると、Railsアプリケーション専用のサブドメインが作成され、ただちにブラウザで表示可能になります。今はまだ何もありませんが、すぐにデプロイしてWebページを表示させましょう。</p>
 
 <div class="label" id="sec-heroku_step_one"></div>
 
 
-<h3><a id="sec-1_4_2" href="/chapters/beginning?version=4.0#sec-heroku_step_one" class="heading"><span class="number">1.4.2</span> Herokuに展開する (1)</a></h3>
+<h3><a id="sec-1_4_2" href="/chapters/beginning?version=4.0#sec-heroku_step_one" class="heading"><span class="number">1.4.2</span> Herokuにデプロイする (1)</a></h3>
 
 
-<p>Railsアプリケーションを実際にHerokuに展開するには、まずGitを使用してHerokuにリポジトリをプッシュします。</p>
+<p>Railsアプリケーションを実際にHerokuにデプロイするには、まずGitを使用してHerokuにリポジトリをプッシュします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push heroku master
 </pre></div>
 </div>
 
 
-<h3><a id="sec-1_4_3" href="/chapters/beginning?version=4.0#sec-1_4_3" class="heading"><span class="number">1.4.3</span> Herokuに展開する (2)</a></h3>
+<h3><a id="sec-1_4_3" href="/chapters/beginning?version=4.0#sec-1_4_3" class="heading"><span class="number">1.4.3</span> Herokuにデプロイする (2)</a></h3>
 
 
-<p>失礼、その2はありません。これで終わりです (<a class="ref" href="/chapters/beginning?version=4.0#fig-heroku_app">図1.10</a>)。展開されたアプリケーションの表示は、<code>heroku create</code> (<a class="ref" href="/chapters/beginning?version=4.0#code-heroku_create">リスト1.10</a>) を実行した際に生成されたアドレスをブラウザで開くだけです (もちろんここに出てくる著者のアドレスではなく、自分が登録したアドレスを使って下さい)。<code>heroku</code>コマンドに以下の引数を与えるだけで、正しいアドレスでブラウザが起動します。</p>
+<p>失礼、その2はありません。これで終わりです (<a class="ref" href="/chapters/beginning?version=4.0#fig-heroku_app">図1.10</a>)。デプロイされたアプリケーションの表示は、<code>heroku create</code> (<a class="ref" href="/chapters/beginning?version=4.0#code-heroku_create">リスト1.10</a>) を実行した際に生成されたアドレスをブラウザで開くだけです (もちろんここに出てくる著者のアドレスではなく、自分が登録したアドレスを使って下さい)。<code>heroku</code>コマンドに以下の引数を与えるだけで、正しいアドレスでブラウザが起動します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku open
 </pre></div>
@@ -1406,7 +1406,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/heroku_app_4_0.png" alt="heroku_app_4_0" /></span></div><div class="caption"><span class="header">図1.10</span><span class="description">Heroku上で動作しているRailsチュートリアルの最初のアプリケーション。<a href="http://railstutorial.jp/images/figures/heroku_app_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>Herokuへの展開が完了した後は、アプリケーションの管理と設定に以下のような美しいユーザーインターフェースを使用できます (<a class="ref" href="/chapters/beginning?version=4.0#fig-heroku_info">図1.11</a>)。</p>
+<p>Herokuへのデプロイが完了した後は、アプリケーションの管理と設定に以下のような美しいユーザーインターフェースを使用できます (<a class="ref" href="/chapters/beginning?version=4.0#fig-heroku_info">図1.11</a>)。</p>
 
 <div class="label" id="fig-heroku_info"></div>
 
@@ -1453,7 +1453,7 @@ jhyicevg.herokuapp.com</pre>
 <h2><a id="sec-1_5" href="/chapters/beginning?version=4.0#sec-beginning_conclusion" class="heading"><span class="number">1.5</span>最後に</a></h2>
 
 
-<p>この章ではインストール、開発環境の設定、バージョン管理、本番環境への展開など、多くの課題を達成しました。ここまでの進捗をTwitterに投稿したりFacebookで通知するには以下のリンクからどうぞ。</p>
+<p>この章ではインストール、開発環境の設定、バージョン管理、本番環境へのデプロイなど、多くの課題を達成しました。ここまでの進捗をTwitterに投稿したりFacebookで通知するには以下のリンクからどうぞ。</p>
 
 <div class="center"><a href="http://twitter.com/?status=I&#39;m%20learning%20Ruby%20on%20Rails%20with%20@railstutorial!%20http://railstutorial.jp/">@railstutorialでRuby on Railsを学習中!</a><a href="http://twitter.com/?status=I&#39;m%20learning%20Ruby%20on%20Rails%20with%20@railstutorial!%20http://railstutorial.jp/">http://railstutorial.jp/</a></div>
 

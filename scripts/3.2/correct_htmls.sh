@@ -13,7 +13,10 @@ re_array=("s/http:\/\/railstutorial-ja.herokuapp.com/\/chapters/g" \
 	  "s/フルサイズ/拡大/g" \
 	  "s/テストドリブン/テスト駆動/g" \
 	  "s/本番展開/デプロイ/g" \
-	  "s/囲み/コラム /g" \
+  	  "s/囲み/コラム /g" \
+	  "s/式展開/式典界/g" \
+	  "s/展開/デプロイ/g" \
+	  "s/式典界/式展開/g" \
 	  "s/active_record_validations_callbacks/v3.2.13\/active_record_validations_callbacks/g" \
 )
 
