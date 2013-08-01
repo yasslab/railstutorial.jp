@@ -1,6 +1,6 @@
 <html dir="ltr">
   <head>
-    <title>beginning</title>
+    <title>Ruby on Rails チュートリアル</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/stylesheets/pygments.css" type="text/css" />
     <link rel="stylesheet" href="/stylesheets/polytexnic.css" type="text/css" />
@@ -68,19 +68,26 @@
 
 <div class="code"><div class="highlight"><pre>(The MIT License)
 Copyright (c) 2012 Michael Hartl
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the &quot;Software&quot;), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the &quot;Software&quot;), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software,
+and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY, </br>WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISINGOUT OF OR </br>IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS INTHE SOFTWARE.</pre></div>
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF
+ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR
+A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING OUT OF
+OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.</pre></div>
 </div>
 <div class="label" id="cha-beginning"></div>
 
@@ -2518,7 +2525,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 </div>
 
 
-<p><a class="ref" href="#sec-heroku_setup">1.4.1</a>や<a class="ref" href="#cha-a-demo-app">第2章</a>でも説明したように、<tt class="verb">--without</tt> <tt class="verb">production</tt>オプションを追加することで、本番環境にのみgemをインストールしないようにすることができます。注: このオプションは “remembered option” と呼ばれるもので、このオプションを一度実行するとコマンドに保存され、今後Bundlerを実行するときにオプションを追加する必要がなくなります。このため、今後は単に<code>bundle install</code>を実行するだけで、自動的に本番環境用gemをスキップできるようになります<sup class="footnote" id="fnref-3_2"><a href="#fn-3_2">2</a></sup>。</p>
+<p><a class="ref" href="#sec-heroku_setup">1.4.1</a>や<a class="ref" href="#cha-a-demo-app">第2章</a>でも説明したように、<tt class="verb">--without</tt> <tt class="verb">production</tt>オプションを追加することで、本番環境のgemのみインストールしないようにすることができます。注: このオプションは “remembered option” と呼ばれるもので、このオプションを一度実行するとコマンドに保存され、今後Bundlerを実行するときにオプションを追加する必要がなくなります。このため、今後は単に<code>bundle install</code>を実行するだけで、自動的に本番環境用gemをスキップできるようになります<sup class="footnote" id="fnref-3_2"><a href="#fn-3_2">2</a></sup>。</p>
 
 <p>次に、<code>Test::Unit</code>の代わりにRSpecを使うように、Railsの設定を変更します。これを行うには、<code>rails generate rspec:install</code> を実行します。</p>
 
@@ -4244,7 +4251,7 @@ bundler_stubs/
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト3.34</span> <span class="description">デフォルの<code>Guardfile</code>に追記する。</span> </div>
+<div class="listing"><span class="header">リスト3.34</span> <span class="description">デフォルトの<code>Guardfile</code>に追記する。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;active_support/core_ext&#39;</span>
 
 <span class="n">guard</span> <span class="s1">&#39;rspec&#39;</span><span class="p">,</span> <span class="ss">:version</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">:all_after_pass</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="k">do</span>
@@ -8231,7 +8238,7 @@ end
 
 <li>既にお気付きの方もいると思いますが、これまで行なってきた、レイアウト上のリンクのルーティングテストは、そのリンクが実際に正しいページへのリンクになっているかどうかをチェックしていません。このようなテストを実装する方法のひとつは、RSpecの結合テスト内で<code>visit</code>と<code>click_link</code>を使用することです。レイアウトのリンクが正しく定義されていることを確認するコードを追加して、<a class="ref" href="#code-layout_links_test">リスト5.36</a>を補ってください。</li>
 
-<li><a class="ref" href="#code-full_title_helper_tests">リスト5.37</a>に示したように、<a class="ref" href="#code-rspec_utilities">リスト5.26</a>の<code>full_title</code>テストヘルパーへの依存性を、独自のヘルパーメソッドを書くことで排除してください (<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="#code-rspec_utilities_simplified">リスト5.38</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="#code-full_title_helper_tests">リスト5.37</a>では、<a class="ref" href="#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
+<li><a class="ref" href="#code-full_title_helper_tests">リスト5.37</a>に示すように、元のヘルパーメソッドに対するテストを書き、それによって<a class="ref" href="#code-rspec_utilities">リスト5.26</a>の<code>full_title</code>テストヘルパーへの依存を解消してください (<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="#code-rspec_utilities_simplified">リスト5.38</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="#code-full_title_helper_tests">リスト5.37</a>では、<a class="ref" href="#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
 
 </ol>
 
@@ -8370,7 +8377,7 @@ end
 <li id="fn-5_6">多くのRails開発者は、異なるビューの間で共通に使用するパーシャルを保存するディレクトリとして、<code>shared</code>ディレクトリを使用します。著者は、複数のビューで共有するユーティリティパーシャルについては<code>shared</code>フォルダに保存し、文字どおり全ページ (サイトレイアウトの一部として) 共通のパーシャルについては<code>layouts</code>ディレクトリへ保存することを好んでいます (<code>shared</code>ディレクトリは<a class="ref" href="#cha-sign-up">第7章</a>で作成します)。著者はこのように分割保存するのが論理的であると考えますが、<code>shared</code>フォルダにすべて保存しても問題なく動作します。<a class="arrow" href="#fnref-5_6">↑</a></li>
 <li id="fn-5_7"><code>footer</code>タグと<code>.footer</code>クラスを両方使用していることについて疑問に思う方がいるかもしれません。その理由は、footerタグとする方が読み手にとって意味が明確であるのと、footerクラスはBootstrapで使用するためです。<code>footer</code>を<code>div</code>に置き換えても動作は変わりません。<a class="arrow" href="#fnref-5_7">↑</a></li>
 <li id="fn-5_8">このチュートリアル構成は、Michael Erasmusによる素晴らしいブログ記事「<a href="http://2beards.net/2011/11/the-rails-3-asset-pipeline-in-about-5-minutes/">5分でわかるRails 3のアセットパイプライン</a> (英語)」をもとにしています。詳細についてはRails Guideの「<a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a> (英語)」の項を参照してください。<a class="arrow" href="#fnref-5_8">↑</a></li>
-<li id="fn-5_9">Sassでもサポートされている古い<code>.sass</code>というフォーマットでは、冗長性の少ない (かっこの少ない)  新しい言語を定義しますが、既存のプロジェクトには若干不便であり、既にCSSに慣れ親しんだ人にとっては学習が面倒でもありす。<a class="arrow" href="#fnref-5_9">↑</a></li>
+<li id="fn-5_9">Sassでもサポートされている古い<code>.sass</code>というフォーマットでは、冗長性の少ない (かっこの少ない)  新しい言語を定義しますが、既存のプロジェクトには若干不便であり、既にCSSに慣れ親しんだ人にとっては学習が面倒でもあります。<a class="arrow" href="#fnref-5_9">↑</a></li>
 </ol>
 </div>
 
@@ -10723,7 +10730,7 @@ end
 </div></div>
 
 
-<p>ユーザー表示ページをテストするために、<code>show</code>アクションのコード (<a class="ref" href="#code-user_show_action">リスト7.5</a>)の検索対象をUserモデルオブジェクトに置き換えてください。</p>
+<p>ユーザー表示ページをテストするために、<code>show</code>アクションのコード (<a class="ref" href="#code-user_show_action">リスト7.5</a>) で検索を行うUserモデルオブジェクトが必要となります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;profile page&quot;</span> <span class="k">do</span>
   <span class="c1"># Code to make a user variable</span>
@@ -10736,7 +10743,7 @@ end
 </div>
 
 
-<p>コメントの部分に適切なコードを追加します。ここでは<code>user_path</code>という名前付きルート (<a class="ref" href="#table-RESTful_users">表7.1</a>) を使用して、指定されたユーザーのページを表示するためのパスを生成します。これにより、<code>h1</code>タグと<code>title</code>タグの両方にユーザーの名前が含まれているかどうかをテストできます。</p>
+<p>これよりコメントの部分に適切なコードを追加します。ここでは<code>user_path</code>という名前付きルート (<a class="ref" href="#table-RESTful_users">表7.1</a>) を使用して、指定されたユーザーのページを表示するためのパスを生成します。これにより、<code>h1</code>タグと<code>title</code>タグの両方にユーザーの名前が含まれているかどうかをテストできます。</p>
 
 <p>必要なUserモデルオブジェクトを作成するために、Active Recordを使用して<code>User.create</code>という形式でユーザーを作成することもできますが、経験上、ユーザーのオブジェクトを定義してそれをデータベースに挿入するには、ユーザーの<em>ファクトリー (factory)</em> を使用する方がはるかに便利です。ここでは、<a href="http://github.com/thoughtbot/factory_girl">Factory Girl</a>を使用して生成したファクトリーを使用します。Factory Girlは、<a href="http://thoughtbot.com/">thoughtbot</a>のメンバーが作成したRuby gemです。Factory Girlは、RSpecを使用してRubyで「ドメイン特化言語 (domain-specific language)」を定義します。ここでは、Active Recordのオブジェクトの定義に特化しています。このドメイン特化言語の文法はシンプルで、必要なオブジェクトの属性を定義するためにRubyのブロックとカスタムメソッドを使用しています。この章のサンプルアプリケーションでは、Active Recordのメリットはまだはっきりとはわからないかもしれませんが、この後の章ではファクトリーの機能をさらに活用する予定です。たとえば<a class="ref" href="#sec-pagination">9.3.3</a>では、複数のユーザーを作成し、それぞれに独自のメールアドレスを持たせる作業が重要となりますが、ファクトリーを使用することで簡単になります。</p>
 
@@ -14271,7 +14278,7 @@ end
 
 <li><code>form_for</code>の代わりに<code>form_tag</code>を使用して、サインインフォームをリファクタリングしてください。テストスイートが以前と同様にパスすることも確認してください。<em>ヒント</em>: RailsCastの「<a href="http://railscasts.com/episodes/270-authentication-in-rails-3-1">Rails 3.1における認証</a> (英語)」を参照してください。特に、<code>params</code>ハッシュの構造の変更にご注目ください。</li>
 
-<li><a class="ref" href="#sec-rspec_custom_matchers">8.3.3</a>の例に従い、ユーザー認証リクエストspec (<code>spec/requests</code>ディレクトリの下にあるファイル) を見直し、<code>spec/support/utilities.rb</code>でユーティリティ関数を定義して、テストを実装から切り離してください。<em>課外活動:</em> サポートコードを独立したファイルとモジュールに再編成し、specヘルパーファイルでそれらのモジュールを適切にインクルードしてすべて動作するようにしてください。</li>
+<li><a class="ref" href="#sec-rspec_custom_matchers">8.3.3</a>の例に従い、ユーザー用のリクエストspecと認証リクエストspec (<code>spec/requests</code>ディレクトリの下にあるファイル) を見直し、<code>spec/support/utilities.rb</code>でユーティリティ関数を定義して、テストを実装から切り離してください。<em>課外活動:</em> サポートコードを独立したファイルとモジュールに再編成し、specヘルパーファイルでそれらのモジュールを適切にインクルードしてすべて動作するようにしてください。</li>
 
 </ol>
 
@@ -14422,7 +14429,7 @@ end
 </div></div>
 
 
-<p>ここでは、<a class="ref" href="#sec-signup_error_messages">7.3.2</a>で導入した<code>error_messages</code>パーシャルは使用していません。</p>
+<p>上のコードでは、<code>7.3.2</code>で導入した<a class="ref" href="#sec-signup_error_messages">error_messages</a>パーシャルを再利用しています。</p>
 
 <p><a class="ref" href="#code-initial_edit_action">リスト9.2</a>の<code>@user</code>インスタンス変数を使用することで、<a class="ref" href="#code-user_edit_specs">リスト9.1</a>の編集ページ用テストはパスするはずです。</p>
 
