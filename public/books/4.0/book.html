@@ -15507,7 +15507,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>実際のインデックスページを作成するには、ユーザーを列挙してユーザーごとに<code>li</code>タグで囲むビューを作成する必要があります。ここでは<code>each</code>メソッドを使用してこれを行います。それぞれの行を非序列リスト (<code>ul</code>)タグでコラム ながら、各ユーザーのGravatarと名前を表示します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>では、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_exercises">7.6</a>の演習の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">リスト7.29</a>の結果を利用しています。これは、Gravatarヘルパーにデフォルト以外のサイズを指定するオプションを渡します。この演習をまだやっていない場合は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">7.29</a>に従ってUsersヘルパーファイルを更新してから先に進んでください。</p>
+<p>実際のインデックスページを作成するには、ユーザーを列挙してユーザーごとに<code>li</code>タグで囲むビューを作成する必要があります。ここでは<code>each</code>メソッドを使用してこれを行います。それぞれの行を非序列リスト (<code>ul</code>)タグで囲いながら、各ユーザーのGravatarと名前を表示します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>では、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_exercises">7.6</a>の演習の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">リスト7.29</a>の結果を利用しています。これは、Gravatarヘルパーにデフォルト以外のサイズを指定するオプションを渡します。この演習をまだやっていない場合は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">7.29</a>に従ってUsersヘルパーファイルを更新してから先に進んでください。</p>
 
 <div class="label" id="code-user_index_view"></div>
 
@@ -16356,7 +16356,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>上のテストに対応するアプリケーションコードは、現在のユーザーが管理者の場合に <code>[delete]</code> リンクを有効にします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-delete_links">リスト9.44</a>)。ここで、必要な<tt>DELETE</tt>リクエストを発行するリンクの生成は<code>method: :delete</code>引数によって行われている点に注目してください。また、各リンクを<code>if</code>文でコラム 、管理者にだけ削除リンクが表示されるようにしています。管理者から見えるページを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-index_delete_links_rails_3">図9.14</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードは、現在のユーザーが管理者の場合に <code>[delete]</code> リンクを有効にします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-delete_links">リスト9.44</a>)。ここで、必要な<tt>DELETE</tt>リクエストを発行するリンクの生成は<code>method: :delete</code>引数によって行われている点に注目してください。また、各リンクを<code>if</code>文で囲い、管理者にだけ削除リンクが表示されるようにしています。管理者から見えるページを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-index_delete_links_rails_3">図9.14</a>に示します。</p>
 
 <div class="label" id="code-delete_links"></div>
 
