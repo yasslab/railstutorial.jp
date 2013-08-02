@@ -151,7 +151,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト10.3</span> <span class="description">新しいマイクロポストに対する検証のテスト</span><br /><span class="description"> <code>spec/models/micropost_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.3</span> <span class="description">新しいマイクロポストに対する検証をテストする。</span><br /><span class="description"> <code>spec/models/micropost_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">Micropost</span> <span class="k">do</span>
@@ -1598,7 +1598,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/proto_feed_mockup_bootstrap.png" alt="proto_feed_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.13</span><span class="description"> (プロト)フィードのあるホームページのモックアップ。<a href="http://railstutorial.jp/images/figures/proto_feed_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>すべてのユーザーがフィードを持つので、<code>feed</code>メソッドはUserモデルに作るのが自然です。最終的にはそのfeedメソッドが、フォローしているユーザーのマイクロポストも返すことをテストしますが、今は、<code>feed</code>メソッドが自分のマイクロポストは<em>含むが</em>他ユーザーのマイクポストは<em>含まない</em>ことをテストすることにします。その要件をコード化したものを<a class="ref" href="/chapters/user-microposts?version=4.0#code-feed_specs">リスト10.35</a>に示します。</p>
+<p>すべてのユーザーがフィードを持つので、<code>feed</code>メソッドはUserモデルに作るのが自然です。最終的にはそのfeedメソッドが、フォローしているユーザーのマイクロポストも返すことをテストしますが、今は、<code>feed</code>メソッドが自分のマイクロポストは<em>含むが</em>他ユーザーのマイクロポストは<em>含まない</em>ことをテストすることにします。その要件をコード化したものを<a class="ref" href="/chapters/user-microposts?version=4.0#code-feed_specs">リスト10.35</a>に示します。</p>
 
 <div class="label" id="code-feed_specs"></div>
 

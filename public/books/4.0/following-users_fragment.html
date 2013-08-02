@@ -719,7 +719,7 @@
 
 <p>1つ前の章のときと同じように、サンプルデータを自動作成するRakeタスクを使用してデータベースにサンプルリレーションシップを登録するのがやはり便利です。先にサンプルデータを自動作成しておけば、Webページの見た目のデザインから先にとりかかることができ、バックエンドの機能の実装をこの節の後に回すことができます。</p>
 
-<p>前回<a class="ref" href="/chapters/user-microposts?version=4.0#code-sample_microposts">リスト10.20</a>,で自動生成したサンプルデータは割りといい加減でしたので、今回はまずユーザーとマイクロポストを作成するためのメソッドをそれぞれ別々に定義し、それから新しく<code>make_relationships</code>メソッドを作成してサンプルリレーションシップを追加することにしましょう。作成したRakeファイルを<a class="ref" href="/chapters/following-users?version=4.0#code-sample_relationships">リスト11.17</a>に示します。</p>
+<p>前回<a class="ref" href="/chapters/user-microposts?version=4.0#code-sample_microposts">リスト10.20</a>,で自動生成したサンプルデータは少々いい加減でしたので、今回はまずユーザーとマイクロポストを作成するためのメソッドをそれぞれ別々に定義し、それから新しく<code>make_relationships</code>メソッドを作成してサンプルリレーションシップを追加することにしましょう。作成したRakeファイルを<a class="ref" href="/chapters/following-users?version=4.0#code-sample_relationships">リスト11.17</a>に示します。</p>
 
 <div class="label" id="code-sample_relationships"></div>
 
@@ -1577,7 +1577,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/following-users?version=4.0#code-relationships_controller">リスト11.34</a>を見てみれば、先ほどのセキュリティ問題が実はそれほど重大なものではないことを理解いただけると思います。もしサインインしていないユーザーが (<tt>curl</tt>などのコマンドラインツールなどを使用して) これらのアクションに直接アクセスするようなことがあれば、<code>current_user</code>は<code>nil</code>になり、どちらのメソッドでも2行目で例外が発生します。エラーにはなりますが、アプリケーションやデータに影響は生じません。このままでも支障はありませんが、やはりこのような例外には頼らない方がよいので、上では一手間かけてセキュリティのためのレイヤーを追加しました。</p>
+<p><a class="ref" href="/chapters/following-users?version=4.0#code-relationships_controller">リスト11.34</a>を見てみれば、先ほどのセキュリティ問題が実はそれほど重大なものではないことを理解いただけると思います。もしサインインしていないユーザーが (<tt>curl</tt>などのコマンドラインツールなどを使用して) これらのアクションに直接アクセスするようなことがあれば、<code>current_user</code>は<code>nil</code>になり、どちらのメソッドでも2行目で例外が発生します。エラーにはなりますが、アプリケーションやデータに影響は生じません。このままでも支障はありませんが、やはりこのような例外には頼らない方がよいので、上ではひと手間かけてセキュリティのためのレイヤーを追加しました。</p>
 
 <p>これで、フォロー/フォロー解除の機能が完成しました。どのユーザーも、他のユーザーをフォローしたり、フォロー解除したりできます。サンプルアプリケーションを実際に動かしてみたり、以下のようにテストスイートを実行することで動作を確認できます。</p>
 

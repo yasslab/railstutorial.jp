@@ -16930,7 +16930,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト10.3</span> <span class="description">新しいマイクロポストに対する検証のテスト</span><br /><span class="description"> <code>spec/models/micropost_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト10.3</span> <span class="description">新しいマイクロポストに対する検証をテストする。</span><br /><span class="description"> <code>spec/models/micropost_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">Micropost</span> <span class="k">do</span>
@@ -18377,7 +18377,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/proto_feed_mockup_bootstrap.png" alt="proto_feed_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.13</span><span class="description"> (プロト)フィードのあるホームページのモックアップ。<a href="http://railstutorial.jp/images/figures/proto_feed_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>すべてのユーザーがフィードを持つので、<code>feed</code>メソッドはUserモデルに作るのが自然です。最終的にはそのfeedメソッドが、フォローしているユーザーのマイクロポストも返すことをテストしますが、今は、<code>feed</code>メソッドが自分のマイクロポストは<em>含むが</em>他ユーザーのマイクポストは<em>含まない</em>ことをテストすることにします。その要件をコード化したものを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-feed_specs">リスト10.35</a>に示します。</p>
+<p>すべてのユーザーがフィードを持つので、<code>feed</code>メソッドはUserモデルに作るのが自然です。最終的にはそのfeedメソッドが、フォローしているユーザーのマイクロポストも返すことをテストしますが、今は、<code>feed</code>メソッドが自分のマイクロポストは<em>含むが</em>他ユーザーのマイクロポストは<em>含まない</em>ことをテストすることにします。その要件をコード化したものを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-feed_specs">リスト10.35</a>に示します。</p>
 
 <div class="label" id="code-feed_specs"></div>
 
@@ -19727,7 +19727,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>1つ前の章のときと同じように、サンプルデータを自動作成するRakeタスクを使用してデータベースにサンプルリレーションシップを登録するのがやはり便利です。先にサンプルデータを自動作成しておけば、Webページの見た目のデザインから先にとりかかることができ、バックエンドの機能の実装をこの節の後に回すことができます。</p>
 
-<p>前回<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sample_microposts">リスト10.20</a>,で自動生成したサンプルデータは割りといい加減でしたので、今回はまずユーザーとマイクロポストを作成するためのメソッドをそれぞれ別々に定義し、それから新しく<code>make_relationships</code>メソッドを作成してサンプルリレーションシップを追加することにしましょう。作成したRakeファイルを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sample_relationships">リスト11.17</a>に示します。</p>
+<p>前回<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sample_microposts">リスト10.20</a>,で自動生成したサンプルデータは少々いい加減でしたので、今回はまずユーザーとマイクロポストを作成するためのメソッドをそれぞれ別々に定義し、それから新しく<code>make_relationships</code>メソッドを作成してサンプルリレーションシップを追加することにしましょう。作成したRakeファイルを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sample_relationships">リスト11.17</a>に示します。</p>
 
 <div class="label" id="code-sample_relationships"></div>
 
@@ -20585,7 +20585,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-relationships_controller">リスト11.34</a>を見てみれば、先ほどのセキュリティ問題が実はそれほど重大なものではないことを理解いただけると思います。もしサインインしていないユーザーが (<tt>curl</tt>などのコマンドラインツールなどを使用して) これらのアクションに直接アクセスするようなことがあれば、<code>current_user</code>は<code>nil</code>になり、どちらのメソッドでも2行目で例外が発生します。エラーにはなりますが、アプリケーションやデータに影響は生じません。このままでも支障はありませんが、やはりこのような例外には頼らない方がよいので、上では一手間かけてセキュリティのためのレイヤーを追加しました。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-relationships_controller">リスト11.34</a>を見てみれば、先ほどのセキュリティ問題が実はそれほど重大なものではないことを理解いただけると思います。もしサインインしていないユーザーが (<tt>curl</tt>などのコマンドラインツールなどを使用して) これらのアクションに直接アクセスするようなことがあれば、<code>current_user</code>は<code>nil</code>になり、どちらのメソッドでも2行目で例外が発生します。エラーにはなりますが、アプリケーションやデータに影響は生じません。このままでも支障はありませんが、やはりこのような例外には頼らない方がよいので、上ではひと手間かけてセキュリティのためのレイヤーを追加しました。</p>
 
 <p>これで、フォロー/フォロー解除の機能が完成しました。どのユーザーも、他のユーザーをフォローしたり、フォロー解除したりできます。サンプルアプリケーションを実際に動かしてみたり、以下のようにテストスイートを実行することで動作を確認できます。</p>
 
