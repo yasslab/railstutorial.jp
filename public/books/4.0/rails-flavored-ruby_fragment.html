@@ -63,7 +63,7 @@
 <span class="nt">&lt;h1&gt;</span>Sample App<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
     This is the home page for the
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.jp/&quot;</span><span class="nt">&gt;</span>Ruby on Rails Tutorial<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.jp/&quot;</span><span class="nt">&gt;</span>Ruby on Rails Tutorial<span class="nt">&lt;/a&gt;</span>
     sample application.
 <span class="nt">&lt;/p&gt;</span>
 </pre></div>
@@ -195,7 +195,7 @@
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;h1&gt;</span>Sample App<span class="nt">&lt;/h1&gt;</span>
 <span class="nt">&lt;p&gt;</span>
     This is the home page for the
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.jp/&quot;</span><span class="nt">&gt;</span>Ruby on Rails Tutorial<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://railstutorial.jp/&quot;</span><span class="nt">&gt;</span>Ruby on Rails Tutorial<span class="nt">&lt;/a&gt;</span>
     sample application.
 <span class="nt">&lt;/p&gt;</span>
 </pre></div>
@@ -401,7 +401,7 @@
 <p>逆に、オブジェクトが何を<em>する</em>かを説明するのは簡単です。オブジェクトとは (いついかなる場合にも) メッセージに応答するものです。文字列のようなオブジェクトは、たとえば <code>length</code>というメッセージに応答できますが、これは文字列の文字数を返します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;foobar&quot;</span><span class="o">.</span><span class="n">length</span>        <span class="c1"># 文字列に &quot;length&quot; というメッセージを渡す</span>
-<span class="go">  =&gt; 6
+<span class="go">=&gt; 6
 </span>
 </pre></div>
 </div>
@@ -880,7 +880,7 @@
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="p">{}</span>                          <span class="c1"># {}は空のハッシュ</span>
 <span class="go">=&gt; {}</span>
-<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="s2">&quot;first_name&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Michael&quot;</span>     <span class="c1">#キー: &quot;first_name&quot;、値: &quot;Michael&quot;</span>
+<span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="s2">&quot;first_name&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Michael&quot;</span>     <span class="c1"># キー: &quot;first_name&quot;、値: &quot;Michael&quot;</span>
 <span class="go">=&gt; &quot;Michael&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">[</span><span class="s2">&quot;last_name&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Hartl&quot;</span>        <span class="c1"># キー: &quot;last_name&quot;、値: &quot;Hartl&quot;</span>
 <span class="go">=&gt; &quot;Hartl&quot;</span>
@@ -1298,7 +1298,7 @@
 <p>継承は強力な概念ですが、もし仮に継承を使用せずに<code>palindrome?</code>メソッドを<code>String</code>クラス自身に追加する (つまりStringクラスを拡張する) という、より自然な方法を使用することが可能だとしたら、わざわざWordクラスを作らなくても<code>palindrome?</code>をリテラル文字列に対して直接実行できるようになるはずです。そんなことが可能なのでしょうか (なお、現在のコードはそのようになっていないため、以下のようにエラーになります)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;level&quot;</span><span class="o">.</span><span class="n">palindrome?</span>
-<span class="go">NoMethodError: undefined method `palindrome?&#39;</span><span class="go">for &quot;level&quot;:String</span>
+<span class="go">NoMethodError: undefined method `palindrome?&#39;</span><span class="go"> for &quot;level&quot;:String</span>
 </pre></div>
 </div>
 

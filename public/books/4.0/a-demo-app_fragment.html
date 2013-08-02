@@ -152,7 +152,8 @@
       invoke  resource_route
        route  resources :users
       invoke  jbuilder_scaffold_controller
-      create  app/controllers/users_controller.rb      invoke    erb
+      create  app/controllers/users_controller.rb
+      invoke    erb
       create      app/views/users
       create      app/views/users/index.html.erb
       create      app/views/users/edit.html.erb
@@ -161,14 +162,16 @@
       create      app/views/users/_form.html.erb
       invoke      test_unit
       create      test/controllers/users_controller_test.rb
-      invoke  helper      create      app/helpers/users_helper.rb
+      invoke  helper
+      create      app/helpers/users_helper.rb
       invoke      test_unit
       create        test/helpers/users_helper_test.rb
       invoke    jbuilder
        exist      app/views/users
       create      app/views/users/index.json.jbuilder
       create      app/views/users/show.json.jbuilder
-      invoke  assets      invoke    coffee
+      invoke  assets
+      invoke    coffee
       create      app/assets/javascripts/users.js.coffee
       invoke    scss
       create      app/assets/stylesheets/users.css.scss
@@ -557,14 +560,16 @@
       create      app/views/microposts/_form.html.erb
       invoke      test_unit
       create      test/controllers/microposts_controller_test.rb
-      invoke  helper      create      app/helpers/microposts_helper.rb
+      invoke  helper
+      create      app/helpers/microposts_helper.rb
       invoke      test_unit
       create        test/helpers/microposts_helper_test.rb
       invoke    jbuilder
        exist      app/views/microposts
       create      app/views/microposts/index.json.jbuilder
       create      app/views/microposts/show.json.jbuilder
-      invoke  assets      invoke    coffee
+      invoke  assets
+      invoke    coffee
       create      app/assets/javascripts/microposts.js.coffee
       invoke    scss
       create      app/assets/stylesheets/microposts.css.scss
@@ -778,7 +783,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 </div>
 
 
-<p>(最後の行のようにexitを実行すると Rails consoleを終了できます。多くのシステムでは、Ctrl-dキーを押して終了することもできます。) <code>first_user.microposts</code>というコードを実行すると、そのユーザーに関連付けられているマイクロポストにアクセスできます。このときActive Recordは、<code>user_id</code>が<code>first_user</code>のid (ここでは<code>1</code>) と等しいマイクロポストを自動的に返します。Active Recordの関連付け機能については<a class="ref" href="/chapters/user-microposts?version=4.0#top">第10章</a>と<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>でさらに詳しく解説します。</p>
+<p>(最後の行のようにexitを実行するとrails consoleを終了できます。多くのシステムでは、Ctrl-dキーを押して終了することもできます。) <code>first_user.microposts</code>というコードを実行すると、そのユーザーに関連付けられているマイクロポストにアクセスできます。このときActive Recordは、<code>user_id</code>が<code>first_user</code>のid (ここでは<code>1</code>) と等しいマイクロポストを自動的に返します。Active Recordの関連付け機能については<a class="ref" href="/chapters/user-microposts?version=4.0#top">第10章</a>と<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>でさらに詳しく解説します。</p>
 
 <div class="label" id="sec-inheritance_hierarchies"></div>
 
