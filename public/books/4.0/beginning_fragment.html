@@ -92,7 +92,7 @@
 
 <p><strong>経験の浅いプログラマ:</strong> ご注意いただきたいのですが、<em>Railsチュートリアル</em>は、まったくのプログラミング初心者、Webアプリケーションの初心者を主な読者層としては想定していません。プログラミング言語やWebアプリケーションは、たとえどれほどシンプルなものであっても必ずある程度には複雑なものだからです。Webプログラミングについてまったくの初心者の方が、本書<em>Railsチュートリアル</em>が難しすぎると感じた場合は、まずHTMLとCSSの基礎を勉強してください。それから<em>Railsチュートリアル</em>に再度挑戦してください。(現時点でお勧めの学習教材を思いつかず恐縮ですが、HTMLの学習用として「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」はなかなかよさそうです。David Sawyer McFarlandによる「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>}」を推薦してくれた読者もいます)。Peter Cooperの「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の数章をやってみるのもよいでしょう。同書のサンプルアプリケーションは本格的なWebアプリケーションに比べて非常に小さいので、比較的やりやすいと思います。実のところ、驚くほど多くのプログラミング初心者の皆様が本書でWeb開発を学ぼうとしているのです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。そうした方には、「<a href="http://railstutorial.org/screencasts"><em>Rails Tutorial</em> screencastシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="/chapters/beginning?version=4.0#fn-1_4">4</a></sup>」(いずれも日本語版はなし) を特にお勧めします。このビデオチュートリアルは、Railsソフトウェア開発のベテランの作業を文字通り「肩越しに」学ぶことができます。<br /></p>
 
-<p><strong>ソフトウェア開発経験があり、Web開発を始めたい方: </strong> プログラミングの経験がある方でクラス、メソッド、データ構造などに馴染みがあるなら、その知識は有利に働くはずです。JavaやC/C++とRubyではかなり記述スタイルが違うので少し違和感を感じるかもしれませんが、すぐに慣れるはずです (Rubyではセミコロン&#39;;&#39;も使えます)。<em>Railsチュートリアル</em>はWeb特有の概念をほぼカバーしているので、<tt>POST</tt>と<tt>PATCH</tt>の違いが分からなくても心配はいりません。<br /></p>
+<p><strong>ソフトウェア開発経験があり、Web開発を始めたい方:</strong> プログラミングの経験がある方でクラス、メソッド、データ構造などに馴染みがあるなら、その知識は有利に働くはずです。JavaやC/C++とRubyではかなり記述スタイルが違うので少し違和感を感じるかもしれませんが、すぐに慣れるはずです (Rubyではセミコロン&#39;;&#39;も使えます)。<em>Railsチュートリアル</em>はWeb特有の概念をほぼカバーしているので、<tt>POST</tt>と<tt>PATCH</tt>の違いが分からなくても心配はいりません。<br /></p>
 
 <p><strong>Web開発の経験があり、Railsを始めたい方:</strong> PHPやPythonなど動的言語を使用した事があるなら、かなり楽に読めるかと思います。特にPythonの経験は有利です。基本的なコンセプトは聞いた事あるものばかりかもしれませんが、テスト駆動開発 (TDD) やRESTスタイルなどは多くの方にとって初耳かもしれません。Ruby特有のクセも、最初はとまどうかもしれませんが、チュートリアルを進めて行くうちに明らかになっていくと思います。<br /></p>
 
@@ -240,7 +240,7 @@
 <ul>
 <li><strong>テキストエディタ</strong>: 断然<a href="http://www.sublimetext.com/2">Sublime Text 2</a>をお勧めします。これは非常によくできたクロスプラットフォームのテキストエディタであり、現段階ではまだベータ版ですが、とてもそうは思えないほどパワフルです<sup class="footnote" id="fnref-1_9"><a href="/chapters/beginning?version=4.0#fn-1_9">9</a></sup>。Sublime Textは<a href="http://macromates.com">TextMate</a>の影響を強く受けています。そして実際、スニペットやカラースキームなどについてはTextMateのカスタマイズ設定と互換性があります (あなたがMacユーザーであれば、TextMateは今でも良い選択であると言えます。OS X版しかありませんが)。2番目の選択肢にふさわしい<a href="http://www.vim.org/">Vim</a><sup class="footnote" id="fnref-1_10"><a href="/chapters/beginning?version=4.0#fn-1_10">10</a></sup>も多くのプラットフォームで動作します。Vimは無償で手に入りますが、Sublime Textは商用版を入手できます。どちらもプロの使用に耐えうるものですが、著者の経験ではSublime Textは初心者にとって<em>はるかに</em>扱いやすいものであると言えます。</li>
 
-<li><strong>ターミナル: </strong> OS Xの場合、<a href="http://iterm.sourceforge.net/">iTerm</a>かシステム備え付けのTerminal appをお勧めします。Linuxの場合、デフォルトのターミナルで構いません。Windowsの場合、Rails環境をそのままインストールするよりも、Linuxが動作する仮想マシン上にインストールすることを好む人が多いようです。この場合、コマンドラインオプションは従来通りです。開発環境をWindows自身にインストールするのであれば、コマンドラインは<a href="http://railsinstaller.org/">Railsインストーラ</a>付属の物がおすすめです (<a class="ref" href="/chapters/beginning?version=4.0#sec-rails_installer_windows">1.2.2.1</a>)。</li>
+<li><strong>ターミナル:</strong> OS Xの場合、<a href="http://iterm.sourceforge.net/">iTerm</a>かシステム備え付けのTerminal appをお勧めします。Linuxの場合、デフォルトのターミナルで構いません。Windowsの場合、Rails環境をそのままインストールするよりも、Linuxが動作する仮想マシン上にインストールすることを好む人が多いようです。この場合、コマンドラインオプションは従来通りです。開発環境をWindows自身にインストールするのであれば、コマンドラインは<a href="http://railsinstaller.org/">Railsインストーラ</a>付属の物がおすすめです (<a class="ref" href="/chapters/beginning?version=4.0#sec-rails_installer_windows">1.2.2.1</a>)。</li>
 </ul>
 
 
@@ -799,7 +799,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/mvc_schematic.png" alt="mvc_schematic" /></span></div><div class="caption"><span class="header">図1.5: </span> <span class="description">model-view-controller (MVC) アーキテクチャの概念図。</span></div></div>
 
 
-<p>この解説が少し抽象的に思えるかもしれませんが、この章は後に何度も参照する事になるのでご安心ください。MVCについては、<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-mvc_in_action">2.2.2</a>のデモアプリケーションの説明の中でもさらに詳しく解説します。サンプリアプリケーションでは、MVCの3つの要素をすべて使用します。<a class="ref" href="/chapters/static-pages?version=4.0#sec-static_pages">3.1.2</a>ではまずコントローラとビューを使用し、モデルは<a class="ref" href="/chapters/modeling-users?version=4.0#sec-user_model">6.1</a>から使い始めます。 <a class="ref" href="/chapters/sign-up?version=4.0#sec-a_users_resource">7.1.2</a>では3つの要素が協調して動作します。</p>
+<p>今はまだこの解説が少し抽象的に思えるかもしれませんが、この章は後に何度も参照する事になるのでご安心ください。MVCについては、<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-mvc_in_action">2.2.2</a>のデモアプリケーションの説明の中でもさらに詳しく解説します。サンプリアプリケーションでは、MVCの3つの要素をすべて使用します。<a class="ref" href="/chapters/static-pages?version=4.0#sec-static_pages">3.1.2</a>ではまずコントローラとビューを使用し、モデルは<a class="ref" href="/chapters/modeling-users?version=4.0#sec-user_model">6.1</a>から使い始めます。 <a class="ref" href="/chapters/sign-up?version=4.0#sec-a_users_resource">7.1.2</a>では3つの要素が協調して動作します。</p>
 
 <div class="label" id="sec-version_control"></div>
 
