@@ -1679,7 +1679,7 @@ jhyicevg.herokuapp.com</pre>
 </div>
 
 
-<p>このコマンドは、単にデータベースを更新し、<code>users</code>データモデルを作成するためのものです (データベースのマイグレーションの詳細については <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-database_migrations">6.1.1</a>以降で説明します)。なお、現在の<code>Gemfile</code>に対応するバージョンのRakeが確実に実行されるようにするために、<code>bundle exec</code>を使用して<code>rake</code>を実行します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_ruby">1.2.2.3</a>で勧めたとおりにRVMを使用している場合は、<code>bundle exec</code>は省略することもできます。本書では常にフルで書くことにいたします。<code>bundle exec</code>を実行しなくてよいようにする他の方法については、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-eliminating_bundle_exec">3.6.1</a>を参照してください)。</p>
+<p>このコマンドは、単にデータベースを更新し、<code>users</code>データモデルを作成するためのものです (データベースのマイグレーションの詳細については <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-database_migrations">6.1.1</a>以降で説明します)。なお、現在の<code>Gemfile</code>に対応するバージョンのRakeが確実に実行されるようにするために、<code>bundle exec</code>を使用して<code>rake</code>を実行します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_ruby">1.2.2.3</a>で勧めたとおりにRVMを使用している場合は、<code>bundle exec</code>は省略することもできます。本書では、基本的に省略せずに書くことにします。<code>bundle exec</code>を実行しなくて良いようにする他の方法については、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-eliminating_bundle_exec">3.6.1</a>を参照してください)。</p>
 
 <p>ここまで実行すれば、以下のように<code>rails s</code>コマンド (<code>rails server</code>コマンドの短縮版) を実行してローカルWebサーバーを起動できるようになります。</p>
 
@@ -1701,7 +1701,7 @@ jhyicevg.herokuapp.com</pre>
 
 <p>LinuxやMac OS Xなどで日夜コードをコンパイルしています。</p>
 
-<p>Rakeはいわば<em>Ruby版のmake</em>であり、Rubyで記述することのできる、makeのような言語です。Railsでは、Rakeを頻繁に多用しています。特に、データベースを背後に持つWebアプリケーション開発時に必要となる管理タスクで顕著です。<code>rake db:migrate</code>が一番よく使われるコマンドですが、rakeに<code>-T db</code>オプションを付けて実行すると他にもさまざまなデータベースタスクが用意されているのがわかります。</p>
+<p>Rakeはいわば<em>Ruby版のmake</em>であり、Rubyで記述することのできる、makeのような言語です。Railsでは、Rakeを頻繁に使用しています。特に、データベースを背後に持つWebアプリケーション開発時に必要となる管理タスクで顕著です。<code>rake db:migrate</code>が一番よく使われるコマンドですが、rakeに<code>-T db</code>オプションを付けて実行すると他にもさまざまなデータベースタスクが用意されているのがわかります。</p>
 
 <pre class="verbatim">  $ bundle exec rake -T db</pre>
 
@@ -1894,7 +1894,7 @@ jhyicevg.herokuapp.com</pre>
 </div></div>
 
 
-<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力してもよいのですが)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-REST">コラム 2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_users">表2.2</a>のURLには重複しているものがあることにご注目ください。たとえば、<code>show</code>アクションと <code>update</code>アクションは、どちらも/users/1というURLに対応しています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-TDD">3.2.1</a>で説明します。</p>
+<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力しても良いのですが)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-REST">コラム 2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_users">表2.2</a>のURLには重複しているものがあることにご注目ください。たとえば、<code>show</code>アクションと <code>update</code>アクションは、どちらも/users/1というURLに対応しています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-TDD">3.2.1</a>で説明します。</p>
 
 <div class="label" id="table-demo_RESTful_users"></div>
 
@@ -1996,13 +1996,13 @@ jhyicevg.herokuapp.com</pre>
 <h3><a id="sec-2_2_3" href="/book/ruby-on-rails-tutorial?version=4.0#sec-weaknesses_of_this_users_resource" class="heading"><span class="number">2.2.3</span>Users リソースの欠点</a></h3>
 
 
-<p>scaffoldで作成したUsersリソースは、Railsの概要を手っ取り早く説明するにはよいのですが、以下のようなさまざまな問題点を抱えています。</p>
+<p>scaffoldで作成したUsersリソースは、Railsの概要を手っ取り早く説明するには良いのですが、以下のようなさまざまな問題点を抱えています。</p>
 
 <ul>
 <li><strong>データの検証が行われていない。</strong> このままでは、ユーザー名が空欄であったり、でたらめなメールアドレスを入力したりしても通ってしまいます。</li>
 <li><strong>ユーザー認証が行われていない。</strong> サインイン、サインアウトが行われていないので、誰でも無制限に操作できてしまいます。</li>
-<li><strong>テストが行われていない。</strong> これは技術的には正確ではありません。scaffoldのコードには初歩的なテストが一応含まれているからです。ただ、scaffoldのテストコードは読みづらく、柔軟性もありません。さらにデータの検証、ユーザー認証、その他に必要な独自テストも含まれていません。</li>
-<li><strong>レイアウトが行われていない。</strong> サイトデザインも操作法も一貫していません。</li>
+<li><strong>テストが行われていない。</strong> 厳密にはこれは正しい表現ではありません。というのも、scaffoldのコードには初歩的なテストが一応含まれているからです。ただ、scaffoldのテストコードは読みづらく、柔軟性もありません。さらにデータの検証、ユーザー認証、その他に必要な独自テストも含まれていません。</li>
+<li><strong>レイアウトが整えられていない。</strong> サイトデザインも操作法も一貫していません。</li>
 <li><strong>理解が困難。</strong> scaffoldのコードを理解できるぐらいなら、そもそも本書を読む必要はないでしょう。</li>
 </ul>
 
@@ -2413,9 +2413,9 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 <h2><a id="sec-2_4" href="/book/ruby-on-rails-tutorial?version=4.0#sec-2_4" class="heading"><span class="number">2.4</span>最後に</a></h2>
 
 
-<p>ついにRailsアプリケーションを最後まで完成させました。この章で作成したデモアプリケーションにはよいところもありますが、さまざまな弱点もあります。</p>
+<p>ついにRailsアプリケーションを最後まで完成させました。この章で作成したデモアプリケーションには良いところもありますが、さまざまな弱点もあります。</p>
 
-<p><strong>よかった点</strong></p>
+<p><strong>良かった点</strong></p>
 
 <ul>
 <li>Rails全体を高度なレベルで概観できた</li>
@@ -2443,7 +2443,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 </ul>
 
 
-<p>本書では以後、よい点を保ちつつこれらの弱点を克服していきます。</p>
+<p>本書では以後、良い点を保ちつつこれらの弱点を克服していきます。</p>
 
 <div class="footnotes">
 <ol>
@@ -2548,7 +2548,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-heroku_setup">1.4.1</a>や<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>でも説明したように、<tt class="verb">--without</tt> <tt class="verb">production</tt>オプションを追加することで、本番環境のgemのみをインストールしないようにすることができます。注: このオプションは “remembered option” と呼ばれるもので、このオプションを一度実行するとコマンドに保存され、今後Bundlerを実行するときにオプションを追加する必要がなくなります。このため、今後は単に<code>bundle install</code>を実行するだけで、自動的に本番環境用gemをスキップできるようになります<sup class="footnote" id="fnref-3_2"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-3_2">2</a></sup>。</p>
 
-<p>このサンプルアプリケーションは公共のリポジトリとして公開されるので、Railsでセッション変数の暗号化に使用するための、いわゆる<em>秘密トークン (secret token) </em>を必ず更新することが重要です。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-secret_token">リスト3.2</a>のコードを使用して、トークンをハードコードすることなく動的に生成するようにしてください。(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-secret_token">リスト3.2</a>のコードはやや高度なもので、本書のこの段階では時期尚早ではありますが、重大なセキュリティ上の問題が発生する可能性を回避するために、あえてこの段階に含めておくのがよいと考えます)。この場合、必ず<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gitignore">リスト1.7</a>の改訂版<code>.gitignore</code>を使用するようにし、<code>.secret</code>キーをリポジトリでうっかり公開してしまうことのないようにしてください。</p>
+<p>このサンプルアプリケーションはパブリックリポジトリ (public repository) として公開されるので、Railsでセッション変数の暗号化に使用するための、いわゆる<em>秘密トークン (secret token) </em>を必ず更新することが重要です。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-secret_token">リスト3.2</a>のコードを使用して、トークンをハードコードすることなく動的に生成するようにしてください。(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-secret_token">リスト3.2</a>のコードはやや高度なもので、本書のこの段階では時期尚早ではありますが、重大なセキュリティ上の問題が発生する可能性を回避するために、あえてこの段階に含めておくのがよいと考えます)。この場合、必ず<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gitignore">リスト1.7</a>の改訂版<code>.gitignore</code>を使用するようにし、<code>.secret</code>キーをリポジトリでうっかり公開してしまうことのないようにしてください。</p>
 
 <div class="label" id="code-secret_token"></div>
 
@@ -11839,7 +11839,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h2><a id="sec-7_4" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_success" class="heading"><span class="number">7.4</span>ユーザー登録成功</a></h2>
 
 
-<p>無効なフォームの送信を扱えるようになったので、いよいよ新規ユーザーを実際にデータベースに保存できるようにし (もちろんフォームが有効な場合に)、ユーザー登録フォームを完成させましょう。まずは、ユーザーを保存できるようにします。保存に成功すると、ユーザー情報は自動的にデータベースに登録されます。次にブラウザの表示をリダイレクトして<em>リダイレクト</em>して、登録されたユーザーのプロファイルを表示します。ついでにウェルカムメッセージも表示しましょう。モックアップを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_success_mockup">図7.19</a>に示します。保存に失敗した場合は、単に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_failure">7.3</a>で開発したとおりの動作が実行されます。</p>
+<p>無効なフォームの送信を扱えるようになったので、いよいよ新規ユーザーを実際にデータベースに保存できるようにし (もちろんフォームが有効な場合に)、ユーザー登録フォームを完成させましょう。まずは、ユーザーを保存できるようにします。保存に成功すると、ユーザー情報は自動的にデータベースに登録されます。次にブラウザの表示を<em>リダイレクト</em>して、登録されたユーザーのプロファイルを表示します。ついでにウェルカムメッセージも表示しましょう。モックアップを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_success_mockup">図7.19</a>に示します。保存に失敗した場合は、単に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_failure">7.3</a>で開発したとおりの動作が実行されます。</p>
 
 <div class="label" id="fig-signup_success_mockup"></div>
 

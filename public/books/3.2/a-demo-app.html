@@ -216,7 +216,7 @@
 
 <p>LinuxやMac OS Xなどで日夜コードをコンパイルしています。</p>
 
-<p>Rakeはいわば<em>Ruby版のmake</em>であり、Rubyで記述することのできる、makeのような言語です。Railsでは、Rakeを頻繁に多用しています。特に、データベースを背後に持つWebアプリケーション開発時に必要となる管理タスクで顕著です。<code>rake db:migrate</code>が一番よく使われるコマンドですが、rakeに<code>-T db</code>オプションを付けて実行すると他にもさまざまなデータベースタスクが用意されているのがわかります。</p>
+<p>Rakeはいわば<em>Ruby版のmake</em>であり、Rubyで記述することのできる、makeのような言語です。Railsでは、Rakeを頻繁に使用しています。特に、データベースを背後に持つWebアプリケーション開発時に必要となる管理タスクで顕著です。<code>rake db:migrate</code>が一番よく使われるコマンドですが、rakeに<code>-T db</code>オプションを付けて実行すると他にもさまざまなデータベースタスクが用意されているのがわかります。</p>
 
 <pre class="verbatim">  $ bundle exec rake -T db</pre>
 
@@ -406,7 +406,7 @@
 </div></div>
 
 
-<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="/chapters/a-demo-app.html#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力してもよいのですが)。<a class="ref" href="/chapters/a-demo-app.html#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="/chapters/a-demo-app.html#sidebar-REST">コラム 2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="/chapters/a-demo-app.html#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/chapters/static-pages.html#sec-TDD">3.2.1</a>で説明します。</p>
+<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="/chapters/a-demo-app.html#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力しても良いのですが)。<a class="ref" href="/chapters/a-demo-app.html#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="/chapters/a-demo-app.html#sidebar-REST">コラム 2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="/chapters/a-demo-app.html#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/chapters/static-pages.html#sec-TDD">3.2.1</a>で説明します。</p>
 
 <div class="label" id="table-demo_RESTful_users"></div>
 
@@ -506,13 +506,13 @@
 <h3><a id="sec-2_2_3" href="/chapters/a-demo-app.html#sec-weaknesses_of_this_users_resource" class="heading"><span class="number">2.2.3</span>Users リソースの欠点</a></h3>
 
 
-<p>scaffoldで作成したUsersリソースは、Railsの概要を手っ取り早く説明するにはよいのですが、以下のようなさまざまな問題点を抱えています。</p>
+<p>scaffoldで作成したUsersリソースは、Railsの概要を手っ取り早く説明するには良いのですが、以下のようなさまざまな問題点を抱えています。</p>
 
 <ul>
 <li><strong>データの検証が行われていない。</strong> このままでは、ユーザー名が空欄であったり、でたらめなメールアドレスを入力したりしても通ってしまいます。</li>
 <li><strong>ユーザー認証が行われていない。</strong> サインイン、サインアウトが行われていないので、誰でも無制限に操作できてしまいます。</li>
-<li><strong>テストが行われていない。</strong> これは技術的には正確ではありません。scaffoldのコードには初歩的なテストが一応含まれているからです。ただ、scaffoldのテストコードは読みづらく、柔軟性もありません。さらにデータの検証、ユーザー認証、その他に必要な独自テストも含まれていません。</li>
-<li><strong>レイアウトが行われていない。</strong> サイトデザインも操作法も一貫していません。</li>
+<li><strong>テストが書かれていない。</strong> 厳密にはこれは正しい表現ではありません。というのも、scaffoldのコードには初歩的なテストが一応含まれているからです。ただ、scaffoldのテストコードは読みづらく、柔軟性もありません。さらにデータの検証、ユーザー認証、その他に必要な独自テストも含まれていません。</li>
+<li><strong>レイアウトが整えられていない。</strong> サイトデザインも操作法も一貫していません。</li>
 <li><strong>理解が困難。</strong> scaffoldのコードを理解できるぐらいなら、そもそも本書を読む必要はないでしょう。</li>
 </ul>
 
@@ -920,9 +920,9 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 <h2><a id="sec-2_4" href="/chapters/a-demo-app.html#sec-2_4" class="heading"><span class="number">2.4</span>最後に</a></h2>
 
 
-<p>ついにRailsアプリケーションを最後まで完成させました。この章で作成したデモアプリケーションにはよいところもありますが、さまざまな弱点もあります。<br /></p>
+<p>ついにRailsアプリケーションを最後まで完成させました。この章で作成したデモアプリケーションには良いところもありますが、さまざまな弱点もあります。<br /></p>
 
-<p><strong>よかった点</strong></p>
+<p><strong>良かった点</strong></p>
 
 <ul>
 <li>Rails全体を高度なレベルで概観できた</li>
@@ -950,7 +950,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 </ul>
 
 
-<p>本書では以後、よい点を保ちつつこれらの弱点を克服していきます。</p>
+<p>本書では以後、良い点を保ちつつこれらの弱点を克服していきます。</p>
 
 <div class="navigation">  <a class="prev_page" href="/chapters/beginning.html#top">
 </a><a class="prev_page" href="/chapters/beginning.html#top"><span class="number">第1章</span> ゼロからデプロイまで</a><a class="prev_page" href="/chapters/beginning.html#top">  </a>
