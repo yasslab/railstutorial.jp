@@ -12520,7 +12520,7 @@ end
 </div>
 
 
-<p>(注: <code>form_for</code>の代わりに<code>form_tag</code>を使うこともでき、Railsではこの方が慣用的な方法です。しかし、ユーザー登録フォームではform_forを使用する方が一般的であり、並列構造を強調するためにもform_forを使用しました。\<code>form_tag</code>を使ったフォームについては(<a class="ref" href="#sec-sign_in_out_exercises">8.5</a>)の演習に回します。)</p>
+<p>(注: <code>form_for</code>の代わりに<code>form_tag</code>を使うこともでき、Railsではこの方が慣用的な方法です。しかし、ユーザー登録フォームではform_forを使用する方が一般的であり、並列構造を強調するためにもform_forを使用しました。<code>form_tag</code>を使ったフォームについては(<a class="ref" href="#sec-sign_in_out_exercises">8.5</a>)の演習に回します。)</p>
 
 <p>適切な<code>form_for</code>を使用することで、 <a class="ref" href="#code-signup_form">リスト7.17</a>のユーザー登録フォームを参考にして、<a class="ref" href="#fig-signin_mockup">図8.1</a>に示したモックアップに従ったサインインフォームを簡単に作成できます <a class="ref" href="#code-signin_form">リスト8.7</a>)。</p>
 
@@ -12592,7 +12592,7 @@ end
 <h3><a id="sec-8_1_4" href="#sec-reviewing_form_submission" class="heading"><span class="number">8.1.4</span>確認フォームを送信する</a></h3>
 
 
-<p>ユーザーを作成する (ユーザー登録) 場合と同様、セッションを作成する場合 (サインイン) で最初にやることは、<em>正しくない</em>入力の取り扱いです。ユーザー登録のテストは既に作成済みです (<a class="ref" href="#code-initial_failing_signin_test">リスト 8.5</a>)。そしてサインアップのアプリケーションコードは、2つの点がユーザー登録のコードとわずかに異なります。最初に、フォームが送信されたとき何が起こるかを考えましょう。次に、サインインが失敗した場合に表示されるエラーメッセージを配置します (モックアップを<a class="ref" href="#fig-signin_failure_mockup">図8.2</a>に示しました)。次に、、サインインが送信されるたびに、パスワードとメールアドレスの組み合わせが正しいかどうかを判定し、サインインに成功した場合に使用する土台 (<a class="ref" href="#sec-signin_success">8.2</a>) を作成します。</p>
+<p>ユーザーを作成する (ユーザー登録) 場合と同様、セッションを作成する場合 (サインイン) で最初にやることは、<em>正しくない</em>入力の取り扱いです。ユーザー登録のテストは既に作成済みです (<a class="ref" href="#code-initial_failing_signin_test">リスト 8.5</a>)。そしてサインアップのアプリケーションコードは、2つの点がユーザー登録のコードとわずかに異なります。最初に、フォームが送信されたとき何が起こるかを考えましょう。次に、サインインが失敗した場合に表示されるエラーメッセージを配置します (モックアップを<a class="ref" href="#fig-signin_failure_mockup">図8.2</a>に示しました)。次に、サインインが送信されるたびに、パスワードとメールアドレスの組み合わせが正しいかどうかを判定し、サインインに成功した場合に使用する土台 (<a class="ref" href="#sec-signin_success">8.2</a>) を作成します。</p>
 
 <p>最初に、Sessionsコントローラに最小限の<code>create</code>アクションを定義します (<a class="ref" href="#code-initial_create_session">リスト8.9</a>) 。このアクションは何も実行しませんが、<code>new</code>ビューを表示します。<a href="http://localhost:3000/sessions/new">/sessions/new</a>フォームのフィールドを空白のまま送信すると<a class="ref" href="#fig-initial_failed_signin_rails_3">図8.5</a>のように表示されます。</p>
 
