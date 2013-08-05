@@ -8,7 +8,7 @@
 
 <p>Rails はデータベースと連携して動的なウェブサイトを開発するように設計されていますが、HTMLファイルだけで構成されている静的なページを作ることもできます。実際、静的なページをRailsで作ることのメリットもあります。たとえば、あとで<em>ほんの少し</em>動的なコンテンツを追加することができます。本章では、このような静的なページの作成について学んでいきます。まずは、<em>自動化テスト</em>の雰囲気を掴んでいきます。自動化テストは、私達のコードが正しく動いているという自信を与えてくれます。さらに、良いテストを書くことで、自信をもって<em>リファクタリング</em>を行うことができます。たとえば、フォームの振る舞いを変更せずに、フォーム内で使われている関数を書き換えたいときに便利です。</p>
 
-<p>本章には多くのサンプルコードがあります。特に <a class="ref" href="/chapters/static-pages?version=4.0#sec-first_tests">3.2</a> や <a class="ref" href="/chapters/static-pages?version=4.0#sec-slightly_dynamic_pages">3.3</a> で多くのコードを紹介していますが、Rubyが初めての方は、コードを隅々まで理解しなければならないのだろうかと心配する必要はありません。<a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a> で紹介したように、まずはテストをコピー&amp;ペーストしてみて、アプリケーションがうまく動くかどうか検証してみると良いでしょう。この時点では、テストどのようにして動くかは気にしなくても大丈夫です。また、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a>ではRubyについて解説します。そこではRubyの書き方やコンセプトについて学びます。最後に、本書ではRSpecを使ったテストを繰り返し実施していきます。ですから、もし途中でよく分からないテストがあったとしても、読み飛ばして先に進むことをお勧めします。1、2章先を読み進めた後に読み返してみると、当初はよく分からなかったテストが、実はとてもシンプルであることを理解できるはずです (Code Schoolの<a href="http://www.codeschool.com/courses/testing-with-rspec">RSpecコース</a>の履修を検討してみるのもよいでしょう。このコースはRSpecに関する多くの疑問に答えてくれるという読者からの報告もあります)。</p>
+<p>本章には多くのサンプルコードがあります。特に <a class="ref" href="/chapters/static-pages?version=4.0#sec-first_tests">3.2</a> や <a class="ref" href="/chapters/static-pages?version=4.0#sec-slightly_dynamic_pages">3.3</a> で多くのコードを紹介していますが、Rubyが初めての方は、コードを隅々まで理解しなければならないのだろうかと心配する必要はありません。<a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a> で紹介したように、まずはテストをコピー&amp;ペーストしてみて、アプリケーションがうまく動くかどうか検証してみると良いでしょう。この時点では、テストがどのようにして動くかは気にしなくても大丈夫です。また、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a>ではRubyについて解説します。そこではRubyの書き方やコンセプトについて学びます。最後に、本書ではRSpecを使ったテストを繰り返し実施していきます。ですから、もし途中でよく分からないテストがあったとしても、読み飛ばして先に進むことをお勧めします。1、2章先を読み進めた後に読み返してみると、当初はよく分からなかったテストが、実はとてもシンプルであることを理解できるはずです (Code Schoolの<a href="http://www.codeschool.com/courses/testing-with-rspec">RSpecコース</a>の履修を検討してみるのもよいでしょう。このコースはRSpecに関する多くの疑問に答えてくれるという読者からの報告もあります)。</p>
 
 <p>では、<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でもやったように、最初にRailsプロジェクトを作りましょう。今回は<code>sample_app</code>というプロジェクトを作成します。</p>
 
@@ -213,7 +213,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>この節では、後に動的なページを作成するための準備として、最初にRailsの<em>アクション</em>と<em>ビュー</em>に静的なHTMLだけを含めたものを作成します<sup class="footnote" id="fnref-3_5"><a href="/chapters/static-pages?version=4.0#fn-3_5">5</a></sup>。Railsのアクションは、<em>コントローラ</em> (<a class="ref" href="/chapters/beginning?version=4.0#sec-mvc">1.2.6</a>で紹介した MVCの Cに該当) の中に置かれる機能で、共通の目的を持つ一連のアクションをコントローラ内にまとめることができます。コントローラについては<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>で説明する<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST アーキテクチャ</a>を読むと、より深く理解することができます。一言で言うと、コントローラとは (基本的に動的な) Webページの集合を束ねるコンテナのことです。</p>
 
-<p>現在どのディレクトリで作業しているかがわからなくなった場合は、<a class="ref" href="/chapters/beginning?version=4.0#sec-the_first_application">1.2.3</a> (<a class="ref" href="/chapters/beginning?version=4.0#fig-directory_structure_rails">図 1.2</a>)を再度参照して、Rails のディレクトリ構造を確認してください。この節では、主に<code>app/controllers</code>ディレクトリや<code>app/views</code>ディレクトリ内で作業を進めます (なお <a class="ref" href="/chapters/static-pages?version=4.0#sec-first_tests">3.2</a> では、新しいディレクトリをさらに１つ追加します)。好みのテキストエディタまたはIDEを使用してサンプリアプリケーションを開いてください (<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-opening_the_project">コラム 3.1</a>)。</p>
+<p>現在どのディレクトリで作業しているかがわからなくなった場合は、<a class="ref" href="/chapters/beginning?version=4.0#sec-the_first_application">1.2.3</a> (<a class="ref" href="/chapters/beginning?version=4.0#fig-directory_structure_rails">図 1.2</a>)を再度参照して、Rails のディレクトリ構造を確認してください。この節では、主に<code>app/controllers</code>ディレクトリや<code>app/views</code>ディレクトリ内で作業を進めます (なお <a class="ref" href="/chapters/static-pages?version=4.0#sec-first_tests">3.2</a> では、新しいディレクトリをさらに１つ追加します)。好みのテキストエディタまたはIDEを使用してサンプルアプリケーションを開いてください (<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-opening_the_project">コラム 3.1</a>)。</p>
 
 <div class="label" id="sidebar-opening_the_project"></div>
 
@@ -1670,7 +1670,7 @@ bundler_stubs/
 </div></div>
 
 
-<p><a class="ref" href="/chapters/static-pages?version=4.0#sec-guard">3.6.2</a>の<code>guard</code>など、他の実行ファイルを追加する場合は、<code>bundle install</code>コマンドを再度実行して下さい。</p>
+<p><a class="ref" href="/chapters/static-pages?version=4.0#sec-guard">3.6.2</a>の<code>guard</code>など、他の実行ファイルを追加する場合は、<code>bundle install</code>コマンドを再度実行してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install --binstubs<span class="o">=</span>./bundler_stubs
 </pre></div>
@@ -2093,7 +2093,7 @@ bundler_stubs/
 <h3><a id="sec-3_6_4" href="/chapters/static-pages?version=4.0#sec-tests_inside_sublime_text" class="heading"><span class="number">3.6.4</span>Sublime Text上でテストする</a></h3>
 
 
-<p>Sublime Textを使用していれば、エディタの中から直接テストを実行できる強力なヘルパーコマンドを利用できます。このテスト方法は著者のお気に入りです。最終的に大規模にスケールアップする可能性のある少数のテストを、長期間に渡って実施したいような場合に非常に有用であるためです。このコマンドを利用するには、<a href="https://github.com/maltize/sublime-text-2-ruby-tests">Sublime Text 2 Ruby Tests</a><sup class="footnote" id="fnref-3_15"><a href="/chapters/static-pages?version=4.0#fn-3_15">15</a></sup>に記載されている、自分の環境向けの説明に従って設定を行なって下さい。著者の環境 (Macintosh OS X) の場合、以下のようにコマンドをインストールします。</p>
+<p>Sublime Textを使用していれば、エディタの中から直接テストを実行できる強力なヘルパーコマンドを利用できます。このテスト方法は著者のお気に入りです。最終的に大規模にスケールアップする可能性のある少数のテストを、長期間に渡って実施したいような場合に非常に有用であるためです。このコマンドを利用するには、<a href="https://github.com/maltize/sublime-text-2-ruby-tests">Sublime Text 2 Ruby Tests</a><sup class="footnote" id="fnref-3_15"><a href="/chapters/static-pages?version=4.0#fn-3_15">15</a></sup>に記載されている、自分の環境向けの説明に従って設定を行なってください。著者の環境 (Macintosh OS X) の場合、以下のようにコマンドをインストールします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/Library/Application<span class="se">\ </span>Support/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2/Packages
 <span class="gp">$</span> git clone https://github.com/maltize/sublime-text-2-ruby-tests.git RubyTest

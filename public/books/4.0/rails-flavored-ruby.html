@@ -372,7 +372,7 @@
 </div>
 
 
-<p>ただし、1つ重要な違いがあります。Rubyはシングルクォート文字列の中では補間子の式展開を行いません。</p>
+<p>ただし、1つ重要な違いがあります。Rubyはシングルクォート文字列の中では式展開を行いません。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;#{foo} bar&#39;</span>     <span class="c1"># シングルクォートで囲まれた文字列では式展開されない</span>
 <span class="go">=&gt; &quot;\#{foo} bar&quot;</span>
@@ -382,7 +382,7 @@
 
 <p>逆に言えば、ダブルクォート文字列を用いた文字列で<code>#</code>のような特殊な文字を使用する場合は、この文字をバックスラッシュで<em>エスケープ</em>する必要があります。</p>
 
-<p>ダブルクォート文字列でもシングルクォート文字列と同じことができ、ダブルクォート文字列では式展開もできるのであれば、シングルクォート文字列にはどのような使い道があるのでしょうか。シングルクォートは、入力した文字をエスケープせずに「そのまま」保持するときに便利です。たとえば、いわゆる “バックスラッシュ” 文字は、改行文字<tt class="verb">\n</tt>と同様多くのシステム上で特殊な文字として扱われます。シングルクオートで文字列を囲めば、簡単にバックスラッシュ文字のような特殊文字をそのまま変数に含めることができます。</p>
+<p>ダブルクォート文字列でもシングルクォート文字列と同じことができ、ダブルクォート文字列では式展開もできるのであれば、シングルクォート文字列にはどのような使い道があるのでしょうか。シングルクォートは、入力した文字をエスケープせずに「そのまま」保持するときに便利です。たとえば、いわゆる “バックスラッシュ” 文字は、改行文字<tt class="verb">\n</tt>と同様多くのシステム上で特殊な文字として扱われます。シングルクォートで文字列を囲めば、簡単にバックスラッシュ文字のような特殊文字をそのまま変数に含めることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;\n&#39;</span>       <span class="c1"># &#39;バックスラッシュ n&#39; をそのまま扱う</span>
 <span class="go">=&gt; &quot;\\n&quot;</span>
@@ -499,7 +499,7 @@
 </div>
 
 
-<p><code>if</code>キーワードの別の使い方を示しています。Rubyではこのように、<code>if</code>での条件式が真のときにだけ実行される式を書くことができ、コードが非常に簡潔になります。なお、<code>unless</code>キーワードも同様に使用できます。</p>
+<p><code>if</code>キーワードの別の使い方を示しています。Rubyではこのように、後続する<code>if</code>での条件式が真のときにだけ実行される式を書くことができ、コードが非常に簡潔になります。なお、<code>unless</code>キーワードも同様に使用できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="nb">puts</span> <span class="s2">&quot;The string &#39;</span><span class="si">#{</span><span class="n">string</span><span class="si">}</span><span class="s2">&#39; is nonempty.&quot;</span> <span class="k">unless</span> <span class="n">string</span><span class="o">.</span><span class="n">empty?</span>
@@ -719,7 +719,7 @@
 
 <p>最後の例では、要素の追加を連鎖 (chain) できることを示しました。また、Rubyの配列は、他の多くの言語の配列とは異なり、さまざまな型を共存させることができます (この場合は整数と文字列)。</p>
 
-<p>文字列を配列に変換するのに<code>split</code>を使用しました。<code>join</code>メソッドはこれと逆の動作d</p>
+<p>文字列を配列に変換するのに<code>split</code>を使用しました。<code>join</code>メソッドはこれと逆の動作です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>
 <span class="go">=&gt; [42, 8, 17, 7, &quot;foo&quot;, &quot;bar&quot;]</span>

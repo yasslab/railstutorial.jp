@@ -56,7 +56,7 @@
 
 <p><a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/chapters/beginning?version=4.0#sidebar-scaffolding">コラム 1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/chapters/beginning?version=4.0#fn-1_1">1</a></sup>と呼ばれることもあります)を指定してデモアプリを使ってみます。</p>
 
-<p>第3章以降では、<em>サンプルアプリケーション</em> (<code>sample_app</code>と呼びます) を作成します。このアプリはTDD(<em>テスト駆動開発</em> で開発を進め、<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>で静的ページ (と若干の動的コンテンツ) を追加するところから始めます。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a>では少し回り道をし、Railsを動かしているRuby言語について簡単に学びます。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>から<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>ではレイアウト、ユーザーのデータモデル、そしてユーザー登録・認証システムを作りサンプルアプリの基礎を完成させます。最後に<a class="ref" href="/chapters/user-microposts?version=4.0#top">第10章</a>と<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>ではマイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
+<p>第3章以降では、<em>サンプルアプリケーション</em> (<code>sample_app</code>と呼びます) を作成します。このアプリはTDD (<em>テスト駆動開発</em>) で開発を進め、<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>で静的ページ (と若干の動的コンテンツ) を追加するところから始めます。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a>では少し回り道をし、Railsを動かしているRuby言語について簡単に学びます。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>から<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>ではレイアウト、ユーザーのデータモデル、そしてユーザー登録・認証システムを作りサンプルアプリの基礎を完成させます。最後に<a class="ref" href="/chapters/user-microposts?version=4.0#top">第10章</a>と<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>ではマイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
 
 <p>最終的なサンプルアプリは、かつて同じRailsで書かれていた<a href="http://twitter.com/">某ソーシャルマイクロブログサイト</a>にとてもよく似た仕上がりになります。もちろん、このサンプルアプリを中心に開発を進めて行きますが、<em>Rails チュートリアル</em>では今後Webアプリケーションを作成する時に、どのようなアプリケーションにも通用する基礎を築きます。</p>
 
@@ -100,7 +100,7 @@
 
 <p>もう１つよく聞かれる質問が「最初からテストを書くべきか」というものです。「はじめに」で述べたように、<em>Rails チュートリアル</em>では最初からテスト駆動開発 (TDD) を採用しています。これは著者からみてRailsアプリケーションを開発するのに最適な方法ですが、その分かなり複雑になり、習得に時間もかかります。テストが面倒になったり、難しくて前に進めなくなった場合、思い切ってその箇所をスキップするか、テストはコード検証のためのツールと割りきって単に動かすだけにとどめ、理解は後回しにしてしまっても構いません。後者でいうテストとは、<em>spec</em>と呼ばれるテストファイルを作成し、そこにテストコードを本書で指示された<em>とおり</em>にコピペするということです。その後テストスイートを実行します。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>で実践しますが、最初はテストに失敗し、次にチュートリアルに従ってコードを書くと次のテストにはパスするようにシナリオが作られています。<br /></p>
 
-<p><strong>経験の浅いプログラマ:</strong> ご注意いただきたいのですが、<em>Railsチュートリアル</em>は、まったくのプログラミング初心者、Webアプリケーションの初心者を主な読者層としては想定していません。プログラミング言語やWebアプリケーションは、たとえどれほどシンプルなものであっても必ずある程度には複雑なものだからです。Webプログラミングについてまったくの初心者の方が、本書<em>Railsチュートリアル</em>が難しすぎると感じた場合は、まずHTMLとCSSの基礎を勉強してください。それから<em>Railsチュートリアル</em>に再度挑戦してください。(現時点でお勧めの学習教材を思いつかず恐縮ですが、HTMLの学習用として「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」はなかなかよさそうです。David Sawyer McFarlandによる「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>}」を推薦してくれた読者もいます)。Peter Cooperの「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の数章をやってみるのもよいでしょう。同書のサンプルアプリケーションは本格的なWebアプリケーションに比べて非常に小さいので、比較的やりやすいと思います。実のところ、驚くほど多くのプログラミング初心者の皆様が本書でWeb開発を学ぼうとしているのです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。そうした方には、「<a href="http://railstutorial.org/screencasts"><em>Rails Tutorial</em> screencastシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="/chapters/beginning?version=4.0#fn-1_4">4</a></sup>」(いずれも日本語版はなし) を特にお勧めします。このビデオチュートリアルは、Railsソフトウェア開発のベテランの作業を文字通り「肩越しに」学ぶことができます。<br /></p>
+<p><strong>経験の浅いプログラマ:</strong> ご注意いただきたいのですが、<em>Railsチュートリアル</em>は、まったくのプログラミング初心者、Webアプリケーションの初心者を主な読者層としては想定していません。プログラミング言語やWebアプリケーションは、たとえどれほどシンプルなものであっても必ずある程度には複雑なものだからです。Webプログラミングについてまったくの初心者の方が、本書<em>Railsチュートリアル</em>が難しすぎると感じた場合は、まずHTMLとCSSの基礎を勉強してください。それから<em>Railsチュートリアル</em>に再度挑戦してください。(現時点でお勧めの学習教材を思いつかず恐縮ですが、HTMLの学習用として「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」はなかなかよさそうです。David Sawyer McFarlandによる「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>」を推薦してくれた読者もいます)。Peter Cooperの「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の数章をやってみるのもよいでしょう。同書のサンプルアプリケーションは本格的なWebアプリケーションに比べて非常に小さいので、比較的やりやすいと思います。実のところ、驚くほど多くのプログラミング初心者の皆様が本書でWeb開発を学ぼうとしているのです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。そうした方には、「<a href="http://railstutorial.org/screencasts"><em>Rails Tutorial</em> screencastシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="/chapters/beginning?version=4.0#fn-1_4">4</a></sup>」(いずれも日本語版はなし) を特にお勧めします。このビデオチュートリアルは、Railsソフトウェア開発のベテランの作業を文字通り「肩越しに」学ぶことができます。<br /></p>
 
 <p><strong>ソフトウェア開発経験があり、Web開発を始めたい方:</strong> プログラミングの経験がある方でクラス、メソッド、データ構造などに馴染みがあるなら、その知識は有利に働くはずです。JavaやC/C++とRubyではかなり記述スタイルが違うので少し違和感を感じるかもしれませんが、すぐに慣れるはずです (Rubyではセミコロン&#39;;&#39;も使えます)。<em>Railsチュートリアル</em>はWeb特有の概念をほぼカバーしているので、<tt>POST</tt>と<tt>PATCH</tt>の違いが分からなくても心配はいりません。<br /></p>
 
@@ -145,7 +145,7 @@
 
 <p><a href="http://railstutorial.jp/book">HTML</a>版、<a href="http://railstutorial.jp/">PDF</a>版ともに、文中には内部リンク (<a class="ref" href="/chapters/beginning?version=4.0#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロード</a>ページなど) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="/chapters/beginning?version=4.0#fn-1_5">5</a></sup>。</p>
 
-<p>本書の出てくる例の多くはコマンドライン (ターミナル) のコマンドを使っています。簡単にするため、すべてのコマンドライン例では、次のようにUnixスタイルの$プロンプトを使用しています。</p>
+<p>本書に出てくる例の多くはコマンドライン (ターミナル) のコマンドを使っています。簡単にするため、すべてのコマンドライン例では、次のようにUnixスタイルの$プロンプトを使用しています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;hello, world&quot;</span>
 <span class="go">&quot;hello world&quot;</span>
@@ -296,7 +296,7 @@
 <h4><a id="sec-1_2_2_1" href="/chapters/beginning?version=4.0#sec-rails_installer_windows" class="heading">Railsインストーラ (Windows)</a></h4>
 
 
-<p>最近までWindows上でのRailsのインストールは困難だったのですが、<a href="http://engineyard.com/">Engine Yard</a>の皆様 (特にDr. Nic WilliamsとWayne E. Seguin) のおかげで非常に簡単になりました。Windowsユーザーの方は<a href="http://railsinstaller.org/">Railsインストーラ</a>からインストーラをダウンロードして下さい。exeファイルをダブルクリックし、指示に従ってGit、Ruby、RubyGems、そしてRails自身をインストールします (<a class="ref" href="/chapters/beginning?version=4.0#sec-install_git">1.2.2.2</a>、<a class="ref" href="/chapters/beginning?version=4.0#sec-install_ruby">1.2.2.3</a>、<a class="ref" href="/chapters/beginning?version=4.0#sec-install_rubygems">1.2.2.4</a>、<a class="ref" href="/chapters/beginning?version=4.0#sec-install_rails">1.2.2.5</a>はスキップしてください)。インストール完了後、<a class="ref" href="/chapters/beginning?version=4.0#sec-the_first_application">1.2.3</a>までスキップして最初のアプリケーション作成を開始してください。</p>
+<p>最近までWindows上でのRailsのインストールは困難だったのですが、<a href="http://engineyard.com/">Engine Yard</a>の皆様 (特にDr. Nic WilliamsとWayne E. Seguin) のおかげで非常に簡単になりました。Windowsユーザーの方は<a href="http://railsinstaller.org/">Railsインストーラ</a>からインストーラをダウンロードしてください。exeファイルをダブルクリックし、指示に従ってGit、Ruby、RubyGems、そしてRails自身をインストールします (<a class="ref" href="/chapters/beginning?version=4.0#sec-install_git">1.2.2.2</a>、<a class="ref" href="/chapters/beginning?version=4.0#sec-install_ruby">1.2.2.3</a>、<a class="ref" href="/chapters/beginning?version=4.0#sec-install_rubygems">1.2.2.4</a>、<a class="ref" href="/chapters/beginning?version=4.0#sec-install_rails">1.2.2.5</a>はスキップしてください)。インストール完了後、<a class="ref" href="/chapters/beginning?version=4.0#sec-the_first_application">1.2.3</a>までスキップして最初のアプリケーション作成を開始してください。</p>
 
 <p>注意: このRailsインストーラによってインストールされるRailsのバージョンは<a class="ref" href="/chapters/beginning?version=4.0#sec-install_rails">1.2.2.5</a>に記載のものと異なることがあります。その場合、互換性の問題が生じることもありえます。この問題を解決するために、Railsのバージョン番号順に並んだRubyインストーラのリストを作成してもらうようNicとWayneに働きかけています。</p>
 
@@ -306,7 +306,7 @@
 <h4><a id="sec-1_2_2_2" href="/chapters/beginning?version=4.0#sec-install_git" class="heading">Gitのインストール</a></h4>
 
 
-<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早い内にインストールを済ませておきます。<a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にして下さい。</p>
+<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早い内にインストールを済ませておきます。<a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にしてください。</p>
 
 <div class="label" id="sec-install_ruby"></div>
 
@@ -419,7 +419,7 @@
 </div>
 
 
-<p>RubyGemsがインストールされていない場合は、<a href="http://rubyforge.org/frs/?group_id=126">RubyGemsをダウンロード</a>して解凍し、作成された<code>rubygems</code>ディレクトリでセットアッププログラムを実行して下さい。</p>
+<p>RubyGemsがインストールされていない場合は、<a href="http://rubyforge.org/frs/?group_id=126">RubyGemsをダウンロード</a>して解凍し、作成された<code>rubygems</code>ディレクトリでセットアッププログラムを実行してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby setup.rb
 </pre></div>
@@ -428,7 +428,7 @@
 
 <p>(アクセス権の問題が生じたら、<a class="ref" href="/chapters/beginning?version=4.0#sec-conventions">1.1.3</a>を参照してください。おそらく<code>sudo</code>コマンドを併用する必要があります。)</p>
 
-<p>既にRubyGemsがインストールされている場合は、システムをチュートリアルで使われているバージョンに更新して下さい。</p>
+<p>既にRubyGemsがインストールされている場合は、システムをチュートリアルで使われているバージョンに更新してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> gem update --system 2.0.3
 </pre></div>
@@ -572,7 +572,8 @@
 <p>Railsアプリケーションを新規作成したら、次は<em>Bundler</em>を実行して、アプリケーションに必要なgemをインストールおよびインクルードします。<a class="ref" href="/chapters/beginning?version=4.0#sec-the_first_application">1.2.3</a>でも簡単に説明したように、Bundlerは<code>rails</code>によって自動的に実行 (この場合は<code>bundle install</code>) されます。ここではデフォルトのアプリケーションgemを変更してBundlerを再度実行してみます。そのためにまず、好みのエディタで<code>Gemfile</code>を開きます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>first_app/
-<span class="gp">$</span> SUBL Gemfile</pre></div>
+<span class="gp">$</span> subl Gemfile
+</pre></div>
 </div>
 
 
@@ -742,7 +743,7 @@
 </div>
 
 
-<p><code>coffee-rails</code> (これもAsset Pipelineで使用するgemです) のバージョンが<code>4.0.0</code>より大きく、<code>4.1</code>より小さい場合にインストールします。つまり、<tt class="verb">&gt;=</tt>と書くと<code>bundle install</code>の実行時に必ずアップグレードが行われますが、<tt class="verb">~&gt; 4.0.0</tt>と書くとマイナーなアップグレードしか行われないことになります。この場合<code>4.0.0</code>から<code>4.0.1</code>へのアップグレードは行われますが、<code>4.0</code>から<code>4.1</code>へのアップグレードは行われません。経験上、残念ながらマイナーアップグレードですら問題を引き起こすことがあります。このため、<em>Railsチュートリアル</em>では基本的にすべてのgemでバージョンをピンポイントで指定してます。ベテラン開発者であれば、<code>Gemfile</code>で<tt class="verb">~&gt;</tt>が指定されているgemも含め、基本的に最新のgemを使用しても構いません。ただし、それによって本書に記載されているのと異なる挙動を示す可能性がありますので、その場合は各自でご対応願います。</p>
+<p><code>coffee-rails</code> (これもAsset Pipelineで使用するgemです) のバージョンが<code>4.0.0</code>より大きく、<code>4.1</code>より小さい場合にインストールします。つまり、<tt class="verb">&gt;=</tt>と書くと<code>bundle install</code>の実行時に必ずアップグレードが行われますが、<tt class="verb">~&gt; 4.0.0</tt>と書くとマイナーなアップグレードしか行われないことになります。この場合<code>4.0.0</code>から<code>4.0.1</code>へのアップグレードは行われますが、<code>4.0</code>から<code>4.1</code>へのアップグレードは行われません。経験上、残念ながらマイナーアップグレードですら問題を引き起こすことがあります。このため、<em>Railsチュートリアル</em>では基本的にすべてのgemでバージョンをピンポイントで指定しています。ベテラン開発者であれば、<code>Gemfile</code>で<tt class="verb">~&gt;</tt>が指定されているgemも含め、基本的に最新のgemを使用しても構いません。ただし、それによって本書に記載されているのと異なる挙動を示す可能性がありますので、その場合は各自でご対応願います。</p>
 
 <p><code>Gemfile</code>を正しく設定した後、<code>bundle update</code><sup class="footnote" id="fnref-1_14"><a href="/chapters/beginning?version=4.0#fn-1_14">14</a></sup>と<code>bundle install</code>を使用してgemをインストールします。</p>
 
@@ -775,7 +776,7 @@
 </div>
 
 
-<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムを確認してください。<a href="http://nodejs.org/">Node.js</a>が特にお勧めです)。表示されたメッセージは、RailsアプリケーションがIPaddress <code>0.0.0.0</code>、<a href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">ポート番号</a>3000<sup class="footnote" id="fnref-1_15"><a href="/chapters/beginning?version=4.0#fn-1_15">15</a></sup>で動作していることを示しています。このIPアドレスは、このマシンに設定されているすべてのIPアドレスで受信待ち (listen) するように指定しています。これにより、<code>127.0.0.1</code>(<code>localhost</code>)という特別なアドレスでアプリケーションをブラウズできます。<a class="ref" href="/chapters/beginning?version=4.0#fig-riding_rails">図1.3</a>は、<a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示した時の結果です。</p>
+<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムを確認してください。<a href="http://nodejs.org/">Node.js</a>が特にお勧めです)。表示されたメッセージは、RailsアプリケーションがIPアドレス<code>0.0.0.0</code>、<a href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">ポート番号</a>3000<sup class="footnote" id="fnref-1_15"><a href="/chapters/beginning?version=4.0#fn-1_15">15</a></sup>で動作していることを示しています。このIPアドレスは、このマシンに設定されているすべてのIPアドレスで受信待ち (listen) するように指定しています。これにより、<code>127.0.0.1</code>(<code>localhost</code>)という特別なアドレスでアプリケーションをブラウズできます。<a class="ref" href="/chapters/beginning?version=4.0#fig-riding_rails">図1.3</a>は、<a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示した時の結果です。</p>
 
 <div class="label" id="fig-riding_rails"></div>
 
@@ -783,7 +784,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/riding_rails_4_0.png" alt="riding_rails_4_0" /></span></div><div class="caption"><span class="header">図1.3</span> <span class="description">デフォルトのRailsページ。<a href="http://railstutorial.jp/images/figures/riding_rails_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>この最初のアプリケーションの情報を見るには、「About your application’s environment」のリンクをクリックして下さい。<a class="ref" href="/chapters/beginning?version=4.0#fig-riding_rails_environment">図1.4</a>のような画面が表示されます (<a class="ref" href="/chapters/beginning?version=4.0#fig-riding_rails_environment">図1.4</a>は著者の環境でキャプチャしたものなので、実際には若干異なる可能性があります)。</p>
+<p>この最初のアプリケーションの情報を見るには、「About your application’s environment」のリンクをクリックしてください。<a class="ref" href="/chapters/beginning?version=4.0#fig-riding_rails_environment">図1.4</a>のような画面が表示されます (<a class="ref" href="/chapters/beginning?version=4.0#fig-riding_rails_environment">図1.4</a>は著者の環境でキャプチャしたものなので、実際には若干異なる可能性があります)。</p>
 
 <div class="label" id="fig-riding_rails_environment"></div>
 
@@ -799,7 +800,7 @@
 <h3><a id="sec-1_2_6" href="/chapters/beginning?version=4.0#sec-mvc" class="heading"><span class="number">1.2.6</span> Model-View-Controller (MVC)</a></h3>
 
 
-<p>まだ始まったばかりですが、今のうちにRailsアプリケーションの全体的な仕組みを知っておくことは後々役立ちます (<a class="ref" href="/chapters/beginning?version=4.0#fig-MVC">図1.5</a>)。デフォルトのRailsアプリ構造 (<a class="ref" href="/chapters/beginning?version=4.0#fig-directory_structure_rails">図1.2</a>) を眺めてみると、<code>app/</code>というディレクトリがあり、その中に「<code>models</code>」「<code>views</code>」「<code>controllers</code>」という3つのサブディレクトリがあることに気付いた方もいると思います。ここにはRailsが<a href="http://en.wikipedia.org/wiki/Model-view-controller">MVC (model-view-controller)</a> というアーキテクチャパターンを採用していることが暗に示されています。MVCでは、ドメインロジック (ビジネスロジックともいいます) と、グラフィカルユーザーインターフェース (GUI) と密に関連する入力/表示ロジックを分離します。Webアプリケーションの場合、「ドメインロジック」はユーザーや記事、商品などのデータモデルに相当し、ユーザーインターフェースはWebページを指します。</p>
+<p>まだ始まったばかりですが、今のうちにRailsアプリケーションの全体的な仕組みを知っておくことは後々役立ちます (<a class="ref" href="/chapters/beginning?version=4.0#fig-MVC">図1.5</a>)。デフォルトのRailsアプリ構造 (<a class="ref" href="/chapters/beginning?version=4.0#fig-directory_structure_rails">図1.2</a>) を眺めてみると、<code>app/</code>というディレクトリがあり、その中に「<code>models</code>」「<code>views</code>」「<code>controllers</code>」という3つのサブディレクトリがあることに気付いた方もいると思います。ここにはRailsが<a href="http://en.wikipedia.org/wiki/Model-view-controller">MVC (model-view-controller)</a> というアーキテクチャパターンを採用していることが暗に示されています。MVCでは、ドメインロジック (ビジネスロジックともいいます) と、グラフィカルユーザーインターフェイス (GUI) と密に関連する入力/表示ロジックを分離します。Webアプリケーションの場合、「ドメインロジック」はユーザーや記事、商品などのデータモデルに相当し、ユーザーインターフェイスはWebページを指します。</p>
 
 <p>Railsアプリと通信する際、ブラウザは一般的にWebサーバに<em>request</em> (リクエスト) を送信し、これはリクエストを処理する役割を担っているRailsの<em>controller</em> (コントローラ) に渡されます。 コントローラは、場合によってはすぐに<em>view</em> (ビュー) を生成してHTMLをブラウザに送り返します。動的なサイトでは、一般にコントローラは (ユーザーなどの) サイトの要素を表しており、データベースとの通信を担当しているRubyのオブジェクトである<em>model</em> (モデル) と対話します。モデルを呼び出した後、コントローラは、ビューをレンダリングし、完成したWebページをHTMLとしてブラウザに返します。</p>
 
@@ -869,7 +870,7 @@
 </div>
 
 
-<p>次に、プロジェクトのファイルをリポジトリに追加します。ここで１つ問題点があります。Gitは<em>すべての</em>ファイルの変更履歴を管理するようになっていますが、管理対象に含めたくないファイルもあります。たとえば、Railsによって作成されるログファイルは頻繁に内容が変わるので、いちいちバージョン管理に更新させたくありません。Gitにはこういったファイルを管理対象から除外する機能があります。<code>.gitignore</code>というファイルをアプリケーションのルートディレクトリに置き、除外したいファイルを指定するためのルールをそこに記載します<sup class="footnote" id="fnref-1_17"><a href="/chapters/beginning?version=4.0#fn-1_17">17</a></sup>。</p>
+<p>次に、プロジェクトのファイルをリポジトリに追加します。ここで１つ問題があります。Gitは<em>すべての</em>ファイルの変更履歴を管理するようになっていますが、管理対象に含めたくないファイルもあります。たとえば、Railsによって作成されるログファイルは頻繁に内容が変わるので、いちいちバージョン管理に更新させたくありません。Gitにはこういったファイルを管理対象から除外する機能があります。<code>.gitignore</code>というファイルをアプリケーションのルートディレクトリに置き、除外したいファイルを指定するためのルールをそこに記載します<sup class="footnote" id="fnref-1_17"><a href="/chapters/beginning?version=4.0#fn-1_17">17</a></sup>。</p>
 
 <p><a class="ref" href="/chapters/beginning?version=4.0#table-rails_directory_structure">表1.1</a>をもう一度見てみると、<code>rails</code>コマンドを実行した時にRailsアプリケーションのルートディレクトリに<code>.gitignore</code>ファイルが作成されています (<a class="ref" href="/chapters/beginning?version=4.0#code-default_gitignore">リスト1.6</a>)。</p>
 
@@ -1080,7 +1081,7 @@ doc/
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/github_repository_page_4_0.png" alt="github_repository_page_4_0" /></span></div><div class="caption"><span class="header">図1.7</span><span class="description">GitHubのリポジトリページ。<a href="http://railstutorial.jp/images/figures/github_repository_page_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>なお、GitHubにはコマンドラインインターフェイスを拡張したGUIアプリケーションもあります。 GUIアプリケーションの方が好みであれば、<a href="http://windows.github.com/">GitHub for Windows</a>や<a href="http://mac.github.com/">GitHub for Mac</a>をチェックしてみてください  (Linux用のGitHubは今のところGitしかないようです)。</p>
+<p>なお、GitHubにはコマンドラインインターフェイスを拡張したGUIアプリケーションもあります。 GUIアプリケーションの方が好みであれば、<a href="http://windows.github.com/">GitHub for Windows</a>や<a href="http://mac.github.com/">GitHub for Mac</a>をチェックしてみてください (GitHub for Linuxは今のところ存在しないようです)。</p>
 
 <div class="label" id="sec-git_commands"></div>
 
@@ -1226,7 +1227,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>上で述べたように、<code>git branch -D</code>でトピックブランチ上の変更を破棄することもできます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="c"># これはあくまで例です。ブランチでミスをした時以外は実行しないで下さい。</span>
+<div class="code"><div class="highlight"><pre><span class="c"># これはあくまで例です。ブランチでミスをした時以外は実行しないでください。</span>
 <span class="nv">$ </span>git checkout -b topic-branch
 <span class="nv">$ </span>&lt;ブランチをめちゃくちゃにしてみる&gt;
 <span class="nv">$ </span>git add .
@@ -1270,7 +1271,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境にデプロイしてしまいましょう。アプリケーションのデプロイは必須ではありませんが、頻繁にデプロイすることによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境にデプロイしないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_20"><a href="/chapters/beginning?version=4.0#fn-1_20">20</a></sup>。</p>
 
-<p>かつてはRailsアプリのデプロイは大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx23<sup class="footnote" id="fnref-1_21"><a href="/chapters/beginning?version=4.0#fn-1_21">21</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスデプロイメントを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
+<p>かつてはRailsアプリのデプロイは大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx<sup class="footnote" id="fnref-1_21"><a href="/chapters/beginning?version=4.0#fn-1_21">21</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスデプロイメントを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
 
 <p>著者のお気に入りはHerokuで、Railsを含むRuby Webアプリ用のホスティングプラットフォームです。Herokuは、ソースコードのバージョン管理にGitを使用していれば、Railsアプリケーションを簡単に本番環境にデプロイできます (Gitを導入したのは、まさにこのHerokuで使うためでもあります。まだGitをインストールしていない方は<a class="ref" href="/chapters/beginning?version=4.0#sec-version_control">1.3</a>を参照してください)。この章では、最初のアプリケーションをHerokuにデプロイします。</p>
 
@@ -1391,7 +1392,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h3><a id="sec-1_4_3" href="/chapters/beginning?version=4.0#sec-1_4_3" class="heading"><span class="number">1.4.3</span> Herokuにデプロイする (2)</a></h3>
 
 
-<p>失礼、その2はありません。これで終わりです (<a class="ref" href="/chapters/beginning?version=4.0#fig-heroku_app">図1.10</a>)。デプロイされたアプリケーションの表示は、<code>heroku create</code> (<a class="ref" href="/chapters/beginning?version=4.0#code-heroku_create">リスト1.10</a>) を実行した際に生成されたアドレスをブラウザで開くだけです (もちろんここに出てくる著者のアドレスではなく、自分が登録したアドレスを使って下さい)。<code>heroku</code>コマンドに以下の引数を与えるだけで、正しいアドレスでブラウザが起動します。</p>
+<p>失礼、その2はありません。これで終わりです (<a class="ref" href="/chapters/beginning?version=4.0#fig-heroku_app">図1.10</a>)。デプロイされたアプリケーションの表示は、<code>heroku create</code> (<a class="ref" href="/chapters/beginning?version=4.0#code-heroku_create">リスト1.10</a>) を実行した際に生成されたアドレスをブラウザで開くだけです (もちろんここに出てくる著者のアドレスではなく、自分が登録したアドレスを使ってください)。<code>heroku</code>コマンドに以下の引数を与えるだけで、正しいアドレスでブラウザが起動します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku open
 </pre></div>
@@ -1406,7 +1407,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/heroku_app_4_0.png" alt="heroku_app_4_0" /></span></div><div class="caption"><span class="header">図1.10</span><span class="description">Heroku上で動作しているRailsチュートリアルの最初のアプリケーション。<a href="http://railstutorial.jp/images/figures/heroku_app_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>Herokuへのデプロイが完了した後は、アプリケーションの管理と設定に以下のような美しいユーザーインターフェースを使用できます (<a class="ref" href="/chapters/beginning?version=4.0#fig-heroku_info">図1.11</a>)。</p>
+<p>Herokuへのデプロイが完了した後は、アプリケーションの管理と設定に以下のような美しいユーザーインターフェイスを使用できます (<a class="ref" href="/chapters/beginning?version=4.0#fig-heroku_info">図1.11</a>)。</p>
 
 <div class="label" id="fig-heroku_info"></div>
 

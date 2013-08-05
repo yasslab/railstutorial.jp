@@ -47,7 +47,7 @@
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-scaffolding">コラム 1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_1">1</a></sup>と呼ばれることもあります)を指定してデモアプリを使ってみます。</p>
 
-<p>第3章以降では、<em>サンプルアプリケーション</em> (<code>sample_app</code>と呼びます) を作成します。このアプリはTDD(<em>テスト駆動開発</em> で開発を進め、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-static-pages">第3章</a>で静的ページ (と若干の動的コンテンツ) を追加するところから始めます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-rails-flavored-ruby">第4章</a>では少し回り道をし、Railsを動かしているRuby言語について簡単に学びます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-filling-in-the-layout">第5章</a>から<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-updating-showing-and-deleting-users">第9章</a>ではレイアウト、ユーザーのデータモデル、そしてユーザー登録・認証システムを作りサンプルアプリの基礎を完成させます。最後に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-user-microposts">第10章</a>と<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-following-users">第11章</a>ではマイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
+<p>第3章以降では、<em>サンプルアプリケーション</em> (<code>sample_app</code>と呼びます) を作成します。このアプリはTDD (<em>テスト駆動開発</em>) で開発を進め、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-static-pages">第3章</a>で静的ページ (と若干の動的コンテンツ) を追加するところから始めます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-rails-flavored-ruby">第4章</a>では少し回り道をし、Railsを動かしているRuby言語について簡単に学びます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-filling-in-the-layout">第5章</a>から<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-updating-showing-and-deleting-users">第9章</a>ではレイアウト、ユーザーのデータモデル、そしてユーザー登録・認証システムを作りサンプルアプリの基礎を完成させます。最後に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-user-microposts">第10章</a>と<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-following-users">第11章</a>ではマイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
 
 <p>最終的なサンプルアプリは、かつて同じRailsで書かれていた<a href="http://twitter.com/">某ソーシャルマイクロブログサイト</a>にとてもよく似た仕上がりになります。もちろん、このサンプルアプリを中心に開発を進めて行きますが、<em>Rails チュートリアル</em>では今後Webアプリケーションを作成する時に、どのようなアプリケーションにも通用する基礎を築きます。</p>
 
@@ -91,7 +91,7 @@
 
 <p>もう１つよく聞かれる質問が「最初からテストを書くべきか」というものです。「はじめに」で述べたように、<em>Rails チュートリアル</em>では最初からテスト駆動開発 (TDD) を採用しています。これは著者からみてRailsアプリケーションを開発するのに最適な方法ですが、その分かなり複雑になり、習得に時間もかかります。テストが面倒になったり、難しくて前に進めなくなった場合、思い切ってその箇所をスキップするか、テストはコード検証のためのツールと割りきって単に動かすだけにとどめ、理解は後回しにしてしまっても構いません。後者でいうテストとは、<em>spec</em>と呼ばれるテストファイルを作成し、そこにテストコードを本書で指示された<em>とおり</em>にコピペするということです。その後テストスイートを実行します。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-filling-in-the-layout">第5章</a>で実践しますが、最初はテストに失敗し、次にチュートリアルに従ってコードを書くと次のテストにはパスするようにシナリオが作られています。<br /></p>
 
-<p><strong>経験の浅いプログラマ:</strong> ご注意いただきたいのですが、<em>Railsチュートリアル</em>は、まったくのプログラミング初心者、Webアプリケーションの初心者を主な読者層としては想定していません。プログラミング言語やWebアプリケーションは、たとえどれほどシンプルなものであっても必ずある程度には複雑なものだからです。Webプログラミングについてまったくの初心者の方が、本書<em>Railsチュートリアル</em>が難しすぎると感じた場合は、まずHTMLとCSSの基礎を勉強してください。それから<em>Railsチュートリアル</em>に再度挑戦してください。(現時点でお勧めの学習教材を思いつかず恐縮ですが、HTMLの学習用として「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」はなかなかよさそうです。David Sawyer McFarlandによる「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>}」を推薦してくれた読者もいます)。Peter Cooperの「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の数章をやってみるのもよいでしょう。同書のサンプルアプリケーションは本格的なWebアプリケーションに比べて非常に小さいので、比較的やりやすいと思います。実のところ、驚くほど多くのプログラミング初心者の皆様が本書でWeb開発を学ぼうとしているのです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。そうした方には、「<a href="http://railstutorial.org/screencasts"><em>Rails Tutorial</em> screencastシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_4">4</a></sup>」(いずれも日本語版はなし) を特にお勧めします。このビデオチュートリアルは、Railsソフトウェア開発のベテランの作業を文字通り「肩越しに」学ぶことができます。<br /></p>
+<p><strong>経験の浅いプログラマ:</strong> ご注意いただきたいのですが、<em>Railsチュートリアル</em>は、まったくのプログラミング初心者、Webアプリケーションの初心者を主な読者層としては想定していません。プログラミング言語やWebアプリケーションは、たとえどれほどシンプルなものであっても必ずある程度には複雑なものだからです。Webプログラミングについてまったくの初心者の方が、本書<em>Railsチュートリアル</em>が難しすぎると感じた場合は、まずHTMLとCSSの基礎を勉強してください。それから<em>Railsチュートリアル</em>に再度挑戦してください。(現時点でお勧めの学習教材を思いつかず恐縮ですが、HTMLの学習用として「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」はなかなかよさそうです。David Sawyer McFarlandによる「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>」を推薦してくれた読者もいます)。Peter Cooperの「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の数章をやってみるのもよいでしょう。同書のサンプルアプリケーションは本格的なWebアプリケーションに比べて非常に小さいので、比較的やりやすいと思います。実のところ、驚くほど多くのプログラミング初心者の皆様が本書でWeb開発を学ぼうとしているのです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。そうした方には、「<a href="http://railstutorial.org/screencasts"><em>Rails Tutorial</em> screencastシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_4">4</a></sup>」(いずれも日本語版はなし) を特にお勧めします。このビデオチュートリアルは、Railsソフトウェア開発のベテランの作業を文字通り「肩越しに」学ぶことができます。<br /></p>
 
 <p><strong>ソフトウェア開発経験があり、Web開発を始めたい方:</strong> プログラミングの経験がある方でクラス、メソッド、データ構造などに馴染みがあるなら、その知識は有利に働くはずです。JavaやC/C++とRubyではかなり記述スタイルが違うので少し違和感を感じるかもしれませんが、すぐに慣れるはずです (Rubyではセミコロン&#39;;&#39;も使えます)。<em>Railsチュートリアル</em>はWeb特有の概念をほぼカバーしているので、<tt>POST</tt>と<tt>PATCH</tt>の違いが分からなくても心配はいりません。<br /></p>
 
@@ -136,7 +136,7 @@
 
 <p><a href="http://railstutorial.jp/book">HTML</a>版、<a href="http://railstutorial.jp/">PDF</a>版ともに、文中には内部リンク (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロード</a>ページなど) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_5">5</a></sup>。</p>
 
-<p>本書の出てくる例の多くはコマンドライン (ターミナル) のコマンドを使っています。簡単にするため、すべてのコマンドライン例では、次のようにUnixスタイルの$プロンプトを使用しています。</p>
+<p>本書に出てくる例の多くはコマンドライン (ターミナル) のコマンドを使っています。簡単にするため、すべてのコマンドライン例では、次のようにUnixスタイルの$プロンプトを使用しています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;hello, world&quot;</span>
 <span class="go">&quot;hello world&quot;</span>
@@ -287,7 +287,7 @@
 <h4><a id="sec-1_2_2_1" href="/book/ruby-on-rails-tutorial?version=4.0#sec-rails_installer_windows" class="heading">Railsインストーラ (Windows)</a></h4>
 
 
-<p>最近までWindows上でのRailsのインストールは困難だったのですが、<a href="http://engineyard.com/">Engine Yard</a>の皆様 (特にDr. Nic WilliamsとWayne E. Seguin) のおかげで非常に簡単になりました。Windowsユーザーの方は<a href="http://railsinstaller.org/">Railsインストーラ</a>からインストーラをダウンロードして下さい。exeファイルをダブルクリックし、指示に従ってGit、Ruby、RubyGems、そしてRails自身をインストールします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_git">1.2.2.2</a>、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_ruby">1.2.2.3</a>、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_rubygems">1.2.2.4</a>、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_rails">1.2.2.5</a>はスキップしてください)。インストール完了後、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_first_application">1.2.3</a>までスキップして最初のアプリケーション作成を開始してください。</p>
+<p>最近までWindows上でのRailsのインストールは困難だったのですが、<a href="http://engineyard.com/">Engine Yard</a>の皆様 (特にDr. Nic WilliamsとWayne E. Seguin) のおかげで非常に簡単になりました。Windowsユーザーの方は<a href="http://railsinstaller.org/">Railsインストーラ</a>からインストーラをダウンロードしてください。exeファイルをダブルクリックし、指示に従ってGit、Ruby、RubyGems、そしてRails自身をインストールします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_git">1.2.2.2</a>、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_ruby">1.2.2.3</a>、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_rubygems">1.2.2.4</a>、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_rails">1.2.2.5</a>はスキップしてください)。インストール完了後、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_first_application">1.2.3</a>までスキップして最初のアプリケーション作成を開始してください。</p>
 
 <p>注意: このRailsインストーラによってインストールされるRailsのバージョンは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_rails">1.2.2.5</a>に記載のものと異なることがあります。その場合、互換性の問題が生じることもありえます。この問題を解決するために、Railsのバージョン番号順に並んだRubyインストーラのリストを作成してもらうようNicとWayneに働きかけています。</p>
 
@@ -297,7 +297,7 @@
 <h4><a id="sec-1_2_2_2" href="/book/ruby-on-rails-tutorial?version=4.0#sec-install_git" class="heading">Gitのインストール</a></h4>
 
 
-<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早い内にインストールを済ませておきます。<a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にして下さい。</p>
+<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早い内にインストールを済ませておきます。<a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にしてください。</p>
 
 <div class="label" id="sec-install_ruby"></div>
 
@@ -410,7 +410,7 @@
 </div>
 
 
-<p>RubyGemsがインストールされていない場合は、<a href="http://rubyforge.org/frs/?group_id=126">RubyGemsをダウンロード</a>して解凍し、作成された<code>rubygems</code>ディレクトリでセットアッププログラムを実行して下さい。</p>
+<p>RubyGemsがインストールされていない場合は、<a href="http://rubyforge.org/frs/?group_id=126">RubyGemsをダウンロード</a>して解凍し、作成された<code>rubygems</code>ディレクトリでセットアッププログラムを実行してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby setup.rb
 </pre></div>
@@ -419,7 +419,7 @@
 
 <p>(アクセス権の問題が生じたら、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-conventions">1.1.3</a>を参照してください。おそらく<code>sudo</code>コマンドを併用する必要があります。)</p>
 
-<p>既にRubyGemsがインストールされている場合は、システムをチュートリアルで使われているバージョンに更新して下さい。</p>
+<p>既にRubyGemsがインストールされている場合は、システムをチュートリアルで使われているバージョンに更新してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> gem update --system 2.0.3
 </pre></div>
@@ -563,7 +563,8 @@
 <p>Railsアプリケーションを新規作成したら、次は<em>Bundler</em>を実行して、アプリケーションに必要なgemをインストールおよびインクルードします。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_first_application">1.2.3</a>でも簡単に説明したように、Bundlerは<code>rails</code>によって自動的に実行 (この場合は<code>bundle install</code>) されます。ここではデフォルトのアプリケーションgemを変更してBundlerを再度実行してみます。そのためにまず、好みのエディタで<code>Gemfile</code>を開きます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>first_app/
-<span class="gp">$</span> SUBL Gemfile</pre></div>
+<span class="gp">$</span> subl Gemfile
+</pre></div>
 </div>
 
 
@@ -733,7 +734,7 @@
 </div>
 
 
-<p><code>coffee-rails</code> (これもAsset Pipelineで使用するgemです) のバージョンが<code>4.0.0</code>より大きく、<code>4.1</code>より小さい場合にインストールします。つまり、<tt class="verb">&gt;=</tt>と書くと<code>bundle install</code>の実行時に必ずアップグレードが行われますが、<tt class="verb">~&gt; 4.0.0</tt>と書くとマイナーなアップグレードしか行われないことになります。この場合<code>4.0.0</code>から<code>4.0.1</code>へのアップグレードは行われますが、<code>4.0</code>から<code>4.1</code>へのアップグレードは行われません。経験上、残念ながらマイナーアップグレードですら問題を引き起こすことがあります。このため、<em>Railsチュートリアル</em>では基本的にすべてのgemでバージョンをピンポイントで指定してます。ベテラン開発者であれば、<code>Gemfile</code>で<tt class="verb">~&gt;</tt>が指定されているgemも含め、基本的に最新のgemを使用しても構いません。ただし、それによって本書に記載されているのと異なる挙動を示す可能性がありますので、その場合は各自でご対応願います。</p>
+<p><code>coffee-rails</code> (これもAsset Pipelineで使用するgemです) のバージョンが<code>4.0.0</code>より大きく、<code>4.1</code>より小さい場合にインストールします。つまり、<tt class="verb">&gt;=</tt>と書くと<code>bundle install</code>の実行時に必ずアップグレードが行われますが、<tt class="verb">~&gt; 4.0.0</tt>と書くとマイナーなアップグレードしか行われないことになります。この場合<code>4.0.0</code>から<code>4.0.1</code>へのアップグレードは行われますが、<code>4.0</code>から<code>4.1</code>へのアップグレードは行われません。経験上、残念ながらマイナーアップグレードですら問題を引き起こすことがあります。このため、<em>Railsチュートリアル</em>では基本的にすべてのgemでバージョンをピンポイントで指定しています。ベテラン開発者であれば、<code>Gemfile</code>で<tt class="verb">~&gt;</tt>が指定されているgemも含め、基本的に最新のgemを使用しても構いません。ただし、それによって本書に記載されているのと異なる挙動を示す可能性がありますので、その場合は各自でご対応願います。</p>
 
 <p><code>Gemfile</code>を正しく設定した後、<code>bundle update</code><sup class="footnote" id="fnref-1_14"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_14">14</a></sup>と<code>bundle install</code>を使用してgemをインストールします。</p>
 
@@ -766,7 +767,7 @@
 </div>
 
 
-<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムを確認してください。<a href="http://nodejs.org/">Node.js</a>が特にお勧めです)。表示されたメッセージは、RailsアプリケーションがIPaddress <code>0.0.0.0</code>、<a href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">ポート番号</a>3000<sup class="footnote" id="fnref-1_15"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_15">15</a></sup>で動作していることを示しています。このIPアドレスは、このマシンに設定されているすべてのIPアドレスで受信待ち (listen) するように指定しています。これにより、<code>127.0.0.1</code>(<code>localhost</code>)という特別なアドレスでアプリケーションをブラウズできます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-riding_rails">図1.3</a>は、<a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示した時の結果です。</p>
+<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムを確認してください。<a href="http://nodejs.org/">Node.js</a>が特にお勧めです)。表示されたメッセージは、RailsアプリケーションがIPアドレス<code>0.0.0.0</code>、<a href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">ポート番号</a>3000<sup class="footnote" id="fnref-1_15"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_15">15</a></sup>で動作していることを示しています。このIPアドレスは、このマシンに設定されているすべてのIPアドレスで受信待ち (listen) するように指定しています。これにより、<code>127.0.0.1</code>(<code>localhost</code>)という特別なアドレスでアプリケーションをブラウズできます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-riding_rails">図1.3</a>は、<a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示した時の結果です。</p>
 
 <div class="label" id="fig-riding_rails"></div>
 
@@ -774,7 +775,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/riding_rails_4_0.png" alt="riding_rails_4_0" /></span></div><div class="caption"><span class="header">図1.3</span> <span class="description">デフォルトのRailsページ。<a href="http://railstutorial.jp/images/figures/riding_rails_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>この最初のアプリケーションの情報を見るには、「About your application’s environment」のリンクをクリックして下さい。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-riding_rails_environment">図1.4</a>のような画面が表示されます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-riding_rails_environment">図1.4</a>は著者の環境でキャプチャしたものなので、実際には若干異なる可能性があります)。</p>
+<p>この最初のアプリケーションの情報を見るには、「About your application’s environment」のリンクをクリックしてください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-riding_rails_environment">図1.4</a>のような画面が表示されます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-riding_rails_environment">図1.4</a>は著者の環境でキャプチャしたものなので、実際には若干異なる可能性があります)。</p>
 
 <div class="label" id="fig-riding_rails_environment"></div>
 
@@ -790,7 +791,7 @@
 <h3><a id="sec-1_2_6" href="/book/ruby-on-rails-tutorial?version=4.0#sec-mvc" class="heading"><span class="number">1.2.6</span> Model-View-Controller (MVC)</a></h3>
 
 
-<p>まだ始まったばかりですが、今のうちにRailsアプリケーションの全体的な仕組みを知っておくことは後々役立ちます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-MVC">図1.5</a>)。デフォルトのRailsアプリ構造 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-directory_structure_rails">図1.2</a>) を眺めてみると、<code>app/</code>というディレクトリがあり、その中に「<code>models</code>」「<code>views</code>」「<code>controllers</code>」という3つのサブディレクトリがあることに気付いた方もいると思います。ここにはRailsが<a href="http://en.wikipedia.org/wiki/Model-view-controller">MVC (model-view-controller)</a> というアーキテクチャパターンを採用していることが暗に示されています。MVCでは、ドメインロジック (ビジネスロジックともいいます) と、グラフィカルユーザーインターフェース (GUI) と密に関連する入力/表示ロジックを分離します。Webアプリケーションの場合、「ドメインロジック」はユーザーや記事、商品などのデータモデルに相当し、ユーザーインターフェースはWebページを指します。</p>
+<p>まだ始まったばかりですが、今のうちにRailsアプリケーションの全体的な仕組みを知っておくことは後々役立ちます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-MVC">図1.5</a>)。デフォルトのRailsアプリ構造 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-directory_structure_rails">図1.2</a>) を眺めてみると、<code>app/</code>というディレクトリがあり、その中に「<code>models</code>」「<code>views</code>」「<code>controllers</code>」という3つのサブディレクトリがあることに気付いた方もいると思います。ここにはRailsが<a href="http://en.wikipedia.org/wiki/Model-view-controller">MVC (model-view-controller)</a> というアーキテクチャパターンを採用していることが暗に示されています。MVCでは、ドメインロジック (ビジネスロジックともいいます) と、グラフィカルユーザーインターフェイス (GUI) と密に関連する入力/表示ロジックを分離します。Webアプリケーションの場合、「ドメインロジック」はユーザーや記事、商品などのデータモデルに相当し、ユーザーインターフェイスはWebページを指します。</p>
 
 <p>Railsアプリと通信する際、ブラウザは一般的にWebサーバに<em>request</em> (リクエスト) を送信し、これはリクエストを処理する役割を担っているRailsの<em>controller</em> (コントローラ) に渡されます。 コントローラは、場合によってはすぐに<em>view</em> (ビュー) を生成してHTMLをブラウザに送り返します。動的なサイトでは、一般にコントローラは (ユーザーなどの) サイトの要素を表しており、データベースとの通信を担当しているRubyのオブジェクトである<em>model</em> (モデル) と対話します。モデルを呼び出した後、コントローラは、ビューをレンダリングし、完成したWebページをHTMLとしてブラウザに返します。</p>
 
@@ -860,7 +861,7 @@
 </div>
 
 
-<p>次に、プロジェクトのファイルをリポジトリに追加します。ここで１つ問題点があります。Gitは<em>すべての</em>ファイルの変更履歴を管理するようになっていますが、管理対象に含めたくないファイルもあります。たとえば、Railsによって作成されるログファイルは頻繁に内容が変わるので、いちいちバージョン管理に更新させたくありません。Gitにはこういったファイルを管理対象から除外する機能があります。<code>.gitignore</code>というファイルをアプリケーションのルートディレクトリに置き、除外したいファイルを指定するためのルールをそこに記載します<sup class="footnote" id="fnref-1_17"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_17">17</a></sup>。</p>
+<p>次に、プロジェクトのファイルをリポジトリに追加します。ここで１つ問題があります。Gitは<em>すべての</em>ファイルの変更履歴を管理するようになっていますが、管理対象に含めたくないファイルもあります。たとえば、Railsによって作成されるログファイルは頻繁に内容が変わるので、いちいちバージョン管理に更新させたくありません。Gitにはこういったファイルを管理対象から除外する機能があります。<code>.gitignore</code>というファイルをアプリケーションのルートディレクトリに置き、除外したいファイルを指定するためのルールをそこに記載します<sup class="footnote" id="fnref-1_17"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_17">17</a></sup>。</p>
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-rails_directory_structure">表1.1</a>をもう一度見てみると、<code>rails</code>コマンドを実行した時にRailsアプリケーションのルートディレクトリに<code>.gitignore</code>ファイルが作成されています (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-default_gitignore">リスト1.6</a>)。</p>
 
@@ -1071,7 +1072,7 @@ doc/
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/github_repository_page_4_0.png" alt="github_repository_page_4_0" /></span></div><div class="caption"><span class="header">図1.7</span><span class="description">GitHubのリポジトリページ。<a href="http://railstutorial.jp/images/figures/github_repository_page_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>なお、GitHubにはコマンドラインインターフェイスを拡張したGUIアプリケーションもあります。 GUIアプリケーションの方が好みであれば、<a href="http://windows.github.com/">GitHub for Windows</a>や<a href="http://mac.github.com/">GitHub for Mac</a>をチェックしてみてください  (Linux用のGitHubは今のところGitしかないようです)。</p>
+<p>なお、GitHubにはコマンドラインインターフェイスを拡張したGUIアプリケーションもあります。 GUIアプリケーションの方が好みであれば、<a href="http://windows.github.com/">GitHub for Windows</a>や<a href="http://mac.github.com/">GitHub for Mac</a>をチェックしてみてください (GitHub for Linuxは今のところ存在しないようです)。</p>
 
 <div class="label" id="sec-git_commands"></div>
 
@@ -1217,7 +1218,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>上で述べたように、<code>git branch -D</code>でトピックブランチ上の変更を破棄することもできます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="c"># これはあくまで例です。ブランチでミスをした時以外は実行しないで下さい。</span>
+<div class="code"><div class="highlight"><pre><span class="c"># これはあくまで例です。ブランチでミスをした時以外は実行しないでください。</span>
 <span class="nv">$ </span>git checkout -b topic-branch
 <span class="nv">$ </span>&lt;ブランチをめちゃくちゃにしてみる&gt;
 <span class="nv">$ </span>git add .
@@ -1261,7 +1262,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境にデプロイしてしまいましょう。アプリケーションのデプロイは必須ではありませんが、頻繁にデプロイすることによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境にデプロイしないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_20"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_20">20</a></sup>。</p>
 
-<p>かつてはRailsアプリのデプロイは大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx23<sup class="footnote" id="fnref-1_21"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_21">21</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスデプロイメントを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
+<p>かつてはRailsアプリのデプロイは大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx<sup class="footnote" id="fnref-1_21"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_21">21</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスデプロイメントを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
 
 <p>著者のお気に入りはHerokuで、Railsを含むRuby Webアプリ用のホスティングプラットフォームです。Herokuは、ソースコードのバージョン管理にGitを使用していれば、Railsアプリケーションを簡単に本番環境にデプロイできます (Gitを導入したのは、まさにこのHerokuで使うためでもあります。まだGitをインストールしていない方は<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-version_control">1.3</a>を参照してください)。この章では、最初のアプリケーションをHerokuにデプロイします。</p>
 
@@ -1382,7 +1383,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h3><a id="sec-1_4_3" href="/book/ruby-on-rails-tutorial?version=4.0#sec-1_4_3" class="heading"><span class="number">1.4.3</span> Herokuにデプロイする (2)</a></h3>
 
 
-<p>失礼、その2はありません。これで終わりです (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-heroku_app">図1.10</a>)。デプロイされたアプリケーションの表示は、<code>heroku create</code> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-heroku_create">リスト1.10</a>) を実行した際に生成されたアドレスをブラウザで開くだけです (もちろんここに出てくる著者のアドレスではなく、自分が登録したアドレスを使って下さい)。<code>heroku</code>コマンドに以下の引数を与えるだけで、正しいアドレスでブラウザが起動します。</p>
+<p>失礼、その2はありません。これで終わりです (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-heroku_app">図1.10</a>)。デプロイされたアプリケーションの表示は、<code>heroku create</code> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-heroku_create">リスト1.10</a>) を実行した際に生成されたアドレスをブラウザで開くだけです (もちろんここに出てくる著者のアドレスではなく、自分が登録したアドレスを使ってください)。<code>heroku</code>コマンドに以下の引数を与えるだけで、正しいアドレスでブラウザが起動します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku open
 </pre></div>
@@ -1397,7 +1398,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/heroku_app_4_0.png" alt="heroku_app_4_0" /></span></div><div class="caption"><span class="header">図1.10</span><span class="description">Heroku上で動作しているRailsチュートリアルの最初のアプリケーション。<a href="http://railstutorial.jp/images/figures/heroku_app_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>Herokuへのデプロイが完了した後は、アプリケーションの管理と設定に以下のような美しいユーザーインターフェースを使用できます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-heroku_info">図1.11</a>)。</p>
+<p>Herokuへのデプロイが完了した後は、アプリケーションの管理と設定に以下のような美しいユーザーインターフェイスを使用できます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-heroku_info">図1.11</a>)。</p>
 
 <div class="label" id="fig-heroku_info"></div>
 
@@ -1756,7 +1757,7 @@ jhyicevg.herokuapp.com</pre>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/demo_show_user_rails_3.png" alt="demo_show_user_rails_3" /></span></div><div class="caption"><span class="header">図2.6</span><span class="description">ユーザー表示用のページ (<a href="http://localhost:3000/users/1">/users/1</a>)。<a href="http://railstutorial.jp/images/figures/demo_show_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
-<p>今度は、ユーザー情報を変更するために<a href="http://localhost:3000/users/1/edit"><tt>edit</tt></a>ページを表示してみましょ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-demo_edit_user_rails_3">図2.7</a>)。この編集ページ上でユーザーに関する情報を変更し、[Update User] ボタンを押せば、デモアプリケーション内のユーザー情報が変更されます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-demo_update_user_rails_3">図2.8</a>)。(詳細は<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-modeling-users">第6章</a>で説明しますが、このユーザー情報は、Webアプリケーションの背後にあるデータベースに保存されています。) このサンプルアプリケーションでも、ユーザーを編集または更新する機能を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_users">9.1</a>で実装します。</p>
+<p>今度は、ユーザー情報を変更するために<a href="http://localhost:3000/users/1/edit"><tt>edit</tt></a>ページを表示してみましょう (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-demo_edit_user_rails_3">図2.7</a>)。この編集ページ上でユーザーに関する情報を変更し、[Update User] ボタンを押せば、デモアプリケーション内のユーザー情報が変更されます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-demo_update_user_rails_3">図2.8</a>)。(詳細は<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-modeling-users">第6章</a>で説明しますが、このユーザー情報は、Webアプリケーションの背後にあるデータベースに保存されています。) このサンプルアプリケーションでも、ユーザーを編集または更新する機能を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_users">9.1</a>で実装します。</p>
 
 <div class="label" id="fig-demo_edit_user_rails_3"></div>
 
@@ -2198,7 +2199,7 @@ jhyicevg.herokuapp.com</pre>
 </div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-demo_length_validation">リスト2.9</a>のコードは、これで本当に動作するのかと思えるかもしれませんが、ちゃんと動作します (検証機能については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-user_validations">6.2</a>でさらに詳しく説明します)。140文字以上の新規マイクロポストを投稿してみればわかります。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-micropost_length_error_rails_3">図2.14</a>に示したとおり、マイクロポストの内容が長すぎるという<em>エラーメッセージ</em>がRailsによって表示されます (エラーメッセージの詳細については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_error_messages">7.3.3</a>で説明します)。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-demo_length_validation">リスト2.9</a>のコードは、これで本当に動作するのかと思えるかもしれませんが、ちゃんと動作します (検証機能については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-user_validations">6.2</a>でさらに詳しく説明します)。141文字以上の新規マイクロポストを投稿してみればわかります。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-micropost_length_error_rails_3">図2.14</a>に示したとおり、マイクロポストの内容が長すぎるという<em>エラーメッセージ</em>がRailsによって表示されます (エラーメッセージの詳細については<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_error_messages">7.3.3</a>で説明します)。</p>
 
 <div class="label" id="fig-micropost_length_error_rails_3"></div>
 
@@ -2408,7 +2409,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 </div>
 
 
-<p>このコマンドを実行すると、Heroku上のデータベースが、ユーザーとマイクロソフトのデータモデルで更新されます。</p>
+<p>このコマンドを実行すると、Heroku上のデータベースが、ユーザーとマイクロポストのデータモデルで更新されます。</p>
 
 <h2><a id="sec-2_4" href="/book/ruby-on-rails-tutorial?version=4.0#sec-2_4" class="heading"><span class="number">2.4</span>最後に</a></h2>
 
@@ -2470,7 +2471,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 
 <p>Rails はデータベースと連携して動的なウェブサイトを開発するように設計されていますが、HTMLファイルだけで構成されている静的なページを作ることもできます。実際、静的なページをRailsで作ることのメリットもあります。たとえば、あとで<em>ほんの少し</em>動的なコンテンツを追加することができます。本章では、このような静的なページの作成について学んでいきます。まずは、<em>自動化テスト</em>の雰囲気を掴んでいきます。自動化テストは、私達のコードが正しく動いているという自信を与えてくれます。さらに、良いテストを書くことで、自信をもって<em>リファクタリング</em>を行うことができます。たとえば、フォームの振る舞いを変更せずに、フォーム内で使われている関数を書き換えたいときに便利です。</p>
 
-<p>本章には多くのサンプルコードがあります。特に <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-first_tests">3.2</a> や <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-slightly_dynamic_pages">3.3</a> で多くのコードを紹介していますが、Rubyが初めての方は、コードを隅々まで理解しなければならないのだろうかと心配する必要はありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-comments_for_various_readers">1.1.1</a> で紹介したように、まずはテストをコピー&amp;ペーストしてみて、アプリケーションがうまく動くかどうか検証してみると良いでしょう。この時点では、テストどのようにして動くかは気にしなくても大丈夫です。また、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-rails-flavored-ruby">第4章</a>ではRubyについて解説します。そこではRubyの書き方やコンセプトについて学びます。最後に、本書ではRSpecを使ったテストを繰り返し実施していきます。ですから、もし途中でよく分からないテストがあったとしても、読み飛ばして先に進むことをお勧めします。1、2章先を読み進めた後に読み返してみると、当初はよく分からなかったテストが、実はとてもシンプルであることを理解できるはずです (Code Schoolの<a href="http://www.codeschool.com/courses/testing-with-rspec">RSpecコース</a>の履修を検討してみるのもよいでしょう。このコースはRSpecに関する多くの疑問に答えてくれるという読者からの報告もあります)。</p>
+<p>本章には多くのサンプルコードがあります。特に <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-first_tests">3.2</a> や <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-slightly_dynamic_pages">3.3</a> で多くのコードを紹介していますが、Rubyが初めての方は、コードを隅々まで理解しなければならないのだろうかと心配する必要はありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-comments_for_various_readers">1.1.1</a> で紹介したように、まずはテストをコピー&amp;ペーストしてみて、アプリケーションがうまく動くかどうか検証してみると良いでしょう。この時点では、テストがどのようにして動くかは気にしなくても大丈夫です。また、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-rails-flavored-ruby">第4章</a>ではRubyについて解説します。そこではRubyの書き方やコンセプトについて学びます。最後に、本書ではRSpecを使ったテストを繰り返し実施していきます。ですから、もし途中でよく分からないテストがあったとしても、読み飛ばして先に進むことをお勧めします。1、2章先を読み進めた後に読み返してみると、当初はよく分からなかったテストが、実はとてもシンプルであることを理解できるはずです (Code Schoolの<a href="http://www.codeschool.com/courses/testing-with-rspec">RSpecコース</a>の履修を検討してみるのもよいでしょう。このコースはRSpecに関する多くの疑問に答えてくれるという読者からの報告もあります)。</p>
 
 <p>では、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>でもやったように、最初にRailsプロジェクトを作りましょう。今回は<code>sample_app</code>というプロジェクトを作成します。</p>
 
@@ -2675,7 +2676,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>この節では、後に動的なページを作成するための準備として、最初にRailsの<em>アクション</em>と<em>ビュー</em>に静的なHTMLだけを含めたものを作成します<sup class="footnote" id="fnref-3_5"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-3_5">5</a></sup>。Railsのアクションは、<em>コントローラ</em> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-mvc">1.2.6</a>で紹介した MVCの Cに該当) の中に置かれる機能で、共通の目的を持つ一連のアクションをコントローラ内にまとめることができます。コントローラについては<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>でも簡単に触れましたが、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-modeling-users">第6章</a>で説明する<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST アーキテクチャ</a>を読むと、より深く理解することができます。一言で言うと、コントローラとは (基本的に動的な) Webページの集合を束ねるコンテナのことです。</p>
 
-<p>現在どのディレクトリで作業しているかがわからなくなった場合は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_first_application">1.2.3</a> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-directory_structure_rails">図 1.2</a>)を再度参照して、Rails のディレクトリ構造を確認してください。この節では、主に<code>app/controllers</code>ディレクトリや<code>app/views</code>ディレクトリ内で作業を進めます (なお <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-first_tests">3.2</a> では、新しいディレクトリをさらに１つ追加します)。好みのテキストエディタまたはIDEを使用してサンプリアプリケーションを開いてください (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-opening_the_project">コラム 3.1</a>)。</p>
+<p>現在どのディレクトリで作業しているかがわからなくなった場合は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_first_application">1.2.3</a> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-directory_structure_rails">図 1.2</a>)を再度参照して、Rails のディレクトリ構造を確認してください。この節では、主に<code>app/controllers</code>ディレクトリや<code>app/views</code>ディレクトリ内で作業を進めます (なお <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-first_tests">3.2</a> では、新しいディレクトリをさらに１つ追加します)。好みのテキストエディタまたはIDEを使用してサンプルアプリケーションを開いてください (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-opening_the_project">コラム 3.1</a>)。</p>
 
 <div class="label" id="sidebar-opening_the_project"></div>
 
@@ -4132,7 +4133,7 @@ bundler_stubs/
 </div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-guard">3.6.2</a>の<code>guard</code>など、他の実行ファイルを追加する場合は、<code>bundle install</code>コマンドを再度実行して下さい。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-guard">3.6.2</a>の<code>guard</code>など、他の実行ファイルを追加する場合は、<code>bundle install</code>コマンドを再度実行してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install --binstubs<span class="o">=</span>./bundler_stubs
 </pre></div>
@@ -4555,7 +4556,7 @@ bundler_stubs/
 <h3><a id="sec-3_6_4" href="/book/ruby-on-rails-tutorial?version=4.0#sec-tests_inside_sublime_text" class="heading"><span class="number">3.6.4</span>Sublime Text上でテストする</a></h3>
 
 
-<p>Sublime Textを使用していれば、エディタの中から直接テストを実行できる強力なヘルパーコマンドを利用できます。このテスト方法は著者のお気に入りです。最終的に大規模にスケールアップする可能性のある少数のテストを、長期間に渡って実施したいような場合に非常に有用であるためです。このコマンドを利用するには、<a href="https://github.com/maltize/sublime-text-2-ruby-tests">Sublime Text 2 Ruby Tests</a><sup class="footnote" id="fnref-3_15"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-3_15">15</a></sup>に記載されている、自分の環境向けの説明に従って設定を行なって下さい。著者の環境 (Macintosh OS X) の場合、以下のようにコマンドをインストールします。</p>
+<p>Sublime Textを使用していれば、エディタの中から直接テストを実行できる強力なヘルパーコマンドを利用できます。このテスト方法は著者のお気に入りです。最終的に大規模にスケールアップする可能性のある少数のテストを、長期間に渡って実施したいような場合に非常に有用であるためです。このコマンドを利用するには、<a href="https://github.com/maltize/sublime-text-2-ruby-tests">Sublime Text 2 Ruby Tests</a><sup class="footnote" id="fnref-3_15"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-3_15">15</a></sup>に記載されている、自分の環境向けの説明に従って設定を行なってください。著者の環境 (Macintosh OS X) の場合、以下のようにコマンドをインストールします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/Library/Application<span class="se">\ </span>Support/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2/Packages
 <span class="gp">$</span> git clone https://github.com/maltize/sublime-text-2-ruby-tests.git RubyTest
@@ -4977,7 +4978,7 @@ bundler_stubs/
 </div>
 
 
-<p>ただし、1つ重要な違いがあります。Rubyはシングルクォート文字列の中では補間子の式展開を行いません。</p>
+<p>ただし、1つ重要な違いがあります。Rubyはシングルクォート文字列の中では式展開を行いません。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;#{foo} bar&#39;</span>     <span class="c1"># シングルクォートで囲まれた文字列では式展開されない</span>
 <span class="go">=&gt; &quot;\#{foo} bar&quot;</span>
@@ -4987,7 +4988,7 @@ bundler_stubs/
 
 <p>逆に言えば、ダブルクォート文字列を用いた文字列で<code>#</code>のような特殊な文字を使用する場合は、この文字をバックスラッシュで<em>エスケープ</em>する必要があります。</p>
 
-<p>ダブルクォート文字列でもシングルクォート文字列と同じことができ、ダブルクォート文字列では式展開もできるのであれば、シングルクォート文字列にはどのような使い道があるのでしょうか。シングルクォートは、入力した文字をエスケープせずに「そのまま」保持するときに便利です。たとえば、いわゆる “バックスラッシュ” 文字は、改行文字<tt class="verb">\n</tt>と同様多くのシステム上で特殊な文字として扱われます。シングルクオートで文字列を囲めば、簡単にバックスラッシュ文字のような特殊文字をそのまま変数に含めることができます。</p>
+<p>ダブルクォート文字列でもシングルクォート文字列と同じことができ、ダブルクォート文字列では式展開もできるのであれば、シングルクォート文字列にはどのような使い道があるのでしょうか。シングルクォートは、入力した文字をエスケープせずに「そのまま」保持するときに便利です。たとえば、いわゆる “バックスラッシュ” 文字は、改行文字<tt class="verb">\n</tt>と同様多くのシステム上で特殊な文字として扱われます。シングルクォートで文字列を囲めば、簡単にバックスラッシュ文字のような特殊文字をそのまま変数に含めることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s1">&#39;\n&#39;</span>       <span class="c1"># &#39;バックスラッシュ n&#39; をそのまま扱う</span>
 <span class="go">=&gt; &quot;\\n&quot;</span>
@@ -5104,7 +5105,7 @@ bundler_stubs/
 </div>
 
 
-<p><code>if</code>キーワードの別の使い方を示しています。Rubyではこのように、<code>if</code>での条件式が真のときにだけ実行される式を書くことができ、コードが非常に簡潔になります。なお、<code>unless</code>キーワードも同様に使用できます。</p>
+<p><code>if</code>キーワードの別の使い方を示しています。Rubyではこのように、後続する<code>if</code>での条件式が真のときにだけ実行される式を書くことができ、コードが非常に簡潔になります。なお、<code>unless</code>キーワードも同様に使用できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="nb">puts</span> <span class="s2">&quot;The string &#39;</span><span class="si">#{</span><span class="n">string</span><span class="si">}</span><span class="s2">&#39; is nonempty.&quot;</span> <span class="k">unless</span> <span class="n">string</span><span class="o">.</span><span class="n">empty?</span>
@@ -5324,7 +5325,7 @@ bundler_stubs/
 
 <p>最後の例では、要素の追加を連鎖 (chain) できることを示しました。また、Rubyの配列は、他の多くの言語の配列とは異なり、さまざまな型を共存させることができます (この場合は整数と文字列)。</p>
 
-<p>文字列を配列に変換するのに<code>split</code>を使用しました。<code>join</code>メソッドはこれと逆の動作d</p>
+<p>文字列を配列に変換するのに<code>split</code>を使用しました。<code>join</code>メソッドはこれと逆の動作です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>
 <span class="go">=&gt; [42, 8, 17, 7, &quot;foo&quot;, &quot;bar&quot;]</span>
@@ -17773,7 +17774,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>データモデリングとマイクロポスト表示テンプレートの両方が完成したので、次はWeb経由でそれらを作成するためのインターフェイスに取りかかりましょう。HTMLフォームを使用してリソース (今回の場合はMicropostsリソース) を作成する3番目の例になります<sup class="footnote" id="fnref-10_7"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-10_7">7</a></sup>。この節では、<em>ステータスフィード</em> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-following-users">第11章</a>で完成させます) の最初のヒントをお見せします。最後に、ユーザーがマイクロポストをWeb経由で破棄できるようにします。</p>
 
-<p>従来のRails開発の慣習と異なる箇所が1つあります。Micropostsリソースへのインターフェースは、主にユーザーと静的ページのコントローラを経由して実行されるので、Micropostsコントローラには<code>new</code>や<code>edit</code>のようなアクションは不要ということになります。<code>create</code>と<code>destroy</code>があれば十分です。従って、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-microposts_resource">リスト10.22</a>に示すように、Micropostsリソースへのルーティングは一層シンプルになります。その結果、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-microposts_resource">リスト10.22</a>のコードは、フルセットのルーティング (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_microposts">表2.3</a>) のサブセットであるRESTfulルート (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_microposts">表10.2</a>) になります。もちろん、シンプルになったということは完成度が<em>さらに</em>高まったということの証しであり、退化したわけではありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>でscaffoldに頼りきりだった頃からここに至るまでは長い道のりでしたが、今ではscaffoldが生成するような複雑なコードのほとんどは不要になりました。</p>
+<p>従来のRails開発の慣習と異なる箇所が1つあります。Micropostsリソースへのインターフェイスは、主にユーザーと静的ページのコントローラを経由して実行されるので、Micropostsコントローラには<code>new</code>や<code>edit</code>のようなアクションは不要ということになります。<code>create</code>と<code>destroy</code>があれば十分です。従って、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-microposts_resource">リスト10.22</a>に示すように、Micropostsリソースへのルーティングは一層シンプルになります。その結果、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-microposts_resource">リスト10.22</a>のコードは、フルセットのルーティング (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_microposts">表2.3</a>) のサブセットであるRESTfulルート (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_microposts">表10.2</a>) になります。もちろん、シンプルになったということは完成度が<em>さらに</em>高まったということの証しであり、退化したわけではありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>でscaffoldに頼りきりだった頃からここに至るまでは長い道のりでしたが、今ではscaffoldが生成するような複雑なコードのほとんどは不要になりました。</p>
 
 <div class="label" id="code-microposts_resource"></div>
 
@@ -18937,7 +18938,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>この章で扱っている手法は本書全体の中で最も難易度が高いので、理解を助けるため、コードを書く前にはいったん立ち止まってインターフェースを探検することにします。これまでの章と同様、最初にモックアップを示します<sup class="footnote" id="fnref-11_1"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-11_1">1</a></sup>。ページ操作の全体的なフローは次のようになります。あるユーザー (John Calvin) は自分のプロファイルページを最初に表示し (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_profile_mockup">図11.1</a>)、フォローするユーザーを選択するためにUsersページ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_user_index_mockup">図11.2</a>) に移動します。Calvinは2番目のユーザーThomas Hobbes (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_other_profile_follow_button_mockup">図11.3</a>) を表示し、[Follow] ボタンを押してフォローします。これにより、[Follow] ボタンが [Unfollow] に変わり、Hobbesの [followers] (フォロワー) カウントが1人増えます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_other_profile_unfollow_button_mockup">図11.4</a>)。CalvinがHomeページに戻ると、[following] カウントが1人増え、Hobbesのマイクロポストがステータスフィードに表示されるようになっていることに気付きます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_home_page_feed_mockup">図11.5</a>)。この節では、以後このフローの実現に専念します。</p>
+<p>この章で扱っている手法は本書全体の中で最も難易度が高いので、理解を助けるため、コードを書く前にはいったん立ち止まってインターフェイスを探検することにします。これまでの章と同様、最初にモックアップを示します<sup class="footnote" id="fnref-11_1"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-11_1">1</a></sup>。ページ操作の全体的なフローは次のようになります。あるユーザー (John Calvin) は自分のプロファイルページを最初に表示し (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_profile_mockup">図11.1</a>)、フォローするユーザーを選択するためにUsersページ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_user_index_mockup">図11.2</a>) に移動します。Calvinは2番目のユーザーThomas Hobbes (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_other_profile_follow_button_mockup">図11.3</a>) を表示し、[Follow] ボタンを押してフォローします。これにより、[Follow] ボタンが [Unfollow] に変わり、Hobbesの [followers] (フォロワー) カウントが1人増えます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_other_profile_unfollow_button_mockup">図11.4</a>)。CalvinがHomeページに戻ると、[following] カウントが1人増え、Hobbesのマイクロポストがステータスフィードに表示されるようになっていることに気付きます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_home_page_feed_mockup">図11.5</a>)。この節では、以後このフローの実現に専念します。</p>
 
 <div class="label" id="fig-page_flow_profile_mockup"></div>
 
@@ -20129,7 +20130,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/profile_unfollow_button_bootstrap.png" alt="profile_unfollow_button_bootstrap" /></span></div><div class="caption"><span class="header">図11.13</span><span class="description">あるユーザープロファイル (<a href="http://localhost:3000/users/8">/users/6</a>) に [Unfollow] ボタンが表示されている。<a href="http://railstutorial.jp/images/figures/profile_unfollow_button_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>これらのボタンはもうすぐ動作するようになります。実はこのボタンの実装には2とおりの方法があります。1つは標準的な方法 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_working_follow_button_the_standard_way">11.2.4</a>)、もう1つはAjaxを使用する方法 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_working_follow_button_with_ajax">11.2.5</a>) です。でもその前に、フォローしているユーザーとフォロワーを表示するページをそれぞれ作成してHTMLインターフェースを完成させてしまいましょう。</p>
+<p>これらのボタンはもうすぐ動作するようになります。実はこのボタンの実装には2とおりの方法があります。1つは標準的な方法 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_working_follow_button_the_standard_way">11.2.4</a>)、もう1つはAjaxを使用する方法 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_working_follow_button_with_ajax">11.2.5</a>) です。でもその前に、フォローしているユーザーとフォロワーを表示するページをそれぞれ作成してHTMLインターフェイスを完成させてしまいましょう。</p>
 
 <div class="label" id="sec-following_and_followers_pages"></div>
 

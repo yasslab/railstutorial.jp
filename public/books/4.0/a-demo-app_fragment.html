@@ -271,7 +271,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/demo_show_user_rails_3.png" alt="demo_show_user_rails_3" /></span></div><div class="caption"><span class="header">図2.6</span><span class="description">ユーザー表示用のページ (<a href="http://localhost:3000/users/1">/users/1</a>)。<a href="http://railstutorial.jp/images/figures/demo_show_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
-<p>今度は、ユーザー情報を変更するために<a href="http://localhost:3000/users/1/edit"><tt>edit</tt></a>ページを表示してみましょ (<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-demo_edit_user_rails_3">図2.7</a>)。この編集ページ上でユーザーに関する情報を変更し、[Update User] ボタンを押せば、デモアプリケーション内のユーザー情報が変更されます (<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-demo_update_user_rails_3">図2.8</a>)。(詳細は<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>で説明しますが、このユーザー情報は、Webアプリケーションの背後にあるデータベースに保存されています。) このサンプルアプリケーションでも、ユーザーを編集または更新する機能を<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-updating_users">9.1</a>で実装します。</p>
+<p>今度は、ユーザー情報を変更するために<a href="http://localhost:3000/users/1/edit"><tt>edit</tt></a>ページを表示してみましょう (<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-demo_edit_user_rails_3">図2.7</a>)。この編集ページ上でユーザーに関する情報を変更し、[Update User] ボタンを押せば、デモアプリケーション内のユーザー情報が変更されます (<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-demo_update_user_rails_3">図2.8</a>)。(詳細は<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>で説明しますが、このユーザー情報は、Webアプリケーションの背後にあるデータベースに保存されています。) このサンプルアプリケーションでも、ユーザーを編集または更新する機能を<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-updating_users">9.1</a>で実装します。</p>
 
 <div class="label" id="fig-demo_edit_user_rails_3"></div>
 
@@ -713,7 +713,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_length_validation">リスト2.9</a>のコードは、これで本当に動作するのかと思えるかもしれませんが、ちゃんと動作します (検証機能については<a class="ref" href="/chapters/modeling-users?version=4.0#sec-user_validations">6.2</a>でさらに詳しく説明します)。140文字以上の新規マイクロポストを投稿してみればわかります。<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-micropost_length_error_rails_3">図2.14</a>に示したとおり、マイクロポストの内容が長すぎるという<em>エラーメッセージ</em>がRailsによって表示されます (エラーメッセージの詳細については<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_error_messages">7.3.3</a>で説明します)。</p>
+<p><a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_length_validation">リスト2.9</a>のコードは、これで本当に動作するのかと思えるかもしれませんが、ちゃんと動作します (検証機能については<a class="ref" href="/chapters/modeling-users?version=4.0#sec-user_validations">6.2</a>でさらに詳しく説明します)。141文字以上の新規マイクロポストを投稿してみればわかります。<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-micropost_length_error_rails_3">図2.14</a>に示したとおり、マイクロポストの内容が長すぎるという<em>エラーメッセージ</em>がRailsによって表示されます (エラーメッセージの詳細については<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_error_messages">7.3.3</a>で説明します)。</p>
 
 <div class="label" id="fig-micropost_length_error_rails_3"></div>
 
@@ -923,7 +923,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 </div>
 
 
-<p>このコマンドを実行すると、Heroku上のデータベースが、ユーザーとマイクロソフトのデータモデルで更新されます。</p>
+<p>このコマンドを実行すると、Heroku上のデータベースが、ユーザーとマイクロポストのデータモデルで更新されます。</p>
 
 <h2><a id="sec-2_4" href="/chapters/a-demo-app?version=4.0#sec-2_4" class="heading"><span class="number">2.4</span>最後に</a></h2>
 
