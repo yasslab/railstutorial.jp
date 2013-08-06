@@ -1761,7 +1761,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_4_4" href="/chapters/sign-up?version=4.0#sec-deploying_to_production_with_ssl" class="heading"><span class="number">7.4.4</span> SSLを導入して本番環境をデプロイする</a></h3>
 
 
-<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境にデプロイしましょう (<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 デプロイの作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="/chapters/sign-up?version=4.0#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプリアプリケーションのユーザー登録 (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>)。</p>
+<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境にデプロイしましょう (<a class="ref" href="/chapters/static-pages?version=4.0#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 デプロイの作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="/chapters/sign-up?version=4.0#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプルアプリケーションのユーザー登録 (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>)。</p>
 
 <p>デプロイの下準備として、この時点で変更を<code>master</code>ブランチにマージしておきます。</p>
 

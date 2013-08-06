@@ -2156,7 +2156,7 @@
 
 <p>このサブセレクトは、集合のロジックを (Railsではなく) データベースに保存するので、より効率が高まります<sup class="footnote" id="fnref-11_13"><a href="/chapters/following-users?version=4.0#fn-11_13">13</a></sup>。</p>
 
-<p>これで基礎を固めることができましたので、<a class="ref" href="/chapters/following-users?version=4.0#code-from_users_followed_by_final">リスト11.45</a>のように効率のよいフィードを実装する準備ができました。ここに記述されているのナマのSQLなので、<code>followed_user_ids</code>はエスケープではなく<em>外挿 (interpolate) </em>されることにご注意ください (実際はどちらでも動作しますが、この文脈では外挿と考える方が筋が通っています)。</p>
+<p>これで基礎を固めることができましたので、<a class="ref" href="/chapters/following-users?version=4.0#code-from_users_followed_by_final">リスト11.45</a>のように効率のよいフィードを実装する準備ができました。ここに記述されているのはナマのSQLなので、<code>followed_user_ids</code>はエスケープではなく<em>内挿 (interpolate) </em>されることにご注意ください (実際はどちらでも動作しますが、この文脈では内挿と考える方が筋が通っています)。</p>
 
 <div class="label" id="code-from_users_followed_by_final"></div>
 

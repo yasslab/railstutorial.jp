@@ -162,7 +162,7 @@
 <h3><a id="sec-6_1_2" href="/chapters/modeling-users?version=4.0#sec-the_model_file" class="heading"><span class="number">6.1.2</span>modelファイル</a></h3>
 
 
-<p>これまで、<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>のUserモデルの作成によってどのように (<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>) のマイグレーションファイルが作成されるかを見てきました。そして<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>でこのマイグレーションを実行した結果を見ました。<code>users</code>テーブルを作成することで、<code>development.sqlite3</code>という名のファイルを更新し、<code>id</code>、<code>name</code>、<code>email</code>、<code>created_at</code>、<code>updated_at</code>を作成しました。<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>ではモデル自体も作成しました。この節では、以後これらを理解することに専念します。</p>
+<p>これまで、<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>のUserモデルの作成によってどのように (<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>の) マイグレーションファイルが作成されるかを見てきました。そして<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>でこのマイグレーションを実行した結果を見ました。<code>users</code>テーブルを作成することで、<code>development.sqlite3</code>という名のファイルを更新し、<code>id</code>、<code>name</code>、<code>email</code>、<code>created_at</code>、<code>updated_at</code>を作成しました。<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>ではモデル自体も作成しました。この節では、以後これらを理解することに専念します。</p>
 
 <p>まず、<code>app/models/</code>ディレクトリにある<code>user.rb</code>ファイルに書かれたUserモデルのコードを見てみましょう。これは控えめに言ってもとてもよくまとまっています (<a class="ref" href="/chapters/modeling-users?version=4.0#code-raw_user_model">リスト6.3</a>) </p>
 
@@ -1711,7 +1711,7 @@
 </div>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>のテストの要求に従って、<code>authenticate</code>メソッドはパスワードが無効なときは<code>false</code>を返し。パスワードが有効なときはユーザー自身を返しています。</p>
+<p><a class="ref" href="/chapters/modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>のテストの要求に従って、<code>authenticate</code>メソッドはパスワードが無効なときは<code>false</code>を返し、パスワードが有効なときはユーザー自身を返しています。</p>
 
 <h2><a id="sec-6_4" href="/chapters/modeling-users?version=4.0#sec-6_4" class="heading"><span class="number">6.4</span>最後に</a></h2>
 
