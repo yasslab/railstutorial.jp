@@ -16,6 +16,7 @@ re_array=( \
     "s/式展開/式典界/g" \
     "s/展開/デプロイ/g" \
     "s/式典界/式展開/g" \
+    "s/<\/span><span class=\"title\">//g" \
     "s/confi\/initializers\/secret_token\.rb/config\/initializers\/secret_token\.rb/g"
     )
 #          "s/railstutorial.org/railstutorial.jp/g" \

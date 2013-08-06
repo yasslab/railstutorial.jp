@@ -11,7 +11,7 @@
 <div class="label" id="sidebar-roll_your_own"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 6.1</span></span><span class="title"><span class="description">自分で認証システムを作ってみる</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.1</span><span class="description">自分で認証システムを作ってみる</span></span>
 <p>事実上、すべてのWebアプリケーションは何らかのログイン/認証システムを必要とします。そのため、多くのWebフレームワークではこのようなログイン/認証システムを実装するための選択肢が多数提供されています。Railsもまた例外ではありません。認証 (authentication) と認可 (authorization) のシステムの例だと、<a href="http://github.com/thoughtbot/clearance">Clearance</a>、<a href="http://github.com/binarylogic/authlogic">Authlogic</a>、<a href="http://github.com/plataformatec/devise">Devise</a>、<a href="http://railscasts.com/episodes/192-authorization-with-cancan">CanCan</a>などがあります (Railsに限らなければ<a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a>や<a href="http://en.wikipedia.org/wiki/Oauth">OAuth</a>の上に構築する方法もあります)。 なぜ車輪の再発明をするのか、という質問があるのも当然です。自分でわざわざ作らなくても、いつも使える方法をただ利用するだけではいけないのでしょうか。</p>
 
 <p>ある実践的な実験によると、多くのサイトの認証システムは膨大なカスタマイズを必要とするため、サードパーティ製品を変更して導入する場合にはシステムをゼロから作成するよりも多くの仕事を要するという結果が出ています。加えて、既成品のシステムは内部がわかりづらいことが多く、ブラックボックスになっています。自分で作成したシステムであれば、それをとてもよく理解しているはずです。さらに言えば、最近のRailsへの変更 (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>) により、カスタム認証システムを容易に作成できるようになりました。最後に、<em>あえて</em>最終的にサードパーティの認証システムを導入することになったとしても、自分自身で認証システムを構築した経験があれば、サードパーティ製品を理解して変更することがずっと容易になるはずです。</p>
@@ -1156,7 +1156,7 @@
 <div class="label" id="sidebar-database_indices"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 6.2</span></span><span class="title"><span class="description">データベースのインデックス</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.2</span><span class="description">データベースのインデックス</span></span>
 <p>データベースにカラムを作成するとき、そのカラムでレコードを<em>検索する (find) </em>必要があるかどうかを考えることは重要です。たとえば、<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>のマイグレーションによって作成された<tt>email</tt>属性について考えてみましょう。<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>ではユーザーをサンプルアプリにログインできるようにしますが、このとき、送信されたものと一致するメールアドレスのユーザーのレコードをデータベースの中から探しだす必要があります。残念なことに、(インデックスなどの機能を持たない) 素朴なデータモデルにおいてユーザーをメールアドレスで検索するには、データベースの<em>ひとりひとりの</em>ユーザーの行を端から順に読み出し、そのemail属性と与えられたメールアドレスを比較するという非効率的な方法しかありません。これは、データベースの世界では<em>全表スキャン</em>として知られており、数千のユーザーがいる実際のサイトでは<a href="http://catb.org/jargon/html/B/Bad-Thing.html">きわめて不都合</a>です。</p>
 
 <p>emailカラムにインデックスを追加することで、この問題を解決することができます。データベースのインデックスを理解するためには、本の索引との類似性を考えるとよいでしょう。本の中で、与えられた言葉 (例えば、“foobar”) が出てくる箇所をすべて見つけるためには、ページを端から順にめくって最後まで探す必要があります。本の索引を利用すれば、“foobar”を含むすべてのページを索引の中から探すだけで済みます。データベースのインデックスも本質的には本の索引と同じように動作します。</p>
@@ -1525,7 +1525,7 @@
 <div class="label" id="sidebar-let"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 6.3</span></span><span class="title"><span class="description"><tt>let</tt>メソッド</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.3</span><span class="description"><tt>let</tt>メソッド</span></span>
 <p>RSpecの<tt>let</tt>メソッドを使用すると、テスト内で簡単にローカル変数を作成することができます。文法は一見奇妙ですが、動作は変数への割り当てと似ています。<tt>let</tt>の引数はシンボルであり、さらにブロックを引数に取ります。そのブロックは、このシンボル名を持つローカル変数に値を返します。つまり、以下のコードを実行すると、</p>
 
 <pre class="verbatim">let(:found_user) { User.find_by(email: @user.email) }</pre>

@@ -218,7 +218,7 @@
 <div class="label" id="sidebar-rake"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 2.1</span></span><span class="title"><span class="description">Rake</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 2.1</span><span class="description">Rake</span></span>
 <p>Unixでは、ソースコードから実行用プログラムをビルドするために主に<a href="http://en.wikipedia.org/wiki/Make_(software)"><em>make</em></a>というツールが使われてきました。多くのプログラマーが、肉体レベルにまで刻み込まれた以下のようなコマンドを実行して</p>
 
 <pre class="verbatim">  $ ./configure &amp;&amp; make &amp;&amp; sudo make install</pre>
@@ -433,7 +433,7 @@
 <div class="label" id="sidebar-REST"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 2.2</span></span><span class="title"><span class="description">REpresentational State Transfer (REST)</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 2.2</span><span class="description">REpresentational State Transfer (REST)</span></span>
 <p>Rails関連の書籍を読んでいると “REST” という略語をよく見かけます。これはREpresentational State Transferの略です。RESTは、インターネットそのものやWebアプリケーションなどの、分散/ネットワーク化されたシステムやアプリケーションを構築するためのアーキテクチャのスタイルの1つです。REST理論そのものはかなり抽象的ですが、RailsアプリケーションにおけるRESTとは、アプリケーションを構成するコンポーネント (ユーザーやマイクロポストなど) を「<em>リソース</em>」としてモデル化することを指します。これらのリソースは、リレーショナルデータベースの<a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">作成/読み取り/更新/削除 (Create/Read/Update/Delete: CRUD) 操作</a>と、4つの基本的な<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a> (<tt>POST</tt>/<tt>GET</tt>/<tt>PATCH</tt>/<tt>DELETE</tt>) の両方に対応しています (HTTP requestメソッドの詳細については、<a class="ref" href="/chapters/static-pages?version=4.0#sec-TDD">3.2.1</a>、特に<a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">コラム 3.3</a>で説明します)。</p>
 
 <p>Rails開発者にとっては、RESTfulなスタイルを採用することで、作成すべきコントローラやアクションの決定が楽になります。作成(C)・読み取り(R)・更新(U)・削除(D)を行うリソースだけでアプリケーション全体を構成してしまうことすら可能です。ユーザーやマイクロポストなどに関しては自然にリソース化できるので問題ありません。<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>では、「ユーザーをフォローする」というやや複雑な課題をREST理論でモデリングします。</p>

@@ -996,7 +996,7 @@
 <div class="label" id="sidebar-time_helpers"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 8.1</span></span><span class="title"><span class="description">cookiesは今から20年後に切れる (<tt>20.years.from_now</tt>)</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 8.1</span><span class="description">cookiesは今から20年後に切れる (<tt>20.years.from_now</tt>)</span></span>
 <p>Rubyは組み込みクラスを含む<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_class_of_our_own">あらゆる</a>クラスにメソッドを追加できることを<em>4.4.2</em>で学びました。あのときは、<tt>palindrome?</tt>メソッドを<tt>String</tt>クラスに追加しました (ついでに<tt>&quot;deified&quot;</tt>も回文になっていることを発見しました)。また、Railsが実は<tt>blank?</tt>メソッドを<tt>Object</tt>クラスに追加していることも判明しました (これにより、<tt>&quot;&quot;.blank?</tt>、<tt>&quot; &quot;.blank?</tt>、<tt>nil.blank?</tt>はいずれも<tt>true</tt>になります)。<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sign_in_function">リスト8.19</a>のコードでは、cookiesが20年後に期限切れになる (<tt>20.years.from_now</tt>) ように指定していますが、これはRailsの<em>timeヘルパー</em>を使用した格好の例題になります。timeヘルパーはRailsによって、数値関連の基底クラスである<tt>Fixnum</tt>クラスに追加されます。</p>
 
 <pre class="verbatim">  $ rails console
@@ -1191,7 +1191,7 @@
 <div class="label" id="sidebar-or_equals"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 8.2</span></span><span class="title"><span class="description"></span></span><span class="title"><span class="description"><tt>||=</tt>とは何か</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 8.2</span><span class="description"></span><span class="description"><tt>||=</tt>とは何か</span></span>
 <p><tt>||=</tt>という記法は非常にRuby的であり、Rubyという言語を強く特徴づけるものです。Rubyプログラミングの達人になりたいのであれば、この記法を習得することが重要です。<em>or equals</em>という概念は一見神妙不可思議に見えますが、他のものになぞらえて考えることで理解できます。</p>
 
 <p>最初は、現在定義されている変数を変更するというありふれたコードについて説明します。多くのコンピュータプログラムでは、以下のようにして変数の値を1つ増やすことができます。</p>

@@ -228,7 +228,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sidebar-opening_the_project"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 3.1</span></span><span class="title"><span class="description">プロジェクトを開く</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 3.1</span><span class="description">プロジェクトを開く</span></span>
 <p>Railsのすべてのディレクトリを一覧できるテキストエディタまたはIDEが使用できると非常に便利です。残念ながら、テキストエディタや IDEの細かな使用法はそれぞれ異なりますが、どのツールを使ってもRailsアプリケーションのディレクトリを開くことができます。Unix系のシステムでは、ドット<code>.</code>でカレントディレクトリを表現できるので、コマンドライン上で以下を実行してRailsアプリケーションの現在のディレクトリを開き、使用するエディタを呼び出してみてください。</p>
 
 <pre class="verbatim">  $ cd ~/rails_projects/sample_app
@@ -298,7 +298,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sidebar-undoing_things"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 3.2</span></span><span class="title"><span class="description">元に戻す方法</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 3.2</span><span class="description">元に戻す方法</span></span>
 <p>どれほど十分に気を付けていたとしても、Railsアプリケーションの開発中に何か失敗してしまうことはありえます。ありがたいことに、Railsにはそのような失敗をカバーする機能がいくつもあります。</p>
 
 <p>一般的なシナリオの1つは、生成したコードを元に戻したい場合です。たとえば、コントローラを生成した後で、もっといいコントローラ名を思い付いた場合などです。<a class="ref" href="/chapters/static-pages?version=4.0#code-generating_pages">リスト 3.4</a>に示したように、コントローラを生成すると、コントローラファイル以外にも多数のファイルが作成されます。自動生成されたコードを元に戻すためには、新規作成されたファイルを削除するだけではなく、既存のファイルに挿入されたコードも削除する必要があります (実際、<tt>routes.rb</tt> ファイルに自動的に追加されたコードも元に戻す必要があります) 。このようなときは、<tt>rails destroy</tt>コマンドを実行するだけで元に戻すことができます。たとえば次の2つのコマンドは、自動生成と、それに対応する取り消し処理の例です。</p>
@@ -386,7 +386,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sidebar-get_etc"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 3.3</span></span><span class="title"><span class="description"><tt>GET</tt>やその他のHTTPメソッドについて</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 3.3</span><span class="description"><tt>GET</tt>やその他のHTTPメソッドについて</span></span>
 <p><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP</a> (HyperText Transfer Protocol) には4つの基本的な操作があり、それぞれ<tt>GET</tt>、<tt>POST</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>という4つの動詞に対応づけられています。(ローカル環境でRailsアプリケーションを開発しているときは、クライアントとサーバーが同じコンピュータ上で動いていますが、一般的には、それぞれ別のコンピュータで動作しているという点を理解しておいてください)。Railsを含む多くのWebフレームワークは、HTTPの各操作を発展させた<em>REST アーキテクチャ</em>の影響を受けています。<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>では、より深い内容について学びます。</p>
 
 <p><tt>GET</tt> は、最も頻繁に使用されるHTTP操作で、主にWeb上のデータを<em>読み取る</em>際に使われます。“ページを取得する” という意味のとおり、ウェブブラウザはgoogle.comやwikipedia.orgのようなWebサイトを開くたびに<tt>GET</tt>リクエストを送信しています。Railsアプリケーションでは、<tt>POST</tt>リクエストは何かを<em>作成する</em>ときによく使われます (なお本来のHTTPでは、<tt>POST</tt>を更新に使ってもよいとしています)。たとえば、ユーザー登録フォームで新しいユーザーを作成するときは、<tt>POST</tt>リクエストを送信します。他にも、<tt>PATCH</tt>と <tt>DELETE</tt>という2つの操作があり、それぞれサーバー上の何かを<em>更新</em>したり<em>削除</em>したりするときに使われます。これら2つの操作は、<tt>GET</tt>や<tt>POST</tt>ほどは使用されていません。これは、ブラウザがPATCHとDELETEをネイティブでは送信しないからです。しかし、Ruby on Railsなどの多くのWebフレームワークは、ブラウザがこれらの操作のリクエストを<em>送信しているかのように見せかける</em>技術 (偽装) を駆使して、PATCHとDELETEという操作を実現しています。</p>

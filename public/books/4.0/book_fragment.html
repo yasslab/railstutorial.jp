@@ -12,7 +12,7 @@
 <div class="label" id="sidebar-diffs"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 1.1</span></span><span class="title"><span class="description">第2版との違いについて</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 1.1</span><span class="description">第2版との違いについて</span></span>
 <p>以下は、<em>Ruby on Railsチュートリアル</em>の第2版と現行のバージョンの違いについての (ほぼ) 網羅的なリストです (重要な違いはStrong Parametersだけであり、その他の違いはどちらかといえば些細なものです) 。このリストは、第2版の読者またはRails 3.2に慣れ親しんた方向けに違いをまとめたものです。Rails 3.2を扱ったことがない方は、以下のリストを読み飛ばしてもかまいません。</p>
 
 <p>以下のリストには、関連する節へのリンクまたは変更コード例へのリンクを含めてあります。</p>
@@ -54,7 +54,7 @@
 <div class="label" id="sidebar-scaffolding"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 1.2</span></span><span class="title"><span class="description">早くて簡単なScaffoldの甘い誘惑</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 1.2</span><span class="description">早くて簡単なScaffoldの甘い誘惑</span></span>
 <p>Railsの作者David Heinemer Hansson氏による有名な「<a href="http://www.youtube.com/watch?v=Gzj723LkRJY">15分で作るブログ</a>」ビデオ (現在はRyan Bates氏による「Rails 2による15分で作るブログ」に更新されています) などを見ていただければわかるように、Railsは誕生したときから刺激的なフレームワークです。これらのビデオはRailsのパワーを目の当たりにするには最適であり、ぜひ視聴する事をお勧めします。しかし、これらのビデオでは15分でブログを作るという離れ業を、<em>scaffold</em>という機能を利用して成し遂げています。このscaffoldという機能は、Railsの<code>generate</code>コマンドによる<em>自動生成コード</em>に強く依存します。</p>
 
 <p>Ruby on Railsのチュートリアルを書いていて、<a href="http://en.wikipedia.org/wiki/Dark_side_(Star_Wars)">あまりにも素早く簡単にコードが生成できる</a> (訳注: 原文「quicker, easier, more seductive」はスターウォーズ (エピソードV) のヨーダの台詞の引用) scaffoldの機能を著者もついあてにしてしまいそうになります。しかし、初心者は生成されたコードの複雑さとその量の多さに圧倒されてしまうことでしょう。どうにか動いても、ソースコードを見ても何が行われているのか理解できないことでしょう。scaffoldのコード自動生成に頼っていると、スクリプト作成の達人にはなるかもしれませんが、Rails自体の知識はほとんど身に付きません。</p>
@@ -1694,7 +1694,7 @@ jhyicevg.herokuapp.com</pre>
 <div class="label" id="sidebar-rake"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 2.1</span></span><span class="title"><span class="description">Rake</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 2.1</span><span class="description">Rake</span></span>
 <p>Unixでは、ソースコードから実行用プログラムをビルドするために主に<a href="http://en.wikipedia.org/wiki/Make_(software)"><em>make</em></a>というツールが使われてきました。多くのプログラマーが、肉体レベルにまで刻み込まれた以下のようなコマンドを実行して</p>
 
 <pre class="verbatim">  $ ./configure &amp;&amp; make &amp;&amp; sudo make install</pre>
@@ -1909,7 +1909,7 @@ jhyicevg.herokuapp.com</pre>
 <div class="label" id="sidebar-REST"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 2.2</span></span><span class="title"><span class="description">REpresentational State Transfer (REST)</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 2.2</span><span class="description">REpresentational State Transfer (REST)</span></span>
 <p>Rails関連の書籍を読んでいると “REST” という略語をよく見かけます。これはREpresentational State Transferの略です。RESTは、インターネットそのものやWebアプリケーションなどの、分散/ネットワーク化されたシステムやアプリケーションを構築するためのアーキテクチャのスタイルの1つです。REST理論そのものはかなり抽象的ですが、RailsアプリケーションにおけるRESTとは、アプリケーションを構成するコンポーネント (ユーザーやマイクロポストなど) を「<em>リソース</em>」としてモデル化することを指します。これらのリソースは、リレーショナルデータベースの<a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">作成/読み取り/更新/削除 (Create/Read/Update/Delete: CRUD) 操作</a>と、4つの基本的な<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a> (<tt>POST</tt>/<tt>GET</tt>/<tt>PATCH</tt>/<tt>DELETE</tt>) の両方に対応しています (HTTP requestメソッドの詳細については、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-TDD">3.2.1</a>、特に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">コラム 3.3</a>で説明します)。</p>
 
 <p>Rails開発者にとっては、RESTfulなスタイルを採用することで、作成すべきコントローラやアクションの決定が楽になります。作成(C)・読み取り(R)・更新(U)・削除(D)を行うリソースだけでアプリケーション全体を構成してしまうことすら可能です。ユーザーやマイクロポストなどに関しては自然にリソース化できるので問題ありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-following-users">第11章</a>では、「ユーザーをフォローする」というやや複雑な課題をREST理論でモデリングします。</p>
@@ -2681,7 +2681,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sidebar-opening_the_project"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 3.1</span></span><span class="title"><span class="description">プロジェクトを開く</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 3.1</span><span class="description">プロジェクトを開く</span></span>
 <p>Railsのすべてのディレクトリを一覧できるテキストエディタまたはIDEが使用できると非常に便利です。残念ながら、テキストエディタや IDEの細かな使用法はそれぞれ異なりますが、どのツールを使ってもRailsアプリケーションのディレクトリを開くことができます。Unix系のシステムでは、ドット<code>.</code>でカレントディレクトリを表現できるので、コマンドライン上で以下を実行してRailsアプリケーションの現在のディレクトリを開き、使用するエディタを呼び出してみてください。</p>
 
 <pre class="verbatim">  $ cd ~/rails_projects/sample_app
@@ -2751,7 +2751,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sidebar-undoing_things"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 3.2</span></span><span class="title"><span class="description">元に戻す方法</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 3.2</span><span class="description">元に戻す方法</span></span>
 <p>どれほど十分に気を付けていたとしても、Railsアプリケーションの開発中に何か失敗してしまうことはありえます。ありがたいことに、Railsにはそのような失敗をカバーする機能がいくつもあります。</p>
 
 <p>一般的なシナリオの1つは、生成したコードを元に戻したい場合です。たとえば、コントローラを生成した後で、もっといいコントローラ名を思い付いた場合などです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generating_pages">リスト 3.4</a>に示したように、コントローラを生成すると、コントローラファイル以外にも多数のファイルが作成されます。自動生成されたコードを元に戻すためには、新規作成されたファイルを削除するだけではなく、既存のファイルに挿入されたコードも削除する必要があります (実際、<tt>routes.rb</tt> ファイルに自動的に追加されたコードも元に戻す必要があります) 。このようなときは、<tt>rails destroy</tt>コマンドを実行するだけで元に戻すことができます。たとえば次の2つのコマンドは、自動生成と、それに対応する取り消し処理の例です。</p>
@@ -2839,7 +2839,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sidebar-get_etc"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 3.3</span></span><span class="title"><span class="description"><tt>GET</tt>やその他のHTTPメソッドについて</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 3.3</span><span class="description"><tt>GET</tt>やその他のHTTPメソッドについて</span></span>
 <p><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP</a> (HyperText Transfer Protocol) には4つの基本的な操作があり、それぞれ<tt>GET</tt>、<tt>POST</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>という4つの動詞に対応づけられています。(ローカル環境でRailsアプリケーションを開発しているときは、クライアントとサーバーが同じコンピュータ上で動いていますが、一般的には、それぞれ別のコンピュータで動作しているという点を理解しておいてください)。Railsを含む多くのWebフレームワークは、HTTPの各操作を発展させた<em>REST アーキテクチャ</em>の影響を受けています。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>でも簡単に触れましたが、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-up">第7章</a>では、より深い内容について学びます。</p>
 
 <p><tt>GET</tt> は、最も頻繁に使用されるHTTP操作で、主にWeb上のデータを<em>読み取る</em>際に使われます。“ページを取得する” という意味のとおり、ウェブブラウザはgoogle.comやwikipedia.orgのようなWebサイトを開くたびに<tt>GET</tt>リクエストを送信しています。Railsアプリケーションでは、<tt>POST</tt>リクエストは何かを<em>作成する</em>ときによく使われます (なお本来のHTTPでは、<tt>POST</tt>を更新に使ってもよいとしています)。たとえば、ユーザー登録フォームで新しいユーザーを作成するときは、<tt>POST</tt>リクエストを送信します。他にも、<tt>PATCH</tt>と <tt>DELETE</tt>という2つの操作があり、それぞれサーバー上の何かを<em>更新</em>したり<em>削除</em>したりするときに使われます。これら2つの操作は、<tt>GET</tt>や<tt>POST</tt>ほどは使用されていません。これは、ブラウザがPATCHとDELETEをネイティブでは送信しないからです。しかし、Ruby on Railsなどの多くのWebフレームワークは、ブラウザがこれらの操作のリクエストを<em>送信しているかのように見せかける</em>技術 (偽装) を駆使して、PATCHとDELETEという操作を実現しています。</p>
@@ -8455,7 +8455,7 @@ bundler_stubs/
 <div class="label" id="sidebar-roll_your_own"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 6.1</span></span><span class="title"><span class="description">自分で認証システムを作ってみる</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.1</span><span class="description">自分で認証システムを作ってみる</span></span>
 <p>事実上、すべてのWebアプリケーションは何らかのログイン/認証システムを必要とします。そのため、多くのWebフレームワークではこのようなログイン/認証システムを実装するための選択肢が多数提供されています。Railsもまた例外ではありません。認証 (authentication) と認可 (authorization) のシステムの例だと、<a href="http://github.com/thoughtbot/clearance">Clearance</a>、<a href="http://github.com/binarylogic/authlogic">Authlogic</a>、<a href="http://github.com/plataformatec/devise">Devise</a>、<a href="http://railscasts.com/episodes/192-authorization-with-cancan">CanCan</a>などがあります (Railsに限らなければ<a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a>や<a href="http://en.wikipedia.org/wiki/Oauth">OAuth</a>の上に構築する方法もあります)。 なぜ車輪の再発明をするのか、という質問があるのも当然です。自分でわざわざ作らなくても、いつも使える方法をただ利用するだけではいけないのでしょうか。</p>
 
 <p>ある実践的な実験によると、多くのサイトの認証システムは膨大なカスタマイズを必要とするため、サードパーティ製品を変更して導入する場合にはシステムをゼロから作成するよりも多くの仕事を要するという結果が出ています。加えて、既成品のシステムは内部がわかりづらいことが多く、ブラックボックスになっています。自分で作成したシステムであれば、それをとてもよく理解しているはずです。さらに言えば、最近のRailsへの変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-adding_a_secure_password">6.3</a>) により、カスタム認証システムを容易に作成できるようになりました。最後に、<em>あえて</em>最終的にサードパーティの認証システムを導入することになったとしても、自分自身で認証システムを構築した経験があれば、サードパーティ製品を理解して変更することがずっと容易になるはずです。</p>
@@ -9600,7 +9600,7 @@ bundler_stubs/
 <div class="label" id="sidebar-database_indices"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 6.2</span></span><span class="title"><span class="description">データベースのインデックス</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.2</span><span class="description">データベースのインデックス</span></span>
 <p>データベースにカラムを作成するとき、そのカラムでレコードを<em>検索する (find) </em>必要があるかどうかを考えることは重要です。たとえば、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-users_migration">リスト6.2</a>のマイグレーションによって作成された<tt>email</tt>属性について考えてみましょう。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-sign-up">第7章</a>ではユーザーをサンプルアプリにログインできるようにしますが、このとき、送信されたものと一致するメールアドレスのユーザーのレコードをデータベースの中から探しだす必要があります。残念なことに、(インデックスなどの機能を持たない) 素朴なデータモデルにおいてユーザーをメールアドレスで検索するには、データベースの<em>ひとりひとりの</em>ユーザーの行を端から順に読み出し、そのemail属性と与えられたメールアドレスを比較するという非効率的な方法しかありません。これは、データベースの世界では<em>全表スキャン</em>として知られており、数千のユーザーがいる実際のサイトでは<a href="http://catb.org/jargon/html/B/Bad-Thing.html">きわめて不都合</a>です。</p>
 
 <p>emailカラムにインデックスを追加することで、この問題を解決することができます。データベースのインデックスを理解するためには、本の索引との類似性を考えるとよいでしょう。本の中で、与えられた言葉 (例えば、“foobar”) が出てくる箇所をすべて見つけるためには、ページを端から順にめくって最後まで探す必要があります。本の索引を利用すれば、“foobar”を含むすべてのページを索引の中から探すだけで済みます。データベースのインデックスも本質的には本の索引と同じように動作します。</p>
@@ -9969,7 +9969,7 @@ bundler_stubs/
 <div class="label" id="sidebar-let"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 6.3</span></span><span class="title"><span class="description"><tt>let</tt>メソッド</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 6.3</span><span class="description"><tt>let</tt>メソッド</span></span>
 <p>RSpecの<tt>let</tt>メソッドを使用すると、テスト内で簡単にローカル変数を作成することができます。文法は一見奇妙ですが、動作は変数への割り当てと似ています。<tt>let</tt>の引数はシンボルであり、さらにブロックを引数に取ります。そのブロックは、このシンボル名を持つローカル変数に値を返します。つまり、以下のコードを実行すると、</p>
 
 <pre class="verbatim">let(:found_user) { User.find_by(email: @user.email) }</pre>
@@ -10472,7 +10472,7 @@ bundler_stubs/
 <div class="label" id="sidebar-rails_environments"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 7.1</span></span><span class="title"><span class="description">Railsの3つの環境</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 7.1</span><span class="description">Railsの3つの環境</span></span>
 <p>Railsにはテスト環境 (<tt>test</tt>)、開発環境 (<tt>development</tt>)、そして本番環境 (<tt>production</tt>) の3つの環境がデフォルトで装備されています。Rails consoleのデフォルトの環境は<tt>development</tt>です。</p>
 
 <pre class="verbatim">  $ rails console 
@@ -13280,7 +13280,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="label" id="sidebar-time_helpers"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 8.1</span></span><span class="title"><span class="description">cookiesは今から20年後に切れる (<tt>20.years.from_now</tt>)</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 8.1</span><span class="description">cookiesは今から20年後に切れる (<tt>20.years.from_now</tt>)</span></span>
 <p>Rubyは組み込みクラスを含む<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_class_of_our_own">あらゆる</a>クラスにメソッドを追加できることを<em>4.4.2</em>で学びました。あのときは、<tt>palindrome?</tt>メソッドを<tt>String</tt>クラスに追加しました (ついでに<tt>&quot;deified&quot;</tt>も回文になっていることを発見しました)。また、Railsが実は<tt>blank?</tt>メソッドを<tt>Object</tt>クラスに追加していることも判明しました (これにより、<tt>&quot;&quot;.blank?</tt>、<tt>&quot; &quot;.blank?</tt>、<tt>nil.blank?</tt>はいずれも<tt>true</tt>になります)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sign_in_function">リスト8.19</a>のコードでは、cookiesが20年後に期限切れになる (<tt>20.years.from_now</tt>) ように指定していますが、これはRailsの<em>timeヘルパー</em>を使用した格好の例題になります。timeヘルパーはRailsによって、数値関連の基底クラスである<tt>Fixnum</tt>クラスに追加されます。</p>
 
 <pre class="verbatim">  $ rails console
@@ -13475,7 +13475,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="label" id="sidebar-or_equals"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 8.2</span></span><span class="title"><span class="description"></span></span><span class="title"><span class="description"><tt>||=</tt>とは何か</span></span>
+<div class="sidebar"><span class="title"><span class="header">コラム 8.2</span><span class="description"></span><span class="description"><tt>||=</tt>とは何か</span></span>
 <p><tt>||=</tt>という記法は非常にRuby的であり、Rubyという言語を強く特徴づけるものです。Rubyプログラミングの達人になりたいのであれば、この記法を習得することが重要です。<em>or equals</em>という概念は一見神妙不可思議に見えますが、他のものになぞらえて考えることで理解できます。</p>
 
 <p>最初は、現在定義されている変数を変更するというありふれたコードについて説明します。多くのコンピュータプログラムでは、以下のようにして変数の値を1つ増やすことができます。</p>
@@ -18828,10 +18828,10 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>プログラミング経験を重ねるうちに、以下のような制御フローが最もよく使用される、ありふれたものであることはすぐにわかると思います。</p>
 
-<pre class="verbatim">if boolean?
-  何かをする
+<pre class="verbatim">  if boolean?
+    何かをする
   else
-  別のことをする
+    別のことをする
   end</pre>
 
 
