@@ -5,6 +5,9 @@
 # and create '_contents_for_book.html.erb'
 # that all links point to inside tags.
 
+### NOTE:
+### For version 4.0+, '_contents.html.erb' is already included in GTT.
+
 ### Create '_contents.html.erb',
 #echo '<h1 class="title">Ruby on Rails 4.0 Tutorial </h1>' > _contents.html.erb
 #cat sample_chapter.html | \

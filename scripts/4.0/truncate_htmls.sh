@@ -19,4 +19,5 @@ End=`  grep -n -w '</body>' $chapter.html | cut -d ':' -f1`
 End=`  expr $End - 2`
 cat $chapter.html | head -n $End | tail -n +$Start > "$chapter"_fragment.html
 echo truncated: $chapter.html "\t"-\> "$chapter"_fragment.html
+cat BEERWARE.html >> ${chapter}_fragment.html
 mv ${chapter}_fragment.html $chapter.html.erb
