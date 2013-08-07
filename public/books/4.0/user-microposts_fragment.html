@@ -29,7 +29,7 @@
 <h3><a id="sec-10_1_1" href="/chapters/user-microposts?version=4.0#sec-the_basic_model" class="heading"><span class="number">10.1.1</span>基本的なモデル</a></h3>
 
 
-<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/chapters/user-microposts?version=4.0#fn-10_2">2</a></sup>と、特定のユーザーとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に (リスト<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
+<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/chapters/user-microposts?version=4.0#fn-10_2">2</a></sup>と、特定のユーザーとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に (<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate model Micropost content:string user_id:integer
 </pre></div>
@@ -741,7 +741,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h2><a id="sec-10_2" href="/chapters/user-microposts?version=4.0#sec-showing_microposts" class="heading"><span class="number">10.2</span>マイクロポストを表示する</a></h2>
 
 
-<p>Web経由でマイクロポストを作成する方法は現時点ではありませんが (<a class="ref" href="/chapters/user-microposts?version=4.0#sec-creating_microposts">10.3.2</a>から作り始めます)、マイクロポストを表示することと、テストすることならできます。ここでは、Twitterのような独立したマイクロポスト<code>index</code>ページでユーザーのマイクロポストを表示するよりも、<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_microposts_mockup">図10.4</a>のモックアップに示したように、直接ユーザーの<code>show</code>ページで表示させることにしましょう。ユーザープロファイルにマイクロポストの表示を追加するための非常にERbテンプレートを作成するところから始め、次に<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-sample_users">9.3.2</a>のサンプルデータ生成にマイクロポストを追加して、画面にサンプルデータが表示されるようにします。</p>
+<p>Web経由でマイクロポストを作成する方法は現時点ではありませんが (<a class="ref" href="/chapters/user-microposts?version=4.0#sec-creating_microposts">10.3.2</a>から作り始めます)、マイクロポストを表示することと、テストすることならできます。ここでは、Twitterのような独立したマイクロポスト<code>index</code>ページでユーザーのマイクロポストを表示するよりも、<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_microposts_mockup">図10.4</a>のモックアップに示したように、直接ユーザーの<code>show</code>ページで表示させることにしましょう。ユーザープロファイルにマイクロポストを表示させるため、まずはとてもシンプルなERbテンプレートを作成するところから始めます。その後、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-sample_users">9.3.2</a>のサンプルデータ生成タスクにマイクロポストのサンプルを追加して、画面にサンプルデータが表示されるようにしてみます。</p>
 
 <div class="label" id="fig-user_microposts_mockup"></div>
 
@@ -1397,7 +1397,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_index_view">リスト9.25</a>と同様、<a class="ref" href="/chapters/sign-up?version=4.0#code-gravatar_option">リスト10.30</a>のコードでも<a class="ref" href="/chapters/user-microposts?version=4.0#code-user_info">リスト7.29</a>で定義した<code>gravatar_for</code>ヘルパーを使用します。</p>
+<p><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_index_view">リスト9.25</a>と同様、<a class="ref" href="/chapters/user-microposts?version=4.0#code-user_info">リスト10.29</a>のコードでも<a class="ref" href="/chapters/sign-up?version=4.0#code-gravatar_option">リスト7.30</a>で定義した<code>gravatar_for</code>ヘルパーを使用します。</p>
 
 <p>プロファイルサイドバー (<a class="ref" href="/chapters/user-microposts?version=4.0#code-user_show_microposts">リスト10.17</a>) のときと同様、<a class="ref" href="/chapters/user-microposts?version=4.0#code-user_info">リスト10.29</a>のユーザー情報にも、そのユーザーが投稿したマイクロポストの総数が表示されていることにご注目ください。ただし少し表示に違いがあります。プロファイルサイドバーでは、 “Microposts” をラベルとし、“Microposts (1)” と表示することは問題ありません。しかし今回のように “1 microposts” と表示してしまうと英語の文法上誤りになってしまうので、<code>pluralize</code>メソッドを使用して “1 micropost” や “2 microposts” と表示するように調整します。</p>
 
@@ -1590,7 +1590,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-10_3_3" href="/chapters/user-microposts?version=4.0#sec-a_proto_feed" class="heading"><span class="number">10.3.3</span>フィードの原型</a></h3>
 
 
-<p><a class="ref" href="/chapters/user-microposts?version=4.0#sec-creating_microposts">10.3.2</a>の最後のコメントでも言及しましたが、現在のHomeページにはマイクロポストが1つも表示されていません。<a class="ref" href="/chapters/user-microposts?version=4.0#fig-home_with_form">図10.11</a>のフォームが正しく動作しているかどうかを確認したい場合、正しいエントリーを投稿した後、<a href="http://localhost:3000/users/1">プロファイルページ</a>に移動してポストを表示すればよいのですが、これはかなり面倒な作業です。 <em>図10.13</em>のモックアップで示したような、ユーザー自身のポストを含むマイクロポスト<a class="ref" href="/chapters/user-microposts?version=4.0#fig-proto_feed_mockup">フィード</a>がないと不便です (<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>ではフィードを汎用化し、現在のユーザーによって<em>フォローされている</em>ユーザーのマイクロポストも一緒に表示するフィードにする予定です)。</p>
+<p><a class="ref" href="/chapters/user-microposts?version=4.0#sec-creating_microposts">10.3.2</a>の最後のコメントでも言及しましたが、現在のHomeページにはマイクロポストが1つも表示されていません。<a class="ref" href="/chapters/user-microposts?version=4.0#fig-home_with_form">図10.11</a>のフォームが正しく動作しているかどうかを確認したい場合、正しいエントリーを投稿した後、<a href="http://localhost:3000/users/1">プロファイルページ</a>に移動してポストを表示すればよいのですが、これはかなり面倒な作業です。 <a class="ref" href="/chapters/user-microposts?version=4.0#fig-proto_feed_mockup">図10.13</a>のモックアップで示したような、ユーザー自身のポストを含むマイクロポスト<em>フィード</em>がないと不便です (<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>ではフィードを汎用化し、現在のユーザーによって<em>フォローされている</em>ユーザーのマイクロポストも一緒に表示するフィードにする予定です)。</p>
 
 <div class="label" id="fig-proto_feed_mockup"></div>
 
@@ -1924,7 +1924,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/micropost_delete_links_mockup_bootstrap.png" alt="micropost_delete_links_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.16</span><span class="description">マイクロポストの削除リンクと (プロト) フィードのモックアップ。<a href="http://railstutorial.jp/images/figures/micropost_delete_links_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>最初のステップとして、<a class="ref" href="/chapters/user-microposts?version=4.0#code-feed_item_partial">リスト10.40</a>のマイクロポストパーシャルに削除リンクを追加します。同様に、<a class="ref" href="/chapters/user-microposts?version=4.0#code-feed_item_partial">リスト10.40</a>のフィードアイテムパーシャルにリンクを追加します。追加の結果を<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_partial_with_delete">リスト10.46</a>および<a class="ref" href="/chapters/user-microposts?version=4.0#code-feed_item_partial_with_delete">リスト10.47</a>に示します (これら2つはほとんど同一です。重複コードの削除は演習に回すことにします (<a class="ref" href="/chapters/user-microposts?version=4.0#sec-micropost_exercises">10.5</a>))。</p>
+<p>最初のステップとして、<a class="ref" href="/chapters/user-microposts?version=4.0#code-feed_item_partial">リスト10.40</a>のマイクロポストパーシャルに削除リンクを追加します。同様に、<a class="ref" href="/chapters/user-microposts?version=4.0#code-feed_item_partial">リスト10.40</a>のフィードアイテムパーシャルにリンクを追加します。追加の結果を<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_partial_with_delete">リスト10.43</a>および<a class="ref" href="/chapters/user-microposts?version=4.0#code-feed_item_partial_with_delete">リスト10.44</a>に示します (これら2つはほとんど同一です。重複コードの削除は演習に回すことにします (<a class="ref" href="/chapters/user-microposts?version=4.0#sec-micropost_exercises">10.5</a>))。</p>
 
 <div class="label" id="code-micropost_partial_with_delete"></div>
 

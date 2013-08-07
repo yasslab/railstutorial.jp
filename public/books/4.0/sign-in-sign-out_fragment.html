@@ -111,7 +111,7 @@
 
 <p>注: サインアウトのルーティングにある<code>via: ’delete’</code>は、このアクションが HTTPの<tt>DELETE</tt>リクエストによって呼び出されることを示しています。</p>
 
-<p><a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sessions_resource">リスト8.2</a>で定義されたリソースは、<a class="ref" href="/chapters/sign-up?version=4.0#table-RESTful_users">表8.1</a>に示したように、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#table-RESTful_sessions">表7.1</a>とよく似たURLとアクションを提供します。注：サインインとサインアウトのアクションのルーティングはカスタムで設定しますが、セッションの生成アクションへのルーティングはデフォルトを使います (i.e., <code>[resource name]_path</code>).</p>
+<p><a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sessions_resource">リスト8.2</a>で定義されたリソースは、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#table-RESTful_sessions">表8.1</a>に示したように、<a class="ref" href="/chapters/sign-up?version=4.0#table-RESTful_users">表7.1</a>とよく似たURLとアクションを提供します。注：サインインとサインアウトのアクションのルーティングはカスタムで設定しますが、セッションの生成アクションへのルーティングはデフォルトを使います (i.e., <code>[resource name]_path</code>).</p>
 
 <div class="label" id="table-RESTful_sessions"></div>
 
@@ -325,7 +325,7 @@
 
 <p>(注: <code>form_for</code>の代わりに<code>form_tag</code>を使うこともでき、Railsではこの方が慣用的な方法です。しかし、ユーザー登録フォームではform_forを使用する方が一般的であり、並列構造を強調するためにもform_forを使用しました。<code>form_tag</code>を使ったフォームについては(<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-sign_in_out_exercises">8.5</a>)の演習に回します。)</p>
 
-<p>適切な<code>form_for</code>を使用することで、 <a class="ref" href="/chapters/sign-in-sign-out?version=4.0#fig-signin_mockup">リスト7.17</a>のユーザー登録フォームを参考にして、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-signin_form">リスト8.7</a>に示したようなモックアップに従ったサインインフォームを簡単に作成できます (<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_form">図8.1</a>)。</p>
+<p>適切な<code>form_for</code>を使用することで、<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_form">リスト7.17</a>のユーザー登録フォームを参考にして、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-signin_form">リスト8.7</a>に示したようなモックアップに従ったサインインフォームを簡単に作成できます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#fig-signin_mockup">図8.1</a>)。</p>
 
 <div class="label" id="code-signin_form"></div>
 
@@ -552,7 +552,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/failed_signin_flash_bootstrap.png" alt="failed_signin_flash_bootstrap" /></span></div><div class="caption"><span class="header">図8.6</span><span class="description">サインインに失敗したときのフラッシュメッセージ。<a href="http://railstutorial.jp/images/figures/failed_signin_flash_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>残念ながら、本文および<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-failed_signin_attempt">リスト8.10</a>のコメントで述べたように、このコードには誤りがあります。ページの表示には問題がないようですが、どこがおかしいのでしょうか。実は、ある<em>リクエスト</em>に対するフラッシュメッセージの内容がすぐに消えずに残ってしまうという問題があります。<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_flash">リスト7.27</a>で使用したリダイレクトのときとは異なり、<code>render</code>で表示したテンプレートを再描画してもリクエストと見なされません。このため、フラッシュメッセージはひとつのリクエストに対して期待よりも長い間消えずに表示され続けてしまいます。たとえば、無効な情報を送信するとサインインページにフラッシュメッセージが設定されて表示されます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#fig-failed_signin_flash">図8.6</a>)。ここでHomeページなどの別のページへのリンクをクリックすると、これはフォームが送信されてから最初のリクエストであるため、フラッシュメッセージが移動先のページでも表示されたままになってしまいます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#fig-flash_persistence">図8.7</a>)。</p>
+<p>残念ながら、本文および<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-failed_signin_attempt">リスト8.10</a>のコメントで述べたように、このコードには誤りがあります。ページの表示には問題がないようですが、どこがおかしいのでしょうか。実は、ある<em>リクエスト</em>に対するフラッシュメッセージの内容がすぐに消えずに残ってしまうという問題があります。<a class="ref" href="/chapters/sign-up?version=4.0#code-signup_flash">リスト7.28</a>で使用したリダイレクトのときとは異なり、<code>render</code>で表示したテンプレートを再描画してもリクエストと見なされません。このため、フラッシュメッセージはひとつのリクエストに対して期待よりも長い間消えずに表示され続けてしまいます。たとえば、無効な情報を送信するとサインインページにフラッシュメッセージが設定されて表示されます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#fig-failed_signin_flash">図8.6</a>)。ここでHomeページなどの別のページへのリンクをクリックすると、これはフォームが送信されてから最初のリクエストであるため、フラッシュメッセージが移動先のページでも表示されたままになってしまいます (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#fig-flash_persistence">図8.7</a>)。</p>
 
 <div class="label" id="fig-flash_persistence"></div>
 
@@ -578,7 +578,7 @@
 </div>
 
 
-<p>このテストは、無効なサインインデータを送信し、次にWebサイトのレイアウトにあるHomeリンクを開き、フラッシュメッセージが表示されていないことを確認します。フラッシュテストの部分を更新したテストコードをリスト<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-correct_signin_failure_test">8.11</a>に示します。</p>
+<p>このテストは、無効なサインインデータを送信し、次にWebサイトのレイアウトにあるHomeリンクを開き、フラッシュメッセージが表示されていないことを確認します。フラッシュテストの部分を更新したテストコードを<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-correct_signin_failure_test">リスト8.11</a>に示します。</p>
 
 <div class="label" id="code-correct_signin_failure_test"></div>
 
@@ -1155,7 +1155,7 @@
 </div></div>
 
 
-<p>もしかすると、これを使用して<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>の<code>attr_accessor</code>を効率よく置き換えることができるのではないでしょうか<sup class="footnote" id="fnref-8_5"><a href="/chapters/sign-in-sign-out?version=4.0#fn-8_5">5</a></sup>。それをしないのは、このコードを使用すると今までの苦労が台無しになってしまうからです。<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-current_user_wrong">リスト8.21</a>のコードを使用すると、ユーザーが別のページに移動した瞬間にユーザーのサインイン情報が<em>きれいさっぱり</em>消滅してしまいます。セッションは終了し、ユーザーは自動的にサインアウトしてしまいます。この問題を回避するには、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sign_in_function">リスト8.22</a>に示したように、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-current_user_working">リスト8.19</a>のコードで作成した記憶トークンに対応するユーザーを検索します。データベース上の記憶トークンは暗号化されているので、cookiesから取り出した記憶トークンは、データベース上の記憶トークンを検索する前に暗号化する必要がある点にご注意ください。これを行うには、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-before_create_remember_token">リスト8.18</a>で定義した<code>User.encrypt</code>を使用します。</p>
+<p>もしかすると、これを使用して<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>の<code>attr_accessor</code>を効率よく置き換えることができるのではないでしょうか<sup class="footnote" id="fnref-8_5"><a href="/chapters/sign-in-sign-out?version=4.0#fn-8_5">5</a></sup>。それをしないのは、このコードを使用すると今までの苦労が台無しになってしまうからです。<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-current_user_wrong">リスト8.21</a>のコードを使用すると、ユーザーが別のページに移動した瞬間にユーザーのサインイン情報が<em>きれいさっぱり</em>消滅してしまいます。セッションは終了し、ユーザーは自動的にサインアウトしてしまいます。この問題を回避するには、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-current_user_working">リスト8.22</a>に示したように、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-sign_in_function">リスト8.19</a>のコードで作成した記憶トークンに対応するユーザーを検索します。データベース上の記憶トークンは暗号化されているので、cookiesから取り出した記憶トークンは、データベース上の記憶トークンを検索する前に暗号化する必要がある点にご注意ください。これを行うには、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-before_create_remember_token">リスト8.18</a>で定義した<code>User.encrypt</code>を使用します。</p>
 
 <div class="label" id="code-current_user_working"></div>
 
@@ -1380,7 +1380,7 @@
 </div></div>
 
 
-<p>上のコードは、Sprocketsライブラリを使用してBootstrap JavaScriptをインクルードします。<tt>5.1.2</tt>で<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-custom_css">bootstrap-sass</a> gemを導入してあるので、これでBootstrapが利用できるようになります。</p>
+<p>上のコードは、Sprocketsライブラリを使用してBootstrap JavaScriptをインクルードします。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-custom_css">5.1.2</a>で<tt>bootstrap-sass</tt> gemを導入してあるので、これでBootstrapが利用できるようになります。</p>
 
 <p><a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-layout_signin_signout_links">リスト8.24</a>のコードを使用することで、すべてのテストにパスするはずです。</p>
 
@@ -1389,7 +1389,7 @@
 </div>
 
 
-<p>以上の変更を行ったことで、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-layout_signin_signout_links">図8.9</a>に示したように、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#fig-profile_with_signout_link">リスト8.24</a>で定義したドロップダウンメニューがサインインしたユーザーに表示されるようになりました。</p>
+<p>以上の変更を行ったことで、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#fig-profile_with_signout_link">図8.9</a>に示したように、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#code-layout_signin_signout_links">リスト8.24</a>で定義したドロップダウンメニューがサインインしたユーザーに表示されるようになりました。</p>
 
 <div class="label" id="fig-profile_with_signout_link"></div>
 
@@ -2021,7 +2021,7 @@
 <li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Rails Guidesの「<a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html">コールバックについて</a> (英語)」を参照してください。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_4">↑</a></li>
 <li id="fn-8_5">実は、この2つは完全に同等です。<code>attr_accessor</code>は、単にゲッターメソッドやセッターメソッドを自動的に作成する便利な方法でしかありません。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_5">↑</a></li>
 <li id="fn-8_6">通常、これは初期値が<code>nil</code>である変数への代入を意味しますが、<code>false</code>値も<code>||=</code>演算子によって上書きされることにご注意ください。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_6">↑</a></li>
-<li id="fn-8_7">これは、<em>コラム 6.3</em>で説明した<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">メモ化 (memoization) </a>の例になっています。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_7">↑</a></li>
+<li id="fn-8_7">これは、<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">コラム 6.3</a>で説明した<em>メモ化 (memoization) </em>の例になっています。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_7">↑</a></li>
 <li id="fn-8_8">Webブラウザは実際には<tt>DELETE</tt>リクエストを発行できないので、RailsではJavaScriptを使用してこのリクエストを偽造します。<a class="arrow" href="/chapters/sign-in-sign-out?version=4.0#fnref-8_8">↑</a></li>
 </ol>
 </div>

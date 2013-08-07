@@ -330,7 +330,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p><a class="ref" href="/chapters/static-pages?version=4.0#code-generating_pages">リスト 3.4</a>のようにStaticPagesコントローラを生成すると、<em>config/routes.rb</em>ファイルが自動的に更新されます。Railsは、この <code>routes</code>ファイルに記述されている内容 (ルーティング) に従って、 複数のURLとWebページを対応付けます。ここで、初めて<code>config</code>ディレクトリについて触れます。このディレクトリは<a class="ref" href="/chapters/static-pages?version=4.0#fig-config_directory_rails">図 3.4</a>のような構成になっています。<code>config</code>ディレクトリという名前のとおり、このディレクトリ内にあるファイルは、Railsがアプリケーションの設定を読み込む時に必要になります。</p>
+<p><a class="ref" href="/chapters/static-pages?version=4.0#code-generating_pages">リスト 3.4</a>のようにStaticPagesコントローラを生成すると、<em>config/routes.rb</em>ファイルが自動的に更新されます。Railsは、この <code>routes</code>ファイルに記述されている内容 (ルーティング) に従って、 複数のURLとWebページを対応付けます。ここで、初めて<code>config</code>ディレクトリについて触れます。このディレクトリは<a class="ref" href="/chapters/static-pages?version=4.0#fig-config_directory_rails">図 3.1</a>のような構成になっています。<code>config</code>ディレクトリという名前のとおり、このディレクトリ内にあるファイルは、Railsがアプリケーションの設定を読み込む時に必要になります。</p>
 
 <div class="label" id="fig-config_directory_rails"></div>
 
@@ -368,7 +368,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-raw_home_view"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/raw_home_view_31.png" alt="raw_home_view_31" /></span></div><div class="caption"><span class="header">図3.1</span><span class="description"><a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスした結果。<a href="http://railstutorial.jp/images/figures/raw_home_view_31-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/raw_home_view_31.png" alt="raw_home_view_31" /></span></div><div class="caption"><span class="header">図3.2</span><span class="description"><a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスした結果。<a href="http://railstutorial.jp/images/figures/raw_home_view_31-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -914,7 +914,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <table class="tabular"><tr><th class="align_center"><strong>ページ</strong></th><th class="align_left"><strong>URL</strong></th><th class="align_left"><strong>基本タイトル</strong></th><th class="align_left"><strong>追加タイトル</strong></th></tr><tr class="top_bar"><td class="align_center">Home</td><td class="align_left">/static_pages/home</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;Home&quot;</code></td></tr><tr><td class="align_center">Help</td><td class="align_left">/static_pages/help</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;Help&quot;</code></td></tr><tr><td class="align_center">About</td><td class="align_left">/static_pages/about</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;About&quot;</code></td></tr></table></div><div class="caption"><span class="header">表3.1</span><span class="description">サンプルアプリケーションの (ほぼ) 静的なページ。</span></div></div>
 
 
-<p>この節が完了するまでに、3つの静的ページのすべてのタイトルが、“Ruby on Rails Tutorial Sample App | Home”のように、最後の単語のみ<a class="ref" href="/chapters/static-pages?version=4.0#table-static_pages">テーブル3.1</a>に従ってページごとに変更されるようになります。最初に、<a class="ref" href="/chapters/static-pages?version=4.0#code-about_page_content_spec">リスト3.14</a>のテストを元に、モデルに応じたタイトル表示のテスト (<a class="ref" href="/chapters/static-pages?version=4.0#code-title_test">リスト3.18</a>) を追加します。</p>
+<p>この節が完了するまでに、3つの静的ページのすべてのタイトルが、“Ruby on Rails Tutorial Sample App | Home”のように、最後の単語のみ<a class="ref" href="/chapters/static-pages?version=4.0#table-static_pages">表3.1</a>に従ってページごとに変更されるようになります。最初に、<a class="ref" href="/chapters/static-pages?version=4.0#code-about_page_content_spec">リスト3.14</a>のテストを元に、モデルに応じたタイトル表示のテスト (<a class="ref" href="/chapters/static-pages?version=4.0#code-title_test">リスト3.18</a>) を追加します。</p>
 
 <div class="label" id="code-title_test"></div>
 
@@ -2005,7 +2005,7 @@ bundler_stubs/
 </div>
 
 
-<p><code>rspec</code>を実行するたびに<tt class="verb">--drb</tt>オプションを追加するのは不便なので、アプリケーションのルートディレクトリにある<code>.rspec</code>ファイルに<a class="ref" href="/chapters/static-pages?version=4.0#code-rspec_drb">リスト3.37</a>の内容を記載することをお勧めします。</p>
+<p><code>rspec</code>を実行するたびに<tt class="verb">--drb</tt>オプションを追加するのは不便なので、アプリケーションのルートディレクトリにある<code>.rspec</code>ファイルに<a class="ref" href="/chapters/static-pages?version=4.0#code-rspec_drb">リスト3.38</a>の内容を記載することをお勧めします。</p>
 
 <div class="label" id="code-rspec_drb"></div>
 
@@ -2043,7 +2043,7 @@ bundler_stubs/
 </div>
 
 
-<p>そのためには、<code>リスト3.39</code>に示したように<a class="ref" href="/chapters/static-pages?version=4.0#code-spork_guardfile">Guardfile</a>を変更する必要があります。</p>
+<p>そのためには、<a class="ref" href="/chapters/static-pages?version=4.0#code-spork_guardfile">リスト3.39</a>に示したように<code>Guardfile</code>を変更する必要があります。</p>
 
 <div class="label" id="code-spork_guardfile"></div>
 

@@ -105,7 +105,7 @@
 </div>
 
 
-<p>(最初のアプリケーションのときと同様、GitHubリポジトリを初期化するときに<em>README</em>を使用<code>しない</code>ように注意してください。)</p>
+<p>(最初のアプリケーションのときと同様、GitHubリポジトリを初期化するときに<code>README</code>を使用<em>しない</em>ように注意してください。)</p>
 
 <p>これで、アプリ自体を作成するための下準備が整いました。Webアプリケーションを作る際、アプリケーションで使用される構造を表すための<em>データモデル</em>を最初に作成しておくのが普通です。今回のデモアプリケーションでは、ユーザーと短いマイクロポストのみをサポートするマイクロブログを作成します。そこで、まずアプリケーションの<em>ユーザー</em>で使用するモデルを作成 (<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-modeling_demo_users">2.1.1</a>) し、次に<em>マイクロポスト</em> で使用するモデルを作成します (<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-modeling_demo_microposts">2.1.2</a>)。</p>
 
@@ -297,7 +297,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/demo_update_user_rails_3.png" alt="demo_update_user_rails_3" /></span></div><div class="caption"><span class="header">図2.8</span><span class="description">情報が更新されたユーザー。<a href="http://railstutorial.jp/images/figures/demo_update_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
-<p>ここで<a href="http://localhost:3000/users/new"><tt>new</tt></a>ページに戻り、ユーザーをもう1人作成してみましょう。<a href="http://localhost:3000/users"><tt>index</tt></a>ページを表示してみると、<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-demo_user_index_two_rails_3">2.9</a>のようにユーザーが追加されています。<a class="ref" href="/chapters/sign-up?version=4.0#sec-showing_users">7.1</a>ではもっと本格的なユーザー一覧ページを作成する予定です。</p>
+<p>ここで<a href="http://localhost:3000/users/new"><tt>new</tt></a>ページに戻り、ユーザーをもう1人作成してみましょう。<a href="http://localhost:3000/users"><tt>index</tt></a>ページを表示してみると、<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-demo_user_index_two_rails_3">図2.9</a>のようにユーザーが追加されています。<a class="ref" href="/chapters/sign-up?version=4.0#sec-showing_users">7.1</a>ではもっと本格的なユーザー一覧ページを作成する予定です。</p>
 
 <div class="label" id="fig-demo_user_index_two_rails_3"></div>
 
@@ -344,7 +344,7 @@
 </ol>
 
 
-<p>まずはブラウザからのリクエストを見てみましょう。このリクエストは、アドレスバーにURLを入力したりリンクをクリックした時に発生します (<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-mvc_detailed">図2.11</a>の1)。 リクエストは<em>Railsルーター</em>に到達し (2)、ここでURL (とリクエストの種類: <a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">コラム 3.2</a>参照) に基づいて適切な<em>コントローラのアクション</em>に割り当てられます (ディスパッチ)。ユーザーのURLをUsersリソースで使用するコントローラアクションに割り当てる (マッピングする) ためのコードは<a class="ref" href="/chapters/a-demo-app?version=4.0#code-rails_routes">リスト2.2</a>です。このコードは、 URLとアクションの組み合わせ (<a class="ref" href="/chapters/a-demo-app?version=4.0#table-user_urls">表2.1</a>) を効率的に作成します。(<code>:users</code>という一見奇妙な記法は、 <em>シンボル</em>と呼ばれるものです。詳細は<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">4.3.3</a>で説明します。)</p>
+<p>まずはブラウザからのリクエストを見てみましょう。このリクエストは、アドレスバーにURLを入力したりリンクをクリックした時に発生します (<a class="ref" href="/chapters/a-demo-app?version=4.0#fig-mvc_detailed">図2.11</a>の1)。 リクエストは<em>Railsルーター</em>に到達し (2)、ここでURL (とリクエストの種類: <a class="ref" href="/chapters/static-pages?version=4.0#sidebar-get_etc">コラム 3.3</a>参照) に基づいて適切な<em>コントローラのアクション</em>に割り当てられます (ディスパッチ)。ユーザーのURLをUsersリソースで使用するコントローラアクションに割り当てる (マッピングする) ためのコードは<a class="ref" href="/chapters/a-demo-app?version=4.0#code-rails_routes">リスト2.2</a>です。このコードは、 URLとアクションの組み合わせ (<a class="ref" href="/chapters/a-demo-app?version=4.0#table-user_urls">表2.1</a>) を効率的に作成します。(<code>:users</code>という一見奇妙な記法は、 <em>シンボル</em>と呼ばれるものです。詳細は<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-hashes_and_symbols">4.3.3</a>で説明します。)</p>
 
 <div class="label" id="code-rails_routes"></div>
 
@@ -476,7 +476,7 @@
 </div></div>
 
 
-<p><code>@users</code>変数にユーザー一覧が保存されると、コントローラは<em>リスト2.6</em>の<a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_index_view">ビュー</a>を呼び出します (⑥)。<code>@</code>記号で始まる変数はRubyでは<em>インスタンス変数</em>と呼ばれます。ビューでは自動的にこれらのインスタンス変数を使用できます。この場合、<a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_index_view">リスト2.6</a>の<code>index.html.erb</code>ビューは、<code>@users</code>の一覧を並べ、1行ごとにHTMLの行として出力します (今はこのコードの意味がわからなくても問題ありません。これはあくまで説明のためのものです)。</p>
+<p><code>@users</code>変数にユーザー一覧が保存されると、コントローラは<a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_index_view">リスト2.6</a>の<em>ビュー</em>を呼び出します (⑥)。<code>@</code>記号で始まる変数はRubyでは<em>インスタンス変数</em>と呼ばれます。ビューでは自動的にこれらのインスタンス変数を使用できます。この場合、<a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_index_view">リスト2.6</a>の<code>index.html.erb</code>ビューは、<code>@users</code>の一覧を並べ、1行ごとにHTMLの行として出力します (今はこのコードの意味がわからなくても問題ありません。これはあくまで説明のためのものです)。</p>
 
 <div class="label" id="code-demo_index_view"></div>
 
@@ -982,7 +982,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 <li id="fn-2_3">ビューは、(ApacheやNginxなどのWebサーバーを経由してはいるが) ブラウザにHTMLを直接返すと説明している文献もあります。私は、Railsの実際の実装とは無関係に、コントローラを情報の流れの中心となるハブとみなすことを好んでいます。<a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_3">↑</a></li>
 <li id="fn-2_4">Fielding, Roy Thomas. <em>Architectural Styles and the Design of Network-based Software Architectures</em>.  Doctoral dissertation, University of California, Irvine, 2000. <a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_4">↑</a></li>
 <li id="fn-2_5">ユーザーでscaffoldを実行した場合と同様に、scaffoldジェネレータはマイクロポストでもRailsモデルを単数形とする習慣に従います。実行したコマンドが<code>generate Micropost</code>と単数形になっていたのはこのためです。<a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_5">↑</a></li>
-<li id="fn-2_6">scaffoldで生成したコードには<a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_microposts_resource">2.7</a>よりも多くの改行が追加されます。Rubyは単なる改行を無視するので、問題はありません。<a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_6">↑</a></li>
+<li id="fn-2_6">scaffoldで生成したコードには<a class="ref" href="/chapters/a-demo-app?version=4.0#code-demo_microposts_resource">リスト2.7</a>よりも多くの改行が追加されます。Rubyは単なる改行を無視するので、問題はありません。<a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_6">↑</a></li>
 <li id="fn-2_7">実際のターミナル上では、プロンプトが<code>ruby-2.0.0-head &gt;</code>などと表示される可能性がありますが、Rubyのバージョンが環境によって異なる可能性があるため、例のプロンプトは<tt class="verb">&gt;&gt;</tt>と表記しています。<a class="arrow" href="/chapters/a-demo-app?version=4.0#fnref-2_7">↑</a></li>
 </ol>
 </div>

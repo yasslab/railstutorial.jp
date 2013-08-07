@@ -450,7 +450,7 @@
 <pre class="verbatim">--no-test-framework</pre>
 
 
-<p>(<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-generate_users_controller">リスト5.2</a>などでは渡した) 上のフラグを渡さなかったからです。<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>のコマンドは、モデル作成の際に、ユーザーをテストするための初期のspecも同時に作成します。しかし今回の場合、specは実質的には空です (<a class="ref" href="/chapters/modeling-users?version=4.0#code-default_user_spec">リスト6.4</a>)。</p>
+<p>(<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-generate_users_controller">リスト5.29</a>などでは渡した) 上のフラグを渡さなかったからです。<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>のコマンドは、モデル作成の際に、ユーザーをテストするための初期のspecも同時に作成します。しかし今回の場合、specは実質的には空です (<a class="ref" href="/chapters/modeling-users?version=4.0#code-default_user_spec">リスト6.4</a>)。</p>
 
 <div class="label" id="code-default_user_spec"></div>
 
@@ -496,7 +496,7 @@
 
 <p>上のコマンドは、単に開発データベースのデータモデル<code>db/development.sqlite3</code>がテストデータベース<code>db/test.sqlite3</code>に反映されるようにするものです。マイグレーションの後でたまにRakeタスクが実行できなくなることがあり、多くの人がこれに戸惑います。さらに、テストデータベースはたまに壊れることがあるので、その場合はリセットが必要です。もしテストスイートが理由もなく壊れるようなことがあれば、<code>rake test:prepare</code>を実行して、この問題が解決するか確認してみてください。</p>
 
-<p>デフォルトのspecのアドバイスに従い、<a class="ref" href="/chapters/modeling-users?version=4.0#code-user_spec">リスト6.8</a>に示したいくつかのRSpecの例に置き換えてみましょう。</p>
+<p>デフォルトのspecのアドバイスに従い、<a class="ref" href="/chapters/modeling-users?version=4.0#code-user_spec">リスト6.5</a>に示したいくつかのRSpecの例に置き換えてみましょう。</p>
 
 <div class="label" id="code-user_spec"></div>
 
@@ -527,7 +527,7 @@
 
 <p><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-pretty_rspec">5.3.4</a>で<code>page</code>変数を扱ったときと同じように、<code>@user</code>をテストサンプルのデフォルトのsubjectとして設定します。</p>
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#code-user_spec">リスト6.8</a>の2つのサンプルは、<code>name</code>属性と<code>email</code>属性の存在をテストします。</p>
+<p><a class="ref" href="/chapters/modeling-users?version=4.0#code-user_spec">リスト6.5</a>の2つのサンプルは、<code>name</code>属性と<code>email</code>属性の存在をテストします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
 <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
@@ -591,7 +591,7 @@
 
 <p>最初に<code>name</code>属性の存在を確認するテストを行いましょう。テスト駆動開発の最初のステップは<em>失敗する</em>テスト (<a class="ref" href="/chapters/static-pages?version=4.0#sec-TDD">3.2.1</a>) を書くことですが、今回は適切なテストを書くための検証機能についてまだ十分に理解していないので、まず最初に検証を書きます。検証についてはコンソールを使って理解することにします。次に、検証部分をコメントアウトし、失敗するテストを書いて、最後にコメントアウトを解除した検証でテストがパスするかどうかを確認します。この手続きは、このような単純なテストでは大げさで気取ったものに感じられるかもしれませんが、著者はこれまでにテストそのものに誤りのある「単純な」テストを山ほど見てきました。テスト駆動開発を慎重に進めることは、テストが正しく進められているという自信を得る<em>唯一の</em>方法です (上で紹介したコメントアウトのテクニックは、コードはあってもテストがどこにもないような<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>ひどい</em></a>アプリケーションを急いで救出するときにも役に立ちます)。</p>
 
-<p>name属性の存在を検査する方法は、<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_presence_of_name">リスト6.9</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波かっこを付けなくても問題ありません (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
+<p>name属性の存在を検査する方法は、<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_presence_of_name">リスト6.6</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波かっこを付けなくても問題ありません (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
 
 <div class="label" id="code-validates_presence_of_name"></div>
 
@@ -650,7 +650,7 @@
 </div></div>
 
 
-<p>最初の段階の検証テストを<a class="ref" href="/chapters/modeling-users?version=4.0#code-failing_validates_name_spec">リスト6.11</a>に示します。</p>
+<p>最初の段階の検証テストを<a class="ref" href="/chapters/modeling-users?version=4.0#code-failing_validates_name_spec">リスト6.8</a>に示します。</p>
 
 <div class="label" id="code-failing_validates_name_spec"></div>
 
@@ -1061,7 +1061,7 @@
 </div>
 
 
-<p>現在の一意性検証では大文字小文字を区別しているため、<code>user_with_same_email.valid?</code>は<code>true</code>になります。しかし、ここでは<code>false</code>になる必要があります。幸い、<code>:uniqueness</code>では<code>:case_sensitive</code>といううってつけのオプションが使用できます (<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email_case_insensitive">リスト6.21</a>)。</p>
+<p>現在の一意性検証では大文字小文字を区別しているため、<code>user_with_same_email.valid?</code>は<code>true</code>になります。しかし、ここでは<code>false</code>になる必要があります。幸い、<code>:uniqueness</code>では<code>:case_sensitive</code>といううってつけのオプションが使用できます (<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email_case_insensitive">リスト6.18</a>)。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email_case_insensitive"></div>
 

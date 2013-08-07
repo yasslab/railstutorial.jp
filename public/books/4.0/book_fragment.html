@@ -13,7 +13,7 @@
 
 
 <div class="sidebar"><span class="title"><span class="header">コラム 1.1</span><span class="description">第2版との違いについて</span></span>
-<p>以下は、<em>Ruby on Railsチュートリアル</em>の第2版と現行のバージョンの違いについての (ほぼ) 網羅的なリストです (重要な違いはStrong Parametersだけであり、その他の違いはどちらかといえば些細なものです) 。このリストは、第2版の読者またはRails 3.2に慣れ親しんた方向けに違いをまとめたものです。Rails 3.2を扱ったことがない方は、以下のリストを読み飛ばしてもかまいません。</p>
+<p>以下は、<em>Ruby on Railsチュートリアル</em>の第2版と現行のバージョンの違いについての (ほぼ) 網羅的なリストです (重要な違いはStrong Parametersだけであり、その他の違いはどちらかといえば些細なものです) 。このリストは、第2版の読者またはRails 3.2に慣れ親しんだ方向けに違いをまとめたものです。Rails 3.2を扱ったことがない方は、以下のリストを読み飛ばしてもかまいません。</p>
 
 <p>以下のリストには、関連する節へのリンクまたは変更コード例へのリンクを含めてあります。</p>
 
@@ -45,7 +45,7 @@
 
 <p>この第1章では、必要なソフトウェアをインストールし、開発環境 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-up_and_running">1.2</a>) を整えてRuby on Railsの準備をします。続いて、<code>first_app</code> という最初のRailsアプリの作成に着手します。<em>Railsチュートリアル</em>ではソフトウェア開発のベストプラクティスを重要視しているので、新しいRailsプロジェクトを作成後、ただちにGit (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-version_control">1.3</a>) を使用してバージョン管理下に置きます。そして何と、この章では本番 (production) 環境 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-deploying">1.4</a>) に<em>デプロイして一般公開する</em>ところまで行います。</p>
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-scaffolding">コラム 1.1</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_1">1</a></sup>と呼ばれることもあります)を指定してデモアプリを使ってみます。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>では、Railsアプリケーションの基本的な仕組みのデモを兼ねて、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ</em>(<code>demo_app</code>)はscaffold(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-scaffolding">コラム 1.2</a>)を使用してコードを自動生成します。scaffoldで生成されたコードは複雑で美しくないので、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>では<em>URI</em> (Webブラウザで使用する<em>URL</em><sup class="footnote" id="fnref-1_1"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-1_1">1</a></sup>と呼ばれることもあります)を指定してデモアプリを使ってみます。</p>
 
 <p>第3章以降では、<em>サンプルアプリケーション</em> (<code>sample_app</code>と呼びます) を作成します。このアプリはTDD (<em>テスト駆動開発</em>) で開発を進め、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-static-pages">第3章</a>で静的ページ (と若干の動的コンテンツ) を追加するところから始めます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-rails-flavored-ruby">第4章</a>では少し回り道をし、Railsを動かしているRuby言語について簡単に学びます。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-filling-in-the-layout">第5章</a>から<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-updating-showing-and-deleting-users">第9章</a>ではレイアウト、ユーザーのデータモデル、そしてユーザー登録・認証システムを作りサンプルアプリの基礎を完成させます。最後に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-user-microposts">第10章</a>と<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-following-users">第11章</a>ではマイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
 
@@ -1581,7 +1581,7 @@ jhyicevg.herokuapp.com</pre>
 </div>
 
 
-<p>(最初のアプリケーションのときと同様、GitHubリポジトリを初期化するときに<em>README</em>を使用<code>しない</code>ように注意してください。)</p>
+<p>(最初のアプリケーションのときと同様、GitHubリポジトリを初期化するときに<code>README</code>を使用<em>しない</em>ように注意してください。)</p>
 
 <p>これで、アプリ自体を作成するための下準備が整いました。Webアプリケーションを作る際、アプリケーションで使用される構造を表すための<em>データモデル</em>を最初に作成しておくのが普通です。今回のデモアプリケーションでは、ユーザーと短いマイクロポストのみをサポートするマイクロブログを作成します。そこで、まずアプリケーションの<em>ユーザー</em>で使用するモデルを作成 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-modeling_demo_users">2.1.1</a>) し、次に<em>マイクロポスト</em> で使用するモデルを作成します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-modeling_demo_microposts">2.1.2</a>)。</p>
 
@@ -1773,7 +1773,7 @@ jhyicevg.herokuapp.com</pre>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/demo_update_user_rails_3.png" alt="demo_update_user_rails_3" /></span></div><div class="caption"><span class="header">図2.8</span><span class="description">情報が更新されたユーザー。<a href="http://railstutorial.jp/images/figures/demo_update_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
-<p>ここで<a href="http://localhost:3000/users/new"><tt>new</tt></a>ページに戻り、ユーザーをもう1人作成してみましょう。<a href="http://localhost:3000/users"><tt>index</tt></a>ページを表示してみると、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-demo_user_index_two_rails_3">2.9</a>のようにユーザーが追加されています。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-showing_users">7.1</a>ではもっと本格的なユーザー一覧ページを作成する予定です。</p>
+<p>ここで<a href="http://localhost:3000/users/new"><tt>new</tt></a>ページに戻り、ユーザーをもう1人作成してみましょう。<a href="http://localhost:3000/users"><tt>index</tt></a>ページを表示してみると、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-demo_user_index_two_rails_3">図2.9</a>のようにユーザーが追加されています。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-showing_users">7.1</a>ではもっと本格的なユーザー一覧ページを作成する予定です。</p>
 
 <div class="label" id="fig-demo_user_index_two_rails_3"></div>
 
@@ -1820,7 +1820,7 @@ jhyicevg.herokuapp.com</pre>
 </ol>
 
 
-<p>まずはブラウザからのリクエストを見てみましょう。このリクエストは、アドレスバーにURLを入力したりリンクをクリックした時に発生します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-mvc_detailed">図2.11</a>の1)。 リクエストは<em>Railsルーター</em>に到達し (2)、ここでURL (とリクエストの種類: <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">コラム 3.2</a>参照) に基づいて適切な<em>コントローラのアクション</em>に割り当てられます (ディスパッチ)。ユーザーのURLをUsersリソースで使用するコントローラアクションに割り当てる (マッピングする) ためのコードは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rails_routes">リスト2.2</a>です。このコードは、 URLとアクションの組み合わせ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-user_urls">表2.1</a>) を効率的に作成します。(<code>:users</code>という一見奇妙な記法は、 <em>シンボル</em>と呼ばれるものです。詳細は<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-hashes_and_symbols">4.3.3</a>で説明します。)</p>
+<p>まずはブラウザからのリクエストを見てみましょう。このリクエストは、アドレスバーにURLを入力したりリンクをクリックした時に発生します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-mvc_detailed">図2.11</a>の1)。 リクエストは<em>Railsルーター</em>に到達し (2)、ここでURL (とリクエストの種類: <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-get_etc">コラム 3.3</a>参照) に基づいて適切な<em>コントローラのアクション</em>に割り当てられます (ディスパッチ)。ユーザーのURLをUsersリソースで使用するコントローラアクションに割り当てる (マッピングする) ためのコードは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rails_routes">リスト2.2</a>です。このコードは、 URLとアクションの組み合わせ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-user_urls">表2.1</a>) を効率的に作成します。(<code>:users</code>という一見奇妙な記法は、 <em>シンボル</em>と呼ばれるものです。詳細は<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-hashes_and_symbols">4.3.3</a>で説明します。)</p>
 
 <div class="label" id="code-rails_routes"></div>
 
@@ -1952,7 +1952,7 @@ jhyicevg.herokuapp.com</pre>
 </div></div>
 
 
-<p><code>@users</code>変数にユーザー一覧が保存されると、コントローラは<em>リスト2.6</em>の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-demo_index_view">ビュー</a>を呼び出します (⑥)。<code>@</code>記号で始まる変数はRubyでは<em>インスタンス変数</em>と呼ばれます。ビューでは自動的にこれらのインスタンス変数を使用できます。この場合、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-demo_index_view">リスト2.6</a>の<code>index.html.erb</code>ビューは、<code>@users</code>の一覧を並べ、1行ごとにHTMLの行として出力します (今はこのコードの意味がわからなくても問題ありません。これはあくまで説明のためのものです)。</p>
+<p><code>@users</code>変数にユーザー一覧が保存されると、コントローラは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-demo_index_view">リスト2.6</a>の<em>ビュー</em>を呼び出します (⑥)。<code>@</code>記号で始まる変数はRubyでは<em>インスタンス変数</em>と呼ばれます。ビューでは自動的にこれらのインスタンス変数を使用できます。この場合、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-demo_index_view">リスト2.6</a>の<code>index.html.erb</code>ビューは、<code>@users</code>の一覧を並べ、1行ごとにHTMLの行として出力します (今はこのコードの意味がわからなくても問題ありません。これはあくまで説明のためのものです)。</p>
 
 <div class="label" id="code-demo_index_view"></div>
 
@@ -2453,7 +2453,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 <li id="fn-2_3">ビューは、(ApacheやNginxなどのWebサーバーを経由してはいるが) ブラウザにHTMLを直接返すと説明している文献もあります。私は、Railsの実際の実装とは無関係に、コントローラを情報の流れの中心となるハブとみなすことを好んでいます。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-2_3">↑</a></li>
 <li id="fn-2_4">Fielding, Roy Thomas. <em>Architectural Styles and the Design of Network-based Software Architectures</em>.  Doctoral dissertation, University of California, Irvine, 2000. <a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-2_4">↑</a></li>
 <li id="fn-2_5">ユーザーでscaffoldを実行した場合と同様に、scaffoldジェネレータはマイクロポストでもRailsモデルを単数形とする習慣に従います。実行したコマンドが<code>generate Micropost</code>と単数形になっていたのはこのためです。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-2_5">↑</a></li>
-<li id="fn-2_6">scaffoldで生成したコードには<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-demo_microposts_resource">2.7</a>よりも多くの改行が追加されます。Rubyは単なる改行を無視するので、問題はありません。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-2_6">↑</a></li>
+<li id="fn-2_6">scaffoldで生成したコードには<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-demo_microposts_resource">リスト2.7</a>よりも多くの改行が追加されます。Rubyは単なる改行を無視するので、問題はありません。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-2_6">↑</a></li>
 <li id="fn-2_7">実際のターミナル上では、プロンプトが<code>ruby-2.0.0-head &gt;</code>などと表示される可能性がありますが、Rubyのバージョンが環境によって異なる可能性があるため、例のプロンプトは<tt class="verb">&gt;&gt;</tt>と表記しています。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-2_7">↑</a></li>
 </ol>
 </div>
@@ -2793,7 +2793,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generating_pages">リスト 3.4</a>のようにStaticPagesコントローラを生成すると、<em>config/routes.rb</em>ファイルが自動的に更新されます。Railsは、この <code>routes</code>ファイルに記述されている内容 (ルーティング) に従って、 複数のURLとWebページを対応付けます。ここで、初めて<code>config</code>ディレクトリについて触れます。このディレクトリは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-config_directory_rails">図 3.4</a>のような構成になっています。<code>config</code>ディレクトリという名前のとおり、このディレクトリ内にあるファイルは、Railsがアプリケーションの設定を読み込む時に必要になります。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generating_pages">リスト 3.4</a>のようにStaticPagesコントローラを生成すると、<em>config/routes.rb</em>ファイルが自動的に更新されます。Railsは、この <code>routes</code>ファイルに記述されている内容 (ルーティング) に従って、 複数のURLとWebページを対応付けます。ここで、初めて<code>config</code>ディレクトリについて触れます。このディレクトリは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-config_directory_rails">図 3.1</a>のような構成になっています。<code>config</code>ディレクトリという名前のとおり、このディレクトリ内にあるファイルは、Railsがアプリケーションの設定を読み込む時に必要になります。</p>
 
 <div class="label" id="fig-config_directory_rails"></div>
 
@@ -2831,7 +2831,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="fig-raw_home_view"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/raw_home_view_31.png" alt="raw_home_view_31" /></span></div><div class="caption"><span class="header">図3.1</span><span class="description"><a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスした結果。<a href="http://railstutorial.jp/images/figures/raw_home_view_31-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/raw_home_view_31.png" alt="raw_home_view_31" /></span></div><div class="caption"><span class="header">図3.2</span><span class="description"><a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスした結果。<a href="http://railstutorial.jp/images/figures/raw_home_view_31-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -3377,7 +3377,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <table class="tabular"><tr><th class="align_center"><strong>ページ</strong></th><th class="align_left"><strong>URL</strong></th><th class="align_left"><strong>基本タイトル</strong></th><th class="align_left"><strong>追加タイトル</strong></th></tr><tr class="top_bar"><td class="align_center">Home</td><td class="align_left">/static_pages/home</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;Home&quot;</code></td></tr><tr><td class="align_center">Help</td><td class="align_left">/static_pages/help</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;Help&quot;</code></td></tr><tr><td class="align_center">About</td><td class="align_left">/static_pages/about</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;About&quot;</code></td></tr></table></div><div class="caption"><span class="header">表3.1</span><span class="description">サンプルアプリケーションの (ほぼ) 静的なページ。</span></div></div>
 
 
-<p>この節が完了するまでに、3つの静的ページのすべてのタイトルが、“Ruby on Rails Tutorial Sample App | Home”のように、最後の単語のみ<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-static_pages">テーブル3.1</a>に従ってページごとに変更されるようになります。最初に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-about_page_content_spec">リスト3.14</a>のテストを元に、モデルに応じたタイトル表示のテスト (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-title_test">リスト3.18</a>) を追加します。</p>
+<p>この節が完了するまでに、3つの静的ページのすべてのタイトルが、“Ruby on Rails Tutorial Sample App | Home”のように、最後の単語のみ<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-static_pages">表3.1</a>に従ってページごとに変更されるようになります。最初に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-about_page_content_spec">リスト3.14</a>のテストを元に、モデルに応じたタイトル表示のテスト (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-title_test">リスト3.18</a>) を追加します。</p>
 
 <div class="label" id="code-title_test"></div>
 
@@ -4468,7 +4468,7 @@ bundler_stubs/
 </div>
 
 
-<p><code>rspec</code>を実行するたびに<tt class="verb">--drb</tt>オプションを追加するのは不便なので、アプリケーションのルートディレクトリにある<code>.rspec</code>ファイルに<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rspec_drb">リスト3.37</a>の内容を記載することをお勧めします。</p>
+<p><code>rspec</code>を実行するたびに<tt class="verb">--drb</tt>オプションを追加するのは不便なので、アプリケーションのルートディレクトリにある<code>.rspec</code>ファイルに<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rspec_drb">リスト3.38</a>の内容を記載することをお勧めします。</p>
 
 <div class="label" id="code-rspec_drb"></div>
 
@@ -4506,7 +4506,7 @@ bundler_stubs/
 </div>
 
 
-<p>そのためには、<code>リスト3.39</code>に示したように<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-spork_guardfile">Guardfile</a>を変更する必要があります。</p>
+<p>そのためには、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-spork_guardfile">リスト3.39</a>に示したように<code>Guardfile</code>を変更する必要があります。</p>
 
 <div class="label" id="code-spork_guardfile"></div>
 
@@ -5181,7 +5181,7 @@ bundler_stubs/
 <h3><a id="sec-4_2_5" href="/book/ruby-on-rails-tutorial?version=4.0#sec-back_to_the_title_helper" class="heading"><span class="number">4.2.5</span> title ヘルパー、再び</a></h3>
 
 
-<p>ここまでの解説でRubyの知識がある程度身についたので<sup class="footnote" id="fnref-4_5"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-4_5">5</a></sup>、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-title_helper">4.2</a>の<code>full_title</code>ヘルパーを理解できるようになったはずです。</p>
+<p>ここまでの解説でRubyの知識がある程度身についたので<sup class="footnote" id="fnref-4_5"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-4_5">5</a></sup>、リスト<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-title_helper">4.2</a>の<code>full_title</code>ヘルパーを理解できるようになったはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">ApplicationHelper</span>
 
@@ -6545,7 +6545,7 @@ bundler_stubs/
 
 <p>Asset Pipeline (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-sass_and_the_asset_pipeline">5.2</a>)の一部であり、このディレクトリに置かれたスタイルシートは<code>application.css</code>の一部として自動的にWebサイトのレイアウトにインクルードされます。さらに、ファイル名の<code>custom.css.scss</code>には<code>.css</code>という拡張子も含まれているので、このファイルはCSSファイルであることが示されています。また、<code>.scss</code>という拡張子も含まれているので、 このファイルはSassを記述できるCSSファイル (Sassy CSS: Scss) であることも示されており、Asset Pipelineはこれを見てSassを処理できるようにします (Sassは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-sass">5.2.2</a>まで登場しませんが、<tt>bootstrap-sass</tt> gemが動作するためのおまじないとして必要です)。</p>
 
-<p>カスタムCSS用のファイルを作成したら、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-bootstrap_css">リスト5.4</a>のように<code>@import</code>を使用してBootstrapをインクルードします。</p>
+<p>カスタムCSS用のファイルを作成したら、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-bootstrap_css">リスト5.5</a>のように<code>@import</code>を使用してBootstrapをインクルードします。</p>
 
 <div class="label" id="code-bootstrap_css"></div>
 
@@ -7631,7 +7631,7 @@ bundler_stubs/
 </div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-static_page_routes">リスト5.21</a>コードを注意深く読むことで、このコードの動作を理解できるでしょう。たとえば以下のコードの場合について説明します。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-static_page_routes">リスト5.22</a>コードを注意深く読むことで、このコードの動作を理解できるでしょう。たとえば以下のコードの場合について説明します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">match</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#about&#39;</span><span class="p">,</span>  <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
 </pre></div>
@@ -7671,7 +7671,7 @@ bundler_stubs/
 </div>
 
 
-<p>しかし、実際にはルート (root) については上のように書く必要はありません。Railsでは、routesファイル (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-root_route_hint">リスト5.22</a>) の下の方のコメント内に、ルート(root) URL / (“スラッシュ”) 用の特別な記法が書かれています。</p>
+<p>しかし、実際にはルート (root) については上のように書く必要はありません。Railsでは、routesファイル (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-root_route_hint">リスト5.23</a>) の下の方のコメント内に、ルート(root) URL / (“スラッシュ”) 用の特別な記法が書かれています。</p>
 
 <div class="label" id="code-root_route_hint"></div>
 
@@ -7920,7 +7920,7 @@ bundler_stubs/
 </div>
 
 
-<p>上のコードは以前より良くなりましたが、まだタイトルのテストが少し長すぎます。確かに、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-route_tests">リスト5.20</a>にあるほとんどのタイトルのテストで以下の長いテキストが使用されています。</p>
+<p>上のコードは以前より良くなりましたが、まだタイトルのテストが少し長すぎます。確かに、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-route_tests">リスト5.21</a>にあるほとんどのタイトルのテストで以下の長いテキストが使用されています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="s2">&quot;Ruby on Rails Tutorial Sample App | About&quot;</span>
 </pre></div>
@@ -8292,11 +8292,11 @@ bundler_stubs/
 
 <ol>
 
-<li><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-pretty_page_tests">リスト5.28</a>の静的ページのテストコードは簡潔ですが、まだ繰り返しが残っています。RSpecには、冗長性を排除するための<em>Shared Examples</em>と呼ばれる機能があります。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-static_pages_spec_shared_example">リスト5.36</a>の例に従い、Help、AboutとContactページで不足しているテストを補ってください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-pages_controller_spec_exercise">リスト3.30</a>で簡単に紹介した<code>let</code>コマンドは、要求 (変数が使用されるときなど) に応じて与えられた値を持つ「ローカル変数」を作成することにご注意ください。対照的にインスタンス変数は、要素代入 (assignment) されたときに作成されます。</li>
+<li><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-pretty_page_tests">リスト5.28</a>の静的ページのテストコードは簡潔ですが、まだ繰り返しが残っています。RSpecには、冗長性を排除するための<em>Shared Examples</em>と呼ばれる機能があります。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-static_pages_spec_shared_example">リスト5.36</a>の例に従い、Help、AboutとContactページで不足しているテストを補ってください。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-pages_controller_spec_exercise">リスト3.31</a>で簡単に紹介した<code>let</code>コマンドは、要求 (変数が使用されるときなど) に応じて与えられた値を持つ「ローカル変数」を作成することにご注意ください。対照的にインスタンス変数は、要素代入 (assignment) されたときに作成されます。</li>
 
 <li>既にお気付きの方もいると思いますが、これまで行なってきた、レイアウト上のリンクのルーティングテストは、そのリンクが実際に正しいページへのリンクになっているかどうかをチェックしていません。このようなテストを実装する方法のひとつは、RSpecの結合テスト内で<code>visit</code>と<code>click_link</code>を使用することです。レイアウトのリンクが正しく定義されていることを確認するコードを追加して、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-layout_links_test">リスト5.37</a>を補ってください。</li>
 
-<li><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-full_title_helper_tests">リスト5.38</a>に示すように、元のヘルパーメソッドに対するテストを書き、それによって<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rspec_utilities">リスト5.27</a>の<code>full_title</code>テストヘルパーへの依存を解消してください。(<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rspec_utilities_simplified">リスト5.38</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-full_title_helper_tests">リスト5.38</a>では、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
+<li><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-full_title_helper_tests">リスト5.38</a>に示すように、元のヘルパーメソッドに対するテストを書き、それによって<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rspec_utilities">リスト5.27</a>の<code>full_title</code>テストヘルパーへの依存を解消してください。(<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-rspec_utilities_simplified">リスト5.39</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-full_title_helper_tests">リスト5.38</a>では、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
 
 </ol>
 
@@ -8884,7 +8884,7 @@ bundler_stubs/
 <pre class="verbatim">--no-test-framework</pre>
 
 
-<p>(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_users_controller">リスト5.2</a>などでは渡した) 上のフラグを渡さなかったからです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>のコマンドは、モデル作成の際に、ユーザーをテストするための初期のspecも同時に作成します。しかし今回の場合、specは実質的には空です (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-default_user_spec">リスト6.4</a>)。</p>
+<p>(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_users_controller">リスト5.29</a>などでは渡した) 上のフラグを渡さなかったからです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>のコマンドは、モデル作成の際に、ユーザーをテストするための初期のspecも同時に作成します。しかし今回の場合、specは実質的には空です (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-default_user_spec">リスト6.4</a>)。</p>
 
 <div class="label" id="code-default_user_spec"></div>
 
@@ -8930,7 +8930,7 @@ bundler_stubs/
 
 <p>上のコマンドは、単に開発データベースのデータモデル<code>db/development.sqlite3</code>がテストデータベース<code>db/test.sqlite3</code>に反映されるようにするものです。マイグレーションの後でたまにRakeタスクが実行できなくなることがあり、多くの人がこれに戸惑います。さらに、テストデータベースはたまに壊れることがあるので、その場合はリセットが必要です。もしテストスイートが理由もなく壊れるようなことがあれば、<code>rake test:prepare</code>を実行して、この問題が解決するか確認してみてください。</p>
 
-<p>デフォルトのspecのアドバイスに従い、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_spec">リスト6.8</a>に示したいくつかのRSpecの例に置き換えてみましょう。</p>
+<p>デフォルトのspecのアドバイスに従い、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_spec">リスト6.5</a>に示したいくつかのRSpecの例に置き換えてみましょう。</p>
 
 <div class="label" id="code-user_spec"></div>
 
@@ -8961,7 +8961,7 @@ bundler_stubs/
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-pretty_rspec">5.3.4</a>で<code>page</code>変数を扱ったときと同じように、<code>@user</code>をテストサンプルのデフォルトのsubjectとして設定します。</p>
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_spec">リスト6.8</a>の2つのサンプルは、<code>name</code>属性と<code>email</code>属性の存在をテストします。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_spec">リスト6.5</a>の2つのサンプルは、<code>name</code>属性と<code>email</code>属性の存在をテストします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
 <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
@@ -9025,7 +9025,7 @@ bundler_stubs/
 
 <p>最初に<code>name</code>属性の存在を確認するテストを行いましょう。テスト駆動開発の最初のステップは<em>失敗する</em>テスト (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-TDD">3.2.1</a>) を書くことですが、今回は適切なテストを書くための検証機能についてまだ十分に理解していないので、まず最初に検証を書きます。検証についてはコンソールを使って理解することにします。次に、検証部分をコメントアウトし、失敗するテストを書いて、最後にコメントアウトを解除した検証でテストがパスするかどうかを確認します。この手続きは、このような単純なテストでは大げさで気取ったものに感じられるかもしれませんが、著者はこれまでにテストそのものに誤りのある「単純な」テストを山ほど見てきました。テスト駆動開発を慎重に進めることは、テストが正しく進められているという自信を得る<em>唯一の</em>方法です (上で紹介したコメントアウトのテクニックは、コードはあってもテストがどこにもないような<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>ひどい</em></a>アプリケーションを急いで救出するときにも役に立ちます)。</p>
 
-<p>name属性の存在を検査する方法は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_presence_of_name">リスト6.9</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波かっこを付けなくても問題ありません (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
+<p>name属性の存在を検査する方法は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_presence_of_name">リスト6.6</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波かっこを付けなくても問題ありません (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
 
 <div class="label" id="code-validates_presence_of_name"></div>
 
@@ -9084,7 +9084,7 @@ bundler_stubs/
 </div></div>
 
 
-<p>最初の段階の検証テストを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-failing_validates_name_spec">リスト6.11</a>に示します。</p>
+<p>最初の段階の検証テストを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-failing_validates_name_spec">リスト6.8</a>に示します。</p>
 
 <div class="label" id="code-failing_validates_name_spec"></div>
 
@@ -9495,7 +9495,7 @@ bundler_stubs/
 </div>
 
 
-<p>現在の一意性検証では大文字小文字を区別しているため、<code>user_with_same_email.valid?</code>は<code>true</code>になります。しかし、ここでは<code>false</code>になる必要があります。幸い、<code>:uniqueness</code>では<code>:case_sensitive</code>といううってつけのオプションが使用できます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_uniqueness_of_email_case_insensitive">リスト6.21</a>)。</p>
+<p>現在の一意性検証では大文字小文字を区別しているため、<code>user_with_same_email.valid?</code>は<code>true</code>になります。しかし、ここでは<code>false</code>になる必要があります。幸い、<code>:uniqueness</code>では<code>:case_sensitive</code>といううってつけのオプションが使用できます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-validates_uniqueness_of_email_case_insensitive">リスト6.18</a>)。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email_case_insensitive"></div>
 
@@ -11779,7 +11779,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>このコードはたとえば <code>&quot;0 errors&quot;</code>、<code>&quot;1 error&quot;</code>、<code>&quot;2 errors&quot;</code> などのように、エラーの数に応じて活用された単語を返します。これにより、<code>&quot;1 errors&quot;</code> のような英語の文法に合わない文字列を避けることができます (これは<a href="http://www.urbandictionary.com/define.php?term=interwebs">teh interwebs</a>にも載っている、どうしようもないほどよく見かけるエラーです)。</p>
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-errors_partial">リスト7.24</a>には、エラーメッセージにスタイルを与えるためのCSS id <code>error_explanation</code>も含まれていることに注目してください (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-custom_css">5.1.2</a>のCSSでスタイルidに「<code>#</code>」記号を使用していることも思い出してください)。さらにRailsは、エラーページにある、<code>div</code>で囲まれたエラーCSSクラス<code>field_with_errors</code>を適用しています。これらのラベルによって、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-error_messages_css">リスト7.24</a>のようにエラーメッセージをSCSSで整形することができます。ここでは、Sassの<code>@extend</code>関数を使用してBootstrapの<code>control-group</code>と<code>error</code>の2つのクラスの機能をインクルードしています。その結果、送信失敗時のエラーメッセージは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_error_messages">図7.17</a>のように赤の背景で囲まれるようになります。これらのメッセージはモデルの検証時に生成されるので、メールアドレスのスタイルやパスワードの最小文字列などを変更すると、メッセージも自動的に変更されます。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-errors_partial">リスト7.24</a>には、エラーメッセージにスタイルを与えるためのCSS id <code>error_explanation</code>も含まれていることに注目してください (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-custom_css">5.1.2</a>のCSSでスタイルidに「<code>#</code>」記号を使用していることも思い出してください)。さらにRailsは、エラーページにある、<code>div</code>で囲まれたエラーCSSクラス<code>field_with_errors</code>を適用しています。これらのラベルによって、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-error_messages_css">リスト7.25</a>のようにエラーメッセージをSCSSで整形することができます。ここでは、Sassの<code>@extend</code>関数を使用してBootstrapの<code>control-group</code>と<code>error</code>の2つのクラスの機能をインクルードしています。その結果、送信失敗時のエラーメッセージは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signup_error_messages">図7.17</a>のように赤の背景で囲まれるようになります。これらのメッセージはモデルの検証時に生成されるので、メールアドレスのスタイルやパスワードの最小文字列などを変更すると、メッセージも自動的に変更されます。</p>
 
 <div class="label" id="code-error_messages_css"></div>
 
@@ -11978,7 +11978,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>(ハッシュの<code>:success</code>キーはシンボルである点にご注目ください。Rubyはシンボルを自動的に <code>&quot;success&quot;</code> という文字列に変換してからテンプレートに挿入します。) 使用するすべてのキーと値を列挙する理由は、他のフラッシュメッセージも使えるようにするためです。たとえば、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-rendering_with_a_flash_message">8.1.5</a>では<code>flash[:error]</code>を使用してサインインに失敗したことを表すメッセージを表示します<sup class="footnote" id="fnref-7_10"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-7_10">10</a></sup>。</p>
 
-<p>フラッシュメッセージが正しく表示されているかどうかのテストは演習に回します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_exercises">7.6</a>)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_flash">リスト7.27</a>のように、<code>create</code>アクションで<code>flash[:success]</code>にウェルカムメッセージを割り当てれば 、テストにパスするようになります。</p>
+<p>フラッシュメッセージが正しく表示されているかどうかのテストは演習に回します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_exercises">7.6</a>)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_flash">リスト7.28</a>のように、<code>create</code>アクションで<code>flash[:success]</code>にウェルカムメッセージを割り当てれば 、テストにパスするようになります。</p>
 
 <div class="label" id="code-signup_flash"></div>
 
@@ -12267,7 +12267,7 @@ Loading development environment  &gt;&gt; Rails.env
 <ol>
 <li id="fn-7_1"><a href="http://gomockingbird.com/">Mockingbird</a>では<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-profile_mockup_profile_name">図7.1</a>のプロファイル写真のようなカスタム画像はサポートされていません。ここでは<a href="http://www.adobe.com/products/fireworks/">Adobe Fireworks</a>を使用して手動で画像を置きました。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-7_1">↑</a></li>
 <li id="fn-7_2">このカバの写真は<a href="http://www.flickr.com/photos/43803060@N00/24308857/">http://www.flickr.com/photos/43803060@N00/24308857/</a>から引用しました。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-7_2">↑</a></li>
-<li id="fn-7_3">Railsの<code>デバッグ</code>情報は <a href="http://www.yaml.org/">YAML</a> (一種の<a href="http://catb.org/jargon/html/R/recursive-acronym.html">再帰的略語</a>であり、“YAML Ain’t Markup Language” の略とされています) 形式で表示されます。YAMLは人間<em>だけでなく</em>コンピュータにとっても読みやすい形式です。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-7_3">↑</a></li>
+<li id="fn-7_3">Railsの<code>debug</code>情報は <a href="http://www.yaml.org/">YAML</a> (一種の<a href="http://catb.org/jargon/html/R/recursive-acronym.html">再帰的略語</a>であり、“YAML Ain’t Markup Language” の略とされています) 形式で表示されます。YAMLは人間<em>だけでなく</em>コンピュータにとっても読みやすい形式です。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-7_3">↑</a></li>
 <li id="fn-7_4">実は、この3つ以外にもカスタムの環境を作成することができます。詳細については「<a href="http://railscasts.com/episodes/72-adding-an-environment">環境を追加した場合のRailsCast</a> (英語)」を参照してください。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-7_4">↑</a></li>
 <li id="fn-7_5">この時点では、<em>ルーティング</em>は動作していますが、対応するページが動作しているとは限りません。たとえば、/users/1/edit がUsersコントローラの<code>edit</code>アクションに正常にルーティングされているとしても、<code>edit</code>アクションが存在しなければ、このURLにアクセスしたときにエラーになります。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-7_5">↑</a></li>
 <li id="fn-7_6">ヒンズー教では、アバターは人間や動物の形をとって神が顕現したものと考えられています。これを拡大解釈して、<em>アバター</em>という用語は、特にネット界隈で、その人物を表現するもの (かつその人そのものの一部でもある) という意味で使われます。もちろん、映画「<a href="http://www.imdb.com/title/tt0499549/">アバター</a>」を見た人にはこんな解説は不要でしょう。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-7_6">↑</a></li>
@@ -12395,7 +12395,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>注: サインアウトのルーティングにある<code>via: ’delete’</code>は、このアクションが HTTPの<tt>DELETE</tt>リクエストによって呼び出されることを示しています。</p>
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sessions_resource">リスト8.2</a>で定義されたリソースは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_users">表8.1</a>に示したように、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_sessions">表7.1</a>とよく似たURLとアクションを提供します。注：サインインとサインアウトのアクションのルーティングはカスタムで設定しますが、セッションの生成アクションへのルーティングはデフォルトを使います (i.e., <code>[resource name]_path</code>).</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sessions_resource">リスト8.2</a>で定義されたリソースは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_sessions">表8.1</a>に示したように、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_users">表7.1</a>とよく似たURLとアクションを提供します。注：サインインとサインアウトのアクションのルーティングはカスタムで設定しますが、セッションの生成アクションへのルーティングはデフォルトを使います (i.e., <code>[resource name]_path</code>).</p>
 
 <div class="label" id="table-RESTful_sessions"></div>
 
@@ -12609,7 +12609,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>(注: <code>form_for</code>の代わりに<code>form_tag</code>を使うこともでき、Railsではこの方が慣用的な方法です。しかし、ユーザー登録フォームではform_forを使用する方が一般的であり、並列構造を強調するためにもform_forを使用しました。<code>form_tag</code>を使ったフォームについては(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-sign_in_out_exercises">8.5</a>)の演習に回します。)</p>
 
-<p>適切な<code>form_for</code>を使用することで、 <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signin_mockup">リスト7.17</a>のユーザー登録フォームを参考にして、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signin_form">リスト8.7</a>に示したようなモックアップに従ったサインインフォームを簡単に作成できます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_form">図8.1</a>)。</p>
+<p>適切な<code>form_for</code>を使用することで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_form">リスト7.17</a>のユーザー登録フォームを参考にして、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signin_form">リスト8.7</a>に示したようなモックアップに従ったサインインフォームを簡単に作成できます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-signin_mockup">図8.1</a>)。</p>
 
 <div class="label" id="code-signin_form"></div>
 
@@ -12836,7 +12836,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/failed_signin_flash_bootstrap.png" alt="failed_signin_flash_bootstrap" /></span></div><div class="caption"><span class="header">図8.6</span><span class="description">サインインに失敗したときのフラッシュメッセージ。<a href="http://railstutorial.jp/images/figures/failed_signin_flash_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>残念ながら、本文および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-failed_signin_attempt">リスト8.10</a>のコメントで述べたように、このコードには誤りがあります。ページの表示には問題がないようですが、どこがおかしいのでしょうか。実は、ある<em>リクエスト</em>に対するフラッシュメッセージの内容がすぐに消えずに残ってしまうという問題があります。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_flash">リスト7.27</a>で使用したリダイレクトのときとは異なり、<code>render</code>で表示したテンプレートを再描画してもリクエストと見なされません。このため、フラッシュメッセージはひとつのリクエストに対して期待よりも長い間消えずに表示され続けてしまいます。たとえば、無効な情報を送信するとサインインページにフラッシュメッセージが設定されて表示されます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-failed_signin_flash">図8.6</a>)。ここでHomeページなどの別のページへのリンクをクリックすると、これはフォームが送信されてから最初のリクエストであるため、フラッシュメッセージが移動先のページでも表示されたままになってしまいます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-flash_persistence">図8.7</a>)。</p>
+<p>残念ながら、本文および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-failed_signin_attempt">リスト8.10</a>のコメントで述べたように、このコードには誤りがあります。ページの表示には問題がないようですが、どこがおかしいのでしょうか。実は、ある<em>リクエスト</em>に対するフラッシュメッセージの内容がすぐに消えずに残ってしまうという問題があります。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_flash">リスト7.28</a>で使用したリダイレクトのときとは異なり、<code>render</code>で表示したテンプレートを再描画してもリクエストと見なされません。このため、フラッシュメッセージはひとつのリクエストに対して期待よりも長い間消えずに表示され続けてしまいます。たとえば、無効な情報を送信するとサインインページにフラッシュメッセージが設定されて表示されます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-failed_signin_flash">図8.6</a>)。ここでHomeページなどの別のページへのリンクをクリックすると、これはフォームが送信されてから最初のリクエストであるため、フラッシュメッセージが移動先のページでも表示されたままになってしまいます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-flash_persistence">図8.7</a>)。</p>
 
 <div class="label" id="fig-flash_persistence"></div>
 
@@ -12862,7 +12862,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>このテストは、無効なサインインデータを送信し、次にWebサイトのレイアウトにあるHomeリンクを開き、フラッシュメッセージが表示されていないことを確認します。フラッシュテストの部分を更新したテストコードをリスト<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-correct_signin_failure_test">8.11</a>に示します。</p>
+<p>このテストは、無効なサインインデータを送信し、次にWebサイトのレイアウトにあるHomeリンクを開き、フラッシュメッセージが表示されていないことを確認します。フラッシュテストの部分を更新したテストコードを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-correct_signin_failure_test">リスト8.11</a>に示します。</p>
 
 <div class="label" id="code-correct_signin_failure_test"></div>
 
@@ -13439,7 +13439,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>もしかすると、これを使用して<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_user_class">4.4.5</a>の<code>attr_accessor</code>を効率よく置き換えることができるのではないでしょうか<sup class="footnote" id="fnref-8_5"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-8_5">5</a></sup>。それをしないのは、このコードを使用すると今までの苦労が台無しになってしまうからです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-current_user_wrong">リスト8.21</a>のコードを使用すると、ユーザーが別のページに移動した瞬間にユーザーのサインイン情報が<em>きれいさっぱり</em>消滅してしまいます。セッションは終了し、ユーザーは自動的にサインアウトしてしまいます。この問題を回避するには、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sign_in_function">リスト8.22</a>に示したように、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-current_user_working">リスト8.19</a>のコードで作成した記憶トークンに対応するユーザーを検索します。データベース上の記憶トークンは暗号化されているので、cookiesから取り出した記憶トークンは、データベース上の記憶トークンを検索する前に暗号化する必要がある点にご注意ください。これを行うには、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-before_create_remember_token">リスト8.18</a>で定義した<code>User.encrypt</code>を使用します。</p>
+<p>もしかすると、これを使用して<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_user_class">4.4.5</a>の<code>attr_accessor</code>を効率よく置き換えることができるのではないでしょうか<sup class="footnote" id="fnref-8_5"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-8_5">5</a></sup>。それをしないのは、このコードを使用すると今までの苦労が台無しになってしまうからです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-current_user_wrong">リスト8.21</a>のコードを使用すると、ユーザーが別のページに移動した瞬間にユーザーのサインイン情報が<em>きれいさっぱり</em>消滅してしまいます。セッションは終了し、ユーザーは自動的にサインアウトしてしまいます。この問題を回避するには、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-current_user_working">リスト8.22</a>に示したように、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sign_in_function">リスト8.19</a>のコードで作成した記憶トークンに対応するユーザーを検索します。データベース上の記憶トークンは暗号化されているので、cookiesから取り出した記憶トークンは、データベース上の記憶トークンを検索する前に暗号化する必要がある点にご注意ください。これを行うには、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-before_create_remember_token">リスト8.18</a>で定義した<code>User.encrypt</code>を使用します。</p>
 
 <div class="label" id="code-current_user_working"></div>
 
@@ -13664,7 +13664,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>上のコードは、Sprocketsライブラリを使用してBootstrap JavaScriptをインクルードします。<tt>5.1.2</tt>で<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-custom_css">bootstrap-sass</a> gemを導入してあるので、これでBootstrapが利用できるようになります。</p>
+<p>上のコードは、Sprocketsライブラリを使用してBootstrap JavaScriptをインクルードします。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-custom_css">5.1.2</a>で<tt>bootstrap-sass</tt> gemを導入してあるので、これでBootstrapが利用できるようになります。</p>
 
 <p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-layout_signin_signout_links">リスト8.24</a>のコードを使用することで、すべてのテストにパスするはずです。</p>
 
@@ -13673,7 +13673,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>以上の変更を行ったことで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-layout_signin_signout_links">図8.9</a>に示したように、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-profile_with_signout_link">リスト8.24</a>で定義したドロップダウンメニューがサインインしたユーザーに表示されるようになりました。</p>
+<p>以上の変更を行ったことで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-profile_with_signout_link">図8.9</a>に示したように、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-layout_signin_signout_links">リスト8.24</a>で定義したドロップダウンメニューがサインインしたユーザーに表示されるようになりました。</p>
 
 <div class="label" id="fig-profile_with_signout_link"></div>
 
@@ -14300,7 +14300,7 @@ Loading development environment  &gt;&gt; Rails.env
 <li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Rails Guidesの「<a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html">コールバックについて</a> (英語)」を参照してください。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_4">↑</a></li>
 <li id="fn-8_5">実は、この2つは完全に同等です。<code>attr_accessor</code>は、単にゲッターメソッドやセッターメソッドを自動的に作成する便利な方法でしかありません。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_5">↑</a></li>
 <li id="fn-8_6">通常、これは初期値が<code>nil</code>である変数への代入を意味しますが、<code>false</code>値も<code>||=</code>演算子によって上書きされることにご注意ください。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_6">↑</a></li>
-<li id="fn-8_7">これは、<em>コラム 6.3</em>で説明した<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-let">メモ化 (memoization) </a>の例になっています。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_7">↑</a></li>
+<li id="fn-8_7">これは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-let">コラム 6.3</a>で説明した<em>メモ化 (memoization) </em>の例になっています。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_7">↑</a></li>
 <li id="fn-8_8">Webブラウザは実際には<tt>DELETE</tt>リクエストを発行できないので、RailsではJavaScriptを使用してこのリクエストを偽造します。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-8_8">↑</a></li>
 </ol>
 </div>
@@ -14554,7 +14554,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>コメント行にも書いてあるとおり、Capybaraを使用していないとフォームへの自動入力が動作しません。このような場合に備えて、ユーザーから<code>no_capyabara: true</code>オプションを渡せるようにし、デフォルトのサインインメソッドを上書きしてcookiesを直接操作できるようにします。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-delete_destroy_test">リスト9.47</a>に示しますが、これは、HTTPリクエスト (<code>get</code>、<code>post</code>、<code>patch</code>、<code>delete</code>) を直接使用する場合には必要となります (注意: テスト用の<code>cookies</code>オブジェクトは実際のcookiesオブジェクトを完全にシミュレートできているわけではありません。特に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sign_in_function">リスト8.19</a>の<code>cookies.permanent</code>メソッドはテスト内で動かすことはできません)。 ご想像のとおり、<code>sign_in</code>メソッドは今後のテストでも有意義に使えます。そして実際、(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_deleting_exercises">9.6</a>) ではコードの重複を除くためにこのメソッドを使用しています。</p>
+<p>コメント行にも書いてあるとおり、Capybaraを使用していないとフォームへの自動入力が動作しません。このような場合に備えて、ユーザーから<code>no_capyabara: true</code>オプションを渡せるようにし、デフォルトのサインインメソッドを上書きしてcookiesを直接操作できるようにします。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-delete_destroy_test">リスト9.46</a>に示しますが、これは、HTTPリクエスト (<code>get</code>、<code>post</code>、<code>patch</code>、<code>delete</code>) を直接使用する場合には必要となります (注意: テスト用の<code>cookies</code>オブジェクトは実際のcookiesオブジェクトを完全にシミュレートできているわけではありません。特に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sign_in_function">リスト8.19</a>の<code>cookies.permanent</code>メソッドはテスト内で動かすことはできません)。 ご想像のとおり、<code>sign_in</code>メソッドは今後のテストでも有意義に使えます。そして実際、(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_deleting_exercises">9.6</a>) ではコードの重複を除くためにこのメソッドを使用しています。</p>
 
 <p>[Settings] リンクにURLを追加するコードはシンプルです。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_users">表7.1</a>の名前付きルート<code>edit_user_path</code>に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-current_user_working">リスト8.22</a>で定義された<code>current_user</code>という便利なヘルパーメソッドを追加するだけです。</p>
 
@@ -14613,7 +14613,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-9_1_2" href="/book/ruby-on-rails-tutorial?version=4.0#sec-unsuccessful_edits" class="heading"><span class="number">9.1.2</span>編集の失敗</a></h3>
 
 
-<p>この節では、編集 (の保存) に失敗した場合を扱います。また、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_edit_specs">リスト9.1</a>のエラーメッセージのテストがパスするようにします。このアプリケーションコードは<code>update</code>アクションを作成しますが、これは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_user_objects">リスト9.8</a>のように、<code>update_attributes</code> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_update_action_unsuccessful">6.1.5</a>) を使用して、送信された<code>params</code>ハッシュに基いてユーザーを更新します。 無効な情報が送信された場合、更新の結果として<code>false</code>が返され、<code>else</code>に分岐して編集ページを再度レンダリングします。このパターンは以前にも出現したことを覚えているでしょうか。この構造は<code>create</code>アクションの最初のバージョン (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-first_create_action">リスト7.21</a>) ときわめて似通っています。</p>
+<p>この節では、編集 (の保存) に失敗した場合を扱います。また、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_edit_specs">リスト9.1</a>のエラーメッセージのテストがパスするようにします。このアプリケーションコードは<code>update</code>アクションを作成しますが、これは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_update_action_unsuccessful">リスト9.8</a>のように、<code>update_attributes</code> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_user_objects">6.1.5</a>) を使用して、送信された<code>params</code>ハッシュに基いてユーザーを更新します。 無効な情報が送信された場合、更新の結果として<code>false</code>が返され、<code>else</code>に分岐して編集ページを再度レンダリングします。このパターンは以前にも出現したことを覚えているでしょうか。この構造は<code>create</code>アクションの最初のバージョン (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-first_create_action">リスト7.21</a>) ときわめて似通っています。</p>
 
 <div class="label" id="code-user_update_action_unsuccessful"></div>
 
@@ -15422,7 +15422,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>実際のインデックスページを作成するには、ユーザーを列挙してユーザーごとに<code>li</code>タグで囲むビューを作成する必要があります。ここでは<code>each</code>メソッドを使用してこれを行います。それぞれの行を非序列リスト (<code>ul</code>)タグで囲いながら、各ユーザーのGravatarと名前を表示します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>では、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_exercises">7.6</a>の演習の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">リスト7.29</a>の結果を利用しています。これは、Gravatarヘルパーにデフォルト以外のサイズを指定するオプションを渡します。この演習をまだやっていない場合は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">7.29</a>に従ってUsersヘルパーファイルを更新してから先に進んでください。</p>
+<p>実際のインデックスページを作成するには、ユーザーを列挙してユーザーごとに<code>li</code>タグで囲むビューを作成する必要があります。ここでは<code>each</code>メソッドを使用してこれを行います。それぞれの行を非序列リスト (<code>ul</code>)タグで囲いながら、各ユーザーのGravatarと名前を表示します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>)。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>では、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-signup_exercises">7.6</a>の演習の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">リスト7.30</a>の結果を利用しています。これは、Gravatarヘルパーにデフォルト以外のサイズを指定するオプションを渡します。この演習をまだやっていない場合は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">リスト7.30</a>に従ってUsersヘルパーファイルを更新してから先に進んでください。</p>
 
 <div class="label" id="code-user_index_view"></div>
 
@@ -15602,7 +15602,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>次に、サンプルユーザーを作成するRakeタスクを追加します。Rakeタスクは<code>lib/tasks</code>ディレクトリに置きます。また、Rakeタスクを定義するときには、<em>リスト9.30</em>のように<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-db_populate">名前空間</a> (この場合は<code>:db</code>) を使用します (ここは若干高度な内容ですが、今は詳細を理解する必要はありません)。</p>
+<p>次に、サンプルユーザーを作成するRakeタスクを追加します。Rakeタスクは<code>lib/tasks</code>ディレクトリに置きます。また、Rakeタスクを定義するときには、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-db_populate">リスト9.30</a>のように<em>名前空間</em> (この場合は<code>:db</code>) を使用します (ここは若干高度な内容ですが、今は詳細を理解する必要はありません)。</p>
 
 <div class="label" id="code-db_populate"></div>
 
@@ -15640,7 +15640,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p><code>User.create!</code>を実行する前に、RakeタスクがUserモデルなどのローカルのRails環境にアクセスできるようにします。 ここで<code>create!</code>は基本的に<code>create</code>メソッドと同じものですが、ユーザーが無効な場合に<code>false</code>を返すのではなく例外を発生させる (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-finding_user_objects">6.1.4</a>) 点が異なります。こうしておくとより多くのメッセージを生成でき、サイレントエラーを回避できるのでデバッグが容易になります。</p>
 
-<p><code>:db</code>名前空間を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-db_populate">9.30</a>のように設定後、以下のようにRakeタスクを呼び出します。</p>
+<p><code>:db</code>名前空間を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-db_populate">リスト9.30</a>のように設定後、以下のようにRakeタスクを呼び出します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:reset
 <span class="gp">$</span> bundle <span class="nb">exec </span>rake db:populate
@@ -16304,7 +16304,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">図9.45</span> <span class="description">実際に動作する<code>destroy</code>アクションを追加する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.45</span> <span class="description">実際に動作する<code>destroy</code>アクションを追加する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:index</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
   <span class="n">before_action</span> <span class="ss">:correct_user</span><span class="p">,</span>   <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
@@ -16367,7 +16367,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>原則に従えば、ここにはまだ小さなセキュリティホールが残っています。管理者がやろうと思えば、<tt>DELETE</tt>リクエストをコマンドラインで直接発行して自分自身を削除できてしまいます。単なる管理者の自業自得ではないかという考えもあるかと思いますが、こういう事故を未然に防ぐに越したことはありません。この対策については演習の課題に回します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_deleting_exercises">9.6</a>)。</p>
 
-<p>上のテストに対応するアプリケーションコードではbefore_filterを使用していますが、ここでは<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用していることに気付いた方もいるかもしれません。変更後の<code>admin_user</code> before_filterを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-admin_destroy_before_filter">リスト9.48</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードではbefore_filterを使用していますが、ここでは<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用していることに気付いた方もいるかもしれません。変更後の<code>admin_user</code> before_filterを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-admin_destroy_before_filter">リスト9.47</a>に示します。</p>
 
 <div class="label" id="code-admin_destroy_before_filter"></div>
 
@@ -16723,7 +16723,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-10_1_1" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_basic_model" class="heading"><span class="number">10.1.1</span>基本的なモデル</a></h3>
 
 
-<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-10_2">2</a></sup>と、特定のユーザーとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に (リスト<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
+<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-10_2">2</a></sup>と、特定のユーザーとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate model Micropost content:string user_id:integer
 </pre></div>
@@ -17435,7 +17435,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h2><a id="sec-10_2" href="/book/ruby-on-rails-tutorial?version=4.0#sec-showing_microposts" class="heading"><span class="number">10.2</span>マイクロポストを表示する</a></h2>
 
 
-<p>Web経由でマイクロポストを作成する方法は現時点ではありませんが (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_microposts">10.3.2</a>から作り始めます)、マイクロポストを表示することと、テストすることならできます。ここでは、Twitterのような独立したマイクロポスト<code>index</code>ページでユーザーのマイクロポストを表示するよりも、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-user_microposts_mockup">図10.4</a>のモックアップに示したように、直接ユーザーの<code>show</code>ページで表示させることにしましょう。ユーザープロファイルにマイクロポストの表示を追加するための非常にERbテンプレートを作成するところから始め、次に<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-sample_users">9.3.2</a>のサンプルデータ生成にマイクロポストを追加して、画面にサンプルデータが表示されるようにします。</p>
+<p>Web経由でマイクロポストを作成する方法は現時点ではありませんが (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_microposts">10.3.2</a>から作り始めます)、マイクロポストを表示することと、テストすることならできます。ここでは、Twitterのような独立したマイクロポスト<code>index</code>ページでユーザーのマイクロポストを表示するよりも、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-user_microposts_mockup">図10.4</a>のモックアップに示したように、直接ユーザーの<code>show</code>ページで表示させることにしましょう。ユーザープロファイルにマイクロポストを表示させるため、まずはとてもシンプルなERbテンプレートを作成するところから始めます。その後、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-sample_users">9.3.2</a>のサンプルデータ生成タスクにマイクロポストのサンプルを追加して、画面にサンプルデータが表示されるようにしてみます。</p>
 
 <div class="label" id="fig-user_microposts_mockup"></div>
 
@@ -18091,7 +18091,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>と同様、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">リスト10.30</a>のコードでも<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_info">リスト7.29</a>で定義した<code>gravatar_for</code>ヘルパーを使用します。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_index_view">リスト9.25</a>と同様、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_info">リスト10.29</a>のコードでも<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-gravatar_option">リスト7.30</a>で定義した<code>gravatar_for</code>ヘルパーを使用します。</p>
 
 <p>プロファイルサイドバー (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_show_microposts">リスト10.17</a>) のときと同様、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_info">リスト10.29</a>のユーザー情報にも、そのユーザーが投稿したマイクロポストの総数が表示されていることにご注目ください。ただし少し表示に違いがあります。プロファイルサイドバーでは、 “Microposts” をラベルとし、“Microposts (1)” と表示することは問題ありません。しかし今回のように “1 microposts” と表示してしまうと英語の文法上誤りになってしまうので、<code>pluralize</code>メソッドを使用して “1 micropost” や “2 microposts” と表示するように調整します。</p>
 
@@ -18284,7 +18284,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-10_3_3" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_proto_feed" class="heading"><span class="number">10.3.3</span>フィードの原型</a></h3>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_microposts">10.3.2</a>の最後のコメントでも言及しましたが、現在のHomeページにはマイクロポストが1つも表示されていません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-home_with_form">図10.11</a>のフォームが正しく動作しているかどうかを確認したい場合、正しいエントリーを投稿した後、<a href="http://localhost:3000/users/1">プロファイルページ</a>に移動してポストを表示すればよいのですが、これはかなり面倒な作業です。 <em>図10.13</em>のモックアップで示したような、ユーザー自身のポストを含むマイクロポスト<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-proto_feed_mockup">フィード</a>がないと不便です (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-following-users">第11章</a>ではフィードを汎用化し、現在のユーザーによって<em>フォローされている</em>ユーザーのマイクロポストも一緒に表示するフィードにする予定です)。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_microposts">10.3.2</a>の最後のコメントでも言及しましたが、現在のHomeページにはマイクロポストが1つも表示されていません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-home_with_form">図10.11</a>のフォームが正しく動作しているかどうかを確認したい場合、正しいエントリーを投稿した後、<a href="http://localhost:3000/users/1">プロファイルページ</a>に移動してポストを表示すればよいのですが、これはかなり面倒な作業です。 <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-proto_feed_mockup">図10.13</a>のモックアップで示したような、ユーザー自身のポストを含むマイクロポスト<em>フィード</em>がないと不便です (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-following-users">第11章</a>ではフィードを汎用化し、現在のユーザーによって<em>フォローされている</em>ユーザーのマイクロポストも一緒に表示するフィードにする予定です)。</p>
 
 <div class="label" id="fig-proto_feed_mockup"></div>
 
@@ -18618,7 +18618,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/micropost_delete_links_mockup_bootstrap.png" alt="micropost_delete_links_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.16</span><span class="description">マイクロポストの削除リンクと (プロト) フィードのモックアップ。<a href="http://railstutorial.jp/images/figures/micropost_delete_links_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>最初のステップとして、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-feed_item_partial">リスト10.40</a>のマイクロポストパーシャルに削除リンクを追加します。同様に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-feed_item_partial">リスト10.40</a>のフィードアイテムパーシャルにリンクを追加します。追加の結果を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_partial_with_delete">リスト10.46</a>および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-feed_item_partial_with_delete">リスト10.47</a>に示します (これら2つはほとんど同一です。重複コードの削除は演習に回すことにします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-micropost_exercises">10.5</a>))。</p>
+<p>最初のステップとして、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-feed_item_partial">リスト10.40</a>のマイクロポストパーシャルに削除リンクを追加します。同様に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-feed_item_partial">リスト10.40</a>のフィードアイテムパーシャルにリンクを追加します。追加の結果を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_partial_with_delete">リスト10.43</a>および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-feed_item_partial_with_delete">リスト10.44</a>に示します (これら2つはほとんど同一です。重複コードの削除は演習に回すことにします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-micropost_exercises">10.5</a>))。</p>
 
 <div class="label" id="code-micropost_partial_with_delete"></div>
 
@@ -19890,7 +19890,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_show_microposts">リスト10.20</a>のマイクロポストのコードと比較してみましょう。あのときは以下のように書きました。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_show_microposts">リスト10.17</a>のマイクロポストのコードと比較してみましょう。あのときは以下のように書きました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">count</span>
 </pre></div>

@@ -327,7 +327,7 @@
 
 <p>Asset Pipeline (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-sass_and_the_asset_pipeline">5.2</a>)の一部であり、このディレクトリに置かれたスタイルシートは<code>application.css</code>の一部として自動的にWebサイトのレイアウトにインクルードされます。さらに、ファイル名の<code>custom.css.scss</code>には<code>.css</code>という拡張子も含まれているので、このファイルはCSSファイルであることが示されています。また、<code>.scss</code>という拡張子も含まれているので、 このファイルはSassを記述できるCSSファイル (Sassy CSS: Scss) であることも示されており、Asset Pipelineはこれを見てSassを処理できるようにします (Sassは<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-sass">5.2.2</a>まで登場しませんが、<tt>bootstrap-sass</tt> gemが動作するためのおまじないとして必要です)。</p>
 
-<p>カスタムCSS用のファイルを作成したら、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-bootstrap_css">リスト5.4</a>のように<code>@import</code>を使用してBootstrapをインクルードします。</p>
+<p>カスタムCSS用のファイルを作成したら、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-bootstrap_css">リスト5.5</a>のように<code>@import</code>を使用してBootstrapをインクルードします。</p>
 
 <div class="label" id="code-bootstrap_css"></div>
 
@@ -1413,7 +1413,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-static_page_routes">リスト5.21</a>コードを注意深く読むことで、このコードの動作を理解できるでしょう。たとえば以下のコードの場合について説明します。</p>
+<p><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-static_page_routes">リスト5.22</a>コードを注意深く読むことで、このコードの動作を理解できるでしょう。たとえば以下のコードの場合について説明します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">match</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#about&#39;</span><span class="p">,</span>  <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
 </pre></div>
@@ -1453,7 +1453,7 @@
 </div>
 
 
-<p>しかし、実際にはルート (root) については上のように書く必要はありません。Railsでは、routesファイル (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-root_route_hint">リスト5.22</a>) の下の方のコメント内に、ルート(root) URL / (“スラッシュ”) 用の特別な記法が書かれています。</p>
+<p>しかし、実際にはルート (root) については上のように書く必要はありません。Railsでは、routesファイル (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-root_route_hint">リスト5.23</a>) の下の方のコメント内に、ルート(root) URL / (“スラッシュ”) 用の特別な記法が書かれています。</p>
 
 <div class="label" id="code-root_route_hint"></div>
 
@@ -1702,7 +1702,7 @@
 </div>
 
 
-<p>上のコードは以前より良くなりましたが、まだタイトルのテストが少し長すぎます。確かに、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-route_tests">リスト5.20</a>にあるほとんどのタイトルのテストで以下の長いテキストが使用されています。</p>
+<p>上のコードは以前より良くなりましたが、まだタイトルのテストが少し長すぎます。確かに、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-route_tests">リスト5.21</a>にあるほとんどのタイトルのテストで以下の長いテキストが使用されています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="s2">&quot;Ruby on Rails Tutorial Sample App | About&quot;</span>
 </pre></div>
@@ -2074,11 +2074,11 @@
 
 <ol>
 
-<li><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-pretty_page_tests">リスト5.28</a>の静的ページのテストコードは簡潔ですが、まだ繰り返しが残っています。RSpecには、冗長性を排除するための<em>Shared Examples</em>と呼ばれる機能があります。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-static_pages_spec_shared_example">リスト5.36</a>の例に従い、Help、AboutとContactページで不足しているテストを補ってください。<a class="ref" href="/chapters/static-pages?version=4.0#code-pages_controller_spec_exercise">リスト3.30</a>で簡単に紹介した<code>let</code>コマンドは、要求 (変数が使用されるときなど) に応じて与えられた値を持つ「ローカル変数」を作成することにご注意ください。対照的にインスタンス変数は、要素代入 (assignment) されたときに作成されます。</li>
+<li><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-pretty_page_tests">リスト5.28</a>の静的ページのテストコードは簡潔ですが、まだ繰り返しが残っています。RSpecには、冗長性を排除するための<em>Shared Examples</em>と呼ばれる機能があります。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-static_pages_spec_shared_example">リスト5.36</a>の例に従い、Help、AboutとContactページで不足しているテストを補ってください。<a class="ref" href="/chapters/static-pages?version=4.0#code-pages_controller_spec_exercise">リスト3.31</a>で簡単に紹介した<code>let</code>コマンドは、要求 (変数が使用されるときなど) に応じて与えられた値を持つ「ローカル変数」を作成することにご注意ください。対照的にインスタンス変数は、要素代入 (assignment) されたときに作成されます。</li>
 
 <li>既にお気付きの方もいると思いますが、これまで行なってきた、レイアウト上のリンクのルーティングテストは、そのリンクが実際に正しいページへのリンクになっているかどうかをチェックしていません。このようなテストを実装する方法のひとつは、RSpecの結合テスト内で<code>visit</code>と<code>click_link</code>を使用することです。レイアウトのリンクが正しく定義されていることを確認するコードを追加して、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-layout_links_test">リスト5.37</a>を補ってください。</li>
 
-<li><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-full_title_helper_tests">リスト5.38</a>に示すように、元のヘルパーメソッドに対するテストを書き、それによって<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-rspec_utilities">リスト5.27</a>の<code>full_title</code>テストヘルパーへの依存を解消してください。(<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-rspec_utilities_simplified">リスト5.38</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-full_title_helper_tests">リスト5.38</a>では、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
+<li><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-full_title_helper_tests">リスト5.38</a>に示すように、元のヘルパーメソッドに対するテストを書き、それによって<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-rspec_utilities">リスト5.27</a>の<code>full_title</code>テストヘルパーへの依存を解消してください。(<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-rspec_utilities_simplified">リスト5.39</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-full_title_helper_tests">リスト5.38</a>では、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
 
 </ol>
 
