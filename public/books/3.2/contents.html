@@ -36,9 +36,9 @@
 
 <p>私は多数のRails本を参考にしてきましたが、真の決定版と呼べるものは本書をおいて他にありません。本書ではあらゆる手順が文字通りRails流 (“Rails way”は railway にかけている) で行われており、最初はなかなか慣れませんでしたが、この本を終えた今、ついにこれこそが自然な方式だと感じられるまでになりました。また、本書はRails本の中で唯一、多くのプロが推奨するテスト駆動開発 (TDD: Test Driven Development) 方式を全編を通して実践していて、非常に分かりやすく解説されています。極めつけは、Git、GitHub、そしてHerokuまでも実例に含めた事で、チュートリアルのコード例など実際のプロジェクトの開発プロセスまでも体験できるようになっていることです。チュートリアルのコード例は、どれもチュートリアルと見事に一体化しています。</p>
 
-<p>本書は全体が筋道だったストーリーに貫かれており、非常に素晴らしいものです。私自身、3日間かけて章の終わりにある練習問題もやりながら<em>Railsチュートリアル</em>を一気に読破しました。最初から最後まで、途中を飛ばさずにやるのが一番効果的で有益な読み方です。ぜひやってみて下さい。</p>
+<p>本書は全体が筋道だったストーリーに貫かれており、非常に素晴らしいものです。私自身、3日間かけて章の終わりにある練習問題もやりながら<em>Railsチュートリアル</em>を一気に読破しました。最初から最後まで、途中を飛ばさずにやるのが一番効果的で有益な読み方です。</p>
 
-<p>是非お試しください。</p>
+<p>それでは、楽しんでお読み下さい！</p>
 
 <p><a href="http://sivers.org/">デレック・シバーズ (Derek Sivers)</a> (<a href="http://sivers.org/">sivers.org</a>)<br />
 <em>元: <a href="http://www.cdbaby.com/"><em>CD Baby</em></a> (創始者)</em> <br />
@@ -48,7 +48,7 @@
 </span><span class="preamble"><strong>謝辞</strong> </span><br /><span class="preamble">
 </span><span class="preamble"> </span></p>
 
-<p><em>Ruby on Rails チュートリアル</em>は、私の以前の著書<em>RailsSpace</em>と、その時の共著者の<a href="http://aure.com/">Aurelius Prochazka</a>に多くを負っています。Aureには、RailsSpaceでの協力と本書への支援も含め、感謝したいと思います。また、<em>RailsSpace</em>と<em>Rails チュートリアル</em>両方の編集を担当して頂いたDebra Williams Cauley氏にも謝意を表したく思います。</p>
+<p><em>Ruby on Rails チュートリアル</em>は、私の以前の著書「<em>RailsSpace</em>」と、その時の共著者の<a href="http://aure.com/">Aurelius Prochazka</a>から多くのことを参考にさせてもらっています。Aureには、RailsSpaceでの協力と本書への支援も含め、感謝したいと思います。また、<em>RailsSpace</em>と<em>Rails チュートリアル</em>の両方の編集を担当して頂いたDebra Williams Cauley氏にも謝意を表したく思います。彼女が野球の試合に連れて行ってくれる限り、私は本を書き続けると思います。</p>
 
 <p>私にインスピレーションと知識を与えてくれたRubyistの方々にも感謝したいと思います:David Heinemeier Hansson、 Yehuda Katz、 Carl Lerche、 Jeremy Kemper、 Xavier Noria、 Ryan Bates、 Geoffrey Grosenbach、 Peter Cooper、 Matt Aimonetti、 Gregg Pollack、 Wayne E. Seguin、 Amy Hoy、 Dave Chelimsky、 Pat Maddox、 Tom Preston-Werner、 Chris Wanstrath、 Chad Fowler、 Josh Susser、 Obie Fernandez、 Ian McFarland、 Steven Bristol、 Pratik Naik、 Sarah Mei、 Sarah Allen、 Wolfram Arnold、 Alex Chaffee、 Giles Bowkett、 Evan Dorn、 Long Nguyen、 James Lindenbaum、 Adam Wiggins、 Tikhon Bernstam、 Ron Evans、 Wyatt Greene、 Miles Forrest、 Pivotal Labsの方々、 Herokuの方々、 thoughtbotの方々、 そしてGitHubチーム。最後に、ここに書ききれないほど多くの読者の方々から執筆中にバグ報告や提案を頂き、本書をできる限り良いものにするのに大変役立ちました。<br /></p>
 
@@ -67,7 +67,9 @@
 <p><em>Ruby on Rails チュートリアル: 実例を使ってRailsを学ぼう</em>Copyright © 2010 by Michael Hartl.<em>Ruby on Rails チュートリアル</em>内のすべてのソースコードは<a href="http://www.opensource.org/licenses/mit-license.php">MITライセンス</a>および<a href="http://people.freebsd.org/~phk/">Beerwareライセンス</a> の元で提供されています。</p>
 
 <div class="code"><div class="highlight"><pre>(The MIT License)
+
 Copyright (c) 2012 Michael Hartl
+
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
 files (the &quot;Software&quot;), to deal in the Software without restriction,
