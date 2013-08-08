@@ -10,7 +10,8 @@ echo '<h1 class="title">Ruby on Rails 3.2 チュートリアル </h1>' > _conten
 cat sample_chapter.html | \
     sed -n '/<h1 class="subtitle">/, /<\/pre><\/div>/p' \
     >> _contents.html.erb
-echo "</div>" >> _contents.html.erb
+echo "</div>"     >> _contents.html.erb
+cat BEERWARE.html >> _contents.html.erb
 echo "Created '_contents.html.erb"
 
 # Make single page for the main contents that include table, foreword, etc.

@@ -23,8 +23,9 @@ unzip $@
 cd archive/ja
 # Get files to generate HTML files
 cp $GIT_ROOT/public/books/chapter_list.txt ./
-cp $GIT_ROOT/public/books/_head.html ./
-cp $GIT_ROOT/public/books/_foot.html ./
+cp $GIT_ROOT/public/books/_head.html       ./
+cp $GIT_ROOT/public/books/_foot.html       ./
+cp $GIT_ROOT/public/books/BEERWARE.html    ./
 
 # Correct and truncate for 'railstutorial.jp'
 $SCRIPT_ROOT/correct_filenames.sh
