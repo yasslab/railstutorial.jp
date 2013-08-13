@@ -5,17 +5,17 @@
 <h1 class="chapter"><a id="sec-1" href="/book/ruby-on-rails-tutorial?version=4.0#cha-beginning" class="heading"><span class="number">第1章</span> ゼロからデプロイまで</a></h1>
 
 
-<p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。この本の目的は、「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったウェブ開発を学びたいんだけど、何から始めればよいのでしょうか。」という質問に答えることです。<em>本書</em>を読み終わる頃には、あなたは自作のカスタムWebアプリケーションを開発し、デプロイ (deploy: 本番環境でアプリを動かし、一般公開すること) するための知識をすべて得られるはずです。また、Railsの「教育エコシステム」なるものに含まれる、さらに高度な本、ブログ、スクリーンキャストなどの恩恵を受けるのにふさわしい実力を身につけられます。<em>Ruby on Railsチュートリアル</em>はRails 4を使用しているため、ここで学んだ内容はRailsの最新バージョンに完全に対応しています。(最新の<em>Ruby on Railsチュートリアル</em>については、この本が掲載されている<a href="http://railstutorial.jp/">http://railstutorial.jp/</a>を参照してください。本書をオフラインで読んでいる方は、<a href="http://railstutorial.jp/book">オンライン版Railsチュートリアル</a>で最新版を確認してください。)</p>
+<p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。この本の目的は「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったウェブ開発を学びたいんだけど、何から始めればよいのでしょうか」という質問に答えることです。<em>本書</em>を読み終わったときには、あなたは自分の手で Web アプリケーションを開発することから、デプロイ (deploy: 本番環境でアプリを動かし、一般公開すること) までの全ての技術を習得できるはずです。また、Railsの「教育エコシステム」に存在する、さらに高度な内容の本やブログ、スクリーンキャストなどを読み解く力を身につけられるでしょう。加えて、<em>Ruby on Railsチュートリアル</em>はRails 4を使用しているため、これからあなたが本書で学ぶ内容は、Web開発の最前線の話だと言えます。(なお、本書の <em>Ruby on Railsチュートリアル</em>が最新版かどうかについては、本書の公式サイト (<a href="http://railstutorial.jp/">http://railstutorial.jp/</a>) でチェックすることができます。特に、本書をオフラインで読んでいる方は、<a href="http://railstutorial.jp/book">オンライン版Railsチュートリアル</a>で一度最新版かどうかを確認してください。)</p>
 
-<p>(<em>注</em>: 最新のチュートリアルは、Rails 4.0という<em>バージョン</em>に向けられたものです。本書はRail 4.0向けに改定されましたが、<em>版 (エディション) </em>は更新されていませんのでご注意ください。Rails 4.0における変更は、本書の版を改めるほどではないと判断したためです。導入のためのチュートリアルという本書の立場から見て、Rail 4.0と旧Rails 3.2の違いはわずかです。もちろん、以下の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-diffs">コラム 1.1</a>に示したように、細かな変更は膨大な数にのぼりますが、本書にとって重要な違いは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>という新しいセキュリティ上の技法しかありません。今後Railsで重要な変更が生じれば、<em>Railsチュートリアル</em>の完全に新しい次期版の制作を計画します。そのときには、<em>Turbolinks</em>や<em>Russian doll caching</em>、<em>feature specs</em>などのRSpecの新しい側面も記事に取り込まれるでしょう。)</p>
+<p>(<em>注</em>: あなたが読んでいるこの本は、Rails 4.0という<em>バージョン</em>に対応している本です。本書はRails 3.2からRail 4.0に向けて改定されましたが、<em>版</em>は更新されていないのでご注意ください。というのも、Rails 4.0に対応するために行った変更は、本書の版を改めるほどではないと判断したためです。本書は「チュートリアル」という導入部分を助ける立場にあるので、Railsの深い内容までは踏み込みません。したがって、以前のRails 3.2対応版と本書のRails 4.0対応版との間には、そこまで大きな変更はありません。もちろん、次の<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-diffs">コラム 1.1</a>で示されているように、細かな変更は多数あります。しかし、重要な変更は、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>と呼ばれるセキュリティ関係の新しい機能しかありません。一方、今後Railsで重要な変更が生じれば、<em>Railsチュートリアル</em>の版を改訂するつもりです。新しい版では、<em>Turbolinks</em>や<em>Russian doll caching</em>、RSpecの新機能「<em>feature specs</em>」なども本書に含まれる予定です。)</p>
 
 <div class="label" id="sidebar-diffs"></div>
 
 
 <div class="sidebar"><span class="title"><span class="header">コラム 1.1</span><span class="description">第2版との違いについて</span></span>
-<p>以下は、<em>Ruby on Railsチュートリアル</em>の第2版と現行のバージョンの違いについての (ほぼ) 網羅的なリストです (重要な違いはStrong Parametersだけであり、その他の違いはどちらかといえば些細なものです) 。このリストは、第2版の読者またはRails 3.2に慣れ親しんだ方向けに違いをまとめたものです。Rails 3.2を扱ったことがない方は、以下のリストを読み飛ばしてもかまいません。</p>
+<p><em>Ruby on Railsチュートリアル</em>の第2版と本書のバージョンとの違いは、次のリストの通りです。(といっても、重要な変更はStrong Parametersだけであり、それ以外は些細な変更です) 。Rails 3.2対応の第2版を既に読み終わった方のために、変更した箇所だけをまとめています。したがって、まだRails 3.2対応版を読んでいない方は、本コラムを読み飛ばしても問題ありません。</p>
 
-<p>以下のリストには、関連する節へのリンクまたは変更コード例へのリンクを含めてあります。</p>
+<p>なお、次のリストには、変更を加えた節またはコードへのリンクが含まれています。</p>
 
 <ul>
 <li>Rails 3.2からRails 4.0への変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-rubygems">1.2.2</a>)</li>
@@ -27,13 +27,13 @@
 <li><code>root to: ’path’</code>を<code>root ’path’</code>に変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-root_route">リスト5.24</a>)</li>
 <li><code>find_by_thing(…)</code>を<code>find_by(thing: …)</code>に変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-finding_user_objects">6.1.4</a>)</li>
 <li><code>rake db:test:prepare</code>を<code>rake test:prepare</code>に切り替え (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-initial_user_tests">6.2.1</a>)</li>
-<li><code>attr_accessible</code>をStrong Parametersに変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-strong_parameters">7.3.2</a>)</li>
+<li><code>attr_accessible</code> をStrong Parametersに変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-strong_parameters">7.3.2</a>)</li>
 <li>暗号化された記憶トークンに変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-remember_me">8.2.1</a>)</li>
 <li><code>before_filter</code>を<code>before_action</code>に変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-authorize_before_filter">リスト9.12</a>)</li>
 <li>最初にマッチしたリンクをクリックするのにCapybaraの<code>match: :first</code>を使用 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-delete_link_tests">リスト9.43</a>)</li>
 <li><code>default_scope</code>をハッシュ引数からラムダに変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_ordering">リスト10.11</a>)</li>
 <li><code>dup</code>を<code>to_a</code>に変更 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_dependency_test">リスト10.12</a>)</li>
-<li>ボタンをトグルするのにXPathを使用 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_working_follow_button_the_standard_way">11.2.4</a>)</li>
+<li>ボタンをトグルするのにXPathを使用 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_working_follow_button_the_standard_way"> 11.2.4</a>)</li>
 </ul>
 
 
@@ -4506,7 +4506,7 @@ bundler_stubs/
 </div>
 
 
-<p>そのためには、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-spork_guardfile">リスト3.39</a>に示したように<code>Guardfile</code>を変更する必要があります。</p>
+<p>さらに、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-spork_guardfile">リスト3.39</a>に示したように<code>Guardfile</code>を変更する必要があります。</p>
 
 <div class="label" id="code-spork_guardfile"></div>
 
@@ -7804,7 +7804,7 @@ bundler_stubs/
 
 <p>これで、レイアウトに<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-static-pages">第3章</a>で作成したすべての静的ページへのリンクができました。たとえば<a href="http://localhost:3000/about">/about</a>の場合はAboutページ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-about_page">図5.8</a>) に移動します。</p>
 
-<p>ところで、実際にレイアウト上にリンクが存在するかどうかをまだテストしていませんが、テスト方法のヒントとして、名前付きルートが定義されていなければテストは失敗するいうことにご注目ください。このことは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-static_page_routes">リスト5.22</a>のルーティング定義をコメントアウトし、テストスイートを実行することで確認できます。リンクが実際に正しい場所を指していることを確認するテストの手法については、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-layout_exercises">5.6</a>で説明します。</p>
+<p>ところで、実際にレイアウト上にリンクが存在するかどうかをまだテストしていませんが、テスト方法のヒントとして、名前付きルートが定義されていなければテストは失敗するということにご注目ください。このことは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-static_page_routes">リスト5.22</a>のルーティング定義をコメントアウトし、テストスイートを実行することで確認できます。リンクが実際に正しい場所を指していることを確認するテストの手法については、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-layout_exercises">5.6</a>で説明します。</p>
 
 <div class="label" id="fig-about_page"></div>
 
@@ -14464,7 +14464,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="codelisting">
 <div class="listing"><span class="header">リスト9.4</span> <span class="description"><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_edit_view">リスト9.3</a>で定義された<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-edit_page">図9.2</a>のHTML。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/users/1&quot;</span> <span class="na">class=</span><span class="s">&quot;edit_user&quot;</span> <span class="na">id=</span><span class="s">&quot;edit_user_1&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;_method&quot;</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">value=</span><span class="s">&quot;put&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;_method&quot;</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">value=</span><span class="s">&quot;patch&quot;</span> <span class="nt">/&gt;</span>
   .
   .
   .
@@ -15059,7 +15059,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p><code>correct_user</code>フィルタでは<code>current_user?</code>論理値 (boolean) メソッドを使用しています。このメソッドはセッションヘルパーで定義しました (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-current_user_p">リスト9.16</a>)。</p>
+<p><code>correct_user</code>フィルタでは<code>current_user?</code>論理値 (boolean) メソッドを使用しています。このメソッドはセッションヘルパーで定義します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-current_user_p">リスト9.16</a>)。</p>
 
 <div class="label" id="code-current_user_p"></div>
 
@@ -15160,7 +15160,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>いよいよ実装です<sup class="footnote" id="fnref-9_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-9_4">4</a></sup>。 この動作を、<code>store_location</code>と<code>redirect_back_or</code>の2つのメソッドを使用して実現します。これらのメソッドは、セッションヘルパーで定義されています (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-friendly_forwarding_code">リスト9.18</a>)。</p>
+<p>いよいよ実装です<sup class="footnote" id="fnref-9_4"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-9_4">4</a></sup>。 この動作を、<code>store_location</code>と<code>redirect_back_or</code>の2つのメソッドを使用して実現します。これらのメソッドは、セッションヘルパーで定義します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-friendly_forwarding_code">リスト9.18</a>)。</p>
 
 <div class="label" id="code-friendly_forwarding_code"></div>
 
@@ -16198,7 +16198,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>逆に管理ユーザーにはこの削除リンクが表示され、このリンクをクリックすることで管理ユーザーがそのユーザーが削除され、<code>User</code>カウントが<code>-1</code>だけ変わることが期待されます。</p>
+<p>逆に管理ユーザーにはこの削除リンクが表示され、このリンクをクリックすることでそのユーザーが管理ユーザーによって削除され、<code>User</code>カウントが<code>-1</code>だけ変わることが期待されます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="ss">href:</span> <span class="n">user_path</span><span class="p">(</span><span class="no">User</span><span class="o">.</span><span class="n">first</span><span class="p">))</span> <span class="p">}</span>
 <span class="n">it</span> <span class="s2">&quot;should be able to delete another user&quot;</span> <span class="k">do</span>
@@ -16290,7 +16290,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>ブラウザはネイティブでは<tt>DELETE</tt>リクエストを送信できないため、RailsではJavaScriptを使用してこれを偽造します。つまり、JavaScriptがオフになっているとユーザー削除のリンクも無効になるということです。JavaScriptをサポートしないブラウザをサポートする必要がある場合は、フォームと<tt>POST</tt>リクエストを使用して<tt>DELETE</tt>リクエストを偽造することもできます。これはJavaScriptがなくても動作します。詳細についてはRailsCastの「<a href="http://railscasts.com/episodes/77-destroy-without-javascript">JavaScriptを使用しないで削除する(英語)</a>」を参照してください。</p>
+<p>ブラウザはネイティブでは<tt>DELETE</tt>リクエストを送信できないため、RailsではJavaScriptを使用してこれを偽造します。つまり、JavaScriptがオフになっているとユーザー削除のリンクも無効になるということです。JavaScriptをサポートしないブラウザをサポートする必要がある場合は、フォームと<tt>POST</tt>リクエストを使用して<tt>DELETE</tt>リクエストを偽造することもできます。こちらはJavaScriptがなくても動作します。詳細についてはRailsCastの「<a href="http://railscasts.com/episodes/77-destroy-without-javascript">JavaScriptを使用しないで削除する(英語)</a>」を参照してください。</p>
 
 <div class="label" id="fig-index_delete_links_rails_3"></div>
 
@@ -16367,7 +16367,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>原則に従えば、ここにはまだ小さなセキュリティホールが残っています。管理者がやろうと思えば、<tt>DELETE</tt>リクエストをコマンドラインで直接発行して自分自身を削除できてしまいます。単なる管理者の自業自得ではないかという考えもあるかと思いますが、こういう事故を未然に防ぐに越したことはありません。この対策については演習の課題に回します (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_deleting_exercises">9.6</a>)。</p>
 
-<p>上のテストに対応するアプリケーションコードではbefore_filterを使用していますが、ここでは<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用していることに気付いた方もいるかもしれません。変更後の<code>admin_user</code> before_filterを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-admin_destroy_before_filter">リスト9.47</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードではbefore_filterを使用していますが、ここでも同じように<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用します。変更後の<code>admin_user</code> before_filterを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-admin_destroy_before_filter">リスト9.47</a>に示します。</p>
 
 <div class="label" id="code-admin_destroy_before_filter"></div>
 
@@ -16723,7 +16723,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-10_1_1" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_basic_model" class="heading"><span class="number">10.1.1</span>基本的なモデル</a></h3>
 
 
-<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-10_2">2</a></sup>と、特定のユーザーとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
+<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-10_2">2</a></sup>と、特定のユーザーとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。Userモデルの場合と同様に (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-generate_user_model">リスト6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate model Micropost content:string user_id:integer
 </pre></div>
@@ -16769,7 +16769,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p><code>user_id</code>と<code>created_at</code>両方のカラムを1つの配列に含めることで、Active Recordで<em>両方</em>のキーを同時に使用する<em>複合キーインデックス</em>を作成できます。また<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-database_migrations">6.1.1</a>でも述べたように、<code>t.timestamps</code>の行によって<code>created_at</code>カラムと<code>updated_at</code>カラムが作成されていることにもご注目ください。この後、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-ordering_and_dependency">10.1.4</a>および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-augmenting_the_user_show_page">10.2.1</a>で<code>created_at</code>カラムをさらに追加します。</p>
 
-<p>それではユーザーモデルの場合 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_spec">リスト6.5</a>) と同様に、マイクロポストデルに対する最小限のテストを書くところから始めましょう。具体的には <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-initial_micropost_spec">リスト10.2</a> に示すように、micropostオブジェクトが <code>content</code>属性と<code>user_id</code>属性を持っていることを確認するテストを作成します。</p>
+<p>それではUserモデルの場合 (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_spec">リスト6.5</a>) と同様に、Micropostモデルに対する最小限のテストを書くところから始めましょう。具体的には <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-initial_micropost_spec">リスト10.2</a> に示すように、micropostオブジェクトが <code>content</code>属性と<code>user_id</code>属性を持っていることを確認するテストを作成します。</p>
 
 <div class="label" id="code-initial_micropost_spec"></div>
 
@@ -16822,7 +16822,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <div class="code"><div class="highlight"><pre><span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
 <span class="n">before</span> <span class="k">do</span>
-  <span class="c1"># This code is not idiomatically correct.</span>
+  <span class="c1"># このコードは慣用的な意味で正しくない。</span>
   <span class="vi">@micropost</span> <span class="o">=</span> <span class="no">Micropost</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">content:</span> <span class="s2">&quot;Lorem ipsum&quot;</span><span class="p">,</span> <span class="ss">user_id:</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
 <span class="k">end</span>
 </pre></div>
@@ -16894,7 +16894,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-10_1_3" href="/book/ruby-on-rails-tutorial?version=4.0#sec-user_micropost_associations" class="heading"><span class="number">10.1.3</span>User/Micropostの関連付け</a></h3>
 
 
-<p>Webアプリケーション用のデータモデルを構築するにあたって、個々のモデル間での<em>関連づけ</em>を十分考えておくことが重要です。今回の場合は、 <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-demo_user_has_many_microposts">2.3.3</a>でも示したように、それぞれのマイクロポストは１人のユーザーと関連付けられ、それぞれのユーザーは (潜在的に) 複数のマイクロポストと関連付けられます。この関連付けを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-micropost_belongs_to_user">図10.2</a>と<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-user_has_many_microposts">図10.3</a>に示します。これらの関連付けを実装するための一環として、Micropostモデルに対するテストを作成し、さらにUserモデルにいくつかのテストを追加します。</p>
+<p>Webアプリケーション用のデータモデルを構築するにあたって、個々のモデル間での<em>関連付け</em>を十分考えておくことが重要です。今回の場合は、 <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-demo_user_has_many_microposts">2.3.3</a>でも示したように、それぞれのマイクロポストは１人のユーザーと関連付けられ、それぞれのユーザーは (潜在的に) 複数のマイクロポストと関連付けられます。この関連付けを<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-micropost_belongs_to_user">図10.2</a>と<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-user_has_many_microposts">図10.3</a>に示します。これらの関連付けを実装するための一環として、Micropostモデルに対するテストを作成し、さらにUserモデルにいくつかのテストを追加します。</p>
 
 <div class="label" id="fig-micropost_belongs_to_user"></div>
 
@@ -16910,7 +16910,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_has_many_microposts.png" alt="user_has_many_microposts" /></span></div><div class="caption"><span class="header">図10.3</span><span class="description">userとmicropost</span>間の<code>has_many</code>リレーションシップ</div></div>
 
 
-<p>この節で定義した<code>belongs_to</code>/<code>has_many</code>関連付けを使用することで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-association_methods">表10.1</a>に示すようなメソッドをRailsで使えるようになります。</p>
+<p>この節で定義する<code>belongs_to</code>/<code>has_many</code>関連付けを使用することで、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-association_methods">表10.1</a>に示すようなメソッドをRailsで使えるようになります。</p>
 
 <div class="label" id="table-association_methods"></div>
 
@@ -17105,7 +17105,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>ここでは、以下のようにマイクロポスト用のファクトリーの定義にユーザーを含めるだけで、マイクロポストに関連付けられるユーザーのことがFactory Girlに伝わります。</p>
+<p>ここでは、以下のようにマイクロポスト用のファクトリーの定義にuserを含めるだけで、マイクロポストに関連付けられるユーザーのことがFactory Girlに伝わります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">factory</span> <span class="ss">:micropost</span> <span class="k">do</span>
   <span class="n">content</span> <span class="s2">&quot;Lorem ipsum&quot;</span>
@@ -17138,7 +17138,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>(<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sidebar-time_helpers">コラム 8.1</a>で説明した時間指定用ヘルパーメソッドを使うことで) 2番目のポストの作成時刻がより新しく (<code>1.hour.ago</code>: 1時間前)、最初のポストの作成日時が<code>1.day.ago</code> (1日前) になります。Factory Girlを使用すると、Active Recordがアクセスを許可しないような<code>created_at</code>属性も手動で設定できるので大変便利です (<code>created_at</code>や<code>updated_at</code>などは通常のカラムと異なる “マジック”カラムであり、これらの作成タイムスタンプや更新タイムスタンプは自動的に設定されてしまうため、明示的に値を設定しても上書きされてしまうことを思い出してください)。</p>
 
-<p>(SQLiteを含む) ほとんどのデータベースアダプターは、マイクロポストを id順で返すため、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_ordering_test">リスト10.10</a>のようなテストはほぼ確実に失敗することになります。このコードは <code>let!</code> (“let バン”と読みます) メソッドを<code>let</code>の場所で使っています。その理由は<code>let</code> 変数は<em>lazy</em>、つまり参照されたときにはじめて初期化されるためです。今回の場合は、タイムスタンプが正しい順番で<code>@user.microposts</code>が空にならないように、マイクロポストが即座に存在して欲しいので、<code>let!</code>を使用すれば、対応する変数を強制的に即座に作成できます。</p>
+<p>(SQLiteを含む) ほとんどのデータベースアダプターは、マイクロポストを id順で返すため、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_ordering_test">リスト10.10</a>のようなテストはほぼ確実に失敗することになります。このコードでは<code>let</code>メソッドの代わりに<code>let!</code> (“let バン”と読みます) メソッドを使っています。その理由は、<code>let</code>変数は<em>lazy</em>、つまり参照されたときにはじめて初期化されるためです。ここでは、マイクロポストを遅延することなく即座に作成する必要があります。そのことにより、マイクロポストのタイムスタンプが常に正しい順序で作成されるように、かつ<code>@user.microposts</code>が空の状態が生じることのないようにしたいからです。<code>let!</code>を使用すれば、対応する変数を強制的に即座に作成できます。</p>
 
 <div class="label" id="code-micropost_ordering_test"></div>
 
@@ -17435,7 +17435,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h2><a id="sec-10_2" href="/book/ruby-on-rails-tutorial?version=4.0#sec-showing_microposts" class="heading"><span class="number">10.2</span>マイクロポストを表示する</a></h2>
 
 
-<p>Web経由でマイクロポストを作成する方法は現時点ではありませんが (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_microposts">10.3.2</a>から作り始めます)、マイクロポストを表示することと、テストすることならできます。ここでは、Twitterのような独立したマイクロポスト<code>index</code>ページでユーザーのマイクロポストを表示するよりも、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-user_microposts_mockup">図10.4</a>のモックアップに示したように、直接ユーザーの<code>show</code>ページで表示させることにしましょう。ユーザープロファイルにマイクロポストを表示させるため、まずはとてもシンプルなERbテンプレートを作成するところから始めます。その後、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-sample_users">9.3.2</a>のサンプルデータ生成タスクにマイクロポストのサンプルを追加して、画面にサンプルデータが表示されるようにしてみます。</p>
+<p>Web経由でマイクロポストを作成する方法は現時点ではありませんが (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-creating_microposts">10.3.2</a>から作り始めます)、マイクロポストを表示することと、テストすることならできます。ここでは、Twitterのような独立したマイクロポスト<code>index</code>ページでユーザーのマイクロポストを表示するよりも、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-user_microposts_mockup">図10.4</a>のモックアップに示したように、直接ユーザーの<code>show</code>ページで表示させることにしましょう。ユーザープロファイルにマイクロポストを表示させるため、最初にきわめてシンプルなERbテンプレートを作成します。次に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-sample_users">9.3.2</a>のサンプルデータ生成タスクにマイクロポストのサンプルを追加して、画面にサンプルデータが表示されるようにしてみます。</p>
 
 <div class="label" id="fig-user_microposts_mockup"></div>
 
@@ -17443,7 +17443,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_microposts_mockup_bootstrap.png" alt="user_microposts_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.4</span><span class="description">マイクロポストが表示されたプロファイルページのモックアップ。<a href="http://railstutorial.jp/images/figures/user_microposts_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-remember_me">8.2.1</a>でサインイン機能について説明したときと同様に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-augmenting_the_user_show_page">10.2.1</a>でも最初に実装をお見せし、次にそれらの要素を順に解説してきます (<a href="http://en.wikipedia.org/wiki/Stack_(data_structure)">スタック</a>に複数の要素を一括でプッシュした後、順にポップするような要領です)。しばらくの間盛り上がりに欠けるかもしれませんが、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-sample_microposts">10.2.2</a>で一気に取り返しますので、それまでご辛抱願います。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-remember_me">8.2.1</a>でサインイン機能について説明したときと同様に、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-augmenting_the_user_show_page">10.2.1</a>でも最初に実装をお目にかけ、次にそれらの要素を順に解説してきます (<a href="http://en.wikipedia.org/wiki/Stack_(data_structure)">スタック</a>に複数の要素を一括でプッシュした後、順にポップするような要領です)。しばらくの間盛り上がりに欠けるかもしれませんが、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-sample_microposts">10.2.2</a>で一気に取り返しますので、それまでご辛抱願います。</p>
 
 <div class="label" id="sec-augmenting_the_user_show_page"></div>
 
@@ -17774,7 +17774,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>データモデリングとマイクロポスト表示テンプレートの両方が完成したので、次はWeb経由でそれらを作成するためのインターフェイスに取りかかりましょう。HTMLフォームを使用してリソース (今回の場合はMicropostsリソース) を作成する3番目の例になります<sup class="footnote" id="fnref-10_7"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-10_7">7</a></sup>。この節では、<em>ステータスフィード</em> (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-following-users">第11章</a>で完成させます) の最初のヒントをお見せします。最後に、ユーザーがマイクロポストをWeb経由で破棄できるようにします。</p>
 
-<p>従来のRails開発の慣習と異なる箇所が1つあります。Micropostsリソースへのインターフェイスは、主にユーザーと静的ページのコントローラを経由して実行されるので、Micropostsコントローラには<code>new</code>や<code>edit</code>のようなアクションは不要ということになります。<code>create</code>と<code>destroy</code>があれば十分です。従って、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-microposts_resource">リスト10.22</a>に示すように、Micropostsリソースへのルーティングは一層シンプルになります。その結果、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-microposts_resource">リスト10.22</a>のコードは、フルセットのルーティング (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_microposts">表2.3</a>) のサブセットであるRESTfulルート (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_microposts">表10.2</a>) になります。もちろん、シンプルになったということは完成度が<em>さらに</em>高まったということの証しであり、退化したわけではありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>でscaffoldに頼りきりだった頃からここに至るまでは長い道のりでしたが、今ではscaffoldが生成するような複雑なコードのほとんどは不要になりました。</p>
+<p>従来のRails開発の慣習と異なる箇所が1つあります。Micropostsリソースへのインターフェイスは、主にユーザーと静的ページのコントローラを経由して実行されるので、Micropostsコントローラには<code>new</code>や<code>edit</code>のようなアクションは不要ということになります。<code>create</code>と<code>destroy</code>があれば十分です。従って、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-microposts_resource">リスト10.22</a>に示すように、Micropostsリソースへのルーティングは一層シンプルになります。その結果、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-microposts_resource">リスト10.22</a>のコードは、フルセットのルーティング (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-demo_RESTful_microposts">表2.3</a>) のサブセットであるRESTfulルート (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#table-RESTful_microposts">表10.2</a>) になります。もちろん、シンプルになったということは完成度が<em>さらに</em>高まったということの証しであり、退化したわけではありません。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#cha-a-demo-app">第2章</a>でscaffoldに頼りきりだった頃からここに至るまでは長い道のりでしたが、今ではscaffoldが生成するような複雑なコードはほとんど不要になりました。</p>
 
 <div class="label" id="code-microposts_resource"></div>
 
@@ -17854,7 +17854,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>未制作のマイクロポストのWebインターフェースと違い、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_access_control">リスト10.23</a>のコードは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-edit_update_wrong_user_tests">リスト9.14</a>のときの手法と同様に、それぞれのマイクロポストアクションのレベルで動作します。サインインしていないユーザーは、<tt>POST</tt>リクエストを/microposts (<code>post microposts_path</code>、<code>create</code>アクションが呼び出される) に送信した場合、または <tt>DELETE</tt>リクエストを/microposts/1 (<code>delete micropost_path(micropost)</code>、<code>destroy</code>アクションが呼び出される) に送信した場合にリダイレクトされます。</p>
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_access_control">リスト10.23</a>のテストにパスするためのアプリケーションコードを作成する前に、少しリファクタリングを行いましょう。 <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-requiring_signed_in_users">9.2.1</a>では、<code>signed_in_user</code>メソッドと呼ばれるbefore_filterを使用して、サインインを必須にしたことを思い出してください (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-authorize_before_filter">リスト9.12</a>)。あのときは、このメソッドをUsersコントローラ でしか使用しませんでしたが、今回はMicropostsコントローラでもこのメソッドが必要となることがわかったので、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sessions_helper_authenticate">リスト10.24</a>に示すように、セッションヘルパーに移動します<sup class="footnote" id="fnref-10_8"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-10_8">8</a></sup>。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_access_control">リスト10.23</a>のテストにパスするためのアプリケーションコードを作成する前に、少しリファクタリングを行いましょう。 <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-requiring_signed_in_users">9.2.1</a>では、<code>signed_in_user</code>メソッドと呼ばれるbefore_filterを使用して、サインインを必須にしたことを思い出してください (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-authorize_before_filter">リスト9.12</a>)。あのときは、このメソッドをUsersコントローラでしか使用しませんでしたが、今回はMicropostsコントローラでもこのメソッドが必要となることがわかったので、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-sessions_helper_authenticate">リスト10.24</a>に示すように、セッションヘルパーに移動します<sup class="footnote" id="fnref-10_8"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-10_8">8</a></sup>。</p>
 
 <div class="label" id="code-sessions_helper_authenticate"></div>
 
@@ -18068,7 +18068,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p> <code>if</code>-<code>else</code>分岐を使用してコードを書き分けている点が少し汚いですが、このコードのクリーンアップは演習に回すことにします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-micropost_exercises">10.5</a>)。なお、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-microposts_home_page">リスト10.28</a>パーシャルの実装は必須なので、演習にはしません。新しいホームページのサイドバーは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_info">リスト 10.29</a>で、マイクロポストフォームのパーシャルは <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_form">リスト 10.30</a>で実装します。</p>
+<p> <code>if</code>-<code>else</code>分岐を使用してコードを書き分けている点が少し汚いですが、このコードのクリーンアップは演習に回すことにします (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-micropost_exercises">10.5</a>)。なお、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-microposts_home_page">リスト10.28</a>で使用するパーシャルの実装は必須なので、演習にはしません。新しいホームページのサイドバーは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-user_info">リスト 10.29</a>で、マイクロポストフォームのパーシャルは <a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-micropost_form">リスト 10.30</a>で実装します。</p>
 
 <div class="label" id="code-user_info"></div>
 
@@ -18149,7 +18149,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-f_error_messages">リスト7.23</a>ではエラーメッセージパーシャルが<code>@user</code>変数を直接参照していたことを思い出してください。今回は代わりに<code>@micropost</code>変数を使う必要があります。どのような種類のオブジェクトが渡されてもエラーメッセージパーシャルが動くようにする必要があります。幸い、フォーム変数<code>f</code>は<code>f.object</code>とすることによって、関連付けられたオブジェクトにアクセスすることができます。従って、以下のコードの場合</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-f_error_messages">リスト7.23</a>ではエラーメッセージパーシャルが<code>@user</code>変数を直接参照していたことを思い出してください。今回は代わりに<code>@micropost</code>変数を使う必要があります。どのような種類のオブジェクトを渡されてもエラーメッセージパーシャルが動くようにする必要があります。幸い、フォーム変数<code>f</code>を<code>f.object</code>とすることによって、関連付けられたオブジェクトにアクセスすることができます。従って、以下のコードの場合</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">form_for</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
 </pre></div>
@@ -18202,7 +18202,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>運悪く、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_errors_updated">リスト10.33</a>および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-edit_errors_updated">リスト10.34</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>メモ</em>: もし<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_deleting_exercises">9.6</a>の演習のコードを「<a href="http://en.wikipedia.org/wiki/Mutatis_mutandis">必要に応じて流用 (<em>Mutatis mutandis</em>)</a>」して<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-new_edit_partial">リスト9.50</a>および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-new_user_with_partial">リスト9.51</a>のコードを実装していた場合、コードは異なるものになるでしょう。)</p>
+<p>残念ながら、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-signup_errors_updated">リスト10.33</a>および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-edit_errors_updated">リスト10.34</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>注</em>: もし<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-updating_deleting_exercises">9.6</a>の演習で、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-new_edit_partial">リスト9.50</a>および<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-new_user_with_partial">リスト9.51</a>のコードを「<a href="http://en.wikipedia.org/wiki/Mutatis_mutandis">必要に応じて流用 (<em>Mutatis mutandis</em>)</a>」して実装していた場合、異なるコードを使用する必要があります。)</p>
 
 <div class="label" id="code-signup_errors_updated"></div>
 
@@ -18273,7 +18273,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="label" id="fig-home_form_errors"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/home_form_errors_bootstrap.png" alt="home_form_errors_bootstrap" /></span></div><div class="caption"><span class="header">図10.12</span><span class="description">エラーのあるHomeページ。<a href="http://railstutorial.jp/images/figures/home_form_errors_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/home_form_errors_bootstrap.png" alt="home_form_errors_bootstrap" /></span></div><div class="caption"><span class="header">図10.12</span><span class="description">エラーが表示されたHomeページ。<a href="http://railstutorial.jp/images/figures/home_form_errors_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -18938,7 +18938,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>この章で扱っている手法は本書全体の中で最も難易度が高いので、理解を助けるため、コードを書く前にはいったん立ち止まってインターフェイスを探検することにします。これまでの章と同様、最初にモックアップを示します<sup class="footnote" id="fnref-11_1"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-11_1">1</a></sup>。ページ操作の全体的なフローは次のようになります。あるユーザー (John Calvin) は自分のプロファイルページを最初に表示し (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_profile_mockup">図11.1</a>)、フォローするユーザーを選択するためにUsersページ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_user_index_mockup">図11.2</a>) に移動します。Calvinは2番目のユーザーThomas Hobbes (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_other_profile_follow_button_mockup">図11.3</a>) を表示し、[Follow] ボタンを押してフォローします。これにより、[Follow] ボタンが [Unfollow] に変わり、Hobbesの [followers] (フォロワー) カウントが1人増えます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_other_profile_unfollow_button_mockup">図11.4</a>)。CalvinがHomeページに戻ると、[following] カウントが1人増え、Hobbesのマイクロポストがステータスフィードに表示されるようになっていることに気付きます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_home_page_feed_mockup">図11.5</a>)。この節では、以後このフローの実現に専念します。</p>
+<p>この章で扱っている手法は本書全体の中で最も難易度が高いので、理解を助けるため、コードを書く前にはいったん立ち止まってインターフェイスを探検することにします。これまでの章と同様、最初にモックアップを示します<sup class="footnote" id="fnref-11_1"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-11_1">1</a></sup>。ページ操作の全体的なフローは次のようになります。あるユーザー (John Calvin) は自分のプロファイルページを最初に表示し (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_profile_mockup">図11.1</a>)、フォローするユーザーを選択するためにUsersページ (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_user_index_mockup">図11.2</a>) に移動します。Calvinは2番目のユーザーThomas Hobbes (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_other_profile_follow_button_mockup">図11.3</a>) を表示し、[Follow] ボタンを押してフォローします。これにより、[Follow] ボタンが [Unfollow] に変わり、Hobbesの [followers] (フォロワー) カウントが1人増えます (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_other_profile_unfollow_button_mockup">図11.4</a>)。CalvinがHomeページに戻ると、[following] カウントが1人増え、Hobbesのマイクロポストがステータスフィードに表示されるようになっていることがわかります (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-page_flow_home_page_feed_mockup">図11.5</a>)。この節では、以後このフローの実現に専念します。</p>
 
 <div class="label" id="fig-page_flow_profile_mockup"></div>
 
@@ -18986,7 +18986,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h2><a id="sec-11_1" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_relationship_model" class="heading"><span class="number">11.1</span>Relationshipモデル</a></h2>
 
 
-<p>ユーザーをフォローする機能を実装する第一歩は、データモデルを構成することです。ただし、これは見た目ほど単純ではありません。素朴に考えれば、<code>has_many</code> (1対多) リレーションシップはこんな感じでできそうな気がします。1人のユーザーが複数のユーザーを<code>has_many</code>としてフォローし 、1人のユーザーに複数のフォロワーがいることを<code>has_many</code>で表す、という具合です。この後で説明しますが、この方法ではたちまち壁に突き当たってしまいます。これを解決するための<code>has_many through</code> (多対多の関係を表すのに使用) についてもこの後で説明します。この節で説明するアイディアの多くは、最初なかなか意図が読み取れないこともあると思います。複雑なデータモデルも、腑に落ちるまで時間がかかることでしょう。もし自分が混乱し始めていると感じたら、まずはこの章の最後まで進め、それからもう一度この章全体を読み返してみてください。読み返すことでよりよく理解できるとおもいます。</p>
+<p>ユーザーをフォローする機能を実装する第一歩は、データモデルを構成することです。ただし、これは見た目ほど単純ではありません。素朴に考えれば、<code>has_many</code> (1対多) リレーションシップはこんな感じでできそうな気がします。1人のユーザーが複数のユーザーを<code>has_many</code>としてフォローし 、1人のユーザーに複数のフォロワーがいることを<code>has_many</code>で表す、という具合です。この後で説明しますが、この方法ではたちまち壁に突き当たってしまいます。これを解決するための<code>has_many through</code> (多対多の関係を表すのに使用) についてもこの後で説明します。この節で説明するアイディアの多くは、最初なかなか意図が読み取れないこともあると思います。複雑なデータモデルも、腑に落ちるまで時間がかかることでしょう。もし自分が混乱し始めていると感じたら、まずはこの章の最後まで進め、それからもう一度この章全体を読み返してみてください。読み返すことでよりよく理解できると思います。</p>
 
 <div class="label" id="sec-a_problem_with_the_data_model"></div>
 
@@ -19219,7 +19219,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>これに対応するアプリケーションコードを作成するには、<code>belongs_to</code>リレーションシップを普段と同様に作成します。Railsは外部キーを、それに対応するシンボルから推測します。たとえば、<code>:follower</code>から<code>follower_id</code>を推測し、<code>:followed</code>から<code>followed_id</code>を推測するという具合です。しかし、FollowedモデルもFollowerモデルは実際にはないので、クラス名<code>User</code>を提供する必要があります。結果を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-relationship_belongs_to">リスト11.6</a>に示します。デフォルトで作成されるRelationshipモデルとは異なり、<code>followed_id</code>のみアクセス可能となっている点に注意してください。</p>
+<p>これに対応するアプリケーションコードを作成するには、<code>belongs_to</code>リレーションシップを普段と同様に作成します。Railsは外部キーを、それに対応するシンボルから推測します。たとえば、<code>:follower</code>から<code>follower_id</code>を推測し、<code>:followed</code>から<code>followed_id</code>を推測するという具合です。しかし、FollowedモデルもFollowerモデルも実際にはないので、クラス名<code>User</code>を提供する必要があります。結果を<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-relationship_belongs_to">リスト11.6</a>に示します。デフォルトで作成されるRelationshipモデルとは異なり、<code>followed_id</code>のみアクセス可能となっている点に注意してください。</p>
 
 <div class="label" id="code-relationship_belongs_to"></div>
 
@@ -19662,8 +19662,8 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
   <span class="n">admin</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span>     <span class="s2">&quot;Example User&quot;</span><span class="p">,</span>
                        <span class="ss">email:</span>    <span class="s2">&quot;example@railstutorial.jp&quot;</span><span class="p">,</span>
                        <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span>
-                       <span class="ss">password_confirmation</span> <span class="s2">&quot;foobar&quot;</span>
-                       <span class="ss">admin</span> <span class="kp">true</span>
+                       <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span>
+                       <span class="ss">admin:</span> <span class="kp">true</span><span class="p">)</span>
   <span class="mi">99</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
     <span class="nb">name</span>  <span class="o">=</span> <span class="ss">Faker::Name</span><span class="o">.</span><span class="n">name</span>
     <span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;example-</span><span class="si">#{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">@railstutorial.jp&quot;</span>
@@ -20348,7 +20348,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-11_2_4" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_working_follow_button_the_standard_way" class="heading"><span class="number">11.2.4</span>[フォローする] ボタン (標準的な方法)</a></h3>
 
 
-<p>ビューが整ってきました。いよいよ [フォローする] [フォロー解除する] ボタンを動作させましょう。これらのボタンのテストには、本書で扱ったさまざまなテスティングの技法が集約されています。このテストコードを読むのはよい練習になります。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>の内容をじっくり勉強し、テスト内容とその目的をすべて理解できるようにしてください ((<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>のコードには実は若干のセキュリティ上の抜けがあります。皆さんは見つけることができるでしょうか。この点についてはこの後でカバーします)。このコードにおける<code>have_xpath</code>メソッドの使用法にご注目ください。 これは、<a href="http://en.wikipedia.org/wiki/XPath">XPath</a>を使用してHTML5を含むXMLドキュメントを自在にナビゲートすることのできる、きわめて高度かつパワフルなテクニックです。Web検索でXPathを使用する方法の詳細については<a href="http://www.w3schools.com/xpath/xpath_syntax.asp">XPath構文</a> (英語) を参照してください。</p>
+<p>ビューが整ってきました。いよいよ [フォローする] [フォロー解除する] ボタンを動作させましょう。これらのボタンのテストには、本書で扱ったさまざまなテスティングの技法が集約されています。このテストコードを読むのはよい練習になります。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>の内容をじっくり勉強し、テスト内容とその目的をすべて理解できるようにしてください (<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>のコードには実は若干のセキュリティ上の抜けがあります。皆さんは見つけることができるでしょうか。この点についてはこの後でカバーします)。このコードにおける<code>have_xpath</code>メソッドの使用法にご注目ください。 これは、<a href="http://en.wikipedia.org/wiki/XPath">XPath</a>を使用してHTML5を含むXMLドキュメントを自在にナビゲートすることのできる、きわめて高度かつパワフルなテクニックです。Web検索でXPathを使用する方法の詳細については<a href="http://www.w3schools.com/xpath/xpath_syntax.asp">XPath構文</a> (英語) を参照してください。</p>
 
 <div class="label" id="code-follow_unfollow_button_tests"></div>
 
@@ -20424,7 +20424,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>は、これらのボタンをクリックし、そのときの正しい動作を指定することによりテストを行います。この実装を書くには、正しい動作をより深く理解する必要があります。フォローすることとフォロー解除することは、それぞれリレーションシップを<em>作成</em>することと<em>削除</em>することです。これはつまり、Relationshipsコントローラで<code>create</code>アクションと<code>destroy</code>を定義するということであり、このコントローラを作成する必要があります。これらのボタンはユーザーがサインインしていないと表示されないので一見セキュリティを満たしているように見えますが、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>には、ある低レベルの問題が抜けています。つまり、<code>create</code>アクションと<code>destroy</code>アクションはサインインしているユーザーのみがアクセスできることを確認するテストがありません (これが今述べたセキュリティホールです) 。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-relationships_controller_authorization_test">リスト11.33</a>では、<code>post</code>メソッドと<code>delete</code>メソッドを使用してこれらのアクションに直接アクセスすることによって、この要求を満たすようにしました。</p>
+<p><a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>は、これらのボタンをクリックし、そのときの正しい動作を指定することによりテストを行います。この実装を書くには、正しい動作をより深く理解する必要があります。フォローすることとフォロー解除することは、それぞれリレーションシップを<em>作成</em>することと<em>削除</em>することです。これはつまり、Relationshipsコントローラで<code>create</code>アクションと<code>destroy</code>を定義するということであり、このコントローラを作成する必要があります。これらのボタンはユーザーがサインインしていないと表示されないので一見セキュリティを満たしているように見えますが、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>には、ある低レベルの問題が抜けています。つまり、<code>create</code>アクションと<code>destroy</code>アクションはサインインしているユーザーのみがアクセスできることを確認するテストがありません (これが上で述べたセキュリティホールです) 。<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-relationships_controller_authorization_test">リスト11.33</a>では、<code>post</code>メソッドと<code>delete</code>メソッドを使用してこれらのアクションに直接アクセスすることによって、この要求を満たすようにしました。</p>
 
 <div class="label" id="code-relationships_controller_authorization_test"></div>
 
@@ -20941,7 +20941,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>なお、以上は説明のためのコードであり、実際にSQL文字列に挿入するときは、このように記述する必要はありません。実は、<code>?</code>を外挿すると自動的にこの辺りの面倒を見てくれます。さらに、データベースに依存する一部の非互換性まで解消してくれます。つまり、ここでは以下をそのまま使えばよいだけなのです。</p>
+<p>なお、以上は説明のためのコードであり、実際にSQL文字列に挿入するときは、このように記述する必要はありません。実は、<code>?</code>を内挿すると自動的にこの辺りの面倒を見てくれます。さらに、データベースに依存する一部の非互換性まで解消してくれます。つまり、ここでは以下をそのまま使えばよいだけなのです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">followed_user_ids</span>
 </pre></div>
@@ -21025,14 +21025,14 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>次の段階の準備として、以下のコードを修正しました。</p>
+<p>次の段階の準備として、以下のコードを</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">where</span><span class="p">(</span><span class="s2">&quot;user_id IN (?) </span><span class="s2">OR user_id = ?&quot;</span><span class="p">,</span> <span class="n">followed_user_ids</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>上のコードを、以下の同等のコードに置き換えました。</p>
+<p>以下の同等のコードに置き換えました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">where</span><span class="p">(</span><span class="s2">&quot;user_id IN (:followed_user_ids) OR user_id = :user_id&quot;</span><span class="p">,</span>
       <span class="ss">followed_user_ids:</span> <span class="n">followed_user_ids</span><span class="p">,</span> <span class="ss">user_id:</span> <span class="n">user</span><span class="p">)</span>
@@ -21102,7 +21102,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-11_3_4" href="/book/ruby-on-rails-tutorial?version=4.0#sec-the_new_status_feed" class="heading"><span class="number">11.3.4</span>新しいステータスフィード</a></h3>
 
 
-<p>ステータスフィードのコードは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-from_users_followed_by_final">リスト11.45</a>で完成しました。予告どおり、Homeページ用のコードも<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-real_feed_instance_variable">リスト11.46</a>に示します。このコードは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-home_page_with_feed">図11.20</a>に示したように、ビューで使用するマイクロポストに関連するフィードをページネーションして作成します<sup class="footnote" id="fnref-11_14"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-11_14">14</a></sup>。この<code>paginate</code>メソッドは、データベースから一度に30ずつマイクロポストを取り出しますが、実はこのメソッドが<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-from_users_followed_by_final">リスト11.45</a>のMicropostモデルのメソッドにまではるばる到達して動作することにご注目ください (開発サーバーのログ・ファイルに出力されたSQL文を調べることでこのことを確認できます)。</p>
+<p>ステータスフィードのコードは<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-from_users_followed_by_final">リスト11.45</a>で完成しました。予告どおり、Homeページ用のコードも<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-real_feed_instance_variable">リスト11.46</a>に示します。このコードは、<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#fig-home_page_with_feed">図11.20</a>に示したように、ビューで使用するマイクロポストに関連するフィードをページネーションして作成します<sup class="footnote" id="fnref-11_14"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-11_14">14</a></sup>。この<code>paginate</code>メソッドは、データベースから一度に30ずつマイクロポストを取り出しますが、実はこのメソッドが<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#code-from_users_followed_by_final">リスト11.45</a>のMicropostモデルのメソッドにまではるばる到達して動作することにご注目ください (開発サーバーのログ・ファイルに出力されたSQL文を調べることで、このことを確認できます)。</p>
 
 <div class="label" id="code-real_feed_instance_variable"></div>
 
@@ -21172,7 +21172,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>この節で提案するさまざまな拡張 (パスワードリマインダ、メールによる確認、サンプルアプリケーション向けには検索、返信、メッセージングなど) は、ほとんどがWebアプリケーションで一般的な機能です。これらの拡張を1つか2つでも実装してみることで、本書から巣立って自分のアプリケーションを書くときにきっと役に立つことでしょう。</p>
 
-<p>いざ実装し始めてみると思ったよりずっと難しく感じるかもしれませんが、それも当然です。新しい機能という真っ白なキャンバスを目の前にすれば、気後れしてしまうのも無理はありません。皆さんが拡張を始めるにあたり、ささやかながら私から2つほど一般的なアドバイスをしてみたいと思います。1) Railsアプリケーションに何らかの機能を追加するときには、ぜひ<a href="http://railscasts.com/episodes/archive">RailsCastsアーカイブ</a>をチェックしてみてください。今自分がやろうとしていることは、既にRyan Batesが取り上げたトピックにあるかもしれません<sup class="footnote" id="fnref-11_15"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-11_15">15</a></sup>。もし手頃なトピックがあれば、関連するRailsCastをウォッチすることで、時間を大幅に節約できることでしょう。2) できるだけしつこくGoogleで検索し、自分が調べようとしているトピックに言及しているブログやチュートリアルがないかどうか、よく探すことです。Webアプリケーションの開発には常に困難がつきまといます。他人の経験と失敗から学ぶことも重要です。</p>
+<p>いざ実装し始めてみると思ったよりずっと難しく感じるかもしれませんが、それも当然です。新しい機能という真っ白なキャンバスを目の前にすれば、気後れしてしまうのも無理はありません。皆さんが拡張を始めるにあたり、ささやかながら私から2つほど一般的なアドバイスをしてみたいと思います。1) Railsアプリケーションに何らかの機能を追加するときには、ぜひ<a href="http://railscasts.com/episodes/archive">RailsCastsアーカイブ</a>をチェックしてみてください。今自分がやろうとしていることは、既にRyan Batesが取り上げたトピックにあるかもしれません<sup class="footnote" id="fnref-11_15"><a href="/book/ruby-on-rails-tutorial?version=4.0#fn-11_15">15</a></sup>。もし手頃なトピックがあれば、関連するRailsCastをウォッチすることで、時間を大幅に節約できることでしょう。2) できるだけ念入りにGoogleで検索し、自分が調べようとしているトピックに言及しているブログやチュートリアルがないかどうか、よく探すことです。Webアプリケーションの開発には常に困難がつきまといます。他人の経験と失敗から学ぶことも重要です。</p>
 
 <p>以下の機能はどれも難易度がそれなりに高いので、実装に必要となるかもしれないツールについてのヒントも書いておきました。たとえヒントがあったとしても、以下の機能が本書の最終章の演習よりも<em>ずっと</em>難易度が高いことは変わりません。相当頑張ったにもかかわらず挫折することも当然あると思いますので、どうかそんなときには落ち込まないでください。私の時間にも限りがありますので、皆さんに個別のお手伝いをすることはできそうにありません。しかし、これらの拡張のいくつかについてなら、今後単発の記事やスクリーンキャストバンドルを公開することがあると思います。「Railsチュートリアル」<a href="http://railstutorial.jp/">http://railstutorial.jp/</a>のメインページを参照し、ニュースフィードを購読して最新情報をチェックしてみてください。</p>
 
@@ -21320,7 +21320,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <li id="fn-11_5">技術的には、Railsは<code>underscore</code>メソッドを使用してクラス名をidに変換しています。たとえば、<code>&quot;FooBar&quot;.underscore</code>を実行すると<code>&quot;foo_bar&quot;</code>に変換されます。従って、 <code>FooBar</code>オブジェクトの外部キーは<code>foo_bar_id</code>になるでしょう (なお、<code>underscore</code>と逆の働きをする<code>camelize</code>というメソッドもあります。これは<code>&quot;camel_case&quot;</code>を<code>&quot;CamelCase&quot;</code>のように変換します) 。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-11_5">↑</a></li>
 <li id="fn-11_6"><code>followed_id</code>でもユーザーを特定できることに気付き、フォローしているユーザーとフォロワーの扱いが対称的でないことをよく考えてみれば、もうゲームに勝ったようなものです。これについては<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-followers">11.1.5</a>でも扱います。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-11_6">↑</a></li>
 <li id="fn-11_7">特定の分野でモデリングの経験を多く積めば、このようなユーティリティメソッドが必要になることを事前に思い付けるようになるでしょう。たとえ思い付けないことがあったとしても、明確なテストを書こうとするときに、いつの間にかこういうメソッドを自分が作成していることに気付くことでしょう。だからというわけではありませんが、今はこのようなメソッドが必要であるということに気付けなくても問題ありません。ソフトウェアの開発は、繰りかえしに次ぐ繰り返しです。読みづらくなるまでコードを書き足し、そのコードをリファクタリングする、その繰り返しです。そして、より簡潔なコードを書くために、本書が少しでもお役に立てばと思います。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-11_7">↑</a></li>
-<li id="fn-11_8"><code>unfollow!</code>は、失敗したときに例外を発生<em>しない</em>ことに注意してください。正直に書くと、削除に失敗したことをRailsがどうやって検出しているのか、私にもわかりません。<code>follow!</code>に疑問符が付いているので、それに合わせてこのメソッドにも疑問符を追加しているに過ぎません。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-11_8">↑</a></li>
+<li id="fn-11_8"><code>unfollow!</code>は、失敗したときに例外を発生<em>しない</em>ことに注意してください。正直に書くと、削除に失敗したことをRailsがどうやって検出しているのか、著者にもわかりません。<code>follow!</code>に疑問符が付いているので、それに合わせてこのメソッドにも疑問符を追加しているに過ぎません。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-11_8">↑</a></li>
 <li id="fn-11_9">Ajaxは、名目上<em>asynchronous JavaScript and XML</em>の略ということになっています。<a href="http://www.adaptivepath.com/ideas/essays/archives/000385.php">最も初期のAjaxに関する記事</a>でも &quot;Ajax&quot; で統一されていますが、ときどき “AJAX” と誤ったスペルが使用されていることがあります。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-11_9">↑</a></li>
 <li id="fn-11_10">Ajaxが動作するためには、ブラウザでJavaScriptが有効になっている必要がありますが、実際にはJavaScriptが無効になっている場合でも<a class="ref" href="/book/ruby-on-rails-tutorial?version=4.0#sec-a_working_follow_button_the_standard_way">11.2.4</a>のようにまったく同じ動作になるようにしてあります。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-11_10">↑</a></li>
 <li id="fn-11_11">列挙可能 (enumerable) オブジェクトであることの主な条件は、<code>each</code>メソッドを実装していることです。このメソッドはコレクションを列挙します。<a class="arrow" href="/book/ruby-on-rails-tutorial?version=4.0#fnref-11_11">↑</a></li>

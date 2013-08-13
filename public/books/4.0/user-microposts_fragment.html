@@ -29,7 +29,7 @@
 <h3><a id="sec-10_1_1" href="/chapters/user-microposts?version=4.0#sec-the_basic_model" class="heading"><span class="number">10.1.1</span>基本的なモデル</a></h3>
 
 
-<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/chapters/user-microposts?version=4.0#fn-10_2">2</a></sup>と、特定のユーザーとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に (<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
+<p>Micropostモデルは、マイクロポストの内容を保存する<code>content</code>属性<sup class="footnote" id="fnref-10_2"><a href="/chapters/user-microposts?version=4.0#fn-10_2">2</a></sup>と、特定のユーザーとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。Userモデルの場合と同様に (<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate model Micropost content:string user_id:integer
 </pre></div>
@@ -75,7 +75,7 @@
 
 <p><code>user_id</code>と<code>created_at</code>両方のカラムを1つの配列に含めることで、Active Recordで<em>両方</em>のキーを同時に使用する<em>複合キーインデックス</em>を作成できます。また<a class="ref" href="/chapters/modeling-users?version=4.0#sec-database_migrations">6.1.1</a>でも述べたように、<code>t.timestamps</code>の行によって<code>created_at</code>カラムと<code>updated_at</code>カラムが作成されていることにもご注目ください。この後、<a class="ref" href="/chapters/user-microposts?version=4.0#sec-ordering_and_dependency">10.1.4</a>および<a class="ref" href="/chapters/user-microposts?version=4.0#sec-augmenting_the_user_show_page">10.2.1</a>で<code>created_at</code>カラムをさらに追加します。</p>
 
-<p>それではユーザーモデルの場合 (<a class="ref" href="/chapters/modeling-users?version=4.0#code-user_spec">リスト6.5</a>) と同様に、マイクロポストデルに対する最小限のテストを書くところから始めましょう。具体的には <a class="ref" href="/chapters/user-microposts?version=4.0#code-initial_micropost_spec">リスト10.2</a> に示すように、micropostオブジェクトが <code>content</code>属性と<code>user_id</code>属性を持っていることを確認するテストを作成します。</p>
+<p>それではUserモデルの場合 (<a class="ref" href="/chapters/modeling-users?version=4.0#code-user_spec">リスト6.5</a>) と同様に、Micropostモデルに対する最小限のテストを書くところから始めましょう。具体的には <a class="ref" href="/chapters/user-microposts?version=4.0#code-initial_micropost_spec">リスト10.2</a> に示すように、micropostオブジェクトが <code>content</code>属性と<code>user_id</code>属性を持っていることを確認するテストを作成します。</p>
 
 <div class="label" id="code-initial_micropost_spec"></div>
 
@@ -128,7 +128,7 @@
 
 <div class="code"><div class="highlight"><pre><span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
 <span class="n">before</span> <span class="k">do</span>
-  <span class="c1"># This code is not idiomatically correct.</span>
+  <span class="c1"># このコードは慣用的な意味で正しくない。</span>
   <span class="vi">@micropost</span> <span class="o">=</span> <span class="no">Micropost</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">content:</span> <span class="s2">&quot;Lorem ipsum&quot;</span><span class="p">,</span> <span class="ss">user_id:</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
 <span class="k">end</span>
 </pre></div>
@@ -200,7 +200,7 @@
 <h3><a id="sec-10_1_3" href="/chapters/user-microposts?version=4.0#sec-user_micropost_associations" class="heading"><span class="number">10.1.3</span>User/Micropostの関連付け</a></h3>
 
 
-<p>Webアプリケーション用のデータモデルを構築するにあたって、個々のモデル間での<em>関連づけ</em>を十分考えておくことが重要です。今回の場合は、 <a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_user_has_many_microposts">2.3.3</a>でも示したように、それぞれのマイクロポストは１人のユーザーと関連付けられ、それぞれのユーザーは (潜在的に) 複数のマイクロポストと関連付けられます。この関連付けを<a class="ref" href="/chapters/user-microposts?version=4.0#fig-micropost_belongs_to_user">図10.2</a>と<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_has_many_microposts">図10.3</a>に示します。これらの関連付けを実装するための一環として、Micropostモデルに対するテストを作成し、さらにUserモデルにいくつかのテストを追加します。</p>
+<p>Webアプリケーション用のデータモデルを構築するにあたって、個々のモデル間での<em>関連付け</em>を十分考えておくことが重要です。今回の場合は、 <a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_user_has_many_microposts">2.3.3</a>でも示したように、それぞれのマイクロポストは１人のユーザーと関連付けられ、それぞれのユーザーは (潜在的に) 複数のマイクロポストと関連付けられます。この関連付けを<a class="ref" href="/chapters/user-microposts?version=4.0#fig-micropost_belongs_to_user">図10.2</a>と<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_has_many_microposts">図10.3</a>に示します。これらの関連付けを実装するための一環として、Micropostモデルに対するテストを作成し、さらにUserモデルにいくつかのテストを追加します。</p>
 
 <div class="label" id="fig-micropost_belongs_to_user"></div>
 
@@ -216,7 +216,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_has_many_microposts.png" alt="user_has_many_microposts" /></span></div><div class="caption"><span class="header">図10.3</span><span class="description">userとmicropost</span>間の<code>has_many</code>リレーションシップ</div></div>
 
 
-<p>この節で定義した<code>belongs_to</code>/<code>has_many</code>関連付けを使用することで、<a class="ref" href="/chapters/user-microposts?version=4.0#table-association_methods">表10.1</a>に示すようなメソッドをRailsで使えるようになります。</p>
+<p>この節で定義する<code>belongs_to</code>/<code>has_many</code>関連付けを使用することで、<a class="ref" href="/chapters/user-microposts?version=4.0#table-association_methods">表10.1</a>に示すようなメソッドをRailsで使えるようになります。</p>
 
 <div class="label" id="table-association_methods"></div>
 
@@ -411,7 +411,7 @@
 </div></div>
 
 
-<p>ここでは、以下のようにマイクロポスト用のファクトリーの定義にユーザーを含めるだけで、マイクロポストに関連付けられるユーザーのことがFactory Girlに伝わります。</p>
+<p>ここでは、以下のようにマイクロポスト用のファクトリーの定義にuserを含めるだけで、マイクロポストに関連付けられるユーザーのことがFactory Girlに伝わります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">factory</span> <span class="ss">:micropost</span> <span class="k">do</span>
   <span class="n">content</span> <span class="s2">&quot;Lorem ipsum&quot;</span>
@@ -444,7 +444,7 @@
 
 <p>(<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sidebar-time_helpers">コラム 8.1</a>で説明した時間指定用ヘルパーメソッドを使うことで) 2番目のポストの作成時刻がより新しく (<code>1.hour.ago</code>: 1時間前)、最初のポストの作成日時が<code>1.day.ago</code> (1日前) になります。Factory Girlを使用すると、Active Recordがアクセスを許可しないような<code>created_at</code>属性も手動で設定できるので大変便利です (<code>created_at</code>や<code>updated_at</code>などは通常のカラムと異なる “マジック”カラムであり、これらの作成タイムスタンプや更新タイムスタンプは自動的に設定されてしまうため、明示的に値を設定しても上書きされてしまうことを思い出してください)。</p>
 
-<p>(SQLiteを含む) ほとんどのデータベースアダプターは、マイクロポストを id順で返すため、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_ordering_test">リスト10.10</a>のようなテストはほぼ確実に失敗することになります。このコードは <code>let!</code> (“let バン”と読みます) メソッドを<code>let</code>の場所で使っています。その理由は<code>let</code> 変数は<em>lazy</em>、つまり参照されたときにはじめて初期化されるためです。今回の場合は、タイムスタンプが正しい順番で<code>@user.microposts</code>が空にならないように、マイクロポストが即座に存在して欲しいので、<code>let!</code>を使用すれば、対応する変数を強制的に即座に作成できます。</p>
+<p>(SQLiteを含む) ほとんどのデータベースアダプターは、マイクロポストを id順で返すため、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_ordering_test">リスト10.10</a>のようなテストはほぼ確実に失敗することになります。このコードでは<code>let</code>メソッドの代わりに<code>let!</code> (“let バン”と読みます) メソッドを使っています。その理由は、<code>let</code>変数は<em>lazy</em>、つまり参照されたときにはじめて初期化されるためです。ここでは、マイクロポストを遅延することなく即座に作成する必要があります。そのことにより、マイクロポストのタイムスタンプが常に正しい順序で作成されるように、かつ<code>@user.microposts</code>が空の状態が生じることのないようにしたいからです。<code>let!</code>を使用すれば、対応する変数を強制的に即座に作成できます。</p>
 
 <div class="label" id="code-micropost_ordering_test"></div>
 
@@ -741,7 +741,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h2><a id="sec-10_2" href="/chapters/user-microposts?version=4.0#sec-showing_microposts" class="heading"><span class="number">10.2</span>マイクロポストを表示する</a></h2>
 
 
-<p>Web経由でマイクロポストを作成する方法は現時点ではありませんが (<a class="ref" href="/chapters/user-microposts?version=4.0#sec-creating_microposts">10.3.2</a>から作り始めます)、マイクロポストを表示することと、テストすることならできます。ここでは、Twitterのような独立したマイクロポスト<code>index</code>ページでユーザーのマイクロポストを表示するよりも、<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_microposts_mockup">図10.4</a>のモックアップに示したように、直接ユーザーの<code>show</code>ページで表示させることにしましょう。ユーザープロファイルにマイクロポストを表示させるため、まずはとてもシンプルなERbテンプレートを作成するところから始めます。その後、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-sample_users">9.3.2</a>のサンプルデータ生成タスクにマイクロポストのサンプルを追加して、画面にサンプルデータが表示されるようにしてみます。</p>
+<p>Web経由でマイクロポストを作成する方法は現時点ではありませんが (<a class="ref" href="/chapters/user-microposts?version=4.0#sec-creating_microposts">10.3.2</a>から作り始めます)、マイクロポストを表示することと、テストすることならできます。ここでは、Twitterのような独立したマイクロポスト<code>index</code>ページでユーザーのマイクロポストを表示するよりも、<a class="ref" href="/chapters/user-microposts?version=4.0#fig-user_microposts_mockup">図10.4</a>のモックアップに示したように、直接ユーザーの<code>show</code>ページで表示させることにしましょう。ユーザープロファイルにマイクロポストを表示させるため、最初にきわめてシンプルなERbテンプレートを作成します。次に、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-sample_users">9.3.2</a>のサンプルデータ生成タスクにマイクロポストのサンプルを追加して、画面にサンプルデータが表示されるようにしてみます。</p>
 
 <div class="label" id="fig-user_microposts_mockup"></div>
 
@@ -749,7 +749,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_microposts_mockup_bootstrap.png" alt="user_microposts_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.4</span><span class="description">マイクロポストが表示されたプロファイルページのモックアップ。<a href="http://railstutorial.jp/images/figures/user_microposts_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p><a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>でサインイン機能について説明したときと同様に、<a class="ref" href="/chapters/user-microposts?version=4.0#sec-augmenting_the_user_show_page">10.2.1</a>でも最初に実装をお見せし、次にそれらの要素を順に解説してきます (<a href="http://en.wikipedia.org/wiki/Stack_(data_structure)">スタック</a>に複数の要素を一括でプッシュした後、順にポップするような要領です)。しばらくの間盛り上がりに欠けるかもしれませんが、<a class="ref" href="/chapters/user-microposts?version=4.0#sec-sample_microposts">10.2.2</a>で一気に取り返しますので、それまでご辛抱願います。</p>
+<p><a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>でサインイン機能について説明したときと同様に、<a class="ref" href="/chapters/user-microposts?version=4.0#sec-augmenting_the_user_show_page">10.2.1</a>でも最初に実装をお目にかけ、次にそれらの要素を順に解説してきます (<a href="http://en.wikipedia.org/wiki/Stack_(data_structure)">スタック</a>に複数の要素を一括でプッシュした後、順にポップするような要領です)。しばらくの間盛り上がりに欠けるかもしれませんが、<a class="ref" href="/chapters/user-microposts?version=4.0#sec-sample_microposts">10.2.2</a>で一気に取り返しますので、それまでご辛抱願います。</p>
 
 <div class="label" id="sec-augmenting_the_user_show_page"></div>
 
@@ -1080,7 +1080,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>データモデリングとマイクロポスト表示テンプレートの両方が完成したので、次はWeb経由でそれらを作成するためのインターフェイスに取りかかりましょう。HTMLフォームを使用してリソース (今回の場合はMicropostsリソース) を作成する3番目の例になります<sup class="footnote" id="fnref-10_7"><a href="/chapters/user-microposts?version=4.0#fn-10_7">7</a></sup>。この節では、<em>ステータスフィード</em> (<a class="ref" href="/chapters/following-users?version=4.0#top">第11章</a>で完成させます) の最初のヒントをお見せします。最後に、ユーザーがマイクロポストをWeb経由で破棄できるようにします。</p>
 
-<p>従来のRails開発の慣習と異なる箇所が1つあります。Micropostsリソースへのインターフェイスは、主にユーザーと静的ページのコントローラを経由して実行されるので、Micropostsコントローラには<code>new</code>や<code>edit</code>のようなアクションは不要ということになります。<code>create</code>と<code>destroy</code>があれば十分です。従って、<a class="ref" href="/chapters/user-microposts?version=4.0#code-microposts_resource">リスト10.22</a>に示すように、Micropostsリソースへのルーティングは一層シンプルになります。その結果、<a class="ref" href="/chapters/user-microposts?version=4.0#code-microposts_resource">リスト10.22</a>のコードは、フルセットのルーティング (<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_microposts">表2.3</a>) のサブセットであるRESTfulルート (<a class="ref" href="/chapters/user-microposts?version=4.0#table-RESTful_microposts">表10.2</a>) になります。もちろん、シンプルになったということは完成度が<em>さらに</em>高まったということの証しであり、退化したわけではありません。<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でscaffoldに頼りきりだった頃からここに至るまでは長い道のりでしたが、今ではscaffoldが生成するような複雑なコードのほとんどは不要になりました。</p>
+<p>従来のRails開発の慣習と異なる箇所が1つあります。Micropostsリソースへのインターフェイスは、主にユーザーと静的ページのコントローラを経由して実行されるので、Micropostsコントローラには<code>new</code>や<code>edit</code>のようなアクションは不要ということになります。<code>create</code>と<code>destroy</code>があれば十分です。従って、<a class="ref" href="/chapters/user-microposts?version=4.0#code-microposts_resource">リスト10.22</a>に示すように、Micropostsリソースへのルーティングは一層シンプルになります。その結果、<a class="ref" href="/chapters/user-microposts?version=4.0#code-microposts_resource">リスト10.22</a>のコードは、フルセットのルーティング (<a class="ref" href="/chapters/a-demo-app?version=4.0#table-demo_RESTful_microposts">表2.3</a>) のサブセットであるRESTfulルート (<a class="ref" href="/chapters/user-microposts?version=4.0#table-RESTful_microposts">表10.2</a>) になります。もちろん、シンプルになったということは完成度が<em>さらに</em>高まったということの証しであり、退化したわけではありません。<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でscaffoldに頼りきりだった頃からここに至るまでは長い道のりでしたが、今ではscaffoldが生成するような複雑なコードはほとんど不要になりました。</p>
 
 <div class="label" id="code-microposts_resource"></div>
 
@@ -1160,7 +1160,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>未制作のマイクロポストのWebインターフェースと違い、<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_access_control">リスト10.23</a>のコードは、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-edit_update_wrong_user_tests">リスト9.14</a>のときの手法と同様に、それぞれのマイクロポストアクションのレベルで動作します。サインインしていないユーザーは、<tt>POST</tt>リクエストを/microposts (<code>post microposts_path</code>、<code>create</code>アクションが呼び出される) に送信した場合、または <tt>DELETE</tt>リクエストを/microposts/1 (<code>delete micropost_path(micropost)</code>、<code>destroy</code>アクションが呼び出される) に送信した場合にリダイレクトされます。</p>
 
-<p><a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_access_control">リスト10.23</a>のテストにパスするためのアプリケーションコードを作成する前に、少しリファクタリングを行いましょう。 <a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-requiring_signed_in_users">9.2.1</a>では、<code>signed_in_user</code>メソッドと呼ばれるbefore_filterを使用して、サインインを必須にしたことを思い出してください (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-authorize_before_filter">リスト9.12</a>)。あのときは、このメソッドをUsersコントローラ でしか使用しませんでしたが、今回はMicropostsコントローラでもこのメソッドが必要となることがわかったので、<a class="ref" href="/chapters/user-microposts?version=4.0#code-sessions_helper_authenticate">リスト10.24</a>に示すように、セッションヘルパーに移動します<sup class="footnote" id="fnref-10_8"><a href="/chapters/user-microposts?version=4.0#fn-10_8">8</a></sup>。</p>
+<p><a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_access_control">リスト10.23</a>のテストにパスするためのアプリケーションコードを作成する前に、少しリファクタリングを行いましょう。 <a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-requiring_signed_in_users">9.2.1</a>では、<code>signed_in_user</code>メソッドと呼ばれるbefore_filterを使用して、サインインを必須にしたことを思い出してください (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-authorize_before_filter">リスト9.12</a>)。あのときは、このメソッドをUsersコントローラでしか使用しませんでしたが、今回はMicropostsコントローラでもこのメソッドが必要となることがわかったので、<a class="ref" href="/chapters/user-microposts?version=4.0#code-sessions_helper_authenticate">リスト10.24</a>に示すように、セッションヘルパーに移動します<sup class="footnote" id="fnref-10_8"><a href="/chapters/user-microposts?version=4.0#fn-10_8">8</a></sup>。</p>
 
 <div class="label" id="code-sessions_helper_authenticate"></div>
 
@@ -1374,7 +1374,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p> <code>if</code>-<code>else</code>分岐を使用してコードを書き分けている点が少し汚いですが、このコードのクリーンアップは演習に回すことにします (<a class="ref" href="/chapters/user-microposts?version=4.0#sec-micropost_exercises">10.5</a>)。なお、<a class="ref" href="/chapters/user-microposts?version=4.0#code-microposts_home_page">リスト10.28</a>パーシャルの実装は必須なので、演習にはしません。新しいホームページのサイドバーは<a class="ref" href="/chapters/user-microposts?version=4.0#code-user_info">リスト 10.29</a>で、マイクロポストフォームのパーシャルは <a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_form">リスト 10.30</a>で実装します。</p>
+<p> <code>if</code>-<code>else</code>分岐を使用してコードを書き分けている点が少し汚いですが、このコードのクリーンアップは演習に回すことにします (<a class="ref" href="/chapters/user-microposts?version=4.0#sec-micropost_exercises">10.5</a>)。なお、<a class="ref" href="/chapters/user-microposts?version=4.0#code-microposts_home_page">リスト10.28</a>で使用するパーシャルの実装は必須なので、演習にはしません。新しいホームページのサイドバーは<a class="ref" href="/chapters/user-microposts?version=4.0#code-user_info">リスト 10.29</a>で、マイクロポストフォームのパーシャルは <a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_form">リスト 10.30</a>で実装します。</p>
 
 <div class="label" id="code-user_info"></div>
 
@@ -1455,7 +1455,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p><a class="ref" href="/chapters/sign-up?version=4.0#code-f_error_messages">リスト7.23</a>ではエラーメッセージパーシャルが<code>@user</code>変数を直接参照していたことを思い出してください。今回は代わりに<code>@micropost</code>変数を使う必要があります。どのような種類のオブジェクトが渡されてもエラーメッセージパーシャルが動くようにする必要があります。幸い、フォーム変数<code>f</code>は<code>f.object</code>とすることによって、関連付けられたオブジェクトにアクセスすることができます。従って、以下のコードの場合</p>
+<p><a class="ref" href="/chapters/sign-up?version=4.0#code-f_error_messages">リスト7.23</a>ではエラーメッセージパーシャルが<code>@user</code>変数を直接参照していたことを思い出してください。今回は代わりに<code>@micropost</code>変数を使う必要があります。どのような種類のオブジェクトを渡されてもエラーメッセージパーシャルが動くようにする必要があります。幸い、フォーム変数<code>f</code>を<code>f.object</code>とすることによって、関連付けられたオブジェクトにアクセスすることができます。従って、以下のコードの場合</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">form_for</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
 </pre></div>
@@ -1508,7 +1508,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>運悪く、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="/chapters/user-microposts?version=4.0#code-signup_errors_updated">リスト10.33</a>および<a class="ref" href="/chapters/user-microposts?version=4.0#code-edit_errors_updated">リスト10.34</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>メモ</em>: もし<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-updating_deleting_exercises">9.6</a>の演習のコードを「<a href="http://en.wikipedia.org/wiki/Mutatis_mutandis">必要に応じて流用 (<em>Mutatis mutandis</em>)</a>」して<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-new_edit_partial">リスト9.50</a>および<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-new_user_with_partial">リスト9.51</a>のコードを実装していた場合、コードは異なるものになるでしょう。)</p>
+<p>残念ながら、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="/chapters/user-microposts?version=4.0#code-signup_errors_updated">リスト10.33</a>および<a class="ref" href="/chapters/user-microposts?version=4.0#code-edit_errors_updated">リスト10.34</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>注</em>: もし<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-updating_deleting_exercises">9.6</a>の演習で、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-new_edit_partial">リスト9.50</a>および<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-new_user_with_partial">リスト9.51</a>のコードを「<a href="http://en.wikipedia.org/wiki/Mutatis_mutandis">必要に応じて流用 (<em>Mutatis mutandis</em>)</a>」して実装していた場合、異なるコードを使用する必要があります。)</p>
 
 <div class="label" id="code-signup_errors_updated"></div>
 
@@ -1579,7 +1579,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="label" id="fig-home_form_errors"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/home_form_errors_bootstrap.png" alt="home_form_errors_bootstrap" /></span></div><div class="caption"><span class="header">図10.12</span><span class="description">エラーのあるHomeページ。<a href="http://railstutorial.jp/images/figures/home_form_errors_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/home_form_errors_bootstrap.png" alt="home_form_errors_bootstrap" /></span></div><div class="caption"><span class="header">図10.12</span><span class="description">エラーが表示されたHomeページ。<a href="http://railstutorial.jp/images/figures/home_form_errors_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 

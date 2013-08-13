@@ -4,17 +4,17 @@
 <h1 class="chapter"><a id="sec-1" href="/chapters/beginning?version=4.0#top" class="heading"><span class="number">第1章</span> ゼロからデプロイまで</a></h1>
 
 
-<p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。この本の目的は、「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったウェブ開発を学びたいんだけど、何から始めればよいのでしょうか。」という質問に答えることです。<em>本書</em>を読み終わる頃には、あなたは自作のカスタムWebアプリケーションを開発し、デプロイ (deploy: 本番環境でアプリを動かし、一般公開すること) するための知識をすべて得られるはずです。また、Railsの「教育エコシステム」なるものに含まれる、さらに高度な本、ブログ、スクリーンキャストなどの恩恵を受けるのにふさわしい実力を身につけられます。<em>Ruby on Railsチュートリアル</em>はRails 4を使用しているため、ここで学んだ内容はRailsの最新バージョンに完全に対応しています。(最新の<em>Ruby on Railsチュートリアル</em>については、この本が掲載されている<a href="http://railstutorial.jp/">http://railstutorial.jp/</a>を参照してください。本書をオフラインで読んでいる方は、<a href="http://railstutorial.jp/book">オンライン版Railsチュートリアル</a>で最新版を確認してください。)</p>
+<p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。この本の目的は「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったウェブ開発を学びたいんだけど、何から始めればよいのでしょうか」という質問に答えることです。<em>本書</em>を読み終わったときには、あなたは自分の手で Web アプリケーションを開発することから、デプロイ (deploy: 本番環境でアプリを動かし、一般公開すること) までの全ての技術を習得できるはずです。また、Railsの「教育エコシステム」に存在する、さらに高度な内容の本やブログ、スクリーンキャストなどを読み解く力を身につけられるでしょう。加えて、<em>Ruby on Railsチュートリアル</em>はRails 4を使用しているため、これからあなたが本書で学ぶ内容は、Web開発の最前線の話だと言えます。(なお、本書の <em>Ruby on Railsチュートリアル</em>が最新版かどうかについては、本書の公式サイト (<a href="http://railstutorial.jp/">http://railstutorial.jp/</a>) でチェックすることができます。特に、本書をオフラインで読んでいる方は、<a href="http://railstutorial.jp/book">オンライン版Railsチュートリアル</a>で一度最新版かどうかを確認してください。)</p>
 
-<p>(<em>注</em>: 最新のチュートリアルは、Rails 4.0という<em>バージョン</em>に向けられたものです。本書はRail 4.0向けに改定されましたが、<em>版 (エディション) </em>は更新されていませんのでご注意ください。Rails 4.0における変更は、本書の版を改めるほどではないと判断したためです。導入のためのチュートリアルという本書の立場から見て、Rail 4.0と旧Rails 3.2の違いはわずかです。もちろん、以下の<a class="ref" href="/chapters/beginning?version=4.0#sidebar-diffs">コラム 1.1</a>に示したように、細かな変更は膨大な数にのぼりますが、本書にとって重要な違いは、<a class="ref" href="/chapters/sign-up?version=4.0#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>という新しいセキュリティ上の技法しかありません。今後Railsで重要な変更が生じれば、<em>Railsチュートリアル</em>の完全に新しい次期版の制作を計画します。そのときには、<em>Turbolinks</em>や<em>Russian doll caching</em>、<em>feature specs</em>などのRSpecの新しい側面も記事に取り込まれるでしょう。)</p>
+<p>(<em>注</em>: あなたが読んでいるこの本は、Rails 4.0という<em>バージョン</em>に対応している本です。本書はRails 3.2からRail 4.0に向けて改定されましたが、<em>版</em>は更新されていないのでご注意ください。というのも、Rails 4.0に対応するために行った変更は、本書の版を改めるほどではないと判断したためです。本書は「チュートリアル」という導入部分を助ける立場にあるので、Railsの深い内容までは踏み込みません。したがって、以前のRails 3.2対応版と本書のRails 4.0対応版との間には、そこまで大きな変更はありません。もちろん、次の<a class="ref" href="/chapters/beginning?version=4.0#sidebar-diffs">コラム 1.1</a>で示されているように、細かな変更は多数あります。しかし、重要な変更は、<a class="ref" href="/chapters/sign-up?version=4.0#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>と呼ばれるセキュリティ関係の新しい機能しかありません。一方、今後Railsで重要な変更が生じれば、<em>Railsチュートリアル</em>の版を改訂するつもりです。新しい版では、<em>Turbolinks</em>や<em>Russian doll caching</em>、RSpecの新機能「<em>feature specs</em>」なども本書に含まれる予定です。)</p>
 
 <div class="label" id="sidebar-diffs"></div>
 
 
 <div class="sidebar"><span class="title"><span class="header">コラム 1.1</span><span class="description">第2版との違いについて</span></span>
-<p>以下は、<em>Ruby on Railsチュートリアル</em>の第2版と現行のバージョンの違いについての (ほぼ) 網羅的なリストです (重要な違いはStrong Parametersだけであり、その他の違いはどちらかといえば些細なものです) 。このリストは、第2版の読者またはRails 3.2に慣れ親しんだ方向けに違いをまとめたものです。Rails 3.2を扱ったことがない方は、以下のリストを読み飛ばしてもかまいません。</p>
+<p><em>Ruby on Railsチュートリアル</em>の第2版と本書のバージョンとの違いは、次のリストの通りです。(といっても、重要な変更はStrong Parametersだけであり、それ以外は些細な変更です) 。Rails 3.2対応の第2版を既に読み終わった方のために、変更した箇所だけをまとめています。したがって、まだRails 3.2対応版を読んでいない方は、本コラムを読み飛ばしても問題ありません。</p>
 
-<p>以下のリストには、関連する節へのリンクまたは変更コード例へのリンクを含めてあります。</p>
+<p>なお、次のリストには、変更を加えた節またはコードへのリンクが含まれています。</p>
 
 <ul>
 <li>Rails 3.2からRails 4.0への変更 (<a class="ref" href="/chapters/beginning?version=4.0#sec-rubygems">1.2.2</a>)</li>
@@ -26,13 +26,13 @@
 <li><code>root to: ’path’</code>を<code>root ’path’</code>に変更 (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-root_route">リスト5.24</a>)</li>
 <li><code>find_by_thing(…)</code>を<code>find_by(thing: …)</code>に変更 (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>)</li>
 <li><code>rake db:test:prepare</code>を<code>rake test:prepare</code>に切り替え (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-initial_user_tests">6.2.1</a>)</li>
-<li><code>attr_accessible</code>をStrong Parametersに変更 (<a class="ref" href="/chapters/sign-up?version=4.0#sec-strong_parameters">7.3.2</a>)</li>
+<li><code>attr_accessible</code> をStrong Parametersに変更 (<a class="ref" href="/chapters/sign-up?version=4.0#sec-strong_parameters">7.3.2</a>)</li>
 <li>暗号化された記憶トークンに変更 (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>)</li>
 <li><code>before_filter</code>を<code>before_action</code>に変更 (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-authorize_before_filter">リスト9.12</a>)</li>
 <li>最初にマッチしたリンクをクリックするのにCapybaraの<code>match: :first</code>を使用 (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-delete_link_tests">リスト9.43</a>)</li>
 <li><code>default_scope</code>をハッシュ引数からラムダに変更 (<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_ordering">リスト10.11</a>)</li>
 <li><code>dup</code>を<code>to_a</code>に変更 (<a class="ref" href="/chapters/user-microposts?version=4.0#code-micropost_dependency_test">リスト10.12</a>)</li>
-<li>ボタンをトグルするのにXPathを使用 (<a class="ref" href="/chapters/following-users?version=4.0#sec-a_working_follow_button_the_standard_way">11.2.4</a>)</li>
+<li>ボタンをトグルするのにXPathを使用 (<a class="ref" href="/chapters/following-users?version=4.0#sec-a_working_follow_button_the_standard_way"> 11.2.4</a>)</li>
 </ul>
 
 

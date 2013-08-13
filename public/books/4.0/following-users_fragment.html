@@ -15,7 +15,7 @@
 </div>
 
 
-<p>この章で扱っている手法は本書全体の中で最も難易度が高いので、理解を助けるため、コードを書く前にはいったん立ち止まってインターフェイスを探検することにします。これまでの章と同様、最初にモックアップを示します<sup class="footnote" id="fnref-11_1"><a href="/chapters/following-users?version=4.0#fn-11_1">1</a></sup>。ページ操作の全体的なフローは次のようになります。あるユーザー (John Calvin) は自分のプロファイルページを最初に表示し (<a class="ref" href="/chapters/following-users?version=4.0#fig-page_flow_profile_mockup">図11.1</a>)、フォローするユーザーを選択するためにUsersページ (<a class="ref" href="/chapters/following-users?version=4.0#fig-page_flow_user_index_mockup">図11.2</a>) に移動します。Calvinは2番目のユーザーThomas Hobbes (<a class="ref" href="/chapters/following-users?version=4.0#fig-page_flow_other_profile_follow_button_mockup">図11.3</a>) を表示し、[Follow] ボタンを押してフォローします。これにより、[Follow] ボタンが [Unfollow] に変わり、Hobbesの [followers] (フォロワー) カウントが1人増えます (<a class="ref" href="/chapters/following-users?version=4.0#fig-page_flow_other_profile_unfollow_button_mockup">図11.4</a>)。CalvinがHomeページに戻ると、[following] カウントが1人増え、Hobbesのマイクロポストがステータスフィードに表示されるようになっていることに気付きます (<a class="ref" href="/chapters/following-users?version=4.0#fig-page_flow_home_page_feed_mockup">図11.5</a>)。この節では、以後このフローの実現に専念します。</p>
+<p>この章で扱っている手法は本書全体の中で最も難易度が高いので、理解を助けるため、コードを書く前にはいったん立ち止まってインターフェイスを探検することにします。これまでの章と同様、最初にモックアップを示します<sup class="footnote" id="fnref-11_1"><a href="/chapters/following-users?version=4.0#fn-11_1">1</a></sup>。ページ操作の全体的なフローは次のようになります。あるユーザー (John Calvin) は自分のプロファイルページを最初に表示し (<a class="ref" href="/chapters/following-users?version=4.0#fig-page_flow_profile_mockup">図11.1</a>)、フォローするユーザーを選択するためにUsersページ (<a class="ref" href="/chapters/following-users?version=4.0#fig-page_flow_user_index_mockup">図11.2</a>) に移動します。Calvinは2番目のユーザーThomas Hobbes (<a class="ref" href="/chapters/following-users?version=4.0#fig-page_flow_other_profile_follow_button_mockup">図11.3</a>) を表示し、[Follow] ボタンを押してフォローします。これにより、[Follow] ボタンが [Unfollow] に変わり、Hobbesの [followers] (フォロワー) カウントが1人増えます (<a class="ref" href="/chapters/following-users?version=4.0#fig-page_flow_other_profile_unfollow_button_mockup">図11.4</a>)。CalvinがHomeページに戻ると、[following] カウントが1人増え、Hobbesのマイクロポストがステータスフィードに表示されるようになっていることがわかります (<a class="ref" href="/chapters/following-users?version=4.0#fig-page_flow_home_page_feed_mockup">図11.5</a>)。この節では、以後このフローの実現に専念します。</p>
 
 <div class="label" id="fig-page_flow_profile_mockup"></div>
 
@@ -63,7 +63,7 @@
 <h2><a id="sec-11_1" href="/chapters/following-users?version=4.0#sec-the_relationship_model" class="heading"><span class="number">11.1</span>Relationshipモデル</a></h2>
 
 
-<p>ユーザーをフォローする機能を実装する第一歩は、データモデルを構成することです。ただし、これは見た目ほど単純ではありません。素朴に考えれば、<code>has_many</code> (1対多) リレーションシップはこんな感じでできそうな気がします。1人のユーザーが複数のユーザーを<code>has_many</code>としてフォローし 、1人のユーザーに複数のフォロワーがいることを<code>has_many</code>で表す、という具合です。この後で説明しますが、この方法ではたちまち壁に突き当たってしまいます。これを解決するための<code>has_many through</code> (多対多の関係を表すのに使用) についてもこの後で説明します。この節で説明するアイディアの多くは、最初なかなか意図が読み取れないこともあると思います。複雑なデータモデルも、腑に落ちるまで時間がかかることでしょう。もし自分が混乱し始めていると感じたら、まずはこの章の最後まで進め、それからもう一度この章全体を読み返してみてください。読み返すことでよりよく理解できるとおもいます。</p>
+<p>ユーザーをフォローする機能を実装する第一歩は、データモデルを構成することです。ただし、これは見た目ほど単純ではありません。素朴に考えれば、<code>has_many</code> (1対多) リレーションシップはこんな感じでできそうな気がします。1人のユーザーが複数のユーザーを<code>has_many</code>としてフォローし 、1人のユーザーに複数のフォロワーがいることを<code>has_many</code>で表す、という具合です。この後で説明しますが、この方法ではたちまち壁に突き当たってしまいます。これを解決するための<code>has_many through</code> (多対多の関係を表すのに使用) についてもこの後で説明します。この節で説明するアイディアの多くは、最初なかなか意図が読み取れないこともあると思います。複雑なデータモデルも、腑に落ちるまで時間がかかることでしょう。もし自分が混乱し始めていると感じたら、まずはこの章の最後まで進め、それからもう一度この章全体を読み返してみてください。読み返すことでよりよく理解できると思います。</p>
 
 <div class="label" id="sec-a_problem_with_the_data_model"></div>
 
@@ -296,7 +296,7 @@
 </div></div>
 
 
-<p>これに対応するアプリケーションコードを作成するには、<code>belongs_to</code>リレーションシップを普段と同様に作成します。Railsは外部キーを、それに対応するシンボルから推測します。たとえば、<code>:follower</code>から<code>follower_id</code>を推測し、<code>:followed</code>から<code>followed_id</code>を推測するという具合です。しかし、FollowedモデルもFollowerモデルは実際にはないので、クラス名<code>User</code>を提供する必要があります。結果を<a class="ref" href="/chapters/following-users?version=4.0#code-relationship_belongs_to">リスト11.6</a>に示します。デフォルトで作成されるRelationshipモデルとは異なり、<code>followed_id</code>のみアクセス可能となっている点に注意してください。</p>
+<p>これに対応するアプリケーションコードを作成するには、<code>belongs_to</code>リレーションシップを普段と同様に作成します。Railsは外部キーを、それに対応するシンボルから推測します。たとえば、<code>:follower</code>から<code>follower_id</code>を推測し、<code>:followed</code>から<code>followed_id</code>を推測するという具合です。しかし、FollowedモデルもFollowerモデルも実際にはないので、クラス名<code>User</code>を提供する必要があります。結果を<a class="ref" href="/chapters/following-users?version=4.0#code-relationship_belongs_to">リスト11.6</a>に示します。デフォルトで作成されるRelationshipモデルとは異なり、<code>followed_id</code>のみアクセス可能となっている点に注意してください。</p>
 
 <div class="label" id="code-relationship_belongs_to"></div>
 
@@ -739,8 +739,8 @@
   <span class="n">admin</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span>     <span class="s2">&quot;Example User&quot;</span><span class="p">,</span>
                        <span class="ss">email:</span>    <span class="s2">&quot;example@railstutorial.jp&quot;</span><span class="p">,</span>
                        <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span>
-                       <span class="ss">password_confirmation</span> <span class="s2">&quot;foobar&quot;</span>
-                       <span class="ss">admin</span> <span class="kp">true</span>
+                       <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span>
+                       <span class="ss">admin:</span> <span class="kp">true</span><span class="p">)</span>
   <span class="mi">99</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
     <span class="nb">name</span>  <span class="o">=</span> <span class="ss">Faker::Name</span><span class="o">.</span><span class="n">name</span>
     <span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;example-</span><span class="si">#{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">@railstutorial.jp&quot;</span>
@@ -1425,7 +1425,7 @@
 <h3><a id="sec-11_2_4" href="/chapters/following-users?version=4.0#sec-a_working_follow_button_the_standard_way" class="heading"><span class="number">11.2.4</span>[フォローする] ボタン (標準的な方法)</a></h3>
 
 
-<p>ビューが整ってきました。いよいよ [フォローする] [フォロー解除する] ボタンを動作させましょう。これらのボタンのテストには、本書で扱ったさまざまなテスティングの技法が集約されています。このテストコードを読むのはよい練習になります。<a class="ref" href="/chapters/following-users?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>の内容をじっくり勉強し、テスト内容とその目的をすべて理解できるようにしてください ((<a class="ref" href="/chapters/following-users?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>のコードには実は若干のセキュリティ上の抜けがあります。皆さんは見つけることができるでしょうか。この点についてはこの後でカバーします)。このコードにおける<code>have_xpath</code>メソッドの使用法にご注目ください。 これは、<a href="http://en.wikipedia.org/wiki/XPath">XPath</a>を使用してHTML5を含むXMLドキュメントを自在にナビゲートすることのできる、きわめて高度かつパワフルなテクニックです。Web検索でXPathを使用する方法の詳細については<a href="http://www.w3schools.com/xpath/xpath_syntax.asp">XPath構文</a> (英語) を参照してください。</p>
+<p>ビューが整ってきました。いよいよ [フォローする] [フォロー解除する] ボタンを動作させましょう。これらのボタンのテストには、本書で扱ったさまざまなテスティングの技法が集約されています。このテストコードを読むのはよい練習になります。<a class="ref" href="/chapters/following-users?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>の内容をじっくり勉強し、テスト内容とその目的をすべて理解できるようにしてください (<a class="ref" href="/chapters/following-users?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>のコードには実は若干のセキュリティ上の抜けがあります。皆さんは見つけることができるでしょうか。この点についてはこの後でカバーします)。このコードにおける<code>have_xpath</code>メソッドの使用法にご注目ください。 これは、<a href="http://en.wikipedia.org/wiki/XPath">XPath</a>を使用してHTML5を含むXMLドキュメントを自在にナビゲートすることのできる、きわめて高度かつパワフルなテクニックです。Web検索でXPathを使用する方法の詳細については<a href="http://www.w3schools.com/xpath/xpath_syntax.asp">XPath構文</a> (英語) を参照してください。</p>
 
 <div class="label" id="code-follow_unfollow_button_tests"></div>
 
@@ -1501,7 +1501,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/following-users?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>は、これらのボタンをクリックし、そのときの正しい動作を指定することによりテストを行います。この実装を書くには、正しい動作をより深く理解する必要があります。フォローすることとフォロー解除することは、それぞれリレーションシップを<em>作成</em>することと<em>削除</em>することです。これはつまり、Relationshipsコントローラで<code>create</code>アクションと<code>destroy</code>を定義するということであり、このコントローラを作成する必要があります。これらのボタンはユーザーがサインインしていないと表示されないので一見セキュリティを満たしているように見えますが、<a class="ref" href="/chapters/following-users?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>には、ある低レベルの問題が抜けています。つまり、<code>create</code>アクションと<code>destroy</code>アクションはサインインしているユーザーのみがアクセスできることを確認するテストがありません (これが今述べたセキュリティホールです) 。<a class="ref" href="/chapters/following-users?version=4.0#code-relationships_controller_authorization_test">リスト11.33</a>では、<code>post</code>メソッドと<code>delete</code>メソッドを使用してこれらのアクションに直接アクセスすることによって、この要求を満たすようにしました。</p>
+<p><a class="ref" href="/chapters/following-users?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>は、これらのボタンをクリックし、そのときの正しい動作を指定することによりテストを行います。この実装を書くには、正しい動作をより深く理解する必要があります。フォローすることとフォロー解除することは、それぞれリレーションシップを<em>作成</em>することと<em>削除</em>することです。これはつまり、Relationshipsコントローラで<code>create</code>アクションと<code>destroy</code>を定義するということであり、このコントローラを作成する必要があります。これらのボタンはユーザーがサインインしていないと表示されないので一見セキュリティを満たしているように見えますが、<a class="ref" href="/chapters/following-users?version=4.0#code-follow_unfollow_button_tests">リスト11.32</a>には、ある低レベルの問題が抜けています。つまり、<code>create</code>アクションと<code>destroy</code>アクションはサインインしているユーザーのみがアクセスできることを確認するテストがありません (これが上で述べたセキュリティホールです) 。<a class="ref" href="/chapters/following-users?version=4.0#code-relationships_controller_authorization_test">リスト11.33</a>では、<code>post</code>メソッドと<code>delete</code>メソッドを使用してこれらのアクションに直接アクセスすることによって、この要求を満たすようにしました。</p>
 
 <div class="label" id="code-relationships_controller_authorization_test"></div>
 
@@ -2018,7 +2018,7 @@
 </div>
 
 
-<p>なお、以上は説明のためのコードであり、実際にSQL文字列に挿入するときは、このように記述する必要はありません。実は、<code>?</code>を外挿すると自動的にこの辺りの面倒を見てくれます。さらに、データベースに依存する一部の非互換性まで解消してくれます。つまり、ここでは以下をそのまま使えばよいだけなのです。</p>
+<p>なお、以上は説明のためのコードであり、実際にSQL文字列に挿入するときは、このように記述する必要はありません。実は、<code>?</code>を内挿すると自動的にこの辺りの面倒を見てくれます。さらに、データベースに依存する一部の非互換性まで解消してくれます。つまり、ここでは以下をそのまま使えばよいだけなのです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">followed_user_ids</span>
 </pre></div>
@@ -2102,14 +2102,14 @@
 </div></div>
 
 
-<p>次の段階の準備として、以下のコードを修正しました。</p>
+<p>次の段階の準備として、以下のコードを</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">where</span><span class="p">(</span><span class="s2">&quot;user_id IN (?) </span><span class="s2">OR user_id = ?&quot;</span><span class="p">,</span> <span class="n">followed_user_ids</span><span class="p">,</span> <span class="n">user</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>上のコードを、以下の同等のコードに置き換えました。</p>
+<p>以下の同等のコードに置き換えました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">where</span><span class="p">(</span><span class="s2">&quot;user_id IN (:followed_user_ids) OR user_id = :user_id&quot;</span><span class="p">,</span>
       <span class="ss">followed_user_ids:</span> <span class="n">followed_user_ids</span><span class="p">,</span> <span class="ss">user_id:</span> <span class="n">user</span><span class="p">)</span>
@@ -2179,7 +2179,7 @@
 <h3><a id="sec-11_3_4" href="/chapters/following-users?version=4.0#sec-the_new_status_feed" class="heading"><span class="number">11.3.4</span>新しいステータスフィード</a></h3>
 
 
-<p>ステータスフィードのコードは<a class="ref" href="/chapters/following-users?version=4.0#code-from_users_followed_by_final">リスト11.45</a>で完成しました。予告どおり、Homeページ用のコードも<a class="ref" href="/chapters/following-users?version=4.0#code-real_feed_instance_variable">リスト11.46</a>に示します。このコードは、<a class="ref" href="/chapters/following-users?version=4.0#fig-home_page_with_feed">図11.20</a>に示したように、ビューで使用するマイクロポストに関連するフィードをページネーションして作成します<sup class="footnote" id="fnref-11_14"><a href="/chapters/following-users?version=4.0#fn-11_14">14</a></sup>。この<code>paginate</code>メソッドは、データベースから一度に30ずつマイクロポストを取り出しますが、実はこのメソッドが<a class="ref" href="/chapters/following-users?version=4.0#code-from_users_followed_by_final">リスト11.45</a>のMicropostモデルのメソッドにまではるばる到達して動作することにご注目ください (開発サーバーのログ・ファイルに出力されたSQL文を調べることでこのことを確認できます)。</p>
+<p>ステータスフィードのコードは<a class="ref" href="/chapters/following-users?version=4.0#code-from_users_followed_by_final">リスト11.45</a>で完成しました。予告どおり、Homeページ用のコードも<a class="ref" href="/chapters/following-users?version=4.0#code-real_feed_instance_variable">リスト11.46</a>に示します。このコードは、<a class="ref" href="/chapters/following-users?version=4.0#fig-home_page_with_feed">図11.20</a>に示したように、ビューで使用するマイクロポストに関連するフィードをページネーションして作成します<sup class="footnote" id="fnref-11_14"><a href="/chapters/following-users?version=4.0#fn-11_14">14</a></sup>。この<code>paginate</code>メソッドは、データベースから一度に30ずつマイクロポストを取り出しますが、実はこのメソッドが<a class="ref" href="/chapters/following-users?version=4.0#code-from_users_followed_by_final">リスト11.45</a>のMicropostモデルのメソッドにまではるばる到達して動作することにご注目ください (開発サーバーのログ・ファイルに出力されたSQL文を調べることで、このことを確認できます)。</p>
 
 <div class="label" id="code-real_feed_instance_variable"></div>
 
@@ -2249,7 +2249,7 @@
 
 <p>この節で提案するさまざまな拡張 (パスワードリマインダ、メールによる確認、サンプルアプリケーション向けには検索、返信、メッセージングなど) は、ほとんどがWebアプリケーションで一般的な機能です。これらの拡張を1つか2つでも実装してみることで、本書から巣立って自分のアプリケーションを書くときにきっと役に立つことでしょう。</p>
 
-<p>いざ実装し始めてみると思ったよりずっと難しく感じるかもしれませんが、それも当然です。新しい機能という真っ白なキャンバスを目の前にすれば、気後れしてしまうのも無理はありません。皆さんが拡張を始めるにあたり、ささやかながら私から2つほど一般的なアドバイスをしてみたいと思います。1) Railsアプリケーションに何らかの機能を追加するときには、ぜひ<a href="http://railscasts.com/episodes/archive">RailsCastsアーカイブ</a>をチェックしてみてください。今自分がやろうとしていることは、既にRyan Batesが取り上げたトピックにあるかもしれません<sup class="footnote" id="fnref-11_15"><a href="/chapters/following-users?version=4.0#fn-11_15">15</a></sup>。もし手頃なトピックがあれば、関連するRailsCastをウォッチすることで、時間を大幅に節約できることでしょう。2) できるだけしつこくGoogleで検索し、自分が調べようとしているトピックに言及しているブログやチュートリアルがないかどうか、よく探すことです。Webアプリケーションの開発には常に困難がつきまといます。他人の経験と失敗から学ぶことも重要です。</p>
+<p>いざ実装し始めてみると思ったよりずっと難しく感じるかもしれませんが、それも当然です。新しい機能という真っ白なキャンバスを目の前にすれば、気後れしてしまうのも無理はありません。皆さんが拡張を始めるにあたり、ささやかながら私から2つほど一般的なアドバイスをしてみたいと思います。1) Railsアプリケーションに何らかの機能を追加するときには、ぜひ<a href="http://railscasts.com/episodes/archive">RailsCastsアーカイブ</a>をチェックしてみてください。今自分がやろうとしていることは、既にRyan Batesが取り上げたトピックにあるかもしれません<sup class="footnote" id="fnref-11_15"><a href="/chapters/following-users?version=4.0#fn-11_15">15</a></sup>。もし手頃なトピックがあれば、関連するRailsCastをウォッチすることで、時間を大幅に節約できることでしょう。2) できるだけ念入りにGoogleで検索し、自分が調べようとしているトピックに言及しているブログやチュートリアルがないかどうか、よく探すことです。Webアプリケーションの開発には常に困難がつきまといます。他人の経験と失敗から学ぶことも重要です。</p>
 
 <p>以下の機能はどれも難易度がそれなりに高いので、実装に必要となるかもしれないツールについてのヒントも書いておきました。たとえヒントがあったとしても、以下の機能が本書の最終章の演習よりも<em>ずっと</em>難易度が高いことは変わりません。相当頑張ったにもかかわらず挫折することも当然あると思いますので、どうかそんなときには落ち込まないでください。私の時間にも限りがありますので、皆さんに個別のお手伝いをすることはできそうにありません。しかし、これらの拡張のいくつかについてなら、今後単発の記事やスクリーンキャストバンドルを公開することがあると思います。「Railsチュートリアル」<a href="http://railstutorial.jp/">http://railstutorial.jp/</a>のメインページを参照し、ニュースフィードを購読して最新情報をチェックしてみてください。</p>
 
@@ -2400,7 +2400,7 @@
 <li id="fn-11_5">技術的には、Railsは<code>underscore</code>メソッドを使用してクラス名をidに変換しています。たとえば、<code>&quot;FooBar&quot;.underscore</code>を実行すると<code>&quot;foo_bar&quot;</code>に変換されます。従って、 <code>FooBar</code>オブジェクトの外部キーは<code>foo_bar_id</code>になるでしょう (なお、<code>underscore</code>と逆の働きをする<code>camelize</code>というメソッドもあります。これは<code>&quot;camel_case&quot;</code>を<code>&quot;CamelCase&quot;</code>のように変換します) 。<a class="arrow" href="/chapters/following-users?version=4.0#fnref-11_5">↑</a></li>
 <li id="fn-11_6"><code>followed_id</code>でもユーザーを特定できることに気付き、フォローしているユーザーとフォロワーの扱いが対称的でないことをよく考えてみれば、もうゲームに勝ったようなものです。これについては<a class="ref" href="/chapters/following-users?version=4.0#sec-followers">11.1.5</a>でも扱います。<a class="arrow" href="/chapters/following-users?version=4.0#fnref-11_6">↑</a></li>
 <li id="fn-11_7">特定の分野でモデリングの経験を多く積めば、このようなユーティリティメソッドが必要になることを事前に思い付けるようになるでしょう。たとえ思い付けないことがあったとしても、明確なテストを書こうとするときに、いつの間にかこういうメソッドを自分が作成していることに気付くことでしょう。だからというわけではありませんが、今はこのようなメソッドが必要であるということに気付けなくても問題ありません。ソフトウェアの開発は、繰りかえしに次ぐ繰り返しです。読みづらくなるまでコードを書き足し、そのコードをリファクタリングする、その繰り返しです。そして、より簡潔なコードを書くために、本書が少しでもお役に立てばと思います。<a class="arrow" href="/chapters/following-users?version=4.0#fnref-11_7">↑</a></li>
-<li id="fn-11_8"><code>unfollow!</code>は、失敗したときに例外を発生<em>しない</em>ことに注意してください。正直に書くと、削除に失敗したことをRailsがどうやって検出しているのか、私にもわかりません。<code>follow!</code>に疑問符が付いているので、それに合わせてこのメソッドにも疑問符を追加しているに過ぎません。<a class="arrow" href="/chapters/following-users?version=4.0#fnref-11_8">↑</a></li>
+<li id="fn-11_8"><code>unfollow!</code>は、失敗したときに例外を発生<em>しない</em>ことに注意してください。正直に書くと、削除に失敗したことをRailsがどうやって検出しているのか、著者にもわかりません。<code>follow!</code>に疑問符が付いているので、それに合わせてこのメソッドにも疑問符を追加しているに過ぎません。<a class="arrow" href="/chapters/following-users?version=4.0#fnref-11_8">↑</a></li>
 <li id="fn-11_9">Ajaxは、名目上<em>asynchronous JavaScript and XML</em>の略ということになっています。<a href="http://www.adaptivepath.com/ideas/essays/archives/000385.php">最も初期のAjaxに関する記事</a>でも &quot;Ajax&quot; で統一されていますが、ときどき “AJAX” と誤ったスペルが使用されていることがあります。<a class="arrow" href="/chapters/following-users?version=4.0#fnref-11_9">↑</a></li>
 <li id="fn-11_10">Ajaxが動作するためには、ブラウザでJavaScriptが有効になっている必要がありますが、実際にはJavaScriptが無効になっている場合でも<a class="ref" href="/chapters/following-users?version=4.0#sec-a_working_follow_button_the_standard_way">11.2.4</a>のようにまったく同じ動作になるようにしてあります。<a class="arrow" href="/chapters/following-users?version=4.0#fnref-11_10">↑</a></li>
 <li id="fn-11_11">列挙可能 (enumerable) オブジェクトであることの主な条件は、<code>each</code>メソッドを実装していることです。このメソッドはコレクションを列挙します。<a class="arrow" href="/chapters/following-users?version=4.0#fnref-11_11">↑</a></li>

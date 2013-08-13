@@ -154,7 +154,7 @@
 <div class="codelisting">
 <div class="listing"><span class="header">リスト9.4</span> <span class="description"><a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-user_edit_view">リスト9.3</a>で定義された<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#fig-edit_page">図9.2</a>のHTML。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/users/1&quot;</span> <span class="na">class=</span><span class="s">&quot;edit_user&quot;</span> <span class="na">id=</span><span class="s">&quot;edit_user_1&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;_method&quot;</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">value=</span><span class="s">&quot;put&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&quot;_method&quot;</span> <span class="na">type=</span><span class="s">&quot;hidden&quot;</span> <span class="na">value=</span><span class="s">&quot;patch&quot;</span> <span class="nt">/&gt;</span>
   .
   .
   .
@@ -749,7 +749,7 @@
 </div></div>
 
 
-<p><code>correct_user</code>フィルタでは<code>current_user?</code>論理値 (boolean) メソッドを使用しています。このメソッドはセッションヘルパーで定義しました (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-current_user_p">リスト9.16</a>)。</p>
+<p><code>correct_user</code>フィルタでは<code>current_user?</code>論理値 (boolean) メソッドを使用しています。このメソッドはセッションヘルパーで定義します (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-current_user_p">リスト9.16</a>)。</p>
 
 <div class="label" id="code-current_user_p"></div>
 
@@ -850,7 +850,7 @@
 </div></div>
 
 
-<p>いよいよ実装です<sup class="footnote" id="fnref-9_4"><a href="/chapters/updating-showing-and-deleting-users?version=4.0#fn-9_4">4</a></sup>。 この動作を、<code>store_location</code>と<code>redirect_back_or</code>の2つのメソッドを使用して実現します。これらのメソッドは、セッションヘルパーで定義されています (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-friendly_forwarding_code">リスト9.18</a>)。</p>
+<p>いよいよ実装です<sup class="footnote" id="fnref-9_4"><a href="/chapters/updating-showing-and-deleting-users?version=4.0#fn-9_4">4</a></sup>。 この動作を、<code>store_location</code>と<code>redirect_back_or</code>の2つのメソッドを使用して実現します。これらのメソッドは、セッションヘルパーで定義します (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-friendly_forwarding_code">リスト9.18</a>)。</p>
 
 <div class="label" id="code-friendly_forwarding_code"></div>
 
@@ -1888,7 +1888,7 @@
 </div>
 
 
-<p>逆に管理ユーザーにはこの削除リンクが表示され、このリンクをクリックすることで管理ユーザーがそのユーザーが削除され、<code>User</code>カウントが<code>-1</code>だけ変わることが期待されます。</p>
+<p>逆に管理ユーザーにはこの削除リンクが表示され、このリンクをクリックすることでそのユーザーが管理ユーザーによって削除され、<code>User</code>カウントが<code>-1</code>だけ変わることが期待されます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="ss">href:</span> <span class="n">user_path</span><span class="p">(</span><span class="no">User</span><span class="o">.</span><span class="n">first</span><span class="p">))</span> <span class="p">}</span>
 <span class="n">it</span> <span class="s2">&quot;should be able to delete another user&quot;</span> <span class="k">do</span>
@@ -1980,7 +1980,7 @@
 </div></div>
 
 
-<p>ブラウザはネイティブでは<tt>DELETE</tt>リクエストを送信できないため、RailsではJavaScriptを使用してこれを偽造します。つまり、JavaScriptがオフになっているとユーザー削除のリンクも無効になるということです。JavaScriptをサポートしないブラウザをサポートする必要がある場合は、フォームと<tt>POST</tt>リクエストを使用して<tt>DELETE</tt>リクエストを偽造することもできます。これはJavaScriptがなくても動作します。詳細についてはRailsCastの「<a href="http://railscasts.com/episodes/77-destroy-without-javascript">JavaScriptを使用しないで削除する(英語)</a>」を参照してください。</p>
+<p>ブラウザはネイティブでは<tt>DELETE</tt>リクエストを送信できないため、RailsではJavaScriptを使用してこれを偽造します。つまり、JavaScriptがオフになっているとユーザー削除のリンクも無効になるということです。JavaScriptをサポートしないブラウザをサポートする必要がある場合は、フォームと<tt>POST</tt>リクエストを使用して<tt>DELETE</tt>リクエストを偽造することもできます。こちらはJavaScriptがなくても動作します。詳細についてはRailsCastの「<a href="http://railscasts.com/episodes/77-destroy-without-javascript">JavaScriptを使用しないで削除する(英語)</a>」を参照してください。</p>
 
 <div class="label" id="fig-index_delete_links_rails_3"></div>
 
@@ -2057,7 +2057,7 @@
 
 <p>原則に従えば、ここにはまだ小さなセキュリティホールが残っています。管理者がやろうと思えば、<tt>DELETE</tt>リクエストをコマンドラインで直接発行して自分自身を削除できてしまいます。単なる管理者の自業自得ではないかという考えもあるかと思いますが、こういう事故を未然に防ぐに越したことはありません。この対策については演習の課題に回します (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-updating_deleting_exercises">9.6</a>)。</p>
 
-<p>上のテストに対応するアプリケーションコードではbefore_filterを使用していますが、ここでは<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用していることに気付いた方もいるかもしれません。変更後の<code>admin_user</code> before_filterを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-admin_destroy_before_filter">リスト9.47</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードではbefore_filterを使用していますが、ここでも同じように<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用します。変更後の<code>admin_user</code> before_filterを<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-admin_destroy_before_filter">リスト9.47</a>に示します。</p>
 
 <div class="label" id="code-admin_destroy_before_filter"></div>
 
