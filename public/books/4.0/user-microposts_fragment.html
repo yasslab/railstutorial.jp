@@ -863,7 +863,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>上のコードは引数なしで動作していました。これは<code>will_paginate</code>が、Usersコントローラのコンテキストにおいて、<code>@users</code>インスタンス変数が存在していることを<em>前提としている</em>ためです。このインスタンス変数は、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-pagination">9.3.3</a>でも述べたように<code>ActiveRecord::Relation</code>クラスのインスタンスです。今回の場合は、ユーザーコントローラのコンテキストにおいて、<em>マイクロポスト</em>をページネーションしたいため、明示的に<code>@micropost</code>変数を<code> will_paginate</code>に渡す必要があります。もちろん、そのような変数をユーザー<code>show</code>アクションで定義しなければなりません (<a class="ref" href="/chapters/user-microposts?version=4.0#code-user_show_microposts_instance">リスト10.19</a>)。</p>
+<p>上のコードは引数なしで動作していました。これは<code>will_paginate</code>が、Usersコントローラのコンテキストにおいて、<code>@users</code>インスタンス変数が存在していることを<em>前提としている</em>ためです。このインスタンス変数は、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-pagination">9.3.3</a>でも述べたように<code>ActiveRecord::Relation</code>クラスのインスタンスです。今回の場合は、ユーザーコントローラのコンテキストにおいて、<em>マイクロポスト</em>をページネーションしたいため、明示的に<code>@microposts</code>変数を<code> will_paginate</code>に渡す必要があります。もちろん、そのような変数をユーザー<code>show</code>アクションで定義しなければなりません (<a class="ref" href="/chapters/user-microposts?version=4.0#code-user_show_microposts_instance">リスト10.19</a>)。</p>
 
 <p>最後に、以下のようにマイクロポストの現在の数のカウントを追加します。</p>
 
