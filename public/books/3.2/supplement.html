@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>supplement</title>
+    <link rel="stylesheet" href="/stylesheets/pygments.css"   type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/polytexnic.css" type="text/css" />
+  </head>
+  <body>
+    <div id="book">
+
+<h1 class="title">Ruby on Rails Tutorial </h1>
+
+
+<h1 class="subtitle">  Learn Web Development with Rails</h1>
+
+
+<h2 class="author">Michael Hartl</h2>
+
+
+
+
+<h2 class="contents">Contents</h2>
+
+
+<div id="table_of_contents"><ol><li class="chapter"><a href="beginning.html#top"><span class="number">Chapter 1</span> From zero to deploy</a></li><li><ol><li class="section"><a href="beginning.html#sec-introduction"><span class="number">1.1</span> Introduction</a></li><li><ol><li class="subsection"><a href="beginning.html#sec-comments_for_various_readers"><span class="number">1.1.1</span> Comments for various readers</a></li><li class="subsection"><a href="beginning.html#sec-1_1_2"><span class="number">1.1.2</span> &ldquo;Scaling&rdquo; Rails</a></li><li class="subsection"><a href="beginning.html#sec-conventions"><span class="number">1.1.3</span> Conventions in this book</a></li></ol></li><li class="section"><a href="beginning.html#sec-up_and_running"><span class="number">1.2</span> Up and running</a></li><li><ol><li class="subsection"><a href="beginning.html#sec-development_tools"><span class="number">1.2.1</span> Development environments</a></li><li><ol><li class="subsubsection"><a href="beginning.html#sec-1_2_1_1">IDEs</a></li><li class="subsubsection"><a href="beginning.html#sec-1_2_1_2">Text editors and command lines</a></li><li class="subsubsection"><a href="beginning.html#sec-1_2_1_3">Browsers</a></li><li class="subsubsection"><a href="beginning.html#sec-1_2_1_4">A note about tools</a></li></ol></li><li class="subsection"><a href="beginning.html#sec-rubygems"><span class="number">1.2.2</span> Ruby, RubyGems, Rails, and Git</a></li><li><ol><li class="subsubsection"><a href="beginning.html#sec-rails_installer_windows">Rails Installer (Windows)</a></li><li class="subsubsection"><a href="beginning.html#sec-install_git">Install Git</a></li><li class="subsubsection"><a href="beginning.html#sec-install_ruby">Install Ruby</a></li><li class="subsubsection"><a href="beginning.html#sec-install_rubygems">Install RubyGems</a></li><li class="subsubsection"><a href="beginning.html#sec-install_rails">Install Rails</a></li></ol></li><li class="subsection"><a href="beginning.html#sec-the_first_application"><span class="number">1.2.3</span> The first application</a></li><li class="subsection"><a href="beginning.html#sec-bundler"><span class="number">1.2.4</span> Bundler</a></li><li class="subsection"><a href="beginning.html#sec-rails_server"><span class="number">1.2.5</span> <tt>rails server</tt></a></li><li class="subsection"><a href="beginning.html#sec-mvc"><span class="number">1.2.6</span> Model-view-controller (MVC)</a></li></ol></li><li class="section"><a href="beginning.html#sec-version_control"><span class="number">1.3</span> Version control with Git</a></li><li><ol><li class="subsection"><a href="beginning.html#sec-git_setup"><span class="number">1.3.1</span> Installation and setup</a></li><li><ol><li class="subsubsection"><a href="beginning.html#sec-1_3_1_1">First-time system setup</a></li><li class="subsubsection"><a href="beginning.html#sec-1_3_1_2">First-time repository setup</a></li></ol></li><li class="subsection"><a href="beginning.html#sec-adding_and_committing"><span class="number">1.3.2</span> Adding and committing</a></li><li class="subsection"><a href="beginning.html#sec-1_3_3"><span class="number">1.3.3</span> What good does Git do you?</a></li><li class="subsection"><a href="beginning.html#sec-github"><span class="number">1.3.4</span> GitHub</a></li><li class="subsection"><a href="beginning.html#sec-git_commands"><span class="number">1.3.5</span> Branch, edit, commit, merge</a></li><li><ol><li class="subsubsection"><a href="beginning.html#sec-git_branch">Branch</a></li><li class="subsubsection"><a href="beginning.html#sec-git_edit">Edit</a></li><li class="subsubsection"><a href="beginning.html#sec-git_commit">Commit</a></li><li class="subsubsection"><a href="beginning.html#sec-git_merge">Merge</a></li><li class="subsubsection"><a href="beginning.html#sec-git_push">Push</a></li></ol></li></ol></li><li class="section"><a href="beginning.html#sec-deploying"><span class="number">1.4</span> Deploying</a></li><li><ol><li class="subsection"><a href="beginning.html#sec-heroku_setup"><span class="number">1.4.1</span> Heroku setup</a></li><li class="subsection"><a href="beginning.html#sec-heroku_step_one"><span class="number">1.4.2</span> Heroku deployment, step one</a></li><li class="subsection"><a href="beginning.html#sec-1_4_3"><span class="number">1.4.3</span> Heroku deployment, step two</a></li><li class="subsection"><a href="beginning.html#sec-heroku_commands"><span class="number">1.4.4</span> Heroku commands</a></li></ol></li><li class="section"><a href="beginning.html#sec-beginning_conclusion"><span class="number">1.5</span> Conclusion</a></li></ol></li><li class="chapter"><a href="a-demo-app.html#top"><span class="number">Chapter 2</span> A demo app</a></li><li><ol><li class="section"><a href="a-demo-app.html#sec-planning_the_application"><span class="number">2.1</span> Planning the application</a></li><li><ol><li class="subsection"><a href="a-demo-app.html#sec-modeling_demo_users"><span class="number">2.1.1</span> Modeling demo users</a></li><li class="subsection"><a href="a-demo-app.html#sec-modeling_demo_microposts"><span class="number">2.1.2</span> Modeling demo microposts</a></li></ol></li><li class="section"><a href="a-demo-app.html#sec-demo_users_resource"><span class="number">2.2</span> The Users resource</a></li><li><ol><li class="subsection"><a href="a-demo-app.html#sec-a_user_tour"><span class="number">2.2.1</span> A user tour</a></li><li class="subsection"><a href="a-demo-app.html#sec-mvc_in_action"><span class="number">2.2.2</span> MVC in action</a></li><li class="subsection"><a href="a-demo-app.html#sec-weaknesses_of_this_users_resource"><span class="number">2.2.3</span> Weaknesses of this Users resource</a></li></ol></li><li class="section"><a href="a-demo-app.html#sec-microposts_resource"><span class="number">2.3</span> The Microposts resource</a></li><li><ol><li class="subsection"><a href="a-demo-app.html#sec-a_micropost_microtour"><span class="number">2.3.1</span> A micropost microtour</a></li><li class="subsection"><a href="a-demo-app.html#sec-putting_the_micro_in_microposts"><span class="number">2.3.2</span> Putting the <em>micro</em> in microposts</a></li><li class="subsection"><a href="a-demo-app.html#sec-demo_user_has_many_microposts"><span class="number">2.3.3</span> A user <tt>has_many</tt> microposts</a></li><li class="subsection"><a href="a-demo-app.html#sec-inheritance_hierarchies"><span class="number">2.3.4</span> Inheritance hierarchies</a></li><li class="subsection"><a href="a-demo-app.html#sec-deploying_the_demo_app"><span class="number">2.3.5</span> Deploying the demo app</a></li></ol></li><li class="section"><a href="a-demo-app.html#sec-2_4"><span class="number">2.4</span> Conclusion</a></li></ol></li><li class="chapter"><a href="static-pages.html#top"><span class="number">Chapter 3</span> Mostly static pages</a></li><li><ol><li class="section"><a href="static-pages.html#sec-static_pages"><span class="number">3.1</span> Static pages</a></li><li><ol><li class="subsection"><a href="static-pages.html#sec-truly_static_pages"><span class="number">3.1.1</span> Truly static pages</a></li><li class="subsection"><a href="static-pages.html#sec-static_pages_with_rails"><span class="number">3.1.2</span> Static pages with Rails</a></li></ol></li><li class="section"><a href="static-pages.html#sec-first_tests"><span class="number">3.2</span> Our first tests</a></li><li><ol><li class="subsection"><a href="static-pages.html#sec-TDD"><span class="number">3.2.1</span> Test-driven development</a></li><li class="subsection"><a href="static-pages.html#sec-adding_a_page"><span class="number">3.2.2</span> Adding a page</a></li><li><ol><li class="subsubsection"><a href="static-pages.html#sec-red">Red</a></li><li class="subsubsection"><a href="static-pages.html#sec-green">Green</a></li><li class="subsubsection"><a href="static-pages.html#sec-refactor">Refactor</a></li></ol></li></ol></li><li class="section"><a href="static-pages.html#sec-slightly_dynamic_pages"><span class="number">3.3</span> Slightly dynamic pages</a></li><li><ol><li class="subsection"><a href="static-pages.html#sec-testing_a_title_change"><span class="number">3.3.1</span> Testing a title change</a></li><li class="subsection"><a href="static-pages.html#sec-passing_title_tests"><span class="number">3.3.2</span> Passing title tests</a></li><li class="subsection"><a href="static-pages.html#sec-embedded_ruby"><span class="number">3.3.3</span> Embedded Ruby</a></li><li class="subsection"><a href="static-pages.html#sec-layouts"><span class="number">3.3.4</span> Eliminating duplication with layouts</a></li></ol></li><li class="section"><a href="static-pages.html#sec-static_pages_conclusion"><span class="number">3.4</span> Conclusion</a></li><li class="section"><a href="static-pages.html#sec-static_pages_exercises"><span class="number">3.5</span> Exercises</a></li><li class="section"><a href="static-pages.html#sec-advanced_setup"><span class="number">3.6</span> Advanced setup</a></li><li><ol><li class="subsection"><a href="static-pages.html#sec-eliminating_bundle_exec"><span class="number">3.6.1</span> Eliminating <tt>bundle exec</tt></a></li><li><ol><li class="subsubsection"><a href="static-pages.html#sec-rvm_bundler_integration">RVM Bundler integration</a></li><li class="subsubsection"><a href="static-pages.html#sec-binstubs">binstubs</a></li></ol></li><li class="subsection"><a href="static-pages.html#sec-guard"><span class="number">3.6.2</span> Automated tests with Guard</a></li><li class="subsection"><a href="static-pages.html#sec-spork"><span class="number">3.6.3</span> Speeding up tests with Spork</a></li><li><ol><li class="subsubsection"><a href="static-pages.html#sec-spork_and_guard">Guard with Spork</a></li></ol></li><li class="subsection"><a href="static-pages.html#sec-tests_inside_sublime_text"><span class="number">3.6.4</span> Tests inside Sublime Text</a></li></ol></li></ol></li><li class="chapter"><a href="rails-flavored-ruby.html#top"><span class="number">Chapter 4</span> Rails-flavored Ruby</a></li><li><ol><li class="section"><a href="rails-flavored-ruby.html#sec-motivation"><span class="number">4.1</span> Motivation</a></li><li class="section"><a href="rails-flavored-ruby.html#sec-strings_and_methods"><span class="number">4.2</span> Strings and methods</a></li><li><ol><li class="subsection"><a href="rails-flavored-ruby.html#sec-comments"><span class="number">4.2.1</span> Comments</a></li><li class="subsection"><a href="rails-flavored-ruby.html#sec-strings"><span class="number">4.2.2</span> Strings</a></li><li><ol><li class="subsubsection"><a href="rails-flavored-ruby.html#sec-printing">Printing</a></li><li class="subsubsection"><a href="rails-flavored-ruby.html#sec-single_quoted_strings">Single-quoted strings</a></li></ol></li><li class="subsection"><a href="rails-flavored-ruby.html#sec-objects_and_message_passing"><span class="number">4.2.3</span> Objects and message passing</a></li><li class="subsection"><a href="rails-flavored-ruby.html#sec-method_definitions"><span class="number">4.2.4</span> Method definitions</a></li><li class="subsection"><a href="rails-flavored-ruby.html#sec-back_to_the_title_helper"><span class="number">4.2.5</span> Back to the title helper</a></li></ol></li><li class="section"><a href="rails-flavored-ruby.html#sec-other_data_structures"><span class="number">4.3</span> Other data structures</a></li><li><ol><li class="subsection"><a href="rails-flavored-ruby.html#sec-arrays_and_ranges"><span class="number">4.3.1</span> Arrays and ranges</a></li><li class="subsection"><a href="rails-flavored-ruby.html#sec-blocks"><span class="number">4.3.2</span> Blocks</a></li><li class="subsection"><a href="rails-flavored-ruby.html#sec-hashes_and_symbols"><span class="number">4.3.3</span> Hashes and symbols</a></li><li class="subsection"><a href="rails-flavored-ruby.html#sec-css_revisited"><span class="number">4.3.4</span> CSS revisited</a></li></ol></li><li class="section"><a href="rails-flavored-ruby.html#sec-ruby_classes"><span class="number">4.4</span> Ruby classes</a></li><li><ol><li class="subsection"><a href="rails-flavored-ruby.html#sec-constructors"><span class="number">4.4.1</span> Constructors</a></li><li class="subsection"><a href="rails-flavored-ruby.html#sec-a_class_of_our_own"><span class="number">4.4.2</span> Class inheritance</a></li><li class="subsection"><a href="rails-flavored-ruby.html#sec-modifying_built_in_classes"><span class="number">4.4.3</span> Modifying built-in classes</a></li><li class="subsection"><a href="rails-flavored-ruby.html#sec-a_controller_class"><span class="number">4.4.4</span> A controller class</a></li><li class="subsection"><a href="rails-flavored-ruby.html#sec-a_user_class"><span class="number">4.4.5</span> A user class</a></li></ol></li><li class="section"><a href="rails-flavored-ruby.html#sec-conclusion"><span class="number">4.5</span> Conclusion</a></li><li class="section"><a href="rails-flavored-ruby.html#sec-exercises"><span class="number">4.6</span> Exercises</a></li></ol></li><li class="chapter"><a href="filling-in-the-layout.html#top"><span class="number">Chapter 5</span> Filling in the layout</a></li><li><ol><li class="section"><a href="filling-in-the-layout.html#sec-structure"><span class="number">5.1</span> Adding some structure</a></li><li><ol><li class="subsection"><a href="filling-in-the-layout.html#sec-adding_to_the_layout"><span class="number">5.1.1</span> Site navigation</a></li><li class="subsection"><a href="filling-in-the-layout.html#sec-custom_css"><span class="number">5.1.2</span> Bootstrap and custom CSS</a></li><li class="subsection"><a href="filling-in-the-layout.html#sec-partials"><span class="number">5.1.3</span> Partials</a></li></ol></li><li class="section"><a href="filling-in-the-layout.html#sec-sass_and_the_asset_pipeline"><span class="number">5.2</span> Sass and the asset pipeline</a></li><li><ol><li class="subsection"><a href="filling-in-the-layout.html#sec-the_asset_pipeline"><span class="number">5.2.1</span> The asset pipeline</a></li><li><ol><li class="subsubsection"><a href="filling-in-the-layout.html#sec-5_2_1_1">Asset directories</a></li><li class="subsubsection"><a href="filling-in-the-layout.html#sec-5_2_1_2">Manifest files</a></li><li class="subsubsection"><a href="filling-in-the-layout.html#sec-5_2_1_3">Preprocessor engines</a></li><li class="subsubsection"><a href="filling-in-the-layout.html#sec-5_2_1_4">Efficiency in production</a></li></ol></li><li class="subsection"><a href="filling-in-the-layout.html#sec-sass"><span class="number">5.2.2</span> Syntactically awesome stylesheets</a></li><li><ol><li class="subsubsection"><a href="filling-in-the-layout.html#sec-5_2_2_1">Nesting</a></li><li class="subsubsection"><a href="filling-in-the-layout.html#sec-5_2_2_2">Variables</a></li></ol></li></ol></li><li class="section"><a href="filling-in-the-layout.html#sec-layout_links"><span class="number">5.3</span> Layout links</a></li><li><ol><li class="subsection"><a href="filling-in-the-layout.html#sec-route_tests"><span class="number">5.3.1</span> Route tests</a></li><li class="subsection"><a href="filling-in-the-layout.html#sec-rails_routes"><span class="number">5.3.2</span> Rails routes</a></li><li class="subsection"><a href="filling-in-the-layout.html#sec-named_routes"><span class="number">5.3.3</span> Named routes</a></li><li class="subsection"><a href="filling-in-the-layout.html#sec-pretty_rspec"><span class="number">5.3.4</span> Pretty RSpec</a></li></ol></li><li class="section"><a href="filling-in-the-layout.html#sec-user_signup"><span class="number">5.4</span> User signup: A first step</a></li><li><ol><li class="subsection"><a href="filling-in-the-layout.html#sec-users_controller"><span class="number">5.4.1</span> Users controller</a></li><li class="subsection"><a href="filling-in-the-layout.html#sec-signup_url"><span class="number">5.4.2</span> Signup URI</a></li></ol></li><li class="section"><a href="filling-in-the-layout.html#sec-layout_conclusion"><span class="number">5.5</span> Conclusion</a></li><li class="section"><a href="filling-in-the-layout.html#sec-layout_exercises"><span class="number">5.6</span> Exercises</a></li></ol></li><li class="chapter"><a href="modeling-users.html#top"><span class="number">Chapter 6</span> Modeling users</a></li><li><ol><li class="section"><a href="modeling-users.html#sec-user_model"><span class="number">6.1</span> User model</a></li><li><ol><li class="subsection"><a href="modeling-users.html#sec-database_migrations"><span class="number">6.1.1</span> Database migrations</a></li><li class="subsection"><a href="modeling-users.html#sec-the_model_file"><span class="number">6.1.2</span> The model file</a></li><li><ol><li class="subsubsection"><a href="modeling-users.html#sec-model_annotation">Model annotation</a></li><li class="subsubsection"><a href="modeling-users.html#sec-accessible_attributes">Accessible attributes</a></li></ol></li><li class="subsection"><a href="modeling-users.html#sec-creating_user_objects"><span class="number">6.1.3</span> Creating user objects</a></li><li class="subsection"><a href="modeling-users.html#sec-finding_user_objects"><span class="number">6.1.4</span> Finding user objects</a></li><li class="subsection"><a href="modeling-users.html#sec-updating_user_objects"><span class="number">6.1.5</span> Updating user objects</a></li></ol></li><li class="section"><a href="modeling-users.html#sec-user_validations"><span class="number">6.2</span> User validations</a></li><li><ol><li class="subsection"><a href="modeling-users.html#sec-initial_user_tests"><span class="number">6.2.1</span> Initial user tests</a></li><li class="subsection"><a href="modeling-users.html#sec-presence_validation"><span class="number">6.2.2</span> Validating presence</a></li><li class="subsection"><a href="modeling-users.html#sec-length_validation"><span class="number">6.2.3</span> Length validation</a></li><li class="subsection"><a href="modeling-users.html#sec-format_validation"><span class="number">6.2.4</span> Format validation</a></li><li class="subsection"><a href="modeling-users.html#sec-uniqueness_validation"><span class="number">6.2.5</span> Uniqueness validation</a></li><li><ol><li class="subsubsection"><a href="modeling-users.html#sec-the_caveat">The uniqueness caveat</a></li></ol></li></ol></li><li class="section"><a href="modeling-users.html#sec-adding_a_secure_password"><span class="number">6.3</span> Adding a secure password</a></li><li><ol><li class="subsection"><a href="modeling-users.html#sec-an_encrypted_password"><span class="number">6.3.1</span> An encrypted password</a></li><li class="subsection"><a href="modeling-users.html#sec-password_and_confirmation"><span class="number">6.3.2</span> Password and confirmation</a></li><li class="subsection"><a href="modeling-users.html#sec-user_authentication"><span class="number">6.3.3</span> User authentication</a></li><li class="subsection"><a href="modeling-users.html#sec-has_secure_password"><span class="number">6.3.4</span> User has secure password</a></li><li class="subsection"><a href="modeling-users.html#sec-creating_a_user"><span class="number">6.3.5</span> Creating a user</a></li></ol></li><li class="section"><a href="modeling-users.html#sec-6_4"><span class="number">6.4</span> Conclusion</a></li><li class="section"><a href="modeling-users.html#sec-6_5"><span class="number">6.5</span> Exercises</a></li></ol></li><li class="chapter"><a href="sign-up.html#top"><span class="number">Chapter 7</span> Sign up</a></li><li><ol><li class="section"><a href="sign-up.html#sec-showing_users"><span class="number">7.1</span> Showing users</a></li><li><ol><li class="subsection"><a href="sign-up.html#sec-rails_environments"><span class="number">7.1.1</span> Debug and Rails environments</a></li><li class="subsection"><a href="sign-up.html#sec-a_users_resource"><span class="number">7.1.2</span> A Users resource</a></li><li class="subsection"><a href="sign-up.html#sec-tests_with_factories"><span class="number">7.1.3</span> Testing the user show page (with factories)</a></li><li class="subsection"><a href="sign-up.html#sec-a_gravatar_image"><span class="number">7.1.4</span> A Gravatar image and a sidebar</a></li></ol></li><li class="section"><a href="sign-up.html#sec-signup_form"><span class="number">7.2</span> Signup form</a></li><li><ol><li class="subsection"><a href="sign-up.html#sec-tests_for_user_signup"><span class="number">7.2.1</span> Tests for user signup</a></li><li class="subsection"><a href="sign-up.html#sec-using_form_for"><span class="number">7.2.2</span> Using <tt>form_for</tt></a></li><li class="subsection"><a href="sign-up.html#sec-the_form_html"><span class="number">7.2.3</span> The form HTML</a></li></ol></li><li class="section"><a href="sign-up.html#sec-signup_failure"><span class="number">7.3</span> Signup failure</a></li><li><ol><li class="subsection"><a href="sign-up.html#sec-a_working_form"><span class="number">7.3.1</span> A working form</a></li><li class="subsection"><a href="sign-up.html#sec-signup_error_messages"><span class="number">7.3.2</span> Signup error messages</a></li></ol></li><li class="section"><a href="sign-up.html#sec-signup_success"><span class="number">7.4</span> Signup success</a></li><li><ol><li class="subsection"><a href="sign-up.html#sec-the_finished_signup_form"><span class="number">7.4.1</span> The finished signup form</a></li><li class="subsection"><a href="sign-up.html#sec-the_flash"><span class="number">7.4.2</span> The flash</a></li><li class="subsection"><a href="sign-up.html#sec-the_first_signup"><span class="number">7.4.3</span> The first signup</a></li><li class="subsection"><a href="sign-up.html#sec-deploying_to_production_with_ssl"><span class="number">7.4.4</span> Deploying to production with SSL</a></li></ol></li><li class="section"><a href="sign-up.html#sec-7_5"><span class="number">7.5</span> Conclusion</a></li><li class="section"><a href="sign-up.html#sec-signup_exercises"><span class="number">7.6</span> Exercises</a></li></ol></li><li class="chapter"><a href="sign-in-sign-out.html#top"><span class="number">Chapter 8</span> Sign in, sign out</a></li><li><ol><li class="section"><a href="sign-in-sign-out.html#sec-signin_failure"><span class="number">8.1</span> Sessions and signin failure</a></li><li><ol><li class="subsection"><a href="sign-in-sign-out.html#sec-sessions_controller"><span class="number">8.1.1</span> Sessions controller</a></li><li class="subsection"><a href="sign-in-sign-out.html#sec-signin_tests"><span class="number">8.1.2</span> Signin tests</a></li><li class="subsection"><a href="sign-in-sign-out.html#sec-signin_form"><span class="number">8.1.3</span> Signin form</a></li><li class="subsection"><a href="sign-in-sign-out.html#sec-reviewing_form_submission"><span class="number">8.1.4</span> Reviewing form submission</a></li><li class="subsection"><a href="sign-in-sign-out.html#sec-rendering_with_a_flash_message"><span class="number">8.1.5</span> Rendering with a flash message</a></li></ol></li><li class="section"><a href="sign-in-sign-out.html#sec-signin_success"><span class="number">8.2</span> Signin success</a></li><li><ol><li class="subsection"><a href="sign-in-sign-out.html#sec-remember_me"><span class="number">8.2.1</span> Remember me</a></li><li class="subsection"><a href="sign-in-sign-out.html#sec-a_working_sign_in_method"><span class="number">8.2.2</span> A working <tt>sign_in</tt> method</a></li><li class="subsection"><a href="sign-in-sign-out.html#sec-current_user"><span class="number">8.2.3</span> Current user</a></li><li class="subsection"><a href="sign-in-sign-out.html#sec-changing_the_layout_links"><span class="number">8.2.4</span> Changing the layout links</a></li><li class="subsection"><a href="sign-in-sign-out.html#sec-signin_upon_signup"><span class="number">8.2.5</span> Signin upon signup</a></li><li class="subsection"><a href="sign-in-sign-out.html#sec-signing_out"><span class="number">8.2.6</span> Signing out</a></li></ol></li><li class="section"><a href="sign-in-sign-out.html#sec-cucumber"><span class="number">8.3</span> Introduction to Cucumber (optional)</a></li><li><ol><li class="subsection"><a href="sign-in-sign-out.html#sec-installation_and_setup"><span class="number">8.3.1</span> Installation and setup</a></li><li class="subsection"><a href="sign-in-sign-out.html#sec-features_and_steps"><span class="number">8.3.2</span> Features and steps</a></li><li class="subsection"><a href="sign-in-sign-out.html#sec-rspec_custom_matchers"><span class="number">8.3.3</span> Counterpoint: RSpec custom matchers</a></li></ol></li><li class="section"><a href="sign-in-sign-out.html#sec-8_4"><span class="number">8.4</span> Conclusion</a></li><li class="section"><a href="sign-in-sign-out.html#sec-sign_in_out_exercises"><span class="number">8.5</span> Exercises</a></li></ol></li><li class="chapter"><a href="updating-showing-and-deleting-users.html#top"><span class="number">Chapter 9</span> Updating, showing, and deleting users</a></li><li><ol><li class="section"><a href="updating-showing-and-deleting-users.html#sec-updating_users"><span class="number">9.1</span> Updating users</a></li><li><ol><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-edit_form"><span class="number">9.1.1</span> Edit form</a></li><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-unsuccessful_edits"><span class="number">9.1.2</span> Unsuccessful edits</a></li><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-successful_edits"><span class="number">9.1.3</span> Successful edits</a></li></ol></li><li class="section"><a href="updating-showing-and-deleting-users.html#sec-authorization"><span class="number">9.2</span> Authorization</a></li><li><ol><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-requiring_signed_in_users"><span class="number">9.2.1</span> Requiring signed-in users</a></li><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-requiring_the_right_user"><span class="number">9.2.2</span> Requiring the right user</a></li><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-friendly_forwarding"><span class="number">9.2.3</span> Friendly forwarding</a></li></ol></li><li class="section"><a href="updating-showing-and-deleting-users.html#sec-showing_all_users"><span class="number">9.3</span> Showing all users</a></li><li><ol><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-user_index"><span class="number">9.3.1</span> User index</a></li><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-sample_users"><span class="number">9.3.2</span> Sample users</a></li><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-pagination"><span class="number">9.3.3</span> Pagination</a></li><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-partial_refactoring"><span class="number">9.3.4</span> Partial refactoring</a></li></ol></li><li class="section"><a href="updating-showing-and-deleting-users.html#sec-destroying_users"><span class="number">9.4</span> Deleting users</a></li><li><ol><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-administrative_users"><span class="number">9.4.1</span> Administrative users</a></li><li><ol><li class="subsubsection"><a href="updating-showing-and-deleting-users.html#sec-revisiting_attr_accessible">Revisiting <tt>attr_accessible</tt></a></li></ol></li><li class="subsection"><a href="updating-showing-and-deleting-users.html#sec-the_destroy_action"><span class="number">9.4.2</span> The <tt>destroy</tt> action</a></li></ol></li><li class="section"><a href="updating-showing-and-deleting-users.html#sec-updating_and_deleting_users_conclusion"><span class="number">9.5</span> Conclusion</a></li><li class="section"><a href="updating-showing-and-deleting-users.html#sec-updating_deleting_exercises"><span class="number">9.6</span> Exercises</a></li></ol></li><li class="chapter"><a href="user-microposts.html#top"><span class="number">Chapter 10</span> User microposts</a></li><li><ol><li class="section"><a href="user-microposts.html#sec-a_micropost_model"><span class="number">10.1</span> A Micropost model</a></li><li><ol><li class="subsection"><a href="user-microposts.html#sec-the_basic_model"><span class="number">10.1.1</span> The basic model</a></li><li class="subsection"><a href="user-microposts.html#sec-accessible_attribute"><span class="number">10.1.2</span> Accessible attributes and the first validation</a></li><li class="subsection"><a href="user-microposts.html#sec-user_micropost_associations"><span class="number">10.1.3</span> User/Micropost associations</a></li><li class="subsection"><a href="user-microposts.html#sec-ordering_and_dependency"><span class="number">10.1.4</span> Micropost refinements</a></li><li><ol><li class="subsubsection"><a href="user-microposts.html#sec-default_scope">Default scope</a></li><li class="subsubsection"><a href="user-microposts.html#sec-dependent_destroy">Dependent: destroy</a></li></ol></li><li class="subsection"><a href="user-microposts.html#sec-micropost_validations"><span class="number">10.1.5</span> Content validations</a></li></ol></li><li class="section"><a href="user-microposts.html#sec-showing_microposts"><span class="number">10.2</span> Showing microposts</a></li><li><ol><li class="subsection"><a href="user-microposts.html#sec-augmenting_the_user_show_page"><span class="number">10.2.1</span> Augmenting the user show page</a></li><li class="subsection"><a href="user-microposts.html#sec-sample_microposts"><span class="number">10.2.2</span> Sample microposts</a></li></ol></li><li class="section"><a href="user-microposts.html#sec-manipulating_microposts"><span class="number">10.3</span> Manipulating microposts</a></li><li><ol><li class="subsection"><a href="user-microposts.html#sec-access_control"><span class="number">10.3.1</span> Access control</a></li><li class="subsection"><a href="user-microposts.html#sec-creating_microposts"><span class="number">10.3.2</span> Creating microposts</a></li><li class="subsection"><a href="user-microposts.html#sec-a_proto_feed"><span class="number">10.3.3</span> A proto-feed</a></li><li class="subsection"><a href="user-microposts.html#sec-destroying_microposts"><span class="number">10.3.4</span> Destroying microposts</a></li></ol></li><li class="section"><a href="user-microposts.html#sec-10_4"><span class="number">10.4</span> Conclusion</a></li><li class="section"><a href="user-microposts.html#sec-micropost_exercises"><span class="number">10.5</span> Exercises</a></li></ol></li><li class="chapter"><a href="following-users.html#top"><span class="number">Chapter 11</span> Following users</a></li><li><ol><li class="section"><a href="following-users.html#sec-the_relationship_model"><span class="number">11.1</span> The Relationship model</a></li><li><ol><li class="subsection"><a href="following-users.html#sec-a_problem_with_the_data_model"><span class="number">11.1.1</span> A problem with the data model (and a solution)</a></li><li class="subsection"><a href="following-users.html#sec-relationship_user_associations"><span class="number">11.1.2</span> User/relationship associations</a></li><li class="subsection"><a href="following-users.html#sec-relationship_validations"><span class="number">11.1.3</span> Validations</a></li><li class="subsection"><a href="following-users.html#sec-following"><span class="number">11.1.4</span> Followed users</a></li><li class="subsection"><a href="following-users.html#sec-followers"><span class="number">11.1.5</span> Followers</a></li></ol></li><li class="section"><a href="following-users.html#sec-a_web_interface_for_following_and_followers"><span class="number">11.2</span> A web interface for following users</a></li><li><ol><li class="subsection"><a href="following-users.html#sec-sample_following_data"><span class="number">11.2.1</span> Sample following data</a></li><li class="subsection"><a href="following-users.html#sec-stats_and_a_follow_form"><span class="number">11.2.2</span> Stats and a follow form</a></li><li class="subsection"><a href="following-users.html#sec-following_and_followers_pages"><span class="number">11.2.3</span> Following and followers pages</a></li><li class="subsection"><a href="following-users.html#sec-a_working_follow_button_the_standard_way"><span class="number">11.2.4</span> A working follow button the standard way</a></li><li class="subsection"><a href="following-users.html#sec-a_working_follow_button_with_ajax"><span class="number">11.2.5</span> A working follow button with Ajax</a></li></ol></li><li class="section"><a href="following-users.html#sec-the_status_feed"><span class="number">11.3</span> The status feed</a></li><li><ol><li class="subsection"><a href="following-users.html#sec-motivation_and_strategy"><span class="number">11.3.1</span> Motivation and strategy</a></li><li class="subsection"><a href="following-users.html#sec-a_first_feed_implementation"><span class="number">11.3.2</span> A first feed implementation</a></li><li class="subsection"><a href="following-users.html#sec-scopes_subselects_and_a_lambda"><span class="number">11.3.3</span> Subselects</a></li><li class="subsection"><a href="following-users.html#sec-the_new_status_feed"><span class="number">11.3.4</span> The new status feed</a></li></ol></li><li class="section"><a href="following-users.html#sec-following_conclusion"><span class="number">11.4</span> Conclusion</a></li><li><ol><li class="subsection"><a href="following-users.html#sec-extensions_to_the_sample_application"><span class="number">11.4.1</span> Extensions to the sample application</a></li><li><ol><li class="subsubsection"><a href="following-users.html#sec-replies">Replies</a></li><li class="subsubsection"><a href="following-users.html#sec-messaging">Messaging</a></li><li class="subsubsection"><a href="following-users.html#sec-follower_notifications">Follower notifications</a></li><li class="subsubsection"><a href="following-users.html#sec-password_reminders">Password reminders</a></li><li class="subsubsection"><a href="following-users.html#sec-signup_confirmation">Signup confirmation</a></li><li class="subsubsection"><a href="following-users.html#sec-rss_feed">RSS feed</a></li><li class="subsubsection"><a href="following-users.html#sec-rest_api">REST API</a></li><li class="subsubsection"><a href="following-users.html#sec-search">Search</a></li></ol></li><li class="subsection"><a href="following-users.html#sec-guide_to_further_resources"><span class="number">11.4.2</span> Guide to further resources</a></li></ol></li><li class="section"><a href="following-users.html#sec-following_exercises"><span class="number">11.5</span> Exercises</a></li></ol></li><li class="chapter"><a href="supplement.html#top"><span class="number">Chapter 12</span> Rails 4.0 supplement</a></li><li><ol><li class="section"><a href="supplement.html#sec-upgrading_from_rails_3_2_to_4_0"><span class="number">12.1</span> Upgrading from Rails 3.2 to 4.0</a></li><li><ol><li class="subsection"><a href="supplement.html#sec-rails_4_0_setup"><span class="number">12.1.1</span> Rails 4.0 setup</a></li><li class="subsection"><a href="supplement.html#sec-getting_to_green"><span class="number">12.1.2</span> Getting to green</a></li><li class="subsection"><a href="supplement.html#sec-some_specific_issues"><span class="number">12.1.3</span> Some specific issues</a></li><li><ol><li class="subsubsection"><a href="supplement.html#sec-models">Models</a></li><li class="subsubsection"><a href="supplement.html#sec-controllers_and_views">Controllers and views</a></li></ol></li><li class="subsection"><a href="supplement.html#sec-finishing_up"><span class="number">12.1.4</span> Finishing up</a></li><li class="subsection"><a href="supplement.html#sec-additional_resources"><span class="number">12.1.5</span> Additional resources</a></li></ol></li><li class="section"><a href="supplement.html#sec-strong_parameters"><span class="number">12.2</span> Strong parameters</a></li><li class="section"><a href="supplement.html#sec-security_updates"><span class="number">12.3</span> Security updates</a></li><li><ol><li class="subsection"><a href="supplement.html#sec-secret_key"><span class="number">12.3.1</span> Secret key</a></li><li class="subsection"><a href="supplement.html#sec-encrypted_remember_tokens"><span class="number">12.3.2</span> Encrypted remember tokens</a></li></ol></li></ol></li></ol></div>
+
+
+<div id="main_content"></div>
+
+
+<p> <span class="preamble">
+ <span id="foreword">
+<strong> Foreword</strong> <br />
+ </span>
+ </span></p>
+
+<p>My former company (CD Baby) was one of the first to loudly switch to Ruby on Rails, and then even more loudly switch back to PHP (Google me to read about the drama). This book by Michael Hartl came so highly recommended that I had to try it, and the <em>Ruby on Rails Tutorial</em> is what I used to switch back to Rails again.</p>
+
+<p>Though I&rsquo;ve worked my way through many Rails books, this is the one that finally made me &ldquo;get&rdquo; it. Everything is done very much &ldquo;the Rails way&rdquo;&mdash;a way that felt very unnatural to me before, but now after doing this book finally feels natural. This is also the only Rails book that does test-driven development the entire time, an approach highly recommended by the experts but which has never been so clearly demonstrated before. Finally, by including Git, GitHub, and Heroku in the demo examples, the author really gives you a feel for what it&rsquo;s like to do a real-world project. The tutorial&rsquo;s code examples are not in isolation.</p>
+
+<p>The linear narrative is such a great format. Personally, I powered through the <em>Rails Tutorial</em> in three long days, doing all the examples and challenges at the end of each chapter. Do it from start to finish, without jumping around, and you&rsquo;ll get the ultimate benefit.</p>
+
+<p>Enjoy!</p>
+
+<p><a href="http://sivers.org/">Derek Sivers</a> (<a href="http://sivers.org/">sivers.org</a>) <br />
+<em>Founder, CD Baby</em> <br /></p>
+
+<p> <span class="preamble">
+<strong> Acknowledgments</strong> <br />
+ </span></p>
+
+<p>The <em>Ruby on Rails Tutorial</em> owes a lot to my previous Rails book, <em>RailsSpace</em>, and hence to my coauthor <a href="http://aure.com/">Aurelius Prochazka</a>. I&rsquo;d like to thank Aure both for the work he did on that book and for his support of this one. I&rsquo;d also like to thank Debra Williams Cauley, my editor on both <em>RailsSpace</em> and the <em>Ruby on Rails Tutorial</em>; as long as she keeps taking me to baseball games, I&rsquo;ll keep writing books for her.</p>
+
+<p>I&rsquo;d like to acknowledge a long list of Rubyists who have taught and inspired me over the years: David Heinemeier Hansson, Yehuda Katz, Carl Lerche, Jeremy Kemper, Xavier Noria, Ryan Bates, Geoffrey Grosenbach, Peter Cooper, Matt Aimonetti, Gregg Pollack, Wayne&nbsp;E. Seguin, Amy Hoy, Dave Chelimsky, Pat Maddox, Tom Preston-Werner, Chris Wanstrath, Chad Fowler, Josh Susser, Obie Fernandez, Ian McFarland, Steven Bristol, Pratik Naik, Sarah Mei, Sarah Allen, Wolfram Arnold, Alex Chaffee, Giles Bowkett, Evan Dorn, Long Nguyen, James Lindenbaum, Adam Wiggins, Tikhon Bernstam, Ron Evans, Wyatt Greene, Miles Forrest, the good people at Pivotal Labs, the Heroku gang, the thoughtbot guys, and the GitHub crew. Finally, many, many readers&mdash;far too many to list&mdash;have contributed a huge number of bug reports and suggestions during the writing of this book, and I gratefully acknowledge their help in making it as good as it can&nbsp;be. <br /></p>
+
+<p> <span class="preamble">
+ <span id="author">
+<strong> About the author</strong> <br />
+ </span>
+ </span></p>
+
+<p><a href="http://michaelhartl.com/">Michael Hartl</a> is the author of the <a href="http://ruby.railstutorial.org/"><em>Ruby on Rails Tutorial</em></a>, the leading introduction to web development with <a href="http://rubyonrails.org/">Ruby on Rails</a>. His prior experience includes writing and developing <em>RailsSpace</em>, an extremely obsolete Rails tutorial book, and developing Insoshi, a once-popular and now-obsolete social networking platform in Ruby on Rails. In 2011, Michael received a <a href="http://rubyheroes.com/heroes">Ruby Hero Award</a> for his contributions to the Ruby community. He is a graduate of <a href="http://college.harvard.edu/">Harvard College</a>, has a <a href="http://resolver.caltech.edu/CaltechETD:etd-05222003-161626">Ph.D. in Physics</a> from <a href="http://www.caltech.edu/">Caltech</a>, and is an alumnus of the <a href="http://ycombinator.com/">Y&nbsp;Combinator</a> entrepreneur program. <br /></p>
+
+<p> <span id="license" class="preamble">
+<strong> Copyright and license</strong> <br />
+ </span></p>
+
+<p><em>Ruby on Rails Tutorial: Learn Web Development with Rails</em>. Copyright &copy; 2012 by Michael Hartl. All source code in the <em>Ruby on Rails Tutorial</em> is available jointly under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a> and the <a href="http://people.freebsd.org/~phk/">Beerware License</a>.</p>
+
+<div class="code"><div class="highlight"><pre>The MIT License
+
+Copyright (c) 2012 Michael Hartl
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</pre></div>
+</div>
+
+
+<div class="code"><div class="highlight"><pre>/*
+ * ----------------------------------------------------------------------------
+ * &quot;THE BEER-WARE LICENSE&quot; (Revision 42):
+ * Michael Hartl wrote this code. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return.
+ * ----------------------------------------------------------------------------
+ */
+</pre></div>
+</div>
+
+
+<div id="top"></div>
+
+
+<h1 class="chapter"><a id="sec-12" href="supplement.html#top" class="heading"><span class="number">Chapter 12</span> Rails 4.0 supplement</a></h1>
+
+
+<p>This is a short supplementary chapter designed to bring you up to speed with the latest version of Rails, Rails&nbsp;4.0. From the perspective of an introductory tutorial, the differences between Rails&nbsp;3.2 and Rails&nbsp;4.0 are not particularly significant, and in fact there&rsquo;s only one new feature (strong parameters) that I consider essential for our purposes.  To serve the needs of those who want a more thorough introduction to web development using Rails&nbsp;4.0, I have prepared a <a href="http://railstutorial.org/book">version of the <em>Rails Tutorial</em> that uses Rails&nbsp;4.0 throughout</a>, which is available for free <a href="http://railstutorial.org/book">online</a> and for purchase as ebooks (PDF/EPUB/MOBI) at <a href="http://railstutorial.org/#ebooks">http://railstutorial.org/</a>. For a more comprehensive (but still remarkably short) list of differences between the Rails&nbsp;3.2 and Rails&nbsp;4.0 versions, see <a href="http://railstutorial.jp/chapters/beginning?version=4.0#sidebar-diffs">Box&nbsp;1.1 in the Rails&nbsp;4.0 version</a>.</p>
+
+<p>The principal goal of this chapter is to upgrade the <em>Rails Tutorial</em> sample application from Rails&nbsp;3.2 to Rails&nbsp;4.0, as discussed in <a class="ref" href="supplement.html#sec-upgrading_from_rails_3_2_to_4_0">Section&nbsp;12.1</a>. We then explain the main significant difference (alluded to above), namely, the change from <em>accessible attributes</em> (<a class="ref" href="modeling-users.html#sec-accessible_attributes">Section&nbsp;6.1.2.2</a>) to <em>strong parameters</em> (<a class="ref" href="supplement.html#sec-strong_parameters">Section&nbsp;12.2</a>). Finally, we&rsquo;ll make two small additions to the applications that have nothing to do with Rails&nbsp;4.0 <em>per se</em> but are included because they are issues related to security, which get priority (<a class="ref" href="supplement.html#sec-security_updates">Section&nbsp;12.3</a>).</p>
+
+<p>As a complement to this chapter, I have produced two supplementary screencasts, available for purchase at <a href="http://railstutorial.org/#supplement">railstutorial.org</a>. The first screencast shows a live demonstration of upgrading the sample app from Rails&nbsp;3.2 to Rails&nbsp;4.0, while the second covers strong parameters and the two aforementioned security updates.</p>
+
+<div class="label" id="sec-upgrading_from_rails_3_2_to_4_0"></div>
+
+
+<h2><a id="sec-12_1" href="supplement.html#sec-upgrading_from_rails_3_2_to_4_0" class="heading"><span class="number">12.1</span> Upgrading from Rails 3.2 to 4.0</a></h2>
+
+
+<p>Though now relatively mature, Rails and its ecosystem still change fast, and any major version upgrade is likely to break lots of little things. Indeed, in my experience it is often difficulty to upgrade an existing Rails project <a href="http://en.wikipedia.org/wiki/In_situ"><em>in situ</em></a>, and I virtually always end up making a new application from scratch using <code>rails new</code>. One reason is that <code>rails new</code> generates a large number of configuration files with values and defaults that change from version to version, and it is extremely hard to replicate these values in an existing project. As a result, our strategy in this section is first to <em>get something (anything) to work</em> by creating a new (empty) Rails&nbsp;4.0 project, and then move code over incrementally from the old project, taking care to get the application working at each step.</p>
+
+<p>This section is <em>hard</em>, because <em>upgrading Rails apps is hard</em>. It would not serve you well to create the expectation that you can upgrade an app by following a series of steps in a book. In fact, you can think of this section as an extended exercise&mdash;albeit with a large number of hints and a full solutions manual (the <a href="http://railstutorial.org/#supplement">upgrade screencast</a>) that shows my own upgrade struggles and eventual success. If you get stuck trying to upgrade your own application and don&rsquo;t want to buy the supplementary screencasts, you can find the <a href="https://github.com/mhartl/sample_app_4_0_upgrade">upgraded sample app at GitHub</a> for reference.</p>
+
+<div class="label" id="sec-rails_4_0_setup"></div>
+
+
+<h3><a id="sec-12_1_1" href="supplement.html#sec-rails_4_0_setup" class="heading"><span class="number">12.1.1</span> Rails 4.0 setup</a></h3>
+
+
+<p>The steps needed to set up a new Rails&nbsp;4.0 application are virtually identical to the steps from <a class="ref" href="beginning.html#top">Chapter&nbsp;1</a> and <a class="ref" href="static-pages.html#top">Chapter&nbsp;3</a>: create an RVM gemset or rbenv environment (optional), install Rails, install gems using Bundler, and configure RSpec.</p>
+
+<p>If you&rsquo;re using RVM or rbenv, you can configure your system as in <a href="http://ruby.railstutorial.org/chapters/beginning?version=4.0#sec-install_ruby">Chapter 1 of the 4.0 version</a>. For example, if you&rsquo;re using RVM, I suggest creating a new gemset for the Rails&nbsp;4.0 sample app as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm use 2.0.0@railstutorial_rails_4_0_upgrade --create
+</pre></div>
+</div>
+
+
+<p>Next, install Rails&nbsp;4.0:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> gem install rails -v 4.0.0
+</pre></div>
+</div>
+
+
+<p>Then, make a new project for the upgraded application:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/rails_projects
+<span class="gp">$</span> rails new sample_app_4_0 --skip-test-unit
+<span class="gp">$</span> <span class="nb">cd </span>sample_app_4_0
+</pre></div>
+</div>
+
+
+<p>At this point, you should be able to run the application locally and verify that it&rsquo;s working by running <code>rails server</code>.</p>
+
+<p>To proceed with the upgrade, we need to install all the necessary gems, as shown in <a class="ref" href="supplement.html#code-rails_4_0_upgrade_gemfile">Listing&nbsp;12.1</a>.</p>
+
+<div class="label" id="code-rails_4_0_upgrade_gemfile"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.1.</span> <span class="description">A <code>Gemfile</code> for the upgraded sample app.</span> </div>
+<div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+<span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;bootstrap-sass&#39;</span><span class="p">,</span> <span class="s1">&#39;2.3.2.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;bcrypt-ruby&#39;</span><span class="p">,</span> <span class="s1">&#39;3.0.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;faker&#39;</span><span class="p">,</span> <span class="s1">&#39;1.1.2&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;will_paginate&#39;</span><span class="p">,</span> <span class="s1">&#39;3.0.4&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;bootstrap-will_paginate&#39;</span><span class="p">,</span> <span class="s1">&#39;0.0.9&#39;</span>
+
+<span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.7&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;rspec-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.13.1&#39;</span>
+  <span class="c1"># The following optional lines are part of the advanced setup.</span>
+  <span class="c1"># gem &#39;guard-rspec&#39;, &#39;2.5.0&#39;</span>
+  <span class="c1"># gem &#39;spork-rails&#39;, github: &#39;sporkrb/spork-rails&#39;</span>
+  <span class="c1"># gem &#39;guard-spork&#39;, &#39;1.5.0&#39;</span>
+  <span class="c1"># gem &#39;childprocess&#39;, &#39;0.3.6&#39;</span>
+<span class="k">end</span>
+
+<span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;selenium-webdriver&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0.0&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;capybara&#39;</span><span class="p">,</span> <span class="s1">&#39;2.1.0&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;factory_girl_rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.2.0&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;cucumber-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.0&#39;</span><span class="p">,</span> <span class="ss">:require</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+  <span class="n">gem</span> <span class="s1">&#39;database_cleaner&#39;</span><span class="p">,</span> <span class="ss">github:</span> <span class="s1">&#39;bmabey/database_cleaner&#39;</span>
+
+  <span class="c1"># Uncomment this line on OS X.</span>
+  <span class="c1"># gem &#39;growl&#39;, &#39;1.0.3&#39;</span>
+
+  <span class="c1"># Uncomment these lines on Linux.</span>
+  <span class="c1"># gem &#39;libnotify&#39;, &#39;0.8.0&#39;</span>
+
+  <span class="c1"># Uncomment these lines on Windows.</span>
+  <span class="c1"># gem &#39;rb-notifu&#39;, &#39;0.0.4&#39;</span>
+  <span class="c1"># gem &#39;win32console&#39;, &#39;1.3.2&#39;</span>
+<span class="k">end</span>
+
+<span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;2.1.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.2.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;turbolinks&#39;</span><span class="p">,</span> <span class="s1">&#39;1.1.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;jbuilder&#39;</span><span class="p">,</span> <span class="s1">&#39;1.0.2&#39;</span>
+
+<span class="n">group</span> <span class="ss">:doc</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;sdoc&#39;</span><span class="p">,</span> <span class="s1">&#39;0.3.20&#39;</span><span class="p">,</span> <span class="nb">require</span><span class="p">:</span> <span class="kp">false</span>
+<span class="k">end</span>
+
+<span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.15.1&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;rails_12factor&#39;</span><span class="p">,</span> <span class="s1">&#39;0.0.2&#39;</span>
+<span class="k">end</span>
+
+<span class="n">gem</span> <span class="s1">&#39;protected_attributes&#39;</span>
+</pre></div>
+</div></div>
+
+
+<p>Note in particular the final line in <a class="ref" href="supplement.html#code-rails_4_0_upgrade_gemfile">Listing&nbsp;12.1</a>, which is needed to use <code>attr_accessible</code> (<a class="ref" href="modeling-users.html#sec-accessible_attributes">Section&nbsp;6.1.2.2</a>) in a Rails&nbsp;4.0 app:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;protected_attributes&#39;</span>
+</pre></div>
+</div>
+
+
+<p>We&rsquo;ll remove this gem in <a class="ref" href="supplement.html#sec-strong_parameters">Section&nbsp;12.2</a> when we change from accessible attributes to strong parameters.</p>
+
+<p>We can install the gems from <a class="ref" href="supplement.html#code-rails_4_0_upgrade_gemfile">Listing&nbsp;12.1</a> using <code>bundle install</code> as usual, adding in a <code>bundle update</code> for completeness (and a final <code>bundle install</code> for paranoia):</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install --without production
+<span class="gp">$</span> bundle update
+<span class="gp">$</span> bundle install
+</pre></div>
+</div>
+
+
+<p>The gem installation automatically includes RSpec (via <tt>rspec-rails</tt>), but we still need to install it:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate rspec:install
+</pre></div>
+</div>
+
+
+<p>We can get started copying over the Rails&nbsp;3.2 application by removing the generated <code>README</code> file and replacing it with the Markdown version from <a class="ref" href="static-pages.html#code-sample_app_readme">Listing&nbsp;3.2</a>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rm -f README.rdoc
+<span class="gp">$</span> cp ../sample_app_2nd_ed/README.md .
+<span class="gp">$</span> cp ../sample_app_2nd_ed/.rspec .
+</pre></div>
+</div>
+
+
+<p>Here we&rsquo;ve also taken the opportinuity to copy over the <code>.rspec</code> configuration file.</p>
+
+<p>At this point, it&rsquo;s probably wise to put the application under version control with Git, which is especially helpful when doing something as error-prone as a Rails version upgrade. I recommend replacing the <code>.gitignore</code> file generated by Rails with the one shown in <a class="ref" href="supplement.html#code-gitignore_rails_4_upgrade">Listing&nbsp;12.2</a>.</p>
+
+<div class="label" id="code-gitignore_rails_4_upgrade"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.2.</span> <span class="description">The application&rsquo;s <code>.gitignore</code> file.</span> </div>
+<div class="code"><div class="highlight"><pre># Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Ignore other unneeded files.
+doc/
+*.swp
+*~
+.project
+.DS_Store
+.idea
+.secret
+</pre></div>
+</div></div>
+
+
+<p><a class="ref" href="supplement.html#code-gitignore_rails_4_upgrade">Listing&nbsp;12.2</a> adds an important line to ignore the <code>.secret</code> file created by the security enhancement described in <a class="ref" href="supplement.html#sec-secret_key">Section&nbsp;12.3.1</a>.</p>
+
+<p>One final bit of necessary configuration is to explicitly include the Capybara domain-specific language (DSL), made necesarry by a change in the default syntax used by RSpec request specs (integration tests). All that is needed is an extra line in <code>spec_helper.rb</code>, as shown in <a class="ref" href="supplement.html#code-capybara_dsl">Listing&nbsp;12.3</a>.</p>
+
+<div class="label" id="code-capybara_dsl"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.3.</span> <span class="description">Adding the Capybara DSL to RSpec. <br /> <code>spec/spec_helper.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">include</span> <span class="ss">Capybara::DSL</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+If you&rsquo;re using Git for version control, now would be a good time to make the first commit:
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git init
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m <span class="s2">&quot;Initialize repository&quot;</span>
+</pre></div>
+</div></div>
+
+
+<p>For brevity, I&rsquo;ll omit Git commits from now on, but I recommend making them any time you reach a natural stopping place.</p>
+
+<div class="label" id="sec-getting_to_green"></div>
+
+
+<h3><a id="sec-12_1_2" href="supplement.html#sec-getting_to_green" class="heading"><span class="number">12.1.2</span> Getting to green</a></h3>
+
+
+<p>Our strategy for completing the upgrade is based on the test suite developed throughout the course of the tutorial. In particular, I suggest copying one test directory (or even test file) at a time from the old Rails project to the new one, and  then copy over the corresponding application code. Initially it will be a challenge even to get the tests to run; once we do, they will typically fail (red). The idea is then to make the necessary changes to get them to pass (green), which will usually involve copying over addtional code from the previous version of the application. Sometimes, though, failing tests will be due to differences between Rails&nbsp;3.2 and Rails&nbsp;4.0 and their associated gems, especially RSpec and Capybara.</p>
+
+<p>In my experience, it&rsquo;s easisest to start the upgrade using model specs and the corresponding models, as the model tests are more self-contained than the integration tests used for controllers and views. This means first copying the migrations:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> cp -r ../sample_app_2nd_ed/db/migrate db/
+<span class="gp">$</span> rake db:migrate
+<span class="gp">$</span> rake <span class="nb">test</span>:prepare
+</pre></div>
+</div>
+
+
+<p>Be sure not to put a trailing slash on <code>../sample_app_2nd_ed/db/migrate</code>, which on some systems will copy the migration <em>files</em> but not the directory. Note that in Rails&nbsp;4.0 it&rsquo;s conventional to use <code>rake test:prepare</code> in place of <code>rake db:test:prepare</code>, although both commands work.</p>
+
+<p>Throughout the rest of the chapter, you should copy over test and application code from the old application to the new one, either using a graphical file browser or with commands like this one:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> cp -r ../sample_app_2nd_ed/spec/models spec/
+<span class="gp">$</span> cp -r ../sample_app_2nd_ed/app/models app/
+</pre></div>
+</div>
+
+
+<p>Rather than attempt to enumerate all such file copying, which is erorr-prone and sometimes system-dependent, I will leave it to you to figure out the exact order in which to copy the code.</p>
+
+<p>It&rsquo;s also worth bearing in mind that some generated files, such as the application layout <code>application.html.erb</code>, contain important content that shouldn&rsquo;t be overwritten. In these cases, I recommend opening up both the old file and the new one and copying over only the text you need. (These kinds of steps are much easier to explain in <a href="http://railstutorial.org/#supplement">screencast</a> form.)</p>
+
+<div class="label" id="sec-some_specific_issues"></div>
+
+
+<h3><a id="sec-12_1_3" href="supplement.html#sec-some_specific_issues" class="heading"><span class="number">12.1.3</span> Some specific issues</a></h3>
+
+
+<p>It&rsquo;s extraordinarily difficult in general to anticipate all the things that can go wrong during an upgrade. I&rsquo;ve outlined above a general strategy, and in this section we&rsquo;ll go over some of the specific issues I ran into on my system, but a complete treatment is effectively impossible. There is no way to avoid some frustration; perseverance and Googling are in the end the only way to prevail. (Remember, you can always <a href="https://github.com/mhartl/sample_app_4_0_upgrade">cheat</a>.)</p>
+
+<div class="label" id="sec-models"></div>
+
+
+<h4><a id="sec-12_1_3_1" href="supplement.html#sec-models" class="heading">Models</a></h4>
+
+
+<p>Due to ways in which the <tt>protected_attributes</tt> gem (<a class="ref" href="supplement.html#code-rails_4_0_upgrade_gemfile">Listing&nbsp;12.1</a>) differs from the behavior of Rails&nbsp;3.2 accessible attributes, the tests for mass assignment security errors no longer work and should be removed. For example, here is the test that needs to be removed from the User model specs (<code>spec/models/user_spec.rb)</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;accessible attributes&quot;</span> <span class="k">do</span>
+  <span class="n">it</span> <span class="s2">&quot;should not allow access to admin&quot;</span> <span class="k">do</span>
+    <span class="n">expect</span> <span class="k">do</span>
+      <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">admin:</span> <span class="kp">true</span><span class="p">)</span>
+    <span class="k">end</span><span class="o">.</span><span class="n">to</span> <span class="n">raise_error</span><span class="p">(</span><span class="ss">ActiveModel::MassAssignmentSecurity</span><span class="o">::</span><span class="no">Error</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>The corresponding tests for the Micropost and Relationship models should also be removed.</p>
+
+<p>One issue in the models is a deprecation warning regarding default scope (<a class="ref" href="user-microposts.html#sec-default_scope">Section&nbsp;10.1.4.1</a>):</p>
+
+<div class="code"><div class="highlight"><pre><span class="go">DEPRECATION WARNING: Calling #scope or #default_scope with a hash is deprecated.</span>
+</pre></div>
+</div>
+
+
+<p>This can be fixed by changing</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">default_scope</span> <span class="ss">order:</span> <span class="s1">&#39;microposts.created_at DESC&#39;</span>
+</pre></div>
+</div>
+
+
+<p>to</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">default_scope</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">order</span><span class="p">(</span><span class="s1">&#39;created_at DESC&#39;</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>in <code>app/models/micropost.rb</code>. In Rails&nbsp;4.0, <code>default_scope</code> takes a <code>lambda</code> instead of a hash, and the <code>-&gt;</code> syntax is a synonym for <code>lambda</code> introduced in Ruby&nbsp;1.9. You can get more details in <a href="http://ruby.railstutorial.org/chapters/user-microposts?version=4.0#top">Chapter&nbsp;10 of the 4.0 version of the book</a>.</p>
+
+<p>One tiny change in the Micropost spec (<code>spec/models/micropost_spec.rb</code>) is a change from the <code>dup</code> method (to duplicate the user&rsquo;s user-microposts) to the <code>to_a</code> method (which converts them to an array). Here is the version with <code>dup</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should destroy associated microposts&quot;</span> <span class="k">do</span>
+  <span class="n">microposts</span> <span class="o">=</span> <span class="vi">@user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">dup</span>
+  <span class="vi">@user</span><span class="o">.</span><span class="n">destroy</span>
+  <span class="n">microposts</span><span class="o">.</span><span class="n">should_not</span> <span class="n">be_empty</span>
+  <span class="n">microposts</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">micropost</span><span class="o">|</span>
+    <span class="no">Micropost</span><span class="o">.</span><span class="n">find_by_id</span><span class="p">(</span><span class="n">micropost</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">should</span> <span class="n">be_nil</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>For reasons obscure to me, the call to <code>dup</code> no longer works in Rails&nbsp;4.0, but replacing it with <code>to_a</code> works fine:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should destroy associated microposts&quot;</span> <span class="k">do</span>
+  <span class="n">microposts</span> <span class="o">=</span> <span class="vi">@user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">to_a</span>
+  <span class="vi">@user</span><span class="o">.</span><span class="n">destroy</span>
+  <span class="n">expect</span><span class="p">(</span><span class="n">microposts</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">be_empty</span>
+  <span class="n">microposts</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">micropost</span><span class="o">|</span>
+    <span class="n">expect</span><span class="p">(</span><span class="no">Micropost</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="n">micropost</span><span class="o">.</span><span class="n">id</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">be_empty</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+
+
+<div class="label" id="sec-controllers_and_views"></div>
+
+
+<h4><a id="sec-12_1_3_2" href="supplement.html#sec-controllers_and_views" class="heading">Controllers and views</a></h4>
+
+
+<p>Because there are so few of them, the next set of tests I recommend running are the controller tests for Relationships. You should discover that the routes fail because in Rails&nbsp;4.0 using <code>match</code> requires explicitly specifying the HTTP method in <code>config/routes.rb</code> using <code>via</code>:</p>
+
+<div class="code"><div class="highlight"><pre>  <span class="n">resources</span> <span class="ss">:users</span> <span class="k">do</span>
+    <span class="n">member</span> <span class="k">do</span>
+      <span class="n">get</span> <span class="ss">:following</span><span class="p">,</span> <span class="ss">:followers</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="n">resources</span> <span class="ss">:sessions</span><span class="p">,</span>      <span class="ss">only:</span> <span class="o">[</span><span class="ss">:new</span><span class="p">,</span> <span class="ss">:create</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
+  <span class="n">resources</span> <span class="ss">:microposts</span><span class="p">,</span>    <span class="ss">only:</span> <span class="o">[</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
+  <span class="n">resources</span> <span class="ss">:relationships</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
+  <span class="n">root</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#home&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/signup&#39;</span><span class="p">,</span>  <span class="ss">to:</span> <span class="s1">&#39;users#new&#39;</span><span class="p">,</span>            <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/signin&#39;</span><span class="p">,</span>  <span class="ss">to:</span> <span class="s1">&#39;sessions#new&#39;</span><span class="p">,</span>         <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/signout&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;sessions#destroy&#39;</span><span class="p">,</span>     <span class="ss">via:</span> <span class="s1">&#39;delete&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/help&#39;</span><span class="p">,</span>    <span class="ss">to:</span> <span class="s1">&#39;static_pages#help&#39;</span><span class="p">,</span>    <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span>   <span class="ss">to:</span> <span class="s1">&#39;static_pages#about&#39;</span><span class="p">,</span>   <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+  <span class="n">match</span> <span class="s1">&#39;/contact&#39;</span><span class="p">,</span> <span class="ss">to:</span> <span class="s1">&#39;static_pages#contact&#39;</span><span class="p">,</span> <span class="ss">via:</span> <span class="s1">&#39;get&#39;</span>
+</pre></div>
+</div>
+
+
+<p>Next up are the request specs, and you should find that code of the form</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="ss">text:</span> <span class="s1">&#39;Sign up&#39;</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>fails due to changes in Capybara, which now restricts <code>have_selector</code> to apply only to <em>visible</em> page elements. (Though displayed on the top bar by some browsers, the page title is not shown as part of the rendered page.) The solution is to use the new <code>have_title</code> method:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="ss">text:</span> <span class="s1">&#39;Sign up&#39;</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+
+<p>In a text editor that supports regular expression substitution (such as Vim or Sublime Text), you can use the regex</p>
+
+<div class="code"><div class="highlight"><pre>have_selector\(&#39;title&#39;, text: (.*?)\)
+</pre></div>
+</div>
+
+
+<p>and replace it with</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">have_title</span><span class="p">(</span><span class="vg">$1</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+<p>Note that the static pages spec (<code>spec/requests/static_pages_spec.rb</code>) uses the same command without parentheses, so you&rsquo;ll also have to change</p>
+
+<div class="code"><div class="highlight"><pre>have_selector &#39;title&#39;, text: (.*?)
+</pre></div>
+</div>
+
+
+<p>to</p>
+
+<div class="code"><div class="highlight"><pre>have_title $1
+</pre></div>
+</div>
+
+
+<p>(If you don&rsquo;t know what I mean when I say to use your text editor to make the replacement, consider getting the <a href="http://railstutorial.org/#supplement">screencast</a>, which shows you exactly how.)</p>
+
+<p>Another thing that breaks due to changes in Capybara is the use of <code>have_selector</code> for <code>input</code> fields, because (as with <code>title</code> tags) they are not visible on the page. The solution here is to use the powerful <a href="http://en.wikipedia.org/wiki/XPath">XPath</a> method for navigating XML (including HTML5) documents. This means changing</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;toggling the button&quot;</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="p">{</span> <span class="n">click_button</span> <span class="s2">&quot;Follow&quot;</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="ss">value:</span> <span class="s1">&#39;Unfollow&#39;</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="n">describe</span> <span class="s2">&quot;toggling the button&quot;</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="p">{</span> <span class="n">click_button</span> <span class="s2">&quot;Unfollow&quot;</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="ss">value:</span> <span class="s1">&#39;Follow&#39;</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>to</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;toggling the button&quot;</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="p">{</span> <span class="n">click_button</span> <span class="s2">&quot;Follow&quot;</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_xpath</span><span class="p">(</span><span class="s2">&quot;//input[@value=&#39;Unfollow&#39;]&quot;</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="n">describe</span> <span class="s2">&quot;toggling the button&quot;</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="p">{</span> <span class="n">click_button</span> <span class="s2">&quot;Unfollow&quot;</span> <span class="p">}</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_xpath</span><span class="p">(</span><span class="s2">&quot;//input[@value=&#39;Follow&#39;]&quot;</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>in <code>spec/requests/user_pages_spec.rb</code>.</p>
+
+<p>The final error I encountered was a complaint Capybara makes about ambiguity in the code</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should be able to delete another user&quot;</span> <span class="k">do</span>
+  <span class="n">expect</span> <span class="p">{</span> <span class="n">click_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">)</span> <span class="p">}</span><span class="o">.</span><span class="n">to</span> <span class="n">change</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="ss">:count</span><span class="p">)</span><span class="o">.</span><span class="n">by</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>from <code>specs/requests/user_pages_spec.rb</code>. It used to be that Capybara would happily just click on any old delete link, but the latest version is far stricter, requiring that the link be specified exactly (via, e.g., its CSS id). This is actually a welcome change, as it helps keep us from accidentally clicking the wrong link, thereby testing the wrong thing, but in this case we really don&rsquo;t care which link gets clicked. The solution is to pass an options hash with  <code>match: :first</code> to tell Capybara to click the first delete link it finds:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should be able to delete another user&quot;</span> <span class="k">do</span>
+  <span class="n">expect</span> <span class="k">do</span>
+    <span class="n">click_link</span><span class="p">(</span><span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="ss">match:</span> <span class="ss">:first</span><span class="p">)</span>
+  <span class="k">end</span><span class="o">.</span><span class="n">to</span> <span class="n">change</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="ss">:count</span><span class="p">)</span><span class="o">.</span><span class="n">by</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+
+
+<p>At this point, the test suite should be green.</p>
+
+<div class="label" id="sec-finishing_up"></div>
+
+
+<h3><a id="sec-12_1_4" href="supplement.html#sec-finishing_up" class="heading"><span class="number">12.1.4</span> Finishing up</a></h3>
+
+
+<p>The only remaining tasks to complete the application upgrade are to copy over the stylesheets and add the Bootstrap JavaScript to <code>application.js</code>:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> cp -r ../sample_app_2nd_ed/app/assets/* app/assets/
+</pre></div>
+</div>
+
+
+<p>Take care to answer &lsquo;no&rsquo; when asked to overwrite <code>application.js</code>. Then update <code>application.js</code> with the Bootstrap JavaScript, as shown in <a class="ref" href="supplement.html#code-application_js_bootstrap">Listing&nbsp;12.4</a>.</p>
+
+<div class="label" id="code-application_js_bootstrap"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.4.</span> <span class="description">Adding back the Bootstrap JavaScript. <br /> <code>app/assets/javascripts/application.js</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="p">.</span>
+<span class="p">.</span>
+<span class="p">.</span>
+<span class="c1">//= require jquery</span>
+<span class="c1">//= require jquery_ujs</span>
+<span class="c1">//= require turbolinks</span>
+<span class="c1">//= require bootstrap</span>
+<span class="c1">//= require_tree .</span>
+</pre></div>
+</div></div>
+
+
+<p>If all went well, the application should now be working, as you should verify by populating the database with sample data and running a local server:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> cp ../sample_app_2nd_ed/lib/tasks/* lib/tasks
+<span class="gp">$</span> rake db:populate
+<span class="gp">$</span> rails server
+</pre></div>
+</div>
+
+
+<p>(You may discover, as I did when making the supplementary screencast, that you have forgotten to copy over the stylesheets, but of course that is easy enough to rectify.)</p>
+
+<div class="label" id="sec-additional_resources"></div>
+
+
+<h3><a id="sec-12_1_5" href="supplement.html#sec-additional_resources" class="heading"><span class="number">12.1.5</span> Additional resources</a></h3>
+
+
+<p>Rails&nbsp;4.0 includes some additional features that are beyond the scope of this supplement. Principal among them are <em>Turbolinks</em>, a JavaScript technique for speeding up certain parts of an application&rsquo;s user interface, and <em>Russian doll caching</em>, a new feature that intelligently storing rendered HTML to eliminate unnecessary re-rendering. As usual, <a href="http://railscasts.com/">RailsCasts</a> is a great resource for learning more about such intermediate-to-advanced topics:</p>
+
+<ul>
+<li><a href="http://railscasts.com/episodes/400-what-s-new-in-rails-4?view=asciicast">What&rsquo;s new in Rails&nbsp;4</a></li>
+<li><a href="http://railscasts.com/episodes/390-turbolinks">Turbolinks</a></li>
+<li><a href="http://railscasts.com/episodes/387-cache-digests">Cache digests</a></li>
+</ul>
+
+
+
+
+<div class="label" id="sec-strong_parameters"></div>
+
+
+<h2><a id="sec-12_2" href="supplement.html#sec-strong_parameters" class="heading"><span class="number">12.2</span> Strong parameters</a></h2>
+
+
+<p>We come now to the only significant difference (from the perspective of the <em>Rails Tutorial</em>) between Rails&nbsp;3.2 and Rails&nbsp;4.0, so-called <em>strong parameters</em>, which are a replacement for the use of <code>attr_accessible</code> to prevent mass assignment vulnerabilities (<a class="ref" href="updating-showing-and-deleting-users.html#sec-revisiting_attr_accessible">Section&nbsp;9.4.1.1</a>). Unlike <code>attr_accessible</code>, which applies to models, strong parameters act in the <em>controller</em> layer, which is appropriate since that is where we handle the other authentication and authorization for our application.</p>
+
+<p>At this point, I recommend continuing with the upgraded application developed in <a class="ref" href="supplement.html#sec-upgrading_from_rails_3_2_to_4_0">Section&nbsp;12.1</a>, but if you want you can start with the <a href="https://github.com/mhartl/sample_app_4_0_upgrade/">completed application at GitHub</a> as well. If you go that route, I suggest checking out the branch that has an upgraded application <em>without</em> any of the subsequent modifications from this chapter:</p>
+
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> git clone https://github.com/mhartl/sample_app_4_0_upgrade
+<span class="gp">$</span> <span class="nb">cd </span>sample_app_4_0_upgrade/
+<span class="gp">$</span> git checkout -t origin/only-upgraded
+</pre></div>
+</div>
+
+
+<p>The first step to implementing strong parameters is to remove the <tt>protected_attributes</tt> gem from the <code>Gemfile</code> (<a class="ref" href="supplement.html#code-rails_4_0_upgrade_gemfile">Listing&nbsp;12.1</a>). Next, edit the User and Micropost models to remove <code>attr_accessible</code>.</p>
+
+<p>Strong parameters allow us to specify which parameters are <em>required</em> and which ones are <em>permitted</em>. In addition, passing in a raw <code>params</code> hash will cause an error to be raised, so that Rails applications are now immune to mass assignment vulnerabilities by default. As a result, the test should currently fail.</p>
+
+<p>In the present instance, we want to require the <code>params</code> hash to have a <code>:user</code> attribute, and we want to permit the name, email, password, and password confirmation attributes (but no others). We can accomplish this as follows:</p>
+
+<div class="code"><div class="highlight"><pre><span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:password_confirmation</span><span class="p">)</span>
+</pre></div>
+</div>
+
+
+<p>This code returns a version of the <code>params</code> hash with only the permitted attributes (while raising an error if the <code>:user</code> attribute is missing).</p>
+
+<p>To facilitate the use of these parameters, it&rsquo;s conventional to introduce an auxiliary method called <code>user_params</code> that returns an appropriate initialization hash. The result appears in <a class="ref" href="supplement.html#code-create_action_strong_parameters">Listing&nbsp;12.5</a>.</p>
+
+<div class="label" id="code-create_action_strong_parameters"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.5.</span> <span class="description">Using strong parameters in the <code>create</code> action. <br /> <code>app/controller/users_controller.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
+    <span class="k">if</span> <span class="vi">@user</span><span class="o">.</span><span class="n">save</span>
+      <span class="n">sign_in</span> <span class="vi">@user</span>
+      <span class="n">flash</span><span class="o">[</span><span class="ss">:success</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Welcome to the Sample App!&quot;</span>
+      <span class="n">redirect_to</span> <span class="vi">@user</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="s1">&#39;new&#39;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">edit</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">update</span>
+    <span class="k">if</span> <span class="vi">@user</span><span class="o">.</span><span class="n">update_attributes</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
+      <span class="n">flash</span><span class="o">[</span><span class="ss">:success</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Profile updated&quot;</span>
+      <span class="n">sign_in</span> <span class="vi">@user</span>
+      <span class="n">redirect_to</span> <span class="vi">@user</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="s1">&#39;edit&#39;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="kp">private</span>
+
+    <span class="k">def</span> <span class="nf">user_params</span>
+      <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:password</span><span class="p">,</span>
+                                   <span class="ss">:password_confirmation</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Similar code protects microposts, as shown in <a class="ref" href="supplement.html#code-microposts_create_action_strong_parameters">Listing&nbsp;12.6</a>.</p>
+
+<div class="label" id="code-microposts_create_action_strong_parameters"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.6.</span> <span class="description">The Microposts controller <code>create</code> action. <br /> <code>app/controllers/microposts_controller.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MicropostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@micropost</span> <span class="o">=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">micropost_params</span><span class="p">)</span>
+    <span class="k">if</span> <span class="vi">@micropost</span><span class="o">.</span><span class="n">save</span>
+      <span class="n">flash</span><span class="o">[</span><span class="ss">:success</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Micropost created!&quot;</span>
+      <span class="n">redirect_to</span> <span class="n">root_url</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="s1">&#39;static_pages/home&#39;</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="kp">private</span>
+
+    <span class="k">def</span> <span class="nf">micropost_params</span>
+      <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:micropost</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:content</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>And that&rsquo;s it! Our application is now immune to mass assignment vulnerabilities while allowing the desired updates to go through, as you can verify by running the test suite.</p>
+
+<div class="label" id="sec-security_updates"></div>
+
+
+<h2><a id="sec-12_3" href="supplement.html#sec-security_updates" class="heading"><span class="number">12.3</span> Security updates</a></h2>
+
+
+<p>We end this supplement with two minor security updates. I would ordinarily defer such minor changes to the next full edition, but (as noted in the introduction) security gets top priority.</p>
+
+<div class="label" id="sec-secret_key"></div>
+
+
+<h3><a id="sec-12_3_1" href="supplement.html#sec-secret_key" class="heading"><span class="number">12.3.1</span> Secret key</a></h3>
+
+
+<p>The first security change is to update the <code>secret_token.rb</code> file to dynamically generate the <em>secret key</em> used by Rails to encrypt session variables. This key is a hard-coded random string by default (<a class="ref" href="supplement.html#code-default_secret_token">Listing&nbsp;12.7</a>), which is fine for web applications whose source code is private, but for publicly available repositories exposing this token makes it possible for malicious attackers to <a href="http://www.phenoelit.org/stuff/tokenfaq.html">tamper with session cookies</a>.</p>
+
+<div class="label" id="code-default_secret_token"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.7.</span> <span class="description">The default secret token file. <br /> <code>config/initializers/secret_token.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="c1"># Be sure to restart your server when you modify this file.</span>
+
+<span class="c1"># Your secret key for verifying the integrity of signed cookies.</span>
+<span class="c1"># If you change this key, all old signed cookies will become invalid!</span>
+<span class="c1"># Make sure the secret is at least 30 characters and all random,</span>
+<span class="c1"># no regular words or you&#39;ll be exposed to dictionary attacks.</span>
+<span class="ss">SampleApp::Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">secret_key_base</span> <span class="o">=</span> <span class="s1">&#39;ced345e01611593c1b783bae98e4e56db</span>
+<span class="s1">aee787747e92a141565f7c61d0ab2c6f98f7396fb4b178258301e2713816e158461af58c14b6959</span>
+<span class="s1">01692f91e72b6200&#39;</span>
+</pre></div>
+</div></div>
+
+
+<p>The solution, as helpfully pointed out by the automated &ldquo;Phenoelit Rails Vuln reporting Bot&rdquo; that originally alerted me to this problem, is to generate the key locally and save it in a file. The key is then read and used as necessary, as shown in <a class="ref" href="supplement.html#code-dynamic_secure_token">Listing&nbsp;12.8</a>. Note that, as in <a class="ref" href="supplement.html#code-gitignore_rails_4_upgrade">Listing&nbsp;12.2</a>, is essential to include the resulting <code>.secret</code> file in <code>.gitignore</code> so that Git will ignore it and <em>not</em> push it to our public repository.</p>
+
+<div class="label" id="code-dynamic_secure_token"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.8.</span> <span class="description">A secret token file with a dynamically generated key. <br /> <code>config/initializers/secret_token.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="c1"># Be sure to restart your server when you modify this file.</span>
+
+<span class="c1"># Make sure your secret_key_base is kept private</span>
+<span class="c1"># if you&#39;re sharing your code publicly, such as by adding</span>
+<span class="c1"># .secret to your .gitignore file.</span>
+
+<span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
+
+<span class="k">def</span> <span class="nf">secure_token</span>
+  <span class="n">token_file</span> <span class="o">=</span> <span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;.secret&#39;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="n">token_file</span><span class="p">)</span>
+    <span class="c1"># Use the existing token.</span>
+    <span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">token_file</span><span class="p">)</span><span class="o">.</span><span class="n">chomp</span>
+  <span class="k">else</span>
+    <span class="c1"># Generate a new token and store it in token_file.</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">hex</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span>
+    <span class="no">File</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">token_file</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+    <span class="n">token</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="ss">SampleApp40::Application</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">secret_key_base</span> <span class="o">=</span> <span class="n">secure_token</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="sec-encrypted_remember_tokens"></div>
+
+
+<h3><a id="sec-12_3_2" href="supplement.html#sec-encrypted_remember_tokens" class="heading"><span class="number">12.3.2</span> Encrypted remember tokens</a></h3>
+
+
+<p>The final enhancement is to <em>encrypt</em> the remember token (<a class="ref" href="sign-in-sign-out.html#sec-remember_me">Section&nbsp;8.2.1</a>) <em>after</em> storing it on the user&rsquo;s browser but <em>before</em> storing it in the database. As a result, even if our database is compromised, an attacker will not be able to use the remember token to sign in as the given user. The treatment here is brief, showing only the code needed to get the feature to work; for further discussion, see the <a href="http://ruby.railstutorial.org/chapters/sign-in-sign-out?version=4.0#sec-remember_me">section on &ldquo;Remember me&rdquo; in the 4.0 version of the book</a>.</p>
+
+<p>The first step is to add two new methods (attached to the <code>User</code> class since they don&rsquo;t require a User instance) to generate a new user token and encypt it using the <a href="https://en.wikipedia.org/wiki/SHA-1">SHA1</a> encryption algorithm (<a class="ref" href="supplement.html#code-before_create_remember_token">Listing&nbsp;12.9</a>).</p>
+
+<div class="label" id="code-before_create_remember_token"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.9.</span> <span class="description">A <code>before_create</code> callback to create <code>remember_token</code>. <br /> <code>app/models/user.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
+  <span class="n">before_save</span> <span class="p">{</span> <span class="nb">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">.</span><span class="n">downcase</span> <span class="p">}</span>
+  <span class="n">before_create</span> <span class="ss">:create_remember_token</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="k">def</span> <span class="nc">User</span><span class="o">.</span><span class="nf">new_remember_token</span>
+    <span class="no">SecureRandom</span><span class="o">.</span><span class="n">urlsafe_base64</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">User</span><span class="o">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+    <span class="ss">Digest::SHA1</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="kp">private</span>
+
+    <span class="k">def</span> <span class="nf">create_remember_token</span>
+      <span class="nb">self</span><span class="o">.</span><span class="n">remember_token</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="no">User</span><span class="o">.</span><span class="n">new_remember_token</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Next, we update the <code>sign_in</code> and <code>current_user</code> methods to use the new token in the cookies while saving the encrypted version in the database (<a class="ref" href="supplement.html#code-sign_in_function_encrypted_token">Listing&nbsp;12.10</a>). (Note that, while unsalted SHA1 hashes aren&rsquo;t generally secure, this is only relevant for shorter, mostly non-random strings such as user-generated passwords; the remember token we&rsquo;re encrypting here is long and random, rendering its hashed version essentially uncrackable.)</p>
+
+<div class="label" id="code-sign_in_function_encrypted_token"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.10.</span> <span class="description">Updating the Sessions helper to use an encrypted remember token. <br /> <code>app/helpers/sessions_helper.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">SessionsHelper</span>
+
+  <span class="k">def</span> <span class="nf">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">remember_token</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new_remember_token</span>
+    <span class="n">cookies</span><span class="o">.</span><span class="n">permanent</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span> <span class="o">=</span> <span class="n">remember_token</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">update_attribute</span><span class="p">(</span><span class="ss">:remember_token</span><span class="p">,</span> <span class="no">User</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">remember_token</span><span class="p">))</span>
+    <span class="nb">self</span><span class="o">.</span><span class="n">current_user</span> <span class="o">=</span> <span class="n">user</span>
+  <span class="k">end</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="k">def</span> <span class="nf">current_user</span>
+    <span class="n">remember_token</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">cookies</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span><span class="p">)</span>
+    <span class="vi">@current_user</span> <span class="o">||=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">remember_token:</span> <span class="n">remember_token</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>Finally, and unfortunately, our new more secure remember token breaks the way we handle signing in inside our tests. The solution, again explained in more detail in the <a href="http://ruby.railstutorial.org/chapters/sign-in-sign-out?version=4.0#sec-remember_me">section in the 4.0 version</a>, is to modify the <code>sign_in</code> helper in the test utilities, and pass an option when not using Capybara to sign in (<a class="ref" href="supplement.html#code-sign_in_helper_no_capybara">Listing&nbsp;12.11</a>).</p>
+
+<div class="label" id="code-sign_in_helper_no_capybara"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.11.</span> <span class="description">An updated <code>sign_in</code> helper that works with encrypted tokens. <br /> <code>spec/support/utilities.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="o">.</span>
+<span class="o">.</span>
+<span class="o">.</span>
+<span class="k">def</span> <span class="nf">sign_in</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+  <span class="k">if</span> <span class="n">options</span><span class="o">[</span><span class="ss">:no_capybara</span><span class="o">]</span>
+    <span class="c1"># Sign in when not using Capybara.</span>
+    <span class="n">remember_token</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new_remember_token</span>
+    <span class="n">cookies</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span> <span class="o">=</span> <span class="n">remember_token</span>
+    <span class="n">user</span><span class="o">.</span><span class="n">update_attribute</span><span class="p">(</span><span class="ss">:remember_token</span><span class="p">,</span> <span class="no">User</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">remember_token</span><span class="p">))</span>
+  <span class="k">else</span>
+    <span class="n">visit</span> <span class="n">signin_path</span>
+    <span class="n">fill_in</span> <span class="s2">&quot;Email&quot;</span><span class="p">,</span>    <span class="ss">with:</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span>
+    <span class="n">fill_in</span> <span class="s2">&quot;Password&quot;</span><span class="p">,</span> <span class="ss">with:</span> <span class="n">user</span><span class="o">.</span><span class="n">password</span>
+    <span class="n">click_button</span> <span class="s2">&quot;Sign in&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>The <code>no_capybara</code> option needs to be used in only three places in two files, as shown in <a class="ref" href="supplement.html#code-relationships_test_no_capybara">Listing&nbsp;12.12</a> and <a class="ref" href="supplement.html#code-authentication_pages_test_no_capybara">Listing&nbsp;12.13</a>. Note that <a class="ref" href="supplement.html#code-authentication_pages_test_no_capybara">Listing&nbsp;12.13</a> introduces the <code>patch</code> method, corresponding to the <tt>PATCH</tt> HTTP verb. While the change from <tt>PUT</tt> to <tt>PATCH</tt> isn&rsquo;t yet strictly necessary, as of Rails&nbsp;4.0 is the preferred method for updating model objects, and in future versions it will be required. See the 4.0 version of the book, and especially the <a href="http://ruby.railstutorial.org/chapters/static-pages?version=4.0#sidebar-get_etc">box on GET, etc.</a>, for more details.</p>
+
+<div class="label" id="code-relationships_test_no_capybara"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.12.</span> <span class="description">Adding the <code>no_capybara</code> option to the Relationships controller specs. <br /> <code>spec/controllers/relationships_controller_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="no">RelationshipsController</span> <span class="k">do</span>
+
+  <span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">let</span><span class="p">(</span><span class="ss">:other_user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">before</span> <span class="p">{</span> <span class="n">sign_in</span> <span class="n">user</span><span class="p">,</span> <span class="ss">no_capybara:</span> <span class="kp">true</span> <span class="p">}</span>
+
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+
+
+<div class="label" id="code-authentication_pages_test_no_capybara"></div>
+
+
+<div class="codelisting">
+<div class="listing"><span class="header">Listing 12.13.</span> <span class="description">Adding the <code>no_capybara</code> option to the authentication pages spec. <br /> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
+<div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="s2">&quot;Authentication&quot;</span> <span class="k">do</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="o">.</span>
+  <span class="n">describe</span> <span class="s2">&quot;authorization&quot;</span> <span class="k">do</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="n">describe</span> <span class="s2">&quot;as wrong user&quot;</span> <span class="k">do</span>
+      <span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">let</span><span class="p">(</span><span class="ss">:wrong_user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;wrong@example.com&quot;</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">before</span> <span class="p">{</span> <span class="n">sign_in</span> <span class="n">user</span><span class="p">,</span> <span class="ss">no_capybara:</span> <span class="kp">true</span> <span class="p">}</span>
+
+      <span class="n">describe</span> <span class="s2">&quot;visiting Users#edit page&quot;</span> <span class="k">do</span>
+        <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">edit_user_path</span><span class="p">(</span><span class="n">wrong_user</span><span class="p">)</span> <span class="p">}</span>
+        <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="p">}</span>
+      <span class="k">end</span>
+
+      <span class="n">describe</span> <span class="s2">&quot;submitting a PATCH request to the Users#update action&quot;</span> <span class="k">do</span>
+        <span class="n">before</span> <span class="p">{</span> <span class="n">patch</span> <span class="n">user_path</span><span class="p">(</span><span class="n">wrong_user</span><span class="p">)</span> <span class="p">}</span>
+        <span class="n">specify</span> <span class="p">{</span> <span class="n">response</span><span class="o">.</span><span class="n">should</span> <span class="n">redirect_to</span><span class="p">(</span><span class="n">root_url</span><span class="p">)</span> <span class="p">}</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="n">describe</span> <span class="s2">&quot;as non-admin user&quot;</span> <span class="k">do</span>
+      <span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">let</span><span class="p">(</span><span class="ss">:non_admin</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
+
+      <span class="n">before</span> <span class="p">{</span> <span class="n">sign_in</span> <span class="n">non_admin</span><span class="p">,</span> <span class="ss">no_capybara:</span> <span class="kp">true</span> <span class="p">}</span>
+
+      <span class="n">describe</span> <span class="s2">&quot;submitting a DELETE request to the Users#destroy action&quot;</span> <span class="k">do</span>
+        <span class="n">before</span> <span class="p">{</span> <span class="n">delete</span> <span class="n">user_path</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="p">}</span>
+        <span class="n">specify</span> <span class="p">{</span> <span class="n">response</span><span class="o">.</span><span class="n">should</span> <span class="n">redirect_to</span><span class="p">(</span><span class="n">root_url</span><span class="p">)</span> <span class="p">}</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div></div>
+
+
+<p>With that, all the necessary changes are complete, and the test suite should be green. As with the 3.2 to 4.0 upgrade, the <a href="http://railstutorial.org/#supplement">supplementary screencasts</a> show step-by-step how to implement strong parameters and the security updates and are recommended if you got stuck on anything above.</p>
+
+<p>Having upgraded the application and made these important security updates, a natural (but certainly optional) next step would be to follow the <a href="http://railstutorial.org/book?version=4.0">Rails&nbsp;4.0 version of the Rails Tutorial</a>. After completing the present tutorial, you should be able to finish the new version fairly quickly, which can serve both as an introduction to some new material and a solid review of the material in the 3.2 version. At the very least, I recommend studying the list of the biggest differences between the two versions as summarized in <a href="http://railstutorial.jp/chapters/beginning?version=4.0#sidebar-diffs">Box&nbsp;1.1</a> of the Rails&nbsp;4.0 version.</p>
+<div class="navigation">
+  <a class="prev_page" href="following-users.html#top">
+    &laquo;&nbsp;<span class="number">Chapter 11</span> Following users
+  </a>
+</div>
+
+    </div>
+  </body>
+</html>
