@@ -18,6 +18,7 @@ re_array=( \
     "s/式典界/式展開/g" \
     "s/<\/span><span class=\"title\">//g" \
     "s/v4.0.0\/classes\/ActionView\/Helpers\/AssetTagHelper\/StylesheetTagHelpers/classes\/ActionView\/Helpers\/AssetTagHelper/g" \
+    "s/user_show_unknown_action_31/user_show_unknown_action_4/g" \
     "s/confi\/initializers\/secret_token\.rb/config\/initializers\/secret_token\.rb/g"
     )
 #          "s/railstutorial.org/railstutorial.jp/g" \
