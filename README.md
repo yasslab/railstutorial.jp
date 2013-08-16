@@ -18,6 +18,16 @@
 
 - [Ruby on Rails チュートリアル：実例を使ってRailsを学ぼう](http://railstutorial.jp/)
 
+## デザイン & レイアウト
+
+The design and layout of this site is inspired by 
+
+- [mhartl/rails_tutorial_translation](https://github.com/mhartl/rails_tutorial_translation)
+- [Rails Tutorial - book](http://ruby.railstutorial.org/ruby-on-rails-tutorial-book)
+
+and is updated and developed by [Yohei Yasukawa (@yasulab)](http://twitter.com/yasulab).
+
+
 ## ライセンス
 
 *Ruby on Rails Tutorial, 2nd Edition*. Copyright &copy; 2012 by Michael Hartl.
