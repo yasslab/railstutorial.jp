@@ -3,7 +3,6 @@ class ChaptersController < ApplicationController
   include ApplicationHelper
 
   def index
-    @content = File.open("public/books/#{@version}/index.html").read
   end
 
   def show
