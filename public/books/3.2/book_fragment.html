@@ -21278,19 +21278,19 @@ Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com
 <div class="label" id="cha-supplement"></div>
 
 
-<h1 class="chapter"><a id="sec-12" href="http://railstutorial.jp#cha-supplement" class="heading"><span class="number">Chapter 12</span> Rails 4.0 supplement</a></h1>
+<h1 class="chapter"><a id="sec-12" href="http://railstutorial.jp/chapters/supplement#top" class="heading"><span class="number">Chapter 12</span> Rails 4.0 supplement</a></h1>
 
 
 <p>This is a short supplementary chapter designed to bring you up to speed with the latest version of Rails, Rails 4.0. From the perspective of an introductory tutorial, the differences between Rails 3.2 and Rails 4.0 are not particularly significant, and in fact there’s only one new feature (strong parameters) that I consider essential for our purposes.  To serve the needs of those who want a more thorough introduction to web development using Rails 4.0, I have prepared a <a href="http://railstutorial.org/book">version of the <em>Rails Tutorial</em> that uses Rails 4.0 throughout</a>, which is available for free <a href="http://railstutorial.org/book">online</a> and for purchase as ebooks (PDF/EPUB/MOBI) at <a href="http://railstutorial.org/#ebooks">http://railstutorial.org/</a>. For a more comprehensive (but still remarkably short) list of differences between the Rails 3.2 and Rails 4.0 versions, see <a href="http://railstutorial.jp/chapters/beginning?version=4.0#sidebar-diffs">Box 1.1 in the Rails 4.0 version</a>.</p>
 
-<p>The principal goal of this chapter is to upgrade the <em>Rails Tutorial</em> sample application from Rails 3.2 to Rails 4.0, as discussed in <a class="ref" href="http://railstutorial.jp#sec-upgrading_from_rails_3_2_to_4_0">Section 12.1</a>. We then explain the main significant difference (alluded to above), namely, the change from <em>accessible attributes</em> (<a class="ref" href="http://railstutorial.jp#sec-accessible_attributes">Section 6.1.2.2</a>) to <em>strong parameters</em> (<a class="ref" href="http://railstutorial.jp#sec-strong_parameters">Section 12.2</a>). Finally, we’ll make two small additions to the applications that have nothing to do with Rails 4.0 <em>per se</em> but are included because they are issues related to security, which get priority (<a class="ref" href="http://railstutorial.jp#sec-security_updates">Section 12.3</a>).</p>
+<p>The principal goal of this chapter is to upgrade the <em>Rails Tutorial</em> sample application from Rails 3.2 to Rails 4.0, as discussed in <a class="ref" href="http://railstutorial.jp/chapters/supplement#sec-upgrading_from_rails_3_2_to_4_0">Section 12.1</a>. We then explain the main significant difference (alluded to above), namely, the change from <em>accessible attributes</em> (<a class="ref" href="http://railstutorial.jp#sec-accessible_attributes">Section 6.1.2.2</a>) to <em>strong parameters</em> (<a class="ref" href="http://railstutorial.jp/chapters/supplement#sec-strong_parameters">Section 12.2</a>). Finally, we’ll make two small additions to the applications that have nothing to do with Rails 4.0 <em>per se</em> but are included because they are issues related to security, which get priority (<a class="ref" href="http://railstutorial.jp/chapters/supplement#sec-security_updates">Section 12.3</a>).</p>
 
 <p>As a complement to this chapter, I have produced two supplementary screencasts, available for purchase at <a href="http://railstutorial.org/#supplement">railstutorial.org</a>. The first screencast shows a live demonstration of upgrading the sample app from Rails 3.2 to Rails 4.0, while the second covers strong parameters and the two aforementioned security updates.</p>
 
 <div class="label" id="sec-upgrading_from_rails_3_2_to_4_0"></div>
 
 
-<h2><a id="sec-12_1" href="http://railstutorial.jp#sec-upgrading_from_rails_3_2_to_4_0" class="heading"><span class="number">12.1</span> Upgrading from Rails 3.2 to 4.0</a></h2>
+<h2><a id="sec-12_1" href="http://railstutorial.jp/chapters/supplement#sec-upgrading_from_rails_3_2_to_4_0" class="heading"><span class="number">12.1</span> Upgrading from Rails 3.2 to 4.0</a></h2>
 
 
 <p>Though now relatively mature, Rails and its ecosystem still change fast, and any major version upgrade is likely to break lots of little things. Indeed, in my experience it is often difficulty to upgrade an existing Rails project <a href="http://en.wikipedia.org/wiki/In_situ"><em>in situ</em></a>, and I virtually always end up making a new application from scratch using <code>rails new</code>. One reason is that <code>rails new</code> generates a large number of configuration files with values and defaults that change from version to version, and it is extremely hard to replicate these values in an existing project. As a result, our strategy in this section is first to <em>get something (anything) to work</em> by creating a new (empty) Rails 4.0 project, and then move code over incrementally from the old project, taking care to get the application working at each step.</p>
@@ -21300,7 +21300,7 @@ Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com
 <div class="label" id="sec-rails_4_0_setup"></div>
 
 
-<h3><a id="sec-12_1_1" href="http://railstutorial.jp#sec-rails_4_0_setup" class="heading"><span class="number">12.1.1</span> Rails 4.0 setup</a></h3>
+<h3><a id="sec-12_1_1" href="http://railstutorial.jp/chapters/supplement#sec-rails_4_0_setup" class="heading"><span class="number">12.1.1</span> Rails 4.0 setup</a></h3>
 
 
 <p>The steps needed to set up a new Rails 4.0 application are virtually identical to the steps from <a class="ref" href="http://railstutorial.jp#cha-beginning">Chapter 1</a> and <a class="ref" href="http://railstutorial.jp#cha-static-pages">Chapter 3</a>: create an RVM gemset or rbenv environment (optional), install Rails, install gems using Bundler, and configure RSpec.</p>
@@ -21330,7 +21330,7 @@ Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com
 
 <p>At this point, you should be able to run the application locally and verify that it’s working by running <code>rails server</code>.</p>
 
-<p>To proceed with the upgrade, we need to install all the necessary gems, as shown in <a class="ref" href="http://railstutorial.jp#code-rails_4_0_upgrade_gemfile">Listing 12.1</a>.</p>
+<p>To proceed with the upgrade, we need to install all the necessary gems, as shown in <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-rails_4_0_upgrade_gemfile">Listing 12.1</a>.</p>
 
 <div class="label" id="code-rails_4_0_upgrade_gemfile"></div>
 
@@ -21396,16 +21396,16 @@ Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com
 </div></div>
 
 
-<p>Note in particular the final line in <a class="ref" href="http://railstutorial.jp#code-rails_4_0_upgrade_gemfile">Listing 12.1</a>, which is needed to use <code>attr_accessible</code> (<a class="ref" href="http://railstutorial.jp#sec-accessible_attributes">Section 6.1.2.2</a>) in a Rails 4.0 app:</p>
+<p>Note in particular the final line in <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-rails_4_0_upgrade_gemfile">Listing 12.1</a>, which is needed to use <code>attr_accessible</code> (<a class="ref" href="http://railstutorial.jp#sec-accessible_attributes">Section 6.1.2.2</a>) in a Rails 4.0 app:</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;protected_attributes&#39;</span>
 </pre></div>
 </div>
 
 
-<p>We’ll remove this gem in <a class="ref" href="http://railstutorial.jp#sec-strong_parameters">Section 12.2</a> when we change from accessible attributes to strong parameters.</p>
+<p>We’ll remove this gem in <a class="ref" href="http://railstutorial.jp/chapters/supplement#sec-strong_parameters">Section 12.2</a> when we change from accessible attributes to strong parameters.</p>
 
-<p>We can install the gems from <a class="ref" href="http://railstutorial.jp#code-rails_4_0_upgrade_gemfile">Listing 12.1</a> using <code>bundle install</code> as usual, adding in a <code>bundle update</code> for completeness (and a final <code>bundle install</code> for paranoia):</p>
+<p>We can install the gems from <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-rails_4_0_upgrade_gemfile">Listing 12.1</a> using <code>bundle install</code> as usual, adding in a <code>bundle update</code> for completeness (and a final <code>bundle install</code> for paranoia):</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install --without production
 <span class="gp">$</span> bundle update
@@ -21432,7 +21432,7 @@ Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com
 
 <p>Here we’ve also taken the opportinuity to copy over the <code>.rspec</code> configuration file.</p>
 
-<p>At this point, it’s probably wise to put the application under version control with Git, which is especially helpful when doing something as error-prone as a Rails version upgrade. I recommend replacing the <code>.gitignore</code> file generated by Rails with the one shown in <a class="ref" href="http://railstutorial.jp#code-gitignore_rails_4_upgrade">Listing 12.2</a>.</p>
+<p>At this point, it’s probably wise to put the application under version control with Git, which is especially helpful when doing something as error-prone as a Rails version upgrade. I recommend replacing the <code>.gitignore</code> file generated by Rails with the one shown in <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-gitignore_rails_4_upgrade">Listing 12.2</a>.</p>
 
 <div class="label" id="code-gitignore_rails_4_upgrade"></div>
 
@@ -21462,9 +21462,9 @@ doc/
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp#code-gitignore_rails_4_upgrade">Listing 12.2</a> adds an important line to ignore the <code>.secret</code> file created by the security enhancement described in <a class="ref" href="http://railstutorial.jp#sec-secret_key">Section 12.3.1</a>.</p>
+<p><a class="ref" href="http://railstutorial.jp/chapters/supplement#code-gitignore_rails_4_upgrade">Listing 12.2</a> adds an important line to ignore the <code>.secret</code> file created by the security enhancement described in <a class="ref" href="http://railstutorial.jp/chapters/supplement#sec-secret_key">Section 12.3.1</a>.</p>
 
-<p>One final bit of necessary configuration is to explicitly include the Capybara domain-specific language (DSL), made necesarry by a change in the default syntax used by RSpec request specs (integration tests). All that is needed is an extra line in <code>spec_helper.rb</code>, as shown in <a class="ref" href="http://railstutorial.jp#code-capybara_dsl">Listing 12.3</a>.</p>
+<p>One final bit of necessary configuration is to explicitly include the Capybara domain-specific language (DSL), made necesarry by a change in the default syntax used by RSpec request specs (integration tests). All that is needed is an extra line in <code>spec_helper.rb</code>, as shown in <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-capybara_dsl">Listing 12.3</a>.</p>
 
 <div class="label" id="code-capybara_dsl"></div>
 
@@ -21496,7 +21496,7 @@ If you’re using Git for version control, now would be a good time to make the 
 <div class="label" id="sec-getting_to_green"></div>
 
 
-<h3><a id="sec-12_1_2" href="http://railstutorial.jp#sec-getting_to_green" class="heading"><span class="number">12.1.2</span> Getting to green</a></h3>
+<h3><a id="sec-12_1_2" href="http://railstutorial.jp/chapters/supplement#sec-getting_to_green" class="heading"><span class="number">12.1.2</span> Getting to green</a></h3>
 
 
 <p>Our strategy for completing the upgrade is based on the test suite developed throughout the course of the tutorial. In particular, I suggest copying one test directory (or even test file) at a time from the old Rails project to the new one, and  then copy over the corresponding application code. Initially it will be a challenge even to get the tests to run; once we do, they will typically fail (red). The idea is then to make the necessary changes to get them to pass (green), which will usually involve copying over addtional code from the previous version of the application. Sometimes, though, failing tests will be due to differences between Rails 3.2 and Rails 4.0 and their associated gems, especially RSpec and Capybara.</p>
@@ -21526,7 +21526,7 @@ If you’re using Git for version control, now would be a good time to make the 
 <div class="label" id="sec-some_specific_issues"></div>
 
 
-<h3><a id="sec-12_1_3" href="http://railstutorial.jp#sec-some_specific_issues" class="heading"><span class="number">12.1.3</span> Some specific issues</a></h3>
+<h3><a id="sec-12_1_3" href="http://railstutorial.jp/chapters/supplement#sec-some_specific_issues" class="heading"><span class="number">12.1.3</span> Some specific issues</a></h3>
 
 
 <p>It’s extraordinarily difficult in general to anticipate all the things that can go wrong during an upgrade. I’ve outlined above a general strategy, and in this section we’ll go over some of the specific issues I ran into on my system, but a complete treatment is effectively impossible. There is no way to avoid some frustration; perseverance and Googling are in the end the only way to prevail. (Remember, you can always <a href="https://github.com/mhartl/sample_app_4_0_upgrade">cheat</a>.)</p>
@@ -21534,10 +21534,10 @@ If you’re using Git for version control, now would be a good time to make the 
 <div class="label" id="sec-models"></div>
 
 
-<h4><a id="sec-12_1_3_1" href="http://railstutorial.jp#sec-models" class="heading">Models</a></h4>
+<h4><a id="sec-12_1_3_1" href="http://railstutorial.jp/chapters/supplement#sec-models" class="heading">Models</a></h4>
 
 
-<p>Due to ways in which the <tt>protected_attributes</tt> gem (<a class="ref" href="http://railstutorial.jp#code-rails_4_0_upgrade_gemfile">Listing 12.1</a>) differs from the behavior of Rails 3.2 accessible attributes, the tests for mass assignment security errors no longer work and should be removed. For example, here is the test that needs to be removed from the User model specs (<code>spec/models/user_spec.rb)</code>:</p>
+<p>Due to ways in which the <tt>protected_attributes</tt> gem (<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-rails_4_0_upgrade_gemfile">Listing 12.1</a>) differs from the behavior of Rails 3.2 accessible attributes, the tests for mass assignment security errors no longer work and should be removed. For example, here is the test that needs to be removed from the User model specs (<code>spec/models/user_spec.rb)</code>:</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;accessible attributes&quot;</span> <span class="k">do</span>
   <span class="n">it</span> <span class="s2">&quot;should not allow access to admin&quot;</span> <span class="k">do</span>
@@ -21608,7 +21608,7 @@ If you’re using Git for version control, now would be a good time to make the 
 <div class="label" id="sec-controllers_and_views"></div>
 
 
-<h4><a id="sec-12_1_3_2" href="http://railstutorial.jp#sec-controllers_and_views" class="heading">Controllers and views</a></h4>
+<h4><a id="sec-12_1_3_2" href="http://railstutorial.jp/chapters/supplement#sec-controllers_and_views" class="heading">Controllers and views</a></h4>
 
 
 <p>Because there are so few of them, the next set of tests I recommend running are the controller tests for Relationships. You should discover that the routes fail because in Rails 4.0 using <code>match</code> requires explicitly specifying the HTTP method in <code>config/routes.rb</code> using <code>via</code>:</p>
@@ -21737,7 +21737,7 @@ If you’re using Git for version control, now would be a good time to make the 
 <div class="label" id="sec-finishing_up"></div>
 
 
-<h3><a id="sec-12_1_4" href="http://railstutorial.jp#sec-finishing_up" class="heading"><span class="number">12.1.4</span> Finishing up</a></h3>
+<h3><a id="sec-12_1_4" href="http://railstutorial.jp/chapters/supplement#sec-finishing_up" class="heading"><span class="number">12.1.4</span> Finishing up</a></h3>
 
 
 <p>The only remaining tasks to complete the application upgrade are to copy over the stylesheets and add the Bootstrap JavaScript to <code>application.js</code>:</p>
@@ -21747,7 +21747,7 @@ If you’re using Git for version control, now would be a good time to make the 
 </div>
 
 
-<p>Take care to answer ‘no’ when asked to overwrite <code>application.js</code>. Then update <code>application.js</code> with the Bootstrap JavaScript, as shown in <a class="ref" href="http://railstutorial.jp#code-application_js_bootstrap">Listing 12.4</a>.</p>
+<p>Take care to answer ‘no’ when asked to overwrite <code>application.js</code>. Then update <code>application.js</code> with the Bootstrap JavaScript, as shown in <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-application_js_bootstrap">Listing 12.4</a>.</p>
 
 <div class="label" id="code-application_js_bootstrap"></div>
 
@@ -21780,7 +21780,7 @@ If you’re using Git for version control, now would be a good time to make the 
 <div class="label" id="sec-additional_resources"></div>
 
 
-<h3><a id="sec-12_1_5" href="http://railstutorial.jp#sec-additional_resources" class="heading"><span class="number">12.1.5</span> Additional resources</a></h3>
+<h3><a id="sec-12_1_5" href="http://railstutorial.jp/chapters/supplement#sec-additional_resources" class="heading"><span class="number">12.1.5</span> Additional resources</a></h3>
 
 
 <p>Rails 4.0 includes some additional features that are beyond the scope of this supplement. Principal among them are <em>Turbolinks</em>, a JavaScript technique for speeding up certain parts of an application’s user interface, and <em>Russian doll caching</em>, a new feature that intelligently storing rendered HTML to eliminate unnecessary re-rendering. As usual, <a href="http://railscasts.com/">RailsCasts</a> is a great resource for learning more about such intermediate-to-advanced topics:</p>
@@ -21797,12 +21797,12 @@ If you’re using Git for version control, now would be a good time to make the 
 <div class="label" id="sec-strong_parameters"></div>
 
 
-<h2><a id="sec-12_2" href="http://railstutorial.jp#sec-strong_parameters" class="heading"><span class="number">12.2</span> Strong parameters</a></h2>
+<h2><a id="sec-12_2" href="http://railstutorial.jp/chapters/supplement#sec-strong_parameters" class="heading"><span class="number">12.2</span> Strong parameters</a></h2>
 
 
 <p>We come now to the only significant difference (from the perspective of the <em>Rails Tutorial</em>) between Rails 3.2 and Rails 4.0, so-called <em>strong parameters</em>, which are a replacement for the use of <code>attr_accessible</code> to prevent mass assignment vulnerabilities (<a class="ref" href="http://railstutorial.jp#sec-revisiting_attr_accessible">Section 9.4.1.1</a>). Unlike <code>attr_accessible</code>, which applies to models, strong parameters act in the <em>controller</em> layer, which is appropriate since that is where we handle the other authentication and authorization for our application.</p>
 
-<p>At this point, I recommend continuing with the upgraded application developed in <a class="ref" href="http://railstutorial.jp#sec-upgrading_from_rails_3_2_to_4_0">Section 12.1</a>, but if you want you can start with the <a href="https://github.com/mhartl/sample_app_4_0_upgrade/">completed application at GitHub</a> as well. If you go that route, I suggest checking out the branch that has an upgraded application <em>without</em> any of the subsequent modifications from this chapter:</p>
+<p>At this point, I recommend continuing with the upgraded application developed in <a class="ref" href="http://railstutorial.jp/chapters/supplement#sec-upgrading_from_rails_3_2_to_4_0">Section 12.1</a>, but if you want you can start with the <a href="https://github.com/mhartl/sample_app_4_0_upgrade/">completed application at GitHub</a> as well. If you go that route, I suggest checking out the branch that has an upgraded application <em>without</em> any of the subsequent modifications from this chapter:</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git clone https://github.com/mhartl/sample_app_4_0_upgrade
 <span class="gp">$</span> <span class="nb">cd </span>sample_app_4_0_upgrade/
@@ -21811,7 +21811,7 @@ If you’re using Git for version control, now would be a good time to make the 
 </div>
 
 
-<p>The first step to implementing strong parameters is to remove the <tt>protected_attributes</tt> gem from the <code>Gemfile</code> (<a class="ref" href="http://railstutorial.jp#code-rails_4_0_upgrade_gemfile">Listing 12.1</a>). Next, edit the User and Micropost models to remove <code>attr_accessible</code>.</p>
+<p>The first step to implementing strong parameters is to remove the <tt>protected_attributes</tt> gem from the <code>Gemfile</code> (<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-rails_4_0_upgrade_gemfile">Listing 12.1</a>). Next, edit the User and Micropost models to remove <code>attr_accessible</code>.</p>
 
 <p>Strong parameters allow us to specify which parameters are <em>required</em> and which ones are <em>permitted</em>. さらに、上のように<code>params</code>ハッシュをまるごと渡すとエラーが発生するので、Railsはデフォルトでマスアサインメントの脆弱性から守られるようになりました。As a result, the test should currently fail.</p>
 
@@ -21824,7 +21824,7 @@ If you’re using Git for version control, now would be a good time to make the 
 
 <p>このコードの戻り値は、<code>params</code>ハッシュのバージョンと、許可された属性です (<code>:user</code>属性がない場合はエラーになります)。</p>
 
-<p>これらのパラメータを使いやすくするために、<code>user_params</code>という外部メソッドを使用するのが慣習になっています。このメソッドは適切な初期化ハッシュを返します。The result appears in <a class="ref" href="http://railstutorial.jp#code-create_action_strong_parameters">Listing 12.5</a>.</p>
+<p>これらのパラメータを使いやすくするために、<code>user_params</code>という外部メソッドを使用するのが慣習になっています。このメソッドは適切な初期化ハッシュを返します。The result appears in <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-create_action_strong_parameters">Listing 12.5</a>.</p>
 
 <div class="label" id="code-create_action_strong_parameters"></div>
 
@@ -21872,7 +21872,7 @@ If you’re using Git for version control, now would be a good time to make the 
 </div></div>
 
 
-<p>Similar code protects microposts, as shown in <a class="ref" href="http://railstutorial.jp#code-microposts_create_action_strong_parameters">Listing 12.6</a>.</p>
+<p>Similar code protects microposts, as shown in <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-microposts_create_action_strong_parameters">Listing 12.6</a>.</p>
 
 <div class="label" id="code-microposts_create_action_strong_parameters"></div>
 
@@ -21910,7 +21910,7 @@ If you’re using Git for version control, now would be a good time to make the 
 <div class="label" id="sec-security_updates"></div>
 
 
-<h2><a id="sec-12_3" href="http://railstutorial.jp#sec-security_updates" class="heading"><span class="number">12.3</span> Security updates</a></h2>
+<h2><a id="sec-12_3" href="http://railstutorial.jp/chapters/supplement#sec-security_updates" class="heading"><span class="number">12.3</span> Security updates</a></h2>
 
 
 <p>We end this supplement with two minor security updates. I would ordinarily defer such minor changes to the next full edition, but (as noted in the introduction) security gets top priority.</p>
@@ -21918,10 +21918,10 @@ If you’re using Git for version control, now would be a good time to make the 
 <div class="label" id="sec-secret_key"></div>
 
 
-<h3><a id="sec-12_3_1" href="http://railstutorial.jp#sec-secret_key" class="heading"><span class="number">12.3.1</span> Secret key</a></h3>
+<h3><a id="sec-12_3_1" href="http://railstutorial.jp/chapters/supplement#sec-secret_key" class="heading"><span class="number">12.3.1</span> Secret key</a></h3>
 
 
-<p>The first security change is to update the <code>secret_token.rb</code> file to dynamically generate the <em>secret key</em> used by Rails to encrypt session variables. This key is a hard-coded random string by default (<a class="ref" href="http://railstutorial.jp#code-default_secret_token">Listing 12.7</a>), which is fine for web applications whose source code is private, but for publicly available repositories exposing this token makes it possible for malicious attackers to <a href="http://www.phenoelit.org/stuff/tokenfaq.html">tamper with session cookies</a>.</p>
+<p>The first security change is to update the <code>secret_token.rb</code> file to dynamically generate the <em>secret key</em> used by Rails to encrypt session variables. This key is a hard-coded random string by default (<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-default_secret_token">Listing 12.7</a>), which is fine for web applications whose source code is private, but for publicly available repositories exposing this token makes it possible for malicious attackers to <a href="http://www.phenoelit.org/stuff/tokenfaq.html">tamper with session cookies</a>.</p>
 
 <div class="label" id="code-default_secret_token"></div>
 
@@ -21941,7 +21941,7 @@ If you’re using Git for version control, now would be a good time to make the 
 </div></div>
 
 
-<p>The solution, as helpfully pointed out by the automated “Phenoelit Rails Vuln reporting Bot” that originally alerted me to this problem, is to generate the key locally and save it in a file. The key is then read and used as necessary, as shown in <a class="ref" href="http://railstutorial.jp#code-dynamic_secure_token">Listing 12.8</a>. Note that, as in <a class="ref" href="http://railstutorial.jp#code-gitignore_rails_4_upgrade">Listing 12.2</a>, is essential to include the resulting <code>.secret</code> file in <code>.gitignore</code> so that Git will ignore it and <em>not</em> push it to our public repository.</p>
+<p>The solution, as helpfully pointed out by the automated “Phenoelit Rails Vuln reporting Bot” that originally alerted me to this problem, is to generate the key locally and save it in a file. The key is then read and used as necessary, as shown in <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-dynamic_secure_token">Listing 12.8</a>. Note that, as in <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-gitignore_rails_4_upgrade">Listing 12.2</a>, is essential to include the resulting <code>.secret</code> file in <code>.gitignore</code> so that Git will ignore it and <em>not</em> push it to our public repository.</p>
 
 <div class="label" id="code-dynamic_secure_token"></div>
 
@@ -21979,12 +21979,12 @@ If you’re using Git for version control, now would be a good time to make the 
 <div class="label" id="sec-encrypted_remember_tokens"></div>
 
 
-<h3><a id="sec-12_3_2" href="http://railstutorial.jp#sec-encrypted_remember_tokens" class="heading"><span class="number">12.3.2</span> Encrypted remember tokens</a></h3>
+<h3><a id="sec-12_3_2" href="http://railstutorial.jp/chapters/supplement#sec-encrypted_remember_tokens" class="heading"><span class="number">12.3.2</span> Encrypted remember tokens</a></h3>
 
 
 <p>The final enhancement is to <em>encrypt</em> the remember token (<a class="ref" href="http://railstutorial.jp#sec-remember_me">Section 8.2.1</a>) <em>after</em> storing it on the user’s browser but <em>before</em> storing it in the database. As a result, even if our database is compromised, an attacker will not be able to use the remember token to sign in as the given user. The treatment here is brief, showing only the code needed to get the feature to work; for further discussion, see the <a href="http://ruby.railstutorial.org/chapters/sign-in-sign-out?version=4.0#sec-remember_me">section on “Remember me” in the 4.0 version of the book</a>.</p>
 
-<p>The first step is to add two new methods (attached to the <code>User</code> class since they don’t require a User instance) to generate a new user token and encypt it using the <a href="https://en.wikipedia.org/wiki/SHA-1">SHA1</a> encryption algorithm (<a class="ref" href="http://railstutorial.jp#code-before_create_remember_token">Listing 12.9</a>).</p>
+<p>The first step is to add two new methods (attached to the <code>User</code> class since they don’t require a User instance) to generate a new user token and encypt it using the <a href="https://en.wikipedia.org/wiki/SHA-1">SHA1</a> encryption algorithm (<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-before_create_remember_token">Listing 12.9</a>).</p>
 
 <div class="label" id="code-before_create_remember_token"></div>
 
@@ -22017,7 +22017,7 @@ If you’re using Git for version control, now would be a good time to make the 
 </div></div>
 
 
-<p>Next, we update the <code>sign_in</code> and <code>current_user</code> methods to use the new token in the cookies while saving the encrypted version in the database (<a class="ref" href="http://railstutorial.jp#code-sign_in_function_encrypted_token">Listing 12.10</a>). (Note that, while unsalted SHA1 hashes aren’t generally secure, this is only relevant for shorter, mostly non-random strings such as user-generated passwords; the remember token we’re encrypting here is long and random, rendering its hashed version essentially uncrackable.)</p>
+<p>Next, we update the <code>sign_in</code> and <code>current_user</code> methods to use the new token in the cookies while saving the encrypted version in the database (<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-sign_in_function_encrypted_token">Listing 12.10</a>). (Note that, while unsalted SHA1 hashes aren’t generally secure, this is only relevant for shorter, mostly non-random strings such as user-generated passwords; the remember token we’re encrypting here is long and random, rendering its hashed version essentially uncrackable.)</p>
 
 <div class="label" id="code-sign_in_function_encrypted_token"></div>
 
@@ -22047,7 +22047,7 @@ If you’re using Git for version control, now would be a good time to make the 
 </div></div>
 
 
-<p>Finally, and unfortunately, our new more secure remember token breaks the way we handle signing in inside our tests. The solution, again explained in more detail in the <a href="http://ruby.railstutorial.org/chapters/sign-in-sign-out?version=4.0#sec-remember_me">section in the 4.0 version</a>, is to modify the <code>sign_in</code> helper in the test utilities, and pass an option when not using Capybara to sign in (<a class="ref" href="http://railstutorial.jp#code-sign_in_helper_no_capybara">Listing 12.11</a>).</p>
+<p>Finally, and unfortunately, our new more secure remember token breaks the way we handle signing in inside our tests. The solution, again explained in more detail in the <a href="http://ruby.railstutorial.org/chapters/sign-in-sign-out?version=4.0#sec-remember_me">section in the 4.0 version</a>, is to modify the <code>sign_in</code> helper in the test utilities, and pass an option when not using Capybara to sign in (<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-sign_in_helper_no_capybara">Listing 12.11</a>).</p>
 
 <div class="label" id="code-sign_in_helper_no_capybara"></div>
 
@@ -22074,7 +22074,7 @@ If you’re using Git for version control, now would be a good time to make the 
 </div></div>
 
 
-<p>The <code>no_capybara</code> option needs to be used in only three places in two files, as shown in <a class="ref" href="http://railstutorial.jp#code-relationships_test_no_capybara">Listing 12.12</a> and <a class="ref" href="http://railstutorial.jp#code-authentication_pages_test_no_capybara">Listing 12.13</a>. Note that <a class="ref" href="http://railstutorial.jp#code-authentication_pages_test_no_capybara">Listing 12.13</a> introduces the <code>patch</code> method, corresponding to the <tt>PATCH</tt> HTTP verb. While the change from <tt>PUT</tt> to <tt>PATCH</tt> isn’t yet strictly necessary, as of Rails 4.0 is the preferred method for updating model objects, and in future versions it will be required. See the 4.0 version of the book, and especially the <a href="http://ruby.railstutorial.org/chapters/static-pages?version=4.0#sidebar-get_etc">box on GET, etc.</a>, for more details.</p>
+<p>The <code>no_capybara</code> option needs to be used in only three places in two files, as shown in <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-relationships_test_no_capybara">Listing 12.12</a> and <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-authentication_pages_test_no_capybara">Listing 12.13</a>. Note that <a class="ref" href="http://railstutorial.jp/chapters/supplement#code-authentication_pages_test_no_capybara">Listing 12.13</a> introduces the <code>patch</code> method, corresponding to the <tt>PATCH</tt> HTTP verb. While the change from <tt>PUT</tt> to <tt>PATCH</tt> isn’t yet strictly necessary, as of Rails 4.0 is the preferred method for updating model objects, and in future versions it will be required. See the 4.0 version of the book, and especially the <a href="http://ruby.railstutorial.org/chapters/static-pages?version=4.0#sidebar-get_etc">box on GET, etc.</a>, for more details.</p>
 
 <div class="label" id="code-relationships_test_no_capybara"></div>
 
