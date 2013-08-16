@@ -1,26 +1,28 @@
 #!/bin/sh
 
 # Truncate Title, Table of Contents, and Main Content,
-# then create '_contents.html.erb',
+# then create '_contents.html.erb' and '_preface.html.erb',
 # and create '_contents_for_book.html.erb'
 # that all links point to inside tags.
 
 ### NOTE:
 ### For version 4.0+, '_contents.html.erb' is already included in GTT.
 
-### Create '_contents.html.erb',
-#echo '<h1 class="title">Ruby on Rails 4.0 Tutorial </h1>' > _contents.html.erb
-#cat sample_chapter.html | \
-#    sed -n '/<h1 class="subtitle">/, /<\/pre><\/div>/p' \
-#    >> _contents.html.erb
-#echo "</div>" >> _contents.html.erb
-#echo "Created '_contents.html.erb"
+# Create _contents.html.erb and _preface.html.erb
+echo '' > _contents.html.erb
+cat _contents.html.original | \
+    sed -n '/<h2 class="contents">/, /<div id="main_content">/p' | \
+    sed '$d' >> _contents.html.erb
+echo "Created _contents.html.erb"
 
-### Make single page for the main contents that include table, foreword, etc.
-#cat _head.html               >  contents.html
-#cat _contents.html.erb          >> contents.html
-#cat _foot.html               >> contents.html
-#echo "Created 'contents.html'"
+echo '' > _preface.html.erb
+cat _contents.html.original | \
+    sed -n '/<div id="main_content">/, /<\/pre><\/div>/p' \
+    >> _preface.html.erb
+echo "</div>"     >> _preface.html.erb    
+cat BEERWARE.html >> _preface.html.erb
+echo "Created _preface.html.erb"
+
 
 ### Create '_contents_for_book.html.erb' that all links point to inside tags.
 VERSION="?version=4.0"

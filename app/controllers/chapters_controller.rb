@@ -3,6 +3,7 @@ class ChaptersController < ApplicationController
   include ApplicationHelper
 
   def index
+    @content = File.open("app/views/shared/#{@version}/_navigation.html.erb").read
   end
 
   def show

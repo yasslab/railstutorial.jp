@@ -33,7 +33,7 @@ $SCRIPT_ROOT/correct_htmls.sh
 $SCRIPT_ROOT/truncate_htmls.sh
 
 # Create a table of contents and book
-cp beginning_corrected.html sample_chapter.html   # For generating contents
+cp supplement_corrected.html sample_chapter.html   # For generating contents
 $SCRIPT_ROOT/create_contents.sh
 $SCRIPT_ROOT/create_book.sh
 

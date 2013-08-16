@@ -1,24 +1,30 @@
 #!/bin/sh
 
 # Truncate Title, Table of Contents, and Main Content,
-# then create '_contents.html.erb',
+# then create '_contents.html.erb' and '_preface.html.erb',
 # and create '_contents_for_book.html.erb'
 # that all links point to inside tags.
 
-# Create '_contents.html.erb',
-echo '<h1 class="title">Ruby on Rails 3.2 チュートリアル </h1>' > _contents.html.erb
+# Create _contents.html.erb and _preface.html.erb
+echo '' > _contents.html.erb
 cat sample_chapter.html | \
-    sed -n '/<h1 class="subtitle">/, /<\/pre><\/div>/p' \
-    >> _contents.html.erb
-echo "</div>"     >> _contents.html.erb
-cat BEERWARE.html >> _contents.html.erb
-echo "Created '_contents.html.erb"
+    sed -n '/<h2 class="contents">/, /<div id="main_content">/p' | \
+    sed '$d' >> _contents.html.erb
+echo "Created _contents.html.erb"
+
+echo '' > _preface.html.erb
+cat sample_chapter.html | \
+    sed -n '/<div id="main_content">/, /<div id="top">/p' | \
+    sed '$d' >> _preface.html.erb
+echo "Created _preface.html.erb"
+
 
 # Make single page for the main contents that include table, foreword, etc.
 cat _head.html           >  contents.html
 cat _contents.html.erb   >> contents.html
 cat _foot.html           >> contents.html
 echo "Created 'contents.html'"
+
 
 # Create '_contents_for_book.html.erb'
 # that all links point to inside tags.
@@ -31,6 +37,7 @@ do
 	sed -n '/<div class="navigation">/,/^<\/div>/!p' \
 	> _contents_for_book.html.erb.modified_0
 done
+
 
 # Make anchor tags point to the corresponding ones inside a book.
 i=0
