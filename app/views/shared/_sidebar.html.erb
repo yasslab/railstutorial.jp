@@ -35,7 +35,7 @@
 	  <div class="switcher">
 	    <% if third_edition?(@version) %>
 	      <span class="switcher_link">
-		<%= link_to "Rails 3.2", :version => nil, :anchor => @anchor %>
+		<%= link_to "Rails 3.2", :version => "3.2", :anchor => @anchor %>
 	      </span>
 	      •
 	      <span class="title round">Rails 4.0</span>
@@ -43,7 +43,7 @@
 	      <span class="title round">Rails 3.2</span>
 	      •
 	      <span class="switcher_link">
-		<%= link_to "Rails 4.0", :version => 4.0, :anchor => @anchor %>
+		<%= link_to "Rails 4.0", :version => "4.0", :anchor => @anchor %>
 	      </span>
 	    <% end %>
 	  </div>

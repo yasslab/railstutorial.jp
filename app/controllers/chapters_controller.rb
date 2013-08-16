@@ -8,7 +8,11 @@ class ChaptersController < ApplicationController
 
   def show
     chapter  = params[:id]
-    @content = File.open("public/books/#{@version}/#{chapter}_fragment.html").read
+    if File.exist?("public/books/#{@version}/#{chapter}_fragment.html")
+      @content = File.open("public/books/#{@version}/#{chapter}_fragment.html").read
+    else
+      redirect_to "/?version=#{@version}"
+    end
   end
 
   def book
@@ -30,6 +34,6 @@ class ChaptersController < ApplicationController
 
   def default_params
     @anchor  = params[:anchor]  || 'top'
-    @version = params[:version] || 3.2
+    @version = params[:version] || '3.2'
   end
 end
