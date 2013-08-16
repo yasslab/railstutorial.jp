@@ -17,6 +17,8 @@ re_array=("s/http:\/\/railstutorial-ja.herokuapp.com/\/chapters/g" \
 	  "s/式展開/式典界/g" \
 	  "s/展開/デプロイ/g" \
 	  "s/式典界/式展開/g" \
+	  "s/books\/3.2/chapters/g" \
+	  "s/supplement.html/supplement/g" \
 	  "s/active_record_validations_callbacks/v3.2.13\/active_record_validations_callbacks/g" \
 )
 

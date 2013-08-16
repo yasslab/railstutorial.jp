@@ -14,3 +14,4 @@ mv 'Chapter 08: sign-in sign-out.html'      sign-in-sign-out.html.original
 mv 'Chapter 09: updating, showing and deleting users.html' updating-showing-and-deleting-users.html.original
 mv 'Chapter 10: user microposts.html'       user-microposts.html.original
 mv 'Chapter 11: following users.html'       following-users.html.original
+mv 'Chapter 12: supplement.html'            supplement.html.original
