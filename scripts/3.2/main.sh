@@ -27,8 +27,9 @@ cp $GIT_ROOT/public/books/_head.html       ./
 cp $GIT_ROOT/public/books/_foot.html       ./
 cp $GIT_ROOT/public/books/BEERWARE.html    ./
 
-# Correct and truncate for 'railstutorial.jp'
+# Correct, insert navigations, and truncate for 'railstutorial.jp'
 $SCRIPT_ROOT/correct_filenames.sh
+$SCRIPT_ROOT/insert_navs.sh
 $SCRIPT_ROOT/correct_htmls.sh
 $SCRIPT_ROOT/truncate_htmls.sh
 
