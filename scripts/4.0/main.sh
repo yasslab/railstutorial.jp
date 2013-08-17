@@ -29,8 +29,9 @@ cp $GIT_ROOT/public/books/_head.html       ./
 cp $GIT_ROOT/public/books/_foot.html       ./
 cp $GIT_ROOT/public/books/BEERWARE.html    ./
 
-# Rename each file
+# Rename downloaded files and insert navigations
 $SCRIPT_ROOT/correct_filenames.sh
+$SCRIPT_ROOT/insert_navs.sh
 
 # Generate chapters
 $SCRIPT_ROOT/correct_htmls.sh
