@@ -1,7 +1,7 @@
 <div id="book_wrap">
   <div id="book_top"></div>
-  <%= render "shared/title" %>
   <div id="book">
+    <%= render "shared/title" %>
     <%= render "shared/#{@version}/contents_for_book" %>
     <%= raw @content %>
   </div>
