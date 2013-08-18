@@ -10,13 +10,13 @@
 
 # Create _contents.html.erb and _preface.html.erb
 echo '' > _contents.html.erb
-cat _contents.html.original | \
+cat _contents_fragment.html | \
     sed -n '/<h2 class="contents">/, /<div id="main_content">/p' | \
     sed '$d' >> _contents.html.erb
 echo "Created _contents.html.erb"
 
 echo '' > _preface.html.erb
-cat _contents.html.original | \
+cat _contents_fragment.html | \
     sed -n '/<div id="main_content">/, /<\/pre><\/div>/p' \
     >> _preface.html.erb
 echo "</div>"     >> _preface.html.erb    

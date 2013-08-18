@@ -7,11 +7,10 @@ do
     echo "copy archive/ja/$chapter[_fragment].html \t -> ../../public/books/4.0"
 done
 
-for contents in `ls *contents*`
-do
-    cp $contents ../../public/books/4.0/
-    echo "copy archive/ja/$contents \t -> ../../public/books/4.0/"
-done
+cp _contents.html.erb      ../../public/books/4.0/
+echo "copy archive/ja/_contents.html.erb \t -> ../../public/books/4.0/"
+cp _contents_for_book.html.erb ../../public/books/4.0/
+echo "copy archive/ja/_contents_for_book.html.erb \t -> ../../public/books/4.0/"
 
 cp _preface.html.erb ../../public/books/4.0/
 echo "copy archive/ja/_preface.html.erb \t -> ../../public/books/4.0/"
