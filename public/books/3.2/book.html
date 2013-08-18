@@ -21320,23 +21320,23 @@ Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com
 <h3><a id="sec-12_1_1" href="http://railstutorial.jp/chapters/supplement#sec-rails_4_0_setup" class="heading"><span class="number">12.1.1</span>Rails 4.0のセットアップ</a></h3>
 
 
-<p>Rails 4.0を使用したアプリケーションの設定手順は、<a class="ref" href="http://railstutorial.jp#cha-beginning">第1章</a>から<a class="ref" href="http://railstutorial.jp#cha-static-pages">第3章</a>までほぼ同じです (RVM gemsetの作成またはrbenv環境の作成、Railsのインストール、Bundlerによるgemインストール、RSpecの設定)。</p>
+<p>Rails 4.0を使ってアプリケーションをセットアップする手順は、<a class="ref" href="http://railstutorial.jp#cha-beginning">第1章</a>から<a class="ref" href="http://railstutorial.jp#cha-static-pages">第3章</a>までの手順と実質的には同じです。具体的には、1) RVM の gemset の作成 (または rbenv の環境構築)、2) Railsのインストール、3) Bundlerを使ったgemのインストール、4) RSpecの設定、といった手順で進めていきます。</p>
 
-<p>RVMまたはrbenvを導入済みであれば、<a href="http://ruby.railstutorial.org/chapters/beginning?version=4.0#sec-install_ruby">4.0チュートリアルの第1章</a>と同じようにシステムを設定できます。たとえばRVMを導入している場合は、以下のようにRails 4.0サンプルアプリケーション用の新しいgemsetを作成することをお勧めします。</p>
+<p>もしRVMまたはrbenvを既に使っているのであれば、<a href="http://ruby.railstutorial.org/chapters/beginning?version=4.0#sec-install_ruby">Rails 4.0 対応版チュートリアルの第1章</a>に従って、システムを設定することできます。たとえば、RVMを使っている場合は、Rails 4.0のサンプルアプリケーション用に新しくgemsetを作成することをお勧めします。実行するコマンドは次の通りです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm use 2.0.0@railstutorial_rails_4_0_upgrade --create
 </pre></div>
 </div>
 
 
-<p>次に、以下のようにRails 4.0をインストールします。</p>
+<p>次に、Rails 4.0をインストールします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> gem install rails -v 4.0.0
 </pre></div>
 </div>
 
 
-<p>次に、アプリケーションのアップグレード用にプロジェクトを新規作成します。</p>
+<p>その後、アプリケーションをアップグレードするための新規プロジェクトを作成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/rails_projects
 <span class="gp">$</span> rails new sample_app_4_0 --skip-test-unit
@@ -21345,9 +21345,9 @@ Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com
 </div>
 
 
-<p>この時点で<code>rails server</code>を実行し、アプリケーションがローカルコンピュータ上で正常に動作していることを確認してください。</p>
+<p>この時点で、<code>rails server</code>を実行してアプリケーションをローカルで走らせ、正常に動作していることを確認してください。</p>
 
-<p>アップグレードを続けるために、<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-rails_4_0_upgrade_gemfile">リスト12.1</a>に示したgemをすべてインストールする必要があります。</p>
+<p>次に、アップグレードに必要な全てのgemをインストールします。具体的には、Gemfile を<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-rails_4_0_upgrade_gemfile">リスト12.1</a>のように書き換えます。</p>
 
 <div class="label" id="code-rails_4_0_upgrade_gemfile"></div>
 
@@ -21413,16 +21413,16 @@ Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/chapters/supplement#code-rails_4_0_upgrade_gemfile">リスト12.1</a>の最後の行に特にご注目ください。これは、(<a class="ref" href="http://railstutorial.jp#sec-accessible_attributes">6.1.2.2</a>) の<code>attr_accessible</code>をRails 4.0用のサンプルアプリケーションで使用するために必要です。</p>
+<p><a class="ref" href="http://railstutorial.jp/chapters/supplement#code-rails_4_0_upgrade_gemfile">リスト12.1</a>の最後の行に注目してください。この gem は、 <code>attr_accessible</code> (<a class="ref" href="http://railstutorial.jp#sec-accessible_attributes">6.1.2.2</a>) をRails 4.0のアプリケーションでも使えるようにするために必要な gem です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;protected_attributes&#39;</span>
 </pre></div>
 </div>
 
 
-<p>3.2のアクセス可能な属性はStrong Parametersに置き換えられるため、このgemは<a class="ref" href="http://railstutorial.jp/chapters/supplement#sec-strong_parameters">12.2</a>で削除します。</p>
+<p>なお、attr_accessible を Strong Parameters に変更し終わったらこの gem は必要なくなるので、この gem は <a class="ref" href="http://railstutorial.jp/chapters/supplement#sec-strong_parameters">12.2</a> で削除されます。</p>
 
-<p>いつもと同様に<code>bundle install</code>を実行して<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-rails_4_0_upgrade_gemfile">リスト12.1</a>のgemをインストールできます。念のため<code>bundle update</code>も実行して下さい (しつこいですが、できればその後にもう一度<code>bundle install</code>を実行しておくと安心です)。</p>
+<p>いつもと同様に、<code>bundle install</code> を実行することで<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-rails_4_0_upgrade_gemfile">リスト12.1</a>の gem をインストールできます。また、<code>bundle update</code> も実行しておいて下さい (念のため、もう一度 <code>bundle install</code> を実行しておくと安心です)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install --without production
 <span class="gp">$</span> bundle update
@@ -21431,14 +21431,14 @@ Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com
 </div>
 
 
-<p>RSpecは<tt>rspec-rails</tt>と一緒にインストールされますが、さらにgenerateを行ってインストールする必要があります。</p>
+<p>gem をインストールする際に (<tt>rspec-rails</tt> を通じて) RSpec も一緒にインストールされますが、generateコマンドを使って RSpec を再度インストールする必要があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate rspec:install
 </pre></div>
 </div>
 
 
-<p>それではRails 3.2アプリケーションの移植の手始めとして、generateで生成された<code>README</code>ファイルを削除してMarkdown版のREADME (<a class="ref" href="http://railstutorial.jp#code-sample_app_readme">リスト3.2</a>) に置き換えてください。</p>
+<p>それでは、Rails 3.2 のアプリケーションの移植作業を始めていきます。まずは、生成された <code>README</code> ファイルを削除して、Markdown 版の README (<a class="ref" href="http://railstutorial.jp#code-sample_app_readme">リスト3.2</a>) に置き換えてください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rm -f README.rdoc
 <span class="gp">$</span> cp ../sample_app_2nd_ed/README.md .
@@ -21447,15 +21447,15 @@ Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com
 </div>
 
 
-<p>ついでに<code>.rspec</code>設定ファイルもコピーしておきます。</p>
+<p>このとき、RSpec の設定ファイル (<code>.rspec</code>) も一緒にコピーしておいて下さい。</p>
 
-<p>この時点でアプリケーションをGit管理下に置くのが賢い方法です。Railsのアップグレードのような多くのエラーが発生する作業では、Gitは本当に役に立ちます。Railsが自動生成した<code>.gitignore</code>ファイルは、今のうちに<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-gitignore_rails_4_upgrade">リスト12.2</a>の内容に置き換えておくことをお勧めします。</p>
+<p>この時点で、サンプルアプリケーションをGit管理下に置くのが賢い方法です。Railsのアップグレードのような多くのエラーが発生する作業では、Gitは本当に役に立ちます。また、今のうちに、Railsが自動生成した <code>.gitignore</code> ファイルを、<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-gitignore_rails_4_upgrade">リスト12.2</a> の内容に置き換えておくことをお勧めします。</p>
 
 <div class="label" id="code-gitignore_rails_4_upgrade"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト12.2</span> <span class="description">アプリケーションの<code>.gitignore</code>ファイル。</span> </div>
+<div class="listing"><span class="header">リスト12.2</span> <span class="description">サンプルアプリケーションの <code>.gitignore</code> ファイル。</span> </div>
 <div class="code"><div class="highlight"><pre># Ignore bundler config.
 /.bundle
 
@@ -21479,15 +21479,15 @@ doc/
 </div></div>
 
 
-<p><a class="ref" href="http://railstutorial.jp/chapters/supplement#code-gitignore_rails_4_upgrade">リスト12.2</a>では、<code>.secret</code>ファイルを無視するための重要な行が追加されていることにご注目下さい。これは、<a class="ref" href="http://railstutorial.jp/chapters/supplement#sec-secret_key">12.3.1</a>で説明されているセキュリティ拡張にともなって生成されるファイルです。</p>
+<p><a class="ref" href="http://railstutorial.jp/chapters/supplement#code-gitignore_rails_4_upgrade">リスト12.2</a> では、<code>.secret</code> ファイルを無視する行が追加されていることに注目して下さい。このファイルは、セキュリティの向上のために生成されたファイルです。詳しくは、<a class="ref" href="http://railstutorial.jp/chapters/supplement#sec-secret_key">12.3.1</a> で説明します。</p>
 
-<p>最後に必要な設定は、Capybaraのドメイン固有言語 (DSL: domain-specific language) を明示的にインクルードする記述です。これはRSpecのrequest specのデフォルト文法を変更するのに必要です。これは<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-capybara_dsl">リスト12.3</a>に示すように、<code>spec_helper.rb</code>に1行追加すればおしまいです。</p>
+<p>最後に、Capybaraのドメイン固有言語 (DSL: domain-specific language) を明示的にインクルードする設定が必要です。というのも、RSpec の request spec 機能を使うために (統合テストをするために)、デフォルトの文法を変更する必要があるからです。具体的には、<a class="ref" href="http://railstutorial.jp/chapters/supplement#code-capybara_dsl">リスト12.3</a> に示すように、<code>spec_helper.rb</code> に1行追加することで設定できます。</p>
 
 <div class="label" id="code-capybara_dsl"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト12.3</span> <span class="description">Capybara DSLをRSpecに追加する。</span><br /><span class="description"> <code>spec/spec_helper.rb</code></span> </div>
+<div class="listing"><span class="header">リスト12.3</span> <span class="description">Capybara DSL を RSpec に追加する。</span><br /><span class="description"> <code>spec/spec_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="o">.</span>
 <span class="o">.</span>
 <span class="o">.</span>
@@ -21499,7 +21499,7 @@ doc/
 <span class="k">end</span>
 </pre></div>
 </div>
-バージョン管理にGitを使用しているのであれば、この時点で最初のコミットを行うのがよいでしょう。
+もしバージョン管理に Git を使っているのであれば、この時点で最初のコミットを行うとよいでしょう。
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git init
 <span class="gp">$</span> git add .
 <span class="gp">$</span> git commit -m <span class="s2">&quot;Initialize repository&quot;</span>
@@ -21507,7 +21507,7 @@ doc/
 </div></div>
 
 
-<p>本書では以後Gitのコミットの記述を省略しますが、区切りのよい時には常にコミットすることをぜひお勧めします。</p>
+<p>本書の内容を簡潔にするために、以後、Git コミットに関する記述を省略しますが、区切りが良い時には Git コミットするように心掛けてください。</p>
 
 <div class="label" id="sec-getting_to_green"></div>
 
