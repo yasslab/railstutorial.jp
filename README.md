@@ -20,22 +20,22 @@
 
 ## デザイン & レイアウト
 
-The design and layout of this site is inspired by 
+The design and layout of this tutorial is inspired by 
 
 - [mhartl/rails_tutorial_translation](https://github.com/mhartl/rails_tutorial_translation)
 - [Rails Tutorial - book](http://ruby.railstutorial.org/ruby-on-rails-tutorial-book)
 
-and is updated and developed by [Yohei Yasukawa (@yasulab)](http://twitter.com/yasulab).
+ and developed/maintained by [YasuLab](http://yasulab.jp/).
 
 ## ライセンス
 
-### [Ruby on Rails Tutorial, 2nd Edition](http://ruby.railstutorial.org/) について
+### [Ruby on Rails Tutorial, 2nd Edition (一次著作物)](http://ruby.railstutorial.org/) について
 
 Copyright &copy; 2012 by Michael Hartl.
 
 The HTML source of the Ruby on Rails Tutorial book is available under the [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/), which allows translation of the book as long as you give attribution to the original author ([Michael Hartl](http://michaelhartl.com/)) and distribute the translation under the same license.
 
-### [Ruby on Rails チュートリアル (二次著作権)](http://railstutorial.jp/) について
+### [Ruby on Rails チュートリアル (二次著作物)](http://railstutorial.jp/) について
 
 Copyright &copy; 2013 by [Rails チュートリアル翻訳グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) (代表: [YasuLab](http://yasulab.jp/))
 
