@@ -2,30 +2,15 @@
 
 ## はじめに
 
-このリポジトリには、[Ruby on Rails Tutorial](http://railstutorial.org/) を
-翻訳するために必要なHTMLおよびCSSが含まれています。
-現在、[Google Translator Toolkit](http://translate.google.com/toolkit/) と
+このリポジトリには、[Ruby on Rails チュートリアル](http://railstutorial.jp/) で使われている HTML や CSS、画像ファイル等が公開されています。
+
+現在は、[Google Translator Toolkit](http://translate.google.com/toolkit/) と
 [Facebook グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) を用いて、
-同書の日本語版を作成しています。
+同書の日本語版をレビューおよび編集しています。
 
-もし翻訳に興味ある方がいれば、お気軽に次のグループにご参加下さい :D
-
-- [Ruby on Rails Tutorial 翻訳グループ - Facebook](https://www.facebook.com/groups/japanese.railstutorial.org/)
-
-なお、各章のラフな翻訳が終わり次第、随時次のページに反映させています。
-もし誤字／脱字、誤訳などを見つけましたら、
-[@yasulab](http://twitter.com/yasulab) までご報告して頂けると幸いです。
+もし誤字・誤訳などがあれば、お気軽に [@yasulab](http://twitter.com/yasulab) までお声かけ下さい :D
 
 - [Ruby on Rails チュートリアル：実例を使ってRailsを学ぼう](http://railstutorial.jp/)
-
-## デザイン & レイアウト
-
-The design and layout of this tutorial is inspired by 
-
-- [mhartl/rails_tutorial_translation](https://github.com/mhartl/rails_tutorial_translation)
-- [Rails Tutorial - book](http://ruby.railstutorial.org/ruby-on-rails-tutorial-book)
-
- and developed/maintained by [YasuLab](http://yasulab.jp/).
 
 ## ライセンス
 
@@ -37,11 +22,7 @@ The HTML source of the Ruby on Rails Tutorial book is available under the [Creat
 
 ### [Ruby on Rails チュートリアル (二次著作物)](http://railstutorial.jp/) について
 
-Copyright &copy; 2013 by [Rails チュートリアル翻訳グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) (代表: [YasuLab](http://yasulab.jp/))
+Copyright &copy; 2013 by [Rails チュートリアル翻訳グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) (お問い合わせ先: [YasuLab](http://yasulab.jp/))
 
 参考: [翻訳の著作権（コピーライト）について](http://www.di-max.jp/information/copyright.htm)
-
-### [Ruby on Rails チュートリアル (ソースコード)](http://github.com/yasulab/railstutorial.jp) について
-
-Copyright &copy; 2013 by [YasuLab](http://yasulab.jp/)
 
