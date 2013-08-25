@@ -28,3 +28,4 @@ Icon
 .DS_Store
 config.json
 .#*
+main.sh
