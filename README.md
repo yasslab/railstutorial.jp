@@ -12,6 +12,12 @@
 
 - [Ruby on Rails チュートリアル：実例を使ってRailsを学ぼう](http://railstutorial.jp/)
 
+## 参考文献
+
+- Ruby on Rails Tutorial 3.2: [mhartl/rails_tutorial_translation_2nd_ed](https://github.com/mhartl/rails_tutorial_translation_2nd_ed)
+- Ruby on Rails Tutorial 4.0: [mhartl/rails_tutorial_translation_4_0_version](https://github.com/mhartl/rails_tutorial_translation_4_0_version) 
+- Design and Layout: [mhartl/rails_tutorial_translation](https://github.com/mhartl/rails_tutorial_translation)
+
 ## ライセンス
 
 ### [Ruby on Rails Tutorial, 2nd Edition (一次著作物)](http://ruby.railstutorial.org/) について
