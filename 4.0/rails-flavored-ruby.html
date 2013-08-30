@@ -1200,7 +1200,7 @@
 <span class="go">=&gt; String</span>
 <span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">superclass</span>             <span class="c1"># Stringクラスのスーパークラスを表示</span>
 <span class="go">=&gt; Object</span>
-<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">superclass</span><span class="o">.</span><span class="n">superclass</span>  <span class="c1"># Ruby 1.9では新たにBasicObject基底クラスを使用</span>
+<span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">superclass</span><span class="o">.</span><span class="n">superclass</span>  <span class="c1"># Ruby 1.9では新たに BasicObject を使用</span>
 <span class="go">=&gt; BasicObject</span>
 <span class="gp">&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">superclass</span><span class="o">.</span><span class="n">superclass</span><span class="o">.</span><span class="n">superclass</span>
 <span class="go">=&gt; nil</span>
@@ -1482,9 +1482,9 @@
 <span class="go">=&gt; #&lt;User:0x224ceec @email=nil, @name=nil&gt;</span>
 <span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">name</span>                 <span class="c1"># attributes[:name]がnilなのでnilが返される</span>
 <span class="go">=&gt; nil</span>
-<span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Example User&quot;</span>           <span class="c1"># nilでない名前を割り当てる</span>
+<span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Example User&quot;</span>           <span class="c1"># nil でない名前を代入</span>
 <span class="go">=&gt; &quot;Example User&quot;</span>
-<span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;user@example.com&quot;</span>      <span class="c1"># nil でないメールアドレスも割り当てる</span>
+<span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;user@example.com&quot;</span>      <span class="c1"># nil でないメールアドレスを代入</span>
 <span class="go">=&gt; &quot;user@example.com&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">formatted_email</span>
 <span class="go">=&gt; &quot;Example User &lt;user@example.com&gt;&quot;</span>
@@ -1504,7 +1504,8 @@
 <p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-css_revisited">4.3.4</a>では、最後のハッシュ引数の波かっこを省略できることを説明しました。それと同じ要領で<code>initialize</code>メソッドにハッシュを渡すことで、属性が定義済みの他のユーザーを作成することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
-<span class="go">=&gt; #&lt;User:0x225167c @email=&quot;mhartl@example.com&quot;, @name=&quot;Michael Hartl&quot;&gt;</span>
+<span class="go">=&gt; #&lt;User:0x225167c @email=&quot;mhartl@example.com&quot;,
+@name=&quot;Michael Hartl&quot;&gt;</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">formatted_email</span>
 <span class="go">=&gt; &quot;Michael Hartl &lt;mhartl@example.com&gt;&quot;</span>
 </pre></div>

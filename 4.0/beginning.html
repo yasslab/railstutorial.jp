@@ -133,7 +133,7 @@
 <h3><a id="sec-1_1_2" href="/chapters/beginning?version=4.0#sec-1_1_2" class="heading"><span class="number">1.1.2</span> Railsと「スケール」について</a></h3>
 
 
-<p>本節を続ける前に、一旦ここで、初期の頃から Rails フレームワークに対して指摘されていた「Rails はスケールできない」という主張について触れたいと思います。すなわち、「Rails では大量のトラフィックを裁くことができない」という主張です。この主張の一部には、間違った認識があります。それは、<a href="http://idleprocess.wordpress.com/2009/11/24/presentation-summary-high-performance-at-massive-scale-lessons-learned-at-facebook/">あなたが<em>ウェブサイト</em>をスケールさせるのであって、フレームワークがウェブサイトをスケールさせるのではない</a>、ということです。Rails は素晴らしいフレームワークではありますが、しかし、ただのフレームワークでしかありません。したがって、本来のあるべき問いは「Rails で構築されたウェブサイトはスケールできるのか？」となります。そして、今となっては、この主張の答えは明白です。なぜなら、世界で最もトラフィックの大きいウェブサイトのいくつかは、Rails で構築されているからです。ただし、ウェブサイトをスケール<em>させる</em>ことは、Rails だけで出来ることではありません。Rails 以外の知識も必要になります。といっても、Hulu や Yellow Pages といった大量のトラフィックを捌いているウェブアプリケーションも Rails を使って構築されているので、そこまで心配する必要はありません。少なくとも、<em>あなたの</em>アプリケーションが Hulu や Yellow Pages 並みに成長するまでの間は、「Rails だからスケールできない」ということにはならないでしょう。</p>
+<p>本節を続ける前に、一旦ここで、初期の頃から Rails フレームワークに対して指摘されていた「Rails はスケールできない」という主張について触れたいと思います。すなわち、「Rails では大量のトラフィックを裁くことができない」という主張です。この主張の一部には、間違った認識があります。それは、<a href="http://idleprocess.wordpress.com/2009/11/24/presentation-summary-high-performance-at-massive-scale-lessons-learned-at-facebook/">あなたが<em>ウェブサイト</em>をスケールさせるのであって、フレームワークがウェブサイトをスケールさせるのではない</a>、ということです。Rails は素晴らしいフレームワークではありますが、しかし、ただのフレームワークでしかありません。したがって、本来のあるべき問いは「Rails で構築されたウェブサイトはスケールできるのか？」となります。そして、今となっては、この主張の答えは明白です。なぜなら、世界で最もトラフィックの大きいウェブサイトのいくつかは、Rails で構築されているからです。ただし、ウェブサイトをスケール<em>させる</em>ことは、Rails だけで出来ることではありません。Rails 以外の知識も必要になります。といっても、Hulu や Yellow Pages といった大量のトラフィックを捌いているウェブアプリケーションも Rails で構築されているので、そこまで心配する必要はありません。少なくとも、<em>あなたの</em>アプリケーションが Hulu や Yellow Pages 並みに成長するまでの間は、「Rails だからスケールできない」ということにはならないでしょう。</p>
 
 <div class="label" id="sec-conventions"></div>
 
@@ -390,7 +390,8 @@
 <p>Rubyをインストールしたら、Railsのアプリケーションを実行するために必要な他のソフトウェア向けにシステムを構成する必要があります。通常、これは<em>gem</em>のインストールに関連します。gemとは自己完結型のRubyコードのパッケージです。バージョン番号の異なるgem同士がコンフリクトすることがあるため、一連のgemを自己完結的にまとめた<em>gemset</em>というものを作成してバージョンを使い分けるのが便利です。本書向けに、以下を実行して<code>railstutorial_rails_4_0</code>という名前のgemsetを作成しておくことをお勧めします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm use 2.0.0@railstutorial_rails_4_0 --create --default
-<span class="go">Using /Users/mhartl/.rvm/gems/ruby-2.0.0-p0 with gemset railstutorial_rails_4_0</span>
+<span class="go">Using /Users/mhartl/.rvm/gems/ruby-2.0.0-p0 
+with gemset railstutorial_rails_4_0</span>
 </pre></div>
 </div>
 
@@ -536,8 +537,8 @@
 <span class="go">.</span>
 <span class="go">.</span>
 <span class="go">.</span>
-<span class="go">Your bundle is complete!</span><span class="go">Use `bundle show [gemname]` to see where a bundled</span>
-<span class="go">gem is installed.</span>
+<span class="go">Your bundle is complete!</span><span class="go">Use `bundle show [gemname]` 
+to see where a bundled</span> <span class="go">gem is installed.</span>
 </pre></div>
 </div></div>
 
@@ -598,7 +599,8 @@
 <span class="c1"># Use CoffeeScript for .js.coffee assets and views</span>
 <span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 4.0.0&#39;</span>
 
-<span class="c1"># See https://github.com/sstephenson/execjs#readme for more supported runtimes</span>
+<span class="c1"># See https://github.com/sstephenson/execjs#readme 
+# for more supported runtimes</span>
 <span class="c1"># gem &#39;therubyracer&#39;, platforms: :ruby</span>
 
 <span class="c1"># Use jquery as the JavaScript library</span>
@@ -608,7 +610,8 @@
 <span class="c1"># Read more: https://github.com/rails/turbolinks</span>
 <span class="n">gem</span> <span class="s1">&#39;turbolinks&#39;</span>
 
-<span class="c1"># Build JSON APIs with ease. </span><span class="c1">Read more: https://github.com/rails/jbuilder</span>
+<span class="c1"># Build JSON APIs with ease. </span><span class="c1">
+# Read more: https://github.com/rails/jbuilder</span>
 <span class="n">gem</span> <span class="s1">&#39;jbuilder&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 1.0.1&#39;</span>
 
 <span class="n">group</span> <span class="ss">:doc</span> <span class="k">do</span>

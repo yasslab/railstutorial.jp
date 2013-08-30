@@ -2101,7 +2101,7 @@
   <span class="o">.</span>
   <span class="o">.</span>
   <span class="o">.</span>
-  <span class="c1"># 与えられたユーザーによってフォローされているユーザーのマイクロポストを返す。</span>
+  <span class="c1"># 与えられたユーザーがフォローしているユーザー達のマイクロポストを返す。</span>
   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">from_users_followed_by</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
     <span class="n">followed_user_ids</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">followed_user_ids</span>
     <span class="n">where</span><span class="p">(</span><span class="s2">&quot;user_id IN (:followed_user_ids) OR user_id = :user_id&quot;</span><span class="p">,</span>
@@ -2169,7 +2169,7 @@
   <span class="n">validates</span> <span class="ss">:content</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">length:</span> <span class="p">{</span> <span class="ss">maximum:</span> <span class="mi">140</span> <span class="p">}</span>
   <span class="n">validates</span> <span class="ss">:user_id</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span>
 
-  <span class="c1"># 与えられたユーザーによってフォローされているユーザーのマイクロポストを返す。</span>
+  <span class="c1"># 与えられたユーザーがフォローしているユーザー達のマイクロポストを返す。</span>
   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">from_users_followed_by</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
     <span class="n">followed_user_ids</span> <span class="o">=</span> <span class="s2">&quot;SELECT followed_id FROM relationships</span>
 <span class="s2">                         WHERE follower_id = :user_id&quot;</span>

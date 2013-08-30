@@ -1941,18 +1941,20 @@ bundler_stubs/
   <span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
     <span class="c1"># == Mock Framework</span>
     <span class="c1">#</span>
-    <span class="c1"># If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:</span>
+    <span class="c1"># If you prefer to use mocha, flexmock or RR, 
+    # uncomment the appropriate line:</span>
     <span class="c1">#</span>
     <span class="c1"># config.mock_with :mocha</span>
     <span class="c1"># config.mock_with :flexmock</span>
     <span class="c1"># config.mock_with :rr</span>
 
-    <span class="c1"># Remove this line if you&#39;re not using ActiveRecord or ActiveRecord fixtures</span>
+    <span class="c1"># Remove this line if you&#39;re not using ActiveRecord
+    # or ActiveRecord fixtures</span>
     <span class="n">config</span><span class="o">.</span><span class="n">fixture_path</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="o">::</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="s2">/spec/fixtures&quot;</span>
 
-    <span class="c1"># If you&#39;re not using ActiveRecord, or you&#39;d prefer not to run each of your</span>
-    <span class="c1"># examples within a transaction, remove the following line or assign false</span>
-    <span class="c1"># instead of true.</span>
+    <span class="c1"># If you&#39;re not using ActiveRecord, or you&#39;d prefer not to run each of </span>
+    <span class="c1"># your examples within a transaction, remove the following line or</span>
+    <span class="c1"># assign false instead of true.</span>
     <span class="n">config</span><span class="o">.</span><span class="n">use_transactional_fixtures</span> <span class="o">=</span> <span class="kp">true</span>
 
     <span class="c1"># If true, the base class of anonymous controllers will be inferred</span>
@@ -1960,9 +1962,9 @@ bundler_stubs/
     <span class="c1"># rspec-rails.</span>
     <span class="n">config</span><span class="o">.</span><span class="n">infer_base_class_for_anonymous_controllers</span> <span class="o">=</span> <span class="kp">false</span>
 
-    <span class="c1"># Run specs in random order to surface order dependencies. </span><span class="c1">If you find an</span>
-    <span class="c1"># order dependency and want to debug it, you can fix the order by providing</span>
-    <span class="c1"># the seed, which is printed after each run.</span>
+    <span class="c1"># Run specs in random order to surface order dependencies. </span><span class="c1">If you </span>
+    <span class="c1"># find an order dependency and want to debug it, you can fix the</span>
+    <span class="c1"># order by providing the seed, which is printed after each run.</span>
     <span class="c1">#     --seed 1234</span>
     <span class="n">config</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="s2">&quot;random&quot;</span>
     <span class="n">config</span><span class="o">.</span><span class="n">include</span> <span class="ss">Capybara::DSL</span>

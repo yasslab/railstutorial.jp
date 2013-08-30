@@ -1259,7 +1259,8 @@
 
 <p>このテストがパスするには、最初に<code>password_digest</code>カラム用の適切なマイグレーションを生成します。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate migration add_password_digest_to_users password_digest:string
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate migration \
+add_password_digest_to_users password_digest:string
 </pre></div>
 </div>
 
@@ -1687,7 +1688,7 @@
 <span class="gp">?</span><span class="gp">&gt; </span>            <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span> <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
 <span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
 <span class="go">created_at: &quot;2013-03-11 20:45:19&quot;, updated_at: &quot;2013-03-11 20:45:19&quot;,</span>
-<span class="go">password_digest: &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn5sKNaGTEmT0jU7.n...&quot;</span><span class="go">&gt;</span>
+<span class="go">password_digest: &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn...&quot;</span><span class="go">&gt;</span>
 </pre></div>
 </div>
 
@@ -1704,7 +1705,7 @@
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">password_digest</span>
-<span class="go">=&gt; &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn5sKNaGTEmT0jU7.ncBJ/60gHq&quot;</span>
+<span class="go">=&gt; &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn5sKNaGTEmT0jU7.n...&quot;</span>
 </pre></div>
 </div>
 
@@ -1716,7 +1717,7 @@
 <span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
 <span class="go">=&gt; #&lt;User id: 1, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
 <span class="go">created_at: &quot;2013-03-11 20:45:19&quot;, updated_at: &quot;2013-03-11 20:45:19&quot;,</span>
-<span class="go">password_digest: &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn5sKNaGTEmT0jU7.n...&quot;</span><span class="go">&gt;</span>
+<span class="go">password_digest: &quot;$2a$10$kn4cQDJTzV76ZgDxOWk6Je9A0Ttn...&quot;</span><span class="go">&gt;</span>
 </pre></div>
 </div>
 
