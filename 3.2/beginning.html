@@ -107,11 +107,11 @@
 <h3><a id="sec-1_1_3" href="/chapters/beginning.html#sec-conventions" class="heading"><span class="number">1.1.3</span> この本における取り決め</a></h3>
 
 
-<p>本書における取り決め (コマンドやコードの記述法などの統一) はできるだけ分かりやすく選んだつもりです。ここでは分かりにくいかもしれない部分を解説しておきます。</p>
+<p>本書では、できるだけ分かりやすい取り決めを使っています。本項では、その中でも、分かりにくいかもしれない一部の取り決めについて説明します。</p>
 
-<p><a href="http://railstutorial.org/book">HTML版</a>、<a href="http://railstutorial.org/">PDF版</a>ともに、文中には内部リンク (<a class="ref" href="/chapters/beginning.html#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロードページ</a>など) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="/chapters/beginning.html#fn-1_5">5</a></sup>。</p>
+<p><a href="http://railstutorial.org/book">HTML 版</a>、<a href="http://railstutorial.org/">PDF 版</a>ともに、文中には内部リンク (<a class="ref" href="/chapters/beginning.html#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロードページ</a>など) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="/chapters/beginning.html#fn-1_5">5</a></sup>。</p>
 
-<p>本書の出てくる例の多くはコマンドライン (ターミナル) のコマンドを使っています。簡素化のため、すべてのコマンドライン例は次のようにUnixスタイルの $ プロンプトを使っています。</p>
+<p>本書の出てくる例の多くは、コマンドライン (ターミナル) のコマンドを使っています。簡素化のため、コマンドラインを使った例では、次のような Unix スタイルのプロンプト (行の頭に &#39;$&#39; を表示するスタイル) を使っています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;hello, world&quot;</span>
 <span class="go">&quot;hello world&quot;</span>
@@ -119,7 +119,7 @@
 </div>
 
 
-<p>Windowsユーザーの方は、Windowsコマンドラインでは次のように <code>&gt;</code> プロンプトが使用されていることをご理解ください。</p>
+<p>なお、Windows のコマンドラインでは、大なり記号 (<code>&gt;</code>) がプロンプトに表示されるので、$ を &gt; に置き換えて読んで下さい。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">C:\Sites&gt; echo &quot;hello, world&quot;</span>
 <span class="go">&quot;hello world&quot;</span>
@@ -127,59 +127,59 @@
 </div>
 
 
-<p>Unix上では、コマンドを入力する際<code>sudo</code> (他のユーザーの特権レベルでプログラムを実行するためのコマンド) を使わなければならない場合があります<sup class="footnote" id="fnref-1_6"><a href="/chapters/beginning.html#fn-1_6">6</a></sup>デフォルトで<code>sudo</code>コマンドで実行されたプログラムは、<a class="ref" href="/chapters/beginning.html#sec-rubygems">1.2.2</a>の例のように通常のユーザーはアクセスできないファイルやディレクトリへのアクセス権を持つ「管理者権限」で実行されます。</p>
+<p>また、Unix システム上では、いくつかのコマンドを入力する際に <code>sudo</code> コマンド (他のユーザーとしてプログラムを実行するためのコマンド) を使わなければならない場合があります<sup class="footnote" id="fnref-1_6"><a href="/chapters/beginning.html#fn-1_6">6</a></sup>。<code>sudo</code> コマンドを使って実行されたプログラムは、通常のユーザーではアクセスできないファイルやディレクトリにアクセスできる「管理者権限」で実行されます。例えば、<a class="ref" href="/chapters/beginning.html#sec-rubygems">1.2.2</a> では、次のような管理者権限で実行するコマンドが出てきます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> sudo ruby setup.rb</pre></div>
 </div>
 
 
-<p><a class="ref" href="/chapters/beginning.html#sec-install_ruby">1.2.2.3</a>で推奨されているRuby Version Manager (rvm)を導入していない場合、ほとんどのUnix/Linux/OS Xシステムでは<code>sudo</code>の実行が必要です。rvmを導入している場合は以下のように実行できます。</p>
+<p>ほとんどの Unix/Linux/OS X のシステムでは、<code>sudo</code> の実行が必要です。ただし、<a class="ref" href="/chapters/beginning.html#sec-install_ruby">1.2.2.3</a> で推奨されている Ruby Version Manager を使っている場合は、次の例のように、管理者権限を使わずに実行することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby setup.rb</pre></div>
 </div>
 
 
-<p>Railsにはコマンドラインで実行できる多数のコマンドが付属しています。たとえば、<a class="ref" href="/chapters/beginning.html#sec-rails_server">1.2.5</a>にあるように以下のコマンドを使用して開発用WebサーバーをローカルPC上で実行することができます。</p>
+<p>Rails には、コマンドラインで実行できる多数のコマンドが付属しています。例えば、<a class="ref" href="/chapters/beginning.html#sec-rails_server">1.2.5</a> で使われる次のコマンドは、開発用 Web サーバーをローカル PC 上で実行するコマンドです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nv">$ </span>rails server</pre></div>
 </div>
 
 
-<p>コマンドラインのプロンプトと同じく、<em>Railsチュートリアル</em>ではディレクトリの区切りをUnix式にスラッシュ(<code>/</code>)で表記しています。たとえばサンプルアプリケーションの場所は以下になります。</p>
+<p>コマンドラインのプロンプトと土曜に、<em>Rails チュートリアル</em>では、ディレクトリの区切りに Unix スタイルのスラッシュ(<code>/</code>)を使っています。したがって、例えばサンプルアプリケーションの場所は、次にように表記されます。</p>
 
 <div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app</pre></div>
 </div>
 
 
-<p>Windowsでの同等のパスは以下になります。</p>
+<p>なお、Windows のコマンドプロンプトでは、ディレクトリの区切りは次のように表示されるはずです。</p>
 
 <div class="code"><div class="highlight"><pre>C:\Sites\sample_app</pre></div>
 </div>
 
 
-<p>Railsで作成するアプリケーションのルートディレクトリを<em>Railsルート</em>と呼びます。この用語はやや間違えられやすいようで、多くの人がRailsルートを「Railsそのもののルート」だと勘違いします。この点を明確にするため、<em>Railsチュートリアル</em>ではRailsルートといえば<em>Railsで作成したアプリケーションのルート</em>を指すものとし、すべてのディレクトリはここを起点とした相対パスで示します。たとえば、サンプルアプリケーションの<code>config</code>ディレクトリは以下です。</p>
+<p>Rails で作成するアプリケーションのルートディレクトリを、<em>Rails ルート</em>と呼びます。この用語は誤解されやすいようで、多くの人が Rails ルートを「Railsがインストールされたディレクトリ」だと勘違いします。この点を明確にするため、<em>Rails チュートリアル</em>では、Rails ルートは <em>Rails アプリケーションのルートディレクトリ</em>を指すものとします。また、全てのディレクトリは、このルートディレクトリを起点とした相対パスで示します。例えば、著者のサンプルアプリケーションの <code>config</code> ディレクトリは、次の場所にあります。</p>
 
 <div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app/config</pre></div>
 </div>
 
 
-<p>この場合、このRailsアプリケーションのルートディレクトリは<code>config</code>の1つ上の階層であり、以下になります。</p>
+<p>このとき、この Rails アプリケーションのルートディレクトリは、<code>config</code> ディレクトリの1つ上の階層にあります。したがって、次の場所にあります。</p>
 
 <div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app</pre></div>
 </div>
 
 
-<p>以下のようなディレクトリパスを簡潔に記述する場合、</p>
+<p>しかし、長いパスを毎回表記すると、読みづらくなります。そこで、本書では、次のようなディレクトリパスを参照する場合、</p>
 
 <div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app/config/routes.rb</pre></div>
 </div>
 
 
-<p>本書ではアプリケーションのルートを省略して単に<code>config/routes.rb</code>と記載します。</p>
+<p>アプリケーションのルートパスを省略して、単純に <code>config/routes.rb</code> と表記することにします。</p>
 
-<p><em>Railsチュートリアル</em>には、シェルコマンドやバージョン管理ソフトウェア、Rubyプログラムなどが出力するさまざまな結果が多数掲載されています。出力結果はコンピュータシステムによって微妙に異なるのが普通ですから、本書に掲載されている出力結果が実際の出力と正確に同じであるとは限りませんが、この点は問題ありません。</p>
+<p><em>Rails チュートリアル</em>では、様々なプログラムの出力結果  (例えば、シェルコマンドやバージョン管理ツール、Ruby プログラムの出力結果) を、頻繁に記載するようにしています。出力結果は、コンピュータシステムによって微妙に異なるので、本書の出力結果と実際の出力が正確に一致するとは限りません。しかし、細かい出力結果の差異が問題になることはないので、あまり気にする必要はありません。</p>
 
-<p>システムの状態によっては、一部のコマンドを実行した時にエラーが発生することもあります。本書では、あらゆる場合を想定してエラー対策を事細かに記載するような<a href="http://en.wikipedia.org/wiki/Sisyphus">面倒なこと</a>はしていません。代わりに、エラーメッセージを素直にGoogleで検索してください。これは実際のソフトウェア開発にも効果的なテクニックです。本書のチュートリアル実行中に何か問題が生じたら、<a href="http://railstutorial.org/help">RailsチュートリアルのHelpページ</a>に記載されているリソースに当たってみてください<sup class="footnote" id="fnref-1_7"><a href="/chapters/beginning.html#fn-1_7">7</a></sup>。</p>
+<p>一方、コンピュータシステムによっては、一部のコマンドを実行した時にエラーが発生するかもしれません。しかし本書では、あらゆる場面を想定して、全てのエラーの対策を記載するような<a href="http://en.wikipedia.org/wiki/Sisyphus">果てしない徒労</a>はしていません。その代わり、エラーメッセージを Google で検索してください (原文: &quot;Google the error message&quot; algorithm) &quot;。エラーメッセージを Google で検索することは、実際のソフトウェア開発でも使われているテクニックなので、その良い練習にも繋がります。もし本書のチュートリアルを進めていくうちに何か問題が生じたら、<a href="http://railstutorial.jp/help">Rails チュートリアルの Help ページ</a>を読んでみて下さい。このページには、問題を解決するためのリソースやヒントが記載されているので、問題を解決する手掛かりになるはずです<sup class="footnote" id="fnref-1_7"><a href="/chapters/beginning.html#fn-1_7">7</a></sup>。</p>
 
 <div class="label" id="sec-up_and_running"></div>
 
@@ -252,7 +252,7 @@
 </blockquote>
 
 
-<p>さあ、RubyとRailsをインストールしましょう。本書では可能な限り多くの環境をカバーするようにしていますが、システムが変われば手順がうまくいかないこともあります。問題が生じた場合は、エラーメッセージをGoogleで検索するか、<a href="http://railstutorial.org/help">RailsチュートリアルのHelpページ</a>を参照してください。</p>
+<p>さあ、RubyとRailsをインストールしましょう。本書では可能な限り多くの環境をカバーするようにしていますが、システムが変われば手順がうまくいかないこともあります。問題が生じた場合は、エラーメッセージをGoogleで検索するか、<a href="http://railstutorial.jp/help">RailsチュートリアルのHelpページ</a>を参照してください。</p>
 
 <p><strong>なお、特に断りのない限り、Railsを含むすべてのソフトウェアはチュートリアルで使用されているものと同じバージョンを使用してください。そうでないと同じ結果を得られないことがあります。</strong> バージョンが少々異なっていても同じ結果を得られることもありますが、特にRailsのバージョンに関しては必ず指定を守ってください。一方、例外もあります。たとえば、Rubyのバージョンがその例外に該当します。本チュートリアル内では、Ruby 1.9.3とRuby 2.0.0は実質的に同じように動作するので、どちらを使ってもチュートリアルには影響しません。お好きな方をご使用ください。</p>
 
@@ -1391,7 +1391,7 @@ jhyicevg.heroku.com</pre>
 <li id="fn-1_4">http://railstutorial.org/screencasts <a class="arrow" href="/chapters/beginning.html#fnref-1_4">↑</a></li>
 <li id="fn-1_5"><em>Railsチュートリアル</em>を読んでいて、チュートリアル内部の別セクション番号へのリンクをクリックして移動したら、なるべくすぐに元の場所に戻ることをお勧めします。Webページで読んでいる場合は、ブラウザの [戻る] ボタンで戻れます。Adobe ReaderやOS XのプレビューでPDF版を読んでいる場合でも、同様に戻る方法があります。Adobe Readerの場合は、ドキュメント画面を右クリックして [Previous View]をクリックします。OS X Previewの場合はメニューの <tt>[移動] &gt; [戻る]</tt> で戻れます。<a class="arrow" href="/chapters/beginning.html#fnref-1_5">↑</a></li>
 <li id="fn-1_6"><code>sudo</code>コマンドを実行するとデフォルトでroot (スーパーユーザー) に切り替わるためか、多くの人がsudoコマンドを &quot;superuser do&quot; の略だと誤って信じています。正しくは、<code>sudo</code>は<code>su</code>コマンドと英語の “do” をつなげたものです。そして<code>su</code>コマンドは “substitute user” (ユーザーの切替) の略なのです。ターミナルで<code>man su</code>と入力すればこのことを確認できます。 <a class="arrow" href="/chapters/beginning.html#fnref-1_6">↑</a></li>
-<li id="fn-1_7">http://railstutorial.org/help <a class="arrow" href="/chapters/beginning.html#fnref-1_7">↑</a></li>
+<li id="fn-1_7">http://railstutorial.jp/help <a class="arrow" href="/chapters/beginning.html#fnref-1_7">↑</a></li>
 <li id="fn-1_8">https://github.com/perfectionist/sample_project/wiki <a class="arrow" href="/chapters/beginning.html#fnref-1_8">↑</a></li>
 <li id="fn-1_9">viは、Unixで古くから使用されているコマンドベースの強力なエディタです。Vimは &quot;vi improved&quot; の略です。<a class="arrow" href="/chapters/beginning.html#fnref-1_9">↑</a></li>
 <li id="fn-1_10">https://github.com/mhartl/rails_tutorial_sublime_text <a class="arrow" href="/chapters/beginning.html#fnref-1_10">↑</a></li>
