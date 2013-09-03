@@ -939,7 +939,7 @@
 
 <p>このパターンに一致するメールアドレスだけが有効であることをチェックします (<code>VALID_EMAIL_REGEX</code>は大文字で始まるので、Rubyの<em>定数</em>として扱われ、値は変更できません)。</p>
 
-<p>ところで、この正規表現パターンはどうやって作ればよいのでしょうか。正規表現は簡潔な (<a href="http://catb.org/jargon/html/L/line-noise.html">読めない</a>という人もいますが) テキストパターンマッチング言語から成ります。正規表現を組み立てることを学ぶのはそれだけでひとつの技術分野であり、手短に説明するのは簡単ではありませんが、ともあれ最初の説明のために<code>VALID_EMAIL_REGEX</code>をビットサイズの部品に分解しました (<a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>)<sup class="footnote" id="fnref-6_10"><a href="/chapters/modeling-users?version=4.0#fn-6_10">10</a></sup>。本当に正規表現を学びたいなら、素晴らしい正規表現エディタである<a href="http://www.rubular.com/">Rubular</a> (<a class="ref" href="/chapters/modeling-users?version=4.0#fig-rubular">図6.4</a>) が必要不可欠です<sup class="footnote" id="fnref-6_11"><a href="/chapters/modeling-users?version=4.0#fn-6_11">11</a></sup>。RubularのWebサイトは、正規表現を作るための美しく対話的なインターフェイスを持っています。また、手軽な正規表現のクイックリファレンスにもなります。Rubularのサイトをブラウザで開き、<a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>の表現をひとつずつ入力して結果を確かめながら正規表現を学ぶことをぜひともお勧めします。正規表現について学んだことがなくても、Rubularを使えば数時間で慣れることができます (<em>注</em>: <a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>の正規表現をRubularで使う場合、冒頭の<tt class="verb">\A</tt>と末尾の<tt class="verb">\z</tt>の文字は含めないでください)。</p>
+<p>ところで、この正規表現パターンはどうやって作ればよいのでしょうか。正規表現は簡潔な (<a href="http://catb.org/jargon/html/L/line-noise.html">読めない</a>という人もいますが) テキストパターンマッチング言語から成ります。正規表現を組み立てることを学ぶのはそれだけでひとつの技術分野であり、手短に説明するのは簡単ではありませんが、ともあれ最初の説明のために<code>VALID_EMAIL_REGEX</code>をビットサイズの部品に分解しました (<a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>)<sup class="footnote" id="fnref-6_10"><a href="/chapters/modeling-users?version=4.0#fn-6_10">10</a></sup>。本当に正規表現を学びたいなら、素晴らしい正規表現エディタである<a href="http://www.rubular.com/">Rubular</a> (<a class="ref" href="/chapters/modeling-users?version=4.0#fig-rubular">図6.4</a>) が必要不可欠です<sup class="footnote" id="fnref-6_11"><a href="/chapters/modeling-users?version=4.0#fn-6_11">11</a></sup>。RubularのWebサイトは、正規表現を作るための美しく対話的なインターフェイスを持っています。また、手軽な正規表現のクイックリファレンスにもなります。Rubularのサイトをブラウザで開き、<a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>の表現をひとつずつ入力して結果を確かめながら正規表現を学ぶことをぜひともお勧めします。正規表現について学んだことがなくても、Rubularを使えば２〜３時間ほどで慣れることができます (<em>注</em>: <a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>の正規表現をRubularで使う場合、冒頭の<tt class="verb">\A</tt>と末尾の<tt class="verb">\z</tt>の文字は含めないでください)。</p>
 
 <div class="label" id="table-valid_email_regex"></div>
 
@@ -1767,7 +1767,7 @@ add_password_digest_to_users password_digest:string
 
 <li>Rails APIサイトで<code>validates</code>メソッドを調べ、どんなことができるか、どんなオプションがあるかを調べてください。</li>
 
-<li><a href="http://www.rubular.com/">Rubular</a>で数時間ほど遊んでみてください。</li>
+<li><a href="http://www.rubular.com/">Rubular</a>で２〜３時間ほど遊んでみてください。</li>
 
 </ol>
 
