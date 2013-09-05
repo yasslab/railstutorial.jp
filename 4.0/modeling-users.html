@@ -2,8 +2,8 @@
   <head>
     <title>beginning</title>
     
-    <link rel="stylesheet" href="http://railstutorial.jp/stylesheets/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://railstutorial.jp/stylesheets/polytexnic.css" type="text/css" />
+    <link rel="stylesheet" href="../stylesheets/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../stylesheets/polytexnic.css" type="text/css" />
   </head>
   <body dir="ltr" dir="ltr">
     <div id="book">
@@ -11,10 +11,10 @@
 <div id="top"></div>
 
 
-<h1 class="chapter"><a id="sec-6" href="/chapters/modeling-users?version=4.0#top" class="heading"><span class="number">第6章</span>ユーザーのモデルを作成する</a></h1>
+<h1 class="chapter"><a id="sec-6" href="./modeling-users?version=4.0#top" class="heading"><span class="number">第6章</span>ユーザーのモデルを作成する</a></h1>
 
 
-<p><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>では、新しいユーザーを作成するためのスタブページを作ったところで終わりました (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-user_signup">5.4</a>)。これから4つの章を通して、ユーザー登録ページを作っていくことにしましょう。最初の一番重要なステップは、サイトのユーザー用の<em>データモデル</em>の作成と、データを保存する手段の確保です。<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>では、ユーザーがサイトにユーザー登録できるようにし、ユーザープロファイルのためのページを作成します。ユーザー登録ができるようになると、次にサインイン、サインアウトもできるようにします (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>)。そして<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a> (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-requiring_signed_in_users">9.2.1</a>) では、不正なアクセスから守る方法を学びます。まとめると、<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>から<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>を通して、Railsのログインと認証のシステムをひととおり開発します。ご存知の方もいると思いますが、Railsでは既にさまざまな認証方法が利用可能です。<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-roll_your_own">コラム 6.1</a>では、最初に少なくとも一度は自分で認証システムを作ってみることをお勧めする理由について説明しています。</p>
+<p><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>では、新しいユーザーを作成するためのスタブページを作ったところで終わりました (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-user_signup">5.4</a>)。これから4つの章を通して、ユーザー登録ページを作っていくことにしましょう。最初の一番重要なステップは、サイトのユーザー用の<em>データモデル</em>の作成と、データを保存する手段の確保です。<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>では、ユーザーがサイトにユーザー登録できるようにし、ユーザープロファイルのためのページを作成します。ユーザー登録ができるようになると、次にサインイン、サインアウトもできるようにします (<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>)。そして<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a> (<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#sec-requiring_signed_in_users">9.2.1</a>) では、不正なアクセスから守る方法を学びます。まとめると、<a class="ref" href="./modeling-users?version=4.0#top">第6章</a>から<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#top">第9章</a>を通して、Railsのログインと認証のシステムをひととおり開発します。ご存知の方もいると思いますが、Railsでは既にさまざまな認証方法が利用可能です。<a class="ref" href="./modeling-users?version=4.0#sidebar-roll_your_own">コラム 6.1</a>では、最初に少なくとも一度は自分で認証システムを作ってみることをお勧めする理由について説明しています。</p>
 
 <p>この章は長いうえに、学ぶことがたくさんあります。特に、これまでデータモデリングをしたことがない人にとっては、もしかすると、これまでとは違った難しさを感じるかもしれません。しかし、この章が終わるまでには、ユーザー情報の検証、保存、取得ができる極めて強力なシステムを作成します。</p>
 
@@ -24,7 +24,7 @@
 <div class="sidebar"><span class="title"><span class="header">コラム 6.1</span><span class="description">自分で認証システムを作ってみる</span></span>
 <p>事実上、すべてのWebアプリケーションは何らかのログイン/認証システムを必要とします。そのため、多くのWebフレームワークではこのようなログイン/認証システムを実装するための選択肢が多数提供されています。Railsもまた例外ではありません。認証 (authentication) と認可 (authorization) のシステムの例だと、<a href="http://github.com/thoughtbot/clearance">Clearance</a>、<a href="http://github.com/binarylogic/authlogic">Authlogic</a>、<a href="http://github.com/plataformatec/devise">Devise</a>、<a href="http://railscasts.com/episodes/192-authorization-with-cancan">CanCan</a>などがあります (Railsに限らなければ<a href="http://en.wikipedia.org/wiki/OpenID">OpenID</a>や<a href="http://en.wikipedia.org/wiki/Oauth">OAuth</a>の上に構築する方法もあります)。 なぜ車輪の再発明をするのか、という質問があるのも当然です。自分でわざわざ作らなくても、いつも使える方法をただ利用するだけではいけないのでしょうか。</p>
 
-<p>ある実践的な実験によると、多くのサイトの認証システムは膨大なカスタマイズを必要とするため、サードパーティ製品を変更して導入する場合にはシステムをゼロから作成するよりも多くの仕事を要するという結果が出ています。加えて、既成品のシステムは内部がわかりづらいことが多く、ブラックボックスになっています。自分で作成したシステムであれば、それをとてもよく理解しているはずです。さらに言えば、最近のRailsへの変更 (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>) により、カスタム認証システムを容易に作成できるようになりました。最後に、<em>あえて</em>最終的にサードパーティの認証システムを導入することになったとしても、自分自身で認証システムを構築した経験があれば、サードパーティ製品を理解して変更することがずっと容易になるはずです。</p>
+<p>ある実践的な実験によると、多くのサイトの認証システムは膨大なカスタマイズを必要とするため、サードパーティ製品を変更して導入する場合にはシステムをゼロから作成するよりも多くの仕事を要するという結果が出ています。加えて、既成品のシステムは内部がわかりづらいことが多く、ブラックボックスになっています。自分で作成したシステムであれば、それをとてもよく理解しているはずです。さらに言えば、最近のRailsへの変更 (<a class="ref" href="./modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>) により、カスタム認証システムを容易に作成できるようになりました。最後に、<em>あえて</em>最終的にサードパーティの認証システムを導入することになったとしても、自分自身で認証システムを構築した経験があれば、サードパーティ製品を理解して変更することがずっと容易になるはずです。</p>
 </div>
 
 
@@ -41,28 +41,28 @@
 <div class="label" id="sec-user_model"></div>
 
 
-<h2><a id="sec-6_1" href="/chapters/modeling-users?version=4.0#sec-user_model" class="heading"><span class="number">6.1</span> Userモデル</a></h2>
+<h2><a id="sec-6_1" href="./modeling-users?version=4.0#sec-user_model" class="heading"><span class="number">6.1</span> Userモデル</a></h2>
 
 
-<p>ここから3つの章にわたる最終目標はユーザー登録ページ (<a class="ref" href="/chapters/modeling-users?version=4.0#fig-signup_mockup_preview">図6.1</a>のモックアップ) を作成することですが、今のままでは新しいユーザーの情報を受け取っても保存する場所がないので、いきなりページを作成するわけにはいきません。ユーザー登録でまず初めにやることは、それらの情報を保存するためのデータ構造を作成することです。</p>
+<p>ここから3つの章にわたる最終目標はユーザー登録ページ (<a class="ref" href="./modeling-users?version=4.0#fig-signup_mockup_preview">図6.1</a>のモックアップ) を作成することですが、今のままでは新しいユーザーの情報を受け取っても保存する場所がないので、いきなりページを作成するわけにはいきません。ユーザー登録でまず初めにやることは、それらの情報を保存するためのデータ構造を作成することです。</p>
 
 <div class="label" id="fig-signup_mockup_preview"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図6.1</span><span class="description">ユーザー登録ページのモックアップ。<a href="http://railstutorial.jp/images/figures/signup_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図6.1</span><span class="description">ユーザー登録ページのモックアップ。<a href="./images/figures/signup_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>Railsでは、データモデルで使用するデフォルトのデータ構造のことを<em>モデル</em>と呼びます (<a class="ref" href="/chapters/beginning?version=4.0#sec-mvc">1.2.6</a>で言うMVCのMのことです)。Railsでは、データを永続化するデフォルトの解決策として、<em>データベース</em>を使用してデータを長期間保存します。また、データベースとやりとりするデフォルトのRailsライブラリは<em>Active Record</em>と呼ばれます<sup class="footnote" id="fnref-6_1"><a href="/chapters/modeling-users?version=4.0#fn-6_1">1</a></sup>。Active Recordは、データオブジェクトの作成/保存/検索のためのメソッドを持っています。これらのメソッドを使用するのに、<a href="http://en.wikipedia.org/wiki/Relational_database">リレーショナルデータベース</a>で使うSQL (Structured Query Language)<sup class="footnote" id="fnref-6_2"><a href="/chapters/modeling-users?version=4.0#fn-6_2">2</a></sup>を意識する必要はありません。さらに、Railsには<em>マイグレーション</em>という機能があります。データの定義をRubyで記述することができ、SQLのDDL (Data Definition Language)を新たに学ぶ必要がありません。Railsは、データストアの詳細からほぼ完全に私たちを切り離してくれます。本書では、SQLiteを開発環境で使い、またPostgreSQLを (Herokuでの) 開発環境で使います (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>)。Railsは、本番アプリケーションですら、データの保存方法の詳細についてほとんど考える必要がないくらいよくできています。</p>
+<p>Railsでは、データモデルで使用するデフォルトのデータ構造のことを<em>モデル</em>と呼びます (<a class="ref" href="/chapters/beginning?version=4.0#sec-mvc">1.2.6</a>で言うMVCのMのことです)。Railsでは、データを永続化するデフォルトの解決策として、<em>データベース</em>を使用してデータを長期間保存します。また、データベースとやりとりするデフォルトのRailsライブラリは<em>Active Record</em>と呼ばれます<sup class="footnote" id="fnref-6_1"><a href="./modeling-users?version=4.0#fn-6_1">1</a></sup>。Active Recordは、データオブジェクトの作成/保存/検索のためのメソッドを持っています。これらのメソッドを使用するのに、<a href="http://en.wikipedia.org/wiki/Relational_database">リレーショナルデータベース</a>で使うSQL (Structured Query Language)<sup class="footnote" id="fnref-6_2"><a href="./modeling-users?version=4.0#fn-6_2">2</a></sup>を意識する必要はありません。さらに、Railsには<em>マイグレーション</em>という機能があります。データの定義をRubyで記述することができ、SQLのDDL (Data Definition Language)を新たに学ぶ必要がありません。Railsは、データストアの詳細からほぼ完全に私たちを切り離してくれます。本書では、SQLiteを開発環境で使い、またPostgreSQLを (Herokuでの) 開発環境で使います (<a class="ref" href="/chapters/beginning?version=4.0#sec-deploying">1.4</a>)。Railsは、本番アプリケーションですら、データの保存方法の詳細についてほとんど考える必要がないくらいよくできています。</p>
 
 <div class="label" id="sec-database_migrations"></div>
 
 
-<h3><a id="sec-6_1_1" href="/chapters/modeling-users?version=4.0#sec-database_migrations" class="heading"><span class="number">6.1.1</span>データベースの移行</a></h3>
+<h3><a id="sec-6_1_1" href="./modeling-users?version=4.0#sec-database_migrations" class="heading"><span class="number">6.1.1</span>データベースの移行</a></h3>
 
 
 <p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>で扱ったカスタムビルドクラスの<code>User</code>を思い出してください。このクラスは、<code>name</code>と<code>email</code>を属性に持つユーザーオブジェクトでした。このクラスは役に立つ例として提供されましたが、Railsにとってきわめて重要な部分である<em>永続性</em>という要素が欠けていました。RailsコンソールでUserクラスのオブジェクトを作っても、コンソールからexitするとそのオブジェクトはすぐに消えてしまいました。この節での目的は、簡単に消えることのないユーザーのモデルを構築することです。</p>
 
-<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>のユーザークラスと同様に、<code>name</code>と<code>email</code>の2つの属性からなるユーザーをモデリングするところから始めましょう。後者のemailを一意のユーザー名として使用します<sup class="footnote" id="fnref-6_3"><a href="/chapters/modeling-users?version=4.0#fn-6_3">3</a></sup> (パスワードのための属性は<a class="ref" href="/chapters/modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>で扱います) 。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-example_user">リスト4.9</a>では、以下のようにRubyの<code>attr_accessor</code>メソッドを使用しました。</p>
+<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>のユーザークラスと同様に、<code>name</code>と<code>email</code>の2つの属性からなるユーザーをモデリングするところから始めましょう。後者のemailを一意のユーザー名として使用します<sup class="footnote" id="fnref-6_3"><a href="./modeling-users?version=4.0#fn-6_3">3</a></sup> (パスワードのための属性は<a class="ref" href="./modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>で扱います) 。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#code-example_user">リスト4.9</a>では、以下のようにRubyの<code>attr_accessor</code>メソッドを使用しました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span>
   <span class="kp">attr_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
@@ -76,14 +76,14 @@
 
 <p>それとは対照的に、Railsでユーザーをモデリングするときは、属性を明示的に識別する必要がありません。上で簡潔に述べたように、Railsはデータを保存する際にデフォルトでリレーショナルデータベースを使用します。リレーショナルデータベースは、データ<em>行</em>で構成される<em>テーブル</em>からなり、各行はデータ属性の<em>カラム</em> (列) を持ちます。たとえば、nameとemailを持つユーザーを保存するのであれば、<code>name</code>と<code>email</code>のカラムを持つ<code>users</code>テーブルを作成します (各行はひとりのユーザーを表します)。カラムをこのように名付けることによって、Active RecordでUserオブジェクトの属性を利用できるようになります。</p>
 
-<p>それでは実際どのように動作するのか見てみましょう (ここまでの説明が抽象的でわかりにくいかもしれませんが、少しだけご辛抱願います。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>から使用しているコンソールの例と、<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>と<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_user_row">図6.6</a>にあるデータベースブラウザのスクリーンショットが理解を助けてくれるでしょう)。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-generate_users_controller">リスト5.29</a>で、ユーザーコントローラ (と<code>new</code>アクション) を作ったときに使った以下のコマンドを思い出してみてください。</p>
+<p>それでは実際どのように動作するのか見てみましょう (ここまでの説明が抽象的でわかりにくいかもしれませんが、少しだけご辛抱願います。<a class="ref" href="./modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>から使用しているコンソールの例と、<a class="ref" href="./modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>と<a class="ref" href="./modeling-users?version=4.0#fig-sqlite_user_row">図6.6</a>にあるデータベースブラウザのスクリーンショットが理解を助けてくれるでしょう)。<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-generate_users_controller">リスト5.29</a>で、ユーザーコントローラ (と<code>new</code>アクション) を作ったときに使った以下のコマンドを思い出してみてください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate controller Users new --no-test-framework
 </pre></div>
 </div>
 
 
-<p>上のコマンドはコントローラを作成しましたが、同様にモデルを作成するコマンドとして、<code>generate model</code>があります。<code>name</code>と<code>email</code>の2つの属性を持つUserモデルを作成するコマンドを<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>に示します。</p>
+<p>上のコマンドはコントローラを作成しましたが、同様にモデルを作成するコマンドとして、<code>generate model</code>があります。<code>name</code>と<code>email</code>の2つの属性を持つUserモデルを作成するコマンドを<a class="ref" href="./modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>に示します。</p>
 
 <div class="label" id="code-generate_user_model"></div>
 
@@ -102,7 +102,7 @@
 
 <p>(コントローラ名には複数形を使い、モデル名には単数形を用いるという慣習を頭に入れておいてください。コントローラはUsersでモデルはUserです)。<code>name:string</code>や<code>email:string</code>オプションのパラメータを渡すことによって、データベースで使用したい2つの属性をRailsに伝えます。このときに、これらの属性の型情報も一緒に渡します (この場合は<code>string</code>)。<a class="ref" href="/chapters/static-pages?version=4.0#code-generating_pages">リスト3.4</a>や<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-generate_users_controller">リスト5.29</a>でアクション名を使用して生成した例と比較してみてください。</p>
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>にある<code>generate</code>コマンドの結果のひとつとして、<em>マイグレーション</em>と呼ばれる新しいファイルが生成されます。マイグレーションは、データベースの構造をインクリメンタルに変更する手段を提供します。それにより、要求が変更された場合にデータモデルを適合させることができます。このUserモデルの例の場合、マイグレーションはモデル生成スクリプトによって自動的に作られました。<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>に示したように<code>name</code>と<code>email</code>の2つのカラムを持つ<code>users</code>テーブルを作成します (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-uniqueness_validation">6.2.5</a>と<a class="ref" href="/chapters/modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>で、マイグレーションを一から手動で作成する方法について説明します)。</p>
+<p><a class="ref" href="./modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>にある<code>generate</code>コマンドの結果のひとつとして、<em>マイグレーション</em>と呼ばれる新しいファイルが生成されます。マイグレーションは、データベースの構造をインクリメンタルに変更する手段を提供します。それにより、要求が変更された場合にデータモデルを適合させることができます。このUserモデルの例の場合、マイグレーションはモデル生成スクリプトによって自動的に作られました。<a class="ref" href="./modeling-users?version=4.0#code-users_migration">リスト6.2</a>に示したように<code>name</code>と<code>email</code>の2つのカラムを持つ<code>users</code>テーブルを作成します (<a class="ref" href="./modeling-users?version=4.0#sec-uniqueness_validation">6.2.5</a>と<a class="ref" href="./modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>で、マイグレーションを一から手動で作成する方法について説明します)。</p>
 
 <div class="label" id="code-users_migration"></div>
 
@@ -125,12 +125,12 @@
 
 <p>マイグレーションファイル名の先頭には、それが生成された時間の<em>タイムスタンプ</em>が追加されます。以前はインクリメンタルな整数が追加されましたが、複数の開発者によるチームでは、複数のプログラマが同じ整数を持つマイグレーションを生成してしまい、コンフリクトを引き起こしていました。現在のタイムスタンプによる方法であれば、まったく同時にマイグレーションが生成されるという通常ではありえないことが起きない限り、そのようなコンフリクトは避けられます。</p>
 
-<p>マイグレーション自体は、データベースに与える変更を定義した<code>change</code>メソッドの集まりです。<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>の場合、<code>change</code>メソッドは<code>create_table</code>というRailsのメソッドを呼び、ユーザーを保存するための<em>テーブル</em>をデータベースに作成します。<code>create_table</code>メソッドはブロック変数を1つ持つブロック (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-blocks">4.3.2</a>) を受け取ります。ここでは (“table”の頭文字を取って) <code>t</code>です。そのブロックの中で、<code>create_table</code>メソッドは<code>t</code>オブジェクトを使って、今度は<code>name</code>と<code>email</code>カラムをデータベースに作成します。型はいずれも<code>string</code>です<sup class="footnote" id="fnref-6_4"><a href="/chapters/modeling-users?version=4.0#fn-6_4">4</a></sup>。モデル名は単数形 (User) ですが、テーブル名は複数形 (<code>users</code>) です。これはRailsで用いられる言葉の慣習を反映しています。モデルはひとりのユーザーを表すのに対し、データベースのテーブルは複数のユーザーから構成されます。ブロックの最後の行<code>t.timestamps</code>は特別なコマンドで、<code>created_at</code>と<code>updated_at</code>という2つの「<em>マジックカラム</em>」を作成します。これらは、あるユーザーが作成または更新されたときに、その時刻を自動的に記録するタイムスタンプです (このマジックカラムの使用例を<a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>から具体的に見ていきます)。 このマイグレーションで作られる完全なデータモデルを<a class="ref" href="/chapters/modeling-users?version=4.0#fig-user_model_initial">図6.2</a>に示します。</p>
+<p>マイグレーション自体は、データベースに与える変更を定義した<code>change</code>メソッドの集まりです。<a class="ref" href="./modeling-users?version=4.0#code-users_migration">リスト6.2</a>の場合、<code>change</code>メソッドは<code>create_table</code>というRailsのメソッドを呼び、ユーザーを保存するための<em>テーブル</em>をデータベースに作成します。<code>create_table</code>メソッドはブロック変数を1つ持つブロック (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-blocks">4.3.2</a>) を受け取ります。ここでは (“table”の頭文字を取って) <code>t</code>です。そのブロックの中で、<code>create_table</code>メソッドは<code>t</code>オブジェクトを使って、今度は<code>name</code>と<code>email</code>カラムをデータベースに作成します。型はいずれも<code>string</code>です<sup class="footnote" id="fnref-6_4"><a href="./modeling-users?version=4.0#fn-6_4">4</a></sup>。モデル名は単数形 (User) ですが、テーブル名は複数形 (<code>users</code>) です。これはRailsで用いられる言葉の慣習を反映しています。モデルはひとりのユーザーを表すのに対し、データベースのテーブルは複数のユーザーから構成されます。ブロックの最後の行<code>t.timestamps</code>は特別なコマンドで、<code>created_at</code>と<code>updated_at</code>という2つの「<em>マジックカラム</em>」を作成します。これらは、あるユーザーが作成または更新されたときに、その時刻を自動的に記録するタイムスタンプです (このマジックカラムの使用例を<a class="ref" href="./modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>から具体的に見ていきます)。 このマイグレーションで作られる完全なデータモデルを<a class="ref" href="./modeling-users?version=4.0#fig-user_model_initial">図6.2</a>に示します。</p>
 
 <div class="label" id="fig-user_model_initial"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_model_initial.png" alt="user_model_initial" /></span></div><div class="caption"><span class="header">図6.2</span><span class="description"><a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>によるユーザーデータモデル</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/user_model_initial.png" alt="user_model_initial" /></span></div><div class="caption"><span class="header">図6.2</span><span class="description"><a class="ref" href="./modeling-users?version=4.0#code-users_migration">リスト6.2</a>によるユーザーデータモデル</span></div></div>
 
 
 <p>マイグレーションは、以下のように<code>rake</code>コマンド (<a class="ref" href="/chapters/a-demo-app?version=4.0#sidebar-rake">コラム 2.1</a>) を使って実行することができます。これを「マイグレーションの適用 (migrating up)」と呼びます。</p>
@@ -140,12 +140,12 @@
 </div>
 
 
-<p>(<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_users_resource">2.2</a>で、このコマンドを似たような状況で実行したことを思い出してみてください) 。初めて<code>db:migrate</code>が実行されると、<code>db/development.sqlite3</code>という名前のファイルが生成されます。これは<a href="http://sqlite.org/">SQLite</a><sup class="footnote" id="fnref-6_5"><a href="/chapters/modeling-users?version=4.0#fn-6_5">5</a></sup>データベースです。<code>db/development.sqlite3</code>ファイルを開くための<a href="http://sourceforge.net/projects/sqlitebrowser/">SQLite Database Browser</a>という素晴らしいツールを使って、データベースの構造を詳しく参照することができます (<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>)。<a class="ref" href="/chapters/modeling-users?version=4.0#fig-user_model_initial">図6.2</a>の表と比べてみてください。<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>の中に<code>id</code>というマイグレーションのときに説明されなかったカラムの存在に気づいたかもしれません。<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_users_resource">2.2</a>で簡単に説明したとおり、このカラムは自動的に作成され、Railsが各行を一意に識別するために使用します。</p>
+<p>(<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_users_resource">2.2</a>で、このコマンドを似たような状況で実行したことを思い出してみてください) 。初めて<code>db:migrate</code>が実行されると、<code>db/development.sqlite3</code>という名前のファイルが生成されます。これは<a href="http://sqlite.org/">SQLite</a><sup class="footnote" id="fnref-6_5"><a href="./modeling-users?version=4.0#fn-6_5">5</a></sup>データベースです。<code>db/development.sqlite3</code>ファイルを開くための<a href="http://sourceforge.net/projects/sqlitebrowser/">SQLite Database Browser</a>という素晴らしいツールを使って、データベースの構造を詳しく参照することができます (<a class="ref" href="./modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>)。<a class="ref" href="./modeling-users?version=4.0#fig-user_model_initial">図6.2</a>の表と比べてみてください。<a class="ref" href="./modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>の中に<code>id</code>というマイグレーションのときに説明されなかったカラムの存在に気づいたかもしれません。<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-demo_users_resource">2.2</a>で簡単に説明したとおり、このカラムは自動的に作成され、Railsが各行を一意に識別するために使用します。</p>
 
 <div class="label" id="fig-sqlite_database_browser"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sqlite_database_browser.png" alt="sqlite_database_browser" /></span></div><div class="caption"><span class="header">図6.3</span><span class="description"><a href="http://sqlitebrowser.sourceforge.net/">SQLite Database Browser</a>と作成した<code>users</code>テーブル<a href="http://railstutorial.jp/images/figures/sqlite_database_browser-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/sqlite_database_browser.png" alt="sqlite_database_browser" /></span></div><div class="caption"><span class="header">図6.3</span><span class="description"><a href="http://sqlitebrowser.sourceforge.net/">SQLite Database Browser</a>と作成した<code>users</code>テーブル<a href="./images/figures/sqlite_database_browser-full.png">(拡大)</a></span></div></div>
 
 
 <p><em>Railsチュートリアル</em>で使用されているものすべてを含め、ほとんどのマイグレーションが<em>可逆</em>です。これは、<code>db:rollback</code>というRakeタスクで変更を取り消せることを意味します。これを“マイグレーションの取り消し (migrate down)”と呼びます。</p>
@@ -169,12 +169,12 @@
 <div class="label" id="sec-the_model_file"></div>
 
 
-<h3><a id="sec-6_1_2" href="/chapters/modeling-users?version=4.0#sec-the_model_file" class="heading"><span class="number">6.1.2</span>modelファイル</a></h3>
+<h3><a id="sec-6_1_2" href="./modeling-users?version=4.0#sec-the_model_file" class="heading"><span class="number">6.1.2</span>modelファイル</a></h3>
 
 
-<p>これまで、<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>のUserモデルの作成によってどのように (<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>の) マイグレーションファイルが作成されるかを見てきました。そして<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>でこのマイグレーションを実行した結果を見ました。<code>users</code>テーブルを作成することで、<code>development.sqlite3</code>という名のファイルを更新し、<code>id</code>、<code>name</code>、<code>email</code>、<code>created_at</code>、<code>updated_at</code>を作成しました。<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>ではモデル自体も作成しました。この節では、以後これらを理解することに専念します。</p>
+<p>これまで、<a class="ref" href="./modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>のUserモデルの作成によってどのように (<a class="ref" href="./modeling-users?version=4.0#code-users_migration">リスト6.2</a>の) マイグレーションファイルが作成されるかを見てきました。そして<a class="ref" href="./modeling-users?version=4.0#fig-sqlite_database_browser">図6.3</a>でこのマイグレーションを実行した結果を見ました。<code>users</code>テーブルを作成することで、<code>development.sqlite3</code>という名のファイルを更新し、<code>id</code>、<code>name</code>、<code>email</code>、<code>created_at</code>、<code>updated_at</code>を作成しました。<a class="ref" href="./modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>ではモデル自体も作成しました。この節では、以後これらを理解することに専念します。</p>
 
-<p>まず、<code>app/models/</code>ディレクトリにある<code>user.rb</code>ファイルに書かれたUserモデルのコードを見てみましょう。これは控えめに言ってもとてもよくまとまっています (<a class="ref" href="/chapters/modeling-users?version=4.0#code-raw_user_model">リスト6.3</a>) </p>
+<p>まず、<code>app/models/</code>ディレクトリにある<code>user.rb</code>ファイルに書かれたUserモデルのコードを見てみましょう。これは控えめに言ってもとてもよくまとまっています (<a class="ref" href="./modeling-users?version=4.0#code-raw_user_model">リスト6.3</a>) </p>
 
 <div class="label" id="code-raw_user_model"></div>
 
@@ -192,7 +192,7 @@
 <div class="label" id="sec-creating_user_objects"></div>
 
 
-<h3><a id="sec-6_1_3" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects" class="heading"><span class="number">6.1.3</span>ユーザーオブジェクトを作成する</a></h3>
+<h3><a id="sec-6_1_3" href="./modeling-users?version=4.0#sec-creating_user_objects" class="heading"><span class="number">6.1.3</span>ユーザーオブジェクトを作成する</a></h3>
 
 
 <p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a>と同じく、Railsコンソールを使用してデータモデルを調べてみましょう。現時点ではデータベースを変更したくないので、コンソールを<em>サンドボックス</em>モードで起動します。</p>
@@ -236,7 +236,7 @@
 </div>
 
 
-<p><code>save</code>メソッドは、成功すれば<code>true</code>を、失敗すれば<code>false</code>を返します (現状では、保存はすべて成功するはずです。失敗する場合については<a class="ref" href="/chapters/modeling-users?version=4.0#sec-user_validations">6.2</a>で説明します)。 保存すると、SQLコマンドの<code>INSERT INTO &quot;users&quot;</code>という行が開発ログに追加出力されることがすぐに確認できます。Active Recordによって多数のメソッドが提供されているので、本書では生のSQLを書く必要がありません。従って、本書ではこれ以降はSQLコマンドについての説明を省略します。ただしそれでも、開発ログを監視することによってSQLについて多くのことを学ぶことができるでしょう。</p>
+<p><code>save</code>メソッドは、成功すれば<code>true</code>を、失敗すれば<code>false</code>を返します (現状では、保存はすべて成功するはずです。失敗する場合については<a class="ref" href="./modeling-users?version=4.0#sec-user_validations">6.2</a>で説明します)。 保存すると、SQLコマンドの<code>INSERT INTO &quot;users&quot;</code>という行が開発ログに追加出力されることがすぐに確認できます。Active Recordによって多数のメソッドが提供されているので、本書では生のSQLを書く必要がありません。従って、本書ではこれ以降はSQLコマンドについての説明を省略します。ただしそれでも、開発ログを監視することによってSQLについて多くのことを学ぶことができるでしょう。</p>
 
 <p>作成した時点でのユーザーオブジェクトは、<code>id</code>属性、マジックカラムである<code>created_at</code>属性と<code>updated_at</code>属性の値がいずれも<code>nil</code>であったことを思い出してください。<code>save</code>メソッドを実行した後に何が変更されたのかを確認してみましょう。</p>
 
@@ -247,9 +247,9 @@
 </div>
 
 
-<p><code>id</code>には<code>1</code>という値が代入され、一方でマジックカラムには現在の日時が代入されているのがわかります<sup class="footnote" id="fnref-6_6"><a href="/chapters/modeling-users?version=4.0#fn-6_6">6</a></sup>。現在、作成と更新のタイムスタンプは同一ですが、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-updating_user_objects">6.1.5</a>では異なる値になります。</p>
+<p><code>id</code>には<code>1</code>という値が代入され、一方でマジックカラムには現在の日時が代入されているのがわかります<sup class="footnote" id="fnref-6_6"><a href="./modeling-users?version=4.0#fn-6_6">6</a></sup>。現在、作成と更新のタイムスタンプは同一ですが、<a class="ref" href="./modeling-users?version=4.0#sec-updating_user_objects">6.1.5</a>では異なる値になります。</p>
 
-<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>のUserクラスと同様に、Userモデルのインスタンスはドット記法を用いてその属性にアクセスすることができます<sup class="footnote" id="fnref-6_7"><a href="/chapters/modeling-users?version=4.0#fn-6_7">7</a></sup>。</p>
+<p><a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>のUserクラスと同様に、Userモデルのインスタンスはドット記法を用いてその属性にアクセスすることができます<sup class="footnote" id="fnref-6_7"><a href="./modeling-users?version=4.0#fn-6_7">7</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">name</span>
 <span class="go">Michael Hartl (マイケル・ハートル)</span>
@@ -298,7 +298,7 @@
 <div class="label" id="sec-finding_user_objects"></div>
 
 
-<h3><a id="sec-6_1_4" href="/chapters/modeling-users?version=4.0#sec-finding_user_objects" class="heading"><span class="number">6.1.4</span>ユーザーオブジェクトを検索する</a></h3>
+<h3><a id="sec-6_1_4" href="./modeling-users?version=4.0#sec-finding_user_objects" class="heading"><span class="number">6.1.4</span>ユーザーオブジェクトを検索する</a></h3>
 
 
 <p>Active Recordには、オブジェクトを検索するための方法がいくつもあります。これらの機能を使用して、過去に作成した最初のユーザーを探してみましょう。また、3番目のユーザー (<code>foo</code>) が削除されていることを確認しましょう。まずは存在するユーザーから探してみましょう。</p>
@@ -320,7 +320,7 @@
 </div>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>で3番目のユーザーを削除したので、Active Recordはこのユーザーをデータベースの中から見つけることができませんでした。代わりに、<code>find</code>メソッドは<em>例外 (exception) </em>を発生します。例外はプログラムの実行時に何か例外的なイベントが発生したことを示すために使われます。この場合、存在しないActive Recordのidによって、<code>find</code>で<code>ActiveRecord::RecordNotFound</code>例外<sup class="footnote" id="fnref-6_8"><a href="/chapters/modeling-users?version=4.0#fn-6_8">8</a></sup>が発生しました。</p>
+<p><a class="ref" href="./modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>で3番目のユーザーを削除したので、Active Recordはこのユーザーをデータベースの中から見つけることができませんでした。代わりに、<code>find</code>メソッドは<em>例外 (exception) </em>を発生します。例外はプログラムの実行時に何か例外的なイベントが発生したことを示すために使われます。この場合、存在しないActive Recordのidによって、<code>find</code>で<code>ActiveRecord::RecordNotFound</code>例外<sup class="footnote" id="fnref-6_8"><a href="./modeling-users?version=4.0#fn-6_8">8</a></sup>が発生しました。</p>
 
 <p>一般的な<code>find</code>メソッド以外に、Active Recordには特定の属性でユーザーを検索する方法もあります。</p>
 
@@ -340,7 +340,7 @@
 </div>
 
 
-<p>これまでメールアドレスをユーザー名として使用してきたので、このような<code>find</code>関連メソッドは、ユーザーをサイトにログインさせる方法を学ぶときに役に立ちます (<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>)。ユーザー数が膨大になると<code>find_by</code>では検索効率が低下するのではないかと心配する方もいるかもしれませんが、あせる必要はありません。この問題およびデータベースのインデックスを使った解決策については<a class="ref" href="/chapters/modeling-users?version=4.0#sec-uniqueness_validation">6.2.5</a>で扱います。</p>
+<p>これまでメールアドレスをユーザー名として使用してきたので、このような<code>find</code>関連メソッドは、ユーザーをサイトにログインさせる方法を学ぶときに役に立ちます (<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>)。ユーザー数が膨大になると<code>find_by</code>では検索効率が低下するのではないかと心配する方もいるかもしれませんが、あせる必要はありません。この問題およびデータベースのインデックスを使った解決策については<a class="ref" href="./modeling-users?version=4.0#sec-uniqueness_validation">6.2.5</a>で扱います。</p>
 
 <p>ユーザーを検索する一般的な方法をあと少しだけご紹介して、この節を終わりにすることにしましょう。まず初めに<code>first</code>メソッドです。</p>
 
@@ -367,7 +367,7 @@
 <div class="label" id="sec-updating_user_objects"></div>
 
 
-<h3><a id="sec-6_1_5" href="/chapters/modeling-users?version=4.0#sec-updating_user_objects" class="heading"><span class="number">6.1.5</span>ユーザーオブジェクトを更新する</a></h3>
+<h3><a id="sec-6_1_5" href="./modeling-users?version=4.0#sec-updating_user_objects" class="heading"><span class="number">6.1.5</span>ユーザーオブジェクトを更新する</a></h3>
 
 
 <p>いったんオブジェクトを作成すれば、今度は何度でも更新したくなるものです。基本的な更新の方法は2つです。ひとつは、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-a_user_class">4.4.5</a>でやったように属性を個別に代入する方法です。</p>
@@ -395,7 +395,7 @@
 </div>
 
 
-<p>今ユーザーを更新しました。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>で約束したように、マジックカラムの更新日時が更新されました。</p>
+<p>今ユーザーを更新しました。<a class="ref" href="./modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>で約束したように、マジックカラムの更新日時が更新されました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">created_at</span>
 <span class="go">=&gt; &quot;2013-03-11 00:57:46&quot;</span>
@@ -417,7 +417,7 @@
 </div>
 
 
-<p><code>update_attributes</code>メソッドは属性のハッシュを受け取り、成功時には更新と保存を続けて同時に行います (保存に成功した場合は<code>true</code>を返します)。ただし、検証に1つでも失敗すると、<code>update_attributes</code>の呼び出しは失敗します。たとえば、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>で実装する、パスワードをレコードに保存することを要求すると検証は失敗します。特定の属性のみを更新する必要がある場合は、以下のように<code>update_attribute</code>を単発で使用して制限を回避する必要があります。</p>
+<p><code>update_attributes</code>メソッドは属性のハッシュを受け取り、成功時には更新と保存を続けて同時に行います (保存に成功した場合は<code>true</code>を返します)。ただし、検証に1つでも失敗すると、<code>update_attributes</code>の呼び出しは失敗します。たとえば、<a class="ref" href="./modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>で実装する、パスワードをレコードに保存することを要求すると検証は失敗します。特定の属性のみを更新する必要がある場合は、以下のように<code>update_attribute</code>を単発で使用して制限を回避する必要があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">update_attribute</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="s2">&quot;The Dude&quot;</span><span class="p">)</span>
 <span class="go">=&gt; true</span>
@@ -432,17 +432,17 @@
 <div class="label" id="sec-user_validations"></div>
 
 
-<h2><a id="sec-6_2" href="/chapters/modeling-users?version=4.0#sec-user_validations" class="heading"><span class="number">6.2</span>ユーザーを検証する</a></h2>
+<h2><a id="sec-6_2" href="./modeling-users?version=4.0#sec-user_validations" class="heading"><span class="number">6.2</span>ユーザーを検証する</a></h2>
 
 
-<p>ついに、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-user_model">6.1</a>で作成したUserモデルに、アクセス可能な<code>name</code>と<code>email</code>属性が与えられました。しかし、これらの属性はどんな値でも取ることができてしまいます。現在は (空文字を含む) あらゆる文字列が有効です。名前とメールアドレスには、もう少し何らかの制限があってよいはずです。たとえば、<code>name</code>は空であってはならず、<code>email</code>はメールアドレスのフォーマットに従う必要があります。さらに、メールアドレスをユーザーがログインするときの一意のユーザー名として使おうとしているので、メールアドレスがデータベース内で重複することのないようにする必要もあります。</p>
+<p>ついに、<a class="ref" href="./modeling-users?version=4.0#sec-user_model">6.1</a>で作成したUserモデルに、アクセス可能な<code>name</code>と<code>email</code>属性が与えられました。しかし、これらの属性はどんな値でも取ることができてしまいます。現在は (空文字を含む) あらゆる文字列が有効です。名前とメールアドレスには、もう少し何らかの制限があってよいはずです。たとえば、<code>name</code>は空であってはならず、<code>email</code>はメールアドレスのフォーマットに従う必要があります。さらに、メールアドレスをユーザーがログインするときの一意のユーザー名として使おうとしているので、メールアドレスがデータベース内で重複することのないようにする必要もあります。</p>
 
-<p>要するに、<code>name</code>と<code>email</code>にあらゆる文字列を許すのは避けるべきです。これらの属性値には、何らかの制約を与える必要があります。Active Recordでは<em>検証 (バリデーション: validation) </em>を使用してそのような制約を与えることができます。ここでは、よく使われるケースのうちのいくつかについて説明します。それらは<em>存在性 (presence)</em>の検証、<em>長さ (length)</em>の検証、<em>フォーマット (format)</em>の検証、<em>一意性 (uniqueness)</em>の検証です。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-has_secure_password">6.3.4</a>では、よく使われる最終検証として<em>確認 (confirmation)</em>を追加します。<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_failure">7.3</a>では、ユーザーが制約に違反したときに、検証機能によって自動的に表示される有用なエラーメッセージをお見せします。</p>
+<p>要するに、<code>name</code>と<code>email</code>にあらゆる文字列を許すのは避けるべきです。これらの属性値には、何らかの制約を与える必要があります。Active Recordでは<em>検証 (バリデーション: validation) </em>を使用してそのような制約を与えることができます。ここでは、よく使われるケースのうちのいくつかについて説明します。それらは<em>存在性 (presence)</em>の検証、<em>長さ (length)</em>の検証、<em>フォーマット (format)</em>の検証、<em>一意性 (uniqueness)</em>の検証です。<a class="ref" href="./modeling-users?version=4.0#sec-has_secure_password">6.3.4</a>では、よく使われる最終検証として<em>確認 (confirmation)</em>を追加します。<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_failure">7.3</a>では、ユーザーが制約に違反したときに、検証機能によって自動的に表示される有用なエラーメッセージをお見せします。</p>
 
 <div class="label" id="sec-initial_user_tests"></div>
 
 
-<h3><a id="sec-6_2_1" href="/chapters/modeling-users?version=4.0#sec-initial_user_tests" class="heading"><span class="number">6.2.1</span>最初のユーザーテスト</a></h3>
+<h3><a id="sec-6_2_1" href="./modeling-users?version=4.0#sec-initial_user_tests" class="heading"><span class="number">6.2.1</span>最初のユーザーテスト</a></h3>
 
 
 <p>サンプルアプリケーションの他の機能と同様、Userモデルへの検証の追加もテスト駆動開発 (TDD) で行います。その理由は、Userモデルを作成したときに</p>
@@ -450,7 +450,7 @@
 <pre class="verbatim">--no-test-framework</pre>
 
 
-<p>(<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-generate_users_controller">リスト5.29</a>などでは渡した) 上のフラグを渡さなかったからです。<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>のコマンドは、モデル作成の際に、ユーザーをテストするための初期のspecも同時に作成します。しかし今回の場合、specは実質的には空です (<a class="ref" href="/chapters/modeling-users?version=4.0#code-default_user_spec">リスト6.4</a>)。</p>
+<p>(<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#code-generate_users_controller">リスト5.29</a>などでは渡した) 上のフラグを渡さなかったからです。<a class="ref" href="./modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>のコマンドは、モデル作成の際に、ユーザーをテストするための初期のspecも同時に作成します。しかし今回の場合、specは実質的には空です (<a class="ref" href="./modeling-users?version=4.0#code-default_user_spec">リスト6.4</a>)。</p>
 
 <div class="label" id="code-default_user_spec"></div>
 
@@ -496,7 +496,7 @@
 
 <p>上のコマンドは、単に開発データベースのデータモデル<code>db/development.sqlite3</code>がテストデータベース<code>db/test.sqlite3</code>に反映されるようにするものです。マイグレーションの後でたまにRakeタスクが実行できなくなることがあり、多くの人がこれに戸惑います。さらに、テストデータベースはたまに壊れることがあるので、その場合はリセットが必要です。もしテストスイートが理由もなく壊れるようなことがあれば、<code>rake test:prepare</code>を実行して、この問題が解決するか確認してみてください。</p>
 
-<p>デフォルトのspecのアドバイスに従い、<a class="ref" href="/chapters/modeling-users?version=4.0#code-user_spec">リスト6.5</a>に示したいくつかのRSpecの例に置き換えてみましょう。</p>
+<p>デフォルトのspecのアドバイスに従い、<a class="ref" href="./modeling-users?version=4.0#code-user_spec">リスト6.5</a>に示したいくつかのRSpecの例に置き換えてみましょう。</p>
 
 <div class="label" id="code-user_spec"></div>
 
@@ -527,7 +527,7 @@
 
 <p><a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-pretty_rspec">5.3.4</a>で<code>page</code>変数を扱ったときと同じように、<code>@user</code>をテストサンプルのデフォルトのsubjectとして設定します。</p>
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#code-user_spec">リスト6.5</a>の2つのサンプルは、<code>name</code>属性と<code>email</code>属性の存在をテストします。</p>
+<p><a class="ref" href="./modeling-users?version=4.0#code-user_spec">リスト6.5</a>の2つのサンプルは、<code>name</code>属性と<code>email</code>属性の存在をテストします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
 <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
@@ -584,14 +584,14 @@
 <div class="label" id="sec-presence_validation"></div>
 
 
-<h3><a id="sec-6_2_2" href="/chapters/modeling-users?version=4.0#sec-presence_validation" class="heading"><span class="number">6.2.2</span>プレゼンスを検証する</a></h3>
+<h3><a id="sec-6_2_2" href="./modeling-users?version=4.0#sec-presence_validation" class="heading"><span class="number">6.2.2</span>プレゼンスを検証する</a></h3>
 
 
 <p>おそらく最も基本的な検証 (validation) は<em>プレゼンス (存在性) </em>です。これは単に、与えられた属性が存在することを検証します。たとえばこの節では、ユーザーがデータベースに保存される前にnameとemailフィールドの両方が存在することを保証します。<a class="ref" href="/chapters/sign-up?version=4.0#sec-signup_error_messages">7.3.3</a>では、この要求を新しいユーザーを作るためのユーザー登録フォームにまで徹底させる方法を確認します。</p>
 
 <p>最初に<code>name</code>属性の存在を確認するテストを行いましょう。テスト駆動開発の最初のステップは<em>失敗する</em>テスト (<a class="ref" href="/chapters/static-pages?version=4.0#sec-TDD">3.2.1</a>) を書くことですが、今回は適切なテストを書くための検証機能についてまだ十分に理解していないので、まず最初に検証を書きます。検証についてはコンソールを使って理解することにします。次に、検証部分をコメントアウトし、失敗するテストを書いて、最後にコメントアウトを解除した検証でテストがパスするかどうかを確認します。この手続きは、このような単純なテストでは大げさで気取ったものに感じられるかもしれませんが、著者はこれまでにテストそのものに誤りのある「単純な」テストを山ほど見てきました。テスト駆動開発を慎重に進めることは、テストが正しく進められているという自信を得る<em>唯一の</em>方法です (上で紹介したコメントアウトのテクニックは、コードはあってもテストがどこにもないような<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>ひどい</em></a>アプリケーションを急いで救出するときにも役に立ちます)。</p>
 
-<p>name属性の存在を検査する方法は、<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_presence_of_name">リスト6.6</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波かっこを付けなくても問題ありません (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
+<p>name属性の存在を検査する方法は、<a class="ref" href="./modeling-users?version=4.0#code-validates_presence_of_name">リスト6.6</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波かっこを付けなくても問題ありません (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
 
 <div class="label" id="code-validates_presence_of_name"></div>
 
@@ -605,7 +605,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_presence_of_name">リスト6.6</a>は一見魔法のように見えるかもしれませんが、<code>validates</code>は単なるメソッドです。かっこを使用して<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_presence_of_name">リスト6.6</a>を同等のコードに書き換えたものを以下に示します。</p>
+<p><a class="ref" href="./modeling-users?version=4.0#code-validates_presence_of_name">リスト6.6</a>は一見魔法のように見えるかもしれませんが、<code>validates</code>は単なるメソッドです。かっこを使用して<a class="ref" href="./modeling-users?version=4.0#code-validates_presence_of_name">リスト6.6</a>を同等のコードに書き換えたものを以下に示します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
   <span class="n">validates</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span><span class="p">)</span>
@@ -614,7 +614,7 @@
 </div>
 
 
-<p>コンソールを起動して、Userモデルに検証を追加した効果を見てみましょう<sup class="footnote" id="fnref-6_9"><a href="/chapters/modeling-users?version=4.0#fn-6_9">9</a></sup>。</p>
+<p>コンソールを起動して、Userモデルに検証を追加した効果を見てみましょう<sup class="footnote" id="fnref-6_9"><a href="./modeling-users?version=4.0#fn-6_9">9</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console --sandbox</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
@@ -636,7 +636,7 @@
 
 <p>(このエラーメッセージから、Railsが属性の存在性を検査するときに<code>blank?</code>メソッド (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-modifying_built_in_classes">4.4.3</a>の終わりに登場) を使用していることが推察できます。)</p>
 
-<p>次は失敗するテストです。最初に、テストが失敗することを確認するために、この時点 (<a class="ref" href="/chapters/modeling-users?version=4.0#code-commented_out_validation">リスト6.7</a>) でいったん検証をコメントアウトしてみましょう。</p>
+<p>次は失敗するテストです。最初に、テストが失敗することを確認するために、この時点 (<a class="ref" href="./modeling-users?version=4.0#code-commented_out_validation">リスト6.7</a>) でいったん検証をコメントアウトしてみましょう。</p>
 
 <div class="label" id="code-commented_out_validation"></div>
 
@@ -650,7 +650,7 @@
 </div></div>
 
 
-<p>最初の段階の検証テストを<a class="ref" href="/chapters/modeling-users?version=4.0#code-failing_validates_name_spec">リスト6.8</a>に示します。</p>
+<p>最初の段階の検証テストを<a class="ref" href="./modeling-users?version=4.0#code-failing_validates_name_spec">リスト6.8</a>に示します。</p>
 
 <div class="label" id="code-failing_validates_name_spec"></div>
 
@@ -688,7 +688,7 @@
 </div>
 
 
-<p>上のコードは<a class="ref" href="/chapters/modeling-users?version=4.0#sec-initial_user_tests">6.2.1</a>で見た別のRSpecの真偽値の慣習を示すサンプルです。あるオブジェクトが、真偽値を返す<code>foo?</code>というメソッドに応答するのであれば、それに対応する<code>be_foo</code>というテストメソッドが (自動的に) 存在します。この場合、以下のメソッド呼び出しの結果をテストすることができます。</p>
+<p>上のコードは<a class="ref" href="./modeling-users?version=4.0#sec-initial_user_tests">6.2.1</a>で見た別のRSpecの真偽値の慣習を示すサンプルです。あるオブジェクトが、真偽値を返す<code>foo?</code>というメソッドに応答するのであれば、それに対応する<code>be_foo</code>というテストメソッドが (自動的に) 存在します。この場合、以下のメソッド呼び出しの結果をテストすることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@user</span><span class="o">.</span><span class="n">valid?</span>
 </pre></div>
@@ -732,7 +732,7 @@
 </div>
 
 
-<p>それではここで、テストにパスするために検証部分のコメントアウトを解除しましょう (つまり、<a class="ref" href="/chapters/modeling-users?version=4.0#code-commented_out_validation">リスト6.7</a>を<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_presence_of_name">リスト6.6</a>に戻します)。</p>
+<p>それではここで、テストにパスするために検証部分のコメントアウトを解除しましょう (つまり、<a class="ref" href="./modeling-users?version=4.0#code-commented_out_validation">リスト6.7</a>を<a class="ref" href="./modeling-users?version=4.0#code-validates_presence_of_name">リスト6.6</a>に戻します)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/models/user_spec.rb
 <span class="go">....</span>
@@ -741,7 +741,7 @@
 </div>
 
 
-<p>もちろん、今度はメールアドレスの存在性も検証しましょう。このテスト (<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_email_spec">リスト6.9</a>) は、<code>name</code>属性のテストと似ています。</p>
+<p>もちろん、今度はメールアドレスの存在性も検証しましょう。このテスト (<a class="ref" href="./modeling-users?version=4.0#code-validates_email_spec">リスト6.9</a>) は、<code>name</code>属性のテストと似ています。</p>
 
 <div class="label" id="code-validates_email_spec"></div>
 
@@ -767,7 +767,7 @@
 </div></div>
 
 
-<p>以下の<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_presence_of_email">リスト6.10</a>に示すように、メールアドレス検証の実装も名前の検証と実質的に同じです。</p>
+<p>以下の<a class="ref" href="./modeling-users?version=4.0#code-validates_presence_of_email">リスト6.10</a>に示すように、メールアドレス検証の実装も名前の検証と実質的に同じです。</p>
 
 <div class="label" id="code-validates_presence_of_email"></div>
 
@@ -787,12 +787,12 @@
 <div class="label" id="sec-length_validation"></div>
 
 
-<h3><a id="sec-6_2_3" href="/chapters/modeling-users?version=4.0#sec-length_validation" class="heading"><span class="number">6.2.3</span>長さを検証する</a></h3>
+<h3><a id="sec-6_2_3" href="./modeling-users?version=4.0#sec-length_validation" class="heading"><span class="number">6.2.3</span>長さを検証する</a></h3>
 
 
-<p>各ユーザーは、Userモデル上に名前を持つことを強制されるようになりました。しかし、これだけでは十分ではありません。ユーザーの名前はサンプルWebサイトに表示されるものなので、名前の長さにも制限を与える必要があります。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-presence_validation">6.2.2</a>で既に同じような作業を行ったので、この実装は簡単です。</p>
+<p>各ユーザーは、Userモデル上に名前を持つことを強制されるようになりました。しかし、これだけでは十分ではありません。ユーザーの名前はサンプルWebサイトに表示されるものなので、名前の長さにも制限を与える必要があります。<a class="ref" href="./modeling-users?version=4.0#sec-presence_validation">6.2.2</a>で既に同じような作業を行ったので、この実装は簡単です。</p>
 
-<p>まずはテストを作成します。最長のユーザー名の長さに科学的な根拠はありませんので、単に<code>50</code>という上限として手頃な値を使うことにします。つまりここでは、<code>51</code>文字の名前は長すぎることを検証します (<a class="ref" href="/chapters/modeling-users?version=4.0#code-length_validation_test">リスト6.11</a>)。</p>
+<p>まずはテストを作成します。最長のユーザー名の長さに科学的な根拠はありませんので、単に<code>50</code>という上限として手頃な値を使うことにします。つまりここでは、<code>51</code>文字の名前は長すぎることを検証します (<a class="ref" href="./modeling-users?version=4.0#code-length_validation_test">リスト6.11</a>)。</p>
 
 <div class="label" id="code-length_validation_test"></div>
 
@@ -818,7 +818,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#code-length_validation_test">リスト6.11</a>では、51文字の文字列を簡単に作るために “文字列のかけ算” を使いました。結果をコンソール上で確認できます。</p>
+<p><a class="ref" href="./modeling-users?version=4.0#code-length_validation_test">リスト6.11</a>では、51文字の文字列を簡単に作るために “文字列のかけ算” を使いました。結果をコンソール上で確認できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;a&quot;</span> <span class="o">*</span> <span class="mi">51</span>
 <span class="go">=&gt; &quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;</span>
@@ -828,7 +828,7 @@
 </div>
 
 
-<p>今の時点では<a class="ref" href="/chapters/modeling-users?version=4.0#code-length_validation_test">リスト6.11</a>のテストは失敗するはずです。これをパスさせるためには、長さを強制するための検証の引数について知っておく必要があります。<code>:maximum</code>パラメータと共に用いられる<code>:length</code>は、長さの上限を強制します (<a class="ref" href="/chapters/modeling-users?version=4.0#code-length_validation">リスト6.12</a>)。</p>
+<p>今の時点では<a class="ref" href="./modeling-users?version=4.0#code-length_validation_test">リスト6.11</a>のテストは失敗するはずです。これをパスさせるためには、長さを強制するための検証の引数について知っておく必要があります。<code>:maximum</code>パラメータと共に用いられる<code>:length</code>は、長さの上限を強制します (<a class="ref" href="./modeling-users?version=4.0#code-length_validation">リスト6.12</a>)。</p>
 
 <div class="label" id="code-length_validation"></div>
 
@@ -848,7 +848,7 @@
 <div class="label" id="sec-format_validation"></div>
 
 
-<h3><a id="sec-6_2_4" href="/chapters/modeling-users?version=4.0#sec-format_validation" class="heading"><span class="number">6.2.4</span>フォーマットを検証する</a></h3>
+<h3><a id="sec-6_2_4" href="./modeling-users?version=4.0#sec-format_validation" class="heading"><span class="number">6.2.4</span>フォーマットを検証する</a></h3>
 
 
 <p><code>name</code>属性の検証には、空文字でない、名前が51文字未満であるという最小限の制約しか与えていませんでした。<code>email</code>属性の場合は、もっと厳重な要求を満たさなければなりません。これまでは空のメールアドレスのみを禁止してきましたが、ここではメールアドレスにおなじみのパターン<code>user@example.com</code>に合っているかどうかも確認することを要求します。</p>
@@ -869,7 +869,7 @@
 </div>
 
 
-<p><code>each</code>メソッドを使って<code>addresses</code>配列の各要素を繰り返し取り出しました (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-blocks">4.3.2</a>)。このテクニックを学んだことで、基本となるメールアドレスフォーマット検証のテストを書く準備が整いました (<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_format_validation_tests">リスト6.13</a>)。</p>
+<p><code>each</code>メソッドを使って<code>addresses</code>配列の各要素を繰り返し取り出しました (<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-blocks">4.3.2</a>)。このテクニックを学んだことで、基本となるメールアドレスフォーマット検証のテストを書く準備が整いました (<a class="ref" href="./modeling-users?version=4.0#code-email_format_validation_tests">リスト6.13</a>)。</p>
 
 <div class="label" id="code-email_format_validation_tests"></div>
 
@@ -913,7 +913,7 @@
 
 <p>既に述べたとおり、上のテストはすべてを盛り込んだものではありませんが、一般的に有効なメールアドレスの形式である<code>user@foo.COM</code>、<code>THE_US-ER@foo.bar.org </code> (大文字、アンダースコア、複合ドメイン) 、<code>first.last@foo.jp</code> (一般的な企業のユーザー名「<code>名.姓</code>」と、2文字のトップレベルドメイン「<code>jp</code>」) を、いくつかの無効な形式と共に確認します。</p>
 
-<p>メールアドレスのフォーマット検証を行うアプリケーションコードでは、<code>validates</code>メソッドの<code>:format</code>引数に、フォーマットを定義するための<em>正規表現 (regular expression)</em> (<em>regex</em>とも書きます) を与えます (<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>)。</p>
+<p>メールアドレスのフォーマット検証を行うアプリケーションコードでは、<code>validates</code>メソッドの<code>:format</code>引数に、フォーマットを定義するための<em>正規表現 (regular expression)</em> (<em>regex</em>とも書きます) を与えます (<a class="ref" href="./modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>)。</p>
 
 <div class="label" id="code-validates_format_of_email"></div>
 
@@ -939,21 +939,21 @@
 
 <p>このパターンに一致するメールアドレスだけが有効であることをチェックします (<code>VALID_EMAIL_REGEX</code>は大文字で始まるので、Rubyの<em>定数</em>として扱われ、値は変更できません)。</p>
 
-<p>ところで、この正規表現パターンはどうやって作ればよいのでしょうか。正規表現は簡潔な (<a href="http://catb.org/jargon/html/L/line-noise.html">読めない</a>という人もいますが) テキストパターンマッチング言語から成ります。正規表現を組み立てることを学ぶのはそれだけでひとつの技術分野であり、手短に説明するのは簡単ではありませんが、ともあれ最初の説明のために<code>VALID_EMAIL_REGEX</code>をビットサイズの部品に分解しました (<a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>)<sup class="footnote" id="fnref-6_10"><a href="/chapters/modeling-users?version=4.0#fn-6_10">10</a></sup>。本当に正規表現を学びたいなら、素晴らしい正規表現エディタである<a href="http://www.rubular.com/">Rubular</a> (<a class="ref" href="/chapters/modeling-users?version=4.0#fig-rubular">図6.4</a>) が必要不可欠です<sup class="footnote" id="fnref-6_11"><a href="/chapters/modeling-users?version=4.0#fn-6_11">11</a></sup>。RubularのWebサイトは、正規表現を作るための美しく対話的なインターフェイスを持っています。また、手軽な正規表現のクイックリファレンスにもなります。Rubularのサイトをブラウザで開き、<a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>の表現をひとつずつ入力して結果を確かめながら正規表現を学ぶことをぜひともお勧めします。正規表現について学んだことがなくても、Rubularを使えば２〜３時間ほどで慣れることができます (<em>注</em>: <a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>の正規表現をRubularで使う場合、冒頭の<tt class="verb">\A</tt>と末尾の<tt class="verb">\z</tt>の文字は含めないでください)。</p>
+<p>ところで、この正規表現パターンはどうやって作ればよいのでしょうか。正規表現は簡潔な (<a href="http://catb.org/jargon/html/L/line-noise.html">読めない</a>という人もいますが) テキストパターンマッチング言語から成ります。正規表現を組み立てることを学ぶのはそれだけでひとつの技術分野であり、手短に説明するのは簡単ではありませんが、ともあれ最初の説明のために<code>VALID_EMAIL_REGEX</code>をビットサイズの部品に分解しました (<a class="ref" href="./modeling-users?version=4.0#table-valid_email_regex">表6.1</a>)<sup class="footnote" id="fnref-6_10"><a href="./modeling-users?version=4.0#fn-6_10">10</a></sup>。本当に正規表現を学びたいなら、素晴らしい正規表現エディタである<a href="http://www.rubular.com/">Rubular</a> (<a class="ref" href="./modeling-users?version=4.0#fig-rubular">図6.4</a>) が必要不可欠です<sup class="footnote" id="fnref-6_11"><a href="./modeling-users?version=4.0#fn-6_11">11</a></sup>。RubularのWebサイトは、正規表現を作るための美しく対話的なインターフェイスを持っています。また、手軽な正規表現のクイックリファレンスにもなります。Rubularのサイトをブラウザで開き、<a class="ref" href="./modeling-users?version=4.0#table-valid_email_regex">表6.1</a>の表現をひとつずつ入力して結果を確かめながら正規表現を学ぶことをぜひともお勧めします。正規表現について学んだことがなくても、Rubularを使えば２〜３時間ほどで慣れることができます (<em>注</em>: <a class="ref" href="./modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>の正規表現をRubularで使う場合、冒頭の<tt class="verb">\A</tt>と末尾の<tt class="verb">\z</tt>の文字は含めないでください)。</p>
 
 <div class="label" id="table-valid_email_regex"></div>
 
 
 <div class="table"><div class="center">
-<table class="tabular"><tr><th class="align_left"><strong>表現</strong></th><th class="align_left"><strong>意味</strong></th></tr><tr class="top_bar"><td class="align_left"><tt class="verb">/\A[\w+\-.]+@[a-z\d\-.]</tt><tt class="verb">+\.[a-z]+\z/i</tt></td><td class="align_left">(完全な正規表現)</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">正規表現の開始を示す</td></tr><tr><td class="align_left"><tt class="verb">\A</tt></td><td class="align_left">文字列の先頭</td></tr><tr><td class="align_left"><tt class="verb">[\w+\-.]</tt><tt class="verb">+</tt></td><td class="align_left">英文字、数字、プラス記号、ハイフン、ドットのいずれかを少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">@</tt></td><td class="align_left">アットマーク</td></tr><tr><td class="align_left"><tt class="verb">[a-z\d\-.]</tt><tt class="verb">+</tt></td><td class="align_left">英小文字、数字、ハイフン、ドットのいずれかを少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">\.</tt></td><td class="align_left">ドット</td></tr><tr><td class="align_left"><tt class="verb">[a-z]+</tt></td><td class="align_left">英小文字を少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">\z</tt></td><td class="align_left">文字列の末尾</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">正規表現の終わりを示す</td></tr><tr><td class="align_left"><tt class="verb">i</tt></td><td class="align_left">大文字小文字を無視するオプション</td></tr></table></div><div class="caption"><span class="header">表6.1</span><span class="description"><a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>のメールの正規表現の分解。</span></div></div>
+<table class="tabular"><tr><th class="align_left"><strong>表現</strong></th><th class="align_left"><strong>意味</strong></th></tr><tr class="top_bar"><td class="align_left"><tt class="verb">/\A[\w+\-.]+@[a-z\d\-.]</tt><tt class="verb">+\.[a-z]+\z/i</tt></td><td class="align_left">(完全な正規表現)</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">正規表現の開始を示す</td></tr><tr><td class="align_left"><tt class="verb">\A</tt></td><td class="align_left">文字列の先頭</td></tr><tr><td class="align_left"><tt class="verb">[\w+\-.]</tt><tt class="verb">+</tt></td><td class="align_left">英文字、数字、プラス記号、ハイフン、ドットのいずれかを少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">@</tt></td><td class="align_left">アットマーク</td></tr><tr><td class="align_left"><tt class="verb">[a-z\d\-.]</tt><tt class="verb">+</tt></td><td class="align_left">英小文字、数字、ハイフン、ドットのいずれかを少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">\.</tt></td><td class="align_left">ドット</td></tr><tr><td class="align_left"><tt class="verb">[a-z]+</tt></td><td class="align_left">英小文字を少なくとも1文字以上繰り返す</td></tr><tr><td class="align_left"><tt class="verb">\z</tt></td><td class="align_left">文字列の末尾</td></tr><tr><td class="align_left"><tt class="verb">/</tt></td><td class="align_left">正規表現の終わりを示す</td></tr><tr><td class="align_left"><tt class="verb">i</tt></td><td class="align_left">大文字小文字を無視するオプション</td></tr></table></div><div class="caption"><span class="header">表6.1</span><span class="description"><a class="ref" href="./modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>のメールの正規表現の分解。</span></div></div>
 
 
-<p>ところで、公式標準によるとメールアドレスに完全に一致する正規表現は存在するのだそうです。しかし、苦労して導入するほどの甲斐はありません。<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>の例は問題なく動作しますし、おそらく公式のものより良いでしょう<sup class="footnote" id="fnref-6_12"><a href="/chapters/modeling-users?version=4.0#fn-6_12">12</a></sup>。上の正規表現には少しだけ残念な点があります。<code>foo@bar..com</code>のようなドットの連続を誤りとして検出できません。この問題の修正は、演習問題に回します (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-modeling_users_exercises">6.5</a>)。</p>
+<p>ところで、公式標準によるとメールアドレスに完全に一致する正規表現は存在するのだそうです。しかし、苦労して導入するほどの甲斐はありません。<a class="ref" href="./modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>の例は問題なく動作しますし、おそらく公式のものより良いでしょう<sup class="footnote" id="fnref-6_12"><a href="./modeling-users?version=4.0#fn-6_12">12</a></sup>。上の正規表現には少しだけ残念な点があります。<code>foo@bar..com</code>のようなドットの連続を誤りとして検出できません。この問題の修正は、演習問題に回します (<a class="ref" href="./modeling-users?version=4.0#sec-modeling_users_exercises">6.5</a>)。</p>
 
 <div class="label" id="fig-rubular"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/rubular.png" alt="rubular" /></span></div><div class="caption"><span class="header">図6.4</span><span class="description">素晴らしい正規表現エディタ<a href="http://www.rubular.com/">Rubular</a>。<a href="http://railstutorial.jp/images/figures/rubular-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/rubular.png" alt="rubular" /></span></div><div class="caption"><span class="header">図6.4</span><span class="description">素晴らしい正規表現エディタ<a href="http://www.rubular.com/">Rubular</a>。<a href="./images/figures/rubular-full.png">(拡大)</a></span></div></div>
 
 
 <p>これでテストはすべてパスするはずです(実際、この有効なメールアドレスのテストはこれまでいつもパスしてきました。正規表現のプログラミングは間違いが起こりやすいことで有名なので、ここで行なっている有効なメールアドレスのテストは、主として<code>VALID_EMAIL_REGEX</code>に対する形式的な健全性チェックに過ぎません)。残る制約は、メールアドレスが一意であることを強制するものだけとなりました。</p>
@@ -961,12 +961,12 @@
 <div class="label" id="sec-uniqueness_validation"></div>
 
 
-<h3><a id="sec-6_2_5" href="/chapters/modeling-users?version=4.0#sec-uniqueness_validation" class="heading"><span class="number">6.2.5</span>一意性を検証する</a></h3>
+<h3><a id="sec-6_2_5" href="./modeling-users?version=4.0#sec-uniqueness_validation" class="heading"><span class="number">6.2.5</span>一意性を検証する</a></h3>
 
 
 <p>メールアドレスの一意性を強制するために (ユーザー名として使うために)、<code>validates</code>メソッドの<code>:unique</code>オプションを使います。ただしここで<em>重大な</em>警告があります。以下の文面は流し読みせず、必ず注意深く読んでください。</p>
 
-<p>今回もいつものようにテストを作成するところから始めます。モデルのテストではこれまで、主に<code>User.new</code>を使ってきました。このメソッドは単にメモリ上にRubyのオブジェクトを作るだけです。しかし、一意性のテストのためには、メモリ上だけではなく、実際にレコードをデータベースに登録する必要があります<sup class="footnote" id="fnref-6_13"><a href="/chapters/modeling-users?version=4.0#fn-6_13">13</a></sup>。(最初の段階の) 重複メールアドレスのテストを<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email_test">リスト6.15</a>に示します。</p>
+<p>今回もいつものようにテストを作成するところから始めます。モデルのテストではこれまで、主に<code>User.new</code>を使ってきました。このメソッドは単にメモリ上にRubyのオブジェクトを作るだけです。しかし、一意性のテストのためには、メモリ上だけではなく、実際にレコードをデータベースに登録する必要があります<sup class="footnote" id="fnref-6_13"><a href="./modeling-users?version=4.0#fn-6_13">13</a></sup>。(最初の段階の) 重複メールアドレスのテストを<a class="ref" href="./modeling-users?version=4.0#code-validates_uniqueness_of_email_test">リスト6.15</a>に示します。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email_test"></div>
 
@@ -998,7 +998,7 @@
 
 <p>上のコードのメソッドは、<code>@user</code>と同じメールアドレスでユーザーを作成します。そのために、<code>@user.dup</code>を使用して同じ属性を持つ重複ユーザーを作ります。次にそのユーザーを保存しようとすると、元の<code>@user</code>のメールアドレスが既にデータベースに存在するため、この重複メールアドレスは無効になるはずです。</p>
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email_test">リスト6.15</a>の新しいテストがパスするためのコードを<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email">リスト6.16</a>に示します。</p>
+<p><a class="ref" href="./modeling-users?version=4.0#code-validates_uniqueness_of_email_test">リスト6.15</a>の新しいテストがパスするためのコードを<a class="ref" href="./modeling-users?version=4.0#code-validates_uniqueness_of_email">リスト6.16</a>に示します。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email"></div>
 
@@ -1016,7 +1016,7 @@
 </div></div>
 
 
-<p>実装の途中ですが、ここでひとつ補足します。通常、メールアドレスでは大文字小文字が区別されません。すなわち、<code>foo@bar.com</code>は<code>FOO@BAR.COM</code>や<code>FoO@BAr.coM</code>と書いても扱いは同じです。従って、メールアドレスの検証ではこのような場合も考慮する必要があります<sup class="footnote" id="fnref-6_14"><a href="/chapters/modeling-users?version=4.0#fn-6_14">14</a></sup> 。<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email_case_insensitive_test">リスト6.17</a>のコードでは、大文字小文字を区別せずにテストしています。</p>
+<p>実装の途中ですが、ここでひとつ補足します。通常、メールアドレスでは大文字小文字が区別されません。すなわち、<code>foo@bar.com</code>は<code>FOO@BAR.COM</code>や<code>FoO@BAr.coM</code>と書いても扱いは同じです。従って、メールアドレスの検証ではこのような場合も考慮する必要があります<sup class="footnote" id="fnref-6_14"><a href="./modeling-users?version=4.0#fn-6_14">14</a></sup> 。<a class="ref" href="./modeling-users?version=4.0#code-validates_uniqueness_of_email_case_insensitive_test">リスト6.17</a>のコードでは、大文字小文字を区別せずにテストしています。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email_case_insensitive_test"></div>
 
@@ -1061,7 +1061,7 @@
 </div>
 
 
-<p>現在の一意性検証では大文字小文字を区別しているため、<code>user_with_same_email.valid?</code>は<code>true</code>になります。しかし、ここでは<code>false</code>になる必要があります。幸い、<code>:uniqueness</code>では<code>:case_sensitive</code>といううってつけのオプションが使用できます (<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email_case_insensitive">リスト6.18</a>)。</p>
+<p>現在の一意性検証では大文字小文字を区別しているため、<code>user_with_same_email.valid?</code>は<code>true</code>になります。しかし、ここでは<code>false</code>になる必要があります。幸い、<code>:uniqueness</code>では<code>:case_sensitive</code>といううってつけのオプションが使用できます (<a class="ref" href="./modeling-users?version=4.0#code-validates_uniqueness_of_email_case_insensitive">リスト6.18</a>)。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email_case_insensitive"></div>
 
@@ -1084,7 +1084,7 @@
 <div class="label" id="sec-the_caveat"></div>
 
 
-<h4><a id="sec-6_2_5_1" href="/chapters/modeling-users?version=4.0#sec-the_caveat" class="heading">一意性の警告</a></h4>
+<h4><a id="sec-6_2_5_1" href="./modeling-users?version=4.0#sec-the_caveat" class="heading">一意性の警告</a></h4>
 
 
 <p>上で示した警告には、1つ小さな問題があります。</p>
@@ -1103,14 +1103,14 @@
 
 <p>上のシナリオが信じがたいもののように思えるかもしれませんが、どうか信じてください。RailsのWebサイトでは、トラフィックが多いときにこのような問題が発生する可能性があるのです。幸い、解決策の実装は簡単です。実は、この問題はデータベースレベルでも一意性を強制するだけで解決します。具体的には、emailカラムにデータベースの<em>インデックス</em>を作成し、そのインデックスが一意であることを要求します。</p>
 
-<p>emailインデックスを追加すると、データモデリングの変更が必要になります。Railsでは (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-database_migrations">6.1.1</a>で見たように) マイグレーションでインデックスを追加します。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-database_migrations">6.1.1</a>で、Userモデルを生成すると自動的に新しいマイグレーションが作成されたことを思い出してください (<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>)。今回の場合は、既に存在するモデルに構造を追加するので、以下のように<code>migration</code>ジェネレーターを使用してマイグレーションを直接作成する必要があります。</p>
+<p>emailインデックスを追加すると、データモデリングの変更が必要になります。Railsでは (<a class="ref" href="./modeling-users?version=4.0#sec-database_migrations">6.1.1</a>で見たように) マイグレーションでインデックスを追加します。<a class="ref" href="./modeling-users?version=4.0#sec-database_migrations">6.1.1</a>で、Userモデルを生成すると自動的に新しいマイグレーションが作成されたことを思い出してください (<a class="ref" href="./modeling-users?version=4.0#code-users_migration">リスト6.2</a>)。今回の場合は、既に存在するモデルに構造を追加するので、以下のように<code>migration</code>ジェネレーターを使用してマイグレーションを直接作成する必要があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate migration add_index_to_users_email
 </pre></div>
 </div>
 
 
-<p>ユーザー用のマイグレーションと異なり、メールアドレスの一意性のマイグレーションは未定義になっています。<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_uniqueness_index">リスト6.19</a>のように定義を記述する必要があります<sup class="footnote" id="fnref-6_15"><a href="/chapters/modeling-users?version=4.0#fn-6_15">15</a></sup>。</p>
+<p>ユーザー用のマイグレーションと異なり、メールアドレスの一意性のマイグレーションは未定義になっています。<a class="ref" href="./modeling-users?version=4.0#code-email_uniqueness_index">リスト6.19</a>のように定義を記述する必要があります<sup class="footnote" id="fnref-6_15"><a href="./modeling-users?version=4.0#fn-6_15">15</a></sup>。</p>
 
 <div class="label" id="code-email_uniqueness_index"></div>
 
@@ -1142,7 +1142,7 @@
 </div>
 
 
-<p>残念なことに、メールアドレスの一意性を保証するためには、もう1つやらなければならないことがあります。それは、メールアドレスをデータベースに保存する前にすべての文字を小文字に変換することです。その理由は、データベースのアダプタが常に大文字小文字を区別するインデックスを使っているとは限らないからです<sup class="footnote" id="fnref-6_16"><a href="/chapters/modeling-users?version=4.0#fn-6_16">16</a></sup>。これを行うには<a href="http://en.wikipedia.org/wiki/Callback_(computer_science)"><em>コールバック</em></a>というテクニックを利用します。コールバックとは、Active Recordオブジェクトが持続している間のどこかの時点で、Active Recordオブジェクトに呼び出してもらうメソッドです (Rails APIの「<a href="http://api.rubyonrails.org/v4.0.0/classes/ActiveRecord/Callbacks.html">コールバックの登録ポイント</a> (英語)」を参照してください)。今回の場合は、<code>before_save</code>コールバックを使います。<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase">リスト6.20</a>に示したように、ユーザーをデータベースに保存する前にemail属性を強制的に小文字に変換します。</p>
+<p>残念なことに、メールアドレスの一意性を保証するためには、もう1つやらなければならないことがあります。それは、メールアドレスをデータベースに保存する前にすべての文字を小文字に変換することです。その理由は、データベースのアダプタが常に大文字小文字を区別するインデックスを使っているとは限らないからです<sup class="footnote" id="fnref-6_16"><a href="./modeling-users?version=4.0#fn-6_16">16</a></sup>。これを行うには<a href="http://en.wikipedia.org/wiki/Callback_(computer_science)"><em>コールバック</em></a>というテクニックを利用します。コールバックとは、Active Recordオブジェクトが持続している間のどこかの時点で、Active Recordオブジェクトに呼び出してもらうメソッドです (Rails APIの「<a href="http://api.rubyonrails.org/v4.0.0/classes/ActiveRecord/Callbacks.html">コールバックの登録ポイント</a> (英語)」を参照してください)。今回の場合は、<code>before_save</code>コールバックを使います。<a class="ref" href="./modeling-users?version=4.0#code-email_downcase">リスト6.20</a>に示したように、ユーザーをデータベースに保存する前にemail属性を強制的に小文字に変換します。</p>
 
 <div class="label" id="code-email_downcase"></div>
 
@@ -1159,15 +1159,15 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase">リスト6.20</a>のコードは、<code>before_save</code>コールバックにブロックを渡してユーザーのメールアドレスを設定します。設定されるメールアドレスは、現在の値をStringクラスの<code>downcase</code>メソッドを使って小文字バージョンにしたものです。このコードは少し上級者向けなので、今はただ、このコードが動作することを信じてください。それでは気の済まない方は、<a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_uniqueness_of_email">リスト6.16</a>から一意性の検証部分をコメントアウトし、重複したメールアドレスを持つユーザーを試しに作成してみれば、エラーが発生するはずです (このテクニックについては<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>でもう一度取り上げます。そこではお勧めの<em>メソッド参照</em>方法の慣習について説明します)。<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase">リスト6.20</a>のコード用テストの作成は演習に回します (<a class="ref" href="/chapters/modeling-users?version=4.0#sec-modeling_users_exercises">6.5</a>)。</p>
+<p><a class="ref" href="./modeling-users?version=4.0#code-email_downcase">リスト6.20</a>のコードは、<code>before_save</code>コールバックにブロックを渡してユーザーのメールアドレスを設定します。設定されるメールアドレスは、現在の値をStringクラスの<code>downcase</code>メソッドを使って小文字バージョンにしたものです。このコードは少し上級者向けなので、今はただ、このコードが動作することを信じてください。それでは気の済まない方は、<a class="ref" href="./modeling-users?version=4.0#code-validates_uniqueness_of_email">リスト6.16</a>から一意性の検証部分をコメントアウトし、重複したメールアドレスを持つユーザーを試しに作成してみれば、エラーが発生するはずです (このテクニックについては<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-remember_me">8.2.1</a>でもう一度取り上げます。そこではお勧めの<em>メソッド参照</em>方法の慣習について説明します)。<a class="ref" href="./modeling-users?version=4.0#code-email_downcase">リスト6.20</a>のコード用テストの作成は演習に回します (<a class="ref" href="./modeling-users?version=4.0#sec-modeling_users_exercises">6.5</a>)。</p>
 
-<p>これで、先に述べたアリスのシナリオはうまくいくようになります。データベースは、最初のリクエストに基づいてユーザーのレコードを保存しますが、2度目の保存は一意性の制約に反するので拒否します (Railsのログにエラーが出力されますが、害は生じません。ここで発生した<code>ActiveRecord::StatementInvalid</code>例外を実際にキャッチすることもできますが、このチュートリアルでは解説しません)。インデックスをemail属性に追加したことで、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>で述べた2番目の目標 (エントリ多数の場合の検索効率向上) も達成されます。これは、<code>find_by</code>の効率の問題がインデックスによって解決されたためです (<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-database_indices">コラム 6.2</a>)。</p>
+<p>これで、先に述べたアリスのシナリオはうまくいくようになります。データベースは、最初のリクエストに基づいてユーザーのレコードを保存しますが、2度目の保存は一意性の制約に反するので拒否します (Railsのログにエラーが出力されますが、害は生じません。ここで発生した<code>ActiveRecord::StatementInvalid</code>例外を実際にキャッチすることもできますが、このチュートリアルでは解説しません)。インデックスをemail属性に追加したことで、<a class="ref" href="./modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>で述べた2番目の目標 (エントリ多数の場合の検索効率向上) も達成されます。これは、<code>find_by</code>の効率の問題がインデックスによって解決されたためです (<a class="ref" href="./modeling-users?version=4.0#sidebar-database_indices">コラム 6.2</a>)。</p>
 
 <div class="label" id="sidebar-database_indices"></div>
 
 
 <div class="sidebar"><span class="title"><span class="header">コラム 6.2</span><span class="description">データベースのインデックス</span></span>
-<p>データベースにカラムを作成するとき、そのカラムでレコードを<em>検索する (find) </em>必要があるかどうかを考えることは重要です。たとえば、<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>のマイグレーションによって作成された<tt>email</tt>属性について考えてみましょう。<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>ではユーザーをサンプルアプリにログインできるようにしますが、このとき、送信されたものと一致するメールアドレスのユーザーのレコードをデータベースの中から探しだす必要があります。残念なことに、(インデックスなどの機能を持たない) 素朴なデータモデルにおいてユーザーをメールアドレスで検索するには、データベースの<em>ひとりひとりの</em>ユーザーの行を端から順に読み出し、そのemail属性と与えられたメールアドレスを比較するという非効率的な方法しかありません。これは、データベースの世界では<em>全表スキャン</em>として知られており、数千のユーザーがいる実際のサイトでは<a href="http://catb.org/jargon/html/B/Bad-Thing.html">きわめて不都合</a>です。</p>
+<p>データベースにカラムを作成するとき、そのカラムでレコードを<em>検索する (find) </em>必要があるかどうかを考えることは重要です。たとえば、<a class="ref" href="./modeling-users?version=4.0#code-users_migration">リスト6.2</a>のマイグレーションによって作成された<tt>email</tt>属性について考えてみましょう。<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>ではユーザーをサンプルアプリにログインできるようにしますが、このとき、送信されたものと一致するメールアドレスのユーザーのレコードをデータベースの中から探しだす必要があります。残念なことに、(インデックスなどの機能を持たない) 素朴なデータモデルにおいてユーザーをメールアドレスで検索するには、データベースの<em>ひとりひとりの</em>ユーザーの行を端から順に読み出し、そのemail属性と与えられたメールアドレスを比較するという非効率的な方法しかありません。これは、データベースの世界では<em>全表スキャン</em>として知られており、数千のユーザーがいる実際のサイトでは<a href="http://catb.org/jargon/html/B/Bad-Thing.html">きわめて不都合</a>です。</p>
 
 <p>emailカラムにインデックスを追加することで、この問題を解決することができます。データベースのインデックスを理解するためには、本の索引との類似性を考えるとよいでしょう。本の中で、与えられた言葉 (例えば、“foobar”) が出てくる箇所をすべて見つけるためには、ページを端から順にめくって最後まで探す必要があります。本の索引を利用すれば、“foobar”を含むすべてのページを索引の中から探すだけで済みます。データベースのインデックスも本質的には本の索引と同じように動作します。</p>
 </div>
@@ -1178,30 +1178,30 @@
 <div class="label" id="sec-adding_a_secure_password"></div>
 
 
-<h2><a id="sec-6_3" href="/chapters/modeling-users?version=4.0#sec-adding_a_secure_password" class="heading"><span class="number">6.3</span>セキュアなパスワードを追加する</a></h2>
+<h2><a id="sec-6_3" href="./modeling-users?version=4.0#sec-adding_a_secure_password" class="heading"><span class="number">6.3</span>セキュアなパスワードを追加する</a></h2>
 
 
 <p>この節では、ユーザーに最後の属性を追加します。セキュアパスワードは、サンプルアプリケーションでユーザーを認証するために使用します。セキュアパスワードという手法では、各ユーザーにパスワードとパスワードの確認を入力させ、それを (そのままではなく) 暗号化したものをデータベースに保存します。また、入力されたパスワードを使用してユーザーを<em>認証</em>する手段と、<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>で使用する、ユーザーがサイトにサインインできるようにする手段も提供します。</p>
 
 <p>ユーザーの認証は、パスワードの送信、暗号化、データベース内の暗号化された値との比較という手順を踏みます。比較の結果が一致すれば、送信されたパスワードは正しいと認識され、そのユーザーは認証されます。ここで、生のパスワードではなく、暗号化されたパスワード同士を比較していることにご注目ください。こうすることで、生のパスワードをデータベースに保存するという危険なことをしなくてもユーザーを認証できます。これで、仮にデータベースの内容が盗まれたり覗き見されるようなことがあっても、パスワードの安全性が保たれます。</p>
 
-<p>セキュアなパスワードの実装は、<code>has_secure_password</code>というRailsのメソッドを呼び出すだけでほとんど終わってしまいます (このメソッドはRails 3.1から導入されました)。このメソッド1つだけでセキュアなパスワードの実装がほとんど終わってしまうので、逆にこの機能を最初から手作りするのは簡単ではありません。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-password_and_confirmation">6.3.2</a>以降では、<code>has_secure_password</code>メソッドを早期に導入しておき、テストを新しく書くたびにこのメソッドを一時的にコメントアウトして、正しいテスト駆動開発を行うことをお勧めします。(スクリーンキャストは、このような一からの手作り開発手順を解説するのに向いています。この課題を十分に理解したい方は「<a href="http://railstutorial.org/screencasts">Ruby on Railsチュートリアルのスクリーンキャスト</a> (英語)」を参照してください)。</p>
+<p>セキュアなパスワードの実装は、<code>has_secure_password</code>というRailsのメソッドを呼び出すだけでほとんど終わってしまいます (このメソッドはRails 3.1から導入されました)。このメソッド1つだけでセキュアなパスワードの実装がほとんど終わってしまうので、逆にこの機能を最初から手作りするのは簡単ではありません。<a class="ref" href="./modeling-users?version=4.0#sec-password_and_confirmation">6.3.2</a>以降では、<code>has_secure_password</code>メソッドを早期に導入しておき、テストを新しく書くたびにこのメソッドを一時的にコメントアウトして、正しいテスト駆動開発を行うことをお勧めします。(スクリーンキャストは、このような一からの手作り開発手順を解説するのに向いています。この課題を十分に理解したい方は「<a href="http://railstutorial.org/screencasts">Ruby on Railsチュートリアルのスクリーンキャスト</a> (英語)」を参照してください)。</p>
 
 <div class="label" id="sec-an_encrypted_password"></div>
 
 
-<h3><a id="sec-6_3_1" href="/chapters/modeling-users?version=4.0#sec-an_encrypted_password" class="heading"><span class="number">6.3.1</span>暗号化されたパスワード</a></h3>
+<h3><a id="sec-6_3_1" href="./modeling-users?version=4.0#sec-an_encrypted_password" class="heading"><span class="number">6.3.1</span>暗号化されたパスワード</a></h3>
 
 
-<p>最初に、ユーザーのデータモデルに必要な変更を行います。具体的には、<code>users</code>テーブルに<code>password_digest</code>カラムを追加します (<a class="ref" href="/chapters/modeling-users?version=4.0#fig-user_model_password_digest">図6.5</a>)。なお、<em>digest</em>という言葉は<a href="http://en.wikipedia.org/wiki/Cryptographic_hash_function">暗号化用ハッシュ関数</a>の用語が語源です。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-has_secure_password">6.3.4</a>の実装が動作するには、カラム名を正確に<code>password_digest</code>とする必要があります。パスワードを適切に暗号化することで、たとえ攻撃者によってデータベースからパスワードをコピーされてもWebサイトにサインインされることのないようにできます。</p>
+<p>最初に、ユーザーのデータモデルに必要な変更を行います。具体的には、<code>users</code>テーブルに<code>password_digest</code>カラムを追加します (<a class="ref" href="./modeling-users?version=4.0#fig-user_model_password_digest">図6.5</a>)。なお、<em>digest</em>という言葉は<a href="http://en.wikipedia.org/wiki/Cryptographic_hash_function">暗号化用ハッシュ関数</a>の用語が語源です。<a class="ref" href="./modeling-users?version=4.0#sec-has_secure_password">6.3.4</a>の実装が動作するには、カラム名を正確に<code>password_digest</code>とする必要があります。パスワードを適切に暗号化することで、たとえ攻撃者によってデータベースからパスワードをコピーされてもWebサイトにサインインされることのないようにできます。</p>
 
 <div class="label" id="fig-user_model_password_digest"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/user_model_password_digest.png" alt="user_model_password_digest" /></span></div><div class="caption"><span class="header">図6.5</span><span class="description">Userモデルに<code>password_digest</code>属性を追加する。</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/user_model_password_digest.png" alt="user_model_password_digest" /></span></div><div class="caption"><span class="header">図6.5</span><span class="description">Userモデルに<code>password_digest</code>属性を追加する。</span></div></div>
 
 
-<p>ハッシュ関数には最新の<a href="http://en.wikipedia.org/wiki/Bcrypt">bcrypt</a>を使用し、パスワードを不可逆的に暗号化してパスワードハッシュを作成します。サンプルアプリケーションでbcryptを使用するために、<code>bcrypt-ruby</code> gemを<code>Gemfile</code>に追加します (<a class="ref" href="/chapters/modeling-users?version=4.0#code-bcrypt_ruby">リスト6.21</a>)。</p>
+<p>ハッシュ関数には最新の<a href="http://en.wikipedia.org/wiki/Bcrypt">bcrypt</a>を使用し、パスワードを不可逆的に暗号化してパスワードハッシュを作成します。サンプルアプリケーションでbcryptを使用するために、<code>bcrypt-ruby</code> gemを<code>Gemfile</code>に追加します (<a class="ref" href="./modeling-users?version=4.0#code-bcrypt_ruby">リスト6.21</a>)。</p>
 
 <div class="label" id="code-bcrypt_ruby"></div>
 
@@ -1229,7 +1229,7 @@
 </div>
 
 
-<p>ユーザーはpassword_digestカラムにアクセスしなければならないので、<a class="ref" href="/chapters/modeling-users?version=4.0#code-respond_to_password_digest">リスト6.22</a>に示すように、ユーザーオブジェクトは<code>password_digest</code>に応答する必要があります。</p>
+<p>ユーザーはpassword_digestカラムにアクセスしなければならないので、<a class="ref" href="./modeling-users?version=4.0#code-respond_to_password_digest">リスト6.22</a>に示すように、ユーザーオブジェクトは<code>password_digest</code>に応答する必要があります。</p>
 
 <div class="label" id="code-respond_to_password_digest"></div>
 
@@ -1265,7 +1265,7 @@ add_password_digest_to_users password_digest:string
 </div>
 
 
-<p>上のコマンドの最初の引数はマイグレーション名、次の引数は作成する属性の名前と型です (<a class="ref" href="/chapters/modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>で最初に<code>users</code>テーブルを生成したときのマイグレーションと比較してみてください)。マイグレーション名は自由に指定できますが、上のように末尾を<code>_to_users</code>にしておくことをお勧めします。こうしておくと、<code>users</code>テーブルにカラムを追加するマイグレーションがRailsによって自動的に作成されるからです。また、上のコマンドに2番目の引数を与えることで、<a class="ref" href="/chapters/modeling-users?version=4.0#code-password_migration">リスト6.23</a>のように完全なマイグレーションを構成するための情報をRailsに与えることができます。</p>
+<p>上のコマンドの最初の引数はマイグレーション名、次の引数は作成する属性の名前と型です (<a class="ref" href="./modeling-users?version=4.0#code-generate_user_model">リスト6.1</a>で最初に<code>users</code>テーブルを生成したときのマイグレーションと比較してみてください)。マイグレーション名は自由に指定できますが、上のように末尾を<code>_to_users</code>にしておくことをお勧めします。こうしておくと、<code>users</code>テーブルにカラムを追加するマイグレーションがRailsによって自動的に作成されるからです。また、上のコマンドに2番目の引数を与えることで、<a class="ref" href="./modeling-users?version=4.0#code-password_migration">リスト6.23</a>のように完全なマイグレーションを構成するための情報をRailsに与えることができます。</p>
 
 <div class="label" id="code-password_migration"></div>
 
@@ -1283,7 +1283,7 @@ add_password_digest_to_users password_digest:string
 
 <p>上のコードでは、<code>add_column</code>メソッドを使用して<code>password_digest</code> カラムを<code>users</code>テーブルに追加しています。</p>
 
-<p>以下のように開発データベースをマイグレーションしてテストデータベースを準備することで、<a class="ref" href="/chapters/modeling-users?version=4.0#code-respond_to_password_digest">リスト6.22</a>の失敗するテストをパスすることができます。</p>
+<p>以下のように開発データベースをマイグレーションしてテストデータベースを準備することで、<a class="ref" href="./modeling-users?version=4.0#code-respond_to_password_digest">リスト6.22</a>の失敗するテストをパスすることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
 <span class="gp">$</span> bundle <span class="nb">exec </span>rake <span class="nb">test</span>:prepare
@@ -1297,12 +1297,12 @@ add_password_digest_to_users password_digest:string
 <div class="label" id="sec-password_and_confirmation"></div>
 
 
-<h3><a id="sec-6_3_2" href="/chapters/modeling-users?version=4.0#sec-password_and_confirmation" class="heading"><span class="number">6.3.2</span>パスワードと確認</a></h3>
+<h3><a id="sec-6_3_2" href="./modeling-users?version=4.0#sec-password_and_confirmation" class="heading"><span class="number">6.3.2</span>パスワードと確認</a></h3>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#fig-signup_mockup_preview">図6.1</a>のモックアップに示したように、ユーザーにパスワードを確認させるようにしましょう。パスワードの確認入力は、入力ミスを減らすためにWebで広く使用されています。パスワード確認の強制はコントローラの階層でも行うことができますが、モデルの中でActive Recordを使用して制限を与えるのが慣習になっています。そのためには、<code>password</code>属性と<code>password_confirmation</code>属性をUserモデルに追加し、レコードをデータベースに保存する前に2つの属性が一致するように要求します。これまでに使用した属性と異なり、パスワード関連の属性は「<em>仮想</em>」にする点にご注意ください。つまり、これらの属性は一時的にメモリ上に置き、データベースには保存されないようにします。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-has_secure_password">6.3.4</a>でも説明しますが、これらの仮想属性は<code>has_secure_password</code>では自動的に実装されます。</p>
+<p><a class="ref" href="./modeling-users?version=4.0#fig-signup_mockup_preview">図6.1</a>のモックアップに示したように、ユーザーにパスワードを確認させるようにしましょう。パスワードの確認入力は、入力ミスを減らすためにWebで広く使用されています。パスワード確認の強制はコントローラの階層でも行うことができますが、モデルの中でActive Recordを使用して制限を与えるのが慣習になっています。そのためには、<code>password</code>属性と<code>password_confirmation</code>属性をUserモデルに追加し、レコードをデータベースに保存する前に2つの属性が一致するように要求します。これまでに使用した属性と異なり、パスワード関連の属性は「<em>仮想</em>」にする点にご注意ください。つまり、これらの属性は一時的にメモリ上に置き、データベースには保存されないようにします。<a class="ref" href="./modeling-users?version=4.0#sec-has_secure_password">6.3.4</a>でも説明しますが、これらの仮想属性は<code>has_secure_password</code>では自動的に実装されます。</p>
 
-<p>最初に、<code>respond_to</code>を使用してパスワードとパスワードの確認を<a class="ref" href="/chapters/modeling-users?version=4.0#code-user_respond_to_password">リスト6.24</a>のようにテストします。</p>
+<p>最初に、<code>respond_to</code>を使用してパスワードとパスワードの確認を<a class="ref" href="./modeling-users?version=4.0#code-user_respond_to_password">リスト6.24</a>のようにテストします。</p>
 
 <div class="label" id="code-user_respond_to_password"></div>
 
@@ -1370,7 +1370,7 @@ add_password_digest_to_users password_digest:string
 </div>
 
 
-<p>ここまでのすべてを盛り込んだ失敗するテストを<a class="ref" href="/chapters/modeling-users?version=4.0#code-password_tests">リスト6.25</a>に示します。</p>
+<p>ここまでのすべてを盛り込んだ失敗するテストを<a class="ref" href="./modeling-users?version=4.0#code-password_tests">リスト6.25</a>に示します。</p>
 
 <div class="label" id="code-password_tests"></div>
 
@@ -1415,7 +1415,7 @@ add_password_digest_to_users password_digest:string
 </div></div>
 
 
-<p>上の<a class="ref" href="/chapters/modeling-users?version=4.0#code-password_tests">リスト6.25</a>のテストは、<a class="ref" href="/chapters/modeling-users?version=4.0#code-initial_passing_password_tests">リスト6.26</a>に示したようにコードにたった1行追加するだけでパスするようになります。</p>
+<p>上の<a class="ref" href="./modeling-users?version=4.0#code-password_tests">リスト6.25</a>のテストは、<a class="ref" href="./modeling-users?version=4.0#code-initial_passing_password_tests">リスト6.26</a>に示したようにコードにたった1行追加するだけでパスするようになります。</p>
 
 <div class="label" id="code-initial_passing_password_tests"></div>
 
@@ -1439,7 +1439,7 @@ add_password_digest_to_users password_digest:string
 </div>
 
 
-<p>現在のパスワード関連テストがすべてパスするようになり、他の多くのテストにもパスするようになります。このメソッドがあまりに目覚しい働きをするので、この後のテストで赤から青に状態を変えるチュートリアルが逆にやりにくくなってしまいます。そこで、一時的にコメントアウトしておいてください (<a class="ref" href="/chapters/modeling-users?version=4.0#code-commented_out_has_secure_password">リスト6.27</a>).</p>
+<p>現在のパスワード関連テストがすべてパスするようになり、他の多くのテストにもパスするようになります。このメソッドがあまりに目覚しい働きをするので、この後のテストで赤から青に状態を変えるチュートリアルが逆にやりにくくなってしまいます。そこで、一時的にコメントアウトしておいてください (<a class="ref" href="./modeling-users?version=4.0#code-commented_out_has_secure_password">リスト6.27</a>).</p>
 
 <div class="label" id="code-commented_out_has_secure_password"></div>
 
@@ -1461,12 +1461,12 @@ add_password_digest_to_users password_digest:string
 <div class="label" id="sec-user_authentication"></div>
 
 
-<h3><a id="sec-6_3_3" href="/chapters/modeling-users?version=4.0#sec-user_authentication" class="heading"><span class="number">6.3.3</span>ユーザー認証</a></h3>
+<h3><a id="sec-6_3_3" href="./modeling-users?version=4.0#sec-user_authentication" class="heading"><span class="number">6.3.3</span>ユーザー認証</a></h3>
 
 
-<p>パスワード機構というパズルの最後のひとかけらは、ユーザーをメールアドレスとパスワードに基いて取得する手段です。この作業は2つに分けるのが自然です。最初に、ユーザーをメールアドレスで検索します。次に、受け取ったパスワードでユーザーを認証します。この節のテストは、最後の1つを除いてすべて<code>has_secure_password</code>メソッドによって実装できるので、<a class="ref" href="/chapters/modeling-users?version=4.0#code-commented_out_has_secure_password">リスト6.27</a>でコメントアウトした行は実装中にコメント解除し、テストがパスするようにしてください。</p>
+<p>パスワード機構というパズルの最後のひとかけらは、ユーザーをメールアドレスとパスワードに基いて取得する手段です。この作業は2つに分けるのが自然です。最初に、ユーザーをメールアドレスで検索します。次に、受け取ったパスワードでユーザーを認証します。この節のテストは、最後の1つを除いてすべて<code>has_secure_password</code>メソッドによって実装できるので、<a class="ref" href="./modeling-users?version=4.0#code-commented_out_has_secure_password">リスト6.27</a>でコメントアウトした行は実装中にコメント解除し、テストがパスするようにしてください。</p>
 
-<p>最初の手順の実装は簡単です。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>でも説明したように、<code>find_by</code>メソッドを使用すれば、受け取ったメールアドレスでユーザーを検索できます。</p>
+<p>最初の手順の実装は簡単です。<a class="ref" href="./modeling-users?version=4.0#sec-finding_user_objects">6.1.4</a>でも説明したように、<code>find_by</code>メソッドを使用すれば、受け取ったメールアドレスでユーザーを検索できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="n">email</span><span class="p">)</span>
 </pre></div>
@@ -1517,7 +1517,7 @@ add_password_digest_to_users password_digest:string
 </div>
 
 
-<p>これまでいくつかの演習で<code>let</code>メソッドを使用してきましたが、今回のようにチュートリアルの本文で言及するのはこれが初めてです。<code>let</code>メソッドの詳細については<a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">コラム 6.3</a>を参照してください。</p>
+<p>これまでいくつかの演習で<code>let</code>メソッドを使用してきましたが、今回のようにチュートリアルの本文で言及するのはこれが初めてです。<code>let</code>メソッドの詳細については<a class="ref" href="./modeling-users?version=4.0#sidebar-let">コラム 6.3</a>を参照してください。</p>
 
 <p>2つの<code>describe</code>ブロックでは、<code>@user</code>と<code>found_user</code>が一致する (パスワードが一致する) 場合と一致しない (パスワードが一致しない) 場合についてそれぞれテストします。コードで使用されている<code>eq</code>は、オブジェクト同士が同値であるかどうかを調べます (eqの内部では<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-arrays_and_ranges">4.3.1</a>で説明した二重等号演算子<code>==</code>を使用してオブジェクトが同値であるかどうかを確認しています)。以下のコードにご注目ください。</p>
 
@@ -1556,7 +1556,7 @@ add_password_digest_to_users password_digest:string
 </div>
 
 
-<p>ここまでのテストをすべて集約したものを<a class="ref" href="/chapters/modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>に示します。</p>
+<p>ここまでのテストをすべて集約したものを<a class="ref" href="./modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>に示します。</p>
 
 <div class="label" id="code-authenticate_spec"></div>
 
@@ -1605,17 +1605,17 @@ add_password_digest_to_users password_digest:string
 </div></div>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#sidebar-let">コラム 6.3</a>で解説したように、<code>let</code>では値がメモ化されます。これにより、<a class="ref" href="/chapters/modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>にある、ネストしている最初の<code>describe</code>ブロックは<code>let</code>で<code>find_by</code>を使用してデータベースからユーザーを取得します。しかしその次のネストしている<code>describe</code>ブロックは (メモ化された値を利用するので) データベースにアクセスしません。</p>
+<p><a class="ref" href="./modeling-users?version=4.0#sidebar-let">コラム 6.3</a>で解説したように、<code>let</code>では値がメモ化されます。これにより、<a class="ref" href="./modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>にある、ネストしている最初の<code>describe</code>ブロックは<code>let</code>で<code>find_by</code>を使用してデータベースからユーザーを取得します。しかしその次のネストしている<code>describe</code>ブロックは (メモ化された値を利用するので) データベースにアクセスしません。</p>
 
 <div class="label" id="sec-has_secure_password"></div>
 
 
-<h3><a id="sec-6_3_4" href="/chapters/modeling-users?version=4.0#sec-has_secure_password" class="heading"><span class="number">6.3.4</span>ユーザーがセキュアなパスワードを持っている</a></h3>
+<h3><a id="sec-6_3_4" href="./modeling-users?version=4.0#sec-has_secure_password" class="heading"><span class="number">6.3.4</span>ユーザーがセキュアなパスワードを持っている</a></h3>
 
 
-<p>認証システムを最初からフル作成していた<a href="http://railstutorial.jp/book?version=3.0">Rails 3.0向け<em>Railsチュートリアル</em></a><sup class="footnote" id="fnref-6_17"><a href="/chapters/modeling-users?version=4.0#fn-6_17">17</a></sup>を参照いただくとわかるように、以前のバージョンのRailsでは、セキュアパスワードの実装は面倒で時間のかかる作業でした。しかし今では、Web開発者が認証システムというものを以前よりも深く理解するようになり、最新のRailsには認証システムも同梱されるようになりました。ここまで実装を進めてきたので、あとほんの数行を追加してセキュアパスワードの実装を完了し、テストスイートを緑色 (成功) にしましょう。</p>
+<p>認証システムを最初からフル作成していた<a href="./book?version=3.0">Rails 3.0向け<em>Railsチュートリアル</em></a><sup class="footnote" id="fnref-6_17"><a href="./modeling-users?version=4.0#fn-6_17">17</a></sup>を参照いただくとわかるように、以前のバージョンのRailsでは、セキュアパスワードの実装は面倒で時間のかかる作業でした。しかし今では、Web開発者が認証システムというものを以前よりも深く理解するようになり、最新のRailsには認証システムも同梱されるようになりました。ここまで実装を進めてきたので、あとほんの数行を追加してセキュアパスワードの実装を完了し、テストスイートを緑色 (成功) にしましょう。</p>
 
-<p>最初に、パスワードの長さ検証を行います。これには<code>:minimum</code>キーを使用しますが、これは<a class="ref" href="/chapters/modeling-users?version=4.0#code-length_validation">リスト6.12</a>で使用した<code>:maximum</code>キーから容易に想像がつきます。</p>
+<p>最初に、パスワードの長さ検証を行います。これには<code>:minimum</code>キーを使用しますが、これは<a class="ref" href="./modeling-users?version=4.0#code-length_validation">リスト6.12</a>で使用した<code>:maximum</code>キーから容易に想像がつきます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">validates</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">length:</span> <span class="p">{</span> <span class="ss">minimum:</span> <span class="mi">6</span> <span class="p">}</span>
 </pre></div>
@@ -1643,7 +1643,7 @@ add_password_digest_to_users password_digest:string
 
 <p>上のコードを実行するだけで、(<a href="http://api.rubyonrails.org/v4.0.0/classes/ActiveModel/Validations/HelperMethods.html#method-i-validates_confirmation_of">Rails API</a>に記載されているように) <code>password_confirmation</code>という属性が作成されます。このコードには<code>password_digest</code>属性の検証も含まれます。)</p>
 
-<p>上の要素を<a class="ref" href="/chapters/modeling-users?version=4.0#code-initial_passing_password_tests">リスト6.26</a>で行われる存在確認と合わせて、<a class="ref" href="/chapters/modeling-users?version=4.0#code-password_implementation">リスト6.29</a>に示したようにUserモデルを実装できます。セキュアなパスワードの実装はこれで完了です。</p>
+<p>上の要素を<a class="ref" href="./modeling-users?version=4.0#code-initial_passing_password_tests">リスト6.26</a>で行われる存在確認と合わせて、<a class="ref" href="./modeling-users?version=4.0#code-password_implementation">リスト6.29</a>に示したようにUserモデルを実装できます。セキュアなパスワードの実装はこれで完了です。</p>
 
 <div class="label" id="code-password_implementation"></div>
 
@@ -1676,12 +1676,12 @@ add_password_digest_to_users password_digest:string
 <div class="label" id="sec-creating_a_user"></div>
 
 
-<h3><a id="sec-6_3_5" href="/chapters/modeling-users?version=4.0#sec-creating_a_user" class="heading"><span class="number">6.3.5</span>ユーザーを作成する</a></h3>
+<h3><a id="sec-6_3_5" href="./modeling-users?version=4.0#sec-creating_a_user" class="heading"><span class="number">6.3.5</span>ユーザーを作成する</a></h3>
 
 
 <p>以上でUserモデルの基本部分が完了しましたので、今度は<a class="ref" href="/chapters/sign-up?version=4.0#sec-showing_users">7.1</a>でユーザー情報表示ページを作成するときに備えて、データベースに新規ユーザーを1人作成しましょう。この作業によって、これまでの節で行なってきた実装が動作することも実感できることでしょう。テストスイートがパスするだけでは味気ないので、実際に開発データベースにユーザーを登録することで喜びを感じていただければと思います。</p>
 
-<p>ただしWebからのユーザー登録はまだできない (完成は<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>です) ので、Railsコンソールを使用して手動でユーザーを作成することにしましょう。<a class="ref" href="/chapters/modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>のときとは異なり、今回はサンドボックスで起動する必要は<em>ありません</em>。データベースに実際にレコードを保存しなければ意味がないからです。</p>
+<p>ただしWebからのユーザー登録はまだできない (完成は<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>です) ので、Railsコンソールを使用して手動でユーザーを作成することにしましょう。<a class="ref" href="./modeling-users?version=4.0#sec-creating_user_objects">6.1.3</a>のときとは異なり、今回はサンドボックスで起動する必要は<em>ありません</em>。データベースに実際にレコードを保存しなければ意味がないからです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">,</span>
@@ -1693,15 +1693,15 @@ add_password_digest_to_users password_digest:string
 </div>
 
 
-<p>実際にデータが登録されたことを確認するために、SQLite Database Browserを使用して開発データベース (<code>db/development.sqlite3</code>) の中にある行を見てみましょう (<a class="ref" href="/chapters/modeling-users?version=4.0#fig-sqlite_user_row">図6.6</a>)。データモデルの属性に対応するカラムは<a class="ref" href="/chapters/modeling-users?version=4.0#fig-user_model_password_digest">図6.5</a>で定義されていることを思い出してください。</p>
+<p>実際にデータが登録されたことを確認するために、SQLite Database Browserを使用して開発データベース (<code>db/development.sqlite3</code>) の中にある行を見てみましょう (<a class="ref" href="./modeling-users?version=4.0#fig-sqlite_user_row">図6.6</a>)。データモデルの属性に対応するカラムは<a class="ref" href="./modeling-users?version=4.0#fig-user_model_password_digest">図6.5</a>で定義されていることを思い出してください。</p>
 
 <div class="label" id="fig-sqlite_user_row"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="http://railstutorial.jp/images/figures/sqlite_user_row_with_password_4_0.png" alt="sqlite_user_row_with_password_4_0" /></span></div><div class="caption"><span class="header">図6.6</span><span class="description">SQLiteデータベース<code>db/development.sqlite3</code>に登録されたユーザーの行。<a href="http://railstutorial.jp/images/figures/sqlite_user_row_with_password_4_0-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/sqlite_user_row_with_password_4_0.png" alt="sqlite_user_row_with_password_4_0" /></span></div><div class="caption"><span class="header">図6.6</span><span class="description">SQLiteデータベース<code>db/development.sqlite3</code>に登録されたユーザーの行。<a href="./images/figures/sqlite_user_row_with_password_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>コンソールに戻って<code>password_digest</code>属性を参照してみると、<a class="ref" href="/chapters/modeling-users?version=4.0#code-password_implementation">リスト6.29</a>の<code>has_secure_password</code>の効果を確認できます。</p>
+<p>コンソールに戻って<code>password_digest</code>属性を参照してみると、<a class="ref" href="./modeling-users?version=4.0#code-password_implementation">リスト6.29</a>の<code>has_secure_password</code>の効果を確認できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">password_digest</span>
@@ -1722,14 +1722,14 @@ add_password_digest_to_users password_digest:string
 </div>
 
 
-<p><a class="ref" href="/chapters/modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>のテストの要求に従って、<code>authenticate</code>メソッドはパスワードが無効なときは<code>false</code>を返し、パスワードが有効なときはユーザー自身を返しています。</p>
+<p><a class="ref" href="./modeling-users?version=4.0#code-authenticate_spec">リスト6.28</a>のテストの要求に従って、<code>authenticate</code>メソッドはパスワードが無効なときは<code>false</code>を返し、パスワードが有効なときはユーザー自身を返しています。</p>
 
-<h2><a id="sec-6_4" href="/chapters/modeling-users?version=4.0#sec-6_4" class="heading"><span class="number">6.4</span>最後に</a></h2>
+<h2><a id="sec-6_4" href="./modeling-users?version=4.0#sec-6_4" class="heading"><span class="number">6.4</span>最後に</a></h2>
 
 
 <p>この章では、まったく最初からUserモデルを作成し、それに<code>name</code>属性と<code>email</code>属性を与え、さまざまなパスワード属性も与え、値を制限する多くの重要な検証も追加しました。さらに、与えられたパスワードをセキュアに認証できるようにしました。以前のバージョンのRailsであれば、このような実装を行うためのコードは現在の倍以上になっていたことでしょう。しかし今ではコンパクトな <code>validates</code>メソッドと<code>has_secure_password</code>メソッドのおかげで、ほんの数行のコードを書くだけで完全なUserモデルを作成できるようになりました。</p>
 
-<p>次の<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>では、ユーザーを作成するためのユーザー登録フォームを作成し、各ユーザーの情報を表示するためのページも作成します。<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>では、<a class="ref" href="/chapters/modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>の認証システムを利用して、ユーザーが実際にWebサイトにサインインできるようにします。</p>
+<p>次の<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>では、ユーザーを作成するためのユーザー登録フォームを作成し、各ユーザーの情報を表示するためのページも作成します。<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#top">第8章</a>では、<a class="ref" href="./modeling-users?version=4.0#sec-adding_a_secure_password">6.3</a>の認証システムを利用して、ユーザーが実際にWebサイトにサインインできるようにします。</p>
 
 <p>Gitを使用している方は、しばらくコミットしていなかったのであれば、この時点でコミットしておくのがよいでしょう。</p>
 
@@ -1750,18 +1750,18 @@ add_password_digest_to_users password_digest:string
 <div class="label" id="sec-modeling_users_exercises"></div>
 
 
-<h2><a id="sec-6_5" href="/chapters/modeling-users?version=4.0#sec-modeling_users_exercises" class="heading"><span class="number">6.5</span>演習</a></h2>
+<h2><a id="sec-6_5" href="./modeling-users?version=4.0#sec-modeling_users_exercises" class="heading"><span class="number">6.5</span>演習</a></h2>
 
 
 
 
 <ol>
 
-<li><a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase">リスト6.20</a>の、メールアドレスを小文字に変換するコードに対するテストを、<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase_test">リスト6.30</a>に示されているように作成してください。このテストでは、<code>reload</code>メソッドを使用してデータベースから値を再度読み込み、<code>eq</code>メソッドを使用して同値であるかどうかをテストしてください。<code>before_save</code>の行をコメントアウトすることで、<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase_test">リスト6.30</a>が正しい対象をテストしていることを確認してください。</li>
+<li><a class="ref" href="./modeling-users?version=4.0#code-email_downcase">リスト6.20</a>の、メールアドレスを小文字に変換するコードに対するテストを、<a class="ref" href="./modeling-users?version=4.0#code-email_downcase_test">リスト6.30</a>に示されているように作成してください。このテストでは、<code>reload</code>メソッドを使用してデータベースから値を再度読み込み、<code>eq</code>メソッドを使用して同値であるかどうかをテストしてください。<code>before_save</code>の行をコメントアウトすることで、<a class="ref" href="./modeling-users?version=4.0#code-email_downcase_test">リスト6.30</a>が正しい対象をテストしていることを確認してください。</li>
 
-<li><code>before_save</code>コールバックを<a class="ref" href="/chapters/modeling-users?version=4.0#code-downcase_bang">リスト6.31</a>のように書いてもよいことを、テストスイートを実行して確認してください。</li>
+<li><code>before_save</code>コールバックを<a class="ref" href="./modeling-users?version=4.0#code-downcase_bang">リスト6.31</a>のように書いてもよいことを、テストスイートを実行して確認してください。</li>
 
-<li><a class="ref" href="/chapters/modeling-users?version=4.0#sec-format_validation">6.2.4</a>で説明したように、 <a class="ref" href="/chapters/modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>のメールアドレスチェック用正規表現は、“foo@bar..com”のようにドットが連続した無効なメールアドレスを許容してしまいます。このメールアドレスを<a class="ref" href="/chapters/modeling-users?version=4.0#code-email_format_validation_tests">リスト6.13</a>の無効なメールアドレスリストに追加し、これによってテストが失敗することを確認してください。次に、<a class="ref" href="/chapters/modeling-users?version=4.0#code-better_email_regex">リスト6.32</a>に示したもう少し複雑な正規表現を使用して、このテストがパスするようにしてください。</li>
+<li><a class="ref" href="./modeling-users?version=4.0#sec-format_validation">6.2.4</a>で説明したように、 <a class="ref" href="./modeling-users?version=4.0#code-validates_format_of_email">リスト6.14</a>のメールアドレスチェック用正規表現は、“foo@bar..com”のようにドットが連続した無効なメールアドレスを許容してしまいます。このメールアドレスを<a class="ref" href="./modeling-users?version=4.0#code-email_format_validation_tests">リスト6.13</a>の無効なメールアドレスリストに追加し、これによってテストが失敗することを確認してください。次に、<a class="ref" href="./modeling-users?version=4.0#code-better_email_regex">リスト6.32</a>に示したもう少し複雑な正規表現を使用して、このテストがパスするようにしてください。</li>
 
 <li>Rails APIサイトの<code>ActiveRecord::Base</code>の項を読み通し、どんなことができるかを把握してください。</li>
 
@@ -1778,7 +1778,7 @@ add_password_digest_to_users password_digest:string
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト6.30</span> <span class="description"><a class="ref" href="/chapters/modeling-users?version=4.0#code-email_downcase">リスト6.20</a>のメールアドレス小文字変換をテストする。</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト6.30</span> <span class="description"><a class="ref" href="./modeling-users?version=4.0#code-email_downcase">リスト6.20</a>のメールアドレス小文字変換をテストする。</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
@@ -1849,23 +1849,23 @@ add_password_digest_to_users password_digest:string
 </a><a class="next_page" href="/chapters/sign-up?version=4.0#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-6_1">この名前の由来は “<a href="http://en.wikipedia.org/wiki/Active_record_pattern">active record pattern</a>” です。Martin Fowler著「<em>エンタープライズ アプリケーションアーキテクチャパターン </em>」で特定および命名されました。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_1">↑</a></li>
-<li id="fn-6_2">「エスキューエル」と発音しますが、「スィークゥエル」もよく使われます。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_2">↑</a></li>
-<li id="fn-6_3">メールアドレスをユーザー名にしたことで、理屈の上では将来ユーザー同士で通信できるように拡張できる可能性が開かれます。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_3">↑</a></li>
-<li id="fn-6_4"><code>t</code>オブジェクトが具体的に何をしているのかを正確に知る必要はありませんので、どうか心配しないでください。<em>抽象化レイヤ</em>の素晴らしい点は、それが何であるかを知る必要がないという点です。安心して<code>t</code>オブジェクトに仕事を任せればよいのです。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_4">↑</a></li>
-<li id="fn-6_5">公式には「エスキューエライト」と発音しますが、(本来は誤りとされている)「スィークゥエライト」もよく使われています。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_5">↑</a></li>
-<li id="fn-6_6"><code>&quot;2013-03-11 00:57:46&quot;</code>というタイムスタンプが気になった方もいると思いますが、著者はこの箇所を真夜中過ぎに書いたわけではありません。実はこのタイムスタンプは<a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">協定世界時 (UTC)</a> に合わせてあります。これは<a href="http://en.wikipedia.org/wiki/Greenwich_Mean_Time">グリニッジ標準時 (GMT)</a> と同様、標準時間として使用されます。「<a href="http://tf.nist.gov/general/misc.htm">NIST時刻と周波数FAQ</a>」によると、<strong>問:</strong> 協定世界時 (Coordinated Universal Time) の略称がCUTではなくUTCなのはなぜですか。<strong>答え:</strong> 協定世界時システムは、1970年に国際電気通信連合 (ITU) の技術専門家の国際諮問グループによって考案されました。このときITUは、混乱を最小限にとどめるために、略称を1つだけにしたいと考えました。このとき、英語式のCUTもフランス式のTUCも満場一致とならず、両者の妥協案としてUTCという略語が採用されました。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_6">↑</a></li>
-<li id="fn-6_7"><code>user.updated_at</code>の値にご注目ください。上の脚注にも書いたとおり、このタイムスタンプはUTCベースです。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_7">↑</a></li>
-<li id="fn-6_8">例外と例外ハンドリングは、ある意味でRubyの高度なテーマです。本書では例外についてこれ以上言及しません。しかし例外が重要なものであることも確かなので、<a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a>で推薦したRuby本で例外について詳しく学ぶことをおすすめします<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_8">↑</a></li>
-<li id="fn-6_9">今後、コンソールコマンドの出力は、特に教育的効果が高いと思える場合 (ここでの<code>User.new</code>の場合など) を除いて省略いたします。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_9">↑</a></li>
-<li id="fn-6_10"><a class="ref" href="/chapters/modeling-users?version=4.0#table-valid_email_regex">表6.1</a>の正規表現の説明における「文字」は、実は「小文字のみ」が対象になっていることにご注意ください。ただし、正規表現の末尾に<code>i</code>オプションを追加してあるので、大文字小文字が区別されずにマッチするようになっています。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_10">↑</a></li>
-<li id="fn-6_11">著者同様このツールを便利だと思ってくださる方は、<a href="http://lovitt.net/">Michael Lovitt</a>の素晴らしい成果に報いるために、どうか<a href="http://bit.ly/donate-to-rubular">Rubularへの寄付</a>をお願いいたします。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_11">↑</a></li>
-<li id="fn-6_12">驚いたことに、公式標準によると<code>&quot;Michael Hartl&quot;@example.com</code>のようなクォートとスペースを使用したメールアドレスも有効なのだそうです。まったく馬鹿げています。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_12">↑</a></li>
-<li id="fn-6_13">この節の冒頭で簡単に紹介したように、この目的に使用できる専用のテストデータベース<code>db/test.sqlite3</code>があります。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_13">↑</a></li>
-<li id="fn-6_14">技術的には、メールアドレスのうちドメイン名部分だけが (本当は) 大文字小文字を区別しません。foo@bar.comは、本来はFoo@bar.comとは別のアドレスです。ただし現実的には、<a href="http://email.about.com/od/emailbehindthescenes/f/email_case_sens.htm">about.com</a>でも指摘されているように、メールアドレスの大文字小文字を区別することを前提にするのはまずい方法です。「メールアドレスの大文字小文字を区別すると、果てしない混乱と相互運用性の問題とひどい頭痛が発生する。メールアドレスの入力時に大文字小文字の区別を要求するのは賢い方法とは言えない。現実には、メールアドレスの大文字小文字の区別を強制するメールサービスやISPはめったに存在しない。メールアドレスのすべての文字を大文字にするなど、受信者のメールアドレスが誤って入力されていれば、メールは返送されるだけだ。」Riley Mosesによるご指摘に感謝いたします。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_14">↑</a></li>
-<li id="fn-6_15">もちろん、<a class="ref" href="/chapters/modeling-users?version=4.0#code-users_migration">リスト6.2</a>の<code>users</code>テーブル用のマイグレーションファイルを単に編集することも可能なのですが、その場合ロールバックが必要となり、マイグレーションが戻ってしまいます。データモデルの変更が必要になったらその都度マイグレーションを行うのがRails流です。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_15">↑</a></li>
-<li id="fn-6_16">著者のシステム上のSQLiteとHeroku上のPostgreSQLで直接実験してみたところ、この手順は実際に必要であることがわかりました。<a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_16">↑</a></li>
-<li id="fn-6_17">http://railstutorial.jp/book?version=3.0 <a class="arrow" href="/chapters/modeling-users?version=4.0#fnref-6_17">↑</a></li>
+<li id="fn-6_1">この名前の由来は “<a href="http://en.wikipedia.org/wiki/Active_record_pattern">active record pattern</a>” です。Martin Fowler著「<em>エンタープライズ アプリケーションアーキテクチャパターン </em>」で特定および命名されました。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_1">↑</a></li>
+<li id="fn-6_2">「エスキューエル」と発音しますが、「スィークゥエル」もよく使われます。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_2">↑</a></li>
+<li id="fn-6_3">メールアドレスをユーザー名にしたことで、理屈の上では将来ユーザー同士で通信できるように拡張できる可能性が開かれます。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_3">↑</a></li>
+<li id="fn-6_4"><code>t</code>オブジェクトが具体的に何をしているのかを正確に知る必要はありませんので、どうか心配しないでください。<em>抽象化レイヤ</em>の素晴らしい点は、それが何であるかを知る必要がないという点です。安心して<code>t</code>オブジェクトに仕事を任せればよいのです。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_4">↑</a></li>
+<li id="fn-6_5">公式には「エスキューエライト」と発音しますが、(本来は誤りとされている)「スィークゥエライト」もよく使われています。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_5">↑</a></li>
+<li id="fn-6_6"><code>&quot;2013-03-11 00:57:46&quot;</code>というタイムスタンプが気になった方もいると思いますが、著者はこの箇所を真夜中過ぎに書いたわけではありません。実はこのタイムスタンプは<a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">協定世界時 (UTC)</a> に合わせてあります。これは<a href="http://en.wikipedia.org/wiki/Greenwich_Mean_Time">グリニッジ標準時 (GMT)</a> と同様、標準時間として使用されます。「<a href="http://tf.nist.gov/general/misc.htm">NIST時刻と周波数FAQ</a>」によると、<strong>問:</strong> 協定世界時 (Coordinated Universal Time) の略称がCUTではなくUTCなのはなぜですか。<strong>答え:</strong> 協定世界時システムは、1970年に国際電気通信連合 (ITU) の技術専門家の国際諮問グループによって考案されました。このときITUは、混乱を最小限にとどめるために、略称を1つだけにしたいと考えました。このとき、英語式のCUTもフランス式のTUCも満場一致とならず、両者の妥協案としてUTCという略語が採用されました。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_6">↑</a></li>
+<li id="fn-6_7"><code>user.updated_at</code>の値にご注目ください。上の脚注にも書いたとおり、このタイムスタンプはUTCベースです。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_7">↑</a></li>
+<li id="fn-6_8">例外と例外ハンドリングは、ある意味でRubyの高度なテーマです。本書では例外についてこれ以上言及しません。しかし例外が重要なものであることも確かなので、<a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a>で推薦したRuby本で例外について詳しく学ぶことをおすすめします<a class="arrow" href="./modeling-users?version=4.0#fnref-6_8">↑</a></li>
+<li id="fn-6_9">今後、コンソールコマンドの出力は、特に教育的効果が高いと思える場合 (ここでの<code>User.new</code>の場合など) を除いて省略いたします。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_9">↑</a></li>
+<li id="fn-6_10"><a class="ref" href="./modeling-users?version=4.0#table-valid_email_regex">表6.1</a>の正規表現の説明における「文字」は、実は「小文字のみ」が対象になっていることにご注意ください。ただし、正規表現の末尾に<code>i</code>オプションを追加してあるので、大文字小文字が区別されずにマッチするようになっています。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_10">↑</a></li>
+<li id="fn-6_11">著者同様このツールを便利だと思ってくださる方は、<a href="http://lovitt.net/">Michael Lovitt</a>の素晴らしい成果に報いるために、どうか<a href="http://bit.ly/donate-to-rubular">Rubularへの寄付</a>をお願いいたします。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_11">↑</a></li>
+<li id="fn-6_12">驚いたことに、公式標準によると<code>&quot;Michael Hartl&quot;@example.com</code>のようなクォートとスペースを使用したメールアドレスも有効なのだそうです。まったく馬鹿げています。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_12">↑</a></li>
+<li id="fn-6_13">この節の冒頭で簡単に紹介したように、この目的に使用できる専用のテストデータベース<code>db/test.sqlite3</code>があります。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_13">↑</a></li>
+<li id="fn-6_14">技術的には、メールアドレスのうちドメイン名部分だけが (本当は) 大文字小文字を区別しません。foo@bar.comは、本来はFoo@bar.comとは別のアドレスです。ただし現実的には、<a href="http://email.about.com/od/emailbehindthescenes/f/email_case_sens.htm">about.com</a>でも指摘されているように、メールアドレスの大文字小文字を区別することを前提にするのはまずい方法です。「メールアドレスの大文字小文字を区別すると、果てしない混乱と相互運用性の問題とひどい頭痛が発生する。メールアドレスの入力時に大文字小文字の区別を要求するのは賢い方法とは言えない。現実には、メールアドレスの大文字小文字の区別を強制するメールサービスやISPはめったに存在しない。メールアドレスのすべての文字を大文字にするなど、受信者のメールアドレスが誤って入力されていれば、メールは返送されるだけだ。」Riley Mosesによるご指摘に感謝いたします。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_14">↑</a></li>
+<li id="fn-6_15">もちろん、<a class="ref" href="./modeling-users?version=4.0#code-users_migration">リスト6.2</a>の<code>users</code>テーブル用のマイグレーションファイルを単に編集することも可能なのですが、その場合ロールバックが必要となり、マイグレーションが戻ってしまいます。データモデルの変更が必要になったらその都度マイグレーションを行うのがRails流です。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_15">↑</a></li>
+<li id="fn-6_16">著者のシステム上のSQLiteとHeroku上のPostgreSQLで直接実験してみたところ、この手順は実際に必要であることがわかりました。<a class="arrow" href="./modeling-users?version=4.0#fnref-6_16">↑</a></li>
+<li id="fn-6_17">http://railstutorial.jp/book?version=3.0 <a class="arrow" href="./modeling-users?version=4.0#fnref-6_17">↑</a></li>
 </ol>
 </div>
 
