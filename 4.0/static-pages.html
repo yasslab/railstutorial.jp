@@ -11,16 +11,16 @@
 <div id="top"></div>
 
 
-<h1 class="chapter"><a id="sec-3" href="./static-pages?version=4.0#top" class="heading"><span class="number">第3章</span>ほぼ静的なページの作成</a></h1>
+<h1 class="chapter"><a id="sec-3" href="./static-pages#top" class="heading"><span class="number">第3章</span>ほぼ静的なページの作成</a></h1>
 
 
 <p>本章では、今後のチュートリアルを楽に理解できるように、簡単なサンプルアプリケーションを開発してみます。本書を通して開発するアプリケーションは、最終的にはユーザーやマイクロポスト、ログイン／ログアウトなどの認証機能を持ちますが、まずは簡単なトピックである「静的なページの作成」から始めます。非常にシンプルなページではありますが、静的なページを作成することは良い経験になり、また、多くの示唆も得られます。私達がこれから開発するアプリケーションにとって、最高のスタート地点といえるでしょう。</p>
 
 <p>Rails はデータベースと連携して動的なウェブサイトを開発するように設計されていますが、HTMLファイルだけで構成されている静的なページを作ることもできます。実際、静的なページをRailsで作ることのメリットもあります。たとえば、あとで<em>ほんの少し</em>動的なコンテンツを追加することができます。本章では、このような静的なページの作成について学んでいきます。まずは、<em>自動化テスト</em>の雰囲気を掴んでいきます。自動化テストは、私達のコードが正しく動いているという自信を与えてくれます。さらに、良いテストを書くことで、自信をもって<em>リファクタリング</em>を行うことができます。たとえば、フォームの振る舞いを変更せずに、フォーム内で使われている関数を書き換えたいときに便利です。</p>
 
-<p>本章には多くのサンプルコードがあります。特に <a class="ref" href="./static-pages?version=4.0#sec-first_tests">3.2</a> や <a class="ref" href="./static-pages?version=4.0#sec-slightly_dynamic_pages">3.3</a> で多くのコードを紹介していますが、Rubyが初めての方は、コードを隅々まで理解しなければならないのだろうかと心配する必要はありません。<a class="ref" href="/chapters/beginning?version=4.0#sec-comments_for_various_readers">1.1.1</a> で紹介したように、まずはテストをコピー&amp;ペーストしてみて、アプリケーションがうまく動くかどうか検証してみると良いでしょう。この時点では、テストがどのようにして動くかは気にしなくても大丈夫です。また、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#top">第4章</a>ではRubyについて解説します。そこではRubyの書き方やコンセプトについて学びます。最後に、本書ではRSpecを使ったテストを繰り返し実施していきます。ですから、もし途中でよく分からないテストがあったとしても、読み飛ばして先に進むことをお勧めします。1、2章先を読み進めた後に読み返してみると、当初はよく分からなかったテストが、実はとてもシンプルであることを理解できるはずです (Code Schoolの<a href="http://www.codeschool.com/courses/testing-with-rspec">RSpecコース</a>の履修を検討してみるのもよいでしょう。このコースはRSpecに関する多くの疑問に答えてくれるという読者からの報告もあります)。</p>
+<p>本章には多くのサンプルコードがあります。特に <a class="ref" href="./static-pages#sec-first_tests">3.2</a> や <a class="ref" href="./static-pages#sec-slightly_dynamic_pages">3.3</a> で多くのコードを紹介していますが、Rubyが初めての方は、コードを隅々まで理解しなければならないのだろうかと心配する必要はありません。<a class="ref" href="/chapters/beginning#sec-comments_for_various_readers">1.1.1</a> で紹介したように、まずはテストをコピー&amp;ペーストしてみて、アプリケーションがうまく動くかどうか検証してみると良いでしょう。この時点では、テストがどのようにして動くかは気にしなくても大丈夫です。また、<a class="ref" href="/chapters/rails-flavored-ruby#top">第4章</a>ではRubyについて解説します。そこではRubyの書き方やコンセプトについて学びます。最後に、本書ではRSpecを使ったテストを繰り返し実施していきます。ですから、もし途中でよく分からないテストがあったとしても、読み飛ばして先に進むことをお勧めします。1、2章先を読み進めた後に読み返してみると、当初はよく分からなかったテストが、実はとてもシンプルであることを理解できるはずです (Code Schoolの<a href="http://www.codeschool.com/courses/testing-with-rspec">RSpecコース</a>の履修を検討してみるのもよいでしょう。このコースはRSpecに関する多くの疑問に答えてくれるという読者からの報告もあります)。</p>
 
-<p>では、<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でもやったように、最初にRailsプロジェクトを作りましょう。今回は<code>sample_app</code>というプロジェクトを作成します。</p>
+<p>では、<a class="ref" href="/chapters/a-demo-app#top">第2章</a>でもやったように、最初にRailsプロジェクトを作りましょう。今回は<code>sample_app</code>というプロジェクトを作成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>rails_projects
 <span class="gp">$</span> rails new sample_app --skip-test-unit
@@ -29,9 +29,9 @@
 </div>
 
 
-<p>ここで使った<tt class="verb">rails</tt>の<code>--skip-test-unit</code>というオプションは、<tt class="verb">Test::Unit</tt>フレームワークと関連している<tt class="verb">test</tt>ディレクトリを作成しないようにするオプションです。これは「テストを書かないから」という理由ではありません。そうではなく、<a class="ref" href="./static-pages?version=4.0#sec-first_tests">3.2</a>以降では、もう1つのテストフレームワークである<em>RSpec</em>を使ってテストを書くからです。</p>
+<p>ここで使った<tt class="verb">rails</tt>の<code>--skip-test-unit</code>というオプションは、<tt class="verb">Test::Unit</tt>フレームワークと関連している<tt class="verb">test</tt>ディレクトリを作成しないようにするオプションです。これは「テストを書かないから」という理由ではありません。そうではなく、<a class="ref" href="./static-pages#sec-first_tests">3.2</a>以降では、もう1つのテストフレームワークである<em>RSpec</em>を使ってテストを書くからです。</p>
 
-<p>次は、<a class="ref" href="/chapters/a-demo-app?version=4.0#sec-planning_the_application">2.1</a>と同じように、テキストエディタを使って<code>Gemfile</code>に必要なgemを書き足していきます。今回は、2つの新しいgemを使います。RSpecのためのgemと、RSpecのライブラリのためのgemです。これらのgemをGemfileに追加すると、<a class="ref" href="./static-pages?version=4.0#code-gemfile_rspec">リスト3.1</a>のようになります (<em>注</em>: もしサンプルアプリケーションの開発で必要になるgemを<em>すべて</em>知りたい場合は、<a class="ref" href="/chapters/updating-showing-and-deleting-users?version=4.0#code-final_gemfile">リスト9.48</a>を参照してください。これが最終的なGemfileになります)。</p>
+<p>次は、<a class="ref" href="/chapters/a-demo-app#sec-planning_the_application">2.1</a>と同じように、テキストエディタを使って<code>Gemfile</code>に必要なgemを書き足していきます。今回は、2つの新しいgemを使います。RSpecのためのgemと、RSpecのライブラリのためのgemです。これらのgemをGemfileに追加すると、<a class="ref" href="./static-pages#code-gemfile_rspec">リスト3.1</a>のようになります (<em>注</em>: もしサンプルアプリケーションの開発で必要になるgemを<em>すべて</em>知りたい場合は、<a class="ref" href="/chapters/updating-showing-and-deleting-users#code-final_gemfile">リスト9.48</a>を参照してください。これが最終的なGemfileになります)。</p>
 
 <div class="label" id="code-gemfile_rspec"></div>
 
@@ -73,7 +73,7 @@
 </div></div>
 
 
-<p>このGemfileでは、開発環境とテスト環境で<tt>rspec-rails</tt>を使うようにしています。このため、開発環境ではRSpec固有のジェネレーターにアクセスすることができます。同様に、テスト環境でもRSpecを使用してテストを実行できるようになります。Gemfileに記述した<tt>rspec-rails</tt>が依存関係を解決してくれるため、 個々の環境にRSpec自身を手動でインストールする必要がなくなり、自動的にインストールされるようになります。同様の理由で、<a href="https://github.com/jnicklas/capybara">Capybara</a> gemもGemfileに記述しています。これは、英語に近い文法を使って、ユーザーとサンプルアプリケーションの対話的操作をシミュレーションできるGemです<sup class="footnote" id="fnref-3_1"><a href="./static-pages?version=4.0#fn-3_1">1</a></sup>。Capybaraは<a href="http://docs.seleniumhq.org/projects/webdriver/">Selenium</a>などのgemに依存しています。</p>
+<p>このGemfileでは、開発環境とテスト環境で<tt>rspec-rails</tt>を使うようにしています。このため、開発環境ではRSpec固有のジェネレーターにアクセスすることができます。同様に、テスト環境でもRSpecを使用してテストを実行できるようになります。Gemfileに記述した<tt>rspec-rails</tt>が依存関係を解決してくれるため、 個々の環境にRSpec自身を手動でインストールする必要がなくなり、自動的にインストールされるようになります。同様の理由で、<a href="https://github.com/jnicklas/capybara">Capybara</a> gemもGemfileに記述しています。これは、英語に近い文法を使って、ユーザーとサンプルアプリケーションの対話的操作をシミュレーションできるGemです<sup class="footnote" id="fnref-3_1"><a href="./static-pages#fn-3_1">1</a></sup>。Capybaraは<a href="http://docs.seleniumhq.org/projects/webdriver/">Selenium</a>などのgemに依存しています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
   <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span><span class="p">,</span> <span class="s1">&#39;0.15.1&#39;</span>
@@ -83,7 +83,7 @@
 </div>
 
 
-<p>Herokuは、開発環境と本番環境とで同じデータベースを使うことを推奨していますが、今回開発するサンプルアプリケーションでは、データベースが異なっていても特に問題はありません。また、SQLiteはPostgreSQLに比べて<em>きわめて簡単に</em> セットアップできます。なお、ローカルの開発マシンへのPostgreSQLのインストールと構築については、<a class="ref" href="./static-pages?version=4.0#sec-static_pages_exercises">3.5</a>の演習課題に含めました。</p>
+<p>Herokuは、開発環境と本番環境とで同じデータベースを使うことを推奨していますが、今回開発するサンプルアプリケーションでは、データベースが異なっていても特に問題はありません。また、SQLiteはPostgreSQLに比べて<em>きわめて簡単に</em> セットアップできます。なお、ローカルの開発マシンへのPostgreSQLのインストールと構築については、<a class="ref" href="./static-pages#sec-static_pages_exercises">3.5</a>の演習課題に含めました。</p>
 
 <p>Gemfileに新しく追加したgemを実際にインストールするには、<code>bundle update</code>と<code>bundle install</code>を実行します。</p>
 
@@ -94,9 +94,9 @@
 </div>
 
 
-<p><a class="ref" href="/chapters/beginning?version=4.0#sec-heroku_setup">1.4.1</a>や<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でも説明したように、<tt class="verb">--without</tt> <tt class="verb">production</tt>オプションを追加することで、本番環境のgemのみをインストールしないようにすることができます。注: このオプションは “remembered option” と呼ばれるもので、このオプションを一度実行するとコマンドに保存され、今後Bundlerを実行するときにオプションを追加する必要がなくなります。このため、今後は単に<code>bundle install</code>を実行するだけで、自動的に本番環境用gemをスキップできるようになります<sup class="footnote" id="fnref-3_2"><a href="./static-pages?version=4.0#fn-3_2">2</a></sup>。</p>
+<p><a class="ref" href="/chapters/beginning#sec-heroku_setup">1.4.1</a>や<a class="ref" href="/chapters/a-demo-app#top">第2章</a>でも説明したように、<tt class="verb">--without</tt> <tt class="verb">production</tt>オプションを追加することで、本番環境のgemのみをインストールしないようにすることができます。注: このオプションは “remembered option” と呼ばれるもので、このオプションを一度実行するとコマンドに保存され、今後Bundlerを実行するときにオプションを追加する必要がなくなります。このため、今後は単に<code>bundle install</code>を実行するだけで、自動的に本番環境用gemをスキップできるようになります<sup class="footnote" id="fnref-3_2"><a href="./static-pages#fn-3_2">2</a></sup>。</p>
 
-<p>このサンプルアプリケーションはパブリックリポジトリ (public repository) として公開されるので、Railsでセッション変数の暗号化に使用するための、いわゆる<em>秘密トークン (secret token) </em>を必ず更新することが重要です。<a class="ref" href="./static-pages?version=4.0#code-secret_token">リスト3.2</a>のコードを使用して、トークンをハードコードすることなく動的に生成するようにしてください。(<a class="ref" href="./static-pages?version=4.0#code-secret_token">リスト3.2</a>のコードはやや高度なもので、本書のこの段階では時期尚早ではありますが、重大なセキュリティ上の問題が発生する可能性を回避するために、あえてこの段階に含めておくのがよいと考えます)。この場合、必ず<a class="ref" href="/chapters/beginning?version=4.0#code-gitignore">リスト1.7</a>の改訂版<code>.gitignore</code>を使用するようにし、<code>.secret</code>キーをリポジトリでうっかり公開してしまうことのないようにしてください。</p>
+<p>このサンプルアプリケーションはパブリックリポジトリ (public repository) として公開されるので、Railsでセッション変数の暗号化に使用するための、いわゆる<em>秘密トークン (secret token) </em>を必ず更新することが重要です。<a class="ref" href="./static-pages#code-secret_token">リスト3.2</a>のコードを使用して、トークンをハードコードすることなく動的に生成するようにしてください。(<a class="ref" href="./static-pages#code-secret_token">リスト3.2</a>のコードはやや高度なもので、本書のこの段階では時期尚早ではありますが、重大なセキュリティ上の問題が発生する可能性を回避するために、あえてこの段階に含めておくのがよいと考えます)。この場合、必ず<a class="ref" href="/chapters/beginning#code-gitignore">リスト1.7</a>の改訂版<code>.gitignore</code>を使用するようにし、<code>.secret</code>キーをリポジトリでうっかり公開してしまうことのないようにしてください。</p>
 
 <div class="label" id="code-secret_token"></div>
 
@@ -143,7 +143,7 @@
 
 <p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムの一覧から入手してください。個人的には<a href="http://nodejs.org/">Node.js</a>をお勧めします。) </p>
 
-<p>ここまで進めたら、後はGitリポジトリを初期化するだけです<sup class="footnote" id="fnref-3_3"><a href="./static-pages?version=4.0#fn-3_3">3</a></sup>。</p>
+<p>ここまで進めたら、後はGitリポジトリを初期化するだけです<sup class="footnote" id="fnref-3_3"><a href="./static-pages#fn-3_3">3</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git init
 <span class="gp">$</span> git add .
@@ -152,7 +152,7 @@
 </div>
 
 
-<p>最初に、<a class="ref" href="./static-pages?version=4.0#code-sample_app_readme">リスト3.3</a>のように、アプリケーションのルートディレクトリに置かれている<code>README</code>ファイルをわかりやすく書き換えてみましょう。</p>
+<p>最初に、<a class="ref" href="./static-pages#code-sample_app_readme">リスト3.3</a>のように、アプリケーションのルートディレクトリに置かれている<code>README</code>ファイルをわかりやすく書き換えてみましょう。</p>
 
 <div class="label" id="code-sample_app_readme"></div>
 
@@ -176,7 +176,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p><a class="ref" href="/chapters/beginning?version=4.0#sec-git_commands">1.3.5</a>で<code>git commit -a -m &quot;Message&quot;</code>というGitコマンドを実行したことを思い出してください。あのときは “すべてを変更” (<code>-a</code>) オプションとコミットメッセージを追加するオプション (<code>-m</code>) を使用しました。上で実行したコマンドで示したように、実はこれらの2つのオプションを1つにまとめて<code>git commit -am &quot;Message&quot;</code>と実行することができます。</p>
+<p><a class="ref" href="/chapters/beginning#sec-git_commands">1.3.5</a>で<code>git commit -a -m &quot;Message&quot;</code>というGitコマンドを実行したことを思い出してください。あのときは “すべてを変更” (<code>-a</code>) オプションとコミットメッセージを追加するオプション (<code>-m</code>) を使用しました。上で実行したコマンドで示したように、実はこれらの2つのオプションを1つにまとめて<code>git commit -am &quot;Message&quot;</code>と実行することができます。</p>
 
 <p>本書では今後、このサンプルアプリケーションを使っていくことになるので、<a href="https://github.com/new">GitHub</a>上にリポジトリを作成し、プッシュしておくと良いでしょう。</p>
 
@@ -186,7 +186,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>ここまで作業を進めると、<a href="https://github.com/railstutorial/sample_app_rails_4">著者がGitHubにアップロードしたRailsチュートリアルのサンプルアプリケーション</a>のようになります (ユーザー名は<tt>railstutorial</tt>で、アプリケーション名は<tt>sample_app_rails_4</tt>と若干異なります)<sup class="footnote" id="fnref-3_4"><a href="./static-pages?version=4.0#fn-3_4">4</a></sup>。</p>
+<p>ここまで作業を進めると、<a href="https://github.com/railstutorial/sample_app_rails_4">著者がGitHubにアップロードしたRailsチュートリアルのサンプルアプリケーション</a>のようになります (ユーザー名は<tt>railstutorial</tt>で、アプリケーション名は<tt>sample_app_rails_4</tt>と若干異なります)<sup class="footnote" id="fnref-3_4"><a href="./static-pages#fn-3_4">4</a></sup>。</p>
 
 <p>もちろん、この時点でHerokuにデプロイすることもできます。</p>
 
@@ -218,12 +218,12 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sec-static_pages"></div>
 
 
-<h2><a id="sec-3_1" href="./static-pages?version=4.0#sec-static_pages" class="heading"><span class="number">3.1</span>静的ページ</a></h2>
+<h2><a id="sec-3_1" href="./static-pages#sec-static_pages" class="heading"><span class="number">3.1</span>静的ページ</a></h2>
 
 
-<p>この節では、後に動的なページを作成するための準備として、最初にRailsの<em>アクション</em>と<em>ビュー</em>に静的なHTMLだけを含めたものを作成します<sup class="footnote" id="fnref-3_5"><a href="./static-pages?version=4.0#fn-3_5">5</a></sup>。Railsのアクションは、<em>コントローラ</em> (<a class="ref" href="/chapters/beginning?version=4.0#sec-mvc">1.2.6</a>で紹介した MVCの Cに該当) の中に置かれる機能で、共通の目的を持つ一連のアクションをコントローラ内にまとめることができます。コントローラについては<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>で説明する<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST アーキテクチャ</a>を読むと、より深く理解することができます。一言で言うと、コントローラとは (基本的に動的な) Webページの集合を束ねるコンテナのことです。</p>
+<p>この節では、後に動的なページを作成するための準備として、最初にRailsの<em>アクション</em>と<em>ビュー</em>に静的なHTMLだけを含めたものを作成します<sup class="footnote" id="fnref-3_5"><a href="./static-pages#fn-3_5">5</a></sup>。Railsのアクションは、<em>コントローラ</em> (<a class="ref" href="/chapters/beginning#sec-mvc">1.2.6</a>で紹介した MVCの Cに該当) の中に置かれる機能で、共通の目的を持つ一連のアクションをコントローラ内にまとめることができます。コントローラについては<a class="ref" href="/chapters/a-demo-app#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="/chapters/modeling-users#top">第6章</a>で説明する<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST アーキテクチャ</a>を読むと、より深く理解することができます。一言で言うと、コントローラとは (基本的に動的な) Webページの集合を束ねるコンテナのことです。</p>
 
-<p>現在どのディレクトリで作業しているかがわからなくなった場合は、<a class="ref" href="/chapters/beginning?version=4.0#sec-the_first_application">1.2.3</a> (<a class="ref" href="/chapters/beginning?version=4.0#fig-directory_structure_rails">図 1.2</a>)を再度参照して、Rails のディレクトリ構造を確認してください。この節では、主に<code>app/controllers</code>ディレクトリや<code>app/views</code>ディレクトリ内で作業を進めます (なお <a class="ref" href="./static-pages?version=4.0#sec-first_tests">3.2</a> では、新しいディレクトリをさらに１つ追加します)。好みのテキストエディタまたはIDEを使用してサンプルアプリケーションを開いてください (<a class="ref" href="./static-pages?version=4.0#sidebar-opening_the_project">コラム 3.1</a>)。</p>
+<p>現在どのディレクトリで作業しているかがわからなくなった場合は、<a class="ref" href="/chapters/beginning#sec-the_first_application">1.2.3</a> (<a class="ref" href="/chapters/beginning#fig-directory_structure_rails">図 1.2</a>)を再度参照して、Rails のディレクトリ構造を確認してください。この節では、主に<code>app/controllers</code>ディレクトリや<code>app/views</code>ディレクトリ内で作業を進めます (なお <a class="ref" href="./static-pages#sec-first_tests">3.2</a> では、新しいディレクトリをさらに１つ追加します)。好みのテキストエディタまたはIDEを使用してサンプルアプリケーションを開いてください (<a class="ref" href="./static-pages#sidebar-opening_the_project">コラム 3.1</a>)。</p>
 
 <div class="label" id="sidebar-opening_the_project"></div>
 
@@ -249,14 +249,14 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>さっそく動的なページを作ってみましょう。まずは、<a class="ref" href="/chapters/beginning?version=4.0#sec-git_commands">1.3.5</a>で紹介したように、Gitを使ってトピックブランチを作ります。今回のように新しい機能やページを作成するときは、masterブランチではなくトピックブランチで作業するのがよいでしょう。Git でバージョン管理をしている場合は、次のコマンドでトピックブランチを作成してください。</p>
+<p>さっそく動的なページを作ってみましょう。まずは、<a class="ref" href="/chapters/beginning#sec-git_commands">1.3.5</a>で紹介したように、Gitを使ってトピックブランチを作ります。今回のように新しい機能やページを作成するときは、masterブランチではなくトピックブランチで作業するのがよいでしょう。Git でバージョン管理をしている場合は、次のコマンドでトピックブランチを作成してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout -b static-pages
 </pre></div>
 </div>
 
 
-<p>Railsには<code>generate</code>というスクリプトがあり、このスクリプトにコントローラ名を入力するだけで、この魔法のようなスクリプトがコントローラを作成してくれます。これより、複数の静的なページを取り扱うStaticPagesコントローラを作成します。具体的には、HomeページとHelpページ、Aboutページで使用するアクションを作ってみます。<code>generate</code>スクリプトは、任意の数のアクションを引数に取ることができます。まずは、上記の3つのアクションのうち、最初の2つのアクションを作ってみます (<a class="ref" href="./static-pages?version=4.0#code-generating_pages">リスト 3.4</a>)。</p>
+<p>Railsには<code>generate</code>というスクリプトがあり、このスクリプトにコントローラ名を入力するだけで、この魔法のようなスクリプトがコントローラを作成してくれます。これより、複数の静的なページを取り扱うStaticPagesコントローラを作成します。具体的には、HomeページとHelpページ、Aboutページで使用するアクションを作ってみます。<code>generate</code>スクリプトは、任意の数のアクションを引数に取ることができます。まずは、上記の3つのアクションのうち、最初の2つのアクションを作ってみます (<a class="ref" href="./static-pages#code-generating_pages">リスト 3.4</a>)。</p>
 
 <div class="label" id="code-generating_pages"></div>
 
@@ -282,18 +282,18 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>今回はRSpecのテストを使わないため、<tt class="verb">--no-test-framework</tt>というオプションを付け加えることで、RSpecのテストを自動的に生成しないようにしています。代わりに、<a class="ref" href="./static-pages?version=4.0#sec-first_tests">3.2</a>からは手動でテストを作成します。また、<a class="ref" href="./static-pages?version=4.0#code-generating_pages">リスト 3.4</a>に示したように、今回は意図的に<code>about</code>アクションをコマンドライン引数から取り除きました。 これは、同じく<a class="ref" href="./static-pages?version=4.0#sec-first_tests">3.2</a> から、テスト駆動開発 (Test-Driven Development: TDD) という開発手法を学ぶためです。</p>
+<p>今回はRSpecのテストを使わないため、<tt class="verb">--no-test-framework</tt>というオプションを付け加えることで、RSpecのテストを自動的に生成しないようにしています。代わりに、<a class="ref" href="./static-pages#sec-first_tests">3.2</a>からは手動でテストを作成します。また、<a class="ref" href="./static-pages#code-generating_pages">リスト 3.4</a>に示したように、今回は意図的に<code>about</code>アクションをコマンドライン引数から取り除きました。 これは、同じく<a class="ref" href="./static-pages#sec-first_tests">3.2</a> から、テスト駆動開発 (Test-Driven Development: TDD) という開発手法を学ぶためです。</p>
 
-<p><a class="ref" href="./static-pages?version=4.0#code-generating_pages">リスト 3.4</a>では、コントローラ名を<a href="https://en.wikipedia.org/wiki/CamelCase">キャメルケース</a> (訳注: 単語の頭文字を大文字にしてつなぎ合わせた名前) で渡していることにご注目ください。こうすると、StaticPagesコントローラは、<a href="https://en.wikipedia.org/wiki/Snake_case">スネークケース</a> (訳注: 単語間にアンダースコアを加えて繋ぎ合わせた名前) のファイル <code>static_pages_controller.rb</code> を自動的に生成します。ただし、上のような命名は単なる慣習に過ぎません。実際、コマンドライン上で以下のようなスネークケースのコントローラ名を入力しても、</p>
+<p><a class="ref" href="./static-pages#code-generating_pages">リスト 3.4</a>では、コントローラ名を<a href="https://en.wikipedia.org/wiki/CamelCase">キャメルケース</a> (訳注: 単語の頭文字を大文字にしてつなぎ合わせた名前) で渡していることにご注目ください。こうすると、StaticPagesコントローラは、<a href="https://en.wikipedia.org/wiki/Snake_case">スネークケース</a> (訳注: 単語間にアンダースコアを加えて繋ぎ合わせた名前) のファイル <code>static_pages_controller.rb</code> を自動的に生成します。ただし、上のような命名は単なる慣習に過ぎません。実際、コマンドライン上で以下のようなスネークケースのコントローラ名を入力しても、</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate controller static_pages ...
 </pre></div>
 </div>
 
 
-<p>先ほどと同様に<code>static_pages_controller.rb</code>というコントローラが生成されます。これは、Rubyがクラス名にキャメルケースを使う慣習があり (詳細は<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-ruby_classes">4.4</a>で説明します)、また、キャメルケースの名前を使うことが好まれているためです。これらの慣習に必ず従わなければいけないということではありません。(同様にRubyでは、ファイル名をスネークケースで記述する慣習があります。このため Railsのgenerateスクリプトでは、 <a href="http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-underscore"><tt>underscore</tt></a>メソッドを使ってキャメルケースをスネークケースに変換しています。)</p>
+<p>先ほどと同様に<code>static_pages_controller.rb</code>というコントローラが生成されます。これは、Rubyがクラス名にキャメルケースを使う慣習があり (詳細は<a class="ref" href="/chapters/rails-flavored-ruby#sec-ruby_classes">4.4</a>で説明します)、また、キャメルケースの名前を使うことが好まれているためです。これらの慣習に必ず従わなければいけないということではありません。(同様にRubyでは、ファイル名をスネークケースで記述する慣習があります。このため Railsのgenerateスクリプトでは、 <a href="http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-underscore"><tt>underscore</tt></a>メソッドを使ってキャメルケースをスネークケースに変換しています。)</p>
 
-<p>ところで、自動生成に失敗するようなことがあれば、元に戻す処理を学ぶ良い機会になります。以下の<a class="ref" href="./static-pages?version=4.0#sidebar-undoing_things">コラム 3.2</a>で元に戻す方法を紹介しています。</p>
+<p>ところで、自動生成に失敗するようなことがあれば、元に戻す処理を学ぶ良い機会になります。以下の<a class="ref" href="./static-pages#sidebar-undoing_things">コラム 3.2</a>で元に戻す方法を紹介しています。</p>
 
 <div class="label" id="sidebar-undoing_things"></div>
 
@@ -301,13 +301,13 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="sidebar"><span class="title"><span class="header">コラム 3.2</span><span class="description">元に戻す方法</span></span>
 <p>どれほど十分に気を付けていたとしても、Railsアプリケーションの開発中に何か失敗してしまうことはありえます。ありがたいことに、Railsにはそのような失敗をカバーする機能がいくつもあります。</p>
 
-<p>一般的なシナリオの1つは、生成したコードを元に戻したい場合です。たとえば、コントローラを生成した後で、もっといいコントローラ名を思い付いた場合などです。<a class="ref" href="./static-pages?version=4.0#code-generating_pages">リスト 3.4</a>に示したように、コントローラを生成すると、コントローラファイル以外にも多数のファイルが作成されます。自動生成されたコードを元に戻すためには、新規作成されたファイルを削除するだけではなく、既存のファイルに挿入されたコードも削除する必要があります (実際、<tt>routes.rb</tt> ファイルに自動的に追加されたコードも元に戻す必要があります) 。このようなときは、<tt>rails destroy</tt>コマンドを実行するだけで元に戻すことができます。たとえば次の2つのコマンドは、自動生成と、それに対応する取り消し処理の例です。</p>
+<p>一般的なシナリオの1つは、生成したコードを元に戻したい場合です。たとえば、コントローラを生成した後で、もっといいコントローラ名を思い付いた場合などです。<a class="ref" href="./static-pages#code-generating_pages">リスト 3.4</a>に示したように、コントローラを生成すると、コントローラファイル以外にも多数のファイルが作成されます。自動生成されたコードを元に戻すためには、新規作成されたファイルを削除するだけではなく、既存のファイルに挿入されたコードも削除する必要があります (実際、<tt>routes.rb</tt> ファイルに自動的に追加されたコードも元に戻す必要があります) 。このようなときは、<tt>rails destroy</tt>コマンドを実行するだけで元に戻すことができます。たとえば次の2つのコマンドは、自動生成と、それに対応する取り消し処理の例です。</p>
 
 <pre class="verbatim">  $ rails generate controller FooBars baz quux
   $ rails destroy  controller FooBars baz quux</pre>
 
 
-<p>なお <a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>でも、以下のように<em>モデル</em>を自動生成する方法を紹介します。</p>
+<p>なお <a class="ref" href="/chapters/modeling-users#top">第6章</a>でも、以下のように<em>モデル</em>を自動生成する方法を紹介します。</p>
 
 <pre class="verbatim">  $ rails generate model Foo bar:string baz:integer</pre>
 
@@ -317,9 +317,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 <pre class="verbatim">  $ rails destroy model Foo</pre>
 
 
-<p>(上のコマンドからわかるように、モデル名以外の引数は不要です。その理由については<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>で説明しています)。</p>
+<p>(上のコマンドからわかるように、モデル名以外の引数は不要です。その理由については<a class="ref" href="/chapters/modeling-users#top">第6章</a>で説明しています)。</p>
 
-<p>また、<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でも簡単に紹介しましたが、<em>マイグレーション</em>の変更を元に戻す方法もあります。詳細は<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>で説明します。簡単に言うと、まず以下のコマンドでデータベースのマイグレーションを変更できます。</p>
+<p>また、<a class="ref" href="/chapters/a-demo-app#top">第2章</a>でも簡単に紹介しましたが、<em>マイグレーション</em>の変更を元に戻す方法もあります。詳細は<a class="ref" href="/chapters/modeling-users#top">第6章</a>で説明します。簡単に言うと、まず以下のコマンドでデータベースのマイグレーションを変更できます。</p>
 
 <pre class="verbatim">  $ rake db:migrate</pre>
 
@@ -340,15 +340,15 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p><a class="ref" href="./static-pages?version=4.0#code-generating_pages">リスト 3.4</a>のようにStaticPagesコントローラを生成すると、<em>config/routes.rb</em>ファイルが自動的に更新されます。Railsは、この <code>routes</code>ファイルに記述されている内容 (ルーティング) に従って、 複数のURLとWebページを対応付けます。ここで、初めて<code>config</code>ディレクトリについて触れます。このディレクトリは<a class="ref" href="./static-pages?version=4.0#fig-config_directory_rails">図 3.1</a>のような構成になっています。<code>config</code>ディレクトリという名前のとおり、このディレクトリ内にあるファイルは、Railsがアプリケーションの設定を読み込む時に必要になります。</p>
+<p><a class="ref" href="./static-pages#code-generating_pages">リスト 3.4</a>のようにStaticPagesコントローラを生成すると、<em>config/routes.rb</em>ファイルが自動的に更新されます。Railsは、この <code>routes</code>ファイルに記述されている内容 (ルーティング) に従って、 複数のURLとWebページを対応付けます。ここで、初めて<code>config</code>ディレクトリについて触れます。このディレクトリは<a class="ref" href="./static-pages#fig-config_directory_rails">図 3.1</a>のような構成になっています。<code>config</code>ディレクトリという名前のとおり、このディレクトリ内にあるファイルは、Railsがアプリケーションの設定を読み込む時に必要になります。</p>
 
 <div class="label" id="fig-config_directory_rails"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/config_directory_rails_4.png" alt="config_directory_rails_4" /></span></div><div class="caption"><span class="header">図3.1</span><span class="description">サンプルアプリケーションの<code>config</code>ディレクトリの内容。<a href="./images/figures/config_directory_rails_4-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/config_directory_rails_4.png" alt="config_directory_rails_4" /></span></div><div class="caption"><span class="header">図3.1</span><span class="description">サンプルアプリケーションの<code>config</code>ディレクトリの内容。<a href="../images/figures/config_directory_rails_4-full.png">(拡大)</a></span></div></div>
 
 
-<p>先ほど<code>home</code>アクションと<code>help</code>アクションを生成したので、<a class="ref" href="./static-pages?version=4.0#code-pages_routes">リスト 3.5</a>に示したように、routesファイルにはそれぞれのアクションで使用されるルールが定義されています。</p>
+<p>先ほど<code>home</code>アクションと<code>help</code>アクションを生成したので、<a class="ref" href="./static-pages#code-pages_routes">リスト 3.5</a>に示したように、routesファイルにはそれぞれのアクションで使用されるルールが定義されています。</p>
 
 <div class="label" id="code-pages_routes"></div>
 
@@ -373,12 +373,12 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>このルールは、/static_pages/homeというURLに対するリクエストを、StaticPagesコントローラの<code>home</code>アクションと結びつけています。具体的には、<code>get</code>と書くことで、<tt>GET</tt>リクエストに対して該当するアクションを結びつけています。なお、ここでいう GETリクエストとは、<em>HTTP (HyperText Transfer Protocol) </em> (<a class="ref" href="./static-pages?version=4.0#sidebar-get_etc">コラム  3.3</a>) が対応しているメソッドの1つです。今回の場合は、StaticPagesコントローラ内に<code>home</code>アクションを追加したので、/static_pages/homeにアクセスすることでページを取得 (GET) できるようになりました。<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスして結果を表示します (<a class="ref" href="./static-pages?version=4.0#fig-raw_home_view">図3.2</a>)。</p>
+<p>このルールは、/static_pages/homeというURLに対するリクエストを、StaticPagesコントローラの<code>home</code>アクションと結びつけています。具体的には、<code>get</code>と書くことで、<tt>GET</tt>リクエストに対して該当するアクションを結びつけています。なお、ここでいう GETリクエストとは、<em>HTTP (HyperText Transfer Protocol) </em> (<a class="ref" href="./static-pages#sidebar-get_etc">コラム  3.3</a>) が対応しているメソッドの1つです。今回の場合は、StaticPagesコントローラ内に<code>home</code>アクションを追加したので、/static_pages/homeにアクセスすることでページを取得 (GET) できるようになりました。<a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスして結果を表示します (<a class="ref" href="./static-pages#fig-raw_home_view">図3.2</a>)。</p>
 
 <div class="label" id="fig-raw_home_view"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/raw_home_view_31.png" alt="raw_home_view_31" /></span></div><div class="caption"><span class="header">図3.2</span><span class="description"><a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスした結果。<a href="./images/figures/raw_home_view_31-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/raw_home_view_31.png" alt="raw_home_view_31" /></span></div><div class="caption"><span class="header">図3.2</span><span class="description"><a href="http://localhost:3000/static_pages/home">/static_pages/home</a>にアクセスした結果。<a href="../images/figures/raw_home_view_31-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -387,7 +387,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 
 <div class="sidebar"><span class="title"><span class="header">コラム 3.3</span><span class="description"><tt>GET</tt>やその他のHTTPメソッドについて</span></span>
-<p><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP</a> (HyperText Transfer Protocol) には4つの基本的な操作があり、それぞれ<tt>GET</tt>、<tt>POST</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>という4つの動詞に対応づけられています。(ローカル環境でRailsアプリケーションを開発しているときは、クライアントとサーバーが同じコンピュータ上で動いていますが、一般的には、それぞれ別のコンピュータで動作しているという点を理解しておいてください)。Railsを含む多くのWebフレームワークは、HTTPの各操作を発展させた<em>REST アーキテクチャ</em>の影響を受けています。<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>では、より深い内容について学びます。</p>
+<p><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP</a> (HyperText Transfer Protocol) には4つの基本的な操作があり、それぞれ<tt>GET</tt>、<tt>POST</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>という4つの動詞に対応づけられています。(ローカル環境でRailsアプリケーションを開発しているときは、クライアントとサーバーが同じコンピュータ上で動いていますが、一般的には、それぞれ別のコンピュータで動作しているという点を理解しておいてください)。Railsを含む多くのWebフレームワークは、HTTPの各操作を発展させた<em>REST アーキテクチャ</em>の影響を受けています。<a class="ref" href="/chapters/a-demo-app#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="/chapters/sign-up#top">第7章</a>では、より深い内容について学びます。</p>
 
 <p><tt>GET</tt> は、最も頻繁に使用されるHTTP操作で、主にWeb上のデータを<em>読み取る</em>際に使われます。“ページを取得する” という意味のとおり、ウェブブラウザはgoogle.comやwikipedia.orgのようなWebサイトを開くたびに<tt>GET</tt>リクエストを送信しています。Railsアプリケーションでは、<tt>POST</tt>リクエストは何かを<em>作成する</em>ときによく使われます (なお本来のHTTPでは、<tt>POST</tt>を更新に使ってもよいとしています)。たとえば、ユーザー登録フォームで新しいユーザーを作成するときは、<tt>POST</tt>リクエストを送信します。他にも、<tt>PATCH</tt>と <tt>DELETE</tt>という2つの操作があり、それぞれサーバー上の何かを<em>更新</em>したり<em>削除</em>したりするときに使われます。これら2つの操作は、<tt>GET</tt>や<tt>POST</tt>ほどは使用されていません。これは、ブラウザがPATCHとDELETEをネイティブでは送信しないからです。しかし、Ruby on Railsなどの多くのWebフレームワークは、ブラウザがこれらの操作のリクエストを<em>送信しているかのように見せかける</em>技術 (偽装) を駆使して、PATCHとDELETEという操作を実現しています。</p>
 
@@ -395,13 +395,13 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>このページがどのようにして表示されるのかを理解するために、まずはテキストエディタでStaticPagesコントローラを開いてみましょう。<a class="ref" href="./static-pages?version=4.0#code-static_pages_controller">リスト3.6</a>のような内容になっているはずです。ここで、<a class="ref" href="/chapters/a-demo-app?version=4.0#top">第2章</a>のUsersコントローラやMicropostsコントローラとは異なり、StaticPagesコントローラは一般的なRESTアクションに対応していないことにご注意ください。これは、静的なページの集合に対しては、適切なアクションと言えます。言い換えると、RESTアーキテクチャは、あらゆる問題に対して最適な解決方法であるとは限らないということです。</p>
+<p>このページがどのようにして表示されるのかを理解するために、まずはテキストエディタでStaticPagesコントローラを開いてみましょう。<a class="ref" href="./static-pages#code-static_pages_controller">リスト3.6</a>のような内容になっているはずです。ここで、<a class="ref" href="/chapters/a-demo-app#top">第2章</a>のUsersコントローラやMicropostsコントローラとは異なり、StaticPagesコントローラは一般的なRESTアクションに対応していないことにご注意ください。これは、静的なページの集合に対しては、適切なアクションと言えます。言い換えると、RESTアーキテクチャは、あらゆる問題に対して最適な解決方法であるとは限らないということです。</p>
 
 <div class="label" id="code-static_pages_controller"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト3.6</span> <span class="description"><a class="ref" href="./static-pages?version=4.0#code-generating_pages">リスト3.4</a>で生成されたStaticPagesコントローラ。</span><br /><span class="description"> <code>app/controllers/static_pages_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト3.6</span> <span class="description"><a class="ref" href="./static-pages#code-generating_pages">リスト3.4</a>で生成されたStaticPagesコントローラ。</span><br /><span class="description"> <code>app/controllers/static_pages_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">StaticPagesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
 
   <span class="k">def</span> <span class="nf">home</span>
@@ -414,7 +414,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p><a class="ref" href="./static-pages?version=4.0#code-static_pages_controller">リスト 3.6</a>の<code>class</code>というキーワードから、<code>static_pages_controller.rb</code>は<code>StaticPagesController</code>という<em>クラス</em>を定義していることがわかります。クラスは、<em>関数</em> (<em>メソッド</em>とも呼ばれます) をまとめるときに便利な手法です。今回の例では、<code>def</code>というキーワードを使って、<code>home</code>アクションや<code>help</code>アクションを定義しています。また、山かっこ<code>&lt;</code>は、<code>StaticPagesController</code>が <code>ApplicationController</code>というRailsのクラスを<em>継承</em>していることを示しています。この後も説明しますが、今回作成したページには、Rails特有の機能が多数使用されています (具体的なクラスや継承については、<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-ruby_classes">4.4</a>で詳しく説明します)。</p>
+<p><a class="ref" href="./static-pages#code-static_pages_controller">リスト 3.6</a>の<code>class</code>というキーワードから、<code>static_pages_controller.rb</code>は<code>StaticPagesController</code>という<em>クラス</em>を定義していることがわかります。クラスは、<em>関数</em> (<em>メソッド</em>とも呼ばれます) をまとめるときに便利な手法です。今回の例では、<code>def</code>というキーワードを使って、<code>home</code>アクションや<code>help</code>アクションを定義しています。また、山かっこ<code>&lt;</code>は、<code>StaticPagesController</code>が <code>ApplicationController</code>というRailsのクラスを<em>継承</em>していることを示しています。この後も説明しますが、今回作成したページには、Rails特有の機能が多数使用されています (具体的なクラスや継承については、<a class="ref" href="/chapters/rails-flavored-ruby#sec-ruby_classes">4.4</a>で詳しく説明します)。</p>
 
 <p>今回のStaticPagesコントローラにあるメソッドは、以下のようにどちらも最初は空になっています。</p>
 
@@ -427,9 +427,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>純粋なRuby言語であれば、これらのメソッドは何も実行しません。しかし、Railsでは動作が異なります。<code>StaticPagesController</code>はRuby のクラスですが、<code>ApplicationController</code>クラスを継承しているため、StaticPagesControllerのメソッドはRails特有の振る舞いをします。具体的には、/static_pages/homeというURLにアクセスすると、RailsはStaticPagesコントローラを参照し、<code>home</code>アクションに記述されているコードを実行します。その後、そのアクションに対応する<em>ビュー</em> (<a class="ref" href="/chapters/beginning?version=4.0#sec-mvc">1.2.6</a>で説明したMVCのVに相当) を出力します。今回の場合、<code>home</code>アクションが空になっているので、/static_pages/homeにアクセスしても、単に対応するビューが出力されるだけになります。では、ビューはどのように出力されるのでしょうか。また、どのビューが表示されるのでしょうか。</p>
+<p>純粋なRuby言語であれば、これらのメソッドは何も実行しません。しかし、Railsでは動作が異なります。<code>StaticPagesController</code>はRuby のクラスですが、<code>ApplicationController</code>クラスを継承しているため、StaticPagesControllerのメソッドはRails特有の振る舞いをします。具体的には、/static_pages/homeというURLにアクセスすると、RailsはStaticPagesコントローラを参照し、<code>home</code>アクションに記述されているコードを実行します。その後、そのアクションに対応する<em>ビュー</em> (<a class="ref" href="/chapters/beginning#sec-mvc">1.2.6</a>で説明したMVCのVに相当) を出力します。今回の場合、<code>home</code>アクションが空になっているので、/static_pages/homeにアクセスしても、単に対応するビューが出力されるだけになります。では、ビューはどのように出力されるのでしょうか。また、どのビューが表示されるのでしょうか。</p>
 
-<p> <a class="ref" href="./static-pages?version=4.0#code-generating_pages">リスト3.4</a>を注意深く読んでみると、アクションとビューの関係性について理解できるでしょう。<code>home</code>アクションは、<code>home.html.erb</code>というビューに対応しています。<code>.erb</code>の詳細については<a class="ref" href="./static-pages?version=4.0#sec-slightly_dynamic_pages">3.3</a>で説明しますが、ファイル名に<code>.html</code>が含まれていることから推測できるとおり、基本的にはHTMLと同じような構造になっています (<a class="ref" href="./static-pages?version=4.0#code-raw_home_view">リスト3.7</a>)。</p>
+<p> <a class="ref" href="./static-pages#code-generating_pages">リスト3.4</a>を注意深く読んでみると、アクションとビューの関係性について理解できるでしょう。<code>home</code>アクションは、<code>home.html.erb</code>というビューに対応しています。<code>.erb</code>の詳細については<a class="ref" href="./static-pages#sec-slightly_dynamic_pages">3.3</a>で説明しますが、ファイル名に<code>.html</code>が含まれていることから推測できるとおり、基本的にはHTMLと同じような構造になっています (<a class="ref" href="./static-pages#code-raw_home_view">リスト3.7</a>)。</p>
 
 <div class="label" id="code-raw_home_view"></div>
 
@@ -442,7 +442,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p><code>help</code>アクションに対応するビューも、上のコードと似ています (<a class="ref" href="./static-pages?version=4.0#code-raw_help_view">リスト3.8</a>)。 </p>
+<p><code>help</code>アクションに対応するビューも、上のコードと似ています (<a class="ref" href="./static-pages#code-raw_help_view">リスト3.8</a>)。 </p>
 
 <div class="label" id="code-raw_help_view"></div>
 
@@ -455,9 +455,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>どちらのビューも単なるプレースホルダになっています。トップレベルの見出しが<code>h1</code>タグの中にあり、関連するファイルへの絶対パスが<code>p</code>タグの中に書かれています。<a class="ref" href="./static-pages?version=4.0#sec-slightly_dynamic_pages">3.3</a>からは、(ほんの少しだけ) 動的なコンテンツを追加しますが、ここで重要なのは「Railsのビューは静的なHTMLで構成されている」という点です。ブラウザから見えるのは常にHTMLなので、ブラウザの側から見れば、3.1.1のような生のHTMLファイルも、コントローラやアクションを使用して生成されたページも、違いはありません。</p>
+<p>どちらのビューも単なるプレースホルダになっています。トップレベルの見出しが<code>h1</code>タグの中にあり、関連するファイルへの絶対パスが<code>p</code>タグの中に書かれています。<a class="ref" href="./static-pages#sec-slightly_dynamic_pages">3.3</a>からは、(ほんの少しだけ) 動的なコンテンツを追加しますが、ここで重要なのは「Railsのビューは静的なHTMLで構成されている」という点です。ブラウザから見えるのは常にHTMLなので、ブラウザの側から見れば、3.1.1のような生のHTMLファイルも、コントローラやアクションを使用して生成されたページも、違いはありません。</p>
 
-<p>本章では以後、HomeページとHelpページのコンテンツを少しだけカスタマイズします。また、<a class="ref" href="./static-pages?version=4.0#sec-static_pages">3.1.2</a>で先送りにしたAbout ページにもコンテンツを追加していきます。それが終わったら、ページごとに異なるタイトルを表示する、ほんの少しだけ動的なコンテンツを追加します。</p>
+<p>本章では以後、HomeページとHelpページのコンテンツを少しだけカスタマイズします。また、<a class="ref" href="./static-pages#sec-static_pages">3.1.2</a>で先送りにしたAbout ページにもコンテンツを追加していきます。それが終わったら、ページごとに異なるタイトルを表示する、ほんの少しだけ動的なコンテンツを追加します。</p>
 
 <p>次に進む前に、StaticPagesコントローラファイルをGitリポジトリに追加しておきましょう。</p>
 
@@ -472,21 +472,21 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="label" id="sec-first_tests"></div>
 
 
-<h2><a id="sec-3_2" href="./static-pages?version=4.0#sec-first_tests" class="heading"><span class="number">3.2</span>最初のテスト</a></h2>
+<h2><a id="sec-3_2" href="./static-pages#sec-first_tests" class="heading"><span class="number">3.2</span>最初のテスト</a></h2>
 
 
-<p><em>Railsチュートリアル</em> では、一字一句間違えることなく最初から正確に実装するのではなく、アプリケーションの振る舞いをテストしながら実装する直観的な手法を採用しています。この開発手法は、テスト駆動開発 (Test-Driven Develpment, TDD) から派生した振舞駆動開発 (Behavior-Driven Development, BDD) として知られています。本書でこれから頻繁に使うツールは、<em>結合テスト (integration test) </em>と<em>単体テスト (unit test) </em>の2つです。結合テストについてはこの節から、単体テストについては<a class="ref" href="/chapters/modeling-users?version=4.0#top">第6章</a>から解説していきます。結合テスト (RSpec では <em>リクエストspec</em> と呼んでいます) は、ユーザーがアプリケーションを使う際の一連のアクションをシミュレーションします。結合テストは、アプリケーションの各ページが正常に動作するかどうかをテストしてくれる強力なツールです。手動でブラウザを操作してテストする必要がなくなり、Capybaraを併用すれば自然言語 (英語) に近い文法でテストを記述する事もできます (Capybara以外にも、Cucumberという振舞駆動開発用ツールが有名です。詳細については<a class="ref" href="/chapters/sign-in-sign-out?version=4.0#sec-cucumber">8.3</a>で紹介します)。</p>
+<p><em>Railsチュートリアル</em> では、一字一句間違えることなく最初から正確に実装するのではなく、アプリケーションの振る舞いをテストしながら実装する直観的な手法を採用しています。この開発手法は、テスト駆動開発 (Test-Driven Develpment, TDD) から派生した振舞駆動開発 (Behavior-Driven Development, BDD) として知られています。本書でこれから頻繁に使うツールは、<em>結合テスト (integration test) </em>と<em>単体テスト (unit test) </em>の2つです。結合テストについてはこの節から、単体テストについては<a class="ref" href="/chapters/modeling-users#top">第6章</a>から解説していきます。結合テスト (RSpec では <em>リクエストspec</em> と呼んでいます) は、ユーザーがアプリケーションを使う際の一連のアクションをシミュレーションします。結合テストは、アプリケーションの各ページが正常に動作するかどうかをテストしてくれる強力なツールです。手動でブラウザを操作してテストする必要がなくなり、Capybaraを併用すれば自然言語 (英語) に近い文法でテストを記述する事もできます (Capybara以外にも、Cucumberという振舞駆動開発用ツールが有名です。詳細については<a class="ref" href="/chapters/sign-in-sign-out#sec-cucumber">8.3</a>で紹介します)。</p>
 
 <p>テスト駆動開発の定義とは、アプリケーションを開発するときに<em>最初に</em>テストを作成し、次にコードを作成することです。この開発手法に慣れるまでには多少時間がかかるかもしれませんが、一度慣れてしまえば大きなメリットを得られます。<em>失敗する</em>テストを最初に書き、テストにパスするコードを次に実装することで、しかるべき振る舞いがテストによって正しく検証されている、という自信が付きます。さらに、この「失敗-実装-成功」という開発サイクルは、「<a href="http://en.wikipedia.org/wiki/Flow_(psychology)">開発フロー</a>」を生み出します。そしてこの開発フローに乗ることで、コーディングが楽しくなり、開発の生産性も向上します。また、テストはアプリケーションのコードに対して<em>クライアント</em>として振る舞うので、ソフトウェア設計の改良につながることも多くなるでしょう。</p>
 
 <p>ただし、テスト駆動開発がどんな仕事に対しても常に正しい手法であるとは限りません。このことは十分に理解しておいてください。「最初にテストを書くべきである」、「テストはひとつひとつの機能を完全にカバーするべきである」、「すべての箇所をテストすべきである」などのような教条的な主張を正当化できる理由はどこにもありません。たとえば、与えられた課題の解決法に今ひとつ確信が持てないときは、(テストを書かずに) まず試しにアプリケーションコードだけを書いてみて、どんな解決方法があるのか模索してみる方が良い結果を得られることもあります (<a href="http://en.wikipedia.org/wiki/Extreme_Programming">エクストリームプログラミング (Extreme Programming, XP)</a> という開発手法では、この模索段階を<em>スパイク (spike) </em>と呼んでいます)。そして解決策が明確になった段階で、テスト駆動開発でコードを清書するという方法もありえます。</p>
 
-<p>この節では、RSpec gemによって提供される<code>rspec</code>コマンドを使ってテストを実行します。この節は素直なつくりになっていますが、物足りないと思う方もいるかもしれません。上級開発者であれば、先に<a class="ref" href="./static-pages?version=4.0#sec-advanced_setup">3.6</a>を読んでシステム設定を完了しておくことをお勧めします。</p>
+<p>この節では、RSpec gemによって提供される<code>rspec</code>コマンドを使ってテストを実行します。この節は素直なつくりになっていますが、物足りないと思う方もいるかもしれません。上級開発者であれば、先に<a class="ref" href="./static-pages#sec-advanced_setup">3.6</a>を読んでシステム設定を完了しておくことをお勧めします。</p>
 
 <div class="label" id="sec-TDD"></div>
 
 
-<h3><a id="sec-3_2_1" href="./static-pages?version=4.0#sec-TDD" class="heading"><span class="number">3.2.1</span>テスト駆動開発</a></h3>
+<h3><a id="sec-3_2_1" href="./static-pages#sec-TDD" class="heading"><span class="number">3.2.1</span>テスト駆動開発</a></h3>
 
 
 <p>テスト駆動開発で最初に書く、<em>失敗する</em>テストのことを、一般的なテストツールでは「赤色 (Red)」と表現します (失敗時に表示が赤くなるツールが多いため)。同様に、次に書く、テストにパスするコードのことを「緑色 (Green)」と表現します。最後に、必要に応じてコードをリファクタリング (動作を変えずにコードを改善すること) したりフォームを変更したりします。冗長なコードを削除したりするのもリファクタリングの例です。このサイクルのことを「Red/Green/Refactor」と呼びます。</p>
@@ -500,7 +500,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>これにより、<code>spec/requests</code>ディレクトリに<code>static_pages_spec.rb</code>が生成されます。自動生成される他のコードと同様に、最初のコードは完全ではありません。そこで、テキストエディタで<code>static_pages_spec.rb</code> を開き、<a class="ref" href="./static-pages?version=4.0#code-home_page_content_spec">リスト 3.9</a>のようにコードを書いてみましょう。</p>
+<p>これにより、<code>spec/requests</code>ディレクトリに<code>static_pages_spec.rb</code>が生成されます。自動生成される他のコードと同様に、最初のコードは完全ではありません。そこで、テキストエディタで<code>static_pages_spec.rb</code> を開き、<a class="ref" href="./static-pages#code-home_page_content_spec">リスト 3.9</a>のようにコードを書いてみましょう。</p>
 
 <div class="label" id="code-home_page_content_spec"></div>
 
@@ -523,9 +523,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p><a class="ref" href="./static-pages?version=4.0#code-home_page_content_spec">リスト 3.9</a>のコードはすべてRubyで書かれています。しかし、Rubyを勉強したことがある人にとっては見慣れない書き方に見えるかもしれません。これは、Rubyの柔軟性の高さを応用して、RSpecがテスト用の独自言語 (<em>Domain-Specific Language: DSL</em>) を定義しているからです。ここで重要なのは、<em>RSpecを使うためにRSpec独自の文法を理解する必要はない</em>ということです。最初のうちは魔法のように見えるかもしれませんが、RSpecやCapybaraは英語に近い形で読めるように設計されています。したがって、本チュートリアルで取り上げるテスト例を読み進めるだけで、英語圏の方ならRSpecの文法を楽に扱えるようになります。</p>
+<p><a class="ref" href="./static-pages#code-home_page_content_spec">リスト 3.9</a>のコードはすべてRubyで書かれています。しかし、Rubyを勉強したことがある人にとっては見慣れない書き方に見えるかもしれません。これは、Rubyの柔軟性の高さを応用して、RSpecがテスト用の独自言語 (<em>Domain-Specific Language: DSL</em>) を定義しているからです。ここで重要なのは、<em>RSpecを使うためにRSpec独自の文法を理解する必要はない</em>ということです。最初のうちは魔法のように見えるかもしれませんが、RSpecやCapybaraは英語に近い形で読めるように設計されています。したがって、本チュートリアルで取り上げるテスト例を読み進めるだけで、英語圏の方ならRSpecの文法を楽に扱えるようになります。</p>
 
-<p><a class="ref" href="./static-pages?version=4.0#code-home_page_content_spec">リスト3.9</a>には<code>describe</code>というブロックがあり、そのブロック内には <code>it &quot;…&quot; do</code>で始まる<em>テスト例</em>があります。</p>
+<p><a class="ref" href="./static-pages#code-home_page_content_spec">リスト3.9</a>には<code>describe</code>というブロックがあり、そのブロック内には <code>it &quot;…&quot; do</code>で始まる<em>テスト例</em>があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;Home page&quot;</span> <span class="k">do</span>
 
@@ -554,7 +554,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>その次の行 (上のコード) では、これもCapybaraが提供する<code>page</code>変数を使って、アクセスした結果のページに正しいコンテンツが表示されているかどうかをテストしています。</p>
 
-<p>テストが正常に実行されるようにするために、<a class="ref" href="./static-pages?version=4.0#code-capybara_dsl">リスト3.10</a>に示した1行を <code>spec_helper.rb</code>に追加する必要があります (<em>Railsチュートリアル</em>の第3版を出すときには、新しい<a href="https://www.relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec">feature specs</a>の技法を使用してこの行の追加を不要にすることを計画しています)。</p>
+<p>テストが正常に実行されるようにするために、<a class="ref" href="./static-pages#code-capybara_dsl">リスト3.10</a>に示した1行を <code>spec_helper.rb</code>に追加する必要があります (<em>Railsチュートリアル</em>の第3版を出すときには、新しい<a href="https://www.relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec">feature specs</a>の技法を使用してこの行の追加を不要にすることを計画しています)。</p>
 
 <div class="label" id="code-capybara_dsl"></div>
 
@@ -579,22 +579,22 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div></div>
 
 
-<p>テストではさまざまなオプションが使用できます。さらに高度で便利なツールもあり、詳細については<a class="ref" href="./static-pages?version=4.0#sec-advanced_setup">3.6</a>で説明します。今回は、コマンドラインで<code>rspec</code>コマンドを実行してみてましょう (なお、<code>bundle exec</code>をこのコマンドの前に置くことで、<code>Gemfile</code>内で定義された環境でRSpecが実行されるように、明示的に指示することができます<sup class="footnote" id="fnref-3_6"><a href="./static-pages?version=4.0#fn-3_6">6</a></sup>)。</p>
+<p>テストではさまざまなオプションが使用できます。さらに高度で便利なツールもあり、詳細については<a class="ref" href="./static-pages#sec-advanced_setup">3.6</a>で説明します。今回は、コマンドラインで<code>rspec</code>コマンドを実行してみてましょう (なお、<code>bundle exec</code>をこのコマンドの前に置くことで、<code>Gemfile</code>内で定義された環境でRSpecが実行されるように、明示的に指示することができます<sup class="footnote" id="fnref-3_6"><a href="./static-pages#fn-3_6">6</a></sup>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
 </pre></div>
 </div>
 
 
-<p>上のコマンドを実行すると、「テストが失敗した」という結果が返ってきます。 結果の表示はシステムによって異なりますが、著者のシステムでは、<a class="ref" href="./static-pages?version=4.0#fig-red_failing_spec">図3.3</a>のように失敗したテストが赤く表示されます<sup class="footnote" id="fnref-3_7"><a href="./static-pages?version=4.0#fn-3_7">7</a></sup>。</p>
+<p>上のコマンドを実行すると、「テストが失敗した」という結果が返ってきます。 結果の表示はシステムによって異なりますが、著者のシステムでは、<a class="ref" href="./static-pages#fig-red_failing_spec">図3.3</a>のように失敗したテストが赤く表示されます<sup class="footnote" id="fnref-3_7"><a href="./static-pages#fn-3_7">7</a></sup>。</p>
 
 <div class="label" id="fig-red_failing_spec"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/red_failing_spec_4_0.png" alt="red_failing_spec_4_0" /></span></div><div class="caption"><span class="header">図3.3</span><span class="description">赤く表示されている (失敗した) テスト。<a href="./images/figures/red_failing_spec_4_0-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/red_failing_spec_4_0.png" alt="red_failing_spec_4_0" /></span></div><div class="caption"><span class="header">図3.3</span><span class="description">赤く表示されている (失敗した) テスト。<a href="../images/figures/red_failing_spec_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>テストにパスするために、自動生成されたHomeページのHTMLを<a class="ref" href="./static-pages?version=4.0#code-home_page_passing">リスト3.11</a>のように書き換えてみましょう。</p>
+<p>テストにパスするために、自動生成されたHomeページのHTMLを<a class="ref" href="./static-pages#code-home_page_passing">リスト3.11</a>のように書き換えてみましょう。</p>
 
 <div class="label" id="code-home_page_passing"></div>
 
@@ -625,15 +625,15 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>著者のシステムでは、<a class="ref" href="./static-pages?version=4.0#fig-green_passing_spec">図3.4</a>のように表示されました。</p>
+<p>著者のシステムでは、<a class="ref" href="./static-pages#fig-green_passing_spec">図3.4</a>のように表示されました。</p>
 
 <div class="label" id="fig-green_passing_spec"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/green_passing_spec_4_0.png" alt="green_passing_spec_4_0" /></span></div><div class="caption"><span class="header">図3.4</span><span class="description">緑色で表示されている (成功した) テスト。<a href="./images/figures/green_passing_spec_4_0-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/green_passing_spec_4_0.png" alt="green_passing_spec_4_0" /></span></div><div class="caption"><span class="header">図3.4</span><span class="description">緑色で表示されている (成功した) テスト。<a href="../images/figures/green_passing_spec_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>Helpページについても、Homeページの例を参考にして、同じようなテストとアプリケーションコードを使用できることが推測できます。最初に、文字列を <code>’Help’</code> に書き換えたテストを追加してみましょう (<a class="ref" href="./static-pages?version=4.0#code-help_content_spec">リスト 3.12</a>)。</p>
+<p>Helpページについても、Homeページの例を参考にして、同じようなテストとアプリケーションコードを使用できることが推測できます。最初に、文字列を <code>’Help’</code> に書き換えたテストを追加してみましょう (<a class="ref" href="./static-pages#code-help_content_spec">リスト 3.12</a>)。</p>
 
 <div class="label" id="code-help_content_spec"></div>
 
@@ -673,7 +673,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 
 <p>テストのうち、1つは失敗するはずです。(注: 執筆作業軽減のため、今後はRSpecの出力結果を掲載しません。画面表示の内容はシステムによって大きく異なるうえ、各段階での出力画面数を把握してメンテナンスし続けるのがきわめて困難なためです。ご了承ください。)</p>
 
-<p><a class="ref" href="./static-pages?version=4.0#code-help_page_passing">リスト3.13</a>に示したように、このアプリケーションコードは<a class="ref" href="./static-pages?version=4.0#code-home_page_passing">リスト3.11</a>と同じようなコードになります。</p>
+<p><a class="ref" href="./static-pages#code-help_page_passing">リスト3.13</a>に示したように、このアプリケーションコードは<a class="ref" href="./static-pages#code-home_page_passing">リスト3.11</a>と同じようなコードになります。</p>
 
 <div class="label" id="code-help_page_passing"></div>
 
@@ -701,18 +701,18 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <div class="label" id="sec-adding_a_page"></div>
 
 
-<h3><a id="sec-3_2_2" href="./static-pages?version=4.0#sec-adding_a_page" class="heading"><span class="number">3.2.2</span>ページの追加</a></h3>
+<h3><a id="sec-3_2_2" href="./static-pages#sec-adding_a_page" class="heading"><span class="number">3.2.2</span>ページの追加</a></h3>
 
 
-<p>先ほどのテスト駆動開発のシンプルなテスト例を参考に、もう少し複雑なタスクを実行するページを新規追加してみましょう。具体的には、<a class="ref" href="./static-pages?version=4.0#sec-static_pages">3.1</a>であえて先送りにしたAboutページを新しく追加します。段階ごとにテストを作成してRSpecを実行することで、テスト駆動開発によってアプリケーション開発を進める方法を理解できるようになるでしょう。</p>
+<p>先ほどのテスト駆動開発のシンプルなテスト例を参考に、もう少し複雑なタスクを実行するページを新規追加してみましょう。具体的には、<a class="ref" href="./static-pages#sec-static_pages">3.1</a>であえて先送りにしたAboutページを新しく追加します。段階ごとにテストを作成してRSpecを実行することで、テスト駆動開発によってアプリケーション開発を進める方法を理解できるようになるでしょう。</p>
 
 <div class="label" id="sec-red"></div>
 
 
-<h4><a id="sec-3_2_2_1" href="./static-pages?version=4.0#sec-red" class="heading">赤 (Red)</a></h4>
+<h4><a id="sec-3_2_2_1" href="./static-pages#sec-red" class="heading">赤 (Red)</a></h4>
 
 
-<p>赤色から緑色にするために、最初にAboutページ用の失敗するテストを書き、赤色にしましょう。 <a class="ref" href="./static-pages?version=4.0#code-help_content_spec">リスト3.12</a>を参考にすることで、正しいテストを推測できるでしょう(<a class="ref" href="./static-pages?version=4.0#code-about_page_content_spec">リスト3.14</a>)。</p>
+<p>赤色から緑色にするために、最初にAboutページ用の失敗するテストを書き、赤色にしましょう。 <a class="ref" href="./static-pages#code-help_content_spec">リスト3.12</a>を参考にすることで、正しいテストを推測できるでしょう(<a class="ref" href="./static-pages#code-about_page_content_spec">リスト3.14</a>)。</p>
 
 <div class="label" id="code-about_page_content_spec"></div>
 
@@ -756,10 +756,10 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <div class="label" id="sec-green"></div>
 
 
-<h4><a id="sec-3_2_2_2" href="./static-pages?version=4.0#sec-green" class="heading">緑 (Green)</a></h4>
+<h4><a id="sec-3_2_2_2" href="./static-pages#sec-green" class="heading">緑 (Green)</a></h4>
 
 
-<p><a class="ref" href="./static-pages?version=4.0#sec-static_pages">3.1</a>でも触れたように、Railsでは、アクションと、それに対応するページ名を持つビューを作成することで、静的なページを生成することができます。今回の場合、 Aboutページを使用できるようにするには、<code>about</code>アクションをStaticPagesコントローラの中に追加する必要があります。最初に失敗するテストを書き、次にそのテストにパスするように実装することで、正常に動作するAboutページを作成できたという実感を得ることができます。</p>
+<p><a class="ref" href="./static-pages#sec-static_pages">3.1</a>でも触れたように、Railsでは、アクションと、それに対応するページ名を持つビューを作成することで、静的なページを生成することができます。今回の場合、 Aboutページを使用できるようにするには、<code>about</code>アクションをStaticPagesコントローラの中に追加する必要があります。最初に失敗するテストを書き、次にそのテストにパスするように実装することで、正常に動作するAboutページを作成できたという実感を得ることができます。</p>
 
 <p>先ほど実装したRSpecのテストを実行します。</p>
 
@@ -775,7 +775,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>このメッセージは、<code>/static_pages/about</code>というルートをroutesファイルに追加する必要があるということを示しています。<a class="ref" href="./static-pages?version=4.0#code-pages_routes">リスト3.5</a>のパターンに従って、routesファイルを<a class="ref" href="./static-pages?version=4.0#code-about_route">リスト3.15</a>のように変更することでこの問題は解決します。</p>
+<p>このメッセージは、<code>/static_pages/about</code>というルートをroutesファイルに追加する必要があるということを示しています。<a class="ref" href="./static-pages#code-pages_routes">リスト3.5</a>のパターンに従って、routesファイルを<a class="ref" href="./static-pages#code-about_route">リスト3.15</a>のように変更することでこの問題は解決します。</p>
 
 <div class="label" id="code-about_route"></div>
 
@@ -808,7 +808,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>この問題を解決するために、<a class="ref" href="./static-pages?version=4.0#code-static_pages_controller">リスト 3.6</a>の<code>home</code>アクションや <code>help</code>アクションのパターンに従って、StaticPagesコントローラの中に<code>about</code>アクションを追加します (<a class="ref" href="./static-pages?version=4.0#code-adding_the_about_page">リスト 3.16</a>)。</p>
+<p>この問題を解決するために、<a class="ref" href="./static-pages#code-static_pages_controller">リスト 3.6</a>の<code>home</code>アクションや <code>help</code>アクションのパターンに従って、StaticPagesコントローラの中に<code>about</code>アクションを追加します (<a class="ref" href="./static-pages#code-adding_the_about_page">リスト 3.16</a>)。</p>
 
 <div class="label" id="code-adding_the_about_page"></div>
 
@@ -844,7 +844,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>これは、<code>about</code>ビューを追加することで解決します。具体的には、<code>app/views/static_pages</code>ディレクトリの中に<code>about.html.erb</code>というファイルを作成し、<a class="ref" href="./static-pages?version=4.0#code-about_view">リスト 3.17</a>の内容を書き込みます。</p>
+<p>これは、<code>about</code>ビューを追加することで解決します。具体的には、<code>app/views/static_pages</code>ディレクトリの中に<code>about.html.erb</code>というファイルを作成し、<a class="ref" href="./static-pages#code-about_view">リスト 3.17</a>の内容を書き込みます。</p>
 
 <div class="label" id="code-about_view"></div>
 
@@ -869,12 +869,12 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>もちろん、実際にブラウザを起動して、テストが正しく動いているかどうかを確かめることもできます (<a class="ref" href="./static-pages?version=4.0#fig-about_us">図3.5</a>)。</p>
+<p>もちろん、実際にブラウザを起動して、テストが正しく動いているかどうかを確かめることもできます (<a class="ref" href="./static-pages#fig-about_us">図3.5</a>)。</p>
 
 <div class="label" id="fig-about_us"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/about_us_2nd_edition.png" alt="about_us_2nd_edition" /></span></div><div class="caption"><span class="header">図3.5</span><span class="description">作成したAboutページ (<a href="http://localhost:3000/static_pages/about">/static_pages/about</a>)。<a href="./images/figures/about_us_2nd_edition-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/about_us_2nd_edition.png" alt="about_us_2nd_edition" /></span></div><div class="caption"><span class="header">図3.5</span><span class="description">作成したAboutページ (<a href="http://localhost:3000/static_pages/about">/static_pages/about</a>)。<a href="../images/figures/about_us_2nd_edition-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -882,28 +882,28 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <div class="label" id="sec-refactor"></div>
 
 
-<h4><a id="sec-3_2_2_3" href="./static-pages?version=4.0#sec-refactor" class="heading">リファクタリング</a></h4>
+<h4><a id="sec-3_2_2_3" href="./static-pages#sec-refactor" class="heading">リファクタリング</a></h4>
 
 
 <p>テストが緑色になったので、安心してコードをリファクタリングできるようになりました。多くの場合、コードを書き進めるうちに肥大化したり繰り返しが増えたりして、いつしか「悪臭を放つ」醜悪なコードになりはてるものです。コンピュータはコードが醜くても気にしませんが、開発者にとってはそうはいきません。だからこそ、頻繁にリファクタリングを実施し、コードを清潔な状態に保ち続けることが重要です。この点において、良いテストコードがあるということは非常に貴重です。リファクタリングする際にバグが混入する可能性を劇的に小さくしてくれるからです。</p>
 
-<p>サンプルアプリケーションはかなり小規模なので、今のところリファクタリングの余地はありません。しかしコードの「悪臭」はやがてあらゆる箇所からただよいはじめ、そのうちにリファクタリングが必要になることでしょう。実際、<a class="ref" href="./static-pages?version=4.0#sec-layouts">3.3.4</a>で早くもリファクタリングに取りかかることになります。</p>
+<p>サンプルアプリケーションはかなり小規模なので、今のところリファクタリングの余地はありません。しかしコードの「悪臭」はやがてあらゆる箇所からただよいはじめ、そのうちにリファクタリングが必要になることでしょう。実際、<a class="ref" href="./static-pages#sec-layouts">3.3.4</a>で早くもリファクタリングに取りかかることになります。</p>
 
 <div class="label" id="sec-slightly_dynamic_pages"></div>
 
 
-<h2><a id="sec-3_3" href="./static-pages?version=4.0#sec-slightly_dynamic_pages" class="heading"><span class="number">3.3</span>少しだけ動的なページ</a></h2>
+<h2><a id="sec-3_3" href="./static-pages#sec-slightly_dynamic_pages" class="heading"><span class="number">3.3</span>少しだけ動的なページ</a></h2>
 
 
 <p>以上で、静的ページのアクションとビューを作成しました。次は、ページの内容を反映したタイトルを持ち、ページごとに内容が変化する、<em>少しだけ</em>動的なページを作成してみましょう。
-タイトルを変えるぐらいのことが<em>本当に</em>動的コンテンツと呼べるかどうかは議論の余地があると思いますが、いずれにしろこのページは、<a class="ref" href="/chapters/sign-up?version=4.0#top">第7章</a>で紹介する真に動的なコンテンツの基礎となります。</p>
+タイトルを変えるぐらいのことが<em>本当に</em>動的コンテンツと呼べるかどうかは議論の余地があると思いますが、いずれにしろこのページは、<a class="ref" href="/chapters/sign-up#top">第7章</a>で紹介する真に動的なコンテンツの基礎となります。</p>
 
-<p><a class="ref" href="./static-pages?version=4.0#sec-first_tests">3.2</a>のテスト駆動開発の説明を読んでいない場合は、<a class="ref" href="./static-pages?version=4.0#code-about_route">リスト3.15</a>、<a class="ref" href="./static-pages?version=4.0#code-adding_the_about_page">リスト3.16</a>、<a class="ref" href="./static-pages?version=4.0#code-about_view">リスト3.17</a>のコードを使ってAboutページを必ず作成しておいてください。</p>
+<p><a class="ref" href="./static-pages#sec-first_tests">3.2</a>のテスト駆動開発の説明を読んでいない場合は、<a class="ref" href="./static-pages#code-about_route">リスト3.15</a>、<a class="ref" href="./static-pages#code-adding_the_about_page">リスト3.16</a>、<a class="ref" href="./static-pages#code-about_view">リスト3.17</a>のコードを使ってAboutページを必ず作成しておいてください。</p>
 
 <div class="label" id="sec-testing_a_title_change"></div>
 
 
-<h3><a id="sec-3_3_1" href="./static-pages?version=4.0#sec-testing_a_title_change" class="heading"><span class="number">3.3.1</span>タイトル変更をテストする</a></h3>
+<h3><a id="sec-3_3_1" href="./static-pages#sec-testing_a_title_change" class="heading"><span class="number">3.3.1</span>タイトル変更をテストする</a></h3>
 
 
 <p>ここでの目標は、Home、Help、Aboutページをそれぞれ編集し、ページごとに異なるタイトルが表示されるようにすることです。ここではビューの<code>&lt;title&gt;</code>タグの内容を変更します。タイトルタグは、ほとんどのブラウザでウィンドウの上に表示されます (Google Chromeは例外ですが)。タイトルタグは、検索エンジン最適化 (SEO) においても重要な役割を担っています。最初にタイトルのテストを作成し、次にタイトルを追加し、最後に<em>レイアウト</em>ファイルを使ってリファクタリングと重複の排除を行います。</p>
@@ -924,7 +924,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <table class="tabular"><tr><th class="align_center"><strong>ページ</strong></th><th class="align_left"><strong>URL</strong></th><th class="align_left"><strong>基本タイトル</strong></th><th class="align_left"><strong>追加タイトル</strong></th></tr><tr class="top_bar"><td class="align_center">Home</td><td class="align_left">/static_pages/home</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;Home&quot;</code></td></tr><tr><td class="align_center">Help</td><td class="align_left">/static_pages/help</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;Help&quot;</code></td></tr><tr><td class="align_center">About</td><td class="align_left">/static_pages/about</td><td class="align_left"><code>&quot;Ruby on Rails Tutorial Sample App&quot;</code></td><td class="align_left"><code>&quot;About&quot;</code></td></tr></table></div><div class="caption"><span class="header">表3.1</span><span class="description">サンプルアプリケーションの (ほぼ) 静的なページ。</span></div></div>
 
 
-<p>この節が完了するまでに、3つの静的ページのすべてのタイトルが、“Ruby on Rails Tutorial Sample App | Home”のように、最後の単語のみ<a class="ref" href="./static-pages?version=4.0#table-static_pages">表3.1</a>に従ってページごとに変更されるようになります。最初に、<a class="ref" href="./static-pages?version=4.0#code-about_page_content_spec">リスト3.14</a>のテストを元に、モデルに応じたタイトル表示のテスト (<a class="ref" href="./static-pages?version=4.0#code-title_test">リスト3.18</a>) を追加します。</p>
+<p>この節が完了するまでに、3つの静的ページのすべてのタイトルが、“Ruby on Rails Tutorial Sample App | Home”のように、最後の単語のみ<a class="ref" href="./static-pages#table-static_pages">表3.1</a>に従ってページごとに変更されるようになります。最初に、<a class="ref" href="./static-pages#code-about_page_content_spec">リスト3.14</a>のテストを元に、モデルに応じたタイトル表示のテスト (<a class="ref" href="./static-pages#code-title_test">リスト3.18</a>) を追加します。</p>
 
 <div class="label" id="code-title_test"></div>
 
@@ -962,7 +962,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 
 <p>上のコードでもタイトル全体とマッチします。</p>
 
-<p><a class="ref" href="./static-pages?version=4.0#code-title_test">リスト3.18</a>と同じ要領で、StaticPagesのテストに3つの静的ページのテストを追加します (<a class="ref" href="./static-pages?version=4.0#code-pages_controller_spec_title">リスト3.19</a>)。テストを追加するにつれて、似たようなコードが繰り返し使用されていることにご注目ください。このような重複は<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-pretty_rspec">5.3.4</a>で取り除きます。</p>
+<p><a class="ref" href="./static-pages#code-title_test">リスト3.18</a>と同じ要領で、StaticPagesのテストに3つの静的ページのテストを追加します (<a class="ref" href="./static-pages#code-pages_controller_spec_title">リスト3.19</a>)。テストを追加するにつれて、似たようなコードが繰り返し使用されていることにご注目ください。このような重複は<a class="ref" href="/chapters/filling-in-the-layout#sec-pretty_rspec">5.3.4</a>で取り除きます。</p>
 
 <div class="label" id="code-pages_controller_spec_title"></div>
 
@@ -1016,7 +1016,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div></div>
 
 
-<p><a class="ref" href="./static-pages?version=4.0#code-pages_controller_spec_title">リスト 3.19</a>の内容を反映後、以下を実行します。</p>
+<p><a class="ref" href="./static-pages#code-pages_controller_spec_title">リスト 3.19</a>の内容を反映後、以下を実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
 </pre></div>
@@ -1028,7 +1028,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <div class="label" id="sec-passing_title_tests"></div>
 
 
-<h3><a id="sec-3_3_2" href="./static-pages?version=4.0#sec-passing_title_tests" class="heading"><span class="number">3.3.2</span>タイトルのテストをパスさせる</a></h3>
+<h3><a id="sec-3_3_2" href="./static-pages#sec-passing_title_tests" class="heading"><span class="number">3.3.2</span>タイトルのテストをパスさせる</a></h3>
 
 
 <p>今度は、タイトルのテストがパスするようにし、それと同時にWebページを正しく表示させるためのHTMLをすべて追加しましょう。現代的なWebページのマークアップは、基本的に以下のようになっています。</p>
@@ -1046,9 +1046,9 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>上の構造には次のものが含まれています。1) <em>document type</em> (doctype) は使用するHTMLのバージョン (ここでは<a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a>)<sup class="footnote" id="fnref-3_8"><a href="./static-pages?version=4.0#fn-3_8">8</a></sup>) をブラウザに対して宣言します。2) <code>head</code>セクション。ここでは<code>title</code>タグに囲まれた &quot;Greeting&quot; という文字があります。3) <code>body</code>セクション。ここでは<code>p</code> (paragraph) タグを使って、 “Hello, world!” と表示しています。(なお、HTMLではスペースやタブは無視されるので、インデントはあってもなくても大丈夫です。ただし、インデントがある方がHTMLのデータ構造を理解しやすくなります)。</p>
+<p>上の構造には次のものが含まれています。1) <em>document type</em> (doctype) は使用するHTMLのバージョン (ここでは<a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a>)<sup class="footnote" id="fnref-3_8"><a href="./static-pages#fn-3_8">8</a></sup>) をブラウザに対して宣言します。2) <code>head</code>セクション。ここでは<code>title</code>タグに囲まれた &quot;Greeting&quot; という文字があります。3) <code>body</code>セクション。ここでは<code>p</code> (paragraph) タグを使って、 “Hello, world!” と表示しています。(なお、HTMLではスペースやタブは無視されるので、インデントはあってもなくても大丈夫です。ただし、インデントがある方がHTMLのデータ構造を理解しやすくなります)。</p>
 
-<p>上のHTML基本構造をHomeページに適用すると<a class="ref" href="./static-pages?version=4.0#code-home_view_full_html">リスト3.20</a>のようになります。</p>
+<p>上のHTML基本構造をHomeページに適用すると<a class="ref" href="./static-pages#code-home_view_full_html">リスト3.20</a>のようになります。</p>
 
 <div class="label" id="code-home_view_full_html"></div>
 
@@ -1073,14 +1073,14 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div></div>
 
 
-<p><a class="ref" href="./static-pages?version=4.0#code-home_view_full_html">リスト 3.20</a>では<a class="ref" href="./static-pages?version=4.0#code-pages_controller_spec_title">リスト 3.19</a>にある以下のテスト済みのタイトルを使います。</p>
+<p><a class="ref" href="./static-pages#code-home_view_full_html">リスト 3.20</a>では<a class="ref" href="./static-pages#code-pages_controller_spec_title">リスト 3.19</a>にある以下のテスト済みのタイトルを使います。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;title&gt;</span>Ruby on Rails Tutorial Sample App | Home<span class="nt">&lt;/title&gt;</span>
 </pre></div>
 </div>
 
 
-<p>従って、Homeページのテストはパスするはずです。HelpとAboutのテストはまだ赤色 (失敗) の状態ですので、<a class="ref" href="./static-pages?version=4.0#code-help_view_full_html">リスト 3.21</a>と<a class="ref" href="./static-pages?version=4.0#code-about_view_full_html">リスト 3.22</a>のようにコードを追加してテストを緑色 (成功) にします。</p>
+<p>従って、Homeページのテストはパスするはずです。HelpとAboutのテストはまだ赤色 (失敗) の状態ですので、<a class="ref" href="./static-pages#code-help_view_full_html">リスト 3.21</a>と<a class="ref" href="./static-pages#code-about_view_full_html">リスト 3.22</a>のようにコードを追加してテストを緑色 (成功) にします。</p>
 
 <div class="label" id="code-help_view_full_html"></div>
 
@@ -1137,7 +1137,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <div class="label" id="sec-embedded_ruby"></div>
 
 
-<h3><a id="sec-3_3_3" href="./static-pages?version=4.0#sec-embedded_ruby" class="heading"><span class="number">3.3.3</span>埋め込みRuby</a></h3>
+<h3><a id="sec-3_3_3" href="./static-pages#sec-embedded_ruby" class="heading"><span class="number">3.3.3</span>埋め込みRuby</a></h3>
 
 
 <p>この節ではこれまでに、Railsのコントローラとアクションを使って3つの有効なページを生成することでさまざまなことを達成しました。しかしそれらは単純な静的ページであり、またRailsの能力を十分に発揮できていません。しかも、コードが甚だしく重複しています。</p>
@@ -1153,7 +1153,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 
 <p>上の話と一見矛盾するようですが、最初に、現在のほとんど同じページのタイトルを、<em>完全に</em>同じになるようなコードを追加していきます。こうすることで、すべての重複を一気に取り除くことがより簡単になるからです。</p>
 
-<p>重複を取り除くテクニックの一つとして、ビューで<em>埋め込みRuby</em> (Embedded Ruby) を使用できます。Home、Help、Aboutページには可変の要素があるので、Railsの<code>provide</code>関数を使用してタイトルをページごとに変更します。それでは、<code>home.html.erb</code>ビューのコードを、<a class="ref" href="./static-pages?version=4.0#code-home_view_erb_title">リスト3.23</a>のように、タイトルに含まれる&quot;Home&quot;という文字を置き換え、動作を確認しましょう。</p>
+<p>重複を取り除くテクニックの一つとして、ビューで<em>埋め込みRuby</em> (Embedded Ruby) を使用できます。Home、Help、Aboutページには可変の要素があるので、Railsの<code>provide</code>関数を使用してタイトルをページごとに変更します。それでは、<code>home.html.erb</code>ビューのコードを、<a class="ref" href="./static-pages#code-home_view_erb_title">リスト3.23</a>のように、タイトルに含まれる&quot;Home&quot;という文字を置き換え、動作を確認しましょう。</p>
 
 <div class="label" id="code-home_view_erb_title"></div>
 
@@ -1179,14 +1179,14 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div></div>
 
 
-<p><a class="ref" href="./static-pages?version=4.0#code-home_view_erb_title">リスト3.23</a>は、<em>ERb</em>と呼ばれている、Rubyの埋め込みの最初の例です (これで、HTMLビューのファイルの拡張子が<code>.html.erb</code>となっている理由をおわかりいただけたと思います)。 ERbはウェブページに動的な要素を加えるときに使うテンプレートシステムです<sup class="footnote" id="fnref-3_9"><a href="./static-pages?version=4.0#fn-3_9">9</a></sup>。</p>
+<p><a class="ref" href="./static-pages#code-home_view_erb_title">リスト3.23</a>は、<em>ERb</em>と呼ばれている、Rubyの埋め込みの最初の例です (これで、HTMLビューのファイルの拡張子が<code>.html.erb</code>となっている理由をおわかりいただけたと思います)。 ERbはウェブページに動的な要素を加えるときに使うテンプレートシステムです<sup class="footnote" id="fnref-3_9"><a href="./static-pages#fn-3_9">9</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Home&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>上のコードに<tt class="verb">&lt;% ... %&gt;</tt>と書かれていることにご注目ください。Railsはこの中で<code>provide</code>関数を呼び出し、<code>:title</code>というラベルに <code>’Home’</code> という文字列を関連付けます<sup class="footnote" id="fnref-3_10"><a href="./static-pages?version=4.0#fn-3_10">10</a></sup>。次に、以下のコードでRubyの<code>yield</code>関数を使用し、それを<tt class="verb">&lt;%= ... %&gt;</tt>表記 (上と微妙に異なることにご注目ください) で囲むことにより、テンプレートにタイトルを挿入します<sup class="footnote" id="fnref-3_11"><a href="./static-pages?version=4.0#fn-3_11">15</a></sup>。</p>
+<p>上のコードに<tt class="verb">&lt;% ... %&gt;</tt>と書かれていることにご注目ください。Railsはこの中で<code>provide</code>関数を呼び出し、<code>:title</code>というラベルに <code>’Home’</code> という文字列を関連付けます<sup class="footnote" id="fnref-3_10"><a href="./static-pages#fn-3_10">10</a></sup>。次に、以下のコードでRubyの<code>yield</code>関数を使用し、それを<tt class="verb">&lt;%= ... %&gt;</tt>表記 (上と微妙に異なることにご注目ください) で囲むことにより、テンプレートにタイトルを挿入します<sup class="footnote" id="fnref-3_11"><a href="./static-pages#fn-3_11">15</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;title&gt;</span>Ruby on Rails Tutorial Sample App | <span class="cp">&lt;%=</span> <span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
 </pre></div>
@@ -1195,14 +1195,14 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 
 <p>(この2つの埋め込みRubyの違いは次のとおりです。<tt class="verb">&lt;% ... %&gt;</tt>と書くと、中に書かれたコードを<em>単に実行する</em>だけで何も出力しませんが、<tt class="verb">&lt;%= ... %&gt;</tt>と等号を追加して書くと、中のコードが実行され、その結果がテンプレートに<em>挿入され</em>ます)。この変更を行なっても、表示されるページの内容は以前とまったく同じです。タイトルの可変部分がERbによって動的に生成されている点だけが異なります。</p>
 
-<p><a class="ref" href="./static-pages?version=4.0#sec-testing_a_title_change">3.3.1</a>のテストを実行することで、変更が正しく行われたことを確認できます。以下を実行してテストがパスすることを確認しましょう。</p>
+<p><a class="ref" href="./static-pages#sec-testing_a_title_change">3.3.1</a>のテストを実行することで、変更が正しく行われたことを確認できます。以下を実行してテストがパスすることを確認しましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb
 </pre></div>
 </div>
 
 
-<p>続いて、HelpページとAboutページも同様に変更します (<a class="ref" href="./static-pages?version=4.0#code-help_view_erb_title">リスト3.24</a>、<a class="ref" href="./static-pages?version=4.0#code-about_view_erb_title">リスト 3.25</a>)。</p>
+<p>続いて、HelpページとAboutページも同様に変更します (<a class="ref" href="./static-pages#code-help_view_erb_title">リスト3.24</a>、<a class="ref" href="./static-pages#code-about_view_erb_title">リスト 3.25</a>)。</p>
 
 <div class="label" id="code-help_view_erb_title"></div>
 
@@ -1261,7 +1261,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <div class="label" id="sec-layouts"></div>
 
 
-<h3><a id="sec-3_3_4" href="./static-pages?version=4.0#sec-layouts" class="heading"><span class="number">3.3.4</span>レイアウトを使って重複を解消する</a></h3>
+<h3><a id="sec-3_3_4" href="./static-pages#sec-layouts" class="heading"><span class="number">3.3.4</span>レイアウトを使って重複を解消する</a></h3>
 
 
 <p>タイトルの可変部分をERbを使って置き換えたので、現在それぞれのページはだいたい以下のようになっています。</p>
@@ -1282,7 +1282,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 
 <p>これを見ると、唯一の例外である<code>body</code>タグの内容を除き、<em>すべて</em>のページで (titleタグの内容を含め) 同じ構造になっていることがわかります。</p>
 
-<p>Railsには、共通の構造をまとめるための<code>application.html.erb</code>という特別な<em>レイアウト</em>ファイルがあります。このファイル名は<a class="ref" href="./static-pages?version=4.0#sec-testing_a_title_change">3.3.1</a>で変更してあったので、以下のように元に戻します。</p>
+<p>Railsには、共通の構造をまとめるための<code>application.html.erb</code>という特別な<em>レイアウト</em>ファイルがあります。このファイル名は<a class="ref" href="./static-pages#sec-testing_a_title_change">3.3.1</a>で変更してあったので、以下のように元に戻します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> mv foobar app/views/layouts/application.html.erb
 </pre></div>
@@ -1296,7 +1296,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>変更の結果、レイアウトファイルは<a class="ref" href="./static-pages?version=4.0#code-application_layout">リスト3.26</a>のようになります。</p>
+<p>変更の結果、レイアウトファイルは<a class="ref" href="./static-pages#code-application_layout">リスト3.26</a>のようになります。</p>
 
 <div class="label" id="code-application_layout"></div>
 
@@ -1340,9 +1340,9 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>これらのコードは、スタイルシート、JavaScript、<code>csrf_meta_tags</code>メソッドをそれぞれページにインクルードするためのものです。スタイルシートとJavaScriptは、アセットパイプライン (<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-the_asset_pipeline">5.2.1</a>) の一部です。csrf_meta_tagsは、Web攻撃手法のひとつである<a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">クロスサイトリクエストフォージェリー</a> (cross-site request forgery: CSRF)を防ぐために使われるRailsのメソッドです。</p>
+<p>これらのコードは、スタイルシート、JavaScript、<code>csrf_meta_tags</code>メソッドをそれぞれページにインクルードするためのものです。スタイルシートとJavaScriptは、アセットパイプライン (<a class="ref" href="/chapters/filling-in-the-layout#sec-the_asset_pipeline">5.2.1</a>) の一部です。csrf_meta_tagsは、Web攻撃手法のひとつである<a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">クロスサイトリクエストフォージェリー</a> (cross-site request forgery: CSRF)を防ぐために使われるRailsのメソッドです。</p>
 
-<p>もちろん、<a class="ref" href="./static-pages?version=4.0#code-home_view_erb_title">リスト3.23</a>、<a class="ref" href="./static-pages?version=4.0#code-help_view_erb_title">リスト3.24</a>、 <a class="ref" href="./static-pages?version=4.0#code-about_view_erb_title">リスト3.25</a>のビューには、レイアウトと重複するHTMLがまだ残っているので、それらを削除して、内部のコンテンツだけ残します。これにより、 <a class="ref" href="./static-pages?version=4.0#code-home_view_interior">リスト3.27</a>、<a class="ref" href="./static-pages?version=4.0#code-help_view_interior">リスト3.28</a>、<a class="ref" href="./static-pages?version=4.0#code-about_view_interior">リスト 3.29</a>にそれぞれ示したように、ビューのコードが美しく簡潔なものになります。</p>
+<p>もちろん、<a class="ref" href="./static-pages#code-home_view_erb_title">リスト3.23</a>、<a class="ref" href="./static-pages#code-help_view_erb_title">リスト3.24</a>、 <a class="ref" href="./static-pages#code-about_view_erb_title">リスト3.25</a>のビューには、レイアウトと重複するHTMLがまだ残っているので、それらを削除して、内部のコンテンツだけ残します。これにより、 <a class="ref" href="./static-pages#code-home_view_interior">リスト3.27</a>、<a class="ref" href="./static-pages#code-help_view_interior">リスト3.28</a>、<a class="ref" href="./static-pages#code-about_view_interior">リスト 3.29</a>にそれぞれ示したように、ビューのコードが美しく簡潔なものになります。</p>
 
 <div class="label" id="code-home_view_interior"></div>
 
@@ -1410,12 +1410,12 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <div class="label" id="sec-static_pages_conclusion"></div>
 
 
-<h2><a id="sec-3_4" href="./static-pages?version=4.0#sec-static_pages_conclusion" class="heading"><span class="number">3.4</span>最後に</a></h2>
+<h2><a id="sec-3_4" href="./static-pages#sec-static_pages_conclusion" class="heading"><span class="number">3.4</span>最後に</a></h2>
 
 
 <p>傍からは、この章では静的ページを<em>ほぼ</em>静的ページに変えただけで、ほとんど何もしていないように見えることでしょう。しかし、見た目に反して、Railsのコントローラ、アクション、ビューは大きく改善されており、動的なコンテンツを自由にサイトに追加することができるようになりました。皆さんに残されている今後の課題は、このチュートリアルをいかに最後までやりぬくか、それだけであると言ってよいでしょう。</p>
 
-<p>次の章に進む前に、差分をコミットしてマスターブランチにマージしておきましょう。<a class="ref" href="./static-pages?version=4.0#sec-static_pages">3.1</a>では、静的ページの開発のためのGitブランチを用意しました。ここまでの作業内容をコミットしていなければ、きりのよい中継点に達したことがわかるようにコミットします。</p>
+<p>次の章に進む前に、差分をコミットしてマスターブランチにマージしておきましょう。<a class="ref" href="./static-pages#sec-static_pages">3.1</a>では、静的ページの開発のためのGitブランチを用意しました。ここまでの作業内容をコミットしていなければ、きりのよい中継点に達したことがわかるようにコミットします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git add .
 <span class="gp">$</span> git commit -m <span class="s2">&quot;Finish static pages&quot;</span>
@@ -1423,7 +1423,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>次にmasterブランチに移動し、<a class="ref" href="/chapters/beginning?version=4.0#sec-git_commands">1.3.5</a>と同じ要領で差分をマージします。</p>
+<p>次にmasterブランチに移動し、<a class="ref" href="/chapters/beginning#sec-git_commands">1.3.5</a>と同じ要領で差分をマージします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout master
 <span class="gp">$</span> git merge static-pages
@@ -1431,7 +1431,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>このように中継点まで達したら、コードをリモートリポジトリにアップロードしておくとよいでしょう (<a class="ref" href="/chapters/beginning?version=4.0#sec-github">1.3.4</a>の手順に従っていれば、リモートリポジトリはGitHubを使用することになるでしょう)。</p>
+<p>このように中継点まで達したら、コードをリモートリポジトリにアップロードしておくとよいでしょう (<a class="ref" href="/chapters/beginning#sec-github">1.3.4</a>の手順に従っていれば、リモートリポジトリはGitHubを使用することになるでしょう)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git push
 </pre></div>
@@ -1450,18 +1450,18 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <div class="label" id="sec-static_pages_exercises"></div>
 
 
-<h2><a id="sec-3_5" href="./static-pages?version=4.0#sec-static_pages_exercises" class="heading"><span class="number">3.5</span>演習</a></h2>
+<h2><a id="sec-3_5" href="./static-pages#sec-static_pages_exercises" class="heading"><span class="number">3.5</span>演習</a></h2>
 
 
 
 
 <ol>
 
-<li>サンプルアプリケーションにContact (問い合わせ先) ページを作成してください。<a class="ref" href="./static-pages?version=4.0#code-pages_controller_spec_title">リスト3.19</a>に従い、最初に、タイトルが “Ruby on Rails Tutorial Sample App | Contact” となっているかどうかを確認するテストを作成し、それによってURLが/static_pages/contactのページが存在することを確認するテストを作成してください。次に、<a class="ref" href="./static-pages?version=4.0#code-proposed_contact_page">リスト 3.30</a>の内容をContactページに反映し、これらのテストにパスするようにしてください。(この演習の解答は<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#sec-layout_links">5.3</a>の説明に含まれています)。</li>
+<li>サンプルアプリケーションにContact (問い合わせ先) ページを作成してください。<a class="ref" href="./static-pages#code-pages_controller_spec_title">リスト3.19</a>に従い、最初に、タイトルが “Ruby on Rails Tutorial Sample App | Contact” となっているかどうかを確認するテストを作成し、それによってURLが/static_pages/contactのページが存在することを確認するテストを作成してください。次に、<a class="ref" href="./static-pages#code-proposed_contact_page">リスト 3.30</a>の内容をContactページに反映し、これらのテストにパスするようにしてください。(この演習の解答は<a class="ref" href="/chapters/filling-in-the-layout#sec-layout_links">5.3</a>の説明に含まれています)。</li>
 
-<li>お気付きの方もいると思いますが、<a class="ref" href="./static-pages?version=4.0#code-pages_controller_spec_title">リスト3.19</a>に示されている、StaticPagesコントローラのspecテストには若干の重複があります。特に、“Ruby on Rails Tutorial Sample App”というタイトルはそれぞれのタイトルのテストで繰り返し記述されています。引数として渡されたシンボルと同名の変数にブロックの評価値を格納する、RSpecの<code>let</code>関数を使い、<a class="ref" href="./static-pages?version=4.0#code-pages_controller_spec_exercise">リスト 3.31</a>のようにテストを変更し、テストにパスするようにしましょう。<a class="ref" href="./static-pages?version=4.0#code-pages_controller_spec_exercise">リスト3.31</a>では文字列の式展開 (<em>string interpolation</em>) が行われていますが、これについては<a class="ref" href="/chapters/rails-flavored-ruby?version=4.0#sec-strings">4.2.2</a>で紹介します。</li>
+<li>お気付きの方もいると思いますが、<a class="ref" href="./static-pages#code-pages_controller_spec_title">リスト3.19</a>に示されている、StaticPagesコントローラのspecテストには若干の重複があります。特に、“Ruby on Rails Tutorial Sample App”というタイトルはそれぞれのタイトルのテストで繰り返し記述されています。引数として渡されたシンボルと同名の変数にブロックの評価値を格納する、RSpecの<code>let</code>関数を使い、<a class="ref" href="./static-pages#code-pages_controller_spec_exercise">リスト 3.31</a>のようにテストを変更し、テストにパスするようにしましょう。<a class="ref" href="./static-pages#code-pages_controller_spec_exercise">リスト3.31</a>では文字列の式展開 (<em>string interpolation</em>) が行われていますが、これについては<a class="ref" href="/chapters/rails-flavored-ruby#sec-strings">4.2.2</a>で紹介します。</li>
 
-<li><strong>(上級者向け)</strong>「<a href="http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development">Heroku page on using <tt>sqlite3</tt> for development</a>」のページでも説明されているように、互換性の問題によるエラーを最小限にとどめるために、開発/テスト/本番環境で共通のデータベースを使うことは良いことです。「<a href="http://devcenter.heroku.com/articles/local-postgresql">Heroku instructions for local PostgreSQL installation</a>」には、PostgreSQLをローカル環境にインストールする手順が紹介されてます。PostgreSQLを使う場合は、 <a class="ref" href="./static-pages?version=4.0#code-Gemfile_pg_gem">リスト3.32</a>に示したように、<code>Gemfile</code>から<tt>sqlite3</tt> gemを削除し、<tt>pg</tt> gemのみを使うようにしてください。さらに、<code>config/database.yml</code>ファイルと、PostgreSQLをローカル環境で動作させる方法を学ぶ必要があります。以上の情報を元に、PostgreSQLを使用して開発データベースとテストデータベースを作成し、それぞれ設定を行うことが、この課題のゴールです。PostgreSQLデータベースへの接続と内容表示には、<a href="http://inductionapp.com/">Induction</a>というツールが便利です。<strong>警告</strong>: この演習はかなり難易度が高いので、上級者にのみお勧めします。もし行き詰まってしまったら、すぐにこの演習を飛ばして次の作業に進んでください。なお、既に説明したとおり、このチュートリアルで開発しているサンプルアプリケーションは、SQLiteとPostgreSQLのどちらについても完全に互換性があります。</li>
+<li><strong>(上級者向け)</strong>「<a href="http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development">Heroku page on using <tt>sqlite3</tt> for development</a>」のページでも説明されているように、互換性の問題によるエラーを最小限にとどめるために、開発/テスト/本番環境で共通のデータベースを使うことは良いことです。「<a href="http://devcenter.heroku.com/articles/local-postgresql">Heroku instructions for local PostgreSQL installation</a>」には、PostgreSQLをローカル環境にインストールする手順が紹介されてます。PostgreSQLを使う場合は、 <a class="ref" href="./static-pages#code-Gemfile_pg_gem">リスト3.32</a>に示したように、<code>Gemfile</code>から<tt>sqlite3</tt> gemを削除し、<tt>pg</tt> gemのみを使うようにしてください。さらに、<code>config/database.yml</code>ファイルと、PostgreSQLをローカル環境で動作させる方法を学ぶ必要があります。以上の情報を元に、PostgreSQLを使用して開発データベースとテストデータベースを作成し、それぞれ設定を行うことが、この課題のゴールです。PostgreSQLデータベースへの接続と内容表示には、<a href="http://inductionapp.com/">Induction</a>というツールが便利です。<strong>警告</strong>: この演習はかなり難易度が高いので、上級者にのみお勧めします。もし行き詰まってしまったら、すぐにこの演習を飛ばして次の作業に進んでください。なお、既に説明したとおり、このチュートリアルで開発しているサンプルアプリケーションは、SQLiteとPostgreSQLのどちらについても完全に互換性があります。</li>
 
 </ol>
 
@@ -1594,25 +1594,25 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 <div class="label" id="sec-advanced_setup"></div>
 
 
-<h2><a id="sec-3_6" href="./static-pages?version=4.0#sec-advanced_setup" class="heading"><span class="number">3.6</span>高度なセットアップ</a></h2>
+<h2><a id="sec-3_6" href="./static-pages#sec-advanced_setup" class="heading"><span class="number">3.6</span>高度なセットアップ</a></h2>
 
 
-<p><a class="ref" href="./static-pages?version=4.0#sec-first_tests">3.2</a>でも簡単に説明しましたが、<code>rspec</code>コマンドを直接実行することは実用的ではありません。この節では、最初に<code>bundle exec</code>を毎回コマンドに入力せずに済む方法を紹介します。次に、<a class="ref" href="./static-pages?version=4.0#sec-guard">3.6.2</a>でGuardを使用したテストスイートの自動化方法を紹介し、さらに<a class="ref" href="./static-pages?version=4.0#sec-spork">3.6.3</a>でSporkを使用したテストスイートの自動化方法も紹介します。最後に、Sublime Text上で直接テストを実行する方法を紹介します。このテクニックは、特にSporkと併用すると非常に便利です。</p>
+<p><a class="ref" href="./static-pages#sec-first_tests">3.2</a>でも簡単に説明しましたが、<code>rspec</code>コマンドを直接実行することは実用的ではありません。この節では、最初に<code>bundle exec</code>を毎回コマンドに入力せずに済む方法を紹介します。次に、<a class="ref" href="./static-pages#sec-guard">3.6.2</a>でGuardを使用したテストスイートの自動化方法を紹介し、さらに<a class="ref" href="./static-pages#sec-spork">3.6.3</a>でSporkを使用したテストスイートの自動化方法も紹介します。最後に、Sublime Text上で直接テストを実行する方法を紹介します。このテクニックは、特にSporkと併用すると非常に便利です。</p>
 
 <p>この節は、ほとんどが上級者向けの内容になっており、この節を飛ばしても次の章以降には何の影響もありません。この節の内容は先進的ですが、その分、本書の他の内容よりも陳腐化しやすいので、ご利用のシステムでこの節の例が完全に動作するとは限りません。この点をご了承願います。完全に動作させるには、Googleで最新情報を検索して調べることが必要になるでしょう。</p>
 
 <div class="label" id="sec-eliminating_bundle_exec"></div>
 
 
-<h3><a id="sec-3_6_1" href="./static-pages?version=4.0#sec-eliminating_bundle_exec" class="heading"><span class="number">3.6.1</span><tt>bundle exec</tt>を追放する</a></h3>
+<h3><a id="sec-3_6_1" href="./static-pages#sec-eliminating_bundle_exec" class="heading"><span class="number">3.6.1</span><tt>bundle exec</tt>を追放する</a></h3>
 
 
-<p><a class="ref" href="./static-pages?version=4.0#sec-TDD">3.2.1</a>でも簡単に紹介しましたが、<code>rake</code>や<code>rspec</code>コマンドを実行するときには、現在の環境に依存するgemを<code>Gemfile</code>から読み込んでプログラムを実行するために、<code>bundle exec</code>をコマンドの前に追加する必要があります (技術的な理由により、<code>rails</code>コマンドだけは例外です)。この節の作業はかなり厄介です。また、bundle execの入力を省略する方法を2とおりの方法で説明します。</p>
+<p><a class="ref" href="./static-pages#sec-TDD">3.2.1</a>でも簡単に紹介しましたが、<code>rake</code>や<code>rspec</code>コマンドを実行するときには、現在の環境に依存するgemを<code>Gemfile</code>から読み込んでプログラムを実行するために、<code>bundle exec</code>をコマンドの前に追加する必要があります (技術的な理由により、<code>rails</code>コマンドだけは例外です)。この節の作業はかなり厄介です。また、bundle execの入力を省略する方法を2とおりの方法で説明します。</p>
 
 <div class="label" id="sec-rvm_bundler_integration"></div>
 
 
-<h4><a id="sec-3_6_1_1" href="./static-pages?version=4.0#sec-rvm_bundler_integration" class="heading">RVM Bundler の統合</a></h4>
+<h4><a id="sec-3_6_1_1" href="./static-pages#sec-rvm_bundler_integration" class="heading">RVM Bundler の統合</a></h4>
 
 
 <p>最初に、お勧めの方法としてRVMを使う方法を紹介します。RVMはバージョン1.11以降からBundlerとの統合が含まれています。最初に、以下に従ってRVMのバージョンを最新にします。</p>
@@ -1634,7 +1634,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 
 <p><code>bundle exec</code>を省略することができました。 このとおりにできた場合は、この節の残りはスキップしてください。</p>
 
-<p>新しいバージョンのRVMを使うことができない場合は、Ruby Version Managerがローカル環境で自動的に設定する適切な実行ファイルがあれば、<a href="http://rvm.io/integration/bundler/">RVM Bundler integration</a><sup class="footnote" id="fnref-3_12"><a href="./static-pages?version=4.0#fn-3_12">12</a></sup>で<code>bundle exec</code>を省略することができます。一見奇妙ですが、実行方法は簡単です。最初に以下の2つのコマンドを実行します。</p>
+<p>新しいバージョンのRVMを使うことができない場合は、Ruby Version Managerがローカル環境で自動的に設定する適切な実行ファイルがあれば、<a href="http://rvm.io/integration/bundler/">RVM Bundler integration</a><sup class="footnote" id="fnref-3_12"><a href="./static-pages#fn-3_12">12</a></sup>で<code>bundle exec</code>を省略することができます。一見奇妙ですが、実行方法は簡単です。最初に以下の2つのコマンドを実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm get head <span class="o">&amp;&amp;</span> rvm reload
 <span class="gp">$</span> chmod +x <span class="nv">$rvm_path</span>/hooks/after_cd_bundler
@@ -1650,7 +1650,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>魔法のように見えますが、これらのコマンドでRVMとBundlerを統合できます。そして、<code>rake</code>や<code>rspec</code>などのコマンドを適切な環境で自動的に実行してくれます。<code>bundler_stubs</code>ディレクトリを<code>.gitignore</code>ファイルに追加します (<a class="ref" href="./static-pages?version=4.0#code-bundler_stubs_gitignore">リスト3.33</a>)。これらのファイルはローカル環境でしか使用しないためです。</p>
+<p>魔法のように見えますが、これらのコマンドでRVMとBundlerを統合できます。そして、<code>rake</code>や<code>rspec</code>などのコマンドを適切な環境で自動的に実行してくれます。<code>bundler_stubs</code>ディレクトリを<code>.gitignore</code>ファイルに追加します (<a class="ref" href="./static-pages#code-bundler_stubs_gitignore">リスト3.33</a>)。これらのファイルはローカル環境でしか使用しないためです。</p>
 
 <div class="label" id="code-bundler_stubs_gitignore"></div>
 
@@ -1680,7 +1680,7 @@ bundler_stubs/
 </div></div>
 
 
-<p><a class="ref" href="./static-pages?version=4.0#sec-guard">3.6.2</a>の<code>guard</code>など、他の実行ファイルを追加する場合は、<code>bundle install</code>コマンドを再度実行してください。</p>
+<p><a class="ref" href="./static-pages#sec-guard">3.6.2</a>の<code>guard</code>など、他の実行ファイルを追加する場合は、<code>bundle install</code>コマンドを再度実行してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install --binstubs<span class="o">=</span>./bundler_stubs
 </pre></div>
@@ -1692,7 +1692,7 @@ bundler_stubs/
 <div class="label" id="sec-binstubs"></div>
 
 
-<h4><a id="sec-3_6_1_2" href="./static-pages?version=4.0#sec-binstubs" class="heading">binstubオプション</a></h4>
+<h4><a id="sec-3_6_1_2" href="./static-pages#sec-binstubs" class="heading">binstubオプション</a></h4>
 
 
 <p>RVMを使用していない場合でも、<code>bundle exec</code>を省略する方法があります。Bundlerは、関連するバイナリを以下のように作成することができます。</p>
@@ -1718,19 +1718,19 @@ bundler_stubs/
 </div>
 
 
-<p><a class="ref" href="./static-pages?version=4.0#sec-guard">3.6.2</a>の<code>guard</code>など、他の実行ファイルを追加する場合は、<tt class="verb">bundle</tt> <tt class="verb">--binstubs</tt>コマンドを再実行してください。</p>
+<p><a class="ref" href="./static-pages#sec-guard">3.6.2</a>の<code>guard</code>など、他の実行ファイルを追加する場合は、<tt class="verb">bundle</tt> <tt class="verb">--binstubs</tt>コマンドを再実行してください。</p>
 
 <p>本書の以後の章では、この節をスキップする方に配慮して明示的に<code>bundle exec</code>を与えてコマンドを実行するようにしています。もちろん、ご利用のシステムが適切に設定されていれば、bundle execを省略しても構いません。</p>
 
 <div class="label" id="sec-guard"></div>
 
 
-<h3><a id="sec-3_6_2" href="./static-pages?version=4.0#sec-guard" class="heading"><span class="number">3.6.2</span>Guardによるテストの自動化</a></h3>
+<h3><a id="sec-3_6_2" href="./static-pages#sec-guard" class="heading"><span class="number">3.6.2</span>Guardによるテストの自動化</a></h3>
 
 
-<p><code>rspec</code>コマンドは、テストのたびにコマンドラインに移動して手動でコマンドを実行しなければならない点が面倒です (もうひとつ、テストスイートの起動が遅いという問題がありますが、これは<a class="ref" href="./static-pages?version=4.0#sec-spork">3.6.3</a>で対応します)。この節では、テストを自動化する<a href="https://github.com/guard/guard">Guard</a>というgemの使い方を紹介します。Guardはファイルシステムの変更を監視し、たとえば<code>static_pages_spec.rb</code>ファイルを変更すると自動的にテストを実行します。さらに、<code>home.html.erb</code>ファイルが変更されると <code>static_pages_spec.rb</code>が自動的に実行されるようにGuardを設定することもできます。</p>
+<p><code>rspec</code>コマンドは、テストのたびにコマンドラインに移動して手動でコマンドを実行しなければならない点が面倒です (もうひとつ、テストスイートの起動が遅いという問題がありますが、これは<a class="ref" href="./static-pages#sec-spork">3.6.3</a>で対応します)。この節では、テストを自動化する<a href="https://github.com/guard/guard">Guard</a>というgemの使い方を紹介します。Guardはファイルシステムの変更を監視し、たとえば<code>static_pages_spec.rb</code>ファイルを変更すると自動的にテストを実行します。さらに、<code>home.html.erb</code>ファイルが変更されると <code>static_pages_spec.rb</code>が自動的に実行されるようにGuardを設定することもできます。</p>
 
-<p>最初に、<a class="ref" href="./static-pages?version=4.0#code-gemfile_guard">リスト3.34</a>のように、<code>guard-rspec</code>を<code>Gemfile</code>に追加します。</p>
+<p>最初に、<a class="ref" href="./static-pages#code-gemfile_guard">リスト3.34</a>のように、<code>guard-rspec</code>を<code>Gemfile</code>に追加します。</p>
 
 <div class="label" id="code-gemfile_guard"></div>
 
@@ -1801,7 +1801,7 @@ bundler_stubs/
 </div>
 
 
-<p>結合テストとビューが更新されたら自動的に適切なテストが実行されるように、生成された<code>Guardfile</code>を編集します (<a class="ref" href="./static-pages?version=4.0#code-guardfile">リスト3.35</a>)。</p>
+<p>結合テストとビューが更新されたら自動的に適切なテストが実行されるように、生成された<code>Guardfile</code>を編集します (<a class="ref" href="./static-pages#code-guardfile">リスト3.35</a>)。</p>
 
 <div class="label" id="code-guardfile"></div>
 
@@ -1853,7 +1853,7 @@ bundler_stubs/
 </div>
 
 
-<p><code>bundle exec</code>を省略するには、<a class="ref" href="./static-pages?version=4.0#sec-eliminating_bundle_exec">3.6.1</a>の手順を再度実行してください。</p>
+<p><code>bundle exec</code>を省略するには、<a class="ref" href="./static-pages#sec-eliminating_bundle_exec">3.6.1</a>の手順を再度実行してください。</p>
 
 <p><code>spec/routing</code>ディレクトリが見つからないというエラーが表示された場合は、以下のように空のディレクトリを作ることで回避できます。</p>
 
@@ -1867,12 +1867,12 @@ bundler_stubs/
 <div class="label" id="sec-spork"></div>
 
 
-<h3><a id="sec-3_6_3" href="./static-pages?version=4.0#sec-spork" class="heading"><span class="number">3.6.3</span>Spork を使ったテストの高速化</a></h3>
+<h3><a id="sec-3_6_3" href="./static-pages#sec-spork" class="heading"><span class="number">3.6.3</span>Spork を使ったテストの高速化</a></h3>
 
 
-<p><code>bundle exec rspec</code>を実行すると、テストが開始されるまでしばらく時間がかかることにお気付きかもしれません。テストがいったん開始されればすぐに終了します。これは、RSpecを実行するたびにRailsの環境全体を読み込み直す必要があるためです。<a href="http://github.com/sporkrb/spork">Sporkテストサーバー</a><sup class="footnote" id="fnref-3_13"><a href="./static-pages?version=4.0#fn-3_13">13</a></sup>はこの問題を解決するためのものです。Sporkは環境を<em>1回だけ</em>読み込み、今後実行するテストのためのプロセスを管理します。Sporkは<a class="ref" href="./static-pages?version=4.0#sec-guard">3.6.2</a>のGuardと組み合わせるとさらに便利です。</p>
+<p><code>bundle exec rspec</code>を実行すると、テストが開始されるまでしばらく時間がかかることにお気付きかもしれません。テストがいったん開始されればすぐに終了します。これは、RSpecを実行するたびにRailsの環境全体を読み込み直す必要があるためです。<a href="http://github.com/sporkrb/spork">Sporkテストサーバー</a><sup class="footnote" id="fnref-3_13"><a href="./static-pages#fn-3_13">13</a></sup>はこの問題を解決するためのものです。Sporkは環境を<em>1回だけ</em>読み込み、今後実行するテストのためのプロセスを管理します。Sporkは<a class="ref" href="./static-pages#sec-guard">3.6.2</a>のGuardと組み合わせるとさらに便利です。</p>
 
-<p>最初に、<code>spork</code>に依存するgemを<code>Gemfile</code>に追加します (<a class="ref" href="./static-pages?version=4.0#code-gemfile_spork">リスト3.36</a>)。</p>
+<p>最初に、<code>spork</code>に依存するgemを<code>Gemfile</code>に追加します (<a class="ref" href="./static-pages#code-gemfile_spork">リスト3.36</a>)。</p>
 
 <div class="label" id="code-gemfile_spork"></div>
 
@@ -1914,7 +1914,7 @@ bundler_stubs/
 </div>
 
 
-<p>そして、環境の読み込みを一回で済ますため、<code>spec/spec_helper.rb</code>の中で環境を<em>prefork</em>のブロックで読み込むように、RSpecの設定を変更する必要があります (<a class="ref" href="./static-pages?version=4.0#code-spork_spec_helper">リスト 3.37</a>)。</p>
+<p>そして、環境の読み込みを一回で済ますため、<code>spec/spec_helper.rb</code>の中で環境を<em>prefork</em>のブロックで読み込むように、RSpecの設定を変更する必要があります (<a class="ref" href="./static-pages#code-spork_spec_helper">リスト 3.37</a>)。</p>
 
 <div class="label" id="code-spork_spec_helper"></div>
 
@@ -2003,7 +2003,7 @@ bundler_stubs/
 </div>
 
 
-<p><code>bundle exec</code>を省略するには、<a class="ref" href="./static-pages?version=4.0#sec-eliminating_bundle_exec">3.6.1</a>の手順を再度実行してください。別のターミナルウィンドウでは、<tt class="verb">--drb</tt> (“distributed Ruby” の略) オプションを追加してテストスイートを実行すると、環境読み込みのオーバーヘッドが大幅に減少していることが確認できます。</p>
+<p><code>bundle exec</code>を省略するには、<a class="ref" href="./static-pages#sec-eliminating_bundle_exec">3.6.1</a>の手順を再度実行してください。別のターミナルウィンドウでは、<tt class="verb">--drb</tt> (“distributed Ruby” の略) オプションを追加してテストスイートを実行すると、環境読み込みのオーバーヘッドが大幅に減少していることが確認できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">time </span>bundle <span class="nb">exec </span>rspec spec/requests/static_pages_spec.rb --drb
 <span class="go">......</span>
@@ -2017,7 +2017,7 @@ bundler_stubs/
 </div>
 
 
-<p><code>rspec</code>を実行するたびに<tt class="verb">--drb</tt>オプションを追加するのは不便なので、アプリケーションのルートディレクトリにある<code>.rspec</code>ファイルに<a class="ref" href="./static-pages?version=4.0#code-rspec_drb">リスト3.38</a>の内容を記載することをお勧めします。</p>
+<p><code>rspec</code>を実行するたびに<tt class="verb">--drb</tt>オプションを追加するのは不便なので、アプリケーションのルートディレクトリにある<code>.rspec</code>ファイルに<a class="ref" href="./static-pages#code-rspec_drb">リスト3.38</a>の内容を記載することをお勧めします。</p>
 
 <div class="label" id="code-rspec_drb"></div>
 
@@ -2045,7 +2045,7 @@ bundler_stubs/
 <div class="label" id="sec-spork_and_guard"></div>
 
 
-<h4><a id="sec-3_6_3_1" href="./static-pages?version=4.0#sec-spork_and_guard" class="heading">GuardにSporkを導入する</a></h4>
+<h4><a id="sec-3_6_3_1" href="./static-pages#sec-spork_and_guard" class="heading">GuardにSporkを導入する</a></h4>
 
 
 <p>SporkはGuardと併用すると非常に便利です。設定を行うと、以下のようにコマンド上で併用することができます。</p>
@@ -2055,7 +2055,7 @@ bundler_stubs/
 </div>
 
 
-<p>さらに、<a class="ref" href="./static-pages?version=4.0#code-spork_guardfile">リスト3.39</a>に示したように<code>Guardfile</code>を変更する必要があります。</p>
+<p>さらに、<a class="ref" href="./static-pages#code-spork_guardfile">リスト3.39</a>に示したように<code>Guardfile</code>を変更する必要があります。</p>
 
 <div class="label" id="code-spork_guardfile"></div>
 
@@ -2086,7 +2086,7 @@ bundler_stubs/
 </div></div>
 
 
-<p><code>guard</code>の変数に<tt class="verb">:cli =&gt; --drb</tt>が追加されました。この設定により、Guardがコマンドラインインタフェース (CLI) からSporkサーバーを使うようになります。上の設定には、<a class="ref" href="/chapters/filling-in-the-layout?version=4.0#top">第5章</a>から使用する<code>spec/support/</code>ディレクトリを監視するコマンドも追加してあります。</p>
+<p><code>guard</code>の変数に<tt class="verb">:cli =&gt; --drb</tt>が追加されました。この設定により、Guardがコマンドラインインタフェース (CLI) からSporkサーバーを使うようになります。上の設定には、<a class="ref" href="/chapters/filling-in-the-layout#top">第5章</a>から使用する<code>spec/support/</code>ディレクトリを監視するコマンドも追加してあります。</p>
 
 <p>設定が完了したら、以下の<code>guard</code>コマンドでGuardとSporkを同時に起動します。</p>
 
@@ -2097,15 +2097,15 @@ bundler_stubs/
 
 <p>Guardは自動的にSporkサーバーを起動するため、テスト実行時のオーバヘッドを劇的に削減できます。</p>
 
-<p>Guard、Spork、テスト通知機能 (オプション) を使用して便利なテスト環境を構築することで、テスト駆動開発がやみつきになることでしょう。詳細については、<a href="http://railstutorial.org/screencasts">Railsチュートリアルのスクリーンキャスト</a><sup class="footnote" id="fnref-3_14"><a href="./static-pages?version=4.0#fn-3_14">14</a></sup>を参照してください。</p>
+<p>Guard、Spork、テスト通知機能 (オプション) を使用して便利なテスト環境を構築することで、テスト駆動開発がやみつきになることでしょう。詳細については、<a href="./screencasts">Railsチュートリアルのスクリーンキャスト</a><sup class="footnote" id="fnref-3_14"><a href="./static-pages#fn-3_14">14</a></sup>を参照してください。</p>
 
 <div class="label" id="sec-tests_inside_sublime_text"></div>
 
 
-<h3><a id="sec-3_6_4" href="./static-pages?version=4.0#sec-tests_inside_sublime_text" class="heading"><span class="number">3.6.4</span>Sublime Text上でテストする</a></h3>
+<h3><a id="sec-3_6_4" href="./static-pages#sec-tests_inside_sublime_text" class="heading"><span class="number">3.6.4</span>Sublime Text上でテストする</a></h3>
 
 
-<p>Sublime Textを使用していれば、エディタの中から直接テストを実行できる強力なヘルパーコマンドを利用できます。このテスト方法は著者のお気に入りです。最終的に大規模にスケールアップする可能性のある少数のテストを、長期間に渡って実施したいような場合に非常に有用であるためです。このコマンドを利用するには、<a href="https://github.com/maltize/sublime-text-2-ruby-tests">Sublime Text 2 Ruby Tests</a><sup class="footnote" id="fnref-3_15"><a href="./static-pages?version=4.0#fn-3_15">15</a></sup>に記載されている、自分の環境向けの説明に従って設定を行なってください。著者の環境 (Macintosh OS X) の場合、以下のようにコマンドをインストールします。</p>
+<p>Sublime Textを使用していれば、エディタの中から直接テストを実行できる強力なヘルパーコマンドを利用できます。このテスト方法は著者のお気に入りです。最終的に大規模にスケールアップする可能性のある少数のテストを、長期間に渡って実施したいような場合に非常に有用であるためです。このコマンドを利用するには、<a href="https://github.com/maltize/sublime-text-2-ruby-tests">Sublime Text 2 Ruby Tests</a><sup class="footnote" id="fnref-3_15"><a href="./static-pages#fn-3_15">15</a></sup>に記載されている、自分の環境向けの説明に従って設定を行なってください。著者の環境 (Macintosh OS X) の場合、以下のようにコマンドをインストールします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/Library/Application<span class="se">\ </span>Support/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2/Packages
 <span class="gp">$</span> git clone https://github.com/maltize/sublime-text-2-ruby-tests.git RubyTest
@@ -2113,7 +2113,7 @@ bundler_stubs/
 </div>
 
 
-<p>参考: <a href="https://github.com/mhartl/rails_tutorial_sublime_text">Rails Tutorial Sublime Text</a><sup class="footnote" id="fnref-3_16"><a href="./static-pages?version=4.0#fn-3_16">16</a></sup>にある説明に従って設定することもできます。</p>
+<p>参考: <a href="https://github.com/mhartl/rails_tutorial_sublime_text">Rails Tutorial Sublime Text</a><sup class="footnote" id="fnref-3_16"><a href="./static-pages#fn-3_16">16</a></sup>にある説明に従って設定することもできます。</p>
 
 <p>Sublime Textを再起動すると、以下のようなコマンドがRubyTestパッケージによって提供されます。</p>
 
@@ -2139,30 +2139,30 @@ bundler_stubs/
 
 <p>Sublime Textの中からテストが実行できることはもちろん便利ですが、場合によってはGuardの方が便利なこともあると思います。上の手順は、著者が個人的に常用しているテスト駆動開発のテクニックとしてご紹介しました。</p>
 
-<div class="navigation">  <a class="prev_page" href="/chapters/a-demo-app?version=4.0#top">
-</a><a class="prev_page" href="/chapters/a-demo-app?version=4.0#top">    « <span class="number">第2章</span>デモアプリケーション
-</a><a class="prev_page" href="/chapters/a-demo-app?version=4.0#top">  </a>
-  <a class="next_page" href="/chapters/rails-flavored-ruby?version=4.0#top">
-</a><a class="next_page" href="/chapters/rails-flavored-ruby?version=4.0#top">    <span class="number">第4章</span>Rails風味のRuby »
-</a><a class="next_page" href="/chapters/rails-flavored-ruby?version=4.0#top">  </a>
+<div class="navigation">  <a class="prev_page" href="/chapters/a-demo-app#top">
+</a><a class="prev_page" href="/chapters/a-demo-app#top">    « <span class="number">第2章</span>デモアプリケーション
+</a><a class="prev_page" href="/chapters/a-demo-app#top">  </a>
+  <a class="next_page" href="/chapters/rails-flavored-ruby#top">
+</a><a class="next_page" href="/chapters/rails-flavored-ruby#top">    <span class="number">第4章</span>Rails風味のRuby »
+</a><a class="next_page" href="/chapters/rails-flavored-ruby#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-3_1">Capybaraは<em>Webrat</em>の後続プロジェクトであり、世界<a href="http://en.wikipedia.org/wiki/Capybara">最大の齧歯類</a>が名前の由来です。<a class="arrow" href="./static-pages?version=4.0#fnref-3_1">↑</a></li>
-<li id="fn-3_2">なお、<code>install</code>は省略可能です。実は、<code>bundle</code>コマンドは<code>bundle install</code>のエイリアスでもあります。<a class="arrow" href="./static-pages?version=4.0#fnref-3_2">↑</a></li>
-<li id="fn-3_3">システムによっては、<a class="ref" href="/chapters/beginning?version=4.0#code-gitignore">リスト1.7</a>の.gitignoreを参考にして、さらに便利な設定にすることもできます。<a class="arrow" href="./static-pages?version=4.0#fnref-3_3">↑</a></li>
-<li id="fn-3_4">https://github.com/railstutorial/sample_app_rails_4 <a class="arrow" href="./static-pages?version=4.0#fnref-3_4">↑</a></li>
-<li id="fn-3_5">ここで静的なページを作るために採用した方法は、おそらく最もシンプルな方法です。ただし他にも方法はあります。最適な方法は状況によって異なり、たとえば<em>きわめて多数</em>の静的なページを1つのStaticPagesコントローラだけまかなおうとすると重荷になる可能性があります。今回はいくつかの静的なページを作るだけなので、重荷にはなりません。<a class="arrow" href="./static-pages?version=4.0#fnref-3_5">↑</a></li>
-<li id="fn-3_6">毎回<code>bundle exec</code>を追加するのは面倒ですが、<a class="ref" href="./static-pages?version=4.0#sec-advanced_setup">3.6</a>のオプションを使うと省略できます。<a class="arrow" href="./static-pages?version=4.0#fnref-3_6">↑</a></li>
-<li id="fn-3_7">筆者は普段、ターミナルやテキストエディタの背景は黒色にしていますが、明るい色の背景の方がスクリーンショットの見栄えが良いので、(一時的に) 明るい背景を使用しています。<a class="arrow" href="./static-pages?version=4.0#fnref-3_7">↑</a></li>
-<li id="fn-3_8">HTMLは常に変化しています。doctypeを明示的に宣言することで、今後もブラウザが正しくページを描画してくれる可能性が高まります。きわめてシンプルなdoctype宣言である<code>&lt;!DOCTYPE html&gt;</code>は、最新の標準HTML (HTML5) であることを示しています。<a class="arrow" href="./static-pages?version=4.0#fnref-3_8">↑</a></li>
-<li id="fn-3_9">2番目によく使われている<a href="http://haml-lang.com/">Haml</a>というテンプレートシステムもあります。Hamlは個人的に非常に気に入っているのですが、初心者向けのチュートリアルで使うには<em>やや</em>標準から外れています。<a class="arrow" href="./static-pages?version=4.0#fnref-3_9">↑</a></li>
-<li id="fn-3_10">Railsでの開発経験者であれば、この時点で<code>content_for</code>の使用を検討すると思いますが、残念ながらAsset Pipelineと併用すると正常に動作しないことがあります。<code>provide</code>関数はcontent_forの代替です。<a class="arrow" href="./static-pages?version=4.0#fnref-3_10">↑</a></li>
-<li id="fn-3_11">Rubyを勉強したことのある方であれば、Railsはブロックの内容を<em>yield</em>していると推測することでしょう。そして、その推測はおそらく正しいでしょう。しかし、Rails開発のためにこれらの詳細を知る必要はありません。<a class="arrow" href="./static-pages?version=4.0#fnref-3_11">↑</a></li>
-<li id="fn-3_12">http://rvm.io/integration/bundler/ <a class="arrow" href="./static-pages?version=4.0#fnref-3_12">↑</a></li>
-<li id="fn-3_13"><em>spork</em>はspoon-forkを組み合わせた造語です。このプロジェクト名は、<a href="http://en.wikipedia.org/wiki/POSIX">POSIX</a>の<a href="http://en.wikipedia.org/wiki/Fork_(software_development)">fork</a>におけるSporkの用法をもじったものです。<a class="arrow" href="./static-pages?version=4.0#fnref-3_13">↑</a></li>
-<li id="fn-3_14">http://railstutorial.org/screencasts <a class="arrow" href="./static-pages?version=4.0#fnref-3_14">↑</a></li>
-<li id="fn-3_15">https://github.com/maltize/sublime-text-2-ruby-tests <a class="arrow" href="./static-pages?version=4.0#fnref-3_15">↑</a></li>
-<li id="fn-3_16">https://github.com/mhartl/rails_tutorial_sublime_text <a class="arrow" href="./static-pages?version=4.0#fnref-3_16">↑</a></li>
+<li id="fn-3_1">Capybaraは<em>Webrat</em>の後続プロジェクトであり、世界<a href="http://en.wikipedia.org/wiki/Capybara">最大の齧歯類</a>が名前の由来です。<a class="arrow" href="./static-pages#fnref-3_1">↑</a></li>
+<li id="fn-3_2">なお、<code>install</code>は省略可能です。実は、<code>bundle</code>コマンドは<code>bundle install</code>のエイリアスでもあります。<a class="arrow" href="./static-pages#fnref-3_2">↑</a></li>
+<li id="fn-3_3">システムによっては、<a class="ref" href="/chapters/beginning#code-gitignore">リスト1.7</a>の.gitignoreを参考にして、さらに便利な設定にすることもできます。<a class="arrow" href="./static-pages#fnref-3_3">↑</a></li>
+<li id="fn-3_4">https://github.com/railstutorial/sample_app_rails_4 <a class="arrow" href="./static-pages#fnref-3_4">↑</a></li>
+<li id="fn-3_5">ここで静的なページを作るために採用した方法は、おそらく最もシンプルな方法です。ただし他にも方法はあります。最適な方法は状況によって異なり、たとえば<em>きわめて多数</em>の静的なページを1つのStaticPagesコントローラだけまかなおうとすると重荷になる可能性があります。今回はいくつかの静的なページを作るだけなので、重荷にはなりません。<a class="arrow" href="./static-pages#fnref-3_5">↑</a></li>
+<li id="fn-3_6">毎回<code>bundle exec</code>を追加するのは面倒ですが、<a class="ref" href="./static-pages#sec-advanced_setup">3.6</a>のオプションを使うと省略できます。<a class="arrow" href="./static-pages#fnref-3_6">↑</a></li>
+<li id="fn-3_7">筆者は普段、ターミナルやテキストエディタの背景は黒色にしていますが、明るい色の背景の方がスクリーンショットの見栄えが良いので、(一時的に) 明るい背景を使用しています。<a class="arrow" href="./static-pages#fnref-3_7">↑</a></li>
+<li id="fn-3_8">HTMLは常に変化しています。doctypeを明示的に宣言することで、今後もブラウザが正しくページを描画してくれる可能性が高まります。きわめてシンプルなdoctype宣言である<code>&lt;!DOCTYPE html&gt;</code>は、最新の標準HTML (HTML5) であることを示しています。<a class="arrow" href="./static-pages#fnref-3_8">↑</a></li>
+<li id="fn-3_9">2番目によく使われている<a href="http://haml-lang.com/">Haml</a>というテンプレートシステムもあります。Hamlは個人的に非常に気に入っているのですが、初心者向けのチュートリアルで使うには<em>やや</em>標準から外れています。<a class="arrow" href="./static-pages#fnref-3_9">↑</a></li>
+<li id="fn-3_10">Railsでの開発経験者であれば、この時点で<code>content_for</code>の使用を検討すると思いますが、残念ながらAsset Pipelineと併用すると正常に動作しないことがあります。<code>provide</code>関数はcontent_forの代替です。<a class="arrow" href="./static-pages#fnref-3_10">↑</a></li>
+<li id="fn-3_11">Rubyを勉強したことのある方であれば、Railsはブロックの内容を<em>yield</em>していると推測することでしょう。そして、その推測はおそらく正しいでしょう。しかし、Rails開発のためにこれらの詳細を知る必要はありません。<a class="arrow" href="./static-pages#fnref-3_11">↑</a></li>
+<li id="fn-3_12">http://rvm.io/integration/bundler/ <a class="arrow" href="./static-pages#fnref-3_12">↑</a></li>
+<li id="fn-3_13"><em>spork</em>はspoon-forkを組み合わせた造語です。このプロジェクト名は、<a href="http://en.wikipedia.org/wiki/POSIX">POSIX</a>の<a href="http://en.wikipedia.org/wiki/Fork_(software_development)">fork</a>におけるSporkの用法をもじったものです。<a class="arrow" href="./static-pages#fnref-3_13">↑</a></li>
+<li id="fn-3_14">http://railstutorial.org/screencasts <a class="arrow" href="./static-pages#fnref-3_14">↑</a></li>
+<li id="fn-3_15">https://github.com/maltize/sublime-text-2-ruby-tests <a class="arrow" href="./static-pages#fnref-3_15">↑</a></li>
+<li id="fn-3_16">https://github.com/mhartl/rails_tutorial_sublime_text <a class="arrow" href="./static-pages#fnref-3_16">↑</a></li>
 </ol>
 </div>
 

@@ -49,7 +49,7 @@
 <div class="label" id="fig-signup_mockup_preview"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図6.1</span><span class="description">ユーザー登録ページのモックアップ。<a href="http://railstutorial.org/images/figures/signup_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図6.1</span><span class="description">ユーザー登録ページのモックアップ。<a href="../images/figures/signup_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
 <p>Railsでは、データモデルで使用するデフォルトのデータ構造のことを<em>モデル</em>と呼びます (<a class="ref" href="/chapters/beginning.html#sec-mvc">1.2.6</a>にあるMVCのMのことです)。Railsでは、データを永続化するデフォルトの解決策として、<em>データベース</em>を使用してデータを長期間保存します。また、データベースとやりとりするデフォルトのRailsライブラリは<em>Active Record</em>と呼ばれます<sup class="footnote" id="fnref-6_1"><a href="./modeling-users.html#fn-6_1">1</a></sup>。Active Recordは、データオブジェクトの作成/保存/検索のためのメソッドを持っています。これらのメソッドを使用するのに、<a href="http://en.wikipedia.org/wiki/Relational_database">リレーショナルデータベース</a>で使うSQL (Structured Query Language)<sup class="footnote" id="fnref-6_2"><a href="./modeling-users.html#fn-6_2">2</a></sup>を意識する必要はありません。さらに、Railsには<em>マイグレーション</em>という機能があります。データの定義をRubyで記述することができ、SQLのDDL (Data Definition Language)を新たに学ぶ必要がありません。Railsは、データストアの詳細からほぼ完全に私たちを切り離してくれます。本書では、SQLiteを開発 (development) 環境で使い、またPostgreSQLを (Herokuでの) 開発環境で使います (<a class="ref" href="/chapters/beginning.html#sec-deploying">1.4</a>)。Railsは、本番 (production) アプリケーションですら、データの保存方法の詳細についてほとんど考える必要がないくらいよくできています。</p>
@@ -145,7 +145,7 @@
 <div class="label" id="fig-sqlite_database_browser"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/sqlite_database_browser.png" alt="sqlite_database_browser" /></span></div><div class="caption"><span class="header">図6.3</span><span class="description"><a href="http://sqlitebrowser.sourceforge.net/">SQLite Database Browser</a>と作成した<code>users</code>テーブル。<a href="http://railstutorial.org/images/figures/sqlite_database_browser-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/sqlite_database_browser.png" alt="sqlite_database_browser" /></span></div><div class="caption"><span class="header">図6.3</span><span class="description"><a href="http://sqlitebrowser.sourceforge.net/">SQLite Database Browser</a>と作成した<code>users</code>テーブル。<a href="../images/figures/sqlite_database_browser-full.png">(拡大)</a></span></div></div>
 
 
 <p><em>Railsチュートリアル</em>で使用されているものすべてを含め、ほとんどのマイグレーションが<em>可逆</em>です。これは、<code>db:rollback</code>というRakeタスクで変更を取り消せることを意味します。これを“マイグレーションの取り消し (migrate down)”と呼びます。</p>
@@ -1039,7 +1039,7 @@
 <div class="label" id="fig-rubular"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/rubular.png" alt="rubular" /></span></div><div class="caption"><span class="header">図6.4</span><span class="description">素晴らしい正規表現エディタ<a href="http://www.rubular.com/">Rubular</a>。<a href="http://railstutorial.org/images/figures/rubular-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/rubular.png" alt="rubular" /></span></div><div class="caption"><span class="header">図6.4</span><span class="description">素晴らしい正規表現エディタ<a href="http://www.rubular.com/">Rubular</a>。<a href="../images/figures/rubular-full.png">(拡大)</a></span></div></div>
 
 
 <p>これでテストはすべてパスするはずです(実際、この有効なメールアドレスのテストはこれまでいつもパスしてきました。正規表現のプログラミングは間違いが起こりやすいことで有名なので、ここで行なっている有効なメールアドレスのテストは、主として<code>VALID_EMAIL_REGEX</code>に対する形式的な健全性チェックに過ぎません)。残る制約は、メールアドレスが一意であることを強制するものだけとなりました。</p>
@@ -1273,7 +1273,7 @@
 
 <p>ユーザーの認証は、パスワードの送信、暗号化、データベース内の暗号化された値との比較という手順を踏みます。比較の結果が一致すれば、送信されたパスワードは正しいと認識され、そのユーザーは認証されます。ここで、生のパスワードではなく、暗号化されたパスワード同士を比較していることにご注目ください。こうすることで、生のパスワードをデータベースに保存するという危険なことをしなくてもユーザーを認証できます。これで、仮にデータベースの内容が盗まれたり覗き見されるようなことがあっても、パスワードの安全性が保たれます。</p>
 
-<p>セキュアなパスワードの実装は、<code>has_secure_password</code>というRailsのメソッドを呼び出すだけでほとんど終わってしまいます (このメソッドはRails 3.1から導入されました)。このメソッド1つだけでセキュアなパスワードの実装がほとんど終わってしまうので、逆にこの機能を一から手作りするのは簡単ではありません。そのため、<a class="ref" href="./modeling-users.html#sec-password_and_confirmation">6.3.2</a>からは多数のテストを作成し、これらをすべてパスするようにします。この機能の実装中に泥沼にはまり込んでしまうこともあると思いますが、どうかあきらめずに最後までやり通してください。<a class="ref" href="./modeling-users.html#sec-has_secure_password">6.3.4</a>までたどり着ければ、その苦労を補って余りある褒美が待っています (スクリーンキャストは、このような一からの手作り開発手順を解説するのに向いています。この課題を十分に理解したい方は「<a href="http://railstutorial.org/screencasts">Ruby on Rails Tutorial screencasts</a> (英語)」を参照してください)。</p>
+<p>セキュアなパスワードの実装は、<code>has_secure_password</code>というRailsのメソッドを呼び出すだけでほとんど終わってしまいます (このメソッドはRails 3.1から導入されました)。このメソッド1つだけでセキュアなパスワードの実装がほとんど終わってしまうので、逆にこの機能を一から手作りするのは簡単ではありません。そのため、<a class="ref" href="./modeling-users.html#sec-password_and_confirmation">6.3.2</a>からは多数のテストを作成し、これらをすべてパスするようにします。この機能の実装中に泥沼にはまり込んでしまうこともあると思いますが、どうかあきらめずに最後までやり通してください。<a class="ref" href="./modeling-users.html#sec-has_secure_password">6.3.4</a>までたどり着ければ、その苦労を補って余りある褒美が待っています (スクリーンキャストは、このような一からの手作り開発手順を解説するのに向いています。この課題を十分に理解したい方は「<a href="./screencasts">Ruby on Rails Tutorial screencasts</a> (英語)」を参照してください)。</p>
 
 <div class="label" id="sec-an_encrypted_password"></div>
 
@@ -1707,7 +1707,7 @@
 <h3><a id="sec-6_3_4" href="./modeling-users.html#sec-has_secure_password" class="heading"><span class="number">6.3.4</span>ユーザーがセキュアなパスワードを持っている</a></h3>
 
 
-<p>認証システムを最初からフル作成していた<a href="http://railstutorial.org/book?version=3.0">Rails 3.0向け<em>Railsチュートリアル</em></a><sup class="footnote" id="fnref-6_17"><a href="./modeling-users.html#fn-6_17">17</a></sup>を参照いただくとわかるように、以前のバージョンのRailsでは、セキュアパスワードの実装は面倒で時間のかかる作業でした。しかし今では、Web開発者が認証システムというものを以前よりも深く理解するようになり、最新のRailsには認証システムも同梱されるようになりました。ここまで実装を進めてきたので、あとほんの数行を追加してセキュアパスワードの実装を完了し、テストスイートを緑色 (成功) にしましょう。</p>
+<p>認証システムを最初からフル作成していた<a href="./book">Rails 3.0向け<em>Railsチュートリアル</em></a><sup class="footnote" id="fnref-6_17"><a href="./modeling-users.html#fn-6_17">17</a></sup>を参照いただくとわかるように、以前のバージョンのRailsでは、セキュアパスワードの実装は面倒で時間のかかる作業でした。しかし今では、Web開発者が認証システムというものを以前よりも深く理解するようになり、最新のRailsには認証システムも同梱されるようになりました。ここまで実装を進めてきたので、あとほんの数行を追加してセキュアパスワードの実装を完了し、テストスイートを緑色 (成功) にしましょう。</p>
 
 <p>最初に、<code>password</code>カラムと<code>password_confirmation</code>カラムをアクセス可能にし (<a class="ref" href="./modeling-users.html#sec-accessible_attributes">6.1.2.2</a>)、新しいユーザーを初期化ハッシュでインスタンス化できるようにします。</p>
 
@@ -1815,7 +1815,7 @@
 <div class="label" id="fig-sqlite_user_row"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/sqlite_user_row_with_password.png" alt="sqlite_user_row_with_password" /></span></div><div class="caption"><span class="header">図6.6</span><span class="description">SQLiteデータベース<code>db/development.sqlite3</code>に登録されたユーザーの行。<a href="http://railstutorial.org/images/figures/sqlite_user_row_with_password-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/sqlite_user_row_with_password.png" alt="sqlite_user_row_with_password" /></span></div><div class="caption"><span class="header">図6.6</span><span class="description">SQLiteデータベース<code>db/development.sqlite3</code>に登録されたユーザーの行。<a href="../images/figures/sqlite_user_row_with_password-full.png">(拡大)</a></span></div></div>
 
 
 <p>コンソールに戻って<code>password_digest</code>属性を参照してみると、<a class="ref" href="./modeling-users.html#code-password_implementation">リスト6.30</a>の<code>has_secure_password</code>の効果を確認できます。</p>
@@ -1954,7 +1954,7 @@
 <li id="fn-6_14">技術的には、メールアドレスのうちドメイン名部分だけが (本当は) 大文字小文字を区別しません。foo@bar.comは、本来はFoo@bar.comとは別のアドレスです。ただし現実的には、<a href="http://email.about.com/od/emailbehindthescenes/f/email_case_sens.htm">about.com</a>でも指摘されているように、メールアドレスの大文字小文字を区別することを前提にするのはまずい方法です。「メールアドレスの大文字小文字を区別すると、果てしない混乱と相互運用性の問題とひどい頭痛が発生する。メールアドレスの入力時に大文字小文字の区別を要求するのは賢い方法とは言えない。現実には、メールアドレスの大文字小文字の区別を強制するメールサービスやISPはめったに存在しない。メールアドレスのすべての文字を大文字にするなど、受信者のメールアドレスが誤って入力されていれば、メールは返送されるだけだ。」Riley Mosesによるご指摘に感謝いたします。<a class="arrow" href="./modeling-users.html#fnref-6_14">↑</a></li>
 <li id="fn-6_15">もちろん、<a class="ref" href="./modeling-users.html#code-users_migration">リスト6.2</a>の<code>users</code>テーブル用のマイグレーションファイルを単に編集することも可能なのですが、その場合ロールバックが必要となり、マイグレーションが戻ってしまいます。データモデルの変更が必要になったらその都度マイグレーションを行うのがRails流です。<a class="arrow" href="./modeling-users.html#fnref-6_15">↑</a></li>
 <li id="fn-6_16">著者のシステム上のSQLiteとHeroku上のPostgreSQLで直接実験してみたところ、この手順は実際に必要であることがわかりました。<a class="arrow" href="./modeling-users.html#fnref-6_16">↑</a></li>
-<li id="fn-6_17">http://railstutorial.org/book?version=3.0 <a class="arrow" href="./modeling-users.html#fnref-6_17">↑</a></li>
+<li id="fn-6_17">http://railstutorial.org/book <a class="arrow" href="./modeling-users.html#fnref-6_17">↑</a></li>
 </ol>
 </div>
 
