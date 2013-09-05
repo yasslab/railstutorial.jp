@@ -2,8 +2,8 @@
   <head>
     <title>Ruby on Rails チュートリアル</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="/stylesheets/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="/stylesheets/polytexnic.css" type="text/css" />
+    <link rel="stylesheet" href="../stylesheets/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../stylesheets/polytexnic.css" type="text/css" />
   </head>
   <body dir="ltr">
     <div id="book">
@@ -11,7 +11,7 @@
 <div id="top"></div>
 
 
-<h1 class="chapter"><a id="sec-2" href="/chapters/a-demo-app.html#top" class="heading"><span class="number">第2章</span>デモアプリケーション</a></h1>
+<h1 class="chapter"><a id="sec-2" href="./a-demo-app.html#top" class="heading"><span class="number">第2章</span>デモアプリケーション</a></h1>
 
 
 <p>この章では、Railsの強力な機能をいくつか紹介するためのデモアプリケーションを作成します。<em>scaffold</em>ジェネレータというスクリプトを使ってアプリケーションをすばやく生成する事により、 高度なRailsプログラミングとWebプログラミングの概要を学びます。<a class="ref" href="/chapters/beginning.html#sidebar-scaffolding">Box 1.1</a>で述べたように、本書の以後の章では基本的にこの逆のアプローチを取り、少しずつアプリケーションを作りながら各段階と概念を説明して行きますが、scaffoldはRailsアプリケーションの概要を素早くつかむには最適なのでこの章ではあえて使用することにします。生成されたRailsアプリケーションはブラウザのアドレスバーにURLを入力すれば動かすことができるので、これによりRailsアプリの構造、そしてRailsで推奨されている<em>RESTアーキテクチャ</em>を洞察します。</p>
@@ -21,7 +21,7 @@
 <div class="label" id="sec-planning_the_application"></div>
 
 
-<h2><a id="sec-2_1" href="/chapters/a-demo-app.html#sec-planning_the_application" class="heading"><span class="number">2.1</span> アプリの計画</a></h2>
+<h2><a id="sec-2_1" href="./a-demo-app.html#sec-planning_the_application" class="heading"><span class="number">2.1</span> アプリの計画</a></h2>
 
 
 <p>はじめに、デモアプリケーションをどのようなものにするか、計画を立てましょう。<a class="ref" href="/chapters/beginning.html#sec-the_first_application">1.2.3</a>と同じく、<code>rails</code>コマンドでアプリケーションの骨格 (フォルダ構造、デフォルトで作成されるファイル類) を生成します。</p>
@@ -33,7 +33,7 @@
 </div>
 
 
-<p>次に、Bundlerで使用する<code>Gemfile</code> をテキストエディタで編集します。<a class="ref" href="/chapters/a-demo-app.html#code-demo_gemfile_sqlite_version_redux">リスト2.1</a>の内容に書き換えてください。</p>
+<p>次に、Bundlerで使用する<code>Gemfile</code> をテキストエディタで編集します。<a class="ref" href="./a-demo-app.html#code-demo_gemfile_sqlite_version_redux">リスト2.1</a>の内容に書き換えてください。</p>
 
 <div class="label" id="code-demo_gemfile_sqlite_version_redux"></div>
 
@@ -67,7 +67,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/a-demo-app.html#code-demo_gemfile_sqlite_version_redux">リスト2.1</a>の内容は<a class="ref" href="/chapters/beginning.html#code-gemfile_pg_gem">リスト1.9</a>と同じです。</p>
+<p><a class="ref" href="./a-demo-app.html#code-demo_gemfile_sqlite_version_redux">リスト2.1</a>の内容は<a class="ref" href="/chapters/beginning.html#code-gemfile_pg_gem">リスト1.9</a>と同じです。</p>
 
 <p><a class="ref" href="/chapters/beginning.html#sec-heroku_setup">1.4.1</a>でも説明したとおり、<tt class="verb">--without production</tt>オプションを追加することで、本番用のgemを除いたローカルgemをインストールします。</p>
 
@@ -89,10 +89,10 @@
 <div class="label" id="fig-create_demo_repo"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/create_demo_repo_new.png" alt="create_demo_repo_new" /></span></div><div class="caption"><span class="header">図2.1: </span><span class="description">GitHubでデモアプリ用リポジトリを作成する。<a href="http://railstutorial.org/images/figures/create_demo_repo_new-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/create_demo_repo_new.png" alt="create_demo_repo_new" /></span></div><div class="caption"><span class="header">図2.1: </span><span class="description">GitHubでデモアプリ用リポジトリを作成する。<a href="http://railstutorial.org/images/figures/create_demo_repo_new-full.png">(拡大)</a></span></div></div>
 
 
-<p>必須ではありませんが、リポジトリを新規作成して (<a class="ref" href="/chapters/a-demo-app.html#fig-create_demo_repo">図2.1</a>) GitHubにプッシュすることもできます。</p>
+<p>必須ではありませんが、リポジトリを新規作成して (<a class="ref" href="./a-demo-app.html#fig-create_demo_repo">図2.1</a>) GitHubにプッシュすることもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git remote add origin git@github.com:&lt;username&gt;/demo_app.git
 <span class="gp">$</span> git push -u origin master
@@ -102,50 +102,50 @@
 
 <p>(最初のアプリケーションのときと同様、GitHubリポジトリを初期化するときに<code>README</code>を使用<em>しない</em>ように注意してください。)</p>
 
-<p>これで、アプリ自体を作成するための下準備が整いました。Webアプリケーションを作る際、アプリケーションで使用される構造を表すための<em>データモデル</em>を最初に作成しておくのが普通です。今回のデモアプリケーションでは、ユーザーと短いマイクロポストのみをサポートするマイクロブログを作成します。そこで、まずアプリケーションの<em>ユーザー</em>で使用するモデルを作成 (<a class="ref" href="/chapters/a-demo-app.html#sec-modeling_demo_users">2.1.1</a>) し、次に<em>マイクロポスト</em> で使用するモデルを作成します (<a class="ref" href="/chapters/a-demo-app.html#sec-modeling_demo_microposts">2.1.2</a>)。</p>
+<p>これで、アプリ自体を作成するための下準備が整いました。Webアプリケーションを作る際、アプリケーションで使用される構造を表すための<em>データモデル</em>を最初に作成しておくのが普通です。今回のデモアプリケーションでは、ユーザーと短いマイクロポストのみをサポートするマイクロブログを作成します。そこで、まずアプリケーションの<em>ユーザー</em>で使用するモデルを作成 (<a class="ref" href="./a-demo-app.html#sec-modeling_demo_users">2.1.1</a>) し、次に<em>マイクロポスト</em> で使用するモデルを作成します (<a class="ref" href="./a-demo-app.html#sec-modeling_demo_microposts">2.1.2</a>)。</p>
 
 <div class="label" id="sec-modeling_demo_users"></div>
 
 
-<h3><a id="sec-2_1_1" href="/chapters/a-demo-app.html#sec-modeling_demo_users" class="heading"><span class="number">2.1.1</span>ユーザーのモデル設計</a></h3>
+<h3><a id="sec-2_1_1" href="./a-demo-app.html#sec-modeling_demo_users" class="heading"><span class="number">2.1.1</span>ユーザーのモデル設計</a></h3>
 
 
-<p>Webでのユーザー登録の方法が多岐にわたることからもわかるように、ユーザーという概念をデータモデルで表す方法はたくさんありますが、ここではあえて最小限の構造に抑えておきます。各ユーザーには、ユニークキーとなる<code>integer</code>型のID番号 (<code>id</code>と呼びます) を割り当て、このIDに加えて一般公開される<code>string</code>型の名前 (<code>name</code>)、そして同じく<code>string</code>型のメールアドレス (<code>email</code>) を持たせます。メールアドレスはユーザー名としても使われます。ユーザーのデータモデルの概要は<a class="ref" href="/chapters/a-demo-app.html#fig-demo_user_model">図2.2</a>のとおりです。</p>
+<p>Webでのユーザー登録の方法が多岐にわたることからもわかるように、ユーザーという概念をデータモデルで表す方法はたくさんありますが、ここではあえて最小限の構造に抑えておきます。各ユーザーには、ユニークキーとなる<code>integer</code>型のID番号 (<code>id</code>と呼びます) を割り当て、このIDに加えて一般公開される<code>string</code>型の名前 (<code>name</code>)、そして同じく<code>string</code>型のメールアドレス (<code>email</code>) を持たせます。メールアドレスはユーザー名としても使われます。ユーザーのデータモデルの概要は<a class="ref" href="./a-demo-app.html#fig-demo_user_model">図2.2</a>のとおりです。</p>
 
 <div class="label" id="fig-demo_user_model"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_user_model.png" alt="demo_user_model" /></span></div><div class="caption"><span class="header">図2.2: </span><span class="description">ユーザー用のデータモデル</span>。</div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_user_model.png" alt="demo_user_model" /></span></div><div class="caption"><span class="header">図2.2: </span><span class="description">ユーザー用のデータモデル</span>。</div></div>
 
 
-<p><a class="ref" href="/chapters/modeling-users.html#sec-database_migrations">6.1.1</a>から詳しく解説しますが、<a class="ref" href="/chapters/a-demo-app.html#fig-demo_user_model">図2.2</a>のユーザー (<code>users</code>) はデータベースのテーブル (<em>table</em>) に相当します。また、<code>id</code>、<code>name</code>、<code>email</code>の属性はそれぞれテーブルの列 (<em>column</em>) に相当します。</p>
+<p><a class="ref" href="/chapters/modeling-users.html#sec-database_migrations">6.1.1</a>から詳しく解説しますが、<a class="ref" href="./a-demo-app.html#fig-demo_user_model">図2.2</a>のユーザー (<code>users</code>) はデータベースのテーブル (<em>table</em>) に相当します。また、<code>id</code>、<code>name</code>、<code>email</code>の属性はそれぞれテーブルの列 (<em>column</em>) に相当します。</p>
 
 <div class="label" id="sec-modeling_demo_microposts"></div>
 
 
-<h3><a id="sec-2_1_2" href="/chapters/a-demo-app.html#sec-modeling_demo_microposts" class="heading"><span class="number">2.1.2</span>マイクロポストのモデル設計</a></h3>
+<h3><a id="sec-2_1_2" href="./a-demo-app.html#sec-modeling_demo_microposts" class="heading"><span class="number">2.1.2</span>マイクロポストのモデル設計</a></h3>
 
 
-<p>マイクロポストのデータモデルはユーザーよりもさらにシンプルです。<code>id</code>とマイクロポストのテキスト内容を格納する<code>string</code>型の<code>content</code>だけで構成されています<sup class="footnote" id="fnref-2_1"><a href="/chapters/a-demo-app.html#fn-2_1">1</a></sup>。内容は<a class="ref" href="/chapters/a-demo-app.html#fig-demo_micropost_model">図2.3</a>のとおりです。</p>
+<p>マイクロポストのデータモデルはユーザーよりもさらにシンプルです。<code>id</code>とマイクロポストのテキスト内容を格納する<code>string</code>型の<code>content</code>だけで構成されています<sup class="footnote" id="fnref-2_1"><a href="./a-demo-app.html#fn-2_1">1</a></sup>。内容は<a class="ref" href="./a-demo-app.html#fig-demo_micropost_model">図2.3</a>のとおりです。</p>
 
 <div class="label" id="fig-demo_micropost_model"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_micropost_model.png" alt="demo_micropost_model" /></span></div><div class="caption"><span class="header">図2.3: </span><span class="description">マイクロポストのデータモデル</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_micropost_model.png" alt="demo_micropost_model" /></span></div><div class="caption"><span class="header">図2.3: </span><span class="description">マイクロポストのデータモデル</span></div></div>
 
 
-<p><a class="ref" href="/chapters/a-demo-app.html#sec-demo_user_has_many_microposts">2.3.3</a>では、<code>user_id</code>という属性を使用して、1人のユーザーに複数のマイクロポストが関連付けられるという構造を簡潔に説明します。詳細は<a class="ref" href="/chapters/user-microposts.html#top">第10章</a>で完全に説明します。</p>
+<p><a class="ref" href="./a-demo-app.html#sec-demo_user_has_many_microposts">2.3.3</a>では、<code>user_id</code>という属性を使用して、1人のユーザーに複数のマイクロポストが関連付けられるという構造を簡潔に説明します。詳細は<a class="ref" href="/chapters/user-microposts.html#top">第10章</a>で完全に説明します。</p>
 
 <div class="label" id="sec-demo_users_resource"></div>
 
 
-<h2><a id="sec-2_2" href="/chapters/a-demo-app.html#sec-demo_users_resource" class="heading"><span class="number">2.2</span>Users リソース </a></h2>
+<h2><a id="sec-2_2" href="./a-demo-app.html#sec-demo_users_resource" class="heading"><span class="number">2.2</span>Users リソース </a></h2>
 
 
-<p>ここでは、<a class="ref" href="/chapters/a-demo-app.html#sec-modeling_demo_users">2.1.1</a>で説明したユーザー用のデータモデルを、そのモデルを表示するためのWebインターフェイスに従って実装します。
+<p>ここでは、<a class="ref" href="./a-demo-app.html#sec-modeling_demo_users">2.1.1</a>で説明したユーザー用のデータモデルを、そのモデルを表示するためのWebインターフェイスに従って実装します。
 このデータモデルとWebインターフェイスは、組み合わさって<em>Usersリソース</em>となり、ユーザーというものを、<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP protocol</a>経由で自由に作成/読み出し/更新/削除できるオブジェクトとみなすことができるようになります。「はじめに」で約束したとおり、このUsersリソースはすべてのRailsプロジェクトに標準装備されているscaffoldジェネレータで生成します。scaffoldで生成された膨大なコードを今詳細に読む必要はありません。今の段階ではおそらく混乱するだけでしょう。</p>
 
-<p>Railsのscaffoldは、<code>rails generate</code>スクリプトに<code>scaffold</code>コマンドを渡すことで生成されます。<code>scaffold</code>コマンドの引数には、リソース名を単数形にしたもの (この場合は<code>User</code>) を使用し、必要に応じてデータモデルの属性をオプションとしてパラメータに追加します<sup class="footnote" id="fnref-2_2"><a href="/chapters/a-demo-app.html#fn-2_2">2</a></sup>。</p>
+<p>Railsのscaffoldは、<code>rails generate</code>スクリプトに<code>scaffold</code>コマンドを渡すことで生成されます。<code>scaffold</code>コマンドの引数には、リソース名を単数形にしたもの (この場合は<code>User</code>) を使用し、必要に応じてデータモデルの属性をオプションとしてパラメータに追加します<sup class="footnote" id="fnref-2_2"><a href="./a-demo-app.html#fn-2_2">2</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre>$ rails generate scaffold User name:string email:string
       invoke  active_record
@@ -181,9 +181,9 @@
 </div>
 
 
-<p><code>name:string</code>と<code>email:string</code>オプションを追加することで、Userモデルの内容が<a class="ref" href="/chapters/a-demo-app.html#fig-demo_user_model">図2.2</a>の表のとおりになるようにします (なお、<code>id</code>パラメータはRailsによって自動的に<em>主キー</em>としてデータベースに追加されるため、追加不要です)。</p>
+<p><code>name:string</code>と<code>email:string</code>オプションを追加することで、Userモデルの内容が<a class="ref" href="./a-demo-app.html#fig-demo_user_model">図2.2</a>の表のとおりになるようにします (なお、<code>id</code>パラメータはRailsによって自動的に<em>主キー</em>としてデータベースに追加されるため、追加不要です)。</p>
 
-<p>続いてデモアプリケーションの開発を進めるには、以下のように<em>Rake</em>を使用してデータベースをマイグレート (<em>migrate</em>) する必要があります (<a class="ref" href="/chapters/a-demo-app.html#sidebar-rake">コラム 2.1</a>)。</p>
+<p>続いてデモアプリケーションの開発を進めるには、以下のように<em>Rake</em>を使用してデータベースをマイグレート (<em>migrate</em>) する必要があります (<a class="ref" href="./a-demo-app.html#sidebar-rake">コラム 2.1</a>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
 <span class="go">==  CreateUsers: migrating =================================</span>
@@ -235,10 +235,10 @@
 <div class="label" id="sec-a_user_tour"></div>
 
 
-<h3><a id="sec-2_2_1" href="/chapters/a-demo-app.html#sec-a_user_tour" class="heading"><span class="number">2.2.1</span>ユーザページを表示する</a></h3>
+<h3><a id="sec-2_2_1" href="./a-demo-app.html#sec-a_user_tour" class="heading"><span class="number">2.2.1</span>ユーザページを表示する</a></h3>
 
 
-<p><a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示すると、デフォルトのRailsページが表示されます (<a class="ref" href="/chapters/beginning.html#fig-riding_rails_31">図1.3</a>)。実は、Usersリソースを作成した時に、これ以外のさまざまな「ユーザーを扱うためのページ」が既に作成されています。たとえば、<a href="http://localhost:3000/users">/users</a>を表示すればすべてのユーザーの一覧が表示されますし、<a href="http://localhost:3000/users/new">/users/new</a>を表示すれば新規ユーザー作成ページが表示されます。このセクションでは以後、ユーザーに関連するページについて手短に説明します。その際、<a class="ref" href="/chapters/a-demo-app.html#table-user_urls">表2.1</a>に記載されている、ページとURIの関係を参照するとわかりやすいと思います。</p>
+<p><a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示すると、デフォルトのRailsページが表示されます (<a class="ref" href="/chapters/beginning.html#fig-riding_rails_31">図1.3</a>)。実は、Usersリソースを作成した時に、これ以外のさまざまな「ユーザーを扱うためのページ」が既に作成されています。たとえば、<a href="http://localhost:3000/users">/users</a>を表示すればすべてのユーザーの一覧が表示されますし、<a href="http://localhost:3000/users/new">/users/new</a>を表示すれば新規ユーザー作成ページが表示されます。このセクションでは以後、ユーザーに関連するページについて手短に説明します。その際、<a class="ref" href="./a-demo-app.html#table-user_urls">表2.1</a>に記載されている、ページとURIの関係を参照するとわかりやすいと思います。</p>
 
 <div class="label" id="table-user_urls"></div>
 
@@ -247,36 +247,36 @@
 <table class="tabular"><tr><th class="align_left"><strong>URI</strong></th><th class="align_left"><strong>アクション</strong></th><th class="align_left"><strong>用途</strong></th></tr><tr class="top_bar"><td class="align_left"><a href="http://localhost:3000/users">/users</a></td><td class="align_left"><code>index</code></td><td class="align_left">すべてのユーザーを一覧するページ</td></tr><tr><td class="align_left"><a href="http://localhost:3000/users/1">/users/1</a></td><td class="align_left"><code>show</code></td><td class="align_left">id=<code>1</code>のユーザーを表示するページ</td></tr><tr><td class="align_left"><a href="http://localhost:3000/users/new">/users/new</a></td><td class="align_left"><code>new</code></td><td class="align_left">新規ユーザーを作成するページ</td></tr><tr><td class="align_left"><a href="http://localhost:3000/users/1/edit">/users/1/edit</a></td><td class="align_left"><code>edit</code></td><td class="align_left">id=<code>1</code>のユーザーを編集するページ</td></tr></table></div><div class="caption"><span class="header">表2.1: </span><span class="description">Usersリソースにおける、ページとURLの関係</span>。</div></div>
 
 
-<p>まずはユーザーの一覧を表示する<a href="http://localhost:3000/users"><tt>index</tt></a>ページから見てみましょう。もちろん、この時点ではまだユーザーは登録されていません (<a class="ref" href="/chapters/a-demo-app.html#fig-demo_blank_user_index_rails_3">図2.4</a>)。</p>
+<p>まずはユーザーの一覧を表示する<a href="http://localhost:3000/users"><tt>index</tt></a>ページから見てみましょう。もちろん、この時点ではまだユーザーは登録されていません (<a class="ref" href="./a-demo-app.html#fig-demo_blank_user_index_rails_3">図2.4</a>)。</p>
 
 <div class="label" id="fig-demo_blank_user_index_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_blank_user_index_rails_3.png" alt="demo_blank_user_index_rails_3" /></span></div><div class="caption"><span class="header">図2.4: </span><span class="description">Usersリソース (<a href="http://localhost:3000/users">/users</a>) ページの最初の状態。<a href="http://railstutorial.org/images/figures/demo_blank_user_index_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_blank_user_index_rails_3.png" alt="demo_blank_user_index_rails_3" /></span></div><div class="caption"><span class="header">図2.4: </span><span class="description">Usersリソース (<a href="http://localhost:3000/users">/users</a>) ページの最初の状態。<a href="http://railstutorial.org/images/figures/demo_blank_user_index_rails_3-full.png">(拡大)</a></span></div></div>
 
 
-<p>ユーザーを新規作成するには、<a class="ref" href="/chapters/a-demo-app.html#fig-demo_new_user_rails_3">図2.5</a>の<a href="http://localhost:3000/users/new"><tt>new</tt></a>ページを表示します (注: ローカルのコンピュータで開発を行なっている場合は、URIのうちhttp://localhost:3000の部分は常に同じであるため、以後この部分は省略します)。 <a class="ref" href="/chapters/sign-up.html#top">第7章</a>では、このページをユーザー登録ページに転用します。</p>
+<p>ユーザーを新規作成するには、<a class="ref" href="./a-demo-app.html#fig-demo_new_user_rails_3">図2.5</a>の<a href="http://localhost:3000/users/new"><tt>new</tt></a>ページを表示します (注: ローカルのコンピュータで開発を行なっている場合は、URIのうちhttp://localhost:3000の部分は常に同じであるため、以後この部分は省略します)。 <a class="ref" href="/chapters/sign-up.html#top">第7章</a>では、このページをユーザー登録ページに転用します。</p>
 
 <div class="label" id="fig-demo_new_user_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_new_user_rails_3.png" alt="demo_new_user_rails_3" /></span></div><div class="caption"><span class="header">図2.5: </span><span class="description">新規ユーザー作成ページ (<a href="http://localhost:3000/users/new">/users/new</a>)。<a href="http://railstutorial.org/images/figures/demo_new_user_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_new_user_rails_3.png" alt="demo_new_user_rails_3" /></span></div><div class="caption"><span class="header">図2.5: </span><span class="description">新規ユーザー作成ページ (<a href="http://localhost:3000/users/new">/users/new</a>)。<a href="http://railstutorial.org/images/figures/demo_new_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
-<p>テキストフィールドに名前とメールアドレスを入力して [Create User] ボタンを押してください。ユーザーが作成され、<a class="ref" href="/chapters/a-demo-app.html#fig-demo_show_user_rails_3">図2.6</a>のように<a href="http://localhost:3000/users/1"><tt>show</tt></a>ページが表示されます (緑色のウェルカムメッセージは、 <a class="ref" href="/chapters/sign-up.html#sec-the_flash">7.4.2</a>で解説する<em>flash</em>という機能を使用して表示しています)。ここで、URIが<a href="http://localhost:3000/users/1">/users/1</a>と表示されていることに注目してください。ご想像のとおり、この数字<code>1</code>は<a class="ref" href="/chapters/a-demo-app.html#fig-demo_user_model">図2.2</a>の<code>id</code>属性そのものです。<a class="ref" href="/chapters/sign-up.html#sec-showing_users">7.1</a>では、このページをユーザーのプロファイルに作り変える予定です。</p>
+<p>テキストフィールドに名前とメールアドレスを入力して [Create User] ボタンを押してください。ユーザーが作成され、<a class="ref" href="./a-demo-app.html#fig-demo_show_user_rails_3">図2.6</a>のように<a href="http://localhost:3000/users/1"><tt>show</tt></a>ページが表示されます (緑色のウェルカムメッセージは、 <a class="ref" href="/chapters/sign-up.html#sec-the_flash">7.4.2</a>で解説する<em>flash</em>という機能を使用して表示しています)。ここで、URIが<a href="http://localhost:3000/users/1">/users/1</a>と表示されていることに注目してください。ご想像のとおり、この数字<code>1</code>は<a class="ref" href="./a-demo-app.html#fig-demo_user_model">図2.2</a>の<code>id</code>属性そのものです。<a class="ref" href="/chapters/sign-up.html#sec-showing_users">7.1</a>では、このページをユーザーのプロファイルに作り変える予定です。</p>
 
 <div class="label" id="fig-demo_show_user_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_show_user_rails_3.png" alt="demo_show_user_rails_3" /></span></div><div class="caption"><span class="header">図2.6: </span><span class="description">ユーザー表示用のページ (<a href="http://localhost:3000/users/1">/users/1</a>)。<a href="http://railstutorial.org/images/figures/demo_show_user_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_show_user_rails_3.png" alt="demo_show_user_rails_3" /></span></div><div class="caption"><span class="header">図2.6: </span><span class="description">ユーザー表示用のページ (<a href="http://localhost:3000/users/1">/users/1</a>)。<a href="http://railstutorial.org/images/figures/demo_show_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
-<p>今度は、ユーザー情報を変更するために<a href="http://localhost:3000/users/1/edit"><tt>edit</tt></a>ページを表示してみましょう (<a class="ref" href="/chapters/a-demo-app.html#fig-demo_edit_user_rails_3">図2.7</a>)。この編集ページ上でユーザーに関する情報を変更し、[Update User] ボタンを押せば、デモアプリケーション内のユーザー情報が変更されます (<a class="ref" href="/chapters/a-demo-app.html#fig-demo_update_user_rails_3">図2.8</a>)。(詳細は<a class="ref" href="/chapters/modeling-users.html#top">第6章</a>で説明しますが、このユーザー情報は、Webアプリケーションの背後にあるデータベースに保存されています。) このサンプルアプリケーションでも、ユーザーを編集または更新する機能を<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-updating_users">9.1</a>で実装します。</p>
+<p>今度は、ユーザー情報を変更するために<a href="http://localhost:3000/users/1/edit"><tt>edit</tt></a>ページを表示してみましょう (<a class="ref" href="./a-demo-app.html#fig-demo_edit_user_rails_3">図2.7</a>)。この編集ページ上でユーザーに関する情報を変更し、[Update User] ボタンを押せば、デモアプリケーション内のユーザー情報が変更されます (<a class="ref" href="./a-demo-app.html#fig-demo_update_user_rails_3">図2.8</a>)。(詳細は<a class="ref" href="/chapters/modeling-users.html#top">第6章</a>で説明しますが、このユーザー情報は、Webアプリケーションの背後にあるデータベースに保存されています。) このサンプルアプリケーションでも、ユーザーを編集または更新する機能を<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-updating_users">9.1</a>で実装します。</p>
 
 <div class="label" id="fig-demo_edit_user_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_edit_user_rails_3.png" alt="demo_edit_user_rails_3" /></span></div><div class="caption"><span class="header">図2.7: </span><span class="description">ユーザー編集用のページ (<a href="http://localhost:3000/users/1/edit">/users/1/edit</a>)。<a href="http://railstutorial.org/images/figures/demo_edit_user_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_edit_user_rails_3.png" alt="demo_edit_user_rails_3" /></span></div><div class="caption"><span class="header">図2.7: </span><span class="description">ユーザー編集用のページ (<a href="http://localhost:3000/users/1/edit">/users/1/edit</a>)。<a href="http://railstutorial.org/images/figures/demo_edit_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -284,24 +284,24 @@
 <div class="label" id="fig-demo_update_user_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_update_user_rails_3.png" alt="demo_update_user_rails_3" /></span></div><div class="caption"><span class="header">図2.8: </span><span class="description">情報が更新されたユーザー。<a href="http://railstutorial.org/images/figures/demo_update_user_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_update_user_rails_3.png" alt="demo_update_user_rails_3" /></span></div><div class="caption"><span class="header">図2.8: </span><span class="description">情報が更新されたユーザー。<a href="http://railstutorial.org/images/figures/demo_update_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
-<p>ここで<a href="http://localhost:3000/users/new"><tt>new</tt></a>ページに戻り、ユーザーをもう1人作成してみましょう。<a href="http://localhost:3000/users"><tt>index</tt></a>ページを表示してみると、<a class="ref" href="/chapters/a-demo-app.html#fig-demo_user_index_two_rails_3">2.9</a>のようにユーザーが追加されています。<a class="ref" href="/chapters/sign-up.html#sec-showing_users">7.1</a>ではもっと本格的なユーザー一覧ページを作成する予定です。</p>
+<p>ここで<a href="http://localhost:3000/users/new"><tt>new</tt></a>ページに戻り、ユーザーをもう1人作成してみましょう。<a href="http://localhost:3000/users"><tt>index</tt></a>ページを表示してみると、<a class="ref" href="./a-demo-app.html#fig-demo_user_index_two_rails_3">2.9</a>のようにユーザーが追加されています。<a class="ref" href="/chapters/sign-up.html#sec-showing_users">7.1</a>ではもっと本格的なユーザー一覧ページを作成する予定です。</p>
 
 <div class="label" id="fig-demo_user_index_two_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_user_index_two_rails_3.png" alt="demo_user_index_two_rails_3" /></span></div><div class="caption"><span class="header">図2.9: </span><span class="description">2人目のユーザーが追加された一覧ページ (<a href="http://localhost:3000/users">/users</a>) 。<a href="http://railstutorial.org/images/figures/demo_user_index_two_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_user_index_two_rails_3.png" alt="demo_user_index_two_rails_3" /></span></div><div class="caption"><span class="header">図2.9: </span><span class="description">2人目のユーザーが追加された一覧ページ (<a href="http://localhost:3000/users">/users</a>) 。<a href="http://railstutorial.org/images/figures/demo_user_index_two_rails_3-full.png">(拡大)</a></span></div></div>
 
 
-<p>ユーザーの作成、表示、編集方法を説明しましたので、今度はユーザーを削除してみましょう (<a class="ref" href="/chapters/a-demo-app.html#fig-demo_destroy_user_rails_3">図2.10</a>)。
-<a class="ref" href="/chapters/a-demo-app.html#fig-demo_destroy_user_rails_3">図2.10</a>の [Destroy] リンクをクリックするとユーザーが削除され、indexページのユーザーは1人だけになります (もしこのとおりにならない場合は、ブラウザのJavaScriptが有効になっているかどうかを確認してください。Railsでは、ユーザーを削除するリクエストを発行するときにJavaScriptを使用しています)。 <a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-destroying_users">9.4</a>ではサンプルアプリケーションにユーザーを削除する機能を実装し、管理権限 (admin) を持つユーザー以外は削除を実行できないように制限をかけます。</p>
+<p>ユーザーの作成、表示、編集方法を説明しましたので、今度はユーザーを削除してみましょう (<a class="ref" href="./a-demo-app.html#fig-demo_destroy_user_rails_3">図2.10</a>)。
+<a class="ref" href="./a-demo-app.html#fig-demo_destroy_user_rails_3">図2.10</a>の [Destroy] リンクをクリックするとユーザーが削除され、indexページのユーザーは1人だけになります (もしこのとおりにならない場合は、ブラウザのJavaScriptが有効になっているかどうかを確認してください。Railsでは、ユーザーを削除するリクエストを発行するときにJavaScriptを使用しています)。 <a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-destroying_users">9.4</a>ではサンプルアプリケーションにユーザーを削除する機能を実装し、管理権限 (admin) を持つユーザー以外は削除を実行できないように制限をかけます。</p>
 
 <div class="label" id="fig-demo_destroy_user_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_destroy_user_rails_3.png" alt="demo_destroy_user_rails_3" /></span></div><div class="caption"><span class="header">図2.10: </span><span class="description">ユーザーを削除する。<a href="http://railstutorial.org/images/figures/demo_destroy_user_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_destroy_user_rails_3.png" alt="demo_destroy_user_rails_3" /></span></div><div class="caption"><span class="header">図2.10: </span><span class="description">ユーザーを削除する。<a href="http://railstutorial.org/images/figures/demo_destroy_user_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -309,15 +309,15 @@
 <div class="label" id="sec-mvc_in_action"></div>
 
 
-<h3><a id="sec-2_2_2" href="/chapters/a-demo-app.html#sec-mvc_in_action" class="heading"><span class="number">2.2.2</span> MVCの挙動</a></h3>
+<h3><a id="sec-2_2_2" href="./a-demo-app.html#sec-mvc_in_action" class="heading"><span class="number">2.2.2</span> MVCの挙動</a></h3>
 
 
-<p>これでUsersリソースの概略についての説明が終わりましたが、ここで<a class="ref" href="/chapters/beginning.html#sec-mvc">1.2.6</a>で紹介した MVC (Model-View-Controller = モデル-ビュー-コントローラ) パターンの観点からこのリソースを考察してみましょう。具体的には、<a href="http://localhost:3000/users">/users</a>のindexページをブラウザで開くという典型的な操作を行うときに何が起こっているかを MVC (<a class="ref" href="/chapters/a-demo-app.html#fig-mvc_detailed">図2.11</a>) を使って説明します。</p>
+<p>これでUsersリソースの概略についての説明が終わりましたが、ここで<a class="ref" href="/chapters/beginning.html#sec-mvc">1.2.6</a>で紹介した MVC (Model-View-Controller = モデル-ビュー-コントローラ) パターンの観点からこのリソースを考察してみましょう。具体的には、<a href="http://localhost:3000/users">/users</a>のindexページをブラウザで開くという典型的な操作を行うときに何が起こっているかを MVC (<a class="ref" href="./a-demo-app.html#fig-mvc_detailed">図2.11</a>) を使って説明します。</p>
 
 <div class="label" id="fig-mvc_detailed"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/mvc_detailed.png" alt="mvc_detailed" /></span></div><div class="caption"><span class="header">図2.11: </span><span class="description">RailsにおけるMVC。<a href="http://railstutorial.org/images/figures/mvc_detailed-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/mvc_detailed.png" alt="mvc_detailed" /></span></div><div class="caption"><span class="header">図2.11: </span><span class="description">RailsにおけるMVC。<a href="http://railstutorial.org/images/figures/mvc_detailed-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -330,11 +330,11 @@
 <li>Userモデルはユーザーの一覧をコントローラに返す。</li>
 <li>コントローラはユーザーの一覧を<code>@users</code>変数に保存し、<code>index</code>ビューに渡す。</li>
 <li>ビューは、その中に埋め込まれているRubyを使用してHTMLを生成する。</li>
-<li>コントローラは、生成されたHTMLをブラウザに返す<sup class="footnote" id="fnref-2_3"><a href="/chapters/a-demo-app.html#fn-2_3">3</a></sup>。</li>
+<li>コントローラは、生成されたHTMLをブラウザに返す<sup class="footnote" id="fnref-2_3"><a href="./a-demo-app.html#fn-2_3">3</a></sup>。</li>
 </ol>
 
 
-<p>まずはブラウザからのリクエストを見てみましょう。このリクエストは、アドレスバーにURIを入力したりリンクをクリックした時に発生します (<a class="ref" href="/chapters/a-demo-app.html#fig-mvc_detailed">図2.11</a>の1)。 リクエストは<em>Railsルーター</em>に到達し (2)、ここでURI (とリクエストの種類--<a class="ref" href="/chapters/static-pages.html#sidebar-get_etc">コラム 3.2</a>参照) に基づいて適切な<em>コントローラのアクション</em>に割り当てられます (ディスパッチ)。ユーザーのURLをUsersリソースで使用するコントローラアクションに割り当てる (マッピングする) ためのコードは<a class="ref" href="/chapters/a-demo-app.html#code-rails_routes">リスト2.2</a>です。このコードは、 URIとアクションの組み合わせ (<a class="ref" href="/chapters/a-demo-app.html#table-user_urls">表2.1</a>) を効率的に作成します。(<code>:users</code>という一見奇妙な記法は、 <em>シンボル</em>と呼ばれるものです。詳細は<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-hashes_and_symbols">4.3.3</a>で説明します。)</p>
+<p>まずはブラウザからのリクエストを見てみましょう。このリクエストは、アドレスバーにURIを入力したりリンクをクリックした時に発生します (<a class="ref" href="./a-demo-app.html#fig-mvc_detailed">図2.11</a>の1)。 リクエストは<em>Railsルーター</em>に到達し (2)、ここでURI (とリクエストの種類--<a class="ref" href="/chapters/static-pages.html#sidebar-get_etc">コラム 3.2</a>参照) に基づいて適切な<em>コントローラのアクション</em>に割り当てられます (ディスパッチ)。ユーザーのURLをUsersリソースで使用するコントローラアクションに割り当てる (マッピングする) ためのコードは<a class="ref" href="./a-demo-app.html#code-rails_routes">リスト2.2</a>です。このコードは、 URIとアクションの組み合わせ (<a class="ref" href="./a-demo-app.html#table-user_urls">表2.1</a>) を効率的に作成します。(<code>:users</code>という一見奇妙な記法は、 <em>シンボル</em>と呼ばれるものです。詳細は<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-hashes_and_symbols">4.3.3</a>で説明します。)</p>
 
 <div class="label" id="code-rails_routes"></div>
 
@@ -351,7 +351,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/a-demo-app.html#sec-a_user_tour">2.2.1</a>以降でお見せした各ページは、Users<em>コントローラ</em>の中にある<em>アクション</em>にそれぞれ対応しています。1つのコントローラには関連する多数のアクションがまとめられています。<a class="ref" href="/chapters/a-demo-app.html#code-demo_users_controller">リスト2.3</a>は、scaffoldで生成したコントローラの骨格です。<code>class UsersController &lt; ApplicationController</code>という記法は、Rubyの<em>クラス</em>での<em>継承</em>の使用例となっていることにもご注目ください (継承の概略については<a class="ref" href="/chapters/a-demo-app.html#sec-inheritance_hierarchies">2.3.4</a>、詳細は<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-ruby_classes">4.4</a>で説明します)。</p>
+<p><a class="ref" href="./a-demo-app.html#sec-a_user_tour">2.2.1</a>以降でお見せした各ページは、Users<em>コントローラ</em>の中にある<em>アクション</em>にそれぞれ対応しています。1つのコントローラには関連する多数のアクションがまとめられています。<a class="ref" href="./a-demo-app.html#code-demo_users_controller">リスト2.3</a>は、scaffoldで生成したコントローラの骨格です。<code>class UsersController &lt; ApplicationController</code>という記法は、Rubyの<em>クラス</em>での<em>継承</em>の使用例となっていることにもご注目ください (継承の概略については<a class="ref" href="./a-demo-app.html#sec-inheritance_hierarchies">2.3.4</a>、詳細は<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-ruby_classes">4.4</a>で説明します)。</p>
 
 <div class="label" id="code-demo_users_controller"></div>
 
@@ -406,13 +406,13 @@
 </div></div>
 
 
-<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="/chapters/a-demo-app.html#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力しても良いのですが)。<a class="ref" href="/chapters/a-demo-app.html#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="/chapters/a-demo-app.html#sidebar-REST">コラム 2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="/chapters/a-demo-app.html#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/chapters/static-pages.html#sec-TDD">3.2.1</a>で説明します。</p>
+<p>ページの数よりもアクションの数の方が多いことにお気づきでしょうか。<code>index</code>、<code>show</code>、<code>new</code>、<code>edit</code>アクションはいずれも<a class="ref" href="./a-demo-app.html#sec-a_user_tour">2.2.1</a>のページに対応していますが、それ以外にも<code>create</code>、<code>update</code>、<code>destroy</code>アクションがあります。通常、これらのアクションは、ページを出力せずにデータベース上のユーザー情報を操作します (もちろん、ページを出力しても良いのですが)。<a class="ref" href="./a-demo-app.html#table-demo_RESTful_users">表2.2</a>は、RailsにおけるRESTアーキテクチャ (<a class="ref" href="./a-demo-app.html#sidebar-REST">コラム 2.2</a>) を構成するすべてのアクションの一覧です。RESTは、コンピュータ科学者<a href="http://en.wikipedia.org/wiki/Roy_Fielding">Roy Fielding</a><sup class="footnote" id="fnref-2_4"><a href="./a-demo-app.html#fn-2_4">4</a></sup>によって提唱された「<em>REpresentational State Transfer</em>」という概念に基づいています。これらのアクション同士の違いは、それらのアクションに対応する<a href="http://en.wikipedia.org/wiki/HTTP_request#Request_methods">HTTP requestメソッド</a>の違いでもあります。HTTP requestメソッドの詳細については<a class="ref" href="/chapters/static-pages.html#sec-TDD">3.2.1</a>で説明します。</p>
 
 <div class="label" id="table-demo_RESTful_users"></div>
 
 
 <div class="table"><div class="center">
-<table class="tabular"><tr><th class="align_left"><strong>HTTP request</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_left"><strong>アクション</strong></th><th class="align_left"><strong>用途</strong></th></tr><tr class="top_bar"><td class="align_left"><tt>GET</tt></td><td class="align_left">/users</td><td class="align_left"><code>index</code></td><td class="align_left">全ユーザーの一覧を表示するページ</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/users/1</td><td class="align_left"><code>show</code></td><td class="align_left">id=<code>1</code>のユーザーを表示するページ</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/users/new</td><td class="align_left"><code>new</code></td><td class="align_left">ユーザーを新規作成するページ</td></tr><tr><td class="align_left"><tt>POST</tt></td><td class="align_left">/users</td><td class="align_left"><code>create</code></td><td class="align_left">ユーザーを新規作成するアクション</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/users/1/edit</td><td class="align_left"><code>edit</code></td><td class="align_left">id=<code>1</code>のユーザーを編集するページ</td></tr><tr><td class="align_left"><tt>PUT</tt></td><td class="align_left">/users/1</td><td class="align_left"><code>update</code></td><td class="align_left">id=<code>1</code>のユーザーを更新するアクション</td></tr><tr><td class="align_left"><tt>DELETE</tt></td><td class="align_left">/users/1</td><td class="align_left"><code>destroy</code></td><td class="align_left">id=<code>1</code>のユーザーを削除するアクション</td></tr></table></div><div class="caption"><span class="header">表2.2: </span><span class="description"><a class="ref" href="/chapters/a-demo-app.html#code-rails_routes">リスト2.2</a>のUsersリソースに含まれるRESTfulなルーティング</span>。</div></div>
+<table class="tabular"><tr><th class="align_left"><strong>HTTP request</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_left"><strong>アクション</strong></th><th class="align_left"><strong>用途</strong></th></tr><tr class="top_bar"><td class="align_left"><tt>GET</tt></td><td class="align_left">/users</td><td class="align_left"><code>index</code></td><td class="align_left">全ユーザーの一覧を表示するページ</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/users/1</td><td class="align_left"><code>show</code></td><td class="align_left">id=<code>1</code>のユーザーを表示するページ</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/users/new</td><td class="align_left"><code>new</code></td><td class="align_left">ユーザーを新規作成するページ</td></tr><tr><td class="align_left"><tt>POST</tt></td><td class="align_left">/users</td><td class="align_left"><code>create</code></td><td class="align_left">ユーザーを新規作成するアクション</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/users/1/edit</td><td class="align_left"><code>edit</code></td><td class="align_left">id=<code>1</code>のユーザーを編集するページ</td></tr><tr><td class="align_left"><tt>PUT</tt></td><td class="align_left">/users/1</td><td class="align_left"><code>update</code></td><td class="align_left">id=<code>1</code>のユーザーを更新するアクション</td></tr><tr><td class="align_left"><tt>DELETE</tt></td><td class="align_left">/users/1</td><td class="align_left"><code>destroy</code></td><td class="align_left">id=<code>1</code>のユーザーを削除するアクション</td></tr></table></div><div class="caption"><span class="header">表2.2: </span><span class="description"><a class="ref" href="./a-demo-app.html#code-rails_routes">リスト2.2</a>のUsersリソースに含まれるRESTfulなルーティング</span>。</div></div>
 
 
 
@@ -427,7 +427,7 @@
 </div>
 
 
-<p>UsersコントローラとUserモデルの関係をさらに考察するために、<code>index</code>アクションを整理してみました (<a class="ref" href="/chapters/a-demo-app.html#code-demo_index_action">リスト2.4</a>) (scaffoldで自動生成されるコードは冗長で紛らわしいので除いてあります)。</p>
+<p>UsersコントローラとUserモデルの関係をさらに考察するために、<code>index</code>アクションを整理してみました (<a class="ref" href="./a-demo-app.html#code-demo_index_action">リスト2.4</a>) (scaffoldで自動生成されるコードは冗長で紛らわしいので除いてあります)。</p>
 
 <div class="label" id="code-demo_index_action"></div>
 
@@ -447,7 +447,7 @@
 </div></div>
 
 
-<p><code>index</code>アクションに<code>@users = User.all</code>という行があります (図2.11 の③に相当)。これによって、Userモデルからすべてのユーザーの一覧を取り出し (④)、<code>@users</code>という変数に保存します (⑤)。なお、@usersは “at-users” と発音します。Userモデルの内容は<a class="ref" href="/chapters/a-demo-app.html#code-demo_user_model">リスト2.5</a>にあります。驚くほどシンプルな内容ですが、継承 (<a class="ref" href="/chapters/a-demo-app.html#sec-inheritance_hierarchies">2.3.4</a>および<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-ruby_classes">4.4</a>) によって多くの機能が備わっています。特に、<em>Active Record</em>というRubyライブラリのおかげで、<a class="ref" href="/chapters/a-demo-app.html#code-demo_user_model">リスト2.5</a>のUserモデルは<code>User.all</code>というリクエストに対してすべてのユーザーを返すことができます。(<code>attr_accessible</code>という行については<a class="ref" href="/chapters/modeling-users.html#sec-accessible_attributes">6.1.2.2</a>で説明します。<em>注</em>: この行はRails 3.2.2以前の場合にはありません)</p>
+<p><code>index</code>アクションに<code>@users = User.all</code>という行があります (図2.11 の③に相当)。これによって、Userモデルからすべてのユーザーの一覧を取り出し (④)、<code>@users</code>という変数に保存します (⑤)。なお、@usersは “at-users” と発音します。Userモデルの内容は<a class="ref" href="./a-demo-app.html#code-demo_user_model">リスト2.5</a>にあります。驚くほどシンプルな内容ですが、継承 (<a class="ref" href="./a-demo-app.html#sec-inheritance_hierarchies">2.3.4</a>および<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-ruby_classes">4.4</a>) によって多くの機能が備わっています。特に、<em>Active Record</em>というRubyライブラリのおかげで、<a class="ref" href="./a-demo-app.html#code-demo_user_model">リスト2.5</a>のUserモデルは<code>User.all</code>というリクエストに対してすべてのユーザーを返すことができます。(<code>attr_accessible</code>という行については<a class="ref" href="/chapters/modeling-users.html#sec-accessible_attributes">6.1.2.2</a>で説明します。<em>注</em>: この行はRails 3.2.2以前の場合にはありません)</p>
 
 <div class="label" id="code-demo_user_model"></div>
 
@@ -461,7 +461,7 @@
 </div></div>
 
 
-<p><code>@users</code>変数にユーザー一覧が保存されると、コントローラは<a class="ref" href="/chapters/a-demo-app.html#code-demo_index_view">リスト2.6</a>の<em>ビュー</em>を呼び出します (⑥)。<code>@</code>記号で始まる変数はRubyでは<em>インスタンス変数</em>と呼ばれます。ビューでは自動的にこれらのインスタンス変数を使用できます。この場合、<a class="ref" href="/chapters/a-demo-app.html#code-demo_index_view">リスト2.6</a>の<code>index.html.erb</code>ビューは、<code>@users</code>の一覧を並べ、1行ごとにHTMLの行として出力します。(今はこのコードの意味がわからなくても問題ありません。これはあくまで説明のためのものです。)</p>
+<p><code>@users</code>変数にユーザー一覧が保存されると、コントローラは<a class="ref" href="./a-demo-app.html#code-demo_index_view">リスト2.6</a>の<em>ビュー</em>を呼び出します (⑥)。<code>@</code>記号で始まる変数はRubyでは<em>インスタンス変数</em>と呼ばれます。ビューでは自動的にこれらのインスタンス変数を使用できます。この場合、<a class="ref" href="./a-demo-app.html#code-demo_index_view">リスト2.6</a>の<code>index.html.erb</code>ビューは、<code>@users</code>の一覧を並べ、1行ごとにHTMLの行として出力します。(今はこのコードの意味がわからなくても問題ありません。これはあくまで説明のためのものです。)</p>
 
 <div class="label" id="code-demo_index_view"></div>
 
@@ -503,7 +503,7 @@
 <div class="label" id="sec-weaknesses_of_this_users_resource"></div>
 
 
-<h3><a id="sec-2_2_3" href="/chapters/a-demo-app.html#sec-weaknesses_of_this_users_resource" class="heading"><span class="number">2.2.3</span>Users リソースの欠点</a></h3>
+<h3><a id="sec-2_2_3" href="./a-demo-app.html#sec-weaknesses_of_this_users_resource" class="heading"><span class="number">2.2.3</span>Users リソースの欠点</a></h3>
 
 
 <p>scaffoldで作成したUsersリソースは、Railsの概要を手っ取り早く説明するには良いのですが、以下のようなさまざまな問題点を抱えています。</p>
@@ -522,18 +522,18 @@
 <div class="label" id="sec-microposts_resource"></div>
 
 
-<h2><a id="sec-2_3" href="/chapters/a-demo-app.html#sec-microposts_resource" class="heading"><span class="number">2.3</span>Mircroposts リソース</a></h2>
+<h2><a id="sec-2_3" href="./a-demo-app.html#sec-microposts_resource" class="heading"><span class="number">2.3</span>Mircroposts リソース</a></h2>
 
 
-<p>Usersリソースを生成して内容を理解しましたので、今度はMicropostsリソースで同じことをやってみましょう。なお、この節全体について、Micropostsリソースを理解する際には<a class="ref" href="/chapters/a-demo-app.html#sec-demo_users_resource">2.2</a>のuser要素と比較しながら進めることをお勧めします。実際、これらの2つのリソースはさまざまな面で似通っています。RailsのRESTful構造を身体に叩きこむには、繰り返し学ぶのが一番です。UsersリソースとMicropostsリソースの構造の類似点を理解することが、この章の主要な目的です (もちろん、この章のような初歩的なサンプルアプリケーションではない、頑丈なアプリケーションを開発するのは簡単ではありません。Micropostsリソースについては<a class="ref" href="/chapters/user-microposts.html#top">第10章</a>で再び取り扱いますが、その頃にはMicropostsは作り込みが進んで外観がすっかり変わってしまいます)。</p>
+<p>Usersリソースを生成して内容を理解しましたので、今度はMicropostsリソースで同じことをやってみましょう。なお、この節全体について、Micropostsリソースを理解する際には<a class="ref" href="./a-demo-app.html#sec-demo_users_resource">2.2</a>のuser要素と比較しながら進めることをお勧めします。実際、これらの2つのリソースはさまざまな面で似通っています。RailsのRESTful構造を身体に叩きこむには、繰り返し学ぶのが一番です。UsersリソースとMicropostsリソースの構造の類似点を理解することが、この章の主要な目的です (もちろん、この章のような初歩的なサンプルアプリケーションではない、頑丈なアプリケーションを開発するのは簡単ではありません。Micropostsリソースについては<a class="ref" href="/chapters/user-microposts.html#top">第10章</a>で再び取り扱いますが、その頃にはMicropostsは作り込みが進んで外観がすっかり変わってしまいます)。</p>
 
 <div class="label" id="sec-a_micropost_microtour"></div>
 
 
-<h3><a id="sec-2_3_1" href="/chapters/a-demo-app.html#sec-a_micropost_microtour" class="heading"><span class="number">2.3.1</span>マイクロポストのページを表示する</a></h3>
+<h3><a id="sec-2_3_1" href="./a-demo-app.html#sec-a_micropost_microtour" class="heading"><span class="number">2.3.1</span>マイクロポストのページを表示する</a></h3>
 
 
-<p>Usersリソースの場合と同様に、Micropostsリソースもscaffoldでコードを生成してみましょう。<code>rails generate scaffold</code>コマンドを使用して、<a class="ref" href="/chapters/a-demo-app.html#fig-demo_micropost_model">図2.3</a>のデータモデルを実装してみます<sup class="footnote" id="fnref-2_5"><a href="/chapters/a-demo-app.html#fn-2_5">5</a></sup>。</p>
+<p>Usersリソースの場合と同様に、Micropostsリソースもscaffoldでコードを生成してみましょう。<code>rails generate scaffold</code>コマンドを使用して、<a class="ref" href="./a-demo-app.html#fig-demo_micropost_model">図2.3</a>のデータモデルを実装してみます<sup class="footnote" id="fnref-2_5"><a href="./a-demo-app.html#fn-2_5">5</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre>$ rails generate scaffold Micropost content:string user_id:integer
       invoke  active_record
@@ -569,7 +569,7 @@
 </div>
 
 
-<p>新しいデータモデルでデータベースを更新するには、<a class="ref" href="/chapters/a-demo-app.html#sec-demo_users_resource">2.2</a>のときと同様にマイグレーションを実行します。</p>
+<p>新しいデータモデルでデータベースを更新するには、<a class="ref" href="./a-demo-app.html#sec-demo_users_resource">2.2</a>のときと同様にマイグレーションを実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
 <span class="go">==  CreateMicroposts: migrating =============================</span>
@@ -580,7 +580,7 @@
 </div>
 
 
-<p>これでMicropostsを作成する準備ができました。作成方法は<a class="ref" href="/chapters/a-demo-app.html#sec-a_user_tour">2.2.1</a>と同じです。Railsのroutesファイルは期待どおりにscaffoldジェネレータによって更新され、<a class="ref" href="/chapters/a-demo-app.html#code-demo_microposts_resource">リスト2.7</a>のようにMicropostsリソース用のルールが追加されました<sup class="footnote" id="fnref-2_6"><a href="/chapters/a-demo-app.html#fn-2_6">6</a></sup>。ユーザーの場合と同様、<code>resources :microposts</code>というルーティングルールはマイクロポスト用のURIをMicropostsコントローラ内のアクションに割り当てます <a class="ref" href="/chapters/a-demo-app.html#table-demo_RESTful_microposts">表2.3</a>。</p>
+<p>これでMicropostsを作成する準備ができました。作成方法は<a class="ref" href="./a-demo-app.html#sec-a_user_tour">2.2.1</a>と同じです。Railsのroutesファイルは期待どおりにscaffoldジェネレータによって更新され、<a class="ref" href="./a-demo-app.html#code-demo_microposts_resource">リスト2.7</a>のようにMicropostsリソース用のルールが追加されました<sup class="footnote" id="fnref-2_6"><a href="./a-demo-app.html#fn-2_6">6</a></sup>。ユーザーの場合と同様、<code>resources :microposts</code>というルーティングルールはマイクロポスト用のURIをMicropostsコントローラ内のアクションに割り当てます <a class="ref" href="./a-demo-app.html#table-demo_RESTful_microposts">表2.3</a>。</p>
 
 <div class="label" id="code-demo_microposts_resource"></div>
 
@@ -604,10 +604,10 @@
 
 
 <div class="table"><div class="center">
-<table class="tabular"><tr><th class="align_left"><strong>HTTP request</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_left"><strong>アクション</strong></th><th class="align_left"><strong>用途</strong></th></tr><tr class="top_bar"><td class="align_left"><tt>GET</tt></td><td class="align_left">/microposts</td><td class="align_left"><code>index</code></td><td class="align_left">すべてのマイクロポストを表示するページ</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/microposts/1</td><td class="align_left"><code>show</code></td><td class="align_left">id=<code>1</code>のマイクロポストを表示するページ</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/microposts/new</td><td class="align_left"><code>new</code></td><td class="align_left">マイクロポストを新規作成するページ</td></tr><tr><td class="align_left"><tt>POST</tt></td><td class="align_left">/microposts</td><td class="align_left"><code>create</code></td><td class="align_left">マイクロポストを新規作成するアクション</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/microposts/1/edit</td><td class="align_left"><code>edit</code></td><td class="align_left">id=<code>1</code>のマイクロポストを編集するページ</td></tr><tr><td class="align_left"><tt>PUT</tt></td><td class="align_left">/microposts/1</td><td class="align_left"><code>update</code></td><td class="align_left">id=<code>1</code>のマイクロポストを更新するアクション</td></tr><tr><td class="align_left"><tt>DELETE</tt></td><td class="align_left">/microposts/1</td><td class="align_left"><code>destroy</code></td><td class="align_left">id=<code>1</code>のマイクロポストを削除するアクション</td></tr></table></div><div class="caption"><span class="header">表2.3: </span><span class="description"><a class="ref" href="/chapters/a-demo-app.html#code-demo_microposts_resource">リスト2.7</a>のMicropostsリソースに含まれるRESTfulなルーティング</span>。</div></div>
+<table class="tabular"><tr><th class="align_left"><strong>HTTP request</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_left"><strong>アクション</strong></th><th class="align_left"><strong>用途</strong></th></tr><tr class="top_bar"><td class="align_left"><tt>GET</tt></td><td class="align_left">/microposts</td><td class="align_left"><code>index</code></td><td class="align_left">すべてのマイクロポストを表示するページ</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/microposts/1</td><td class="align_left"><code>show</code></td><td class="align_left">id=<code>1</code>のマイクロポストを表示するページ</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/microposts/new</td><td class="align_left"><code>new</code></td><td class="align_left">マイクロポストを新規作成するページ</td></tr><tr><td class="align_left"><tt>POST</tt></td><td class="align_left">/microposts</td><td class="align_left"><code>create</code></td><td class="align_left">マイクロポストを新規作成するアクション</td></tr><tr><td class="align_left"><tt>GET</tt></td><td class="align_left">/microposts/1/edit</td><td class="align_left"><code>edit</code></td><td class="align_left">id=<code>1</code>のマイクロポストを編集するページ</td></tr><tr><td class="align_left"><tt>PUT</tt></td><td class="align_left">/microposts/1</td><td class="align_left"><code>update</code></td><td class="align_left">id=<code>1</code>のマイクロポストを更新するアクション</td></tr><tr><td class="align_left"><tt>DELETE</tt></td><td class="align_left">/microposts/1</td><td class="align_left"><code>destroy</code></td><td class="align_left">id=<code>1</code>のマイクロポストを削除するアクション</td></tr></table></div><div class="caption"><span class="header">表2.3: </span><span class="description"><a class="ref" href="./a-demo-app.html#code-demo_microposts_resource">リスト2.7</a>のMicropostsリソースに含まれるRESTfulなルーティング</span>。</div></div>
 
 
-<p>Micropostsコントローラ自体の構造を<a class="ref" href="/chapters/a-demo-app.html#code-demo_microposts_controller">リスト2.8</a>に示します。<a class="ref" href="/chapters/a-demo-app.html#code-demo_microposts_controller">リスト2.8</a>の内容は、<code>MicropostsController</code>が<code>UsersController</code>に置き換わっている他は<a class="ref" href="/chapters/a-demo-app.html#code-demo_users_controller">リスト2.3</a>と<em>完全に同一</em>である点に注目してください。これは、RESTアーキテクチャが2つのリソースに同じように反映されていることを示しています。</p>
+<p>Micropostsコントローラ自体の構造を<a class="ref" href="./a-demo-app.html#code-demo_microposts_controller">リスト2.8</a>に示します。<a class="ref" href="./a-demo-app.html#code-demo_microposts_controller">リスト2.8</a>の内容は、<code>MicropostsController</code>が<code>UsersController</code>に置き換わっている他は<a class="ref" href="./a-demo-app.html#code-demo_users_controller">リスト2.3</a>と<em>完全に同一</em>である点に注目してください。これは、RESTアーキテクチャが2つのリソースに同じように反映されていることを示しています。</p>
 
 <div class="label" id="code-demo_microposts_controller"></div>
 
@@ -662,20 +662,20 @@
 </div></div>
 
 
-<p><a href="http://localhost:3000/microposts/new">/microposts/new</a>ページをブラウザで開き、新しいマイクロポストの情報を入力してマイクロポストをいくつか作成してみましょう (<a class="ref" href="/chapters/a-demo-app.html#fig-demo_new_micropost_rails_3">図2.12</a>)。</p>
+<p><a href="http://localhost:3000/microposts/new">/microposts/new</a>ページをブラウザで開き、新しいマイクロポストの情報を入力してマイクロポストをいくつか作成してみましょう (<a class="ref" href="./a-demo-app.html#fig-demo_new_micropost_rails_3">図2.12</a>)。</p>
 
 <div class="label" id="fig-demo_new_micropost_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_new_micropost_rails_3.png" alt="demo_new_micropost_rails_3" /></span></div><div class="caption"><span class="header">図2.12: </span><span class="description">新しいマイクロポストの作成ページ (<a href="http://localhost:3000/microposts/new">/microposts/new</a>)。<a href="http://railstutorial.org/images/figures/demo_new_micropost-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_new_micropost_rails_3.png" alt="demo_new_micropost_rails_3" /></span></div><div class="caption"><span class="header">図2.12: </span><span class="description">新しいマイクロポストの作成ページ (<a href="http://localhost:3000/microposts/new">/microposts/new</a>)。<a href="http://railstutorial.org/images/figures/demo_new_micropost-full.png">(拡大)</a></span></div></div>
 
 
-<p>ここではひとまずマイクロポストを1つか2つ作成し、少なくとも片方の<code>user_id</code>が<code>1</code>になるようにして、<a class="ref" href="/chapters/a-demo-app.html#sec-a_user_tour">2.2.1</a>で作成した最初のユーザーのidと同じにします。結果は<a class="ref" href="/chapters/a-demo-app.html#fig-demo_micropost_index_rails_3">図2.13</a>のようになるはずです。</p>
+<p>ここではひとまずマイクロポストを1つか2つ作成し、少なくとも片方の<code>user_id</code>が<code>1</code>になるようにして、<a class="ref" href="./a-demo-app.html#sec-a_user_tour">2.2.1</a>で作成した最初のユーザーのidと同じにします。結果は<a class="ref" href="./a-demo-app.html#fig-demo_micropost_index_rails_3">図2.13</a>のようになるはずです。</p>
 
 <div class="label" id="fig-demo_micropost_index_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_micropost_index_rails_3.png" alt="demo_micropost_index_rails_3" /></span></div><div class="caption"><span class="header">図2.13: </span><span class="description">マイクロポストのindexページ (<a href="http://localhost:3000/microposts">/microposts</a>)。<a href="http://railstutorial.org/images/figures/demo_micropost_index_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_micropost_index_rails_3.png" alt="demo_micropost_index_rails_3" /></span></div><div class="caption"><span class="header">図2.13: </span><span class="description">マイクロポストのindexページ (<a href="http://localhost:3000/microposts">/microposts</a>)。<a href="http://railstutorial.org/images/figures/demo_micropost_index_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -683,10 +683,10 @@
 <div class="label" id="sec-putting_the_micro_in_microposts"></div>
 
 
-<h3><a id="sec-2_3_2" href="/chapters/a-demo-app.html#sec-putting_the_micro_in_microposts" class="heading"><span class="number">2.3.2</span>マイクロポストを<em>マイクロ</em>にする</a></h3>
+<h3><a id="sec-2_3_2" href="./a-demo-app.html#sec-putting_the_micro_in_microposts" class="heading"><span class="number">2.3.2</span>マイクロポストを<em>マイクロ</em>にする</a></h3>
 
 
-<p>マイクロポストの<em>マイクロ</em>という名前にふさわしく、何らかの方法で文字数制限を与えてみましょう。Railsでは、<em>検証 (validates) </em>を使用して簡単にこのような入力制限を追加することができます。Twitterのように140文字の制限を与えるには、<em>length</em>を指定します。テキストエディタかIDEを使用して<code>app/models/micropost.rb</code>を開き、 <a class="ref" href="/chapters/a-demo-app.html#code-demo_length_validation">リスト2.9</a>の内容に置き換えます。(注: <a class="ref" href="/chapters/a-demo-app.html#code-demo_length_validation">リスト2.9</a>のような<code>validates</code>はRails 3の機能です。Rails 2.3の場合は <code>validates_length_of</code>を使用します。)</p>
+<p>マイクロポストの<em>マイクロ</em>という名前にふさわしく、何らかの方法で文字数制限を与えてみましょう。Railsでは、<em>検証 (validates) </em>を使用して簡単にこのような入力制限を追加することができます。Twitterのように140文字の制限を与えるには、<em>length</em>を指定します。テキストエディタかIDEを使用して<code>app/models/micropost.rb</code>を開き、 <a class="ref" href="./a-demo-app.html#code-demo_length_validation">リスト2.9</a>の内容に置き換えます。(注: <a class="ref" href="./a-demo-app.html#code-demo_length_validation">リスト2.9</a>のような<code>validates</code>はRails 3の機能です。Rails 2.3の場合は <code>validates_length_of</code>を使用します。)</p>
 
 <div class="label" id="code-demo_length_validation"></div>
 
@@ -701,12 +701,12 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/a-demo-app.html#code-demo_length_validation">リスト2.9</a>のコードは、これで本当に動作するのかと思えるかもしれませんが、ちゃんと動作します (検証機能については<a class="ref" href="/chapters/modeling-users.html#sec-user_validations">6.2</a>でさらに詳しく説明します)。140文字以上の新規マイクロポストを投稿してみればわかります。<a class="ref" href="/chapters/a-demo-app.html#fig-micropost_length_error_rails_3">図2.14</a>に示したとおり、マイクロポストの内容が長すぎるという<em>エラーメッセージ</em>がRailsによって表示されます (エラーメッセージの詳細については<a class="ref" href="/chapters/sign-up.html#sec-signup_error_messages">7.3.2</a>で説明します)。</p>
+<p><a class="ref" href="./a-demo-app.html#code-demo_length_validation">リスト2.9</a>のコードは、これで本当に動作するのかと思えるかもしれませんが、ちゃんと動作します (検証機能については<a class="ref" href="/chapters/modeling-users.html#sec-user_validations">6.2</a>でさらに詳しく説明します)。140文字以上の新規マイクロポストを投稿してみればわかります。<a class="ref" href="./a-demo-app.html#fig-micropost_length_error_rails_3">図2.14</a>に示したとおり、マイクロポストの内容が長すぎるという<em>エラーメッセージ</em>がRailsによって表示されます (エラーメッセージの詳細については<a class="ref" href="/chapters/sign-up.html#sec-signup_error_messages">7.3.2</a>で説明します)。</p>
 
 <div class="label" id="fig-micropost_length_error_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/micropost_length_error_rails_3.png" alt="micropost_length_error_rails_3" /></span></div><div class="caption"><span class="header">図2.14: </span><span class="description">マイクロポストの作成に失敗した場合のエラーメッセージ。<a href="http://railstutorial.org/images/figures/micropost_length_error_rails_3-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/micropost_length_error_rails_3.png" alt="micropost_length_error_rails_3" /></span></div><div class="caption"><span class="header">図2.14: </span><span class="description">マイクロポストの作成に失敗した場合のエラーメッセージ。<a href="http://railstutorial.org/images/figures/micropost_length_error_rails_3-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -714,10 +714,10 @@
 <div class="label" id="sec-demo_user_has_many_microposts"></div>
 
 
-<h3><a id="sec-2_3_3" href="/chapters/a-demo-app.html#sec-demo_user_has_many_microposts" class="heading"><span class="number">2.3.3</span>ユーザーとマイクロポストを<tt>has_many</tt>で関連づける</a></h3>
+<h3><a id="sec-2_3_3" href="./a-demo-app.html#sec-demo_user_has_many_microposts" class="heading"><span class="number">2.3.3</span>ユーザーとマイクロポストを<tt>has_many</tt>で関連づける</a></h3>
 
 
-<p>異なるデータモデル同士の<em>関連付け</em>は、Railsの強力な機能です。ここでは、1人のユーザーに対し複数のマイクロポストがあるとしましょう。UserモデルとMicropostモデルをそれぞれ<a class="ref" href="/chapters/a-demo-app.html#code-demo_user_has_many_microposts">リスト2.10</a>と<a class="ref" href="/chapters/a-demo-app.html#code-demo_micropost_belongs_to_user">リスト2.11</a>のように更新することでこの関連付けを表現できます。</p>
+<p>異なるデータモデル同士の<em>関連付け</em>は、Railsの強力な機能です。ここでは、1人のユーザーに対し複数のマイクロポストがあるとしましょう。UserモデルとMicropostモデルをそれぞれ<a class="ref" href="./a-demo-app.html#code-demo_user_has_many_microposts">リスト2.10</a>と<a class="ref" href="./a-demo-app.html#code-demo_micropost_belongs_to_user">リスト2.11</a>のように更新することでこの関連付けを表現できます。</p>
 
 <div class="label" id="code-demo_user_has_many_microposts"></div>
 
@@ -750,15 +750,15 @@
 </div></div>
 
 
-<p>この関連付けを図で表したものが<a class="ref" href="/chapters/a-demo-app.html#fig-micropost_user_association">図2.15</a>です。<code>microposts</code>テーブルには<code>user_id</code>カラムを作成してあったので、それによってRailsとActive Recordがマイクロポストとユーザーを関連付けることができるようになっています。</p>
+<p>この関連付けを図で表したものが<a class="ref" href="./a-demo-app.html#fig-micropost_user_association">図2.15</a>です。<code>microposts</code>テーブルには<code>user_id</code>カラムを作成してあったので、それによってRailsとActive Recordがマイクロポストとユーザーを関連付けることができるようになっています。</p>
 
 <div class="label" id="fig-micropost_user_association"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/micropost_user_association.png" alt="micropost_user_association" /></span></div><div class="caption"><span class="header">図2.15: </span><span class="description">マイクロポストとユーザーの関連付け。</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/micropost_user_association.png" alt="micropost_user_association" /></span></div><div class="caption"><span class="header">図2.15: </span><span class="description">マイクロポストとユーザーの関連付け。</span></div></div>
 
 
-<p><a class="ref" href="/chapters/user-microposts.html#top">第10章</a>と<a class="ref" href="/chapters/following-users.html#top">第11章</a>では、関連付けられたユーザーとマイクロポストを同時に表示し、Twitterのようなマイクロポストのフィードを作成する予定です。ここでは、Railsの<em>console</em>を使用して、ユーザーとマイクロポストの関連付けを確認するにとどめます。Railsのconsoleは、Railsアプリケーションを対話的に操作することができる便利なツールです。まず、ターミナルで<code>rails console</code>コマンドを入力します。続いて、<code>User.first</code>を使用してデータベースから1人目のユーザーの情報を取り出し、<code>first_user</code>変数に保存します<sup class="footnote" id="fnref-2_7"><a href="/chapters/a-demo-app.html#fn-2_7">7</a></sup>。</p>
+<p><a class="ref" href="/chapters/user-microposts.html#top">第10章</a>と<a class="ref" href="/chapters/following-users.html#top">第11章</a>では、関連付けられたユーザーとマイクロポストを同時に表示し、Twitterのようなマイクロポストのフィードを作成する予定です。ここでは、Railsの<em>console</em>を使用して、ユーザーとマイクロポストの関連付けを確認するにとどめます。Railsのconsoleは、Railsアプリケーションを対話的に操作することができる便利なツールです。まず、ターミナルで<code>rails console</code>コマンドを入力します。続いて、<code>User.first</code>を使用してデータベースから1人目のユーザーの情報を取り出し、<code>first_user</code>変数に保存します<sup class="footnote" id="fnref-2_7"><a href="./a-demo-app.html#fn-2_7">7</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="n">first_user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">first</span>
@@ -780,12 +780,12 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 <div class="label" id="sec-inheritance_hierarchies"></div>
 
 
-<h3><a id="sec-2_3_4" href="/chapters/a-demo-app.html#sec-inheritance_hierarchies" class="heading"><span class="number">2.3.4</span>継承の階層</a></h3>
+<h3><a id="sec-2_3_4" href="./a-demo-app.html#sec-inheritance_hierarchies" class="heading"><span class="number">2.3.4</span>継承の階層</a></h3>
 
 
 <p>最後に、デモアプリケーションで使用しているRailsのコントローラとモデルのクラス階層について簡単に解説します。この節を理解するには、多少なりともオブジェクト指向プログラミング (OOP) の経験が必要です。オブジェクト指向プログラミングを学んだことのない方はこの節をスキップしても構いません。特に、<em>クラス</em>の概念 (<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-ruby_classes">4.4</a>で解説します) に慣れていない方は、後でこの節をもう一度読み返してください。</p>
 
-<p>最初に、モデルの継承構造について説明します。<a class="ref" href="/chapters/a-demo-app.html#code-demo_user_class">リスト2.12</a>と<a class="ref" href="/chapters/a-demo-app.html#code-demo_micropost_class">リスト2.13</a>を比較してみると、UserモデルとMicropostモデルはいずれも<code>ActiveRecord::Base</code>というクラスを継承しています (継承関係は<code>&lt;</code>記号で表現されています)。このクラスは、ActiveRecordが提供するベースクラスであり、クラス間のリレーションは<a class="ref" href="/chapters/a-demo-app.html#fig-demo_model_inheritance">図2.16</a>のようになります。<code>ActiveRecord::Base</code>クラスを継承したことによって、作成したモデルオブジェクトはデータベースにアクセスできるようになり、データベースのカラムをあたかもRubyの属性のように扱ったりすることができるようになります。</p>
+<p>最初に、モデルの継承構造について説明します。<a class="ref" href="./a-demo-app.html#code-demo_user_class">リスト2.12</a>と<a class="ref" href="./a-demo-app.html#code-demo_micropost_class">リスト2.13</a>を比較してみると、UserモデルとMicropostモデルはいずれも<code>ActiveRecord::Base</code>というクラスを継承しています (継承関係は<code>&lt;</code>記号で表現されています)。このクラスは、ActiveRecordが提供するベースクラスであり、クラス間のリレーションは<a class="ref" href="./a-demo-app.html#fig-demo_model_inheritance">図2.16</a>のようになります。<code>ActiveRecord::Base</code>クラスを継承したことによって、作成したモデルオブジェクトはデータベースにアクセスできるようになり、データベースのカラムをあたかもRubyの属性のように扱ったりすることができるようになります。</p>
 
 <div class="label" id="code-demo_user_class"></div>
 
@@ -822,10 +822,10 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 <div class="label" id="fig-demo_model_inheritance"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_model_inheritance.png" alt="demo_model_inheritance" /></span></div><div class="caption"><span class="header">図2.16: </span><span class="description">UserモデルとMicropostモデルの継承階層。</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_model_inheritance.png" alt="demo_model_inheritance" /></span></div><div class="caption"><span class="header">図2.16: </span><span class="description">UserモデルとMicropostモデルの継承階層。</span></div></div>
 
 
-<p>コントローラの継承構造はもう少しだけ複雑です。<a class="ref" href="/chapters/a-demo-app.html#code-demo_users_controller_class">リスト2.14</a>と<a class="ref" href="/chapters/a-demo-app.html#code-demo_microposts_controller_class">リスト2.15</a>を比較してみると、UsersコントローラとMicropostsコントローラはいずれもApplicationControllerを継承しています。<a class="ref" href="/chapters/a-demo-app.html#code-demo_application_controller_class">リスト2.16</a>を見ると、<code>ApplicationController</code>自身は<code>ActionController::Base</code>を継承しています。これはRailsのAction Packというライブラリが提供している、コントローラ用のベースクラスです。これらのクラス同士の関係を<a class="ref" href="/chapters/a-demo-app.html#fig-demo_controller_inheritance">図2.17</a>に示します。</p>
+<p>コントローラの継承構造はもう少しだけ複雑です。<a class="ref" href="./a-demo-app.html#code-demo_users_controller_class">リスト2.14</a>と<a class="ref" href="./a-demo-app.html#code-demo_microposts_controller_class">リスト2.15</a>を比較してみると、UsersコントローラとMicropostsコントローラはいずれもApplicationControllerを継承しています。<a class="ref" href="./a-demo-app.html#code-demo_application_controller_class">リスト2.16</a>を見ると、<code>ApplicationController</code>自身は<code>ActionController::Base</code>を継承しています。これはRailsのAction Packというライブラリが提供している、コントローラ用のベースクラスです。これらのクラス同士の関係を<a class="ref" href="./a-demo-app.html#fig-demo_controller_inheritance">図2.17</a>に示します。</p>
 
 <div class="label" id="code-demo_users_controller_class"></div>
 
@@ -878,7 +878,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 <div class="label" id="fig-demo_controller_inheritance"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="/images/figures/demo_controller_inheritance.png" alt="demo_controller_inheritance" /></span></div><div class="caption"><span class="header">図2.17: </span><span class="description">UsersコントローラとMicropostsコントローラにおける継承関係。</span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/demo_controller_inheritance.png" alt="demo_controller_inheritance" /></span></div><div class="caption"><span class="header">図2.17: </span><span class="description">UsersコントローラとMicropostsコントローラにおける継承関係。</span></div></div>
 
 
 <p>モデルの継承関係と同様に、UsersコントローラもMicropostsコントローラも最終的には<code>ActionController::Base</code>を継承しており、モデルオブジェクトの操作、インバウンドHTTP requestのフィルタ、ビューをHTMLとして出力するなどの多彩な機能を実行できるようになっています。Railsのコントローラは必ず<code>ApplicationController</code>を継承しているので、Applicationコントローラで定義されたルールはアプリケーションのすべてのアクションに反映されます。たとえば<a class="ref" href="/chapters/sign-in-sign-out.html#sec-remember_me">8.2.1</a>では、サンプルアプリケーションのすべてのコントローラにサインインとサインアウト用のヘルパーを含めています。</p>
@@ -886,7 +886,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 <div class="label" id="sec-deploying_the_demo_app"></div>
 
 
-<h3><a id="sec-2_3_5" href="/chapters/a-demo-app.html#sec-deploying_the_demo_app" class="heading"><span class="number">2.3.5</span>デモアプリケーションのデプロイ</a></h3>
+<h3><a id="sec-2_3_5" href="./a-demo-app.html#sec-deploying_the_demo_app" class="heading"><span class="number">2.3.5</span>デモアプリケーションのデプロイ</a></h3>
 
 
 <p>Micropostsリソースの説明が終わりましたので、ここでリポジトリをGitHubに登録しましょう。</p>
@@ -917,7 +917,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 
 <p>このコマンドを実行すると、Heroku上のデータベースが、ユーザーとマイクロソフトのデータモデルで更新されます。<code>vendor/plugins</code>にあるアセットに関連するエラーが生じた場合は無視してください。今はこのディレクトリにはプラグインがありません。</p>
 
-<h2><a id="sec-2_4" href="/chapters/a-demo-app.html#sec-2_4" class="heading"><span class="number">2.4</span>最後に</a></h2>
+<h2><a id="sec-2_4" href="./a-demo-app.html#sec-2_4" class="heading"><span class="number">2.4</span>最後に</a></h2>
 
 
 <p>ついにRailsアプリケーションを最後まで完成させました。この章で作成したデモアプリケーションには良いところもありますが、さまざまな弱点もあります。<br /></p>
@@ -958,13 +958,13 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 </a><a class="next_page" href="/chapters/static-pages.html#top">    <span class="number">第3章</span>ほぼ静的なページの作成</a><a class="next_page" href="/chapters/static-pages.html#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-2_1">もっと普通の、マイクロでないポストを扱いたい場合は、<code>string</code>の代わりに<code>text</code>を指定します。<a class="arrow" href="/chapters/a-demo-app.html#fnref-2_1">↑</a></li>
-<li id="fn-2_2">scaffoldにおける命名は、<em>モデル</em>名の命名の習慣に従っています。リソースやコントローラは複数形で表し、モデルは単数形で表すのが普通です。<code>User</code>ではなく<code>Users</code>としたのはこのためです。<a class="arrow" href="/chapters/a-demo-app.html#fnref-2_2">↑</a></li>
-<li id="fn-2_3">ビューは、(ApacheやNginxなどのWebサーバーを経由してはいるが) ブラウザにHTMLを直接返すと説明している文献もあります。私は、Railsの実際の実装とは無関係に、コントローラを情報の流れの中心となるハブとみなすことを好んでいます。<a class="arrow" href="/chapters/a-demo-app.html#fnref-2_3">↑</a></li>
-<li id="fn-2_4">Fielding, Roy Thomas. <em>Architectural Styles and the Design of Network-based Software Architectures</em>. Doctoral dissertation, University of California, Irvine, 2000. <a class="arrow" href="/chapters/a-demo-app.html#fnref-2_4">↑</a></li>
-<li id="fn-2_5">ユーザーでscaffoldを実行した場合と同様に、scaffoldジェネレータはマイクロポストでもRailsモデルを単数形とする習慣に従います。実行したコマンドが<code>generate Micropost</code>と単数形になっていたのはこのためです。<a class="arrow" href="/chapters/a-demo-app.html#fnref-2_5">↑</a></li>
-<li id="fn-2_6">scaffoldで生成したコードには<a class="ref" href="/chapters/a-demo-app.html#code-demo_microposts_resource">2.7</a>よりも多くの改行が追加されます。Rubyは単なる改行を無視するので、問題はありません。<a class="arrow" href="/chapters/a-demo-app.html#fnref-2_6">↑</a></li>
-<li id="fn-2_7">実際のターミナル上では、プロンプトが<code>ruby-1.9.3-head &gt;</code>などと表示される可能性がありますが、Rubyのバージョンが環境によって異なる可能性があるため、例のプロンプトは<tt class="verb">&gt;&gt;</tt>と表記しています。<a class="arrow" href="/chapters/a-demo-app.html#fnref-2_7">↑</a></li>
+<li id="fn-2_1">もっと普通の、マイクロでないポストを扱いたい場合は、<code>string</code>の代わりに<code>text</code>を指定します。<a class="arrow" href="./a-demo-app.html#fnref-2_1">↑</a></li>
+<li id="fn-2_2">scaffoldにおける命名は、<em>モデル</em>名の命名の習慣に従っています。リソースやコントローラは複数形で表し、モデルは単数形で表すのが普通です。<code>User</code>ではなく<code>Users</code>としたのはこのためです。<a class="arrow" href="./a-demo-app.html#fnref-2_2">↑</a></li>
+<li id="fn-2_3">ビューは、(ApacheやNginxなどのWebサーバーを経由してはいるが) ブラウザにHTMLを直接返すと説明している文献もあります。私は、Railsの実際の実装とは無関係に、コントローラを情報の流れの中心となるハブとみなすことを好んでいます。<a class="arrow" href="./a-demo-app.html#fnref-2_3">↑</a></li>
+<li id="fn-2_4">Fielding, Roy Thomas. <em>Architectural Styles and the Design of Network-based Software Architectures</em>. Doctoral dissertation, University of California, Irvine, 2000. <a class="arrow" href="./a-demo-app.html#fnref-2_4">↑</a></li>
+<li id="fn-2_5">ユーザーでscaffoldを実行した場合と同様に、scaffoldジェネレータはマイクロポストでもRailsモデルを単数形とする習慣に従います。実行したコマンドが<code>generate Micropost</code>と単数形になっていたのはこのためです。<a class="arrow" href="./a-demo-app.html#fnref-2_5">↑</a></li>
+<li id="fn-2_6">scaffoldで生成したコードには<a class="ref" href="./a-demo-app.html#code-demo_microposts_resource">2.7</a>よりも多くの改行が追加されます。Rubyは単なる改行を無視するので、問題はありません。<a class="arrow" href="./a-demo-app.html#fnref-2_6">↑</a></li>
+<li id="fn-2_7">実際のターミナル上では、プロンプトが<code>ruby-1.9.3-head &gt;</code>などと表示される可能性がありますが、Rubyのバージョンが環境によって異なる可能性があるため、例のプロンプトは<tt class="verb">&gt;&gt;</tt>と表記しています。<a class="arrow" href="./a-demo-app.html#fnref-2_7">↑</a></li>
 </ol>
 </div>
 
