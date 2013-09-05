@@ -14,7 +14,7 @@
 <h1 class="chapter"><a id="sec-10" href="./user-microposts.html#top" class="heading"><span class="number">第10章</span>ユーザーのマイクロポスト</a></h1>
 
 
-<p><a class="ref" href="/chapters/updating-showing-and-deleting-users.html#top">第9章</a>ではユーザーリソース用のRESTアクションを完成させました。次は<a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>で見た、特定のユーザに関連付けられたショートメッセージを表現する、ユーザーの<em>マイクロポスト</em>リソースを追加します<sup class="footnote" id="fnref-10_1"><a href="./user-microposts.html#fn-10_1">1</a></sup>。この章では、<a class="ref" href="/chapters/a-demo-app.html#sec-microposts_resource">2.3</a>で記述したマイクロポストデータモデルを作成し、ユーザー モデルと<code>has_many</code>および<code>belongs_to</code>メソッドを使って関連づけ、さらに、結果を処理し表示するために必要なフォームとその部品を作成します。 <a class="ref" href="/chapters/following-users.html#top">第11章</a>では、マイクロポストの<em>フィード</em>を受け取るために、ユーザーを<em>フォロー</em>するという概念を導入し、Twitterのミニクローンを完成させます。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#top">第9章</a>ではユーザーリソース用のRESTアクションを完成させました。次は<a class="ref" href="./a-demo-app.html#top">第2章</a>で見た、特定のユーザに関連付けられたショートメッセージを表現する、ユーザーの<em>マイクロポスト</em>リソースを追加します<sup class="footnote" id="fnref-10_1"><a href="./user-microposts.html#fn-10_1">1</a></sup>。この章では、<a class="ref" href="./a-demo-app.html#sec-microposts_resource">2.3</a>で記述したマイクロポストデータモデルを作成し、ユーザー モデルと<code>has_many</code>および<code>belongs_to</code>メソッドを使って関連づけ、さらに、結果を処理し表示するために必要なフォームとその部品を作成します。 <a class="ref" href="./following-users.html#top">第11章</a>では、マイクロポストの<em>フィード</em>を受け取るために、ユーザーを<em>フォロー</em>するという概念を導入し、Twitterのミニクローンを完成させます。</p>
 
 <p>Git をバージョン管理に使っている場合は、いつものようにトピックブランチを作成しておきましょう。</p>
 
@@ -31,7 +31,7 @@
 <h2><a id="sec-10_1" href="./user-microposts.html#sec-a_micropost_model" class="heading"><span class="number">10.1</span>Micropostモデル</a></h2>
 
 
-<p>まずはMicropostリソースの最も本質的な部分を表現するMicropostモデルを作成するところから始めましょう。<a class="ref" href="/chapters/a-demo-app.html#sec-microposts_resource">2.3</a>で作成したモデルと同様に、この新しいMicropostモデルもデータ検証とUserモデルの関連付けを含んでいます。以前のモデルとは違って、今回のマイクロポストモデルは完全にテストされ、デフォルトの<em>順序</em>を持ち、また親であるユーザーが破棄された場合には自動的に<em>破棄</em>されるようにします。</p>
+<p>まずはMicropostリソースの最も本質的な部分を表現するMicropostモデルを作成するところから始めましょう。<a class="ref" href="./a-demo-app.html#sec-microposts_resource">2.3</a>で作成したモデルと同様に、この新しいMicropostモデルもデータ検証とUserモデルの関連付けを含んでいます。以前のモデルとは違って、今回のマイクロポストモデルは完全にテストされ、デフォルトの<em>順序</em>を持ち、また親であるユーザーが破棄された場合には自動的に<em>破棄</em>されるようにします。</p>
 
 <div class="label" id="sec-the_basic_model"></div>
 
@@ -39,14 +39,14 @@
 <h3><a id="sec-10_1_1" href="./user-microposts.html#sec-the_basic_model" class="heading"><span class="number">10.1.1</span>基本的なモデル</a></h3>
 
 
-<p>Micropostモデルはマイクロポストの内容を保存する<code>content</code><sup class="footnote" id="fnref-10_2"><a href="./user-microposts.html#fn-10_2">2</a></sup>属性と特定のユーザとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に(リスト<a class="ref" href="/chapters/modeling-users.html#code-generate_user_model">6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
+<p>Micropostモデルはマイクロポストの内容を保存する<code>content</code><sup class="footnote" id="fnref-10_2"><a href="./user-microposts.html#fn-10_2">2</a></sup>属性と特定のユーザとマイクロポストを関連付ける<code>user_id</code>属性の2つの属性だけを持ちます。ユーザーモデルの場合と同様に(リスト<a class="ref" href="./modeling-users.html#code-generate_user_model">6.1</a>)、<code>generate model</code>コマンドを使って生成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate model Micropost content:string user_id:integer
 </pre></div>
 </div>
 
 
-<p><a class="ref" href="/chapters/modeling-users.html#code-users_migration">リスト6.2</a>でデータベースに<code>users</code>テーブルを作るマイグレーションファイルを生成した時と同様に、このコマンドは <code>microposts</code>テーブルを作成するためのマイグレーションファイルを生成します (<a class="ref" href="./user-microposts.html#code-micropost_migration">リスト10.1</a>)。</p>
+<p><a class="ref" href="./modeling-users.html#code-users_migration">リスト6.2</a>でデータベースに<code>users</code>テーブルを作るマイグレーションファイルを生成した時と同様に、このコマンドは <code>microposts</code>テーブルを作成するためのマイグレーションファイルを生成します (<a class="ref" href="./user-microposts.html#code-micropost_migration">リスト10.1</a>)。</p>
 
 <div class="label" id="code-micropost_migration"></div>
 
@@ -68,16 +68,16 @@
 </div></div>
 
 
-<p>ここで、<a class="ref" href="./user-microposts.html#code-micropost_migration">リスト10.1</a>では<code>user_id</code>と<code>created_at</code>カラムにインデックスが付与されていることにご注目ください (<a class="ref" href="/chapters/modeling-users.html#sidebar-database_indices">コラム  6.2</a>)。user idに関連付けられたすべてのマイクロポストを作成時刻の逆順で取り出すためです。</p>
+<p>ここで、<a class="ref" href="./user-microposts.html#code-micropost_migration">リスト10.1</a>では<code>user_id</code>と<code>created_at</code>カラムにインデックスが付与されていることにご注目ください (<a class="ref" href="./modeling-users.html#sidebar-database_indices">コラム  6.2</a>)。user idに関連付けられたすべてのマイクロポストを作成時刻の逆順で取り出すためです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">add_index</span> <span class="ss">:microposts</span><span class="p">,</span> <span class="o">[</span><span class="ss">:user_id</span><span class="p">,</span> <span class="ss">:created_at</span><span class="o">]</span>
 </pre></div>
 </div>
 
 
-<p><code>user_id</code>と<code>created_at</code>両方のカラムを1つの配列に含めることで、Active Recordで<em>両方</em>のキーを同時に使用する<em>複合キーインデックス</em>を作成できます。また<a class="ref" href="/chapters/modeling-users.html#sec-database_migrations">6.1.1</a>でも述べたように、<code>t.timestamps</code>の行によって<code>created_at</code>カラムと<code>updated_at</code>カラムが作成されていることにもご注目ください。この後、<a class="ref" href="./user-microposts.html#sec-ordering_and_dependency">10.1.4</a>および<a class="ref" href="./user-microposts.html#sec-augmenting_the_user_show_page">10.2.1</a>で<code>created_at</code>カラムをさらに追加します。</p>
+<p><code>user_id</code>と<code>created_at</code>両方のカラムを1つの配列に含めることで、Active Recordで<em>両方</em>のキーを同時に使用する<em>複合キーインデックス</em>を作成できます。また<a class="ref" href="./modeling-users.html#sec-database_migrations">6.1.1</a>でも述べたように、<code>t.timestamps</code>の行によって<code>created_at</code>カラムと<code>updated_at</code>カラムが作成されていることにもご注目ください。この後、<a class="ref" href="./user-microposts.html#sec-ordering_and_dependency">10.1.4</a>および<a class="ref" href="./user-microposts.html#sec-augmenting_the_user_show_page">10.2.1</a>で<code>created_at</code>カラムをさらに追加します。</p>
 
-<p>それではユーザーモデルの場合 (<a class="ref" href="/chapters/modeling-users.html#code-user_spec">リスト6.8</a>) と同様に、マイクロポストデルに対する最小限のテストを書くところから始めましょう。具体的には <a class="ref" href="./user-microposts.html#code-initial_micropost_spec">リスト10.2</a> に示すように、micropostオブジェクトが <code>content</code>属性と<code>user_id</code>属性を持っていることを確認するテストを作成します。</p>
+<p>それではユーザーモデルの場合 (<a class="ref" href="./modeling-users.html#code-user_spec">リスト6.8</a>) と同様に、マイクロポストデルに対する最小限のテストを書くところから始めましょう。具体的には <a class="ref" href="./user-microposts.html#code-initial_micropost_spec">リスト10.2</a> に示すように、micropostオブジェクトが <code>content</code>属性と<code>user_id</code>属性を持っていることを確認するテストを作成します。</p>
 
 <div class="label" id="code-initial_micropost_spec"></div>
 
@@ -145,7 +145,7 @@
 <h3><a id="sec-10_1_2" href="./user-microposts.html#sec-accessible_attribute" class="heading"><span class="number">10.1.2</span>Accessible属性と最初の検証</a></h3>
 
 
-<p>上の解答を見る前に、<code>before</code>ブロックのコードが誤っている理由を確認するために、まずMicropostモデルに対する検証 (validation) テストを作成してみましょう (<a class="ref" href="./user-microposts.html#code-micropost_validity_test">リスト10.3</a>) (<a class="ref" href="/chapters/modeling-users.html#code-failing_validates_name_spec">リスト6.11</a>でのUserモデルのテストと比較してみてください)。</p>
+<p>上の解答を見る前に、<code>before</code>ブロックのコードが誤っている理由を確認するために、まずMicropostモデルに対する検証 (validation) テストを作成してみましょう (<a class="ref" href="./user-microposts.html#code-micropost_validity_test">リスト10.3</a>) (<a class="ref" href="./modeling-users.html#code-failing_validates_name_spec">リスト6.11</a>でのUserモデルのテストと比較してみてください)。</p>
 
 <div class="label" id="code-micropost_validity_test"></div>
 
@@ -200,7 +200,7 @@
 </div>
 
 
-<p>問題となっているのは、デフォルト (Rails 3.2.3の場合) でMicropostモデルの<em>すべて</em>の属性がアクセス可能になっていることです。<a class="ref" href="/chapters/modeling-users.html#sec-accessible_attributes">6.1.2.2</a>と<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-revisiting_attr_accessible">9.4.1.1</a>で述べたように、これは、コマンドラインのクライアントを使って悪意のあるリクエストを発行することで、誰でもマイクロポストオブジェクトのあらゆる属性を改変できることを意味します。たとえば、悪意のあるユーザがマイクロポストの<code>user_id</code>属性を改変し、別のユーザにマイクロポストを関連づける事も可能です。つまり、<code>user_id</code>は<code>attr_accessible</code>リストから削除されるべきであり、またそうすることにより上記のコードはテストに失敗します。この問題は<a class="ref" href="./user-microposts.html#sec-user_micropost_associations">10.1.3</a>で修正します。</p>
+<p>問題となっているのは、デフォルト (Rails 3.2.3の場合) でMicropostモデルの<em>すべて</em>の属性がアクセス可能になっていることです。<a class="ref" href="./modeling-users.html#sec-accessible_attributes">6.1.2.2</a>と<a class="ref" href="./updating-showing-and-deleting-users.html#sec-revisiting_attr_accessible">9.4.1.1</a>で述べたように、これは、コマンドラインのクライアントを使って悪意のあるリクエストを発行することで、誰でもマイクロポストオブジェクトのあらゆる属性を改変できることを意味します。たとえば、悪意のあるユーザがマイクロポストの<code>user_id</code>属性を改変し、別のユーザにマイクロポストを関連づける事も可能です。つまり、<code>user_id</code>は<code>attr_accessible</code>リストから削除されるべきであり、またそうすることにより上記のコードはテストに失敗します。この問題は<a class="ref" href="./user-microposts.html#sec-user_micropost_associations">10.1.3</a>で修正します。</p>
 
 <div class="label" id="sec-user_micropost_associations"></div>
 
@@ -208,7 +208,7 @@
 <h3><a id="sec-10_1_3" href="./user-microposts.html#sec-user_micropost_associations" class="heading"><span class="number">10.1.3</span>User/Micropostの関連付け</a></h3>
 
 
-<p>Webアプリケーション用のデータモデルを構築するにあたって、個々のモデル間での<em>関連づけ</em>を十分考えておくことが重要です。今回の場合は、 <a class="ref" href="/chapters/a-demo-app.html#sec-demo_user_has_many_microposts">2.3.3</a>でも示したように、それぞれのマイクロポストは１人のユーザと関連付けられ、それぞれのユーザは (潜在的に) 複数のマイクロポストと関連付けられます。この関連付けを<a class="ref" href="./user-microposts.html#fig-micropost_belongs_to_user">図10.2</a>と<a class="ref" href="./user-microposts.html#fig-user_has_many_microposts">図 0.3</a>に示します。それらの関連を実装するにあたって、<a class="ref" href="./user-microposts.html#code-initial_micropost_spec">リスト10.2</a>のようにではなく、<a class="ref" href="./user-microposts.html#code-micropost_accessible_attribute">リスト10.7</a>のように<code>attr_accessible</code>を利用してMicropostモデルのテストを作成します。</p>
+<p>Webアプリケーション用のデータモデルを構築するにあたって、個々のモデル間での<em>関連づけ</em>を十分考えておくことが重要です。今回の場合は、 <a class="ref" href="./a-demo-app.html#sec-demo_user_has_many_microposts">2.3.3</a>でも示したように、それぞれのマイクロポストは１人のユーザと関連付けられ、それぞれのユーザは (潜在的に) 複数のマイクロポストと関連付けられます。この関連付けを<a class="ref" href="./user-microposts.html#fig-micropost_belongs_to_user">図10.2</a>と<a class="ref" href="./user-microposts.html#fig-user_has_many_microposts">図 0.3</a>に示します。それらの関連を実装するにあたって、<a class="ref" href="./user-microposts.html#code-initial_micropost_spec">リスト10.2</a>のようにではなく、<a class="ref" href="./user-microposts.html#code-micropost_accessible_attribute">リスト10.7</a>のように<code>attr_accessible</code>を利用してMicropostモデルのテストを作成します。</p>
 
 <div class="label" id="fig-micropost_belongs_to_user"></div>
 
@@ -533,7 +533,7 @@
 </div>
 
 
-<p>(<a class="ref" href="/chapters/sign-in-sign-out.html#sidebar-time_helpers">コラム 8.1</a>で説明した時間指定用ヘルパーメソッドを使うことで) 2番目のポストの作成時刻がより新しく (<code>1時間前</code>)、最初のポストの作成日時が<code>1日前</code>になります。Factory Girlを使用すると、<code>attr_accessible</code>をバイパスすることによってマスアサインメントを使ってユーザーを設定することもできますし、Active Recordがアクセスを許可しないような<code>created_at</code>属性も手動で設定できるので大変便利です (<code>created_at</code>や<code>updated_at</code>などは通常のカラムと異なる “マジック”カラムであり、これらの作成タイムスタンプや更新タイムスタンプは自動的に設定されてしまうため、明示的に値を設定しても上書きされてしまうことを思い出してください)。</p>
+<p>(<a class="ref" href="./sign-in-sign-out.html#sidebar-time_helpers">コラム 8.1</a>で説明した時間指定用ヘルパーメソッドを使うことで) 2番目のポストの作成時刻がより新しく (<code>1時間前</code>)、最初のポストの作成日時が<code>1日前</code>になります。Factory Girlを使用すると、<code>attr_accessible</code>をバイパスすることによってマスアサインメントを使ってユーザーを設定することもできますし、Active Recordがアクセスを許可しないような<code>created_at</code>属性も手動で設定できるので大変便利です (<code>created_at</code>や<code>updated_at</code>などは通常のカラムと異なる “マジック”カラムであり、これらの作成タイムスタンプや更新タイムスタンプは自動的に設定されてしまうため、明示的に値を設定しても上書きされてしまうことを思い出してください)。</p>
 
 <p>(SQLiteを含む) ほとんどのデータベースアダプターは、マイクロポストを id順で返すため、<a class="ref" href="./user-microposts.html#code-micropost_ordering_test">リスト10.13</a>のようなテストはほぼ確実に失敗することになります。このコードでは<code>let</code>メソッドの代わりに<code>let!</code> (“let バン”と読みます) メソッドを使っています。これは、<code>let</code> 変数は「<em>lazy</em>」、つまり実際に参照されるまで初期化されない性質 (遅延) を持っており、そのことで不都合が生じるためです。ここでは、マイクロポストを遅延することなく即座に作成する必要があります。そのことにより、マイクロポストのタイムスタンプが常に正しい順序で作成されるように、かつ<code>@user.microposts</code>が空の状態が生じることのないようにしたいからです。<code>let!</code>を使用すれば、対応する変数を強制的に即座に作成できます。</p>
 
@@ -576,7 +576,7 @@
 
 <p>これは新しいポストが最初に来ることをテストしています。デフォルトでは id順に並ぶため<code>[older_micropost, newer_micropost]</code>の順序になりテストは失敗するはずです。また、このテストは<a class="ref" href="./user-microposts.html#table-association_methods">表 10.1</a>で示すように、 <code>user.microposts</code>がマイクロポストの配列を返すことをチェックすることにより、基本的な<code>has_many</code>関連付け自体の正しさも確認しています。</p>
 
-<p>順序テストがパスするために、 <a class="ref" href="./user-microposts.html#code-micropost_ordering">リスト10.14</a>に示すようにRailsの <code>default_scope</code>に<code>:order</code>パラメータを渡して使用します (このコードは<em>スコープ</em>に関する最初の例でもあります。より一般的なスコープについては<a class="ref" href="/chapters/following-users.html#top">第11章</a>で説明します)。</p>
+<p>順序テストがパスするために、 <a class="ref" href="./user-microposts.html#code-micropost_ordering">リスト10.14</a>に示すようにRailsの <code>default_scope</code>に<code>:order</code>パラメータを渡して使用します (このコードは<em>スコープ</em>に関する最初の例でもあります。より一般的なスコープについては<a class="ref" href="./following-users.html#top">第11章</a>で説明します)。</p>
 
 <div class="label" id="code-micropost_ordering"></div>
 
@@ -601,7 +601,7 @@
 <h4><a id="sec-10_1_4_2" href="./user-microposts.html#sec-dependent_destroy" class="heading">Dependent: destroy</a></h4>
 
 
-<p>順序についてはここで区切ることにし、今度はマイクロポストに第二の要素を追加してみましょう。<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-destroying_users">9.4</a>で書いたように、サイト管理者はユーザを<em>破棄する</em>権限を持ちます。ユーザが破棄された場合、ユーザのマイクロポストも同様に破棄されるべきです。最初のマイクロポストのユーザーを破棄した後、関連するマイクロポストもデータベースからなくなったことを確認することで、ユーザーの破棄をテストすることができます。</p>
+<p>順序についてはここで区切ることにし、今度はマイクロポストに第二の要素を追加してみましょう。<a class="ref" href="./updating-showing-and-deleting-users.html#sec-destroying_users">9.4</a>で書いたように、サイト管理者はユーザを<em>破棄する</em>権限を持ちます。ユーザが破棄された場合、ユーザのマイクロポストも同様に破棄されるべきです。最初のマイクロポストのユーザーを破棄した後、関連するマイクロポストもデータベースからなくなったことを確認することで、ユーザーの破棄をテストすることができます。</p>
 
 <p>適切にマイクロポストの破棄をテストするために、最初にローカル変数で指定されたユーザーのポストを取得し、それからユーザーを破棄します。シンプルな実装は以下のようになります。</p>
 
@@ -780,7 +780,7 @@
 <h3><a id="sec-10_1_5" href="./user-microposts.html#sec-micropost_validations" class="heading"><span class="number">10.1.5</span>コンテンツの検証</a></h3>
 
 
-<p>Micropostモデルを離れる前に、(<a class="ref" href="/chapters/a-demo-app.html#sec-putting_the_micro_in_microposts">2.3.2</a>の例に従い) マイクロポストの<code>content</code>の検証を追加しましょう。<code>user_id</code>属性と同様、<code>content</code>属性も存在する必要があり、さらに<em>マイクロ</em>ポストが140文字より長くならないよう制限を加えます。このテストは<a class="ref" href="/chapters/modeling-users.html#sec-user_validations">6.2</a>でのユーザーモデルの検証テストの例に従って、<a class="ref" href="./user-microposts.html#code-micropost_validations_tests">リスト10.17</a>のように書きます。</p>
+<p>Micropostモデルを離れる前に、(<a class="ref" href="./a-demo-app.html#sec-putting_the_micro_in_microposts">2.3.2</a>の例に従い) マイクロポストの<code>content</code>の検証を追加しましょう。<code>user_id</code>属性と同様、<code>content</code>属性も存在する必要があり、さらに<em>マイクロ</em>ポストが140文字より長くならないよう制限を加えます。このテストは<a class="ref" href="./modeling-users.html#sec-user_validations">6.2</a>でのユーザーモデルの検証テストの例に従って、<a class="ref" href="./user-microposts.html#code-micropost_validations_tests">リスト10.17</a>のように書きます。</p>
 
 <div class="label" id="code-micropost_validations_tests"></div>
 
@@ -815,7 +815,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/modeling-users.html#sec-user_validations">6.2</a>と同様、<a class="ref" href="./user-microposts.html#code-micropost_validations_tests">リスト10.17</a>ではマイクロポストの長さの検証コードをテストするために、文字列の乗算を使用しています。</p>
+<p><a class="ref" href="./modeling-users.html#sec-user_validations">6.2</a>と同様、<a class="ref" href="./user-microposts.html#code-micropost_validations_tests">リスト10.17</a>ではマイクロポストの長さの検証コードをテストするために、文字列の乗算を使用しています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails console
 <span class="gp">&gt;</span>&gt; <span class="s2">&quot;a&quot;</span> * 10
@@ -864,7 +864,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h2><a id="sec-10_2" href="./user-microposts.html#sec-showing_microposts" class="heading"><span class="number">10.2</span>マイクロポストを表示する</a></h2>
 
 
-<p>Web経由でマイクロポストを作成する方法はまだありませんが (<a class="ref" href="./user-microposts.html#sec-creating_microposts">10.3.2</a>から作り始めます)、マイクロポストを表示することと、テストすることならできます。ここでは、Twitterのような独立したマイクロポスト<code>index</code>ページでユーザーのマイクロポストを表示するよりも、<a class="ref" href="./user-microposts.html#fig-user_microposts_mockup">図10.4</a>のモックアップに示したように、直接ユーザーの<code>show</code>ページで表示させることにしましょう。ユーザープロファイルにマイクロポストを表示させるため、まずはとてもシンプルなERbテンプレートを作成するところから始めます。その後、<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-sample_users">9.3.2</a>のサンプルデータ生成タスクにマイクロポストのサンプルを追加して、画面にサンプルデータが表示されるようにしてみます。</p>
+<p>Web経由でマイクロポストを作成する方法はまだありませんが (<a class="ref" href="./user-microposts.html#sec-creating_microposts">10.3.2</a>から作り始めます)、マイクロポストを表示することと、テストすることならできます。ここでは、Twitterのような独立したマイクロポスト<code>index</code>ページでユーザーのマイクロポストを表示するよりも、<a class="ref" href="./user-microposts.html#fig-user_microposts_mockup">図10.4</a>のモックアップに示したように、直接ユーザーの<code>show</code>ページで表示させることにしましょう。ユーザープロファイルにマイクロポストを表示させるため、まずはとてもシンプルなERbテンプレートを作成するところから始めます。その後、<a class="ref" href="./updating-showing-and-deleting-users.html#sec-sample_users">9.3.2</a>のサンプルデータ生成タスクにマイクロポストのサンプルを追加して、画面にサンプルデータが表示されるようにしてみます。</p>
 
 <div class="label" id="fig-user_microposts_mockup"></div>
 
@@ -872,7 +872,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/user_microposts_mockup_bootstrap.png" alt="user_microposts_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.4: </span><span class="description">マイクロポストが表示されたプロファイルページのモックアップ。<a href="../images/figures/user_microposts_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p><a class="ref" href="/chapters/sign-in-sign-out.html#sec-remember_me">8.2.1</a>でサインイン機能について説明したときと同様に、<a class="ref" href="./user-microposts.html#sec-augmenting_the_user_show_page">10.2.1</a>でも最初に実装をお見せし、次にそれらの要素を順に解説してきます (<a href="http://en.wikipedia.org/wiki/Stack_(data_structure)">スタック</a>に複数の要素を一括でプッシュした後、順にポップするような要領です)。しばらくの間盛り上がりに欠けるかもしれませんが、<a class="ref" href="./user-microposts.html#sec-sample_microposts">10.2.2</a>で一気に取り返しますので、ご辛抱願います。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>でサインイン機能について説明したときと同様に、<a class="ref" href="./user-microposts.html#sec-augmenting_the_user_show_page">10.2.1</a>でも最初に実装をお見せし、次にそれらの要素を順に解説してきます (<a href="http://en.wikipedia.org/wiki/Stack_(data_structure)">スタック</a>に複数の要素を一括でプッシュした後、順にポップするような要領です)。しばらくの間盛り上がりに欠けるかもしれませんが、<a class="ref" href="./user-microposts.html#sec-sample_microposts">10.2.2</a>で一気に取り返しますので、ご辛抱願います。</p>
 
 <div class="label" id="sec-augmenting_the_user_show_page"></div>
 
@@ -970,7 +970,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>すぐにもマイクロポスト一覧の実装に取りかかりますが、その前に注意すべき点がいくつかあります。<a class="ref" href="./user-microposts.html#code-user_show_microposts">リスト10.20</a>では、<code>if @user.microposts.any?</code>を使用することによって (以前<a class="ref" href="/chapters/sign-up.html#code-errors_partial">リスト7.23</a>でも使用しました)  ユーザのマイクロポストが1つもない場合に空のリストが表示されないようにしています。</p>
+<p>すぐにもマイクロポスト一覧の実装に取りかかりますが、その前に注意すべき点がいくつかあります。<a class="ref" href="./user-microposts.html#code-user_show_microposts">リスト10.20</a>では、<code>if @user.microposts.any?</code>を使用することによって (以前<a class="ref" href="./sign-up.html#code-errors_partial">リスト7.23</a>でも使用しました)  ユーザのマイクロポストが1つもない場合に空のリストが表示されないようにしています。</p>
 
 <p><a class="ref" href="./user-microposts.html#code-user_show_microposts">リスト10.20</a>では、以下のようにマイクロポストに対するページネーションのコードを加えていたことにご注意ください。</p>
 
@@ -979,14 +979,14 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p><a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.34</a>のユーザーインデックスページのコードと比較すると、以前は以下のように単純なコードでした。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.34</a>のユーザーインデックスページのコードと比較すると、以前は以下のように単純なコードでした。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">will_paginate</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>上のコードは引数なしで動作していました。これは<code>will_paginate</code>が、ユーザーコントローラのコンテキストにおいて、<code>@users</code>インスタンス変数が存在していることを<em>前提としている</em>ためです。このインスタンス変数は、<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-pagination">9.3.3</a>でも述べたように<code>ActiveRecord::Relation</code>クラスのインスタンスです。今回の場合は、ユーザーコントローラのコンテキストにおいて、<em>マイクロポスト</em>をページネーションしたいため、明示的に<code>@microposts</code>変数を<code> will_paginate</code>に渡す必要があります。もちろん、そのような変数をユーザー<code>show</code>アクションで定義しなければなりません(<a class="ref" href="./user-microposts.html#code-user_show_microposts_instance">リスト10.22</a>)。</p>
+<p>上のコードは引数なしで動作していました。これは<code>will_paginate</code>が、ユーザーコントローラのコンテキストにおいて、<code>@users</code>インスタンス変数が存在していることを<em>前提としている</em>ためです。このインスタンス変数は、<a class="ref" href="./updating-showing-and-deleting-users.html#sec-pagination">9.3.3</a>でも述べたように<code>ActiveRecord::Relation</code>クラスのインスタンスです。今回の場合は、ユーザーコントローラのコンテキストにおいて、<em>マイクロポスト</em>をページネーションしたいため、明示的に<code>@microposts</code>変数を<code> will_paginate</code>に渡す必要があります。もちろん、そのような変数をユーザー<code>show</code>アクションで定義しなければなりません(<a class="ref" href="./user-microposts.html#code-user_show_microposts_instance">リスト10.22</a>)。</p>
 
 <p>最後に、以下のようにマイクロポストの現在の数のカウントを追加します。</p>
 
@@ -1006,7 +1006,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>この<em>順序リスト</em>タグ<code>ol</code>を含むコードがマイクロポストの一覧を生成します。ただしご覧のとおり、実装の厄介な部分をマイクロポストパーシャルに任せています。<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-partial_refactoring">9.3.4</a>で見た以下のコードは、</p>
+<p>この<em>順序リスト</em>タグ<code>ol</code>を含むコードがマイクロポストの一覧を生成します。ただしご覧のとおり、実装の厄介な部分をマイクロポストパーシャルに任せています。<a class="ref" href="./updating-showing-and-deleting-users.html#sec-partial_refactoring">9.3.4</a>で見た以下のコードは、</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">render</span> <span class="vi">@users</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -1077,14 +1077,14 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-10_2_2" href="./user-microposts.html#sec-sample_microposts" class="heading"><span class="number">10.2.2</span>マイクロポストのサンプル</a></h3>
 
 
-<p><a class="ref" href="./user-microposts.html#sec-augmenting_the_user_show_page">10.2.1</a>のユーザーマイクロポストのテンプレート作成作業の成果は、何とも拍子抜けでした。<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-sample_users">9.3.2</a>のサンプル生成にマイクロポストを追加し、この情けない状況を修正しましょう。<em>すべて</em>のユーザーにサンプルマイクロポストを追加しようとすると時間がかかりすぎるので、最初の6人のユーザー<sup class="footnote" id="fnref-10_4"><a href="./user-microposts.html#fn-10_4">4</a></sup>だけを選択しましょう。そのためには、<code>User.all</code>メソッドに<code>limit</code>オプションを渡します<sup class="footnote" id="fnref-10_5"><a href="./user-microposts.html#fn-10_5">5</a></sup>。</p>
+<p><a class="ref" href="./user-microposts.html#sec-augmenting_the_user_show_page">10.2.1</a>のユーザーマイクロポストのテンプレート作成作業の成果は、何とも拍子抜けでした。<a class="ref" href="./updating-showing-and-deleting-users.html#sec-sample_users">9.3.2</a>のサンプル生成にマイクロポストを追加し、この情けない状況を修正しましょう。<em>すべて</em>のユーザーにサンプルマイクロポストを追加しようとすると時間がかかりすぎるので、最初の6人のユーザー<sup class="footnote" id="fnref-10_4"><a href="./user-microposts.html#fn-10_4">4</a></sup>だけを選択しましょう。そのためには、<code>User.all</code>メソッドに<code>limit</code>オプションを渡します<sup class="footnote" id="fnref-10_5"><a href="./user-microposts.html#fn-10_5">5</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="ss">limit:</span> <span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>その後、各ユーザーに50のマイクロポスト (ページネーションが切り替わる30を超える数) を作成し、Faker gem の便利な <tt>Lorem.sentence</tt><a href="http://faker.rubyforge.org/rdoc/classes/Faker/Lorem.html"></a>メソッドを使って各マイクロポストのサンプルコンテンツを生成します (<code>Faker::Lorem.sentence</code>は、いわゆる<em>lorem ipsum</em>ダミーテキストを返します。<a class="ref" href="/chapters/modeling-users.html#top">第6章</a>で述べたように、<em>lorem ipsum</em>には面白い<a href="http://www.straightdope.com/columns/read/2290/what-does-the-filler-text-lorem-ipsum-mean">裏話</a>があります)。 変更の結果は、<a class="ref" href="./user-microposts.html#code-sample_microposts">リスト10.23</a>のようなサンプルデータ生成になります。</p>
+<p>その後、各ユーザーに50のマイクロポスト (ページネーションが切り替わる30を超える数) を作成し、Faker gem の便利な <tt>Lorem.sentence</tt><a href="http://faker.rubyforge.org/rdoc/classes/Faker/Lorem.html"></a>メソッドを使って各マイクロポストのサンプルコンテンツを生成します (<code>Faker::Lorem.sentence</code>は、いわゆる<em>lorem ipsum</em>ダミーテキストを返します。<a class="ref" href="./modeling-users.html#top">第6章</a>で述べたように、<em>lorem ipsum</em>には面白い<a href="http://www.straightdope.com/columns/read/2290/what-does-the-filler-text-lorem-ipsum-mean">裏話</a>があります)。 変更の結果は、<a class="ref" href="./user-microposts.html#code-sample_microposts">リスト10.23</a>のようなサンプルデータ生成になります。</p>
 
 <div class="label" id="code-sample_microposts"></div>
 
@@ -1199,9 +1199,9 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h2><a id="sec-10_3" href="./user-microposts.html#sec-manipulating_microposts" class="heading"><span class="number">10.3</span>マイクロポストを操作する</a></h2>
 
 
-<p>データモデリングとマイクロポスト表示テンプレートの両方が完成したので、次はWeb経由でそれらを作成するためのインターフェイスに取りかかりましょう。HTMLフォームを使用してリソース (今回の場合はMicropostsリソース) を作成する3番目の例になります<sup class="footnote" id="fnref-10_8"><a href="./user-microposts.html#fn-10_8">8</a></sup>。この節では、<em>ステータスフィード</em>(<a class="ref" href="/chapters/following-users.html#top">第11章</a>で完成させます) の最初のヒントをお見せします。最後に、ユーザーがマイクロポストをWeb経由で破棄できるようにします。</p>
+<p>データモデリングとマイクロポスト表示テンプレートの両方が完成したので、次はWeb経由でそれらを作成するためのインターフェイスに取りかかりましょう。HTMLフォームを使用してリソース (今回の場合はMicropostsリソース) を作成する3番目の例になります<sup class="footnote" id="fnref-10_8"><a href="./user-microposts.html#fn-10_8">8</a></sup>。この節では、<em>ステータスフィード</em>(<a class="ref" href="./following-users.html#top">第11章</a>で完成させます) の最初のヒントをお見せします。最後に、ユーザーがマイクロポストをWeb経由で破棄できるようにします。</p>
 
-<p>従来のRails開発の慣習と異なる箇所が1つあります。Micropostsリソースへのインターフェースは、主にユーザーと静的ページのコントローラを経由して実行されるので、Micropostsコントローラには<code>new</code>や<code>edit</code>のようなアクションは不要ということになります。<code>create</code>と<code>destroy</code>があれば十分です。従って、<a class="ref" href="./user-microposts.html#code-microposts_resource">リスト10.25</a>に示すように、Micropostsリソースへのルーティングは一層シンプルになります。その結果、<a class="ref" href="./user-microposts.html#code-microposts_resource">リスト10.25</a>のコードは、フルセットのルーティング (<a class="ref" href="/chapters/a-demo-app.html#table-demo_RESTful_microposts">表2.3</a>) のサブセットであるRESTfulルート (<a class="ref" href="./user-microposts.html#table-RESTful_microposts">表10.2</a>) になります。もちろん、シンプルになったということは完成度が<em>さらに</em>高まったということの証しであり、退化したわけではありません。<a class="ref" href="/chapters/a-demo-app.html#top">第2章</a>でscaffoldに頼りきりだった頃からここに至るまでは長い道のりでしたが、今ではscaffoldが生成するような複雑なコードのほとんどは不要になりました。</p>
+<p>従来のRails開発の慣習と異なる箇所が1つあります。Micropostsリソースへのインターフェースは、主にユーザーと静的ページのコントローラを経由して実行されるので、Micropostsコントローラには<code>new</code>や<code>edit</code>のようなアクションは不要ということになります。<code>create</code>と<code>destroy</code>があれば十分です。従って、<a class="ref" href="./user-microposts.html#code-microposts_resource">リスト10.25</a>に示すように、Micropostsリソースへのルーティングは一層シンプルになります。その結果、<a class="ref" href="./user-microposts.html#code-microposts_resource">リスト10.25</a>のコードは、フルセットのルーティング (<a class="ref" href="./a-demo-app.html#table-demo_RESTful_microposts">表2.3</a>) のサブセットであるRESTfulルート (<a class="ref" href="./user-microposts.html#table-RESTful_microposts">表10.2</a>) になります。もちろん、シンプルになったということは完成度が<em>さらに</em>高まったということの証しであり、退化したわけではありません。<a class="ref" href="./a-demo-app.html#top">第2章</a>でscaffoldに頼りきりだった頃からここに至るまでは長い道のりでしたが、今ではscaffoldが生成するような複雑なコードのほとんどは不要になりました。</p>
 
 <div class="label" id="code-microposts_resource"></div>
 
@@ -1279,9 +1279,9 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>未制作のマイクロポストのWebインターフェースと違い、<a class="ref" href="./user-microposts.html#code-micropost_access_control">リスト10.26</a>のコードは、<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-edit_update_wrong_user_tests">リスト9.14</a>のときの手法と同様に、それぞれのマイクロポストアクションのレベルで動作します。サインインしていないユーザは、<tt>POST</tt>リクエストを/microposts (<code>post microposts_path</code>、<code>create</code>アクションが呼び出される) に送信した場合、または <tt>DELETE</tt>リクエストを/microposts/1 (<code>delete micropost_path(micropost)</code>、<code>destroy</code>アクションが呼び出される) に送信した場合にリダイレクトされます。</p>
+<p>未制作のマイクロポストのWebインターフェースと違い、<a class="ref" href="./user-microposts.html#code-micropost_access_control">リスト10.26</a>のコードは、<a class="ref" href="./updating-showing-and-deleting-users.html#code-edit_update_wrong_user_tests">リスト9.14</a>のときの手法と同様に、それぞれのマイクロポストアクションのレベルで動作します。サインインしていないユーザは、<tt>POST</tt>リクエストを/microposts (<code>post microposts_path</code>、<code>create</code>アクションが呼び出される) に送信した場合、または <tt>DELETE</tt>リクエストを/microposts/1 (<code>delete micropost_path(micropost)</code>、<code>destroy</code>アクションが呼び出される) に送信した場合にリダイレクトされます。</p>
 
-<p><a class="ref" href="./user-microposts.html#code-micropost_access_control">リスト10.26</a>のテストにパスするためのアプリケーションコードを作成する前に、少しリファクタリングを行いましょう。 <a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-requiring_signed_in_users">9.2.1</a>では、<code>signed_in_user</code>メソッドと呼ばれるbefore_filterを使用して、サインインを必須にしたことを思い出してください (<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-authorize_before_filter">リスト9.12</a>)。そのときは、このメソッドをUsersコントローラ
+<p><a class="ref" href="./user-microposts.html#code-micropost_access_control">リスト10.26</a>のテストにパスするためのアプリケーションコードを作成する前に、少しリファクタリングを行いましょう。 <a class="ref" href="./updating-showing-and-deleting-users.html#sec-requiring_signed_in_users">9.2.1</a>では、<code>signed_in_user</code>メソッドと呼ばれるbefore_filterを使用して、サインインを必須にしたことを思い出してください (<a class="ref" href="./updating-showing-and-deleting-users.html#code-authorize_before_filter">リスト9.12</a>)。そのときは、このメソッドをUsersコントローラ
 でしか使用しませんでしたが、今回はMicropostsコントローラでもこのメソッドが必要となることがわかったので、<a class="ref" href="./user-microposts.html#code-sessions_helper_authenticate">リスト10.27</a>に示すように、セッションヘルパーに移動します<sup class="footnote" id="fnref-10_9"><a href="./user-microposts.html#fn-10_9">9</a></sup>。</p>
 
 <div class="label" id="code-sessions_helper_authenticate"></div>
@@ -1366,7 +1366,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-10_3_2" href="./user-microposts.html#sec-creating_microposts" class="heading"><span class="number">10.3.2</span>マイクロポストを作成する</a></h3>
 
 
-<p><a class="ref" href="/chapters/sign-up.html#top">第7章</a>では、HTTP <tt>POST</tt>リクエストをUsersコントローラの<code>create</code>アクションに発行するHTMLフォームを作成することで、ユーザーのサインアップを実装しました。マイクロポスト作成の実装もこれと似ています。主な違いは、別の micropost/new ページを使う代わりに、(Twitterに習って) ホームページ自体 (つまりルートパス) にフォームを置くという点です (<a class="ref" href="./user-microposts.html#fig-home_page_with_micropost_form_mockup">図10.10</a>のモックアップ参照)。</p>
+<p><a class="ref" href="./sign-up.html#top">第7章</a>では、HTTP <tt>POST</tt>リクエストをUsersコントローラの<code>create</code>アクションに発行するHTMLフォームを作成することで、ユーザーのサインアップを実装しました。マイクロポスト作成の実装もこれと似ています。主な違いは、別の micropost/new ページを使う代わりに、(Twitterに習って) ホームページ自体 (つまりルートパス) にフォームを置くという点です (<a class="ref" href="./user-microposts.html#fig-home_page_with_micropost_form_mockup">図10.10</a>のモックアップ参照)。</p>
 
 <div class="label" id="fig-home_page_with_micropost_form_mockup"></div>
 
@@ -1374,14 +1374,14 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/home_page_with_micropost_form_mockup_bootstrap.png" alt="home_page_with_micropost_form_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.10</span><span class="description">マイクロポスト作成フォームのあるホームページのモックアップ。<a href="../images/figures/home_page_with_micropost_form_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>最後にホームページを実装したときは(<a class="ref" href="/chapters/filling-in-the-layout.html#fig-sample_app_logo">図5.6</a>)、[Sign up now!] ボタンが中央にありました。マイクロポスト作成フォームは、サインインしている特定のユーザーのコンテキストでのみ機能するので、この節の一つの目標は、ユーザーのサインインの状態に応じて、ホームページの表示を変更することです。実装は<a class="ref" href="./user-microposts.html#code-microposts_home_page">リスト10.31</a>で行いますが、先にテストを作成しましょう。Usersリソースの場合と同様に、結合テストを使用します。</p>
+<p>最後にホームページを実装したときは(<a class="ref" href="./filling-in-the-layout.html#fig-sample_app_logo">図5.6</a>)、[Sign up now!] ボタンが中央にありました。マイクロポスト作成フォームは、サインインしている特定のユーザーのコンテキストでのみ機能するので、この節の一つの目標は、ユーザーのサインインの状態に応じて、ホームページの表示を変更することです。実装は<a class="ref" href="./user-microposts.html#code-microposts_home_page">リスト10.31</a>で行いますが、先にテストを作成しましょう。Usersリソースの場合と同様に、結合テストを使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate integration_test micropost_pages
 </pre></div>
 </div>
 
 
-<p>従って、マイクロポスト作成のテストは、<a class="ref" href="/chapters/sign-up.html#code-basic_signup_tests">リスト7.16</a>のユーザー作成用テストと似ています。このテストを<a class="ref" href="./user-microposts.html#code-microposts_create_tests">リスト10.29</a>に示します。</p>
+<p>従って、マイクロポスト作成のテストは、<a class="ref" href="./sign-up.html#code-basic_signup_tests">リスト7.16</a>のユーザー作成用テストと似ています。このテストを<a class="ref" href="./user-microposts.html#code-microposts_create_tests">リスト10.29</a>に示します。</p>
 
 <div class="label" id="code-microposts_create_tests"></div>
 
@@ -1425,7 +1425,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>マイクロポストの<code>create</code>アクションのテストを作り始めましょう。このテストは、<a class="ref" href="/chapters/sign-up.html#code-user_create_action">リスト7.25</a>のユーザー用テストと似ています。違いは、新しいマイクロポストを<code>build</code>するためにuser/micropost関連付けを使用している点です (<a class="ref" href="./user-microposts.html#code-microposts_create_action">リスト10.30</a>)。</p>
+<p>マイクロポストの<code>create</code>アクションのテストを作り始めましょう。このテストは、<a class="ref" href="./sign-up.html#code-user_create_action">リスト7.25</a>のユーザー用テストと似ています。違いは、新しいマイクロポストを<code>build</code>するためにuser/micropost関連付けを使用している点です (<a class="ref" href="./user-microposts.html#code-microposts_create_action">リスト10.30</a>)。</p>
 
 <div class="label" id="code-microposts_create_action"></div>
 
@@ -1514,11 +1514,11 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p><a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-user_index_view">リスト9.25</a>と同様、<a class="ref" href="./user-microposts.html#code-user_info">リスト10.32</a>のコードでも<a class="ref" href="/chapters/sign-up.html#code-gravatar_option">リスト7.29</a>で定義した<code>gravatar_for</code>ヘルパーを使用します。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_view">リスト9.25</a>と同様、<a class="ref" href="./user-microposts.html#code-user_info">リスト10.32</a>のコードでも<a class="ref" href="./sign-up.html#code-gravatar_option">リスト7.29</a>で定義した<code>gravatar_for</code>ヘルパーを使用します。</p>
 
 <p>プロファイルサイドバー (<a class="ref" href="./user-microposts.html#code-user_show_microposts">リスト10.20</a>) のときと同様、<a class="ref" href="./user-microposts.html#code-user_info">リスト10.32</a>のユーザー情報にも、そのユーザーが投稿したマイクロポストの総数が表示されていることにご注目ください。ただし少し表示に違いがあります。プロファイルサイドバーでは “Microposts” がラベルで、“Microposts (1)” と表示することは問題ありません。しかし今回のように “1 microposts” と表示してしまうと英語の文法上誤りになってしまうので、<code>pluralize</code>メソッドを使用して “1 micropost” や “2 microposts” と表示するように調整します。</p>
 
-<p>次はマイクロポスト作成フォームを定義します (<a class="ref" href="./user-microposts.html#code-micropost_form">リスト10.33</a>)。これはユーザー登録フォームに似ています (<a class="ref" href="/chapters/sign-up.html#code-signup_form">リスト7.17</a>)。</p>
+<p>次はマイクロポスト作成フォームを定義します (<a class="ref" href="./user-microposts.html#code-micropost_form">リスト10.33</a>)。これはユーザー登録フォームに似ています (<a class="ref" href="./sign-up.html#code-signup_form">リスト7.17</a>)。</p>
 
 <div class="label" id="code-micropost_form"></div>
 
@@ -1572,7 +1572,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p><a class="ref" href="/chapters/sign-up.html#code-f_error_messages">リスト7.22</a>ではエラーメッセージパーシャルが<code>@user</code>変数を直接参照していたことを思い出してください。今回は代わりに<code>@micropost</code>変数を使う必要があります。どのような種類のオブジェクトが渡されてもエラーメッセージパーシャルが動くようにする必要があります。幸い、フォーム変数<code>f</code>は<code>f.object</code>とすることによって、関連付けられたオブジェクトにアクセスすることができます。従って、以下のコードの場合</p>
+<p><a class="ref" href="./sign-up.html#code-f_error_messages">リスト7.22</a>ではエラーメッセージパーシャルが<code>@user</code>変数を直接参照していたことを思い出してください。今回は代わりに<code>@micropost</code>変数を使う必要があります。どのような種類のオブジェクトが渡されてもエラーメッセージパーシャルが動くようにする必要があります。幸い、フォーム変数<code>f</code>は<code>f.object</code>とすることによって、関連付けられたオブジェクトにアクセスすることができます。従って、以下のコードの場合</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">form_for</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
 </pre></div>
@@ -1601,7 +1601,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト10.35</span> <span class="description">他のオブジェクトでも動作するように<a class="ref" href="/chapters/sign-up.html#code-errors_partial">リスト7.23</a>のエラーメッセージパーシャルを更新する。</span><br /><span class="description"> <code>app/views/shared/_error_messages.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト10.35</span> <span class="description">他のオブジェクトでも動作するように<a class="ref" href="./sign-up.html#code-errors_partial">リスト7.23</a>のエラーメッセージパーシャルを更新する。</span><br /><span class="description"> <code>app/views/shared/_error_messages.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">object</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">any?</span> <span class="cp">%&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;error_explanation&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;alert alert-error&quot;</span><span class="nt">&gt;</span>
@@ -1625,7 +1625,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>運悪く、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="./user-microposts.html#code-signup_errors_updated">リスト10.36</a>および<a class="ref" href="./user-microposts.html#code-edit_errors_updated">リスト10.37</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>メモ</em>: もし<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>の演習のコードを「<a href="http://en.wikipedia.org/wiki/Mutatis_mutandis"><em>必要に応じて流用 (Mutatis mutandis)</em></a>」して<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-new_edit_partial">リスト9.50</a>および<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-new_user_with_partial">リスト9.51</a>のコードを実装していた場合、コードは異なるものになるでしょう。)</p>
+<p>運悪く、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="./user-microposts.html#code-signup_errors_updated">リスト10.36</a>および<a class="ref" href="./user-microposts.html#code-edit_errors_updated">リスト10.37</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>メモ</em>: もし<a class="ref" href="./updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>の演習のコードを「<a href="http://en.wikipedia.org/wiki/Mutatis_mutandis"><em>必要に応じて流用 (Mutatis mutandis)</em></a>」して<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_edit_partial">リスト9.50</a>および<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_user_with_partial">リスト9.51</a>のコードを実装していた場合、コードは異なるものになるでしょう。)</p>
 
 <div class="label" id="code-signup_errors_updated"></div>
 
@@ -1707,7 +1707,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-10_3_3" href="./user-microposts.html#sec-a_proto_feed" class="heading"><span class="number">10.3.3</span>フィードの原型</a></h3>
 
 
-<p><a class="ref" href="./user-microposts.html#sec-creating_microposts">10.3.2</a>の最後のコメントでもほのめかしましたが、現在のHomeページはマイクロポストが1つも表示されていません。<a class="ref" href="./user-microposts.html#fig-home_with_form">図10.11</a>のフォームが正しく動作しているかどうかを確認したい場合、正しいエントリーを投稿した後、<a href="http://localhost:3000/users/1">プロファイルページ</a>に移動してポストを表示すればよいのですが、これはかなり面倒な作業です。 <a class="ref" href="./user-microposts.html#fig-proto_feed_mockup">図10.13</a>のモックアップで示したような、ユーザー自身のポストを含むマイクロポスト<em>フィード</em>がないと不便です (<a class="ref" href="/chapters/following-users.html#top">第11章</a>ではフィードを汎用化し、現在のユーザによって<em>フォローされている</em>ユーザのマイクロポストも一緒に表示するフィードにする予定です)。</p>
+<p><a class="ref" href="./user-microposts.html#sec-creating_microposts">10.3.2</a>の最後のコメントでもほのめかしましたが、現在のHomeページはマイクロポストが1つも表示されていません。<a class="ref" href="./user-microposts.html#fig-home_with_form">図10.11</a>のフォームが正しく動作しているかどうかを確認したい場合、正しいエントリーを投稿した後、<a href="http://localhost:3000/users/1">プロファイルページ</a>に移動してポストを表示すればよいのですが、これはかなり面倒な作業です。 <a class="ref" href="./user-microposts.html#fig-proto_feed_mockup">図10.13</a>のモックアップで示したような、ユーザー自身のポストを含むマイクロポスト<em>フィード</em>がないと不便です (<a class="ref" href="./following-users.html#top">第11章</a>ではフィードを汎用化し、現在のユーザによって<em>フォローされている</em>ユーザのマイクロポストも一緒に表示するフィードにする予定です)。</p>
 
 <div class="label" id="fig-proto_feed_mockup"></div>
 
@@ -1774,7 +1774,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>上の例は、RSpecの論理値変換機能の柔軟性がきわめて高いことを示しています。<code>include</code>メソッドは本来、モジュールをインクルードするために使用するRubyキーワードであるにもかかわらず (<a class="ref" href="/chapters/sign-in-sign-out.html#code-sessions_helper_include">リスト8.14</a>など)、このRSpecのコンテキストでは配列が要素を含んでいるかどうかをテストしたいという開発者の意図を正確に推測してくれます。</p>
+<p>上の例は、RSpecの論理値変換機能の柔軟性がきわめて高いことを示しています。<code>include</code>メソッドは本来、モジュールをインクルードするために使用するRubyキーワードであるにもかかわらず (<a class="ref" href="./sign-in-sign-out.html#code-sessions_helper_include">リスト8.14</a>など)、このRSpecのコンテキストでは配列が要素を含んでいるかどうかをテストしたいという開発者の意図を正確に推測してくれます。</p>
 
 <p><a class="ref" href="./user-microposts.html#code-proto_status_feed">リスト10.39</a>で示すように、<code>user_id</code>が現在のユーザーidと等しいマイクロポストを見つけることによって、適切なマイクロポストの<code>feed</code>メソッドを実装することができます。これは<code>Micropost</code>モデルで<code>where</code>メソッドを使用することで実現できます<sup class="footnote" id="fnref-10_11"><a href="./user-microposts.html#fn-10_11">11</a></sup>。</p>
 
@@ -1818,7 +1818,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>上のコードを使用せずに<a class="ref" href="./user-microposts.html#code-proto_status_feed">リスト10.39</a>のコードを利用したのは、<a class="ref" href="/chapters/following-users.html#top">第11章</a>で必要となるフルステータスフィードで応用が効くためです。</p>
+<p>上のコードを使用せずに<a class="ref" href="./user-microposts.html#code-proto_status_feed">リスト10.39</a>のコードを利用したのは、<a class="ref" href="./following-users.html#top">第11章</a>で必要となるフルステータスフィードで応用が効くためです。</p>
 
 <p>ステータスフィードの表示をテストするために、まずいくつかのマイクロポストを作成し、それぞれのページに表示されるリスト要素 (<code>li</code>)を検証します(<a class="ref" href="./user-microposts.html#code-home_page_feed_test">リスト10.40</a>)。</p>
 
@@ -2033,7 +2033,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-10_3_4" href="./user-microposts.html#sec-destroying_microposts" class="heading"><span class="number">10.3.4</span>マイクロポストを削除する</a></h3>
 
 
-<p>最後の機能として、マイクロポストリソースにポストを削除する機能を追加します。これはユーザ削除と同様に(<a class="ref" href="/chapters/updating-showing-and-deleting-users.html#sec-the_destroy_action">9.4.2</a>)、&quot;delete&quot; リンクで実現します (<a class="ref" href="./user-microposts.html#fig-micropost_delete_links_mockup">図10.16</a>)。ユーザーの削除は管理者ユーザのみが行えるように制限されていたのに対し、今回の場合はカレントユーザーが作成したマイクロポストに対してのみ削除リンクが動作するようにします。</p>
+<p>最後の機能として、マイクロポストリソースにポストを削除する機能を追加します。これはユーザ削除と同様に(<a class="ref" href="./updating-showing-and-deleting-users.html#sec-the_destroy_action">9.4.2</a>)、&quot;delete&quot; リンクで実現します (<a class="ref" href="./user-microposts.html#fig-micropost_delete_links_mockup">図10.16</a>)。ユーザーの削除は管理者ユーザのみが行えるように制限されていたのに対し、今回の場合はカレントユーザーが作成したマイクロポストに対してのみ削除リンクが動作するようにします。</p>
 
 <div class="label" id="fig-micropost_delete_links_mockup"></div>
 
@@ -2118,7 +2118,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p><a class="ref" href="/chapters/updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト9.48</a>のユーザー用アプリケーションコードと似ていますが、最も大きく異なるのは、マイクロポストの場合は、カレントユーザーが実際に指定のidのマイクロポストを持っているのかをチェックするのに<code>admin_user</code> before_filterではなく、 <code>correct_user</code> before_filterを使用している点です。コードを<a class="ref" href="./user-microposts.html#code-microposts_destroy_action">リスト10.49</a>に示します。2番目に新しいポストを削除した場合の結果を<a class="ref" href="./user-microposts.html#fig-home_post_delete">図10.17</a>に示します。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト9.48</a>のユーザー用アプリケーションコードと似ていますが、最も大きく異なるのは、マイクロポストの場合は、カレントユーザーが実際に指定のidのマイクロポストを持っているのかをチェックするのに<code>admin_user</code> before_filterではなく、 <code>correct_user</code> before_filterを使用している点です。コードを<a class="ref" href="./user-microposts.html#code-microposts_destroy_action">リスト10.49</a>に示します。2番目に新しいポストを削除した場合の結果を<a class="ref" href="./user-microposts.html#fig-home_post_delete">図10.17</a>に示します。</p>
 
 <div class="label" id="code-microposts_destroy_action"></div>
 
@@ -2195,7 +2195,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h2><a id="sec-10_4" href="./user-microposts.html#sec-10_4" class="heading"><span class="number">10.4</span>最後に</a></h2>
 
 
-<p>Micropostsリソースの追加によって、サンプルアプリケーションはほぼ完成に近づきました。残すところは、ユーザーをお互いにフォローするソーシャルレイヤーのみとなりました。<a class="ref" href="/chapters/following-users.html#top">第11章</a>では、そのようなユーザー同士の関係 (リレーションシップ) をモデリングする方法を学び、それがステータスフィードにどのように関連するかを学びます。</p>
+<p>Micropostsリソースの追加によって、サンプルアプリケーションはほぼ完成に近づきました。残すところは、ユーザーをお互いにフォローするソーシャルレイヤーのみとなりました。<a class="ref" href="./following-users.html#top">第11章</a>では、そのようなユーザー同士の関係 (リレーションシップ) をモデリングする方法を学び、それがステータスフィードにどのように関連するかを学びます。</p>
 
 <p>Gitバージョン管理を使用している方は、次に進む前に変更をマージしてコミットすることを忘れないでください。</p>
 
@@ -2321,22 +2321,22 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 
 
-<div class="navigation">  <a class="prev_page" href="/chapters/updating-showing-and-deleting-users.html#top">
-</a><a class="prev_page" href="/chapters/updating-showing-and-deleting-users.html#top"><span class="number">第9章</span> ユーザーの更新・表示・削除</a><a class="prev_page" href="/chapters/updating-showing-and-deleting-users.html#top">  </a>
-  <a class="next_page" href="/chapters/following-users.html#top">
-</a><a class="next_page" href="/chapters/following-users.html#top">    <span class="number">第11章</span>ユーザーをフォローする</a><a class="next_page" href="/chapters/following-users.html#top">  </a>
+<div class="navigation">  <a class="prev_page" href="./updating-showing-and-deleting-users.html#top">
+</a><a class="prev_page" href="./updating-showing-and-deleting-users.html#top"><span class="number">第9章</span> ユーザーの更新・表示・削除</a><a class="prev_page" href="./updating-showing-and-deleting-users.html#top">  </a>
+  <a class="next_page" href="./following-users.html#top">
+</a><a class="next_page" href="./following-users.html#top">    <span class="number">第11章</span>ユーザーをフォローする</a><a class="next_page" href="./following-users.html#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-10_1">技術的には、<a class="ref" href="/chapters/sign-in-sign-out.html#top">第8章</a>でセッションをリソースとして扱いましたが、セッションはユーザーやマイクロポストと異なり、データベースには保存されません。<a class="arrow" href="./user-microposts.html#fnref-10_1">↑</a></li>
-<li id="fn-10_2"><code>content</code>属性は<code>string</code>型になりますが、 <a class="ref" href="/chapters/a-demo-app.html#sec-modeling_demo_microposts">2.1.2</a>で簡単に述べたように、長文用のテキストフィールドには<code>text</code>型を使用してください。<a class="arrow" href="./user-microposts.html#fnref-10_2">↑</a></li>
+<li id="fn-10_1">技術的には、<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>でセッションをリソースとして扱いましたが、セッションはユーザーやマイクロポストと異なり、データベースには保存されません。<a class="arrow" href="./user-microposts.html#fnref-10_1">↑</a></li>
+<li id="fn-10_2"><code>content</code>属性は<code>string</code>型になりますが、 <a class="ref" href="./a-demo-app.html#sec-modeling_demo_microposts">2.1.2</a>で簡単に述べたように、長文用のテキストフィールドには<code>text</code>型を使用してください。<a class="arrow" href="./user-microposts.html#fnref-10_2">↑</a></li>
 <li id="fn-10_3">実は私自身、当初マイクロポストを適切に複製することを忘れており、以前のバージョンのチュートリアルで使用していたテストにはバグもありました。このようなセフティチェックを最初から行なっていれば、エラーを未然に防げたことでしょう。バグを発見して知らせてくれた読者Jacob Turinoに感謝します。<a class="arrow" href="./user-microposts.html#fnref-10_3">↑</a></li>
 <li id="fn-10_4">(ここではカスタムGravatarを持つ5人のユーザーと、デフォルトGravatarを持つ1人のユーザー) <a class="arrow" href="./user-microposts.html#fnref-10_4">↑</a></li>
 <li id="fn-10_5">もしこのメソッドが生成するSQLに興味があるのであれば、<code>log/development.log</code>をtailしてみてください (コマンドラインでファイルにtailコマンドを実行するという意味)。 <a class="arrow" href="./user-microposts.html#fnref-10_5">↑</a></li>
 <li id="fn-10_6">Faker gemの<em>lorem ipsum</em>サンプルテキストはランダムに生成される仕様になっているため、サンプルマイクロポストの内容はこの図と違っているはずです。<a class="arrow" href="./user-microposts.html#fnref-10_6">↑</a></li>
 <li id="fn-10_7">便宜上、<a class="ref" href="./user-microposts.html#code-micropost_css">リスト10.24</a>はこの章で必要なCSSを<em>すべて</em>含んでいます。<a class="arrow" href="./user-microposts.html#fnref-10_7">↑</a></li>
-<li id="fn-10_8">他の2つのリソースとは、<a class="ref" href="/chapters/sign-up.html#sec-signup_form">リスト7.2</a>のユーザーと<a class="ref" href="/chapters/sign-in-sign-out.html#sec-signin_failure">8.1</a>のセッションです。<a class="arrow" href="./user-microposts.html#fnref-10_8">↑</a></li>
-<li id="fn-10_9"><a class="ref" href="/chapters/sign-in-sign-out.html#sec-remember_me">8.2.1</a>で、ヘルパーメソッドはデフォルトでは<em>ビュー</em>でのみ利用可能であると説明しましたが、<code>include SessionsHelper</code>をApplicationコントローラに追加してコントローラでも利用できるようににしました (<a class="ref" href="/chapters/sign-in-sign-out.html#code-sessions_helper_include">リスト8.14</a>)。<a class="arrow" href="./user-microposts.html#fnref-10_9">↑</a></li>
-<li id="fn-10_10"><a class="ref" href="/chapters/beginning.html#sec-comments_for_various_readers">1.1.1</a>で、本書を読み終わったら次に純粋なRubyの本を読む事を薦めましたが、これは、<code>include?</code>のようなメソッドを学んでいただきたいからというのが理由の一つです。<a class="arrow" href="./user-microposts.html#fnref-10_10">↑</a></li>
+<li id="fn-10_8">他の2つのリソースとは、<a class="ref" href="./sign-up.html#sec-signup_form">リスト7.2</a>のユーザーと<a class="ref" href="./sign-in-sign-out.html#sec-signin_failure">8.1</a>のセッションです。<a class="arrow" href="./user-microposts.html#fnref-10_8">↑</a></li>
+<li id="fn-10_9"><a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>で、ヘルパーメソッドはデフォルトでは<em>ビュー</em>でのみ利用可能であると説明しましたが、<code>include SessionsHelper</code>をApplicationコントローラに追加してコントローラでも利用できるようににしました (<a class="ref" href="./sign-in-sign-out.html#code-sessions_helper_include">リスト8.14</a>)。<a class="arrow" href="./user-microposts.html#fnref-10_9">↑</a></li>
+<li id="fn-10_10"><a class="ref" href="./beginning.html#sec-comments_for_various_readers">1.1.1</a>で、本書を読み終わったら次に純粋なRubyの本を読む事を薦めましたが、これは、<code>include?</code>のようなメソッドを学んでいただきたいからというのが理由の一つです。<a class="arrow" href="./user-microposts.html#fnref-10_10">↑</a></li>
 <li id="fn-10_11"><code>where</code>やlikeの詳細については、Rails Guideの「<a href="http://guides.rubyonrails.org/active_record_querying.html">Active Record Query Interface</a> (英語)」を参照してください。<a class="arrow" href="./user-microposts.html#fnref-10_11">↑</a></li>
 <li id="fn-10_12">残念ですが、この場合はページ分割されたフィードを返してもうまく動きません。動かない理由を確認したい方は、実際に実装してページネーションリンクをクリックしてみてください。<a class="arrow" href="./user-microposts.html#fnref-10_12">↑</a></li>
 </ol>

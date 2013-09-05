@@ -14,7 +14,7 @@
 <h1 class="chapter"><a id="sec-5" href="./filling-in-the-layout.html#top" class="heading"><span class="number">第5章</span>レイアウトを作成する</a></h1>
 
 
-<p>この章では、アプリケーションに<em>Bootstrap</em>フレームワークを組み込み、そして、カスタムスタイルを追加します<sup class="footnote" id="fnref-5_1"><a href="./filling-in-the-layout.html#fn-5_1">1</a></sup>。また<a class="ref" href="./filling-in-the-layout.html#sec-structure">5.1</a>までに、作成するページへのリンクをレイアウトに追加します。その途中で、パーシャル、Railsのルーティング、アセットパイプラインについて学び、さらにSassについても紹介します(<a class="ref" href="./filling-in-the-layout.html#sec-sass_and_the_asset_pipeline">5.2</a>)。 また、<a href="/chapters/static-pages.html#top" class="ref">第3章</a> で作成したテストを、最新のRSpecテクニックを用いてリファクタリングします。章の最後に、ユーザをサイトにログインさせるための重要な一歩を踏み出します。</p>
+<p>この章では、アプリケーションに<em>Bootstrap</em>フレームワークを組み込み、そして、カスタムスタイルを追加します<sup class="footnote" id="fnref-5_1"><a href="./filling-in-the-layout.html#fn-5_1">1</a></sup>。また<a class="ref" href="./filling-in-the-layout.html#sec-structure">5.1</a>までに、作成するページへのリンクをレイアウトに追加します。その途中で、パーシャル、Railsのルーティング、アセットパイプラインについて学び、さらにSassについても紹介します(<a class="ref" href="./filling-in-the-layout.html#sec-sass_and_the_asset_pipeline">5.2</a>)。 また、<a href="./static-pages.html#top" class="ref">第3章</a> で作成したテストを、最新のRSpecテクニックを用いてリファクタリングします。章の最後に、ユーザをサイトにログインさせるための重要な一歩を踏み出します。</p>
 
 <div class="label" id="sec-structure"></div>
 
@@ -24,7 +24,7 @@
 
 <p><em>Railsチュートリアル</em>はWeb開発のための本であり、Webデザインの本ではありませんが、だからといって<em>何のスタイルもない</em>寒々しい外観のアプリケーションでいつまでも作業を続けていると憂鬱になってしまいます。そこで、この章ではレイアウトにいくつかの構造とCSSを与えて最小限のスタイルを追加します。カスタムCSSルールの他に、Twitter社によるオープンソースのウェブデザインフレームワークである<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>を利用します。また、<em>コード</em>そのものにもスタイルを与えます。つまり、散らかりはじめたコードレイアウトを<em>パーシャル</em>を使用して整えるということです。</p>
 
-<p>Webアプリケーションを作成するときに、ユーザーインターフェイスの概要をできるだけ早いうちに把握しておくことがしばしば有用です。本書ではこれより、<em>モックアップ</em> (Webの文脈ではよく <em>ワイヤーフレーム</em>と呼ばれます) という、最終的なアプリケーションの外観を示す一種のラフスケッチを使用することにします<sup class="footnote" id="fnref-5_2"><a href="./filling-in-the-layout.html#fn-5_2">2</a></sup>。この章では、 主に<a class="ref" href="/chapters/static-pages.html#sec-static_pages">3.1</a>で紹介したサイトロゴ、ナビゲーションヘッダー、サイトフッタを含む静的ページを開発します。これらのページの中で最も重要な、Homeページのモックアップを<a class="ref" href="./filling-in-the-layout.html#fig-home_page_mockup">図5.1</a>に示します。モックアップに基いて作成した最終結果は<a class="ref" href="./filling-in-the-layout.html#fig-site_with_footer">図5.7</a>で確認することができます。両者を見比べると、細部が若干異なることに気が付くでしょう (たとえば、実際には最後にRailsのロゴをページに追加します)。しかしモックアップは正確である必要はありませんので、これで十分です。</p>
+<p>Webアプリケーションを作成するときに、ユーザーインターフェイスの概要をできるだけ早いうちに把握しておくことがしばしば有用です。本書ではこれより、<em>モックアップ</em> (Webの文脈ではよく <em>ワイヤーフレーム</em>と呼ばれます) という、最終的なアプリケーションの外観を示す一種のラフスケッチを使用することにします<sup class="footnote" id="fnref-5_2"><a href="./filling-in-the-layout.html#fn-5_2">2</a></sup>。この章では、 主に<a class="ref" href="./static-pages.html#sec-static_pages">3.1</a>で紹介したサイトロゴ、ナビゲーションヘッダー、サイトフッタを含む静的ページを開発します。これらのページの中で最も重要な、Homeページのモックアップを<a class="ref" href="./filling-in-the-layout.html#fig-home_page_mockup">図5.1</a>に示します。モックアップに基いて作成した最終結果は<a class="ref" href="./filling-in-the-layout.html#fig-site_with_footer">図5.7</a>で確認することができます。両者を見比べると、細部が若干異なることに気が付くでしょう (たとえば、実際には最後にRailsのロゴをページに追加します)。しかしモックアップは正確である必要はありませんので、これで十分です。</p>
 
 <div class="label" id="fig-home_page_mockup"></div>
 
@@ -45,7 +45,7 @@
 <h3><a id="sec-5_1_1" href="./filling-in-the-layout.html#sec-adding_to_the_layout" class="heading"><span class="number">5.1.1</span>ナビゲーション</a></h3>
 
 
-<p>第一段階として、サンプルアプリケーションにリンクとスタイルを追加するために、サイトのレイアウトファイル<code>application.html.erb</code> (<a class="ref" href="/chapters/rails-flavored-ruby.html#code-application_layout_full_title">リスト4.3</a>で登場) にHTML構造を追加し、レイアウトファイルを更新します。この更新には、領域 (divタグ) の追加、CSSクラスの追加、サイトナビゲーションの起点となる領域の追加も含まれます。完全なファイルは<a class="ref" href="./filling-in-the-layout.html#code-layout_new_structure">リスト5.1</a>に示します。続いて、これを構成している多くの部品について解説します。表示結果を今すぐ確認したいのであれば、<a class="ref" href="./filling-in-the-layout.html#fig-layout_no_logo_or_custom_css">図5.2</a>で確認できます (<em>注:</em>この時点ではわざわざ見に行くほどの仕上がりではありませんが)。</p>
+<p>第一段階として、サンプルアプリケーションにリンクとスタイルを追加するために、サイトのレイアウトファイル<code>application.html.erb</code> (<a class="ref" href="./rails-flavored-ruby.html#code-application_layout_full_title">リスト4.3</a>で登場) にHTML構造を追加し、レイアウトファイルを更新します。この更新には、領域 (divタグ) の追加、CSSクラスの追加、サイトナビゲーションの起点となる領域の追加も含まれます。完全なファイルは<a class="ref" href="./filling-in-the-layout.html#code-layout_new_structure">リスト5.1</a>に示します。続いて、これを構成している多くの部品について解説します。表示結果を今すぐ確認したいのであれば、<a class="ref" href="./filling-in-the-layout.html#fig-layout_no_logo_or_custom_css">図5.2</a>で確認できます (<em>注:</em>この時点ではわざわざ見に行くほどの仕上がりではありませんが)。</p>
 
 <div class="label" id="code-layout_new_structure"></div>
 
@@ -87,7 +87,7 @@
 </div></div>
 
 
-<p>上のコードで最初に注目すべきことの1つは、Ruby 1.8スタイルのハッシュがRuby 1.9スタイルに変更されていることです (<a class="ref" href="/chapters/rails-flavored-ruby.html#sec-hashes_and_symbols">4.3.3</a>)。以下のコードが、</p>
+<p>上のコードで最初に注目すべきことの1つは、Ruby 1.8スタイルのハッシュがRuby 1.9スタイルに変更されていることです (<a class="ref" href="./rails-flavored-ruby.html#sec-hashes_and_symbols">4.3.3</a>)。以下のコードが、</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">:media</span> <span class="o">=&gt;</span> <span class="s2">&quot;all&quot;</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -103,7 +103,7 @@
 
 <p>旧式のハッシュ構文は、特に古いアプリケーションでは未だに一般的なので、両方を理解できることが重要です。</p>
 
-<p>それでは、<a class="ref" href="./filling-in-the-layout.html#code-layout_new_structure">リスト5.1</a>のその他の新しい要素を上から順に見ていきましょう。<a class="ref" href="/chapters/static-pages.html#sec-static_pages">3.1</a>で簡単に説明したように、Rails 3はデフォルトで HTML5を使用します (doctype <code>&lt;!DOCTYPE html&gt;</code>で示されています)。HTML5標準は比較的新しいため、ブラウザ (特に、古いバージョンのIE) によってはサポートが不十分なことがあります。この問題を回避するため、(“<a href="http://code.google.com/p/html5shim/">HTML5 shim</a>”として知られる) JavaScriptコードをインクルードしてあります。</p>
+<p>それでは、<a class="ref" href="./filling-in-the-layout.html#code-layout_new_structure">リスト5.1</a>のその他の新しい要素を上から順に見ていきましょう。<a class="ref" href="./static-pages.html#sec-static_pages">3.1</a>で簡単に説明したように、Rails 3はデフォルトで HTML5を使用します (doctype <code>&lt;!DOCTYPE html&gt;</code>で示されています)。HTML5標準は比較的新しいため、ブラウザ (特に、古いバージョンのIE) によってはサポートが不十分なことがあります。この問題を回避するため、(“<a href="http://code.google.com/p/html5shim/">HTML5 shim</a>”として知られる) JavaScriptコードをインクルードしてあります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="c">&lt;!--[if lt IE 9]&gt;</span>
 <span class="c">&lt;script src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;</span>
@@ -174,7 +174,7 @@
 </div>
 
 
-<p>ここでは、リンク (<a class="ref" href="/chapters/static-pages.html#sec-passing_title_tests">3.3.2</a>で、アンカータグ<code>a</code>を使用して作成) を生成するために、Railsヘルパーの<code>link_to</code>を使用しています。<code>link_to</code>の第1引数はリンクテキスト、第2引数はURIです。このURIは<a class="ref" href="./filling-in-the-layout.html#sec-named_routes">5.3.3</a>で<em>名前付きルート</em>のURIに変更しますが、今はウェブデザインで一般に使用されるスタブURI<code>’#’</code>にしておきます。第3引数はオプションハッシュで、この場合はサンプルアプリのリンクでCSSのid <code>logo</code>を指定しています (他の3つのリンクにはオプションハッシュが指定されていませんが、必須ではないので構いません)。Railsヘルパーは、このようにオプションのハッシュを取ることがよくあり、これによりRailsのコードから離れることなく任意のHTMLオプションを柔軟に追加することができます。</p>
+<p>ここでは、リンク (<a class="ref" href="./static-pages.html#sec-passing_title_tests">3.3.2</a>で、アンカータグ<code>a</code>を使用して作成) を生成するために、Railsヘルパーの<code>link_to</code>を使用しています。<code>link_to</code>の第1引数はリンクテキスト、第2引数はURIです。このURIは<a class="ref" href="./filling-in-the-layout.html#sec-named_routes">5.3.3</a>で<em>名前付きルート</em>のURIに変更しますが、今はウェブデザインで一般に使用されるスタブURI<code>’#’</code>にしておきます。第3引数はオプションハッシュで、この場合はサンプルアプリのリンクでCSSのid <code>logo</code>を指定しています (他の3つのリンクにはオプションハッシュが指定されていませんが、必須ではないので構いません)。Railsヘルパーは、このようにオプションのハッシュを取ることがよくあり、これによりRailsのコードから離れることなく任意のHTMLオプションを柔軟に追加することができます。</p>
 
 <p>divの内側の2番目の要素は、<em>リストアイテム</em>タグ<code>li</code>と<em>順不同リスト</em>タグ<code>ul</code>によって作られた、ナビゲーションリンクのリストです。</p>
 
@@ -211,7 +211,7 @@
 </div>
 
 
-<p>前述のように、<code>container</code>クラスはBootstrapにおいて特別な意味を持ちます。<a class="ref" href="/chapters/static-pages.html#sec-layouts">3.3.4</a>で学んだように、<code>yield</code>メソッドはWebサイトのレイアウトにページごとの内容を挿入します。</p>
+<p>前述のように、<code>container</code>クラスはBootstrapにおいて特別な意味を持ちます。<a class="ref" href="./static-pages.html#sec-layouts">3.3.4</a>で学んだように、<code>yield</code>メソッドはWebサイトのレイアウトにページごとの内容を挿入します。</p>
 
 <p><a class="ref" href="./filling-in-the-layout.html#sec-partials">5.1.3</a>で追加するサイトフッターを除いて、これでレイアウトは完成しました。Homeページへアクセスして表示結果を確認することができます。今後登場するスタイル要素を利用できるようにするために、<code>home.html.erb</code>ビューに特別な要素をいくつか追加します(<a class="ref" href="./filling-in-the-layout.html#code-signup_button">リスト5.2</a>)。</p>
 
@@ -237,7 +237,7 @@
 </div></div>
 
 
-<p><a class="ref" href="/chapters/sign-up.html#top">第7章</a>でサイトにユーザーを追加するときに備えて、最初の<code>link_to</code>に仮のリンクを作成します。</p>
+<p><a class="ref" href="./sign-up.html#top">第7章</a>でサイトにユーザーを追加するときに備えて、最初の<code>link_to</code>に仮のリンクを作成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">class=</span><span class="s">&quot;btn btn-large btn-primary&quot;</span><span class="nt">&gt;</span>Sign up now!<span class="nt">&lt;/a&gt;</span>
 </pre></div>
@@ -794,7 +794,7 @@
 <h4><a id="sec-5_2_1_3" href="./filling-in-the-layout.html#sec-5_2_1_3" class="heading">プリプロセッサエンジン</a></h4>
 
 
-<p>必要なアセットをディレクトリに配置してまとめた後、Railsはさまざまなプリプロセッサエンジンを介してそれらを実行し、ブラウザに配信できるようにそれらをマニフェストファイルを用いて結合し、サイトテンプレート用に準備します。Railsは、どのプリプロセッサを使用するかを、ファイル名の拡張子を使用して判断します。最も一般的な拡張子は、Sass用の<code>.scss</code>、CoffeeScript用の<code>.coffee</code>、埋め込みRuby (ERb) 用の<code>.erb</code>です。<a class="ref" href="/chapters/static-pages.html#sec-embedded_ruby">3.3.3</a>では最初にERbを、<a class="ref" href="./filling-in-the-layout.html#sec-sass">5.2.2</a>ではSassをそれぞれ扱いました。 なお本書では扱いませんが、CoffeeScriptはエレガントで簡潔な言語で、JavaScriptにコンパイルして実行します (興味のある方は、RailsCastの「<a href="http://railscasts.com/episodes/267-coffeescript-basics">CoffeeScriptの基礎</a> (英語)」から始めると良いでしょう)。</p>
+<p>必要なアセットをディレクトリに配置してまとめた後、Railsはさまざまなプリプロセッサエンジンを介してそれらを実行し、ブラウザに配信できるようにそれらをマニフェストファイルを用いて結合し、サイトテンプレート用に準備します。Railsは、どのプリプロセッサを使用するかを、ファイル名の拡張子を使用して判断します。最も一般的な拡張子は、Sass用の<code>.scss</code>、CoffeeScript用の<code>.coffee</code>、埋め込みRuby (ERb) 用の<code>.erb</code>です。<a class="ref" href="./static-pages.html#sec-embedded_ruby">3.3.3</a>では最初にERbを、<a class="ref" href="./filling-in-the-layout.html#sec-sass">5.2.2</a>ではSassをそれぞれ扱いました。 なお本書では扱いませんが、CoffeeScriptはエレガントで簡潔な言語で、JavaScriptにコンパイルして実行します (興味のある方は、RailsCastの「<a href="http://railscasts.com/episodes/267-coffeescript-basics">CoffeeScriptの基礎</a> (英語)」から始めると良いでしょう)。</p>
 
 <p>プリプロセッサエンジンはつなげて実行する (chain) ことができます。</p>
 
@@ -817,7 +817,7 @@
 <h3><a id="sec-5_2_2" href="./filling-in-the-layout.html#sec-sass" class="heading"><span class="number">5.2.2</span>素晴らしい構文を備えたスタイルシート</a></h3>
 
 
-<p><em>Sass</em> は、スタイルシートを記述するための言語であり、CSSに比べて多くの点が強化されています。この節では、Sassが提供する2つの重要な機能である<em>ネスト</em>と<em>変数</em>について説明します (3つ目の重要な機能である<em>ミックスイン</em>については、<a class="ref" href="/chapters/sign-up.html#sec-rails_environments">7.1.1</a>で紹介します)。</p>
+<p><em>Sass</em> は、スタイルシートを記述するための言語であり、CSSに比べて多くの点が強化されています。この節では、Sassが提供する2つの重要な機能である<em>ネスト</em>と<em>変数</em>について説明します (3つ目の重要な機能である<em>ミックスイン</em>については、<a class="ref" href="./sign-up.html#sec-rails_environments">7.1.1</a>で紹介します)。</p>
 
 <p><a class="ref" href="./filling-in-the-layout.html#sec-custom_css">5.1.2</a>でも簡単に説明しましたが、SassはSCSSというフォーマットに対応しています (<code>.scss</code>という拡張子はSCSSをであることを表します)。SCSSは、CSSの機能をすべて包含する、厳密なスーパーセットです。つまり、SCSSはCSSに新しい機能を<em>追加</em>しただけで、まったく新しい構文を定義したものではありません<sup class="footnote" id="fnref-5_9"><a href="./filling-in-the-layout.html#fn-5_9">9</a></sup>。このため、有効なCSSファイルは、すべてSCSSファイルとしても扱うことができ、既存の記法ルールを使用しているプロジェクトにとっても互換性のある便利なフォーマットになっています。本書の例では、Bootstrapの恩恵を得るために、最初からSCSSを使用してきました。Railsのアセットパイプラインは、<code>.scss</code>という拡張子を持つファイルをSassを使って自動的に処理してくれます。このため、<code>custom.css.scss</code>ファイルはSassプリプロセッサによって前処理され、その後ブラウザでの配信に備えてパッケージ化されます。</p>
 
@@ -1148,7 +1148,7 @@
 
 <p>上のようにすることでコードの意味がわかりやすくなり、<code>about_path</code>の定義を変えれば<code>about_path</code>が使用されているすべてのURIを変更できるため、柔軟性が高まります。</p>
 
-<p>今後使用する計画のあるすべてのリンクのリストを、URIとルート (route) のマッピングと共に<a class="ref" href="./filling-in-the-layout.html#table-url_mapping">表5.1</a>に示します。この章の終わりまでに、最後のリンクを除き全て実装します。(最後のリンクは<a class="ref" href="/chapters/sign-in-sign-out.html#top">第8章</a>で作成します。)</p>
+<p>今後使用する計画のあるすべてのリンクのリストを、URIとルート (route) のマッピングと共に<a class="ref" href="./filling-in-the-layout.html#table-url_mapping">表5.1</a>に示します。この章の終わりまでに、最後のリンクを除き全て実装します。(最後のリンクは<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>で作成します。)</p>
 
 <div class="label" id="table-url_mapping"></div>
 
@@ -1157,7 +1157,7 @@
 <table class="tabular"><tr><th class="align_left"><strong>ページ</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_right"><strong>名前付きルート</strong></th></tr><tr class="top_bar"><td class="align_left">Home</td><td class="align_left">/</td><td class="align_right"><code>root_path</code></td></tr><tr><td class="align_left">About</td><td class="align_left">/about</td><td class="align_right"><code>about_path</code></td></tr><tr><td class="align_left">Help</td><td class="align_left">/help</td><td class="align_right"><code>help_path</code></td></tr><tr><td class="align_left">Contact</td><td class="align_left">/contact</td><td class="align_right"><code>contact_path</code></td></tr><tr><td class="align_left">Sign up</td><td class="align_left">/signup</td><td class="align_right"><code>signup_path</code></td></tr><tr><td class="align_left">Sign in</td><td class="align_left">/signin</td><td class="align_right"><code>signin_path</code></td></tr></table></div><div class="caption"><span class="header">表 5.1</span><span class="description">サイトリンクのルート (routing) とURIのマッピング。</span></div></div>
 
 
-<p>先に進む前にContactページを追加しましょう (これは<a class="ref" href="/chapters/static-pages.html#top">第3章</a>の演習の積み残しです)。Contactページのテストを<a class="ref" href="./filling-in-the-layout.html#code-contact_page_test">リスト5.16</a>に示します。これは単に<a class="ref" href="/chapters/static-pages.html#code-pages_controller_spec_title">リスト3.18</a>で使用されているテストのパターンに従ったものです。<a class="ref" href="./filling-in-the-layout.html#code-contact_page_test">リスト5.16</a>のアプリケーションコードでは、Ruby 1.9スタイルのハッシュに変更していることにご注意ください。</p>
+<p>先に進む前にContactページを追加しましょう (これは<a class="ref" href="./static-pages.html#top">第3章</a>の演習の積み残しです)。Contactページのテストを<a class="ref" href="./filling-in-the-layout.html#code-contact_page_test">リスト5.16</a>に示します。これは単に<a class="ref" href="./static-pages.html#code-pages_controller_spec_title">リスト3.18</a>で使用されているテストのパターンに従ったものです。<a class="ref" href="./filling-in-the-layout.html#code-contact_page_test">リスト5.16</a>のアプリケーションコードでは、Ruby 1.9スタイルのハッシュに変更していることにご注意ください。</p>
 
 <div class="label" id="code-contact_page_test"></div>
 
@@ -1195,7 +1195,7 @@
 </div>
 
 
-<p>アプリケーションコードは、<a class="ref" href="/chapters/static-pages.html#sec-adding_a_page">3.2.2</a>のAboutページへの追加と良く似ています。最初にルート (<a class="ref" href="./filling-in-the-layout.html#code-contact_route">リスト5.17</a>) を更新します。次に<code>contact</code>アクションをStaticPagesコントローラ (<a class="ref" href="./filling-in-the-layout.html#code-contact_action">リスト5.18</a>) に追加します。最後にContactビュー (<a class="ref" href="./filling-in-the-layout.html#code-contact_view">リスト5.19</a>) を作成します。</p>
+<p>アプリケーションコードは、<a class="ref" href="./static-pages.html#sec-adding_a_page">3.2.2</a>のAboutページへの追加と良く似ています。最初にルート (<a class="ref" href="./filling-in-the-layout.html#code-contact_route">リスト5.17</a>) を更新します。次に<code>contact</code>アクションをStaticPagesコントローラ (<a class="ref" href="./filling-in-the-layout.html#code-contact_action">リスト5.18</a>) に追加します。最後にContactビュー (<a class="ref" href="./filling-in-the-layout.html#code-contact_view">リスト5.19</a>) を作成します。</p>
 
 <div class="label" id="code-contact_route"></div>
 
@@ -1370,7 +1370,7 @@
 <h3><a id="sec-5_3_2" href="./filling-in-the-layout.html#sec-rails_routes" class="heading"><span class="number">5.3.2</span> Railsのルート</a></h3>
 
 
-<p>URIに対するテストができあがったので、それらを実際に利用できるようにしましょう。<a class="ref" href="/chapters/static-pages.html#sec-static_pages_with_rails">3.1.2</a>で説明したとおり、RailsがURIマッピングに使用するファイルは<code>config/routes.rb</code>です。デフォルトのルートファイルの内容を見てみると、かなり乱雑になっています。しかし、それらはすべてコメントアウトされたルートマッピングの例であり、必要な乱雑さです。時間のあるときにこのルートマッピングを読んでみることをお勧めします。また、より詳細なルーティングの扱いについてはRails Guidesの「<a href="http://guides.rubyonrails.org/routing.html">Railsにおける外部から内部へのルーティング</a> (英語)」を参照することをお勧めします。</p>
+<p>URIに対するテストができあがったので、それらを実際に利用できるようにしましょう。<a class="ref" href="./static-pages.html#sec-static_pages_with_rails">3.1.2</a>で説明したとおり、RailsがURIマッピングに使用するファイルは<code>config/routes.rb</code>です。デフォルトのルートファイルの内容を見てみると、かなり乱雑になっています。しかし、それらはすべてコメントアウトされたルートマッピングの例であり、必要な乱雑さです。時間のあるときにこのルートマッピングを読んでみることをお勧めします。また、より詳細なルーティングの扱いについてはRails Guidesの「<a href="http://guides.rubyonrails.org/routing.html">Railsにおける外部から内部へのルーティング</a> (英語)」を参照することをお勧めします。</p>
 
 <p>名前付きルートを定義するため、以下のようなルールを置き換えます。</p>
 
@@ -1498,7 +1498,7 @@
 </div>
 
 
-<p><a class="ref" href="./filling-in-the-layout.html#code-root_route_hint">リスト5.22</a>の他のコメントの内容にもご注意ください。/にアクセスする際にRailsがデフォルトのページ (<a class="ref" href="/chapters/beginning.html#fig-riding_rails_31">図1.3</a>) を表示しないように、<code>public/index.html</code>を削除しておきます。もちろん、単にこのファイルを削除しても構いませんが、バージョン管理にGitを使用している場合は、<code>git rm</code>を使用することでファイル削除と同時にGitに削除を通知することもできます。</p>
+<p><a class="ref" href="./filling-in-the-layout.html#code-root_route_hint">リスト5.22</a>の他のコメントの内容にもご注意ください。/にアクセスする際にRailsがデフォルトのページ (<a class="ref" href="./beginning.html#fig-riding_rails_31">図1.3</a>) を表示しないように、<code>public/index.html</code>を削除しておきます。もちろん、単にこのファイルを削除しても構いませんが、バージョン管理にGitを使用している場合は、<code>git rm</code>を使用することでファイル削除と同時にGitに削除を通知することもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git rm public/index.html
 </pre></div>
@@ -1561,7 +1561,7 @@
 </div></div>
 
 
-<p>[Sign in] リンクの名前付きルートは<a class="ref" href="/chapters/sign-in-sign-out.html#top">第8章</a>で作成するため、今の段階では<code>’#’</code>のままにしておきます。</p>
+<p>[Sign in] リンクの名前付きルートは<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>で作成するため、今の段階では<code>’#’</code>のままにしておきます。</p>
 
 <p>フッターパーシャル<code>_footer.html.erb</code>にもリンクがあります。これらはAboutページとContactページへのリンクです (<a class="ref" href="./filling-in-the-layout.html#code-footer_partial_links">リスト5.25</a>)。</p>
 
@@ -1587,7 +1587,7 @@
 </div></div>
 
 
-<p>これで、レイアウトに<a class="ref" href="/chapters/static-pages.html#top">第3章</a>で作成したすべての静的ページへのリンクができました。たとえば<a href="http://localhost:3000/about">/about</a>の場合はAboutページ (<a class="ref" href="./filling-in-the-layout.html#fig-about_page">図5.8</a>) に移動します。</p>
+<p>これで、レイアウトに<a class="ref" href="./static-pages.html#top">第3章</a>で作成したすべての静的ページへのリンクができました。たとえば<a href="http://localhost:3000/about">/about</a>の場合はAboutページ (<a class="ref" href="./filling-in-the-layout.html#fig-about_page">図5.8</a>) に移動します。</p>
 
 <p>ところで、実際にレイアウト上にリンクが存在するかどうかをまだテストしていませんが、テスト方法のヒントとして、名前付きルートが定義されていなければテストは失敗するいうことにご注目ください。このことは、<a class="ref" href="./filling-in-the-layout.html#code-static_page_routes">リスト5.21</a>のルーティング定義をコメントアウトし、テストスイートを実行することで確認できます。リンクが実際に正しい場所を指していることを確認するテストの手法については、<a class="ref" href="./filling-in-the-layout.html#sec-layout_exercises">5.6</a>で説明します。</p>
 
@@ -1690,7 +1690,7 @@
 </div>
 
 
-<p><code>subject { page }</code>と記述したことにより、<code>should</code>の呼び出しは自動的にCapybara (<a class="ref" href="/chapters/static-pages.html#sec-TDD">3.2.1</a>)により提供される<code>page</code>変数を使用します。</p>
+<p><code>subject { page }</code>と記述したことにより、<code>should</code>の呼び出しは自動的にCapybara (<a class="ref" href="./static-pages.html#sec-TDD">3.2.1</a>)により提供される<code>page</code>変数を使用します。</p>
 
 <p>これらの変更を加えることでHomeページのテストはより簡潔になります。</p>
 
@@ -1715,7 +1715,7 @@
 </div>
 
 
-<p><a class="ref" href="/chapters/static-pages.html#sec-static_pages_exercises">3.5</a>の演習では、<code>base_title</code>変数を定義し、文字列の補完を使用することでこの冗長性を排除することを提案しました (<a class="ref" href="/chapters/static-pages.html#code-pages_controller_spec_exercise">リスト3.30</a>)。<a class="ref" href="/chapters/rails-flavored-ruby.html#code-title_helper">リスト4.2</a>の<code>full_title</code>ヘルパーと同様の<code>full_title</code>を定義することで、さらに改良することができます。これを行うには、RSpecユーティリティで使用する<code>spec/support</code>ディレクトリーと<code>utilities.rb</code>ファイルを作成します (<a class="ref" href="./filling-in-the-layout.html#code-rspec_utilities">リスト5.26</a>)。</p>
+<p><a class="ref" href="./static-pages.html#sec-static_pages_exercises">3.5</a>の演習では、<code>base_title</code>変数を定義し、文字列の補完を使用することでこの冗長性を排除することを提案しました (<a class="ref" href="./static-pages.html#code-pages_controller_spec_exercise">リスト3.30</a>)。<a class="ref" href="./rails-flavored-ruby.html#code-title_helper">リスト4.2</a>の<code>full_title</code>ヘルパーと同様の<code>full_title</code>を定義することで、さらに改良することができます。これを行うには、RSpecユーティリティで使用する<code>spec/support</code>ディレクトリーと<code>utilities.rb</code>ファイルを作成します (<a class="ref" href="./filling-in-the-layout.html#code-rspec_utilities">リスト5.26</a>)。</p>
 
 <div class="label" id="code-rspec_utilities"></div>
 
@@ -1734,7 +1734,7 @@
 </div></div>
 
 
-<p>もちろんこれは、基本的に<a class="ref" href="/chapters/rails-flavored-ruby.html#code-title_helper">リスト4.2</a>のヘルパーの複製です。しかし、2つの独立したメソッドがあることで基本タイトルのタイプミスを検出することができます。これはやや疑問の残る設計ですが、それでも、演習で登場する (<a class="ref" href="./filling-in-the-layout.html#sec-layout_exercises">5.6</a>) オリジナルの<code>full_title</code>ヘルパーを直接テストしたときよりも良い (少しだけ高度な) アプローチです。</p>
+<p>もちろんこれは、基本的に<a class="ref" href="./rails-flavored-ruby.html#code-title_helper">リスト4.2</a>のヘルパーの複製です。しかし、2つの独立したメソッドがあることで基本タイトルのタイプミスを検出することができます。これはやや疑問の残る設計ですが、それでも、演習で登場する (<a class="ref" href="./filling-in-the-layout.html#sec-layout_exercises">5.6</a>) オリジナルの<code>full_title</code>ヘルパーを直接テストしたときよりも良い (少しだけ高度な) アプローチです。</p>
 
 <p><code>spec/support</code>ディレクトリはRSpecによって自動的に読み込まれるため、Homeテストは以下のように書くことができます。</p>
 
@@ -1811,7 +1811,7 @@
 <h2><a id="sec-5_4" href="./filling-in-the-layout.html#sec-user_signup" class="heading"><span class="number">5.4</span>ユーザーのサインアップ：最初のステップ</a></h2>
 
 
-<p>この節では、レイアウトとルーティングの取り組みにおける頂点として、サインアップページへのルートを作成します。そのために2番目のコントローラを作成することになります。これは、Webサイトでユーザー登録を行えるようにするための最初の重要な一歩となります。次の一歩であるユーザのモデリングは<a class="ref" href="/chapters/modeling-users.html#top">第6章</a>で行い、<a class="ref" href="/chapters/sign-up.html#top">第7章</a>でユーザー登録が完成します。</p>
+<p>この節では、レイアウトとルーティングの取り組みにおける頂点として、サインアップページへのルートを作成します。そのために2番目のコントローラを作成することになります。これは、Webサイトでユーザー登録を行えるようにするための最初の重要な一歩となります。次の一歩であるユーザのモデリングは<a class="ref" href="./modeling-users.html#top">第6章</a>で行い、<a class="ref" href="./sign-up.html#top">第7章</a>でユーザー登録が完成します。</p>
 
 <div class="label" id="sec-users_controller"></div>
 
@@ -1819,7 +1819,7 @@
 <h3><a id="sec-5_4_1" href="./filling-in-the-layout.html#sec-users_controller" class="heading"><span class="number">5.4.1</span>ユーザーコントローラ</a></h3>
 
 
-<p><a class="ref" href="/chapters/static-pages.html#sec-static_pages_with_rails">3.1.2</a>で最初のコントローラであるStaticPagesコントローラを作成してからしばらく経ちました。今度は2番目のコントローラであるUsersコントローラを作成しましょう。1番目のときと同様、<code>generate</code>を実行して、現時点での要求である新規ユーザー用のサインアップページ (スタブ) を持つ、最も簡単なコントローラを作成します。Railsで好まれている<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">RESTアーキテクチャ</a>の規約に従い、新規ユーザー用のアクションを<code>new</code>にすることに決め、<code>generate controller</code>の引数として渡して自動的にアクションを作成します (<a class="ref" href="./filling-in-the-layout.html#code-generate_users_controller">リスト5.28</a>)。</p>
+<p><a class="ref" href="./static-pages.html#sec-static_pages_with_rails">3.1.2</a>で最初のコントローラであるStaticPagesコントローラを作成してからしばらく経ちました。今度は2番目のコントローラであるUsersコントローラを作成しましょう。1番目のときと同様、<code>generate</code>を実行して、現時点での要求である新規ユーザー用のサインアップページ (スタブ) を持つ、最も簡単なコントローラを作成します。Railsで好まれている<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">RESTアーキテクチャ</a>の規約に従い、新規ユーザー用のアクションを<code>new</code>にすることに決め、<code>generate controller</code>の引数として渡して自動的にアクションを作成します (<a class="ref" href="./filling-in-the-layout.html#code-generate_users_controller">リスト5.28</a>)。</p>
 
 <div class="label" id="code-generate_users_controller"></div>
 
@@ -1966,7 +1966,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./filling-in-the-layout.html#code-generate_users_controller">リスト5.28</a>では、Usersコントローラを生成したときに自動的に生成された<code>get &quot;users/new&quot;</code>のルールはそのままにしてあることにご注目ください。現時点では、このルールは<code>’users/new’</code>のルーティングが動作するために必要ですが、適切なREST規約 (<a class="ref" href="/chapters/a-demo-app.html#table-demo_RESTful_users">表2.2</a>) に従っていません。これは<a class="ref" href="/chapters/sign-up.html#sec-a_users_resource">7.1.2</a>で取り除きます。</p>
+<p><a class="ref" href="./filling-in-the-layout.html#code-generate_users_controller">リスト5.28</a>では、Usersコントローラを生成したときに自動的に生成された<code>get &quot;users/new&quot;</code>のルールはそのままにしてあることにご注目ください。現時点では、このルールは<code>’users/new’</code>のルーティングが動作するために必要ですが、適切なREST規約 (<a class="ref" href="./a-demo-app.html#table-demo_RESTful_users">表2.2</a>) に従っていません。これは<a class="ref" href="./sign-up.html#sec-a_users_resource">7.1.2</a>で取り除きます。</p>
 
 <p>テストをパスさせるために今必要なのは、“Sign up” のタイトルとヘッダーがあるビューです (<a class="ref" href="./filling-in-the-layout.html#code-initial_signup_page">リスト5.33</a>)。</p>
 
@@ -2006,7 +2006,7 @@
 </div></div>
 
 
-<p>これで、少なくともサインインのルートを追加するまでの間、リンクと名前付きルートが完成しました(<a class="ref" href="/chapters/sign-in-sign-out.html#top">第8</a>)。結果を<a class="ref" href="./filling-in-the-layout.html#fig-new_signup_page">図5.9</a>の新規ユーザーのページ (URI /signup) に示します。</p>
+<p>これで、少なくともサインインのルートを追加するまでの間、リンクと名前付きルートが完成しました(<a class="ref" href="./sign-in-sign-out.html#top">第8</a>)。結果を<a class="ref" href="./filling-in-the-layout.html#fig-new_signup_page">図5.9</a>の新規ユーザーのページ (URI /signup) に示します。</p>
 
 <div class="label" id="fig-new_signup_page"></div>
 
@@ -2081,11 +2081,11 @@
 
 <ol>
 
-<li><a class="ref" href="./filling-in-the-layout.html#code-pretty_page_tests">リスト5.27</a>の静的ページのテストコードは簡潔ですが、まだ繰り返しが残っています。RSpecには、冗長性を排除するための<em>Shared Examples</em>と呼ばれる機能があります。<a class="ref" href="./filling-in-the-layout.html#code-static_pages_spec_shared_example">リスト5.35</a>の例に従い、Help、AboutとContactページで不足しているテストを補ってください。<a class="ref" href="/chapters/static-pages.html#code-pages_controller_spec_exercise">リスト3.30</a>で簡単に紹介した<code>let</code>コマンドは、要求 (変数が使用されるときなど) に応じて与えられた値を持つ「ローカル変数」を作成することにご注意ください。対照的にインスタンス変数は、要素代入 (assignment) されたときに作成されます。</li>
+<li><a class="ref" href="./filling-in-the-layout.html#code-pretty_page_tests">リスト5.27</a>の静的ページのテストコードは簡潔ですが、まだ繰り返しが残っています。RSpecには、冗長性を排除するための<em>Shared Examples</em>と呼ばれる機能があります。<a class="ref" href="./filling-in-the-layout.html#code-static_pages_spec_shared_example">リスト5.35</a>の例に従い、Help、AboutとContactページで不足しているテストを補ってください。<a class="ref" href="./static-pages.html#code-pages_controller_spec_exercise">リスト3.30</a>で簡単に紹介した<code>let</code>コマンドは、要求 (変数が使用されるときなど) に応じて与えられた値を持つ「ローカル変数」を作成することにご注意ください。対照的にインスタンス変数は、要素代入 (assignment) されたときに作成されます。</li>
 
 <li>既にお気付きの方もいると思いますが、これまで行なってきた、レイアウト上のリンクのルーティングテストは、そのリンクが実際に正しいページへのリンクになっているかどうかをチェックしていません。このようなテストを実装する方法のひとつは、RSpecの結合テスト内で<code>visit</code>と<code>click_link</code>を使用することです。レイアウトのリンクが正しく定義されていることを確認するコードを追加して、<a class="ref" href="./filling-in-the-layout.html#code-layout_links_test">リスト5.36</a>を補ってください。</li>
 
-<li><a class="ref" href="./filling-in-the-layout.html#code-full_title_helper_tests">リスト5.37</a>に示すように、元のヘルパーメソッドに対するテストを書き、それによって<a class="ref" href="./filling-in-the-layout.html#code-rspec_utilities">リスト5.26</a>の<code>full_title</code>テストヘルパーへの依存を解消してください (<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="./filling-in-the-layout.html#code-rspec_utilities_simplified">リスト5.38</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="./filling-in-the-layout.html#code-full_title_helper_tests">リスト5.37</a>では、<a class="ref" href="/chapters/modeling-users.html#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
+<li><a class="ref" href="./filling-in-the-layout.html#code-full_title_helper_tests">リスト5.37</a>に示すように、元のヘルパーメソッドに対するテストを書き、それによって<a class="ref" href="./filling-in-the-layout.html#code-rspec_utilities">リスト5.26</a>の<code>full_title</code>テストヘルパーへの依存を解消してください (<code>spec/helpers</code>ディレクトリと<code>application_helper_spec.rb</code>ファイルの両方を作成する必要があるでしょう)。次に、<a class="ref" href="./filling-in-the-layout.html#code-rspec_utilities_simplified">リスト5.38</a>のコードを使用して、それをテストへ<code>include</code>してください。テストスイートを実行して、新しいコードに問題がないことを確認してください。<em>注意</em>: <a class="ref" href="./filling-in-the-layout.html#code-full_title_helper_tests">リスト5.37</a>では、<a class="ref" href="./modeling-users.html#sec-format_validation">6.2.4</a>で学ぶ<em>正規表現</em>を使用しています (この演習を提案し、コードを提供してくれた<a href="http://alexchaffee.com/">Alex Chaffee</a>に感謝します)。</li>
 
 </ol>
 
@@ -2214,10 +2214,10 @@
 
 
 
-<div class="navigation">  <a class="prev_page" href="/chapters/rails-flavored-ruby.html#top">
-</a><a class="prev_page" href="/chapters/rails-flavored-ruby.html#top"><span class="number">第4章</span> Rails風味のRuby</a><a class="prev_page" href="/chapters/rails-flavored-ruby.html#top">  </a>
-  <a class="next_page" href="/chapters/modeling-users.html#top">
-</a><a class="next_page" href="/chapters/modeling-users.html#top">    <span class="number">第6章</span>ユーザーのモデルを作成する</a><a class="next_page" href="/chapters/modeling-users.html#top">  </a>
+<div class="navigation">  <a class="prev_page" href="./rails-flavored-ruby.html#top">
+</a><a class="prev_page" href="./rails-flavored-ruby.html#top"><span class="number">第4章</span> Rails風味のRuby</a><a class="prev_page" href="./rails-flavored-ruby.html#top">  </a>
+  <a class="next_page" href="./modeling-users.html#top">
+</a><a class="next_page" href="./modeling-users.html#top">    <span class="number">第6章</span>ユーザーのモデルを作成する</a><a class="next_page" href="./modeling-users.html#top">  </a>
 </div><div class="footnotes">
 <ol>
 <li id="fn-5_1">サンプルアプリケーションでBootstrapを使用するための変換作業で、目覚ましい働きで助けてくれた読者の<a href="https://twitter.com/colmtuite">Colm Tuite</a>に感謝します。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_1">↑</a></li>
@@ -2225,7 +2225,7 @@
 <li id="fn-5_3">CSSクラスは、Rubyのクラスとはまったく関係がありません。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_3">↑</a></li>
 <li id="fn-5_4">既にお気付きだと思いますが、<code>img</code>タグは<tt class="verb">&lt;img&gt;...&lt;/img&gt;</tt>ではなく<tt class="verb">&lt;img ... </tt><tt class="verb">/&gt;</tt>と書きます。この書式に従うタグは <em>単独タグ</em>として知られています。 <a class="arrow" href="./filling-in-the-layout.html#fnref-5_4">↑</a></li>
 <li id="fn-5_5">アセットパイプラインでLESSを使うこともできます。詳細は<a href="http://rubygems.org/gems/less-rails-bootstrap"><tt>less-rails-bootstrap</tt> gem</a>を参照してください。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_5">↑</a></li>
-<li id="fn-5_6">多くのRails開発者は、異なるビューの間で共通に使用するパーシャルを保存するディレクトリとして、<code>shared</code>ディレクトリを使用します。著者は、複数のビューで共有するユーティリティパーシャルについては<code>shared</code>フォルダに保存し、文字どおり全ページ (サイトレイアウトの一部として) 共通のパーシャルについては<code>layouts</code>ディレクトリへ保存することを好んでいます (<code>shared</code>ディレクトリは<a class="ref" href="/chapters/sign-up.html#top">第7章</a>で作成します)。著者はこのように分割保存するのが論理的であると考えますが、<code>shared</code>フォルダにすべて保存しても問題なく動作します。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_6">↑</a></li>
+<li id="fn-5_6">多くのRails開発者は、異なるビューの間で共通に使用するパーシャルを保存するディレクトリとして、<code>shared</code>ディレクトリを使用します。著者は、複数のビューで共有するユーティリティパーシャルについては<code>shared</code>フォルダに保存し、文字どおり全ページ (サイトレイアウトの一部として) 共通のパーシャルについては<code>layouts</code>ディレクトリへ保存することを好んでいます (<code>shared</code>ディレクトリは<a class="ref" href="./sign-up.html#top">第7章</a>で作成します)。著者はこのように分割保存するのが論理的であると考えますが、<code>shared</code>フォルダにすべて保存しても問題なく動作します。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_6">↑</a></li>
 <li id="fn-5_7"><code>footer</code>タグと<code>.footer</code>クラスを両方使用していることについて疑問に思う方がいるかもしれません。その理由は、footerタグとする方が読み手にとって意味が明確であるのと、footerクラスはBootstrapで使用するためです。<code>footer</code>を<code>div</code>に置き換えても動作は変わりません。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_7">↑</a></li>
 <li id="fn-5_8">このチュートリアル構成は、Michael Erasmusによる素晴らしいブログ記事「<a href="http://2beards.net/2011/11/the-rails-3-asset-pipeline-in-about-5-minutes/">5分でわかるRails 3のアセットパイプライン</a> (英語)」をもとにしています。詳細についてはRails Guideの「<a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a> (英語)」の項を参照してください。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_8">↑</a></li>
 <li id="fn-5_9">Sassでもサポートされている古い<code>.sass</code>というフォーマットでは、冗長性の少ない (かっこの少ない)  新しい言語を定義しますが、既存のプロジェクトには若干不便であり、既にCSSに慣れ親しんだ人にとっては学習が面倒でもあります。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_9">↑</a></li>

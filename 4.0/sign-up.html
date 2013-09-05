@@ -14,9 +14,9 @@
 <h1 class="chapter"><a id="sec-7" href="./sign-up#top" class="heading"><span class="number">第7章</span>ユーザー登録</a></h1>
 
 
-<p>Userモデルができあがったので、いよいよWebサイトになくてはならないユーザー登録機能を追加しましょう。<a class="ref" href="./sign-up#sec-signup_form">7.2</a>ではHTML<em>フォーム</em>を使用して登録情報をWebアプリケーションに送信します。続いて<a class="ref" href="./sign-up#sec-signup_success">7.4</a>ではユーザーを新規作成して情報をデータベースに保存します。ユーザー登録手続きの最後には、作成されたユーザーの新しいプロファイルを表示できるようにするために、ユーザーを<em>表示する</em>ためのページを作成し、ユーザー用のRESTアーキテクチャを実装する第一歩を踏み出します (<a class="ref" href="/chapters/a-demo-app#sec-mvc_in_action">2.2.2</a>)。これまでと同様、開発と同時にテストも作成します。RSpecとCapybaraの適用範囲を拡大し、簡潔かつ表現力豊かな結合テストを作成します。</p>
+<p>Userモデルができあがったので、いよいよWebサイトになくてはならないユーザー登録機能を追加しましょう。<a class="ref" href="./sign-up#sec-signup_form">7.2</a>ではHTML<em>フォーム</em>を使用して登録情報をWebアプリケーションに送信します。続いて<a class="ref" href="./sign-up#sec-signup_success">7.4</a>ではユーザーを新規作成して情報をデータベースに保存します。ユーザー登録手続きの最後には、作成されたユーザーの新しいプロファイルを表示できるようにするために、ユーザーを<em>表示する</em>ためのページを作成し、ユーザー用のRESTアーキテクチャを実装する第一歩を踏み出します (<a class="ref" href="./a-demo-app#sec-mvc_in_action">2.2.2</a>)。これまでと同様、開発と同時にテストも作成します。RSpecとCapybaraの適用範囲を拡大し、簡潔かつ表現力豊かな結合テストを作成します。</p>
 
-<p>ユーザープロファイルページを作成するには、その前にデータベースにユーザーが登録されている必要があります。これはいわゆる「卵が先か鶏が先か」問題です。このWebサイトでは、登録ページがない状態でどうやってユーザーを登録しておけばよいでしょうか。幸い、この問題は既に解決されています。<a class="ref" href="/chapters/modeling-users#sec-creating_a_user">6.3.5</a>でRailsコンソールを使用してユーザーレコードを登録してありました。登録していない場合は、上記を参照して登録しておいてください。</p>
+<p>ユーザープロファイルページを作成するには、その前にデータベースにユーザーが登録されている必要があります。これはいわゆる「卵が先か鶏が先か」問題です。このWebサイトでは、登録ページがない状態でどうやってユーザーを登録しておけばよいでしょうか。幸い、この問題は既に解決されています。<a class="ref" href="./modeling-users#sec-creating_a_user">6.3.5</a>でRailsコンソールを使用してユーザーレコードを登録してありました。登録していない場合は、上記を参照して登録しておいてください。</p>
 
 <p>バージョン管理を使用している場合は、いつもと同じようにトピックブランチを作成します。</p>
 
@@ -32,7 +32,7 @@
 <h2><a id="sec-7_1" href="./sign-up#sec-showing_users" class="heading"><span class="number">7.1</span>ユーザーを表示する</a></h2>
 
 
-<p>この節では、まずユーザーの名前とプロファイル写真を表示するためのページを作成します。モックアップを<a class="ref" href="./sign-up#fig-profile_mockup_profile_name">図7.1</a>に示しました<sup class="footnote" id="fnref-7_1"><a href="./sign-up#fn-7_1">1</a></sup>。 ユーザープロファイルページの最終的な目標は、<a class="ref" href="./sign-up#fig-profile_mockup">図7.2</a><sup class="footnote" id="fnref-7_2"><a href="./sign-up#fn-7_2">2</a></sup>のようにユーザーのプロファイル写真と基本ユーザーデータ、そしてマイクロポストの一覧を表示することです。(<a class="ref" href="./sign-up#fig-profile_mockup">図7.2</a>では、有名な<em>lorem ipsum</em>ダミーテキストを使用しています。このテキストの成り立ちには<a href="http://www.straightdope.com/columns/read/2290/what-does-the-filler-text-lorem-ipsum-mean">面白いエピソード</a>があるので機会がありましたらどうぞ。) このページを作成したら、<a class="ref" href="/chapters/following-users#top">第11章</a>のサンプル・アプリケーションで使用する予定です。</p>
+<p>この節では、まずユーザーの名前とプロファイル写真を表示するためのページを作成します。モックアップを<a class="ref" href="./sign-up#fig-profile_mockup_profile_name">図7.1</a>に示しました<sup class="footnote" id="fnref-7_1"><a href="./sign-up#fn-7_1">1</a></sup>。 ユーザープロファイルページの最終的な目標は、<a class="ref" href="./sign-up#fig-profile_mockup">図7.2</a><sup class="footnote" id="fnref-7_2"><a href="./sign-up#fn-7_2">2</a></sup>のようにユーザーのプロファイル写真と基本ユーザーデータ、そしてマイクロポストの一覧を表示することです。(<a class="ref" href="./sign-up#fig-profile_mockup">図7.2</a>では、有名な<em>lorem ipsum</em>ダミーテキストを使用しています。このテキストの成り立ちには<a href="http://www.straightdope.com/columns/read/2290/what-does-the-filler-text-lorem-ipsum-mean">面白いエピソード</a>があるので機会がありましたらどうぞ。) このページを作成したら、<a class="ref" href="./following-users#top">第11章</a>のサンプル・アプリケーションで使用する予定です。</p>
 
 <div class="label" id="fig-profile_mockup_profile_name"></div>
 
@@ -81,7 +81,7 @@
 </div></div>
 
 
-<p>デバッグ出力をきれいに整形するために、<a class="ref" href="/chapters/filling-in-the-layout#top">第5章</a>で作成したカスタムスタイルシートを<a class="ref" href="./sign-up#code-mixin_and_debug">リスト7.2</a>のように追加します。</p>
+<p>デバッグ出力をきれいに整形するために、<a class="ref" href="./filling-in-the-layout#top">第5章</a>で作成したカスタムスタイルシートを<a class="ref" href="./sign-up#code-mixin_and_debug">リスト7.2</a>のように追加します。</p>
 
 <div class="label" id="code-mixin_and_debug"></div>
 
@@ -238,11 +238,11 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_1_2" href="./sign-up#sec-a_users_resource" class="heading"><span class="number">7.1.2</span>ユーザーリソース</a></h3>
 
 
-<p><a class="ref" href="/chapters/modeling-users#top">第6章</a>の最後で、データベースに新しいユーザーを作成しました。<a class="ref" href="/chapters/modeling-users#sec-creating_a_user">6.3.5</a>でこのユーザーのidは<code>1</code>になっており、今の私たちの目標はこのユーザーの情報を表示するページを作成することです。ここでは、Railsアプリケーションで好まれているRESTアーキテクチャ (<a class="ref" href="/chapters/a-demo-app#sidebar-REST">コラム 2.2</a>) の習慣に従うことにしましょう。つまり、データを作成、表示、更新、削除可能な<em>リソース</em>として扱うということです。<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP標準</a>には、これらに対応する4つの基本操作 (<tt>POST</tt>、<tt>GET</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>)が定義されています (<a class="ref" href="/chapters/static-pages#sidebar-get_etc">コラム  3.3</a>)。</p>
+<p><a class="ref" href="./modeling-users#top">第6章</a>の最後で、データベースに新しいユーザーを作成しました。<a class="ref" href="./modeling-users#sec-creating_a_user">6.3.5</a>でこのユーザーのidは<code>1</code>になっており、今の私たちの目標はこのユーザーの情報を表示するページを作成することです。ここでは、Railsアプリケーションで好まれているRESTアーキテクチャ (<a class="ref" href="./a-demo-app#sidebar-REST">コラム 2.2</a>) の習慣に従うことにしましょう。つまり、データを作成、表示、更新、削除可能な<em>リソース</em>として扱うということです。<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP標準</a>には、これらに対応する4つの基本操作 (<tt>POST</tt>、<tt>GET</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>)が定義されています (<a class="ref" href="./static-pages#sidebar-get_etc">コラム  3.3</a>)。</p>
 
 <p>RESTの原則に従う場合、リソースへの参照はリソース名とユニークIDを使用するのが普通です。ユーザーを<em>リソース</em>とみなす場合、id=<code>1</code>のユーザーを参照するということは、/users/1というURLに対して<tt>GET</tt>リクエストを発行するということを意味します。ここで<code>show</code>というアクションの種類は、<em>暗黙</em>のリクエストになります。RailsのREST機能が有効になっていると、<tt>GET</tt>リクエストは自動的に<code>show</code>アクションとして扱われます。</p>
 
-<p><a class="ref" href="/chapters/a-demo-app#sec-a_user_tour">2.2.1</a>で説明したとおり、id=<code>1</code>のユーザーにアクセスするためのページのURIは/users/1となります。ただし、現時点でこのURIを使用してもエラーになります (<a class="ref" href="./sign-up#fig-profile_routing_error">図 7.4</a>)。</p>
+<p><a class="ref" href="./a-demo-app#sec-a_user_tour">2.2.1</a>で説明したとおり、id=<code>1</code>のユーザーにアクセスするためのページのURIは/users/1となります。ただし、現時点でこのURIを使用してもエラーになります (<a class="ref" href="./sign-up#fig-profile_routing_error">図 7.4</a>)。</p>
 
 <div class="label" id="fig-profile_routing_error"></div>
 
@@ -283,7 +283,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>この行は<a class="ref" href="/chapters/filling-in-the-layout#code-signup_route">リスト5.33</a>にはありました。実は、<code>resources :users</code>という行は、動作する /users/1 URLを追加するためだけのものではありません。サンプルアプリケーションにこの行を追加すると、ユーザーのURLを生成するための多数の名前付きルート (<a class="ref" href="/chapters/filling-in-the-layout#sec-named_routes">5.3.3</a>) に従って、RESTfulなUsersリソースで必要となる<em>すべての</em>アクションが利用できるようになります<sup class="footnote" id="fnref-7_5"><a href="./sign-up#fn-7_5">5</a></sup>。この行に対応するURL、アクション、名前付きルートは<a class="ref" href="./sign-up#table-RESTful_users">表7.1</a>のようになります (<a class="ref" href="/chapters/a-demo-app#table-demo_RESTful_users">表2.2</a>との違いを比較してみてください)。 次の3つの章に渡って、<a class="ref" href="./sign-up#table-RESTful_users">表7.1</a>の他の項目も利用して、Usersリソースを完全にRESTfulなリソースにするために必要なアクションをすべて作成する予定です。</p>
+<p>この行は<a class="ref" href="./filling-in-the-layout#code-signup_route">リスト5.33</a>にはありました。実は、<code>resources :users</code>という行は、動作する /users/1 URLを追加するためだけのものではありません。サンプルアプリケーションにこの行を追加すると、ユーザーのURLを生成するための多数の名前付きルート (<a class="ref" href="./filling-in-the-layout#sec-named_routes">5.3.3</a>) に従って、RESTfulなUsersリソースで必要となる<em>すべての</em>アクションが利用できるようになります<sup class="footnote" id="fnref-7_5"><a href="./sign-up#fn-7_5">5</a></sup>。この行に対応するURL、アクション、名前付きルートは<a class="ref" href="./sign-up#table-RESTful_users">表7.1</a>のようになります (<a class="ref" href="./a-demo-app#table-demo_RESTful_users">表2.2</a>との違いを比較してみてください)。 次の3つの章に渡って、<a class="ref" href="./sign-up#table-RESTful_users">表7.1</a>の他の項目も利用して、Usersリソースを完全にRESTfulなリソースにするために必要なアクションをすべて作成する予定です。</p>
 
 <div class="label" id="table-RESTful_users"></div>
 
@@ -300,7 +300,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/user_show_unknown_action_4.png" alt="user_show_unknown_action_4" /></span></div><div class="caption"><span class="header">図7.5</span><span class="description">URI /users/1のルーティングは有効だがページがない状態。<a href="../images/figures/user_show_unknown_action_4-full.png">(拡大)</a></span></div></div>
 
 
-<p>ユーザーを表示するために、標準的なRailsの場所を使用することにします。<code>app/views/users/show.html.erb</code>です。<a class="ref" href="/chapters/filling-in-the-layout#code-generate_users_controller">リスト5.29</a>でジェネレータを使用して作成した<code>new.html.erb</code>ビューと異なり、この<code>show.html.erb</code>ファイルは自動的には作成されないので、手動で作成します。このファイルを作成後、<a class="ref" href="./sign-up#code-stub_user_view">リスト7.4</a>の内容を貼り付けてください。</p>
+<p>ユーザーを表示するために、標準的なRailsの場所を使用することにします。<code>app/views/users/show.html.erb</code>です。<a class="ref" href="./filling-in-the-layout#code-generate_users_controller">リスト5.29</a>でジェネレータを使用して作成した<code>new.html.erb</code>ビューと異なり、この<code>show.html.erb</code>ファイルは自動的には作成されないので、手動で作成します。このファイルを作成後、<a class="ref" href="./sign-up#code-stub_user_view">リスト7.4</a>の内容を貼り付けてください。</p>
 
 <div class="label" id="code-stub_user_view"></div>
 
@@ -314,7 +314,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>このビューでは埋め込みRubyを使用してユーザー名とメールアドレスを表示しています。インスタンス変数<code>@user</code>があることを前提としています。もちろん、ユーザー表示ページの最終的な状態はこれとは大きく異なりますし、このメールアドレスがこのまま一般に公開されるようなこともありません。</p>
 
-<p>ユーザー表示ビューが正常に動作するためには、Usersコントローラ内の<code>show</code>アクションに対応する<code>@user</code>変数を定義する必要があります。 ご想像のとおり、ここではUserモデルの<code>find</code>メソッド (<a class="ref" href="/chapters/modeling-users#sec-finding_user_objects">6.1.4</a>) を使用してデータベースからユーザーを取り出します。<a class="ref" href="./sign-up#code-user_show_action">リスト7.5</a>のように書き換えてください。</p>
+<p>ユーザー表示ビューが正常に動作するためには、Usersコントローラ内の<code>show</code>アクションに対応する<code>@user</code>変数を定義する必要があります。 ご想像のとおり、ここではUserモデルの<code>find</code>メソッド (<a class="ref" href="./modeling-users#sec-finding_user_objects">6.1.4</a>) を使用してデータベースからユーザーを取り出します。<a class="ref" href="./sign-up#code-user_show_action">リスト7.5</a>のように書き換えてください。</p>
 
 <div class="label" id="code-user_show_action"></div>
 
@@ -341,7 +341,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>上は<a class="ref" href="/chapters/modeling-users#sec-finding_user_objects">6.1.4</a>で使用したものです (技術的な補足: <code>params[:id]</code>は文字列型の <code>&quot;1&quot;</code> ですが、<code>find</code>メソッドでは自動的に整数型に変換されます)。</p>
+<p>上は<a class="ref" href="./modeling-users#sec-finding_user_objects">6.1.4</a>で使用したものです (技術的な補足: <code>params[:id]</code>は文字列型の <code>&quot;1&quot;</code> ですが、<code>find</code>メソッドでは自動的に整数型に変換されます)。</p>
 
 <p>ユーザーのビューとアクションが定義されたので、URI <a href="http://localhost:3000/users/1">/users/1</a>は完全に動作するようになりました (<a class="ref" href="./sign-up#fig-user_show_rails_3">図7.6</a>)。<a class="ref" href="./sign-up#fig-user_show_rails_3">図7.6</a>のデバッグ情報で<code>params[:id]</code>の値を確認できることにもご注目ください。</p>
 
@@ -376,9 +376,9 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_1_3" href="./sign-up#sec-tests_with_factories" class="heading"><span class="number">7.1.3</span>ファクトリーを使用してユーザー表示ページをテストする</a></h3>
 
 
-<p>最小限のプロファイルが動作するようになりましたので、<a class="ref" href="./sign-up#fig-profile_mockup_profile_name">図7.1</a>のモックアップバージョンの作成を始めましょう。静的なページの作成 (<a class="ref" href="/chapters/static-pages#top">第3章</a>) やUserモデル (<a class="ref" href="/chapters/modeling-users#top">第6章</a>) のときと同様に、テスト駆動開発を行います。</p>
+<p>最小限のプロファイルが動作するようになりましたので、<a class="ref" href="./sign-up#fig-profile_mockup_profile_name">図7.1</a>のモックアップバージョンの作成を始めましょう。静的なページの作成 (<a class="ref" href="./static-pages#top">第3章</a>) やUserモデル (<a class="ref" href="./modeling-users#top">第6章</a>) のときと同様に、テスト駆動開発を行います。</p>
 
-<p><a class="ref" href="/chapters/filling-in-the-layout#sec-signup_url">5.4.2</a>では、Usersリソースに関連付けられたページに対して行った結合テストを思い出してください。ユーザー登録ページでは、<a class="ref" href="/chapters/filling-in-the-layout#code-user_pages_spec">リスト5.32</a>のように最初に<code>signup_path</code>をテストし、次に<code>h1</code>タグと<code>title</code>タグが正しいことをチェックしました。これを再現したものが<a class="ref" href="./sign-up#code-initial_signup_test">リスト7.6</a>です (<a class="ref" href="/chapters/filling-in-the-layout#sec-pretty_rspec">5.3.4</a>の<code>full_title</code>ヘルパーについては、フルタイトルが既にテスト済みであることから省略しました)。</p>
+<p><a class="ref" href="./filling-in-the-layout#sec-signup_url">5.4.2</a>では、Usersリソースに関連付けられたページに対して行った結合テストを思い出してください。ユーザー登録ページでは、<a class="ref" href="./filling-in-the-layout#code-user_pages_spec">リスト5.32</a>のように最初に<code>signup_path</code>をテストし、次に<code>h1</code>タグと<code>title</code>タグが正しいことをチェックしました。これを再現したものが<a class="ref" href="./sign-up#code-initial_signup_test">リスト7.6</a>です (<a class="ref" href="./filling-in-the-layout#sec-pretty_rspec">5.3.4</a>の<code>full_title</code>ヘルパーについては、フルタイトルが既にテスト済みであることから省略しました)。</p>
 
 <div class="label" id="code-initial_signup_test"></div>
 
@@ -417,7 +417,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>これからコメントの部分に適切なコードを追加します。ここでは<code>user_path</code>という名前付きルート (<a class="ref" href="./sign-up#table-RESTful_users">表7.1</a>) を使用して、指定されたユーザーのページを表示するためのパスを生成します。これにより、ページのコンテンツとタイトルの両方にユーザーの名前が含まれているかどうかをテストできます。</p>
 
-<p>必要なUserモデルオブジェクトを作成するために、Active Recordを使用して<code>User.create</code>という形式でユーザーを作成することもできますが、経験上、ユーザーのオブジェクトを定義してそれをデータベースに挿入するには、ユーザーの<em>ファクトリー (factory)</em> を使用する方がはるかに便利です。ここでは、<a href="http://github.com/thoughtbot/factory_girl">Factory Girl</a>を使用して生成したファクトリーを使用します。Factory Girlは、<a href="http://thoughtbot.com/">thoughtbot</a>のメンバーが作成したRuby gemです。Factory Girlは、RSpecを使用してRubyで「ドメイン特化言語 (domain-specific language)」を定義します。ここでは、Active Recordのオブジェクトの定義に特化しています。このドメイン特化言語の文法はシンプルで、必要なオブジェクトの属性を定義するためにRubyのブロックとカスタムメソッドを使用しています。この章のサンプルアプリケーションでは、Active Recordのメリットはまだはっきりとはわからないかもしれませんが、この後の章ではファクトリーの機能をさらに活用する予定です。たとえば<a class="ref" href="/chapters/updating-showing-and-deleting-users#sec-pagination">9.3.3</a>では、複数のユーザーを作成し、それぞれに独自のメールアドレスを持たせる作業が重要となりますが、ファクトリーを使用することで簡単になります。</p>
+<p>必要なUserモデルオブジェクトを作成するために、Active Recordを使用して<code>User.create</code>という形式でユーザーを作成することもできますが、経験上、ユーザーのオブジェクトを定義してそれをデータベースに挿入するには、ユーザーの<em>ファクトリー (factory)</em> を使用する方がはるかに便利です。ここでは、<a href="http://github.com/thoughtbot/factory_girl">Factory Girl</a>を使用して生成したファクトリーを使用します。Factory Girlは、<a href="http://thoughtbot.com/">thoughtbot</a>のメンバーが作成したRuby gemです。Factory Girlは、RSpecを使用してRubyで「ドメイン特化言語 (domain-specific language)」を定義します。ここでは、Active Recordのオブジェクトの定義に特化しています。このドメイン特化言語の文法はシンプルで、必要なオブジェクトの属性を定義するためにRubyのブロックとカスタムメソッドを使用しています。この章のサンプルアプリケーションでは、Active Recordのメリットはまだはっきりとはわからないかもしれませんが、この後の章ではファクトリーの機能をさらに活用する予定です。たとえば<a class="ref" href="./updating-showing-and-deleting-users#sec-pagination">9.3.3</a>では、複数のユーザーを作成し、それぞれに独自のメールアドレスを持たせる作業が重要となりますが、ファクトリーを使用することで簡単になります。</p>
 
 <p>他のRuby gemと同様、Bundlerで使用する<code>Gemfile</code>に以下のように1行追加することでFactory Girlをインストールできます (<a class="ref" href="./sign-up#code-gemfile_factory_girl">リスト7.7</a>) (Factory Girlはテスト環境でしか使用しないので、以下のように<code>:test</code>グループに追加します)。</p>
 
@@ -471,7 +471,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>シンボル<code>:user</code>が<code>factory</code>コマンドに渡されると、Factory Girlはそれに続く定義がUserモデルオブジェクトを対象としていることを認識します。</p>
 
-<p><a class="ref" href="./sign-up#code-user_factory">リスト7.8</a>の定義を使用することで、Factory Girlの<code>let</code>コマンドと<code>FactoryGirl</code>メソッド (<a class="ref" href="/chapters/modeling-users#sidebar-let">コラム 6.3</a>) を使用してUserのファクトリーを作成することができます。</p>
+<p><a class="ref" href="./sign-up#code-user_factory">リスト7.8</a>の定義を使用することで、Factory Girlの<code>let</code>コマンドと<code>FactoryGirl</code>メソッド (<a class="ref" href="./modeling-users#sidebar-let">コラム 6.3</a>) を使用してUserのファクトリーを作成することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
 </pre></div>
@@ -537,7 +537,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>Factory Girlを使用したテストを実行してみるとすぐに気が付くと思いますが、正直言って<em>遅い</em>です。 これはFactory Girlに問題があるわけではなく、あくまで<em>機能</em>の一部であり、バグではありません。<a class="ref" href="/chapters/modeling-users#sec-an_encrypted_password">6.3.1</a>で使用したBCryptアルゴリズムによるセキュアパスワードのハッシュ生成そのものが仕様上遅いのが原因です。BCryptが遅いということは、裏を返せばそれだけ攻撃に強いということでもあります。残念ながら、このままではユーザーの作成をそのままテストに含めると遅くなってしまいます。幸いなことに、この問題は簡単に回避できます。<tt>BCrypt-ruby</tt>ライブラリでは、セキュアハッシュを生成する際の計算の負荷を<em>コストファクター (cost factor) </em>として指定できます。コストファクターのデフォルト値は速度よりセキュアであることを重視しています。これは本番環境では最適ですが、テスト環境では不利です。私たちはテストを<em>高速で</em>行いたいのであり、ユーザーのパスワードハッシュのセキュリティについてはテスト中は気にしたくありません。解決方法は、<a class="ref" href="./sign-up#code-test_bcrypt_cost_factor">リスト7.11</a>に示すように、テスト設定ファイル<code>config/environments/test.rb</code>に数行追加することです。これによりコストファクターが再定義され、デフォルトのセキュリティ重視から速度重視の最小値に変わります。 かなり小規模なテストであっても、この修正によって速度は相当向上します。<code>test.rb</code>にはいつも<a class="ref" href="./sign-up#code-test_bcrypt_cost_factor">リスト7.11</a>の数行を追加しておくことをぜひともお勧めします。</p>
+<p>Factory Girlを使用したテストを実行してみるとすぐに気が付くと思いますが、正直言って<em>遅い</em>です。 これはFactory Girlに問題があるわけではなく、あくまで<em>機能</em>の一部であり、バグではありません。<a class="ref" href="./modeling-users#sec-an_encrypted_password">6.3.1</a>で使用したBCryptアルゴリズムによるセキュアパスワードのハッシュ生成そのものが仕様上遅いのが原因です。BCryptが遅いということは、裏を返せばそれだけ攻撃に強いということでもあります。残念ながら、このままではユーザーの作成をそのままテストに含めると遅くなってしまいます。幸いなことに、この問題は簡単に回避できます。<tt>BCrypt-ruby</tt>ライブラリでは、セキュアハッシュを生成する際の計算の負荷を<em>コストファクター (cost factor) </em>として指定できます。コストファクターのデフォルト値は速度よりセキュアであることを重視しています。これは本番環境では最適ですが、テスト環境では不利です。私たちはテストを<em>高速で</em>行いたいのであり、ユーザーのパスワードハッシュのセキュリティについてはテスト中は気にしたくありません。解決方法は、<a class="ref" href="./sign-up#code-test_bcrypt_cost_factor">リスト7.11</a>に示すように、テスト設定ファイル<code>config/environments/test.rb</code>に数行追加することです。これによりコストファクターが再定義され、デフォルトのセキュリティ重視から速度重視の最小値に変わります。 かなり小規模なテストであっても、この修正によって速度は相当向上します。<code>test.rb</code>にはいつも<a class="ref" href="./sign-up#code-test_bcrypt_cost_factor">リスト7.11</a>の数行を追加しておくことをぜひともお勧めします。</p>
 
 <div class="label" id="code-test_bcrypt_cost_factor"></div>
 
@@ -563,7 +563,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_1_4" href="./sign-up#sec-a_gravatar_image" class="heading"><span class="number">7.1.4</span>gravatar画像とサイドバー</a></h3>
 
 
-<p>前節で基本的なユーザーページの定義は終わりましたので、今度は各ユーザーのプロファイル写真のあたりをもう少し肉付けし、サイドバーも作り始めましょう。ビューを作成するときは、ページの構造が正確であるかどうかよりもページの外観の方を重要視するのが普通なので、少なくとも今はビューをテストする必要はありません。ページネーション (<a class="ref" href="/chapters/updating-showing-and-deleting-users#sec-pagination">9.3.3</a>) のような、エラーの起きやすい要素をビューで使用するようになったら、ビューでもテスト駆動開発を行います。</p>
+<p>前節で基本的なユーザーページの定義は終わりましたので、今度は各ユーザーのプロファイル写真のあたりをもう少し肉付けし、サイドバーも作り始めましょう。ビューを作成するときは、ページの構造が正確であるかどうかよりもページの外観の方を重要視するのが普通なので、少なくとも今はビューをテストする必要はありません。ページネーション (<a class="ref" href="./updating-showing-and-deleting-users#sec-pagination">9.3.3</a>) のような、エラーの起きやすい要素をビューで使用するようになったら、ビューでもテスト駆動開発を行います。</p>
 
 <p>ここでは<a href="http://gravatar.com/">Gravatar (globally recognized avatar) </a>をユーザープロファイルに導入してみましょう<sup class="footnote" id="fnref-7_6"><a href="./sign-up#fn-7_6">6</a></sup>。Gravatarは<a href="http://github.com/">GitHub</a>の共同設立者であるTom Preston-Wernerによって開発され、後に<a href="http://automattic.com/">Automattic</a> (<a href="http://wordpress.com/">WordPress</a>の作者) に買い取られました。Gravatarは無料のサービスで、プロファイル写真をアップロードして、指定したメールアドレスと関連付けることができます。Gravatarは、プロファイル写真をアップロードするときの面倒な作業や、写真が欠けたりなどのトラブル、置き場所の悩みを解決します。ユーザーのメールアドレスを組み込んだGravatar専用の画像パスを構成するだけで、対応するGravatarの画像が自動的に表示されます<sup class="footnote" id="fnref-7_7"><a href="./sign-up#fn-7_7">7</a></sup>。</p>
 
@@ -601,7 +601,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>メールアドレスは大文字小文字を区別しますが (<a class="ref" href="/chapters/modeling-users#sec-format_validation">6.2.4</a>)、MD5ハッシュでは大文字小文字は区別されないので、Rubyの<code>downcase</code>メソッドを使用して<code>hexdigest</code>の引数を小文字に変換しています。<code>gravatar_for</code>ヘルパーを組み込んだ結果を<a class="ref" href="./sign-up#code-gravatar_for_helper">リスト7.13</a>に示しました。</p>
+<p>メールアドレスは大文字小文字を区別しますが (<a class="ref" href="./modeling-users#sec-format_validation">6.2.4</a>)、MD5ハッシュでは大文字小文字は区別されないので、Rubyの<code>downcase</code>メソッドを使用して<code>hexdigest</code>の引数を小文字に変換しています。<code>gravatar_for</code>ヘルパーを組み込んだ結果を<a class="ref" href="./sign-up#code-gravatar_for_helper">リスト7.13</a>に示しました。</p>
 
 <div class="label" id="code-gravatar_for_helper"></div>
 
@@ -636,7 +636,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/profile_with_gravatar_bootstrap_4_0.png" alt="profile_with_gravatar_bootstrap_4_0" /></span></div><div class="caption"><span class="header">図7.7</span><span class="description">ユーザープロファイルページ<a href="http://localhost:3000/users/1">/users/1</a>にデフォルトのGravatarが表示されている。<a href="../images/figures/profile_with_gravatar_bootstrap_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>アプリケーションでカスタムGravatarを利用できるようにするために、<code>update_attributes</code> (<a class="ref" href="/chapters/modeling-users#sec-updating_user_objects">6.1.5</a>) を使用してデータベース上のユーザー情報を更新します。</p>
+<p>アプリケーションでカスタムGravatarを利用できるようにするために、<code>update_attributes</code> (<a class="ref" href="./modeling-users#sec-updating_user_objects">6.1.5</a>) を使用してデータベース上のユーザー情報を更新します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">first</span>
@@ -739,7 +739,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h2><a id="sec-7_2" href="./sign-up#sec-signup_form" class="heading"><span class="number">7.2</span>ユーザー登録フォーム</a></h2>
 
 
-<p>ここまででユーザープロファイルページがひとまず動作するようになりましたので、今度はユーザー登録フォームを作成しましょう。<a class="ref" href="/chapters/filling-in-the-layout#fig-new_signup_page">図5.9</a> (<a class="ref" href="./sign-up#fig-blank_signup_page_recap">図7.10</a>にも再録) に示したとおり、ユーザー登録ページはまだ空白のままなので、このままではユーザー登録できません。この節の目標は、このみっともないページを改造して<a class="ref" href="./sign-up#fig-signup_mockup">図7.11</a>のモックアップのようなページに変えることです。</p>
+<p>ここまででユーザープロファイルページがひとまず動作するようになりましたので、今度はユーザー登録フォームを作成しましょう。<a class="ref" href="./filling-in-the-layout#fig-new_signup_page">図5.9</a> (<a class="ref" href="./sign-up#fig-blank_signup_page_recap">図7.10</a>にも再録) に示したとおり、ユーザー登録ページはまだ空白のままなので、このままではユーザー登録できません。この節の目標は、このみっともないページを改造して<a class="ref" href="./sign-up#fig-signup_mockup">図7.11</a>のモックアップのようなページに変えることです。</p>
 
 <div class="label" id="fig-blank_signup_page_recap"></div>
 
@@ -755,7 +755,7 @@ Loading development environment  &gt;&gt; Rails.env
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/signup_mockup_bootstrap.png" alt="signup_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図7.11</span><span class="description">ユーザー登録ページのモックアップ。<a href="../images/figures/signup_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>Web経由でユーザーを作成する機能をこれから追加しますので、<a class="ref" href="/chapters/modeling-users#sec-creating_a_user">6.3.5</a>で作成したユーザーをここで削除しておきましょう。 最も簡単な方法は、Rakeの<code>db:reset</code>タスクを実行してデータベースをリセットすることです。</p>
+<p>Web経由でユーザーを作成する機能をこれから追加しますので、<a class="ref" href="./modeling-users#sec-creating_a_user">6.3.5</a>で作成したユーザーをここで削除しておきましょう。 最も簡単な方法は、Rakeの<code>db:reset</code>タスクを実行してデータベースをリセットすることです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:reset
 </pre></div>
@@ -832,7 +832,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>ここで、<code>expect</code>が<code>click_button</code>を中かっこで囲んでブロックになっていることに注目してください (<a class="ref" href="/chapters/rails-flavored-ruby#sec-blocks">4.3.2</a>)。これは<code>change</code>メソッドで役に立ちます。このメソッドはオブジェクトとシンボルを引数に取り、シンボルを呼び出した結果を計算してオブジェクト上のメソッドとします。これはブロックの前と後いずれについても行われます。つまり、以下のコードは</p>
+<p>ここで、<code>expect</code>が<code>click_button</code>を中かっこで囲んでブロックになっていることに注目してください (<a class="ref" href="./rails-flavored-ruby#sec-blocks">4.3.2</a>)。これは<code>change</code>メソッドで役に立ちます。このメソッドはオブジェクトとシンボルを引数に取り、シンボルを呼び出した結果を計算してオブジェクト上のメソッドとします。これはブロックの前と後いずれについても行われます。つまり、以下のコードは</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">expect</span> <span class="p">{</span> <span class="n">click_button</span> <span class="s2">&quot;Create my account&quot;</span> <span class="p">}</span><span class="o">.</span><span class="n">not_to</span> <span class="n">change</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="ss">:count</span><span class="p">)</span>
 </pre></div>
@@ -1005,7 +1005,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>Userモデルの<code>name</code>属性を設定する、ラベル付きテキストフィールド要素を作成するのに必要なHTMLを作成します (HTML自体については<a class="ref" href="./sign-up#sec-the_form_html">7.2.3</a>で詳しく説明します)。</p>
 
-<p>実際の動作を理解するには、このフォームによって生成される実際のHTMLについて理解を深める必要があります。しかしここで問題があります。このページでは<code>@user</code>変数に何も設定されておらず、未完成です。 他のすべての未定義インスタンス変数 (<a class="ref" href="/chapters/rails-flavored-ruby#sec-a_user_class">4.4.5</a>) と同様、<code>@user</code>の内容は現時点では<code>nil</code>です。従って、この時点でテストスイートを実行すると、<a class="ref" href="./sign-up#code-initial_signup_test">リスト7.6</a>のユーザー登録ページのコンテンツに対するテストは失敗します。</p>
+<p>実際の動作を理解するには、このフォームによって生成される実際のHTMLについて理解を深める必要があります。しかしここで問題があります。このページでは<code>@user</code>変数に何も設定されておらず、未完成です。 他のすべての未定義インスタンス変数 (<a class="ref" href="./rails-flavored-ruby#sec-a_user_class">4.4.5</a>) と同様、<code>@user</code>の内容は現時点では<code>nil</code>です。従って、この時点でテストスイートを実行すると、<a class="ref" href="./sign-up#code-initial_signup_test">リスト7.6</a>のユーザー登録ページのコンテンツに対するテストは失敗します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/requests/user_pages_spec.rb -e <span class="s2">&quot;signup page&quot;</span>
 </pre></div>
@@ -1168,7 +1168,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>Railsはこれらの<code>name</code>の値を使用して、初期化ハッシュを (<code>params</code>変数経由で) 構成します。このハッシュは、ユーザーが入力した値に基づいてユーザーを作成するとき (<a class="ref" href="./sign-up#sec-signup_failure">7.3</a>) に使用されます。</p>
 
-<p>次に重要な要素は、<code>form</code>タグ自身です。Railsは<code>form</code>タグを作成するときに<code>@user</code>オブジェクトを使用します。すべてのRubyオブジェクトは自分のクラスを知っている (<a class="ref" href="/chapters/rails-flavored-ruby#sec-constructors">4.4.1</a>) ので、Railsは<code>@user</code>のクラスが<code>User</code>であることを知ることができます。また、<code>@user</code>は<em>新しい</em>ユーザーなので、 Railsは<code>post</code>メソッドを使用してフォームを構成する方法を知っています。これは新しいオブジェクトを作成するための正式な動詞 (verb) です (<a class="ref" href="/chapters/static-pages#sidebar-get_etc">コラム 3.3</a>)。</p>
+<p>次に重要な要素は、<code>form</code>タグ自身です。Railsは<code>form</code>タグを作成するときに<code>@user</code>オブジェクトを使用します。すべてのRubyオブジェクトは自分のクラスを知っている (<a class="ref" href="./rails-flavored-ruby#sec-constructors">4.4.1</a>) ので、Railsは<code>@user</code>のクラスが<code>User</code>であることを知ることができます。また、<code>@user</code>は<em>新しい</em>ユーザーなので、 Railsは<code>post</code>メソッドを使用してフォームを構成する方法を知っています。これは新しいオブジェクトを作成するための正式な動詞 (verb) です (<a class="ref" href="./static-pages#sidebar-get_etc">コラム 3.3</a>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;/users&quot;</span> <span class="na">class=</span><span class="s">&quot;new_user&quot;</span> <span class="na">id=</span><span class="s">&quot;new_user&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
 </pre></div>
@@ -1208,7 +1208,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p><a class="ref" href="./sign-up#sec-the_form_html">7.2.3</a>で説明したように、このHTMLは<tt>POST</tt>リクエストを /usersというURLに送信します。</p>
 
-<p><a class="ref" href="./sign-up#code-first_create_action">リスト7.21</a>のコードがテストにパスするようにするためには、最初に<a class="ref" href="./sign-up#code-basic_signup_tests">リスト7.16</a>にある無効な情報をテストします。このリストでは、<a class="ref" href="/chapters/filling-in-the-layout#sec-partials">5.1.3</a>の「パーシャル」のところでも使った<code>render</code>メソッドを再度使いまわしています。<code>render</code>はコントローラのアクションの中でも正常に動作します。ここで、以前に説明した<code>if</code>-<code>else</code>分岐構造を思い出してください。この文を使用して、保存が成功したかどうかに応じて<code>@user.save</code>の値が<code>true</code>または<code>false</code> (<a class="ref" href="/chapters/modeling-users#sec-creating_user_objects">6.1.3</a>) になるときに、それぞれ成功時の処理と失敗時の処理を場合分けすることができます。</p>
+<p><a class="ref" href="./sign-up#code-first_create_action">リスト7.21</a>のコードがテストにパスするようにするためには、最初に<a class="ref" href="./sign-up#code-basic_signup_tests">リスト7.16</a>にある無効な情報をテストします。このリストでは、<a class="ref" href="./filling-in-the-layout#sec-partials">5.1.3</a>の「パーシャル」のところでも使った<code>render</code>メソッドを再度使いまわしています。<code>render</code>はコントローラのアクションの中でも正常に動作します。ここで、以前に説明した<code>if</code>-<code>else</code>分岐構造を思い出してください。この文を使用して、保存が成功したかどうかに応じて<code>@user.save</code>の値が<code>true</code>または<code>false</code> (<a class="ref" href="./modeling-users#sec-creating_user_objects">6.1.3</a>) になるときに、それぞれ成功時の処理と失敗時の処理を場合分けすることができます。</p>
 
 <div class="label" id="code-first_create_action"></div>
 
@@ -1261,7 +1261,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>このハッシュはUsersコントローラに<code>params</code>として渡されます。<a class="ref" href="./sign-up#sec-a_users_resource">7.1.2</a>で説明したとおり、この<code>params</code>ハッシュには各リクエストの情報が含まれています。/users/1のようなURLの場合、<code>params[:id]</code>の値は該当するユーザーの<code>id</code> (この例では<code>1</code>) になります。ユーザー登録情報の送信の場合、<code>params</code>には複数のハッシュに対するハッシュ (hash-of-hashes: 入れ子になったハッシュ) が含まれます (なお、<a class="ref" href="/chapters/rails-flavored-ruby#sec-hashes_and_symbols">4.3.3</a>ではhash-of-hashesの説明とともに、コンソールセッションで使用するためにあえて<code>params</code>という名前の変数を導入しました)。上のデバッグ情報では、フォーム送信の結果が、送信された値に対応する属性とともに<code>user</code>ハッシュに保存されています。ハッシュのキーは、<code>input</code>タグの<code>name</code>属性です (<a class="ref" href="./sign-up#code-signup_form">リスト7.17</a>)。</p>
+<p>このハッシュはUsersコントローラに<code>params</code>として渡されます。<a class="ref" href="./sign-up#sec-a_users_resource">7.1.2</a>で説明したとおり、この<code>params</code>ハッシュには各リクエストの情報が含まれています。/users/1のようなURLの場合、<code>params[:id]</code>の値は該当するユーザーの<code>id</code> (この例では<code>1</code>) になります。ユーザー登録情報の送信の場合、<code>params</code>には複数のハッシュに対するハッシュ (hash-of-hashes: 入れ子になったハッシュ) が含まれます (なお、<a class="ref" href="./rails-flavored-ruby#sec-hashes_and_symbols">4.3.3</a>ではhash-of-hashesの説明とともに、コンソールセッションで使用するためにあえて<code>params</code>という名前の変数を導入しました)。上のデバッグ情報では、フォーム送信の結果が、送信された値に対応する属性とともに<code>user</code>ハッシュに保存されています。ハッシュのキーは、<code>input</code>タグの<code>name</code>属性です (<a class="ref" href="./sign-up#code-signup_form">リスト7.17</a>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;user_email&quot;</span> <span class="na">name=</span><span class="s">&quot;user[email]&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
@@ -1270,7 +1270,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p><code>&quot;user[email]&quot;</code>という名前は、<code>user</code>ハッシュの<code>email</code>属性を正確に指します。</p>
 
-<p>ハッシュのキーはデバッグ情報では文字列として表現されていますが、Railsはこれらを文字列ではなく、<code>params[:user]</code>がuser属性のハッシュになるような「シンボル」(Rubyの機能の1つで、一意性が保証された特別な文字列) としてUsersコントローラに渡します。実際、<a class="ref" href="/chapters/rails-flavored-ruby#sec-a_user_class">4.4.5</a>で初めて使われ、<a class="ref" href="./sign-up#code-first_create_action">リスト7.21</a>でも使用されていたように、これらのハッシュは<code>User.new</code>の引数として必要な属性と正確に一致します。これはつまり、以下の行は</p>
+<p>ハッシュのキーはデバッグ情報では文字列として表現されていますが、Railsはこれらを文字列ではなく、<code>params[:user]</code>がuser属性のハッシュになるような「シンボル」(Rubyの機能の1つで、一意性が保証された特別な文字列) としてUsersコントローラに渡します。実際、<a class="ref" href="./rails-flavored-ruby#sec-a_user_class">4.4.5</a>で初めて使われ、<a class="ref" href="./sign-up#code-first_create_action">リスト7.21</a>でも使用されていたように、これらのハッシュは<code>User.new</code>の引数として必要な属性と正確に一致します。これはつまり、以下の行は</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:user</span><span class="o">]</span><span class="p">)</span>
 </pre></div>
@@ -1308,14 +1308,14 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_3_2" href="./sign-up#sec-strong_parameters" class="heading"><span class="number">7.3.2</span> Strong Parameters</a></h3>
 
 
-<p><a class="ref" href="/chapters/rails-flavored-ruby#sec-a_user_class">4.4.5</a>で、<em>マスアサインメント</em>の概念について簡単に説明しました。これは、以下のように値のハッシュを使用してRubyの変数を初期化するものです。</p>
+<p><a class="ref" href="./rails-flavored-ruby#sec-a_user_class">4.4.5</a>で、<em>マスアサインメント</em>の概念について簡単に説明しました。これは、以下のように値のハッシュを使用してRubyの変数を初期化するものです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:user</span><span class="o">]</span><span class="p">)</span>    <span class="c1"># 実装は終わっていないことに注意!</span>
 </pre></div>
 </div>
 
 
-<p><a class="ref" href="./sign-up#code-first_create_action">リスト7.21</a>のコメントと、上の再録コメントでも重ねて指摘しているように、この実装は最終形ではありません。その理由は、<code>params</code>ハッシュ全体を初期化するという行為はセキュリティ上<em>きわめて</em>危険だからです。これは、ユーザーが送信したデータを<em>まるごと</em><code>User.new</code>に渡していることになります。ここで、Userモデルに<code>admin</code>属性というものがあるとしましょう。この属性は、Webサイトの管理者であるかどうかを示します (この属性を実装するのは<a class="ref" href="/chapters/updating-showing-and-deleting-users#sec-administrative_users">9.4.1</a>になってからです)。<code>admin=’1’</code>という値を<code>params[:user]</code>の一部に紛れ込ませて渡してしまえば、この属性を<code>true</code>にすることができます。これは<tt>curl</tt>などのコマンドベースのHTTPクライアントを使用すれば簡単に行うことができます。<code>params</code>ハッシュがまるごと<code>User.new</code>に渡されてしまうと、どのユーザーでも<code>admin=’1’</code>をWebリクエストに紛れ込ませるだけでWebサイトの管理者権限を奪い取ることができてしまいます。</p>
+<p><a class="ref" href="./sign-up#code-first_create_action">リスト7.21</a>のコメントと、上の再録コメントでも重ねて指摘しているように、この実装は最終形ではありません。その理由は、<code>params</code>ハッシュ全体を初期化するという行為はセキュリティ上<em>きわめて</em>危険だからです。これは、ユーザーが送信したデータを<em>まるごと</em><code>User.new</code>に渡していることになります。ここで、Userモデルに<code>admin</code>属性というものがあるとしましょう。この属性は、Webサイトの管理者であるかどうかを示します (この属性を実装するのは<a class="ref" href="./updating-showing-and-deleting-users#sec-administrative_users">9.4.1</a>になってからです)。<code>admin=’1’</code>という値を<code>params[:user]</code>の一部に紛れ込ませて渡してしまえば、この属性を<code>true</code>にすることができます。これは<tt>curl</tt>などのコマンドベースのHTTPクライアントを使用すれば簡単に行うことができます。<code>params</code>ハッシュがまるごと<code>User.new</code>に渡されてしまうと、どのユーザーでも<code>admin=’1’</code>をWebリクエストに紛れ込ませるだけでWebサイトの管理者権限を奪い取ることができてしまいます。</p>
 
 <p>以前のバージョンのRailsでは、<em>モデル</em>層で<code>attr_accessible</code>メソッドを使用することで上のような危険を防止していましたが、 Rails 4.0ではコントローラ層で<em>Strong Parameters</em>というテクニックを使用することが推奨されています。Strong Parametersを使用することで、<em>必須</em>のパラメータと<em>許可された</em>パラメータを指定することができます。さらに、上のように<code>params</code>ハッシュをまるごと渡すとエラーが発生するので、Railsはデフォルトでマスアサインメントの脆弱性から守られるようになりました。</p>
 
@@ -1328,7 +1328,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>このコードの戻り値は、<code>params</code>ハッシュのバージョンと、許可された属性です (<code>:user</code>属性がない場合はエラーになります)。</p>
 
-<p>これらのパラメータを使いやすくするために、<code>user_params</code>という外部メソッドを使用するのが慣習になっています。このメソッドは適切な初期化ハッシュを返します。このメソッドはUsersコントローラの内部でのみ実行され、Web経由で外部ユーザーにさらされる必要はないため、<a class="ref" href="./sign-up#code-create_action_strong_parameters">リスト7.22</a>に示すようにRubyの<code>private</code>キーワードを使用して<em>private</em>に設定します (<code>private</code>キーワードの詳細については <a class="ref" href="/chapters/sign-in-sign-out#sec-remember_me">8.2.1</a>で説明します)。</p>
+<p>これらのパラメータを使いやすくするために、<code>user_params</code>という外部メソッドを使用するのが慣習になっています。このメソッドは適切な初期化ハッシュを返します。このメソッドはUsersコントローラの内部でのみ実行され、Web経由で外部ユーザーにさらされる必要はないため、<a class="ref" href="./sign-up#code-create_action_strong_parameters">リスト7.22</a>に示すようにRubyの<code>private</code>キーワードを使用して<em>private</em>に設定します (<code>private</code>キーワードの詳細については <a class="ref" href="./sign-in-sign-out#sec-remember_me">8.2.1</a>で説明します)。</p>
 
 <div class="label" id="code-create_action_strong_parameters"></div>
 
@@ -1388,9 +1388,9 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p><code>6.2.2</code>でも簡単に説明しましたが、<a class="ref" href="/chapters/modeling-users#sec-presence_validation">errors.full_messages</a>オブジェクトにはエラーメッセージの配列が含まれています。</p>
+<p><code>6.2.2</code>でも簡単に説明しましたが、<a class="ref" href="./modeling-users#sec-presence_validation">errors.full_messages</a>オブジェクトにはエラーメッセージの配列が含まれています。</p>
 
-<p>上のコンソールセッションに示されているように、<a class="ref" href="./sign-up#code-first_create_action">リスト7.21</a>で保存に失敗すると、<code>@user</code>オブジェクトに関連付けられたエラーメッセージの一覧が生成されます。このメッセージをブラウザで表示するには、ユーザーの<code>new</code>ページでエラーメッセージのパーシャル (partial) を出力します。<a class="ref" href="./sign-up#code-f_error_messages">リスト7.23</a>に示します。(このエラーメッセージのテストを行うのはよいことですが、演習の課題としてあえて残しておきます。<a class="ref" href="./sign-up#sec-signup_exercises">7.6</a>を参照してください。) ここで使用しているエラーメッセージのパーシャルはあくまで試作品である点にご注意ください。最終版は<a class="ref" href="/chapters/user-microposts#sec-creating_microposts">10.3.2</a>を参照してください。</p>
+<p>上のコンソールセッションに示されているように、<a class="ref" href="./sign-up#code-first_create_action">リスト7.21</a>で保存に失敗すると、<code>@user</code>オブジェクトに関連付けられたエラーメッセージの一覧が生成されます。このメッセージをブラウザで表示するには、ユーザーの<code>new</code>ページでエラーメッセージのパーシャル (partial) を出力します。<a class="ref" href="./sign-up#code-f_error_messages">リスト7.23</a>に示します。(このエラーメッセージのテストを行うのはよいことですが、演習の課題としてあえて残しておきます。<a class="ref" href="./sign-up#sec-signup_exercises">7.6</a>を参照してください。) ここで使用しているエラーメッセージのパーシャルはあくまで試作品である点にご注意ください。最終版は<a class="ref" href="./user-microposts#sec-creating_microposts">10.3.2</a>を参照してください。</p>
 
 <div class="label" id="code-f_error_messages"></div>
 
@@ -1414,7 +1414,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<p>ここでは、<code>’shared/error_messages’</code>というパーシャルを<code>render</code> (レンダリング) している点にご注目ください。これはRails全般の慣習で、パーシャルは複数のコントローラにわたるビューに対し、専用の<code>shared/</code>ディレクトリを使用するようにしています (これは<a class="ref" href="/chapters/updating-showing-and-deleting-users#sec-edit_form">9.1.1</a>で実現します)。 つまり、<code>app/views/shared</code>ディレクトリと<code>_error_messages.html.erb</code>パーシャルファイルの両方を作成する必要があるということです。パーシャル自身の内容を<a class="ref" href="./sign-up#code-errors_partial">リスト7.24</a>に示します。</p>
+<p>ここでは、<code>’shared/error_messages’</code>というパーシャルを<code>render</code> (レンダリング) している点にご注目ください。これはRails全般の慣習で、パーシャルは複数のコントローラにわたるビューに対し、専用の<code>shared/</code>ディレクトリを使用するようにしています (これは<a class="ref" href="./updating-showing-and-deleting-users#sec-edit_form">9.1.1</a>で実現します)。 つまり、<code>app/views/shared</code>ディレクトリと<code>_error_messages.html.erb</code>パーシャルファイルの両方を作成する必要があるということです。パーシャル自身の内容を<a class="ref" href="./sign-up#code-errors_partial">リスト7.24</a>に示します。</p>
 
 <div class="label" id="code-errors_partial"></div>
 
@@ -1455,7 +1455,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p><a class="ref" href="/chapters/rails-flavored-ruby#sec-objects_and_message_passing">4.2.3</a>では文字列に対して<code>empty?</code>メソッドを使用しましたが、Railsのエラーオブジェクトに対しても使用できます。オブジェクトが空の場合は<code>true</code>、 それ以外の場合は<code>false</code>を返します。<code>any?</code>メソッドはちょうど<code>empty?</code>と逆の動作で、要素が1つでもある場合は<code>true</code>、ない場合は<code>false</code>を返します (なお、これらの<code>count</code>、<code>empty?</code>、<code>any?</code>メソッドは、Rubyの配列に対してもそのまま使用できます。これは<a class="ref" href="/chapters/user-microposts#sec-showing_microposts">10.2</a>で応用する予定です)。</p>
+<p><a class="ref" href="./rails-flavored-ruby#sec-objects_and_message_passing">4.2.3</a>では文字列に対して<code>empty?</code>メソッドを使用しましたが、Railsのエラーオブジェクトに対しても使用できます。オブジェクトが空の場合は<code>true</code>、 それ以外の場合は<code>false</code>を返します。<code>any?</code>メソッドはちょうど<code>empty?</code>と逆の動作で、要素が1つでもある場合は<code>true</code>、ない場合は<code>false</code>を返します (なお、これらの<code>count</code>、<code>empty?</code>、<code>any?</code>メソッドは、Rubyの配列に対してもそのまま使用できます。これは<a class="ref" href="./user-microposts#sec-showing_microposts">10.2</a>で応用する予定です)。</p>
 
 <p>さらに、<code>pluralize</code>という英語専用のテキストヘルパーが新たに登場しています。このヘルパーはデフォルトではコンソールでは使用できませんが、<code>ActionView::Helpers::TextHelper</code>を経由して明示的にインクルードできます<sup class="footnote" id="fnref-7_9"><a href="./sign-up#fn-7_9">9</a></sup>。</p>
 
@@ -1487,7 +1487,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>このコードはたとえば <code>&quot;0 errors&quot;</code>、<code>&quot;1 error&quot;</code>、<code>&quot;2 errors&quot;</code> などのように、エラーの数に応じて活用された単語を返します。これにより、<code>&quot;1 errors&quot;</code> のような英語の文法に合わない文字列を避けることができます (これは<a href="http://www.urbandictionary.com/define.php?term=interwebs">teh interwebs</a>にも載っている、どうしようもないほどよく見かけるエラーです)。</p>
 
-<p><a class="ref" href="./sign-up#code-errors_partial">リスト7.24</a>には、エラーメッセージにスタイルを与えるためのCSS id <code>error_explanation</code>も含まれていることに注目してください (<a class="ref" href="/chapters/filling-in-the-layout#sec-custom_css">5.1.2</a>のCSSでスタイルidに「<code>#</code>」記号を使用していることも思い出してください)。さらにRailsは、エラーページにある、<code>div</code>で囲まれたエラーCSSクラス<code>field_with_errors</code>を適用しています。これらのラベルによって、<a class="ref" href="./sign-up#code-error_messages_css">リスト7.25</a>のようにエラーメッセージをSCSSで整形することができます。ここでは、Sassの<code>@extend</code>関数を使用してBootstrapの<code>control-group</code>と<code>error</code>の2つのクラスの機能をインクルードしています。その結果、送信失敗時のエラーメッセージは<a class="ref" href="./sign-up#fig-signup_error_messages">図7.17</a>のように赤の背景で囲まれるようになります。これらのメッセージはモデルの検証時に生成されるので、メールアドレスのスタイルやパスワードの最小文字列などを変更すると、メッセージも自動的に変更されます。</p>
+<p><a class="ref" href="./sign-up#code-errors_partial">リスト7.24</a>には、エラーメッセージにスタイルを与えるためのCSS id <code>error_explanation</code>も含まれていることに注目してください (<a class="ref" href="./filling-in-the-layout#sec-custom_css">5.1.2</a>のCSSでスタイルidに「<code>#</code>」記号を使用していることも思い出してください)。さらにRailsは、エラーページにある、<code>div</code>で囲まれたエラーCSSクラス<code>field_with_errors</code>を適用しています。これらのラベルによって、<a class="ref" href="./sign-up#code-error_messages_css">リスト7.25</a>のようにエラーメッセージをSCSSで整形することができます。ここでは、Sassの<code>@extend</code>関数を使用してBootstrapの<code>control-group</code>と<code>error</code>の2つのクラスの機能をインクルードしています。その結果、送信失敗時のエラーメッセージは<a class="ref" href="./sign-up#fig-signup_error_messages">図7.17</a>のように赤の背景で囲まれるようになります。これらのメッセージはモデルの検証時に生成されるので、メールアドレスのスタイルやパスワードの最小文字列などを変更すると、メッセージも自動的に変更されます。</p>
 
 <div class="label" id="code-error_messages_css"></div>
 
@@ -1620,7 +1620,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_4_2" href="./sign-up#sec-the_flash" class="heading"><span class="number">7.4.2</span>flash</a></h3>
 
 
-<p>いよいよブラウザで正しいユーザー情報を登録できるようになりましたが、その前にWebアプリケーションに常識的に備わっている機能を追加してみましょう。登録完了後に表示されるページにメッセージを表示し (この場合は新規ユーザーへのウェルカムメッセージ)、2度目以降にはそのページにメッセージを表示しないようにするというものです。Railsでは、こういう場合に<em>flash</em>という特殊な変数を使用できます。この変数はハッシュのように扱うことができます。<code>4.3.3</code>でコンソール上で実行した例を思い出してみてください。そこではあえて<a class="ref" href="/chapters/rails-flavored-ruby#sec-hashes_and_symbols">flash</a>と名付けたハッシュを使用してハッシュの値を列挙しました。</p>
+<p>いよいよブラウザで正しいユーザー情報を登録できるようになりましたが、その前にWebアプリケーションに常識的に備わっている機能を追加してみましょう。登録完了後に表示されるページにメッセージを表示し (この場合は新規ユーザーへのウェルカムメッセージ)、2度目以降にはそのページにメッセージを表示しないようにするというものです。Railsでは、こういう場合に<em>flash</em>という特殊な変数を使用できます。この変数はハッシュのように扱うことができます。<code>4.3.3</code>でコンソール上で実行した例を思い出してみてください。そこではあえて<a class="ref" href="./rails-flavored-ruby#sec-hashes_and_symbols">flash</a>と名付けたハッシュを使用してハッシュの値を列挙しました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="n">flash</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">success:</span> <span class="s2">&quot;It worked!&quot;</span><span class="p">,</span> <span class="ss">error:</span> <span class="s2">&quot;It failed.&quot;</span> <span class="p">}</span>
@@ -1684,7 +1684,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>(ハッシュの<code>:success</code>キーはシンボルである点にご注目ください。Rubyはシンボルを自動的に <code>&quot;success&quot;</code> という文字列に変換してからテンプレートに挿入します。) 使用するすべてのキーと値を列挙する理由は、他のフラッシュメッセージも使えるようにするためです。たとえば、<a class="ref" href="/chapters/sign-in-sign-out#sec-rendering_with_a_flash_message">8.1.5</a>では<code>flash[:error]</code>を使用してサインインに失敗したことを表すメッセージを表示します<sup class="footnote" id="fnref-7_10"><a href="./sign-up#fn-7_10">10</a></sup>。</p>
+<p>(ハッシュの<code>:success</code>キーはシンボルである点にご注目ください。Rubyはシンボルを自動的に <code>&quot;success&quot;</code> という文字列に変換してからテンプレートに挿入します。) 使用するすべてのキーと値を列挙する理由は、他のフラッシュメッセージも使えるようにするためです。たとえば、<a class="ref" href="./sign-in-sign-out#sec-rendering_with_a_flash_message">8.1.5</a>では<code>flash[:error]</code>を使用してサインインに失敗したことを表すメッセージを表示します<sup class="footnote" id="fnref-7_10"><a href="./sign-up#fn-7_10">10</a></sup>。</p>
 
 <p>フラッシュメッセージが正しく表示されているかどうかのテストは演習に回します (<a class="ref" href="./sign-up#sec-signup_exercises">7.6</a>)。<a class="ref" href="./sign-up#code-signup_flash">リスト7.28</a>のように、<code>create</code>アクションで<code>flash[:success]</code>にウェルカムメッセージを割り当てれば 、テストにパスするようになります。</p>
 
@@ -1726,7 +1726,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_4_3" href="./sign-up#sec-the_first_signup" class="heading"><span class="number">7.4.3</span>実際のユーザー登録</a></h3>
 
 
-<p>ついに、ユーザー登録が完成しました。名前: “Rails Tutorial”、メールアドレス: “<tt>example@railstutorial.jp</tt>”とでも登録してみましょう。登録結果 (<a class="ref" href="./sign-up#fig-signup_flash">図7.20</a>)にはユーザー登録成功を示すウェルカムメッセージが、<code>success</code>クラスのさわやかな緑色の背景で表示されています。このクラスは<a class="ref" href="/chapters/filling-in-the-layout#sec-custom_css">5.1.2</a>のBootstrap CSSフレームワークのものです。(もしメールアドレスが既に使用されているというメッセージが表示されたら、<a class="ref" href="./sign-up#sec-signup_form">7.2</a>でやったようにRakeの<code>db:reset</code>を実行してデータベースをリセットしてください)。ユーザー表示ページを再度読み込むと、今度はフラッシュメッセージは表示されなくなりました (<a class="ref" href="./sign-up#fig-signup_flash_reloaded">図7.21</a>)。</p>
+<p>ついに、ユーザー登録が完成しました。名前: “Rails Tutorial”、メールアドレス: “<tt>example@railstutorial.jp</tt>”とでも登録してみましょう。登録結果 (<a class="ref" href="./sign-up#fig-signup_flash">図7.20</a>)にはユーザー登録成功を示すウェルカムメッセージが、<code>success</code>クラスのさわやかな緑色の背景で表示されています。このクラスは<a class="ref" href="./filling-in-the-layout#sec-custom_css">5.1.2</a>のBootstrap CSSフレームワークのものです。(もしメールアドレスが既に使用されているというメッセージが表示されたら、<a class="ref" href="./sign-up#sec-signup_form">7.2</a>でやったようにRakeの<code>db:reset</code>を実行してデータベースをリセットしてください)。ユーザー表示ページを再度読み込むと、今度はフラッシュメッセージは表示されなくなりました (<a class="ref" href="./sign-up#fig-signup_flash_reloaded">図7.21</a>)。</p>
 
 <div class="label" id="fig-signup_flash"></div>
 
@@ -1761,7 +1761,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h3><a id="sec-7_4_4" href="./sign-up#sec-deploying_to_production_with_ssl" class="heading"><span class="number">7.4.4</span> SSLを導入して本番環境をデプロイする</a></h3>
 
 
-<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境にデプロイしましょう (<a class="ref" href="/chapters/static-pages#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 デプロイの作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="./sign-up#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプルアプリケーションのユーザー登録 (<a class="ref" href="/chapters/sign-in-sign-out#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="/chapters/sign-in-sign-out#sec-remember_me">8.2.1</a>)。</p>
+<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境にデプロイしましょう (<a class="ref" href="./static-pages#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 デプロイの作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="./sign-up#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプルアプリケーションのユーザー登録 (<a class="ref" href="./sign-in-sign-out#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="./sign-in-sign-out#sec-remember_me">8.2.1</a>)。</p>
 
 <p>デプロイの下準備として、この時点で変更を<code>master</code>ブランチにマージしておきます。</p>
 
@@ -1843,7 +1843,7 @@ Loading development environment  &gt;&gt; Rails.env
 <h2><a id="sec-7_5" href="./sign-up#sec-7_5" class="heading"><span class="number">7.5</span>最後に</a></h2>
 
 
-<p>ユーザー登録機能の実装は、私たちのサンプルアプリケーションにとって大きなマイルストーンでした。この時点でサンプルアプリケーションはかなり実用的になってきましたが、まだ重要な機能がいくつも残っています。<a class="ref" href="/chapters/sign-in-sign-out#top">第8章</a>では、認証 (authentication) システムを導入し、ユーザーがサインインとサインアウトを行えるようにします。<a class="ref" href="/chapters/updating-showing-and-deleting-users#top">第9章</a>では、どのユーザーも自分のアカウント情報を更新できるようにし、Webサイトの管理者がユーザーを削除できるようにします。それにより、Usersリソースに<a class="ref" href="./sign-up#table-RESTful_users">表7.1</a>のRESTアクションがすべて実装されるようにします。最後に、認可 (authorization) のためのメソッドをアクションに追加し、Webサイトがセキュリティモデルに従うようにします。</p>
+<p>ユーザー登録機能の実装は、私たちのサンプルアプリケーションにとって大きなマイルストーンでした。この時点でサンプルアプリケーションはかなり実用的になってきましたが、まだ重要な機能がいくつも残っています。<a class="ref" href="./sign-in-sign-out#top">第8章</a>では、認証 (authentication) システムを導入し、ユーザーがサインインとサインアウトを行えるようにします。<a class="ref" href="./updating-showing-and-deleting-users#top">第9章</a>では、どのユーザーも自分のアカウント情報を更新できるようにし、Webサイトの管理者がユーザーを削除できるようにします。それにより、Usersリソースに<a class="ref" href="./sign-up#table-RESTful_users">表7.1</a>のRESTアクションがすべて実装されるようにします。最後に、認可 (authorization) のためのメソッドをアクションに追加し、Webサイトがセキュリティモデルに従うようにします。</p>
 
 <div class="label" id="sec-signup_exercises"></div>
 
@@ -1971,12 +1971,12 @@ Loading development environment  &gt;&gt; Rails.env
 </div></div>
 
 
-<div class="navigation">  <a class="prev_page" href="/chapters/modeling-users#top">
-</a><a class="prev_page" href="/chapters/modeling-users#top">    « <span class="number">第6章</span>ユーザーのモデルを作成する
-</a><a class="prev_page" href="/chapters/modeling-users#top">  </a>
-  <a class="next_page" href="/chapters/sign-in-sign-out#top">
-</a><a class="next_page" href="/chapters/sign-in-sign-out#top">    <span class="number">第8章</span>サインイン、サインアウト »
-</a><a class="next_page" href="/chapters/sign-in-sign-out#top">  </a>
+<div class="navigation">  <a class="prev_page" href="./modeling-users#top">
+</a><a class="prev_page" href="./modeling-users#top">    « <span class="number">第6章</span>ユーザーのモデルを作成する
+</a><a class="prev_page" href="./modeling-users#top">  </a>
+  <a class="next_page" href="./sign-in-sign-out#top">
+</a><a class="next_page" href="./sign-in-sign-out#top">    <span class="number">第8章</span>サインイン、サインアウト »
+</a><a class="next_page" href="./sign-in-sign-out#top">  </a>
 </div><div class="footnotes">
 <ol>
 <li id="fn-7_1"><a href="http://gomockingbird.com/">Mockingbird</a>では<a class="ref" href="./sign-up#fig-profile_mockup_profile_name">図7.1</a>のプロファイル写真のようなカスタム画像はサポートされていません。ここでは<a href="http://www.adobe.com/products/fireworks/">Adobe Fireworks</a>を使用して手動で画像を置きました。<a class="arrow" href="./sign-up#fnref-7_1">↑</a></li>

@@ -93,7 +93,7 @@
 
 <p><a class="ref" href="./following-users#fig-naive_user_has_many_following">図11.6</a>のデータモデルの問題点は、非常に無駄が多いことです。各行には、フォローしているユーザーのidのみならず、名前やメールアドレスまであります。これらはいずれも <code>users</code>テーブルに<em>既にある</em>ものばかりです。さらによくないことに、<em>followers</em>の方をモデリングするときにも、同じぐらい無駄の多い<code>followers</code>テーブルを別に作成しなければならなくなってしまいます。結論としては、このデータモデルはメンテナンスの観点から見て悪夢です。ユーザー名を変更するたびに、<code>users</code>テーブルのそのレコードだけでなく、<code>followed_users</code>テーブルと<code>followers</code>テーブルの両方について、<em>そのユーザーを含むすべての行</em>を更新しなければならなくなります。</p>
 
-<p>この問題の根本は、必要な抽象化を行なっていないことです。正しい抽象化の方法を見つけ出す方法の1つは、Webアプリケーションにおける<em>following</em>の動作をどのように実装するかをじっくり考えることです。<a class="ref" href="/chapters/sign-up#sec-a_users_resource">7.1.2</a>において、RESTアーキテクチャは、作成されたり削除されたりする<em>リソース</em>に関連していたことを思い出してください。ここから、2つの疑問が生じます。1. あるユーザーが別のユーザーをフォローするとき、何が作成されるのでしょうか。2. あるユーザーが別のユーザーをフォロー<em>解除</em>するとき、何が削除されるのでしょうか。</p>
+<p>この問題の根本は、必要な抽象化を行なっていないことです。正しい抽象化の方法を見つけ出す方法の1つは、Webアプリケーションにおける<em>following</em>の動作をどのように実装するかをじっくり考えることです。<a class="ref" href="./sign-up#sec-a_users_resource">7.1.2</a>において、RESTアーキテクチャは、作成されたり削除されたりする<em>リソース</em>に関連していたことを思い出してください。ここから、2つの疑問が生じます。1. あるユーザーが別のユーザーをフォローするとき、何が作成されるのでしょうか。2. あるユーザーが別のユーザーをフォロー<em>解除</em>するとき、何が削除されるのでしょうか。</p>
 
 <p>この点を踏まえて考えると、この場合アプリケーションによって作成または削除されるのは、つまるところ2人のユーザーの「<em>関係 (リレーションシップ)</em>」であることがわかります。つまり、1人のユーザーは「<code>has_many :relationships</code>」、つまり1対多の関係を持つことができ、さらにユーザーはリレーションシップ<em>を経由して</em>多くの<code>followed_users</code> (または<code>followers</code>) と関係を持つことができるということです。実際、<a class="ref" href="./following-users#fig-naive_user_has_many_following">図11.6</a>には必要なものがほぼあります。それぞれの「フォローしているユーザー」は<code>followed_id</code>で一意に特定できるので、<code>followed_users</code>テーブルを<code>Relationships</code>テーブルに変換します。続いて、ユーザーの詳細情報 (名前とメールアドレス) は Relationshipテーブルから削除してしまいます。そして<code>followed_id</code>を使用して「フォローしているユーザー」を<code>users</code>テーブルから取り出します。今度は<em>逆の</em>関係を考えます。<code>follower_id</code>カラムを使用して、ユーザーのフォロワーの配列を取り出すことができます。</p>
 
@@ -157,7 +157,7 @@
 </div>
 
 
-<p>(<a class="ref" href="/chapters/modeling-users#code-email_uniqueness_index">リスト6.19</a>のメールアドレスの一意インデックスと比較してみてください)。<a class="ref" href="./following-users#sec-following">11.1.4</a>でも説明しますが、このような重複はインターフェイスレベルでも起きることのないようにします。しかし、一意 (ユニーク) インデックスを追加することで、ユーザーが何らかの方法で (<tt>curl</tt>などのコマンドラインツールを使用して) リレーションシップを重複させてしまうようなことがあればエラーが発生するようになります。さらに、このRelationshipモデルには今後一意性検証を追加する予定です。しかし、一意インデックスを使用していればリレーションシップが重複したときに<em>必ず</em>エラーになるので、現時点では一意インデックスで十分です。</p>
+<p>(<a class="ref" href="./modeling-users#code-email_uniqueness_index">リスト6.19</a>のメールアドレスの一意インデックスと比較してみてください)。<a class="ref" href="./following-users#sec-following">11.1.4</a>でも説明しますが、このような重複はインターフェイスレベルでも起きることのないようにします。しかし、一意 (ユニーク) インデックスを追加することで、ユーザーが何らかの方法で (<tt>curl</tt>などのコマンドラインツールを使用して) リレーションシップを重複させてしまうようなことがあればエラーが発生するようになります。さらに、このRelationshipモデルには今後一意性検証を追加する予定です。しかし、一意インデックスを使用していればリレーションシップが重複したときに<em>必ず</em>エラーになるので、現時点では一意インデックスで十分です。</p>
 
 <p><code>relationships</code>テーブルを作成するために、いつものようにデータベースのマイグレーションを行なってテストデータベースを準備しましょう。</p>
 
@@ -185,7 +185,7 @@
 
 <p>フォローしているユーザーとフォロワーを実装する前に、ユーザーとリレーションシップの関連付けを行います。1人のユーザーには<code>has_many</code> (1対多) リレーションシップがあり、このリレーションシップは<em>2人</em>のユーザーの間の関係なので、フォローしているユーザーとフォロワーの両方に属します (<code>belongs_to</code>)。</p>
 
-<p><a class="ref" href="/chapters/user-microposts#sec-user_micropost_associations">10.1.3</a>のマイクロポストのときと同様、以下のようなユーザー関連付けのコードを使用して新しいリレーションシップを作成します。</p>
+<p><a class="ref" href="./user-microposts#sec-user_micropost_associations">10.1.3</a>のマイクロポストのときと同様、以下のようなユーザー関連付けのコードを使用して新しいリレーションシップを作成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">relationships</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="ss">followed_id:</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">)</span>
 </pre></div>
@@ -240,7 +240,7 @@
 </div></div>
 
 
-<p>この時点で、アプリケーションコードは<a class="ref" href="/chapters/user-microposts#sec-user_micropost_associations">10.1.3</a>のようになるのではないかと予測した方もいるかもしれません。実際似ているのですが、1つ大きな違いがあります。Micropostモデルの場合、以下のように書くことができました。</p>
+<p>この時点で、アプリケーションコードは<a class="ref" href="./user-microposts#sec-user_micropost_associations">10.1.3</a>のようになるのではないかと予測した方もいるかもしれません。実際似ているのですが、1つ大きな違いがあります。Micropostモデルの場合、以下のように書くことができました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Micropost</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
   <span class="n">belongs_to</span> <span class="ss">:user</span>
@@ -264,7 +264,7 @@
 </div>
 
 
-<p>このように書くことができたのは、<code>microposts</code>テーブルにはユーザーを特定するための<code>user_id</code>属性があるからです (<a class="ref" href="/chapters/user-microposts#sec-the_basic_model">10.1.1</a>)。2つのデータベーステーブルを結合するために使用されるidは、<em>外部キー</em>と呼ばれます。Userモデルオブジェクトの外部キーが<code>user_id</code>の場合、Railsは自動的に関連付けを推測します。つまり、Railsはデフォルトで、<code>&lt;クラス&gt;_id</code>という形式の外部キーがあることを期待します。ここで<code>&lt;クラス&gt;</code>は小文字のクラス名です<sup class="footnote" id="fnref-11_5"><a href="./following-users#fn-11_5">5</a></sup>。ここではユーザー (users) を扱っていますが、このユーザーは (user_idではなく) 外部キーである<code>follower_id</code>によって特定されるので、<a class="ref" href="./following-users#code-user_relationships_association">リスト11.4</a>のようにそのことを明示的にRailsに伝える必要があります<sup class="footnote" id="fnref-11_6"><a href="./following-users#fn-11_6">6</a></sup>。</p>
+<p>このように書くことができたのは、<code>microposts</code>テーブルにはユーザーを特定するための<code>user_id</code>属性があるからです (<a class="ref" href="./user-microposts#sec-the_basic_model">10.1.1</a>)。2つのデータベーステーブルを結合するために使用されるidは、<em>外部キー</em>と呼ばれます。Userモデルオブジェクトの外部キーが<code>user_id</code>の場合、Railsは自動的に関連付けを推測します。つまり、Railsはデフォルトで、<code>&lt;クラス&gt;_id</code>という形式の外部キーがあることを期待します。ここで<code>&lt;クラス&gt;</code>は小文字のクラス名です<sup class="footnote" id="fnref-11_5"><a href="./following-users#fn-11_5">5</a></sup>。ここではユーザー (users) を扱っていますが、このユーザーは (user_idではなく) 外部キーである<code>follower_id</code>によって特定されるので、<a class="ref" href="./following-users#code-user_relationships_association">リスト11.4</a>のようにそのことを明示的にRailsに伝える必要があります<sup class="footnote" id="fnref-11_6"><a href="./following-users#fn-11_6">6</a></sup>。</p>
 
 <div class="label" id="code-user_relationships_association"></div>
 
@@ -729,7 +729,7 @@
 
 <p>1つ前の章のときと同じように、サンプルデータを自動作成するRakeタスクを使用してデータベースにサンプルリレーションシップを登録するのがやはり便利です。先にサンプルデータを自動作成しておけば、Webページの見た目のデザインから先にとりかかることができ、バックエンドの機能の実装をこの節の後に回すことができます。</p>
 
-<p>前回<a class="ref" href="/chapters/user-microposts#code-sample_microposts">リスト10.20</a>,で自動生成したサンプルデータは少々いい加減でしたので、今回はまずユーザーとマイクロポストを作成するためのメソッドをそれぞれ別々に定義し、それから新しく<code>make_relationships</code>メソッドを作成してサンプルリレーションシップを追加することにしましょう。作成したRakeファイルを<a class="ref" href="./following-users#code-sample_relationships">リスト11.17</a>に示します。</p>
+<p>前回<a class="ref" href="./user-microposts#code-sample_microposts">リスト10.20</a>,で自動生成したサンプルデータは少々いい加減でしたので、今回はまずユーザーとマイクロポストを作成するためのメソッドをそれぞれ別々に定義し、それから新しく<code>make_relationships</code>メソッドを作成してサンプルリレーションシップを追加することにしましょう。作成したRakeファイルを<a class="ref" href="./following-users#code-sample_relationships">リスト11.17</a>に示します。</p>
 
 <div class="label" id="code-sample_relationships"></div>
 
@@ -825,7 +825,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/stats_partial_mockup.png" alt="stats_partial_mockup" /></span></div><div class="caption"><span class="header">図11.10</span><span class="description">統計情報パーシャルのモックアップ。</span></div></div>
 
 
-<p><a class="ref" href="./following-users#fig-stats_partial_mockup">図11.10</a>の統計情報には、現在のユーザーがフォローしている人数と、現在のフォロワーの人数が表示されています。それぞれの表示はリンクになっており、専用の表示ページに移動できます。<a class="ref" href="/chapters/filling-in-the-layout#top">第5章</a>では、これらのリンクはダミーテキスト<code>’#’</code>を使用して無効にしていました。しかしルーティングについての知識もだいぶ増えてきたので、今回は実装することにしましょう。実際のページ作成は<a class="ref" href="./following-users#sec-following_and_followers_pages">11.2.3</a>まで行いませんが、ルーティングは今実装します (<a class="ref" href="./following-users#code-following_followers_actions_routes">リスト11.18</a>)。このコードでは、<code>resources</code><em>ブロック</em>の内側で<code>:member</code>メソッドを使用しています。これは初登場ですので、どんな動作をするのか推測してみてください。 (<em>注</em>: <a class="ref" href="./following-users#code-following_followers_actions_routes">リスト11.18</a>のコードは <code>resources :users</code>を<em>置き換えます</em>)</p>
+<p><a class="ref" href="./following-users#fig-stats_partial_mockup">図11.10</a>の統計情報には、現在のユーザーがフォローしている人数と、現在のフォロワーの人数が表示されています。それぞれの表示はリンクになっており、専用の表示ページに移動できます。<a class="ref" href="./filling-in-the-layout#top">第5章</a>では、これらのリンクはダミーテキスト<code>’#’</code>を使用して無効にしていました。しかしルーティングについての知識もだいぶ増えてきたので、今回は実装することにしましょう。実際のページ作成は<a class="ref" href="./following-users#sec-following_and_followers_pages">11.2.3</a>まで行いませんが、ルーティングは今実装します (<a class="ref" href="./following-users#code-following_followers_actions_routes">リスト11.18</a>)。このコードでは、<code>resources</code><em>ブロック</em>の内側で<code>:member</code>メソッドを使用しています。これは初登場ですので、どんな動作をするのか推測してみてください。 (<em>注</em>: <a class="ref" href="./following-users#code-following_followers_actions_routes">リスト11.18</a>のコードは <code>resources :users</code>を<em>置き換えます</em>)</p>
 
 <div class="label" id="code-following_followers_actions_routes"></div>
 
@@ -961,7 +961,7 @@
 </div>
 
 
-<p><a class="ref" href="/chapters/sign-in-sign-out#sidebar-or_equals">コラム 8.2</a>でも説明したとおり、<code>@user</code>が <code>nil</code>でない場合 (つまりプロファイルページの場合) は何もせず、nilの場合 (つまりHomeページの場合) には<code>@user</code>をカレントユーザーに設定します。</p>
+<p><a class="ref" href="./sign-in-sign-out#sidebar-or_equals">コラム 8.2</a>でも説明したとおり、<code>@user</code>が <code>nil</code>でない場合 (つまりプロファイルページの場合) は何もせず、nilの場合 (つまりHomeページの場合) には<code>@user</code>をカレントユーザーに設定します。</p>
 
 <p>フォローしているユーザーの人数と、フォロワーの人数は、以下の関連付けを使用して計算されます。</p>
 
@@ -977,7 +977,7 @@
 </div>
 
 
-<p><a class="ref" href="/chapters/user-microposts#code-user_show_microposts">リスト10.17</a>のマイクロポストのコードと比較してみましょう。あのときは以下のように書きました。</p>
+<p><a class="ref" href="./user-microposts#code-user_show_microposts">リスト10.17</a>のマイクロポストのコードと比較してみましょう。あのときは以下のように書きました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">count</span>
 </pre></div>
@@ -1107,7 +1107,7 @@
 </div></div>
 
 
-<p>このコードは、<code>follow</code>と<code>unfollow</code>のパーシャルに作業を振っているだけです。パーシャルでは、Relationshipsリソース用のルールを含む新しいルートが必要です。これを、<a class="ref" href="/chapters/user-microposts#code-microposts_resource">リスト10.22</a>のMicropostsリソースの例に従って作成しましょう (<a class="ref" href="./following-users#code-relationships_resource">リスト11.24</a>)。</p>
+<p>このコードは、<code>follow</code>と<code>unfollow</code>のパーシャルに作業を振っているだけです。パーシャルでは、Relationshipsリソース用のルールを含む新しいルートが必要です。これを、<a class="ref" href="./user-microposts#code-microposts_resource">リスト10.22</a>のMicropostsリソースの例に従って作成しましょう (<a class="ref" href="./following-users#code-relationships_resource">リスト11.24</a>)。</p>
 
 <div class="label" id="code-relationships_resource"></div>
 
@@ -1225,7 +1225,7 @@
 <h3><a id="sec-11_2_3" href="./following-users#sec-following_and_followers_pages" class="heading"><span class="number">11.2.3</span>「フォローしているユーザー」ページと「フォロワー」ページ</a></h3>
 
 
-<p>フォローしているユーザーを表示するページと、フォロワーを表示するページは、いずれもユーザープロファイルページとユーザーインデックスページ (<a class="ref" href="/chapters/updating-showing-and-deleting-users#sec-user_index">9.3.1</a>) を合わせたような作りになるという点で似ています。どちらにもフォローの統計情報などのユーザー情報を表示するサイドバーと、ユーザーのリストがあります。さらに、サイドバーにはユーザープロファイル画像のリンクを格子状に並べて表示する予定です。この要求に合うモックアップを<a class="ref" href="./following-users#fig-following_mockup">図11.14</a> (フォローしているユーザー用) および <a class="ref" href="./following-users#fig-followers_mockup">図 11.15</a> (フォロワー用) に示します。</p>
+<p>フォローしているユーザーを表示するページと、フォロワーを表示するページは、いずれもユーザープロファイルページとユーザーインデックスページ (<a class="ref" href="./updating-showing-and-deleting-users#sec-user_index">9.3.1</a>) を合わせたような作りになるという点で似ています。どちらにもフォローの統計情報などのユーザー情報を表示するサイドバーと、ユーザーのリストがあります。さらに、サイドバーにはユーザープロファイル画像のリンクを格子状に並べて表示する予定です。この要求に合うモックアップを<a class="ref" href="./following-users#fig-following_mockup">図11.14</a> (フォローしているユーザー用) および <a class="ref" href="./following-users#fig-followers_mockup">図 11.15</a> (フォロワー用) に示します。</p>
 
 <div class="label" id="fig-following_mockup"></div>
 
@@ -1829,7 +1829,7 @@
 <h2><a id="sec-11_3" href="./following-users#sec-the_status_feed" class="heading"><span class="number">11.3</span>ステータスフィード</a></h2>
 
 
-<p>ついに、サンプルアプリケーションの山頂が目の前に現れました。最後の難関、ステータスフィードの実装に取りかかりましょう。この節で扱われている内容は、本書の中でも最も高度なものです。完全なステータスフィードは、<a class="ref" href="/chapters/user-microposts#sec-a_proto_feed">10.3.3</a>で扱ったプロトフィードをベースにします。現在のユーザーにフォローされているユーザーのマイクロポストの配列を作成し、現在のユーザー自身のマイクロポストと合わせて表示します。この機能を実現するには、RailsとRubyの高度な機能の他に、SQLプログラミングの技術も必要です。</p>
+<p>ついに、サンプルアプリケーションの山頂が目の前に現れました。最後の難関、ステータスフィードの実装に取りかかりましょう。この節で扱われている内容は、本書の中でも最も高度なものです。完全なステータスフィードは、<a class="ref" href="./user-microposts#sec-a_proto_feed">10.3.3</a>で扱ったプロトフィードをベースにします。現在のユーザーにフォローされているユーザーのマイクロポストの配列を作成し、現在のユーザー自身のマイクロポストと合わせて表示します。この機能を実現するには、RailsとRubyの高度な機能の他に、SQLプログラミングの技術も必要です。</p>
 
 <p>手強い課題に挑むのですから、ここで実装すべき内容を慎重に見直すことが重要です。<a class="ref" href="./following-users#fig-page_flow_home_page_feed_mockup">図11.5</a>でお見せしたステータスフィードの最終形を<a class="ref" href="./following-users#fig-home_page_feed_mockup">図11.18</a>に再度掲載します。</p>
 
@@ -1862,7 +1862,7 @@
 </div>
 
 
-<p>この時点ではもちろん実装はありませんが、機能を確認するためのテストは作成できます。このテストで重要なことは、フィードに必要な3つの条件を満たすことです。1) フォローしているユーザーのマイクロポストがフィードに含まれていること。2) 自分自身のマイクロポストもフィードに含まれていること。3) <em>フォローしていない</em>ユーザーのマイクロポストがフィードに含まれていないこと。このうち2つについては、<a class="ref" href="/chapters/user-microposts#code-feed_specs">リスト10.35</a>のテストで既に確認できるようになっています。このテストでは、ユーザー自身のマイクロポストがフィードに含まれ、フォローしていないユーザーのマイクロポストがフィードに含まれていないことを確認します。既にユーザーをフォローできるようになっているので、3番目のテスト、つまりフォローしているユーザーのマイクロポストがフィードに含まれていることを確認するテストを<a class="ref" href="./following-users#code-full_feed_specs">リスト11.41</a>のように追加できます。</p>
+<p>この時点ではもちろん実装はありませんが、機能を確認するためのテストは作成できます。このテストで重要なことは、フィードに必要な3つの条件を満たすことです。1) フォローしているユーザーのマイクロポストがフィードに含まれていること。2) 自分自身のマイクロポストもフィードに含まれていること。3) <em>フォローしていない</em>ユーザーのマイクロポストがフィードに含まれていないこと。このうち2つについては、<a class="ref" href="./user-microposts#code-feed_specs">リスト10.35</a>のテストで既に確認できるようになっています。このテストでは、ユーザー自身のマイクロポストがフィードに含まれ、フォローしていないユーザーのマイクロポストがフィードに含まれていないことを確認します。既にユーザーをフォローできるようになっているので、3番目のテスト、つまりフォローしているユーザーのマイクロポストがフィードに含まれていることを確認するテストを<a class="ref" href="./following-users#code-full_feed_specs">リスト11.41</a>のように追加できます。</p>
 
 <div class="label" id="code-full_feed_specs"></div>
 
@@ -1957,7 +1957,7 @@
 
 <p>上のコードを書く際に、SQLが<code>IN</code>というキーワードをサポートしていることを前提にしています (大丈夫、実際にサポートされています)。このキーワードを使用することで、idの集合の内包 (set inclusion) に対してテストを行えます。</p>
 
-<p><a class="ref" href="/chapters/user-microposts#sec-a_proto_feed">10.3.3</a>のプロトフィードでは、上のような選択を行うためにActive Recordで<a class="ref" href="/chapters/user-microposts#code-proto_status_feed">リスト10.36</a>のように<code>where</code>メソッドを使用していたことを思い出してください。このときは、選択する対象はシンプルでした。現在のユーザーに対応するユーザーidを持つマイクロポストをすべて選択すればよかったのでした。</p>
+<p><a class="ref" href="./user-microposts#sec-a_proto_feed">10.3.3</a>のプロトフィードでは、上のような選択を行うためにActive Recordで<a class="ref" href="./user-microposts#code-proto_status_feed">リスト10.36</a>のように<code>where</code>メソッドを使用していたことを思い出してください。このときは、選択する対象はシンプルでした。現在のユーザーに対応するユーザーidを持つマイクロポストをすべて選択すればよかったのでした。</p>
 
 <div class="code"><div class="highlight"><pre><span class="no">Micropost</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;user_id = ?&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
 </pre></div>
@@ -1973,7 +1973,7 @@
 
 <p>(上のコードでは、条件部分に<code>user.id</code>の代わりにRailsの習慣である<code>user</code>を使用していることに注意してください。Railsはこのような場合に自動的に<code>id</code>を使用します。また、冒頭の<code>Micropost.</code>が省略されていることにも注意してください。このコードはMicropostモデル自身の中に置かれることを前提としています。)</p>
 
-<p>これらの条件から、フォローされているユーザーに対応するidの配列が必要であることがわかってきました。これを行う方法の1つは、Rubyの<code>map</code>メソッドを使用することです。このメソッドはすべての &quot;列挙可能 (enumerable)&quot; オブジェクト (配列やハッシュなど、要素の集合で構成されるあらゆるオブジェクト<sup class="footnote" id="fnref-11_11"><a href="./following-users#fn-11_11">11</a></sup>) で使用できます。このメソッドの使用法については<a class="ref" href="/chapters/rails-flavored-ruby#sec-blocks">4.3.2</a>でも説明しました。以下のように使用します。</p>
+<p>これらの条件から、フォローされているユーザーに対応するidの配列が必要であることがわかってきました。これを行う方法の1つは、Rubyの<code>map</code>メソッドを使用することです。このメソッドはすべての &quot;列挙可能 (enumerable)&quot; オブジェクト (配列やハッシュなど、要素の集合で構成されるあらゆるオブジェクト<sup class="footnote" id="fnref-11_11"><a href="./following-users#fn-11_11">11</a></sup>) で使用できます。このメソッドの使用法については<a class="ref" href="./rails-flavored-ruby#sec-blocks">4.3.2</a>でも説明しました。以下のように使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">].</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span><span class="o">.</span><span class="n">to_s</span> <span class="p">}</span>
@@ -1990,7 +1990,7 @@
 </div>
 
 
-<p><code>join</code>メソッド (<a class="ref" href="/chapters/rails-flavored-ruby#sec-arrays_and_ranges">4.3.1</a>) を使用すれば、idを集めた文字列を以下のようにカンマ区切りでつなげることもできます。</p>
+<p><code>join</code>メソッド (<a class="ref" href="./rails-flavored-ruby#sec-arrays_and_ranges">4.3.1</a>) を使用すれば、idを集めた文字列を以下のようにカンマ区切りでつなげることもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">].</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:to_s</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
 <span class="go">=&gt; &quot;1, 2, 3, 4&quot;</span>
@@ -2044,7 +2044,7 @@
 </div>
 
 
-<p>このコードは<code>Micropost</code>クラスのクラスメソッド (<a class="ref" href="/chapters/rails-flavored-ruby#sec-constructors">4.4.1</a>で簡単に説明したコンストラクタ) に関連するのではないかと推測した方もいると思います。 これに沿って実装した推奨コードを<a class="ref" href="./following-users#code-from_users_followed_by_first_cut">リスト11.43</a>に示します。</p>
+<p>このコードは<code>Micropost</code>クラスのクラスメソッド (<a class="ref" href="./rails-flavored-ruby#sec-constructors">4.4.1</a>で簡単に説明したコンストラクタ) に関連するのではないかと推測した方もいると思います。 これに沿って実装した推奨コードを<a class="ref" href="./following-users#code-from_users_followed_by_first_cut">リスト11.43</a>に示します。</p>
 
 <div class="label" id="code-from_users_followed_by_first_cut"></div>
 
@@ -2295,7 +2295,7 @@
 <h4><a id="sec-11_4_1_4" href="./following-users#sec-password_reminders" class="heading">パスワードリマインダー</a></h4>
 
 
-<p>現状のサンプルアプリケーションには、ユーザーがパスワードを忘れてしまったときの復旧手段がありません。<a class="ref" href="/chapters/modeling-users#top">第6章</a>で一方向セキュアパスワードハッシュを実装したため、パスワードをメールで送信することは不可能ですが、パスワードをリセットするリンクをメールで送信することなら可能です。必要な知識については、RailsCast「<a href="http://railscasts.com/episodes/274-remember-me-reset-password">パスワード保存機能とパスワードリセット機能について</a> (英語)」を参照してください。</p>
+<p>現状のサンプルアプリケーションには、ユーザーがパスワードを忘れてしまったときの復旧手段がありません。<a class="ref" href="./modeling-users#top">第6章</a>で一方向セキュアパスワードハッシュを実装したため、パスワードをメールで送信することは不可能ですが、パスワードをリセットするリンクをメールで送信することなら可能です。必要な知識については、RailsCast「<a href="http://railscasts.com/episodes/274-remember-me-reset-password">パスワード保存機能とパスワードリセット機能について</a> (英語)」を参照してください。</p>
 
 <div class="label" id="sec-signup_confirmation"></div>
 
@@ -2342,7 +2342,7 @@
 
 <li><a href="http://railscasts.com/">RailsCasts</a>。強く推奨します。このRailsCastsの素晴らしさについては、どれほど言葉を尽くしても足りません。最初に<a href="http://railscasts.com/episodes/archive">RailsCastsエピソードアーカイブ</a>を開いて、目についたトピックを適当に開くところから始めてみるとよいでしょう。</li>
 
-<li>RubyとRailsのお勧め書籍。「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」(Peter Cooper 著)、「<a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a>」(David A. Black著)、「<a href="/chapters/www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional-Series/dp/0321584104/#"><em>Eloquent Ruby</em></a>」(Russ Olsen著)、Rubyをさらに深く学ぶのであれば 「<a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a>」(Hal Fulton著) がお勧めです。Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com/gp/product/0321601661"><em>The Rails 3 Way</em></a>」(Obie Fernandez著)と「<em>Rails 3 in Action</em> (第2版待ち)」(Ryan Bigg、Yehuda Katz著) がお勧めです。</li>
+<li>RubyとRailsのお勧め書籍。「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」(Peter Cooper 著)、「<a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a>」(David A. Black著)、「<a href="./www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional-Series/dp/0321584104/#"><em>Eloquent Ruby</em></a>」(Russ Olsen著)、Rubyをさらに深く学ぶのであれば 「<a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a>」(Hal Fulton著) がお勧めです。Railsをさらに深く学ぶのであれば、「<a href="http://www.amazon.com/gp/product/0321601661"><em>The Rails 3 Way</em></a>」(Obie Fernandez著)と「<em>Rails 3 in Action</em> (第2版待ち)」(Ryan Bigg、Yehuda Katz著) がお勧めです。</li>
 
 <li><a href="http://peepcode.com/">PeepCode</a>と<a href="http://codeschool.com/">Code School</a>。PeepCodeのスクリーンキャストとCode Schoolのインタラクティブコースは品質が高いことで知られており、強くお勧めいたします。</li>
 
@@ -2360,7 +2360,7 @@
 
 
 <ol>
-<li>特定のユーザーに関連付けられたrelationshipの削除をテストするコードを追加してください (対応する実装は<a class="ref" href="./following-users#code-user_relationships_association">リスト11.4</a>および<a class="ref" href="./following-users#code-user_reverse_relationships">リスト11.16</a>の<code>dependent :destroy</code>です)。<em>ヒント</em>: <a class="ref" href="/chapters/user-microposts#code-micropost_dependency_test">リスト10.12</a>の例に従ってみましょう。</li>
+<li>特定のユーザーに関連付けられたrelationshipの削除をテストするコードを追加してください (対応する実装は<a class="ref" href="./following-users#code-user_relationships_association">リスト11.4</a>および<a class="ref" href="./following-users#code-user_reverse_relationships">リスト11.16</a>の<code>dependent :destroy</code>です)。<em>ヒント</em>: <a class="ref" href="./user-microposts#code-micropost_dependency_test">リスト10.12</a>の例に従ってみましょう。</li>
 <li><a class="ref" href="./following-users#code-relationships_controller_ajax">リスト11.38</a>の<code>respond_to</code>メソッドは、そのアクションから出発してRelationshipsコントローラ自身に到達します。そして、<code>respond_to</code>ブロックは、<code>respond_with</code>というRailsのメソッドと置き換え可能です。<a class="ref" href="./following-users#code-compact_respond_to">リスト11.47</a>はこの置き換えを行ったものですが、このコードもテストスイートにパスすることを確認することで、このコードが正しく動作することを証明してください (このメソッドの詳細については、Googleで “rails respond_with” と検索してください)。</li>
 
 <li><a class="ref" href="./following-users#code-show_follow_view">リスト11.31</a>をリファクタリングしてください。具体的には、フォローしているユーザーページ、フォロワーページ、Homeページ、ユーザー表示ページで共通して使用されているコードをパーシャルとして追加します。</li>
@@ -2396,9 +2396,9 @@
 </div></div>
 
 
-<div class="navigation">  <a class="prev_page" href="/chapters/user-microposts#top">
-</a><a class="prev_page" href="/chapters/user-microposts#top">    « <span class="number">第10章</span>ユーザーのマイクロポスト
-</a><a class="prev_page" href="/chapters/user-microposts#top">  </a>
+<div class="navigation">  <a class="prev_page" href="./user-microposts#top">
+</a><a class="prev_page" href="./user-microposts#top">    « <span class="number">第10章</span>ユーザーのマイクロポスト
+</a><a class="prev_page" href="./user-microposts#top">  </a>
 </div><div class="footnotes">
 <ol>
 <li id="fn-11_1">モックアップツアーの写真は、それぞれ
