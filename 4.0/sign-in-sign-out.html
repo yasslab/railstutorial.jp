@@ -11,14 +11,14 @@
 <div id="top"></div>
 
 
-<h1 class="chapter"><a id="sec-8" href="./sign-in-sign-out#top" class="heading"><span class="number">第8章</span>サインイン、サインアウト</a></h1>
+<h1 class="chapter"><a id="sec-8" href="./sign-in-sign-out.html#top" class="heading"><span class="number">第8章</span>サインイン、サインアウト</a></h1>
 
 
-<p><a class="ref" href="./sign-up#top">第7章</a>でWebサイトでの新規ユーザー登録が行えるようになりましたので、今度はユーザーがサインインとサインアウトを行えるようにしましょう。これにより、サインインの状態と現在のユーザーidに応じて動作を変更できるようになります。たとえば、この章では、サイトのヘッダー部分にサインイン／サインアウトのリンクとプロファイルへのリンクを表示するようにします。<a class="ref" href="./user-microposts#top">第10章</a>では、サインインしたユーザーidを使用して、そのユーザーに関連付けられたマイクロポストを作成します。また<a class="ref" href="./following-users#top">第11章</a>では、現在のユーザーが他のユーザーをフォローして、マイクロポストのフィードを受け取ることができるようにします。</p>
+<p><a class="ref" href="./sign-up.html#top">第7章</a>でWebサイトでの新規ユーザー登録が行えるようになりましたので、今度はユーザーがサインインとサインアウトを行えるようにしましょう。これにより、サインインの状態と現在のユーザーidに応じて動作を変更できるようになります。たとえば、この章では、サイトのヘッダー部分にサインイン／サインアウトのリンクとプロファイルへのリンクを表示するようにします。<a class="ref" href="./user-microposts.html#top">第10章</a>では、サインインしたユーザーidを使用して、そのユーザーに関連付けられたマイクロポストを作成します。また<a class="ref" href="./following-users.html#top">第11章</a>では、現在のユーザーが他のユーザーをフォローして、マイクロポストのフィードを受け取ることができるようにします。</p>
 
-<p>ユーザーがサインインすることでセキュリティモデルも実装され、サインインしているユーザーidに基づいて、特定のページへのアクセスを制限することもできます。<a class="ref" href="./updating-showing-and-deleting-users#top">第9章</a>でも説明しますが、たとえばサインインしたユーザーのみがユーザー情報編集ページにアクセスできるようにします。サインインシステムを使用して、管理者ユーザーに特別な権限を与えることもできます。たとえば  (<a class="ref" href="./updating-showing-and-deleting-users#top">第9章</a>で導入する) データベースからユーザーを削除する機能があります。</p>
+<p>ユーザーがサインインすることでセキュリティモデルも実装され、サインインしているユーザーidに基づいて、特定のページへのアクセスを制限することもできます。<a class="ref" href="./updating-showing-and-deleting-users.html#top">第9章</a>でも説明しますが、たとえばサインインしたユーザーのみがユーザー情報編集ページにアクセスできるようにします。サインインシステムを使用して、管理者ユーザーに特別な権限を与えることもできます。たとえば  (<a class="ref" href="./updating-showing-and-deleting-users.html#top">第9章</a>で導入する) データベースからユーザーを削除する機能があります。</p>
 
-<p>コアとなる認証機能を実装した後は、少々回り道して、振舞駆動開発 (<a class="ref" href="./sign-in-sign-out#sec-cucumber">8.3</a>) で有名な<em>Cucumber</em>というツールを試してみます。特に、2つの開発手法を比較するために、RSpecによる結合テストの組み合わせをCucumberで再実装します。</p>
+<p>コアとなる認証機能を実装した後は、少々回り道して、振舞駆動開発 (<a class="ref" href="./sign-in-sign-out.html#sec-cucumber">8.3</a>) で有名な<em>Cucumber</em>というツールを試してみます。特に、2つの開発手法を比較するために、RSpecによる結合テストの組み合わせをCucumberで再実装します。</p>
 
 <p>前章同様に、トピックブランチで作業してから、最後に更新をマージします。</p>
 
@@ -30,20 +30,20 @@
 <div class="label" id="sec-signin_failure"></div>
 
 
-<h2><a id="sec-8_1" href="./sign-in-sign-out#sec-signin_failure" class="heading"><span class="number">8.1</span>セッション、サインインの失敗</a></h2>
+<h2><a id="sec-8_1" href="./sign-in-sign-out.html#sec-signin_failure" class="heading"><span class="number">8.1</span>セッション、サインインの失敗</a></h2>
 
 
-<p><a href="http://en.wikipedia.org/wiki/Session_(computer_science)"><em>セッション</em></a>とは、2つのコンピュータの間、たとえばクライアント側のブラウザとサーバーで動作しているRailsとの間の、半永続的な接続のことです。ここでは、”サインイン” の共通パターンを実装するためにセッションを使用します。ここで、Webの世界にはセッションの振る舞いを表現するためのいくつかの異なったモデルがあります。ブラウザを閉じるとセッションを終了する「忘却モデル」、[パスワードを保存する] チェックボックスを使用してセッションを継続する「継続モデル」、ユーザーが明示的にサインアウトするまでセッションを継続する「永続モデル」などです<sup class="footnote" id="fnref-8_1"><a href="./sign-in-sign-out#fn-8_1">1</a></sup>。ここでは、最後の永続モデルを採用することにします。ユーザーがサインインすると、ユーザーが明示的にサウンアウトするまでサインインの状態を永続させます (<a class="ref" href="./sign-in-sign-out#sec-remember_me">8.2.1</a>では、“永続” が実際にはどのぐらいの時間であるかをお見せします)。</p>
+<p><a href="http://en.wikipedia.org/wiki/Session_(computer_science)"><em>セッション</em></a>とは、2つのコンピュータの間、たとえばクライアント側のブラウザとサーバーで動作しているRailsとの間の、半永続的な接続のことです。ここでは、”サインイン” の共通パターンを実装するためにセッションを使用します。ここで、Webの世界にはセッションの振る舞いを表現するためのいくつかの異なったモデルがあります。ブラウザを閉じるとセッションを終了する「忘却モデル」、[パスワードを保存する] チェックボックスを使用してセッションを継続する「継続モデル」、ユーザーが明示的にサインアウトするまでセッションを継続する「永続モデル」などです<sup class="footnote" id="fnref-8_1"><a href="./sign-in-sign-out.html#fn-8_1">1</a></sup>。ここでは、最後の永続モデルを採用することにします。ユーザーがサインインすると、ユーザーが明示的にサウンアウトするまでサインインの状態を永続させます (<a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>では、“永続” が実際にはどのぐらいの時間であるかをお見せします)。</p>
 
-<p>セッションは、RESTfulなリソースとして作成しておくと便利です。たとえばサインインページを<em>new</em>セッションで、サインインを<em>create</em>セッションで、サインアウトを<em>destroy</em>セッションでそれぞれ扱います。Usersリソースのように (Usersモデルを経由して) データベースをバックエンドに持つリソースとは異なり、このSessionsリソースでは<a href="http://en.wikipedia.org/wiki/HTTP_cookie"><em>cookies</em></a>を使用します。cookiesとは、ブラウザに保存される小さなテキストデータです。サインイン関連の作業の大半は、このcookiesをベースにして認証システムを構築することになります。この節と次の節では、セッション機能を作成する準備として、Sessionコントローラ、サインイン用のフォーム、そしてこれらに関連するコントローラのアクションを作成します。次の<a class="ref" href="./sign-in-sign-out#sec-signin_success">8.2</a>では、cookies管理のために必要なコードを追加して、ユーザーがサインインするための仕組みを完成させます。 </p>
+<p>セッションは、RESTfulなリソースとして作成しておくと便利です。たとえばサインインページを<em>new</em>セッションで、サインインを<em>create</em>セッションで、サインアウトを<em>destroy</em>セッションでそれぞれ扱います。Usersリソースのように (Usersモデルを経由して) データベースをバックエンドに持つリソースとは異なり、このSessionsリソースでは<a href="http://en.wikipedia.org/wiki/HTTP_cookie"><em>cookies</em></a>を使用します。cookiesとは、ブラウザに保存される小さなテキストデータです。サインイン関連の作業の大半は、このcookiesをベースにして認証システムを構築することになります。この節と次の節では、セッション機能を作成する準備として、Sessionコントローラ、サインイン用のフォーム、そしてこれらに関連するコントローラのアクションを作成します。次の<a class="ref" href="./sign-in-sign-out.html#sec-signin_success">8.2</a>では、cookies管理のために必要なコードを追加して、ユーザーがサインインするための仕組みを完成させます。 </p>
 
 <div class="label" id="sec-sessions_controller"></div>
 
 
-<h3><a id="sec-8_1_1" href="./sign-in-sign-out#sec-sessions_controller" class="heading"><span class="number">8.1.1</span> Sessionコントローラ</a></h3>
+<h3><a id="sec-8_1_1" href="./sign-in-sign-out.html#sec-sessions_controller" class="heading"><span class="number">8.1.1</span> Sessionコントローラ</a></h3>
 
 
-<p>サインインとサインアウトの要素は、Sessionsコントローラの特定のRESTアクションにそれぞれ対応します。サインインのフォームは、この節の<code>new</code>アクションで処理されます。実際のサインイン処理は、<code>create</code>アクションに<tt>POST</tt>リクエストが送信されたときに処理されます (<a class="ref" href="./sign-in-sign-out#sec-signin_failure">8.1</a>および<a class="ref" href="./sign-in-sign-out#sec-signin_success">8.2</a>) 。サインアウトは、<code>destroy</code>アクションに<tt>DELETE</tt>リクエストを送信することで処理されます(<a class="ref" href="./sign-in-sign-out#sec-signing_out">8.2.6</a>)。(<a class="ref" href="./sign-up#table-RESTful_users">表7.1</a>のHTTPメソッドとRESTアクションの関連付けを思い出してください。) それでは最初に、Sessionsコントローラと認証システムをテストする結合テストを作成します。</p>
+<p>サインインとサインアウトの要素は、Sessionsコントローラの特定のRESTアクションにそれぞれ対応します。サインインのフォームは、この節の<code>new</code>アクションで処理されます。実際のサインイン処理は、<code>create</code>アクションに<tt>POST</tt>リクエストが送信されたときに処理されます (<a class="ref" href="./sign-in-sign-out.html#sec-signin_failure">8.1</a>および<a class="ref" href="./sign-in-sign-out.html#sec-signin_success">8.2</a>) 。サインアウトは、<code>destroy</code>アクションに<tt>DELETE</tt>リクエストを送信することで処理されます(<a class="ref" href="./sign-in-sign-out.html#sec-signing_out">8.2.6</a>)。(<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>のHTTPメソッドとRESTアクションの関連付けを思い出してください。) それでは最初に、Sessionsコントローラと認証システムをテストする結合テストを作成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate controller Sessions --no-test-framework
 <span class="gp">$</span> rails generate integration_test authentication_pages
@@ -51,7 +51,7 @@
 </div>
 
 
-<p><a class="ref" href="./sign-up#sec-signup_form">7.2</a>で作成したユーザー登録ページのモデルを元に、新しいセッションを確立するためのフォームを<a class="ref" href="./sign-in-sign-out#fig-signin_mockup">図8.1</a>のモックアップに従って作成します。</p>
+<p><a class="ref" href="./sign-up.html#sec-signup_form">7.2</a>で作成したユーザー登録ページのモデルを元に、新しいセッションを確立するためのフォームを<a class="ref" href="./sign-in-sign-out.html#fig-signin_mockup">図8.1</a>のモックアップに従って作成します。</p>
 
 <div class="label" id="fig-signin_mockup"></div>
 
@@ -59,7 +59,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/signin_mockup_bootstrap.png" alt="signin_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図8.1</span><span class="description">サインインフォームのモックアップ。<a href="../images/figures/signin_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>このサインインページは、<code>signin_path</code>によって仮に定義されるURLでアクセス可能になります。<a class="ref" href="./sign-in-sign-out#code-new_session_tests">リスト8.1</a>のように、最初は最小限のテストから始めます (<a class="ref" href="./sign-up#code-initial_signup_test">リスト7.6</a>のユーザー登録ページのコードと似ているので、比較してみてください)。</p>
+<p>このサインインページは、<code>signin_path</code>によって仮に定義されるURLでアクセス可能になります。<a class="ref" href="./sign-in-sign-out.html#code-new_session_tests">リスト8.1</a>のように、最初は最小限のテストから始めます (<a class="ref" href="./sign-up.html#code-initial_signup_test">リスト7.6</a>のユーザー登録ページのコードと似ているので、比較してみてください)。</p>
 
 <div class="label" id="code-new_session_tests"></div>
 
@@ -90,14 +90,14 @@
 </div>
 
 
-<p><a class="ref" href="./sign-in-sign-out#code-new_session_tests">リスト8.1</a>のテストがパスするためには、サインインページ用にカスタマイズした名前付きルートを使用して、Sessionsリソースのルーティングを定義する必要があります。このサインインページはSessionコントローラの<code>new</code>アクションと対応しています。Usersリソースの場合と同様に、<code>resources</code>メソッドを使用して通常のRESTfulなルーティングを設定することができます。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#code-new_session_tests">リスト8.1</a>のテストがパスするためには、サインインページ用にカスタマイズした名前付きルートを使用して、Sessionsリソースのルーティングを定義する必要があります。このサインインページはSessionコントローラの<code>new</code>アクションと対応しています。Usersリソースの場合と同様に、<code>resources</code>メソッドを使用して通常のRESTfulなルーティングを設定することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">resources</span> <span class="ss">:sessions</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:new</span><span class="p">,</span> <span class="ss">:create</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
 </pre></div>
 </div>
 
 
-<p>セッションを編集したりユーザーに表示したりする必要がないので、<code>resources</code>メソッドに<code>:only</code>オプションを追加し、<code>new</code>、<code>create</code>、<code>destroy</code>の3つのアクションのみを有効にします。サインインとサインアウト用のルーティングを含む完全なコードを<a class="ref" href="./sign-in-sign-out#code-sessions_resource">リスト8.2</a>に示します。</p>
+<p>セッションを編集したりユーザーに表示したりする必要がないので、<code>resources</code>メソッドに<code>:only</code>オプションを追加し、<code>new</code>、<code>create</code>、<code>destroy</code>の3つのアクションのみを有効にします。サインインとサインアウト用のルーティングを含む完全なコードを<a class="ref" href="./sign-in-sign-out.html#code-sessions_resource">リスト8.2</a>に示します。</p>
 
 <div class="label" id="code-sessions_resource"></div>
 
@@ -121,16 +121,16 @@
 
 <p>注: サインアウトのルーティングにある<code>via: ’delete’</code>は、このアクションが HTTPの<tt>DELETE</tt>リクエストによって呼び出されることを示しています。</p>
 
-<p><a class="ref" href="./sign-in-sign-out#code-sessions_resource">リスト8.2</a>で定義されたリソースは、<a class="ref" href="./sign-in-sign-out#table-RESTful_sessions">表8.1</a>に示したように、<a class="ref" href="./sign-up#table-RESTful_users">表7.1</a>とよく似たURLとアクションを提供します。注：サインインとサインアウトのアクションのルーティングはカスタムで設定しますが、セッションの生成アクションへのルーティングはデフォルトを使います (i.e., <code>[resource name]_path</code>).</p>
+<p><a class="ref" href="./sign-in-sign-out.html#code-sessions_resource">リスト8.2</a>で定義されたリソースは、<a class="ref" href="./sign-in-sign-out.html#table-RESTful_sessions">表8.1</a>に示したように、<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>とよく似たURLとアクションを提供します。注：サインインとサインアウトのアクションのルーティングはカスタムで設定しますが、セッションの生成アクションへのルーティングはデフォルトを使います (i.e., <code>[resource name]_path</code>).</p>
 
 <div class="label" id="table-RESTful_sessions"></div>
 
 
 <div class="table"><div class="center">
-<table class="tabular"><tr><th class="align_left"><strong>HTTPリクエスト</strong></th><th class="align_left"><strong>URL</strong></th><th class="align_left"><strong>名前付きルート</strong></th><th class="align_left"><strong>アクション</strong></th><th class="align_left"><strong>用途</strong></th></tr><tr class="top_bar"><td class="align_left"><tt>GET</tt></td><td class="align_left">/signin</td><td class="align_left"><code>signin_path</code></td><td class="align_left"><code>new</code></td><td class="align_left">新しいセッション用 (サインイン)</td></tr><tr><td class="align_left"><tt>POST</tt></td><td class="align_left">/sessions</td><td class="align_left"><code>sessions_path</code></td><td class="align_left"><code>create</code></td><td class="align_left">新しいセッションを作成する</td></tr><tr><td class="align_left"><tt>DELETE</tt></td><td class="align_left">/signout</td><td class="align_left"><code>signout_path</code></td><td class="align_left"><code>destroy</code></td><td class="align_left">セッションを削除する (サインアウト)</td></tr></table></div><div class="caption"><span class="header">表8.1</span><span class="description"><a class="ref" href="./sign-in-sign-out#code-sessions_resource">リスト8.2</a>のセッションルールによって提供されるRESTfulなルート。</span></div></div>
+<table class="tabular"><tr><th class="align_left"><strong>HTTPリクエスト</strong></th><th class="align_left"><strong>URL</strong></th><th class="align_left"><strong>名前付きルート</strong></th><th class="align_left"><strong>アクション</strong></th><th class="align_left"><strong>用途</strong></th></tr><tr class="top_bar"><td class="align_left"><tt>GET</tt></td><td class="align_left">/signin</td><td class="align_left"><code>signin_path</code></td><td class="align_left"><code>new</code></td><td class="align_left">新しいセッション用 (サインイン)</td></tr><tr><td class="align_left"><tt>POST</tt></td><td class="align_left">/sessions</td><td class="align_left"><code>sessions_path</code></td><td class="align_left"><code>create</code></td><td class="align_left">新しいセッションを作成する</td></tr><tr><td class="align_left"><tt>DELETE</tt></td><td class="align_left">/signout</td><td class="align_left"><code>signout_path</code></td><td class="align_left"><code>destroy</code></td><td class="align_left">セッションを削除する (サインアウト)</td></tr></table></div><div class="caption"><span class="header">表8.1</span><span class="description"><a class="ref" href="./sign-in-sign-out.html#code-sessions_resource">リスト8.2</a>のセッションルールによって提供されるRESTfulなルート。</span></div></div>
 
 
-<p>次に、<a class="ref" href="./sign-in-sign-out#code-new_session_tests">リスト8.1</a>のテストがパスするようにするために、<a class="ref" href="./sign-in-sign-out#code-new_session_title">リスト8.3</a>に示したように<code>new</code>アクションをSessionsコントローラに追加します (後で使えるよう<code>create</code>アクションと<code>destroy</code>アクションも定義しておきます) 。</p>
+<p>次に、<a class="ref" href="./sign-in-sign-out.html#code-new_session_tests">リスト8.1</a>のテストがパスするようにするために、<a class="ref" href="./sign-in-sign-out.html#code-new_session_title">リスト8.3</a>に示したように<code>new</code>アクションをSessionsコントローラに追加します (後で使えるよう<code>create</code>アクションと<code>destroy</code>アクションも定義しておきます) 。</p>
 
 <div class="label" id="code-new_session_title"></div>
 
@@ -152,7 +152,7 @@
 </div></div>
 
 
-<p>最後に、サインインページを新規に定義します。このページは新規セッション用なので、今から作成するサインインページを<code>app/views/sessions/new.html.erb</code>に置くことにご注目ください。<a class="ref" href="./sign-in-sign-out#code-initial_signin_page">リスト8.4</a>に示したように、今の時点ではタイトルと一番上のヘッダ部分のみを定義します。</p>
+<p>最後に、サインインページを新規に定義します。このページは新規セッション用なので、今から作成するサインインページを<code>app/views/sessions/new.html.erb</code>に置くことにご注目ください。<a class="ref" href="./sign-in-sign-out.html#code-initial_signin_page">リスト8.4</a>に示したように、今の時点ではタイトルと一番上のヘッダ部分のみを定義します。</p>
 
 <div class="label" id="code-initial_signin_page"></div>
 
@@ -165,7 +165,7 @@
 </div></div>
 
 
-<p>これにより、<a class="ref" href="./sign-in-sign-out#code-new_session_tests">リスト8.1</a>のテストが青信号 (成功) になります。これで実際のサインインフォームを作成する準備ができました。</p>
+<p>これにより、<a class="ref" href="./sign-in-sign-out.html#code-new_session_tests">リスト8.1</a>のテストが青信号 (成功) になります。これで実際のサインインフォームを作成する準備ができました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
@@ -177,12 +177,12 @@
 <div class="label" id="sec-signin_tests"></div>
 
 
-<h3><a id="sec-8_1_2" href="./sign-in-sign-out#sec-signin_tests" class="heading"><span class="number">8.1.2</span>サインインをテストする</a></h3>
+<h3><a id="sec-8_1_2" href="./sign-in-sign-out.html#sec-signin_tests" class="heading"><span class="number">8.1.2</span>サインインをテストする</a></h3>
 
 
-<p><a class="ref" href="./sign-in-sign-out#fig-signin_mockup">図8.1</a>と<a class="ref" href="./sign-up#fig-signup_mockup">図7.11</a>を比較すると、サインインフォーム (新規セッションフォーム) の外観は、4つあったフィールドがメールアドレスとパスワードの2つになったこと以外は、ユーザー登録フォームによく似ていることに気付くと思います。ユーザー登録フォームのときと同様に、サインインフォームでもCapybaraを使ってフォームに値を入力し、ボタンをクリックするテストを行うことができます。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#fig-signin_mockup">図8.1</a>と<a class="ref" href="./sign-up.html#fig-signup_mockup">図7.11</a>を比較すると、サインインフォーム (新規セッションフォーム) の外観は、4つあったフィールドがメールアドレスとパスワードの2つになったこと以外は、ユーザー登録フォームによく似ていることに気付くと思います。ユーザー登録フォームのときと同様に、サインインフォームでもCapybaraを使ってフォームに値を入力し、ボタンをクリックするテストを行うことができます。</p>
 
-<p>テストを作成していると、私たちはアプリケーションをさまざまな側面から設計することを強いられます。これはテスト駆動開発の素晴らしい副次的効果のひとつです。<a class="ref" href="./sign-in-sign-out#fig-signin_failure_mockup">図8.2</a>のモックアップで示されているように、最初はサインインの入力に誤りがあった場合のテストから作成します。</p>
+<p>テストを作成していると、私たちはアプリケーションをさまざまな側面から設計することを強いられます。これはテスト駆動開発の素晴らしい副次的効果のひとつです。<a class="ref" href="./sign-in-sign-out.html#fig-signin_failure_mockup">図8.2</a>のモックアップで示されているように、最初はサインインの入力に誤りがあった場合のテストから作成します。</p>
 
 <div class="label" id="fig-signin_failure_mockup"></div>
 
@@ -190,28 +190,28 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/signin_failure_mockup_bootstrap.png" alt="signin_failure_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図8.2</span><span class="description">サインイン失敗時のモックアップ。<a href="../images/figures/signin_failure_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p><a class="ref" href="./sign-in-sign-out#fig-signin_failure_mockup">図 8.2</a>に示されているように、サインインで入力した情報に誤りがあったときは、サインインページをもう一度表示して、エラーメッセージを出力します。ここではエラーをフラッシュメッセージとして表示するので、以下のようにテストできます。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#fig-signin_failure_mockup">図 8.2</a>に示されているように、サインインで入力した情報に誤りがあったときは、サインインページをもう一度表示して、エラーメッセージを出力します。ここではエラーをフラッシュメッセージとして表示するので、以下のようにテストできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;div.alert.alert-error&#39;</span><span class="p">,</span> <span class="ss">text:</span> <span class="s1">&#39;Invalid&#39;</span><span class="p">)</span> <span class="p">}</span>
 </pre></div>
 </div>
 
 
-<p>上のコードでは、<a class="ref" href="./sign-up#code-after_save_tests">リスト7.32</a>で導入したCapybaraの<code>have_selector</code>メソッドを使用しています (<a class="ref" href="./sign-up#top">第7章</a>の演習)。<code>have_selector</code>メソッドは、特定のセレクタ要素 (HTMLタグなど) があるかどうかをチェックします。なお、Capybara 2.0では<em>画面に表示される要素</em>しかチェックできません。セレクタ要素（つまりタグ）は以下のように指定します。</p>
+<p>上のコードでは、<a class="ref" href="./sign-up.html#code-after_save_tests">リスト7.32</a>で導入したCapybaraの<code>have_selector</code>メソッドを使用しています (<a class="ref" href="./sign-up.html#top">第7章</a>の演習)。<code>have_selector</code>メソッドは、特定のセレクタ要素 (HTMLタグなど) があるかどうかをチェックします。なお、Capybara 2.0では<em>画面に表示される要素</em>しかチェックできません。セレクタ要素（つまりタグ）は以下のように指定します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">div</span><span class="o">.</span><span class="n">alert</span><span class="o">.</span><span class="n">alert</span><span class="o">-</span><span class="n">error</span>
 </pre></div>
 </div>
 
 
-<p>上のコードは<code>div</code>タグがあるかどうかをチェックします。上のコードのドットはCSSのクラスを意味することを思い出してください (<a class="ref" href="./filling-in-the-layout#sec-custom_css">5.1.2</a>) 。つまりこのテストでは、<code>&quot;alert&quot;</code>クラスと<code>&quot;alert-error&quot;</code>クラスの<code>div</code>タグを対象にしていることがわかります。また、エラーメッセージに<code>&quot;Invalid&quot;</code>という単語が含まれていることもテストします。これらを合わせると、次のフォームの要素を探しだしてテストが行われます。</p>
+<p>上のコードは<code>div</code>タグがあるかどうかをチェックします。上のコードのドットはCSSのクラスを意味することを思い出してください (<a class="ref" href="./filling-in-the-layout.html#sec-custom_css">5.1.2</a>) 。つまりこのテストでは、<code>&quot;alert&quot;</code>クラスと<code>&quot;alert-error&quot;</code>クラスの<code>div</code>タグを対象にしていることがわかります。また、エラーメッセージに<code>&quot;Invalid&quot;</code>という単語が含まれていることもテストします。これらを合わせると、次のフォームの要素を探しだしてテストが行われます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;alert alert-error&quot;</span><span class="nt">&gt;</span>Invalid...<span class="nt">&lt;/div&gt;</span>
 </pre></div>
 </div>
 
 
-<p><a class="ref" href="./sign-in-sign-out#code-initial_failing_signin_test">リスト 8.5</a>のコードは、タイトルとフラッシュメッセージをまとめてテストします。ただしこのテストは、実はある重要な点を欠いています。これは<a class="ref" href="./sign-in-sign-out#sec-rendering_with_a_flash_message">8.1.5</a>で改善します。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#code-initial_failing_signin_test">リスト 8.5</a>のコードは、タイトルとフラッシュメッセージをまとめてテストします。ただしこのテストは、実はある重要な点を欠いています。これは<a class="ref" href="./sign-in-sign-out.html#sec-rendering_with_a_flash_message">8.1.5</a>で改善します。</p>
 
 <div class="label" id="code-initial_failing_signin_test"></div>
 
@@ -248,7 +248,7 @@
 </ol>
 
 
-<p>([Setting] リンクについては<a class="ref" href="./updating-showing-and-deleting-users#sec-updating_users">9.1</a>で、[Users] リンクについては<a class="ref" href="./updating-showing-and-deleting-users#sec-showing_all_users">9.3</a>でそれぞれテストします) 。これらの変更を加えたモックアップを<a class="ref" href="./sign-in-sign-out#fig-signin_success_mockup">図8.3</a>に示しました<sup class="footnote" id="fnref-8_2"><a href="./sign-in-sign-out#fn-8_2">2</a></sup>。サインアウトとプロファイルページヘのリンクは、[Account] メニューにドロップダウンで表示されます。Bootstrapを使用してドロップダウンメニューを作成する方法については<a class="ref" href="./sign-in-sign-out#sec-changing_the_layout_links">8.2.4</a>で説明します。</p>
+<p>([Setting] リンクについては<a class="ref" href="./updating-showing-and-deleting-users.html#sec-updating_users">9.1</a>で、[Users] リンクについては<a class="ref" href="./updating-showing-and-deleting-users.html#sec-showing_all_users">9.3</a>でそれぞれテストします) 。これらの変更を加えたモックアップを<a class="ref" href="./sign-in-sign-out.html#fig-signin_success_mockup">図8.3</a>に示しました<sup class="footnote" id="fnref-8_2"><a href="./sign-in-sign-out.html#fn-8_2">2</a></sup>。サインアウトとプロファイルページヘのリンクは、[Account] メニューにドロップダウンで表示されます。Bootstrapを使用してドロップダウンメニューを作成する方法については<a class="ref" href="./sign-in-sign-out.html#sec-changing_the_layout_links">8.2.4</a>で説明します。</p>
 
 <div class="label" id="fig-signin_success_mockup"></div>
 
@@ -256,7 +256,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/signin_success_mockup_bootstrap.png" alt="signin_success_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図8.3</span><span class="description">サインインに成功後表示されるユーザープロファイルのモックアップ。<a href="../images/figures/signin_success_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>サインインに成功したときのテストコードを<a class="ref" href="./sign-in-sign-out#code-signin_success_tests">リスト8.6</a>に示しました。</p>
+<p>サインインに成功したときのテストコードを<a class="ref" href="./sign-in-sign-out.html#code-signin_success_tests">リスト8.6</a>に示しました。</p>
 
 <div class="label" id="code-signin_success_tests"></div>
 
@@ -305,10 +305,10 @@
 <div class="label" id="sec-signin_form"></div>
 
 
-<h3><a id="sec-8_1_3" href="./sign-in-sign-out#sec-signin_form" class="heading"><span class="number">8.1.3</span>サインインのフォーム</a></h3>
+<h3><a id="sec-8_1_3" href="./sign-in-sign-out.html#sec-signin_form" class="heading"><span class="number">8.1.3</span>サインインのフォーム</a></h3>
 
 
-<p>テストの準備が完了したので、いよいよサインインフォームの開発に取りかかりましょう。<a class="ref" href="./sign-up#code-signup_form">リスト7.17</a>のときは、以下のようにユーザー登録フォームで<code>form_for</code>ヘルパーを使用し、ユーザーのインスタンス変数 <code>@user</code>を引数にとっていました。</p>
+<p>テストの準備が完了したので、いよいよサインインフォームの開発に取りかかりましょう。<a class="ref" href="./sign-up.html#code-signup_form">リスト7.17</a>のときは、以下のようにユーザー登録フォームで<code>form_for</code>ヘルパーを使用し、ユーザーのインスタンス変数 <code>@user</code>を引数にとっていました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">form_for</span><span class="p">(</span><span class="vi">@user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
   .
@@ -333,9 +333,9 @@
 </div>
 
 
-<p>(注: <code>form_for</code>の代わりに<code>form_tag</code>を使うこともでき、Railsではこの方が慣用的な方法です。しかし、ユーザー登録フォームではform_forを使用する方が一般的であり、並列構造を強調するためにもform_forを使用しました。<code>form_tag</code>を使ったフォームについては(<a class="ref" href="./sign-in-sign-out#sec-sign_in_out_exercises">8.5</a>)の演習に回します。)</p>
+<p>(注: <code>form_for</code>の代わりに<code>form_tag</code>を使うこともでき、Railsではこの方が慣用的な方法です。しかし、ユーザー登録フォームではform_forを使用する方が一般的であり、並列構造を強調するためにもform_forを使用しました。<code>form_tag</code>を使ったフォームについては(<a class="ref" href="./sign-in-sign-out.html#sec-sign_in_out_exercises">8.5</a>)の演習に回します。)</p>
 
-<p>適切な<code>form_for</code>を使用することで、<a class="ref" href="./sign-up#code-signup_form">リスト7.17</a>のユーザー登録フォームを参考にして、<a class="ref" href="./sign-in-sign-out#code-signin_form">リスト8.7</a>に示したようなモックアップに従ったサインインフォームを簡単に作成できます (<a class="ref" href="./sign-in-sign-out#fig-signin_mockup">図8.1</a>)。</p>
+<p>適切な<code>form_for</code>を使用することで、<a class="ref" href="./sign-up.html#code-signup_form">リスト7.17</a>のユーザー登録フォームを参考にして、<a class="ref" href="./sign-in-sign-out.html#code-signin_form">リスト8.7</a>に示したようなモックアップに従ったサインインフォームを簡単に作成できます (<a class="ref" href="./sign-in-sign-out.html#fig-signin_mockup">図8.1</a>)。</p>
 
 <div class="label" id="code-signin_form"></div>
 
@@ -365,7 +365,7 @@
 </div></div>
 
 
-<p>ユーザーにとって便利なように、ユーザー登録ページのリンクを追加してあることにご注目ください。<a class="ref" href="./sign-in-sign-out#code-signin_form">リスト 8.7</a>のコードで生成されるサインインフォームを<a class="ref" href="./sign-in-sign-out#fig-signin_form">図 8.4</a>に示します。</p>
+<p>ユーザーにとって便利なように、ユーザー登録ページのリンクを追加してあることにご注目ください。<a class="ref" href="./sign-in-sign-out.html#code-signin_form">リスト 8.7</a>のコードで生成されるサインインフォームを<a class="ref" href="./sign-in-sign-out.html#fig-signin_form">図 8.4</a>に示します。</p>
 
 <div class="label" id="fig-signin_form"></div>
 
@@ -373,13 +373,13 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/signin_form_bootstrap.png" alt="signin_form_bootstrap" /></span></div><div class="caption"><span class="header">図8.4</span><span class="description">サインインフォーム  (<a href="http://localhost:3000/signin">/signin</a>)。<a href="../images/figures/signin_form_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>これまではRailsが生成したHTMLをブラウザでたびたび確認していた方も多いと思いますが、やがてその習慣は忘れ去られ、ヘルパーが正常に動作していることを信頼するようになる日が来ることでしょう。今はいつものように(<a class="ref" href="./sign-in-sign-out#code-signin_form_html">リスト 8.8</a>)を見てみましょう。</p>
+<p>これまではRailsが生成したHTMLをブラウザでたびたび確認していた方も多いと思いますが、やがてその習慣は忘れ去られ、ヘルパーが正常に動作していることを信頼するようになる日が来ることでしょう。今はいつものように(<a class="ref" href="./sign-in-sign-out.html#code-signin_form_html">リスト 8.8</a>)を見てみましょう。</p>
 
 <div class="label" id="code-signin_form_html"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト8.8</span> <span class="description"><a class="ref" href="./sign-in-sign-out#code-signin_form">リスト8.7</a>で生成されたサインインフォームのHTML。</span> </div>
+<div class="listing"><span class="header">リスト8.8</span> <span class="description"><a class="ref" href="./sign-in-sign-out.html#code-signin_form">リスト8.7</a>で生成されたサインインフォームのHTML。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;form</span> <span class="na">accept-charset=</span><span class="s">&quot;UTF-8&quot;</span> <span class="na">action=</span><span class="s">&quot;/sessions&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;div&gt;</span>
     <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;session_email&quot;</span><span class="nt">&gt;</span>Email<span class="nt">&lt;/label&gt;</span>
@@ -397,17 +397,17 @@
 </div></div>
 
 
-<p><a class="ref" href="./sign-in-sign-out#code-signin_form_html">リスト8.8</a>と<a class="ref" href="./sign-up#code-signup_form_html">リスト7.20</a>を比較することで、フォーム送信後に<code>params</code>ハッシュに入る値が、メールアドレスとパスワードのフィールドにそれぞれ対応した<code>params[:session][:email]</code>と<code>params[:session][:password]</code>になることを推測できることでしょう。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#code-signin_form_html">リスト8.8</a>と<a class="ref" href="./sign-up.html#code-signup_form_html">リスト7.20</a>を比較することで、フォーム送信後に<code>params</code>ハッシュに入る値が、メールアドレスとパスワードのフィールドにそれぞれ対応した<code>params[:session][:email]</code>と<code>params[:session][:password]</code>になることを推測できることでしょう。</p>
 
 <div class="label" id="sec-reviewing_form_submission"></div>
 
 
-<h3><a id="sec-8_1_4" href="./sign-in-sign-out#sec-reviewing_form_submission" class="heading"><span class="number">8.1.4</span>確認フォームを送信する</a></h3>
+<h3><a id="sec-8_1_4" href="./sign-in-sign-out.html#sec-reviewing_form_submission" class="heading"><span class="number">8.1.4</span>確認フォームを送信する</a></h3>
 
 
-<p>ユーザーを作成する (ユーザー登録) 場合と同様、セッションを作成する場合 (サインイン) で最初にやることは、<em>正しくない</em>入力の取り扱いです。ユーザー登録のテストは既に作成済みです (<a class="ref" href="./sign-in-sign-out#code-initial_failing_signin_test">リスト 8.5</a>)。そしてサインインのアプリケーションコードは、いくつかの点においてユーザー登録のコードとわずかに異なります。最初に、フォームが送信されたとき何が起こるかを考えましょう。次に、サインインが失敗した場合に表示されるエラーメッセージを配置します (モックアップを<a class="ref" href="./sign-in-sign-out#fig-signin_failure_mockup">図8.2</a>に示しました)。次に、サインインが送信されるたびに、パスワードとメールアドレスの組み合わせが正しいかどうかを判定し、サインインに成功した場合に使用する土台 (<a class="ref" href="./sign-in-sign-out#sec-signin_success">8.2</a>) を作成します。</p>
+<p>ユーザーを作成する (ユーザー登録) 場合と同様、セッションを作成する場合 (サインイン) で最初にやることは、<em>正しくない</em>入力の取り扱いです。ユーザー登録のテストは既に作成済みです (<a class="ref" href="./sign-in-sign-out.html#code-initial_failing_signin_test">リスト 8.5</a>)。そしてサインインのアプリケーションコードは、いくつかの点においてユーザー登録のコードとわずかに異なります。最初に、フォームが送信されたとき何が起こるかを考えましょう。次に、サインインが失敗した場合に表示されるエラーメッセージを配置します (モックアップを<a class="ref" href="./sign-in-sign-out.html#fig-signin_failure_mockup">図8.2</a>に示しました)。次に、サインインが送信されるたびに、パスワードとメールアドレスの組み合わせが正しいかどうかを判定し、サインインに成功した場合に使用する土台 (<a class="ref" href="./sign-in-sign-out.html#sec-signin_success">8.2</a>) を作成します。</p>
 
-<p>最初に、Sessionsコントローラに最小限の<code>create</code>アクションを定義します (<a class="ref" href="./sign-in-sign-out#code-initial_create_session">リスト8.9</a>) 。このアクションは何も実行しませんが、<code>new</code>ビューを表示します。<a href="http://localhost:3000/sessions/new">/sessions/new</a>フォームを表示し、フィールドを空白のまま [Sign in] を押して送信すると<a class="ref" href="./sign-in-sign-out#fig-initial_failed_signin_rails_3">図8.5</a>のように表示されます。</p>
+<p>最初に、Sessionsコントローラに最小限の<code>create</code>アクションを定義します (<a class="ref" href="./sign-in-sign-out.html#code-initial_create_session">リスト8.9</a>) 。このアクションは何も実行しませんが、<code>new</code>ビューを表示します。<a href="http://localhost:3000/sessions/new">/sessions/new</a>フォームを表示し、フィールドを空白のまま [Sign in] を押して送信すると<a class="ref" href="./sign-in-sign-out.html#fig-initial_failed_signin_rails_3">図8.5</a>のように表示されます。</p>
 
 <div class="label" id="code-initial_create_session"></div>
 
@@ -434,10 +434,10 @@
 <div class="label" id="fig-initial_failed_signin_rails_3"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/initial_failed_signin_rails_3_bootstrap.png" alt="initial_failed_signin_rails_3_bootstrap" /></span></div><div class="caption"><span class="header">図8.5</span><span class="description"><a class="ref" href="./sign-in-sign-out#code-initial_create_session">リスト8.9</a>の<code>create</code>へのサインイン失敗結果。<a href="../images/figures/initial_failed_signin_rails_3_bootstrap-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/initial_failed_signin_rails_3_bootstrap.png" alt="initial_failed_signin_rails_3_bootstrap" /></span></div><div class="caption"><span class="header">図8.5</span><span class="description"><a class="ref" href="./sign-in-sign-out.html#code-initial_create_session">リスト8.9</a>の<code>create</code>へのサインイン失敗結果。<a href="../images/figures/initial_failed_signin_rails_3_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p><a class="ref" href="./sign-in-sign-out#fig-initial_failed_signin_rails_3">図8.5</a> に表示されているデバッグ情報にご注目ください。<a class="ref" href="./sign-in-sign-out#sec-signin_form">8.1.3</a> の終わりにもヒントがありましたが、<code>params</code>ハッシュはメールアドレスとパスワードを以下のように<code>:session</code>キーの下に持ちます。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#fig-initial_failed_signin_rails_3">図8.5</a> に表示されているデバッグ情報にご注目ください。<a class="ref" href="./sign-in-sign-out.html#sec-signin_form">8.1.3</a> の終わりにもヒントがありましたが、<code>params</code>ハッシュはメールアドレスとパスワードを以下のように<code>:session</code>キーの下に持ちます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nn">---</span>
 <span class="l-Scalar-Plain">session</span><span class="p-Indicator">:</span>
@@ -450,7 +450,7 @@
 </div>
 
 
-<p>ユーザー登録の場合 (<a class="ref" href="./sign-up#fig-signup_failure">図7.15</a>) と同様、これらのパラメータは<a class="ref" href="./rails-flavored-ruby#code-nested_hashes">リスト4.6</a>に示したように<em>ネストした (入れ子になった) </em>ハッシュになっています。特に、<code>params</code>は以下のような入れ子ハッシュになっています。</p>
+<p>ユーザー登録の場合 (<a class="ref" href="./sign-up.html#fig-signup_failure">図7.15</a>) と同様、これらのパラメータは<a class="ref" href="./rails-flavored-ruby.html#code-nested_hashes">リスト4.6</a>に示したように<em>ネストした (入れ子になった) </em>ハッシュになっています。特に、<code>params</code>は以下のような入れ子ハッシュになっています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="p">{</span> <span class="ss">session:</span> <span class="p">{</span> <span class="ss">password:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;&quot;</span> <span class="p">}</span> <span class="p">}</span>
 </pre></div>
@@ -487,7 +487,7 @@
 
 <p>上はフォームから送信されたパスワードです。</p>
 
-<p>言い換えれば、<code>create</code>アクションの<code>params</code>ハッシュには、ユーザーの認証に必要な情報がすべて含まれているということになります。ここまでに、私たちはすでに必要なメソッドを手にしています。 Active Recordが<code>User.find_by_email</code>を提供し (<a class="ref" href="./modeling-users#sec-finding_user_objects">6.1.4</a>)、 <code>has_secure_password</code>が<code>authenticate</code>メソッドを提供しています (<a class="ref" href="./modeling-users#sec-user_authentication">6.3.3</a>)。認証に失敗したとき、<code>authenticate</code>の返り値は<code>false</code>になることを思い出してください。ユーザーのサインイン方法の方針をまとめると以下のようになります。</p>
+<p>言い換えれば、<code>create</code>アクションの<code>params</code>ハッシュには、ユーザーの認証に必要な情報がすべて含まれているということになります。ここまでに、私たちはすでに必要なメソッドを手にしています。 Active Recordが<code>User.find_by_email</code>を提供し (<a class="ref" href="./modeling-users.html#sec-finding_user_objects">6.1.4</a>)、 <code>has_secure_password</code>が<code>authenticate</code>メソッドを提供しています (<a class="ref" href="./modeling-users.html#sec-user_authentication">6.3.3</a>)。認証に失敗したとき、<code>authenticate</code>の返り値は<code>false</code>になることを思い出してください。ユーザーのサインイン方法の方針をまとめると以下のようになります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">create</span>
   <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">email:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:email</span><span class="o">].</span><span class="n">downcase</span><span class="p">)</span>
@@ -501,14 +501,14 @@
 </div>
 
 
-<p>最初の行は、送信されたメールアドレスを使用して、データベースからユーザーを取り出しています。(<a class="ref" href="./modeling-users#sec-uniqueness_validation">6.2.5</a>ではメールアドレスはすべて小文字で保存されていたことを思い出してください。従って、ここでは<code>downcase</code>メソッドを使用して、正しいメールアドレスが入力されたときに確実にマッチするようにしています)。次の行は少しわかりにくいかもしれませんが、Railsプログラミングでは定番の手法です。</p>
+<p>最初の行は、送信されたメールアドレスを使用して、データベースからユーザーを取り出しています。(<a class="ref" href="./modeling-users.html#sec-uniqueness_validation">6.2.5</a>ではメールアドレスはすべて小文字で保存されていたことを思い出してください。従って、ここでは<code>downcase</code>メソッドを使用して、正しいメールアドレスが入力されたときに確実にマッチするようにしています)。次の行は少しわかりにくいかもしれませんが、Railsプログラミングでは定番の手法です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="n">user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:session</span><span class="o">][</span><span class="ss">:password</span><span class="o">]</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p><code>&amp;&amp;</code> (<em>論理積</em>) は、取得したユーザーが有効かどうかを決定するのに使用します。<code>nil</code>と<code>false</code>以外のすべてのオブジェクトは、真偽値では<code>true</code>になる (<a class="ref" href="./rails-flavored-ruby#sec-objects_and_message_passing">4.2.3</a>) というRubyの性質を考慮すると、 組み合わせは<a class="ref" href="./sign-in-sign-out#table-user_and_and">表8.2</a>のようになります。 <a class="ref" href="./sign-in-sign-out#table-user_and_and">表 8.2</a>を見ると、入力されたメールアドレスを持つユーザーがデータベースに存在し、かつ入力されたパスワードがそのユーザーのパスワードである場合のみ、<code>if</code>文が<code>true</code>になることがわかります。</p>
+<p><code>&amp;&amp;</code> (<em>論理積</em>) は、取得したユーザーが有効かどうかを決定するのに使用します。<code>nil</code>と<code>false</code>以外のすべてのオブジェクトは、真偽値では<code>true</code>になる (<a class="ref" href="./rails-flavored-ruby.html#sec-objects_and_message_passing">4.2.3</a>) というRubyの性質を考慮すると、 組み合わせは<a class="ref" href="./sign-in-sign-out.html#table-user_and_and">表8.2</a>のようになります。 <a class="ref" href="./sign-in-sign-out.html#table-user_and_and">表 8.2</a>を見ると、入力されたメールアドレスを持つユーザーがデータベースに存在し、かつ入力されたパスワードがそのユーザーのパスワードである場合のみ、<code>if</code>文が<code>true</code>になることがわかります。</p>
 
 <div class="label" id="table-user_and_and"></div>
 
@@ -522,10 +522,10 @@
 <div class="label" id="sec-rendering_with_a_flash_message"></div>
 
 
-<h3><a id="sec-8_1_5" href="./sign-in-sign-out#sec-rendering_with_a_flash_message" class="heading"><span class="number">8.1.5</span>フラッシュメッセージを表示する</a></h3>
+<h3><a id="sec-8_1_5" href="./sign-in-sign-out.html#sec-rendering_with_a_flash_message" class="heading"><span class="number">8.1.5</span>フラッシュメッセージを表示する</a></h3>
 
 
-<p><a class="ref" href="./sign-up#sec-signup_error_messages">7.3.2</a>では、Userモデルのエラーメッセージを使用してユーザー登録のエラーメッセージを表示したことを思い出してください。これらのエラーメッセージは、特定のActive Recordオブジェクトに関連付けられていますが、セッションはActive Recordのモデルではないためにこの方法はここでは使用できません。代わりに、サインインに失敗したときにフラッシュメッセージを表示することにします。最初のコードを<a class="ref" href="./sign-in-sign-out#code-failed_signin_attempt">リスト8.10</a>に示します (ここには少しだけ間違いがあります)。</p>
+<p><a class="ref" href="./sign-up.html#sec-signup_error_messages">7.3.2</a>では、Userモデルのエラーメッセージを使用してユーザー登録のエラーメッセージを表示したことを思い出してください。これらのエラーメッセージは、特定のActive Recordオブジェクトに関連付けられていますが、セッションはActive Recordのモデルではないためにこの方法はここでは使用できません。代わりに、サインインに失敗したときにフラッシュメッセージを表示することにします。最初のコードを<a class="ref" href="./sign-in-sign-out.html#code-failed_signin_attempt">リスト8.10</a>に示します (ここには少しだけ間違いがあります)。</p>
 
 <div class="label" id="code-failed_signin_attempt"></div>
 
@@ -554,7 +554,7 @@
 </div></div>
 
 
-<p>フラッシュメッセージはWebサイトのレイアウトに表示される (<a class="ref" href="./sign-up#code-layout_flash">リスト7.27</a>) ので、<code>flash[:error]</code>のメッセージは自動的に表示されます。Bootstrap CSSのおかげで適切なスタイルも与えられます (<a class="ref" href="./sign-in-sign-out#fig-failed_signin_flash">図8.6</a>)。</p>
+<p>フラッシュメッセージはWebサイトのレイアウトに表示される (<a class="ref" href="./sign-up.html#code-layout_flash">リスト7.27</a>) ので、<code>flash[:error]</code>のメッセージは自動的に表示されます。Bootstrap CSSのおかげで適切なスタイルも与えられます (<a class="ref" href="./sign-in-sign-out.html#fig-failed_signin_flash">図8.6</a>)。</p>
 
 <div class="label" id="fig-failed_signin_flash"></div>
 
@@ -562,7 +562,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/failed_signin_flash_bootstrap.png" alt="failed_signin_flash_bootstrap" /></span></div><div class="caption"><span class="header">図8.6</span><span class="description">サインインに失敗したときのフラッシュメッセージ。<a href="../images/figures/failed_signin_flash_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>残念ながら、本文および<a class="ref" href="./sign-in-sign-out#code-failed_signin_attempt">リスト8.10</a>のコメントで述べたように、このコードには誤りがあります。ページの表示には問題がないようですが、どこがおかしいのでしょうか。実は、ある<em>リクエスト</em>に対するフラッシュメッセージの内容がすぐに消えずに残ってしまうという問題があります。<a class="ref" href="./sign-up#code-signup_flash">リスト7.28</a>で使用したリダイレクトのときとは異なり、<code>render</code>で表示したテンプレートを再描画してもリクエストと見なされません。このため、フラッシュメッセージはひとつのリクエストに対して期待よりも長い間消えずに表示され続けてしまいます。たとえば、無効な情報を送信するとサインインページにフラッシュメッセージが設定されて表示されます (<a class="ref" href="./sign-in-sign-out#fig-failed_signin_flash">図8.6</a>)。ここでHomeページなどの別のページへのリンクをクリックすると、これはフォームが送信されてから最初のリクエストであるため、フラッシュメッセージが移動先のページでも表示されたままになってしまいます (<a class="ref" href="./sign-in-sign-out#fig-flash_persistence">図8.7</a>)。</p>
+<p>残念ながら、本文および<a class="ref" href="./sign-in-sign-out.html#code-failed_signin_attempt">リスト8.10</a>のコメントで述べたように、このコードには誤りがあります。ページの表示には問題がないようですが、どこがおかしいのでしょうか。実は、ある<em>リクエスト</em>に対するフラッシュメッセージの内容がすぐに消えずに残ってしまうという問題があります。<a class="ref" href="./sign-up.html#code-signup_flash">リスト7.28</a>で使用したリダイレクトのときとは異なり、<code>render</code>で表示したテンプレートを再描画してもリクエストと見なされません。このため、フラッシュメッセージはひとつのリクエストに対して期待よりも長い間消えずに表示され続けてしまいます。たとえば、無効な情報を送信するとサインインページにフラッシュメッセージが設定されて表示されます (<a class="ref" href="./sign-in-sign-out.html#fig-failed_signin_flash">図8.6</a>)。ここでHomeページなどの別のページへのリンクをクリックすると、これはフォームが送信されてから最初のリクエストであるため、フラッシュメッセージが移動先のページでも表示されたままになってしまいます (<a class="ref" href="./sign-in-sign-out.html#fig-flash_persistence">図8.7</a>)。</p>
 
 <div class="label" id="fig-flash_persistence"></div>
 
@@ -588,7 +588,7 @@
 </div>
 
 
-<p>このテストは、無効なサインインデータを送信し、次にWebサイトのレイアウトにあるHomeリンクを開き、フラッシュメッセージが表示されていないことを確認します。フラッシュテストの部分を更新したテストコードを<a class="ref" href="./sign-in-sign-out#code-correct_signin_failure_test">リスト8.11</a>に示します。</p>
+<p>このテストは、無効なサインインデータを送信し、次にWebサイトのレイアウトにあるHomeリンクを開き、フラッシュメッセージが表示されていないことを確認します。フラッシュテストの部分を更新したテストコードを<a class="ref" href="./sign-in-sign-out.html#code-correct_signin_failure_test">リスト8.11</a>に示します。</p>
 
 <div class="label" id="code-correct_signin_failure_test"></div>
 
@@ -633,7 +633,7 @@
 </div>
 
 
-<p>失敗するテストがパスするようになるために、<code>flash</code>の代わりに<code>flash.now</code>を使用します。これもページでフラッシュメッセージを表示するために特に設計されたメソッドですが、<code>flash</code>の場合とは異なり、他のリクエストが発生したらすぐにメッセージを消します。正しいアプリケーションコードを<a class="ref" href="./sign-in-sign-out#code-correct_signin_failure">リスト8.12</a>に示します。</p>
+<p>失敗するテストがパスするようになるために、<code>flash</code>の代わりに<code>flash.now</code>を使用します。これもページでフラッシュメッセージを表示するために特に設計されたメソッドですが、<code>flash</code>の場合とは異なり、他のリクエストが発生したらすぐにメッセージを消します。正しいアプリケーションコードを<a class="ref" href="./sign-in-sign-out.html#code-correct_signin_failure">リスト8.12</a>に示します。</p>
 
 <div class="label" id="code-correct_signin_failure"></div>
 
@@ -675,12 +675,12 @@
 <div class="label" id="sec-signin_success"></div>
 
 
-<h2><a id="sec-8_2" href="./sign-in-sign-out#sec-signin_success" class="heading"><span class="number">8.2、</span>サインイン成功</a></h2>
+<h2><a id="sec-8_2" href="./sign-in-sign-out.html#sec-signin_success" class="heading"><span class="number">8.2、</span>サインイン成功</a></h2>
 
 
 <p> サインイン失敗をテストできるようにしたので、次は実際にユーザーをサインインさせましょう。この節で必要なRubyのプログラミングは、本書の中ではこれまでで最も難易度が高くなっています。どうか最後まであきらめずにがんばってください。ここからの力仕事に備えておきましょう。幸い、はじめの一歩は簡単です。Sessionsコントローラの<code>create</code>アクションはすぐできあがります。残念ながら、少々ズルもしています。</p>
 
-<p>サインインの実装 (<a class="ref" href="./sign-in-sign-out#code-correct_signin_failure">リスト8.12</a>) はシンプルです。サインインに成功すると、<code>sign_in</code>関数を使用して実際にユーザーをサインインさせ、プロファイルページにリダイレクトします (<a class="ref" href="./sign-in-sign-out#code-sign_in_success_not_yet_working">リスト8.13</a>)。なぜこれがズルなのかというと、何と<code>sign_in</code>はこの時点では存在していないのです。この節の残りは、この関数を完成させることに費やされます。</p>
+<p>サインインの実装 (<a class="ref" href="./sign-in-sign-out.html#code-correct_signin_failure">リスト8.12</a>) はシンプルです。サインインに成功すると、<code>sign_in</code>関数を使用して実際にユーザーをサインインさせ、プロファイルページにリダイレクトします (<a class="ref" href="./sign-in-sign-out.html#code-sign_in_success_not_yet_working">リスト8.13</a>)。なぜこれがズルなのかというと、何と<code>sign_in</code>はこの時点では存在していないのです。この節の残りは、この関数を完成させることに費やされます。</p>
 
 <div class="label" id="code-sign_in_success_not_yet_working"></div>
 
@@ -714,10 +714,10 @@
 <div class="label" id="sec-remember_me"></div>
 
 
-<h3><a id="sec-8_2_1" href="./sign-in-sign-out#sec-remember_me" class="heading"><span class="number">8.2.1</span>[このアカウント設定を保存する]</a></h3>
+<h3><a id="sec-8_2_1" href="./sign-in-sign-out.html#sec-remember_me" class="heading"><span class="number">8.2.1</span>[このアカウント設定を保存する]</a></h3>
 
 
-<p>これよりサインインモデルの実装を開始します。具体的には、サインイン状態を「永続化」し、ユーザーが明示的にサインアウトしたときにのみセッションを終了します。サインイン関数そのものは伝統的なMVC (model-view-controller)) に帰着します。特に、いくつかのサインイン関数についてはコントローラとビューのどちらからも使用できるようにする必要があります。<a class="ref" href="./rails-flavored-ruby#sec-back_to_the_title_helper">4.2.5</a>を思い出してみてください。Rubyには、いくつもの関数をパッケージ化し、さまざまな場所でインクルードできるようにする<em>モジュール</em>という機能が提供されています。これを認証機能の実装に使用しましょう。認証のためにまったく新しいモジュールを作ることも可能ですが、Sessionsコントローラには既に<code>SessionsHelper</code>というモジュールが備わっています。さらに、ヘルパーはRailsのビューに自動的にインクルードされるので、Applicationコントローラにこのモジュールをインクルードするだけで、Sessionsヘルパー機能をコントローラ内で使用できるようになります (<a class="ref" href="./sign-in-sign-out#code-sessions_helper_include">リスト8.14</a>)。</p>
+<p>これよりサインインモデルの実装を開始します。具体的には、サインイン状態を「永続化」し、ユーザーが明示的にサインアウトしたときにのみセッションを終了します。サインイン関数そのものは伝統的なMVC (model-view-controller)) に帰着します。特に、いくつかのサインイン関数についてはコントローラとビューのどちらからも使用できるようにする必要があります。<a class="ref" href="./rails-flavored-ruby.html#sec-back_to_the_title_helper">4.2.5</a>を思い出してみてください。Rubyには、いくつもの関数をパッケージ化し、さまざまな場所でインクルードできるようにする<em>モジュール</em>という機能が提供されています。これを認証機能の実装に使用しましょう。認証のためにまったく新しいモジュールを作ることも可能ですが、Sessionsコントローラには既に<code>SessionsHelper</code>というモジュールが備わっています。さらに、ヘルパーはRailsのビューに自動的にインクルードされるので、Applicationコントローラにこのモジュールをインクルードするだけで、Sessionsヘルパー機能をコントローラ内で使用できるようになります (<a class="ref" href="./sign-in-sign-out.html#code-sessions_helper_include">リスト8.14</a>)。</p>
 
 <div class="label" id="code-sessions_helper_include"></div>
 
@@ -752,7 +752,7 @@
 
 <p>私たちのアプリケーション設計では、<em>永続的な</em>セッションを採用します。つまり、ブラウザを閉じた後にもサインイン状態を保持するということであり、サインインしたユーザーに対して何らかの<em>恒久的な</em>識別子を使用する必要があります。これを実現するために、ユーザーごとに一意かつ安全な記憶トークンを生成し、ブラウザを閉じても無効にならない<em>恒久的な</em>cookiesとして登録します。</p>
 
-<p>記憶トークンはユーザーに関連付けられる必要があります。また、今後使用するときのために保持しておく必要もあります。そこで、<a class="ref" href="./sign-in-sign-out#fig-user_model_remember_token">図8.8</a>に示すUserモデルの属性に記憶トークンの保存場所を追加しましょう。</p>
+<p>記憶トークンはユーザーに関連付けられる必要があります。また、今後使用するときのために保持しておく必要もあります。そこで、<a class="ref" href="./sign-in-sign-out.html#fig-user_model_remember_token">図8.8</a>に示すUserモデルの属性に記憶トークンの保存場所を追加しましょう。</p>
 
 <div class="label" id="fig-user_model_remember_token"></div>
 
@@ -760,7 +760,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/user_model_remember_token_31.png" alt="user_model_remember_token_31" /></span></div><div class="caption"><span class="header">図8.8</span><span class="description"><code>remember_token</code>属性を追加したUserモデル。</span></div></div>
 
 
-<p>最初に、Userモデルのspecに若干の追加を行います (<a class="ref" href="./sign-in-sign-out#code-user_responds_to_remember_token">リスト8.15</a>)。</p>
+<p>最初に、Userモデルのspecに若干の追加を行います (<a class="ref" href="./sign-in-sign-out.html#code-user_responds_to_remember_token">リスト8.15</a>)。</p>
 
 <div class="label" id="code-user_responds_to_remember_token"></div>
 
@@ -791,7 +791,7 @@
 </div>
 
 
-<p>次に、上で生成されたマイグレーションに<a class="ref" href="./sign-in-sign-out#code-add_remember_token_to_users">リスト8.16</a>のコードを記入します。ユーザーを記憶トークンで検索できるように、インデックス (<a class="ref" href="./modeling-users#sidebar-database_indices">コラム 6.2</a>) を<code>remember_token</code>カラムに追加していることにご注目ください。</p>
+<p>次に、上で生成されたマイグレーションに<a class="ref" href="./sign-in-sign-out.html#code-add_remember_token_to_users">リスト8.16</a>のコードを記入します。ユーザーを記憶トークンで検索できるように、インデックス (<a class="ref" href="./modeling-users.html#sidebar-database_indices">コラム 6.2</a>) を<code>remember_token</code>カラムに追加していることにご注目ください。</p>
 
 <div class="label" id="code-add_remember_token_to_users"></div>
 
@@ -823,13 +823,13 @@
 </div>
 
 
-<p>ここで、記憶トークンに何を使用するかを決める必要があります。有力な候補としてさまざまなものが考えられますが、基本的には一意性を確保できる、長くてランダムな文字列でさえあればどんなものでも良いでしょう。Ruby標準ライブラリの<code>SecureRandom</code>モジュールにある<code>urlsafe_base64</code>メソッドならこの用途にぴったりです<sup class="footnote" id="fnref-8_3"><a href="./sign-in-sign-out#fn-8_3">3</a></sup>。このメソッドは、A–Z、a–z、0–9、“-”、“_”のいずれかの文字 (64種類) からなる長さ16のランダムな文字列を返します (そのため<a href="http://en.wikipedia.org/wiki/Base64">base64</a>と呼ばれています)。生成された2つの記憶トークンが偶然一致 (衝突) する確率は、64のマイナス16乗、2のマイナス96乗 (10のマイナス29乗) にほぼ等しく、トークンが衝突することはまずありません。</p>
+<p>ここで、記憶トークンに何を使用するかを決める必要があります。有力な候補としてさまざまなものが考えられますが、基本的には一意性を確保できる、長くてランダムな文字列でさえあればどんなものでも良いでしょう。Ruby標準ライブラリの<code>SecureRandom</code>モジュールにある<code>urlsafe_base64</code>メソッドならこの用途にぴったりです<sup class="footnote" id="fnref-8_3"><a href="./sign-in-sign-out.html#fn-8_3">3</a></sup>。このメソッドは、A–Z、a–z、0–9、“-”、“_”のいずれかの文字 (64種類) からなる長さ16のランダムな文字列を返します (そのため<a href="http://en.wikipedia.org/wiki/Base64">base64</a>と呼ばれています)。生成された2つの記憶トークンが偶然一致 (衝突) する確率は、64のマイナス16乗、2のマイナス96乗 (10のマイナス29乗) にほぼ等しく、トークンが衝突することはまずありません。</p>
 
-<p>ここでのねらいは、ブラウザにこのbase64トークンを保存しておき、データベースにはトークンを暗号化したものを保存することです。そして、cookiesからこのトークンを読みだして暗号化し、データベース上にある暗号化された記憶トークンと一致するものがあるかどうかを検索することにより、ユーザーを自動的にサインインさせることができます。暗号化したトークンだけをデータベースに保存する理由は、万が一データベースが不正アクセスを受けるようなことがあっても、攻撃者が記憶トークンを使用してサインインできないようにするためです。記憶トークンをさらにセキュアにするためには、新しいセッションを作成するたびにトークンを更新するのがよい方法です。この方法なら、攻撃者が盗んだcookiesを使用して本物のユーザーになりすましてサインインしようとする (<a href="http://en.wikipedia.org/wiki/Session_hijacking">セッションハイジャック</a>) ことがあっても、ユーザーが次回サインインするときにはトークンが期限切れになります。(セッションハイジャックは、セキュリティ上の注意を呼びかけるためにこれを実演する<a href="http://codebutler.com/firesheep">Firesheep</a>アプリケーションによって広く知られるようになりました。Firesheepを使用すると、公共Wi-Fiネットワーク経由で接続したときに多くの有名Webサイトの記憶トークンが丸見えになっていることがわかります。この問題を解決するには、<a class="ref" href="./sign-up#sec-deploying_to_production_with_ssl">7.4.4</a>で説明したようにWebサイト全体をSSLで暗号化することです。)</p>
+<p>ここでのねらいは、ブラウザにこのbase64トークンを保存しておき、データベースにはトークンを暗号化したものを保存することです。そして、cookiesからこのトークンを読みだして暗号化し、データベース上にある暗号化された記憶トークンと一致するものがあるかどうかを検索することにより、ユーザーを自動的にサインインさせることができます。暗号化したトークンだけをデータベースに保存する理由は、万が一データベースが不正アクセスを受けるようなことがあっても、攻撃者が記憶トークンを使用してサインインできないようにするためです。記憶トークンをさらにセキュアにするためには、新しいセッションを作成するたびにトークンを更新するのがよい方法です。この方法なら、攻撃者が盗んだcookiesを使用して本物のユーザーになりすましてサインインしようとする (<a href="http://en.wikipedia.org/wiki/Session_hijacking">セッションハイジャック</a>) ことがあっても、ユーザーが次回サインインするときにはトークンが期限切れになります。(セッションハイジャックは、セキュリティ上の注意を呼びかけるためにこれを実演する<a href="http://codebutler.com/firesheep">Firesheep</a>アプリケーションによって広く知られるようになりました。Firesheepを使用すると、公共Wi-Fiネットワーク経由で接続したときに多くの有名Webサイトの記憶トークンが丸見えになっていることがわかります。この問題を解決するには、<a class="ref" href="./sign-up.html#sec-deploying_to_production_with_ssl">7.4.4</a>で説明したようにWebサイト全体をSSLで暗号化することです。)</p>
 
-<p>サンプルアプリケーションでは、新規作成されたユーザーをその場でサインインさせ、その副作用として記憶トークンがついでに作成されますが、この動作に依存すべきではありません。安全を確保するために、<em>すべての</em>ユーザーが必ず最初から有効な記憶トークンを持つようにする必要があります。これを確実に行うには、<em>コールバック</em>を使用して記憶トークンを生成します。このテクニックは、<a class="ref" href="./modeling-users#sec-uniqueness_validation">6.2.5</a>でemailの一意性の文脈で紹介しました。あのときは<code>before_save</code>というコールバックを使用しましたが、ここではそれによく似た<code>before_create</code>というコールバックを使用して、ユーザー新規作成時に記憶トークンを設定することにします<sup class="footnote" id="fnref-8_4"><a href="./sign-in-sign-out#fn-8_4">4</a></sup>。</p>
+<p>サンプルアプリケーションでは、新規作成されたユーザーをその場でサインインさせ、その副作用として記憶トークンがついでに作成されますが、この動作に依存すべきではありません。安全を確保するために、<em>すべての</em>ユーザーが必ず最初から有効な記憶トークンを持つようにする必要があります。これを確実に行うには、<em>コールバック</em>を使用して記憶トークンを生成します。このテクニックは、<a class="ref" href="./modeling-users.html#sec-uniqueness_validation">6.2.5</a>でemailの一意性の文脈で紹介しました。あのときは<code>before_save</code>というコールバックを使用しましたが、ここではそれによく似た<code>before_create</code>というコールバックを使用して、ユーザー新規作成時に記憶トークンを設定することにします<sup class="footnote" id="fnref-8_4"><a href="./sign-in-sign-out.html#fn-8_4">4</a></sup>。</p>
 
-<p>記憶トークンをテストするために、最初にテストユーザーを保存し (これまでは作成されても保存はされていませんでした)、次にユーザーの<code>remember_token</code>属性が空欄でないことを確認します。これにより、必要が生じたときにランダム文字列を変更するのに十分な柔軟性が得られます。このテストを<a class="ref" href="./sign-in-sign-out#code-remember_token_should_not_be_blank">リスト8.17</a>に示します。</p>
+<p>記憶トークンをテストするために、最初にテストユーザーを保存し (これまでは作成されても保存はされていませんでした)、次にユーザーの<code>remember_token</code>属性が空欄でないことを確認します。これにより、必要が生じたときにランダム文字列を変更するのに十分な柔軟性が得られます。このテストを<a class="ref" href="./sign-in-sign-out.html#code-remember_token_should_not_be_blank">リスト8.17</a>に示します。</p>
 
 <div class="label" id="code-remember_token_should_not_be_blank"></div>
 
@@ -858,7 +858,7 @@
 </div></div>
 
 
-<p>上の<a class="ref" href="./sign-in-sign-out#code-remember_token_should_not_be_blank">リスト8.17</a>で導入した<code>its</code>メソッドは、<code>it</code>と似ていますが、itが指すテストのsubject (ここでは@user) そのものではなく、引数として与えられたその属性 (この場合は:remember_token) に対してテストを行うときに使用します。</p>
+<p>上の<a class="ref" href="./sign-in-sign-out.html#code-remember_token_should_not_be_blank">リスト8.17</a>で導入した<code>its</code>メソッドは、<code>it</code>と似ていますが、itが指すテストのsubject (ここでは@user) そのものではなく、引数として与えられたその属性 (この場合は:remember_token) に対してテストを行うときに使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">its</span><span class="p">(</span><span class="ss">:remember_token</span><span class="p">)</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">be_blank</span> <span class="p">}</span>
 </pre></div>
@@ -879,7 +879,7 @@
 </div>
 
 
-<p>上のコードは<em>メソッド参照</em>と呼ばれるもので、こうすることでRailsは<code>create_remember_token</code>というメソッドを探し、ユーザーを保存する前に実行するようになります (<a class="ref" href="./modeling-users#code-email_downcase">リスト6.20</a>では、<code>before_save</code>に明示的にブロックを渡していましたが、メソッド参照の方が一般にお勧めできます) 。次に、このメソッド自身はUserモデルの内部でしか使用しないので、外部のユーザーがアクセスできるようにする必要はありません。<a class="ref" href="./sign-up#sec-strong_parameters">7.3.2</a>でも触れたように、メソッド定義に以下のように<code>private</code>キーワードを与えるのがRuby流です。</p>
+<p>上のコードは<em>メソッド参照</em>と呼ばれるもので、こうすることでRailsは<code>create_remember_token</code>というメソッドを探し、ユーザーを保存する前に実行するようになります (<a class="ref" href="./modeling-users.html#code-email_downcase">リスト6.20</a>では、<code>before_save</code>に明示的にブロックを渡していましたが、メソッド参照の方が一般にお勧めできます) 。次に、このメソッド自身はUserモデルの内部でしか使用しないので、外部のユーザーがアクセスできるようにする必要はありません。<a class="ref" href="./sign-up.html#sec-strong_parameters">7.3.2</a>でも触れたように、メソッド定義に以下のように<code>private</code>キーワードを与えるのがRuby流です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="kp">private</span>
 
@@ -919,13 +919,13 @@
 </div>
 
 
-<p>上のコードに<code>self</code>というキーワードがないと、要素代入によって<code>remember_token</code>という名前の<em>ローカル</em>変数が作成されてしまうので、注意が必要です (ここで本来必要なのはローカル変数ではなく、インスタンス変数です)。この動作は、Rubyにおけるオブジェクト内部への要素代入の仕様によるものです。<code>self</code>キーワードを与えることで、要素代入は正しくそのユーザーの<code>remember_token</code>属性を設定するようになり、その結果ユーザーが保存されるときに他の属性と一緒にこの属性もデータベースに保存されます (<a class="ref" href="./modeling-users#code-email_downcase">リスト6.20</a>の他の<code>before_save</code>コールバックでも、<code>email</code>ではなく<code>self.email</code>と記述していた理由が、これでおわかりいただけたと思います)。</p>
+<p>上のコードに<code>self</code>というキーワードがないと、要素代入によって<code>remember_token</code>という名前の<em>ローカル</em>変数が作成されてしまうので、注意が必要です (ここで本来必要なのはローカル変数ではなく、インスタンス変数です)。この動作は、Rubyにおけるオブジェクト内部への要素代入の仕様によるものです。<code>self</code>キーワードを与えることで、要素代入は正しくそのユーザーの<code>remember_token</code>属性を設定するようになり、その結果ユーザーが保存されるときに他の属性と一緒にこの属性もデータベースに保存されます (<a class="ref" href="./modeling-users.html#code-email_downcase">リスト6.20</a>の他の<code>before_save</code>コールバックでも、<code>email</code>ではなく<code>self.email</code>と記述していた理由が、これでおわかりいただけたと思います)。</p>
 
-<p><a href="https://en.wikipedia.org/wiki/SHA-1">SHA1</a>を使用して記憶トークンを暗号化すると、<a class="ref" href="./modeling-users#sec-an_encrypted_password">6.3.1</a>でユーザーのパスワード暗号化に使用していたBcryptアルゴリズムよりも動作がはるかに高速である点にご注目ください。<a class="ref" href="./sign-in-sign-out#sec-a_working_sign_in_method">8.2.2</a>でも説明しますが、トークンの暗号化はユーザーがページを開くたびに行うので、暗号化アルゴリズムが高速であることは重要です。SHA1はBcryptと比べるとそれほどセキュアではありませんが、元となるトークンが既に16桁のランダムな文字列なので、これで十分です。このようなランダムな文字列をさらにSHA1でhexdigestしたものは、本質的にクラック不可能です (<em>to_s</em>メソッドを呼び出しているのは、<code>nil</code>トークンを扱えるようにするためです。ブラウザでnilトークンが発生することはあってはなりませんが、テスト中に発生することはありえるためです)。</p>
+<p><a href="https://en.wikipedia.org/wiki/SHA-1">SHA1</a>を使用して記憶トークンを暗号化すると、<a class="ref" href="./modeling-users.html#sec-an_encrypted_password">6.3.1</a>でユーザーのパスワード暗号化に使用していたBcryptアルゴリズムよりも動作がはるかに高速である点にご注目ください。<a class="ref" href="./sign-in-sign-out.html#sec-a_working_sign_in_method">8.2.2</a>でも説明しますが、トークンの暗号化はユーザーがページを開くたびに行うので、暗号化アルゴリズムが高速であることは重要です。SHA1はBcryptと比べるとそれほどセキュアではありませんが、元となるトークンが既に16桁のランダムな文字列なので、これで十分です。このようなランダムな文字列をさらにSHA1でhexdigestしたものは、本質的にクラック不可能です (<em>to_s</em>メソッドを呼び出しているのは、<code>nil</code>トークンを扱えるようにするためです。ブラウザでnilトークンが発生することはあってはなりませんが、テスト中に発生することはありえるためです)。</p>
 
-<p><code>encrypt</code>メソッドと<code>new_remember_token</code>メソッドは、ユーザーのインスタンスに対して動作する必要がないので、インスタンスではなく<code>User</code>クラスに属します (クラスメソッド)。また、これらのメソッドは<code>private</code>行より上にあるのでpublicになっていますが、これは<a class="ref" href="./sign-in-sign-out#sec-current_user">8.2.3</a>でUserモデルの外で使用する必要があるためです。</p>
+<p><code>encrypt</code>メソッドと<code>new_remember_token</code>メソッドは、ユーザーのインスタンスに対して動作する必要がないので、インスタンスではなく<code>User</code>クラスに属します (クラスメソッド)。また、これらのメソッドは<code>private</code>行より上にあるのでpublicになっていますが、これは<a class="ref" href="./sign-in-sign-out.html#sec-current_user">8.2.3</a>でUserモデルの外で使用する必要があるためです。</p>
 
-<p>以上の実装をまとめたUserモデルを<a class="ref" href="./sign-in-sign-out#code-before_create_remember_token">リスト8.18</a>に示します。</p>
+<p>以上の実装をまとめたUserモデルを<a class="ref" href="./sign-in-sign-out.html#code-before_create_remember_token">リスト8.18</a>に示します。</p>
 
 <div class="label" id="code-before_create_remember_token"></div>
 
@@ -968,10 +968,10 @@
 <div class="label" id="sec-a_working_sign_in_method"></div>
 
 
-<h3><a id="sec-8_2_2" href="./sign-in-sign-out#sec-a_working_sign_in_method" class="heading"><span class="number">8.2.2</span>正しい<tt>sign_in</tt>メソッド</a></h3>
+<h3><a id="sec-8_2_2" href="./sign-in-sign-out.html#sec-a_working_sign_in_method" class="heading"><span class="number">8.2.2</span>正しい<tt>sign_in</tt>メソッド</a></h3>
 
 
-<p>いよいよ、最初のサインイン要素である<code>sign_in</code>関数自身の実装に取りかかりましょう。既に述べたように、これから作る認証メソッドは、記憶トークンをブラウザのcookiesに保存し、ユーザーが別のページに移動する (<a class="ref" href="./sign-in-sign-out#sec-current_user">8.2.3</a>で実装予定) ときにそのトークンを使用してデータベース内のユーザーのレコードを見つけます。このコードを<a class="ref" href="./sign-in-sign-out#code-sign_in_function">リスト8.19</a>に示します。なお、このコードには<code>current_user</code>というメソッドがありますが、これは<a class="ref" href="./sign-in-sign-out#sec-current_user">8.2.3</a>で実装します。</p>
+<p>いよいよ、最初のサインイン要素である<code>sign_in</code>関数自身の実装に取りかかりましょう。既に述べたように、これから作る認証メソッドは、記憶トークンをブラウザのcookiesに保存し、ユーザーが別のページに移動する (<a class="ref" href="./sign-in-sign-out.html#sec-current_user">8.2.3</a>で実装予定) ときにそのトークンを使用してデータベース内のユーザーのレコードを見つけます。このコードを<a class="ref" href="./sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>に示します。なお、このコードには<code>current_user</code>というメソッドがありますが、これは<a class="ref" href="./sign-in-sign-out.html#sec-current_user">8.2.3</a>で実装します。</p>
 
 <div class="label" id="code-sign_in_function"></div>
 
@@ -991,9 +991,9 @@
 </div></div>
 
 
-<p>ここでは以下の手順で進めます。1) トークンを新規作成する。2) 暗号化されていないトークンをブラウザのcookiesに保存する。3) 暗号化したトークンをデータベースに保存する。4) 与えられたユーザーを現在のユーザーに設定する (<a class="ref" href="./sign-in-sign-out#sec-current_user">8.2.3</a>)。上のコードで、<code>update_attribute</code>を使用してトークンを保存している点にご注目ください。<a class="ref" href="./modeling-users#sec-updating_user_objects">6.1.5</a>でも簡単に説明しましたが、このメソッドを使用すれば検証をバイパスして単一の属性を更新することができます。ページの移動ではユーザーのパスワードやパスワード確認は与えられないので、このメソッドを使用する必要があります。</p>
+<p>ここでは以下の手順で進めます。1) トークンを新規作成する。2) 暗号化されていないトークンをブラウザのcookiesに保存する。3) 暗号化したトークンをデータベースに保存する。4) 与えられたユーザーを現在のユーザーに設定する (<a class="ref" href="./sign-in-sign-out.html#sec-current_user">8.2.3</a>)。上のコードで、<code>update_attribute</code>を使用してトークンを保存している点にご注目ください。<a class="ref" href="./modeling-users.html#sec-updating_user_objects">6.1.5</a>でも簡単に説明しましたが、このメソッドを使用すれば検証をバイパスして単一の属性を更新することができます。ページの移動ではユーザーのパスワードやパスワード確認は与えられないので、このメソッドを使用する必要があります。</p>
 
-<p><a class="ref" href="./sign-in-sign-out#code-sign_in_function">リスト8.19</a>ではRailsが提供する<code>cookies</code>ユーティリティも使用しています。これを使用することで、ブラウザのcookiesをハッシュのように扱うことができます。cookiesの各要素は、それ自体が2つの要素 (<code>value</code>とオプションの<code>expires</code>日時) のハッシュになっています。たとえば以下のように、cookiesに20年後に期限切れになる記憶トークンに等しい値を保存することで、ユーザーのサインインを実装できます。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>ではRailsが提供する<code>cookies</code>ユーティリティも使用しています。これを使用することで、ブラウザのcookiesをハッシュのように扱うことができます。cookiesの各要素は、それ自体が2つの要素 (<code>value</code>とオプションの<code>expires</code>日時) のハッシュになっています。たとえば以下のように、cookiesに20年後に期限切れになる記憶トークンに等しい値を保存することで、ユーザーのサインインを実装できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">cookies</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">value:</span>   <span class="n">remember_token</span><span class="p">,</span>
                              <span class="ss">expires:</span> <span class="mi">20</span><span class="o">.</span><span class="n">years</span><span class="o">.</span><span class="n">from_now</span><span class="o">.</span><span class="n">utc</span> <span class="p">}</span>
@@ -1001,13 +1001,13 @@
 </div>
 
 
-<p>(上のコードではRailsの便利なtimeヘルパーを使用しています。<a class="ref" href="./sign-in-sign-out#sidebar-time_helpers">コラム 8.1</a>を参照してください。)</p>
+<p>(上のコードではRailsの便利なtimeヘルパーを使用しています。<a class="ref" href="./sign-in-sign-out.html#sidebar-time_helpers">コラム 8.1</a>を参照してください。)</p>
 
 <div class="label" id="sidebar-time_helpers"></div>
 
 
 <div class="sidebar"><span class="title"><span class="header">コラム 8.1</span><span class="description">cookiesは今から20年後に切れる (<tt>20.years.from_now</tt>)</span></span>
-<p>Rubyは組み込みクラスを含む<a class="ref" href="./rails-flavored-ruby#sec-a_class_of_our_own">あらゆる</a>クラスにメソッドを追加できることを<em>4.4.2</em>で学びました。あのときは、<tt>palindrome?</tt>メソッドを<tt>String</tt>クラスに追加しました (ついでに<tt>&quot;deified&quot;</tt>も回文になっていることを発見しました)。また、Railsが実は<tt>blank?</tt>メソッドを<tt>Object</tt>クラスに追加していることも判明しました (これにより、<tt>&quot;&quot;.blank?</tt>、<tt>&quot; &quot;.blank?</tt>、<tt>nil.blank?</tt>はいずれも<tt>true</tt>になります)。<a class="ref" href="./sign-in-sign-out#code-sign_in_function">リスト8.19</a>のコードでは、cookiesが20年後に期限切れになる (<tt>20.years.from_now</tt>) ように指定していますが、これはRailsの<em>timeヘルパー</em>を使用した格好の例題になります。timeヘルパーはRailsによって、数値関連の基底クラスである<tt>Fixnum</tt>クラスに追加されます。</p>
+<p>Rubyは組み込みクラスを含む<a class="ref" href="./rails-flavored-ruby.html#sec-a_class_of_our_own">あらゆる</a>クラスにメソッドを追加できることを<em>4.4.2</em>で学びました。あのときは、<tt>palindrome?</tt>メソッドを<tt>String</tt>クラスに追加しました (ついでに<tt>&quot;deified&quot;</tt>も回文になっていることを発見しました)。また、Railsが実は<tt>blank?</tt>メソッドを<tt>Object</tt>クラスに追加していることも判明しました (これにより、<tt>&quot;&quot;.blank?</tt>、<tt>&quot; &quot;.blank?</tt>、<tt>nil.blank?</tt>はいずれも<tt>true</tt>になります)。<a class="ref" href="./sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>のコードでは、cookiesが20年後に期限切れになる (<tt>20.years.from_now</tt>) ように指定していますが、これはRailsの<em>timeヘルパー</em>を使用した格好の例題になります。timeヘルパーはRailsによって、数値関連の基底クラスである<tt>Fixnum</tt>クラスに追加されます。</p>
 
 <pre class="verbatim">  $ rails console
   &gt;&gt; 1.year.from_now
@@ -1051,7 +1051,7 @@
 <div class="label" id="sec-current_user"></div>
 
 
-<h3><a id="sec-8_2_3" href="./sign-in-sign-out#sec-current_user" class="heading"><span class="number">8.2.3</span>現在のユーザー</a></h3>
+<h3><a id="sec-8_2_3" href="./sign-in-sign-out.html#sec-current_user" class="heading"><span class="number">8.2.3</span>現在のユーザー</a></h3>
 
 
 <p>後で使うために記憶トークンをcookiesに保存する方法の説明が終わりましたので、今度は移動先のページでユーザーを取り出す方法について学びましょう。<code>sign_in</code>関数のコードをもういちどよく見てみてください。</p>
@@ -1090,7 +1090,7 @@
 </div>
 
 
-<p><a class="ref" href="./sign-in-sign-out#code-before_create_remember_token">リスト8.18</a>のときに説明したのと同じ理由で、ここにも<code>self</code>が必要です。<code>self</code>がないと、Rubyは単に<code>current_user</code>というローカル変数を作成してしまいます。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#code-before_create_remember_token">リスト8.18</a>のときに説明したのと同じ理由で、ここにも<code>self</code>が必要です。<code>self</code>がないと、Rubyは単に<code>current_user</code>というローカル変数を作成してしまいます。</p>
 
 <p><code>current_user</code>のコードを書く上で、以下の行については注意が必要です。</p>
 
@@ -1099,7 +1099,7 @@
 </div>
 
 
-<p>上は「<em>要素代入 (assignment)</em>」であることにご注意ください。このcurrent_user=は別途定義が必要です。<a class="ref" href="./sign-in-sign-out#code-current_user_equals">リスト8.20</a>に示したように、Rubyにはこのような要素代入関数を定義する特殊な文法があります。</p>
+<p>上は「<em>要素代入 (assignment)</em>」であることにご注意ください。このcurrent_user=は別途定義が必要です。<a class="ref" href="./sign-in-sign-out.html#code-current_user_equals">リスト8.20</a>に示したように、Rubyにはこのような要素代入関数を定義する特殊な文法があります。</p>
 
 <div class="label" id="code-current_user_equals"></div>
 
@@ -1138,7 +1138,7 @@
 
 <p>そして最終的に<code>current_user=</code>というメソッドが呼び出されます。その引数は要素代入の右側にひとつ置かれます (ここではサインインするユーザー)。この一行メソッドは、単に<code>@current_user</code>インスタンス変数を設定し、後に使用するためにユーザーを効率よく保存します。</p>
 
-<p>通常のRubyでは、もうひとつのメソッドとして<code>current_user</code>を定義することができます。<a class="ref" href="./sign-in-sign-out#code-current_user_wrong">リスト8.21</a>に示したように、このメソッドは<code>@current_user</code>の値を返すようになっています。</p>
+<p>通常のRubyでは、もうひとつのメソッドとして<code>current_user</code>を定義することができます。<a class="ref" href="./sign-in-sign-out.html#code-current_user_wrong">リスト8.21</a>に示したように、このメソッドは<code>@current_user</code>の値を返すようになっています。</p>
 
 <div class="label" id="code-current_user_wrong"></div>
 
@@ -1165,7 +1165,7 @@
 </div></div>
 
 
-<p>もしかすると、これを使用して<a class="ref" href="./rails-flavored-ruby#sec-a_user_class">4.4.5</a>の<code>attr_accessor</code>を効率よく置き換えることができるのではないでしょうか<sup class="footnote" id="fnref-8_5"><a href="./sign-in-sign-out#fn-8_5">5</a></sup>。それをしないのは、このコードを使用すると今までの苦労が台無しになってしまうからです。<a class="ref" href="./sign-in-sign-out#code-current_user_wrong">リスト8.21</a>のコードを使用すると、ユーザーが別のページに移動した瞬間にユーザーのサインイン情報が<em>きれいさっぱり</em>消滅してしまいます。セッションは終了し、ユーザーは自動的にサインアウトしてしまいます。この問題を回避するには、<a class="ref" href="./sign-in-sign-out#code-current_user_working">リスト8.22</a>に示したように、<a class="ref" href="./sign-in-sign-out#code-sign_in_function">リスト8.19</a>のコードで作成した記憶トークンに対応するユーザーを検索します。データベース上の記憶トークンは暗号化されているので、cookiesから取り出した記憶トークンは、データベース上の記憶トークンを検索する前に暗号化する必要がある点にご注意ください。これを行うには、<a class="ref" href="./sign-in-sign-out#code-before_create_remember_token">リスト8.18</a>で定義した<code>User.encrypt</code>を使用します。</p>
+<p>もしかすると、これを使用して<a class="ref" href="./rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>の<code>attr_accessor</code>を効率よく置き換えることができるのではないでしょうか<sup class="footnote" id="fnref-8_5"><a href="./sign-in-sign-out.html#fn-8_5">5</a></sup>。それをしないのは、このコードを使用すると今までの苦労が台無しになってしまうからです。<a class="ref" href="./sign-in-sign-out.html#code-current_user_wrong">リスト8.21</a>のコードを使用すると、ユーザーが別のページに移動した瞬間にユーザーのサインイン情報が<em>きれいさっぱり</em>消滅してしまいます。セッションは終了し、ユーザーは自動的にサインアウトしてしまいます。この問題を回避するには、<a class="ref" href="./sign-in-sign-out.html#code-current_user_working">リスト8.22</a>に示したように、<a class="ref" href="./sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>のコードで作成した記憶トークンに対応するユーザーを検索します。データベース上の記憶トークンは暗号化されているので、cookiesから取り出した記憶トークンは、データベース上の記憶トークンを検索する前に暗号化する必要がある点にご注意ください。これを行うには、<a class="ref" href="./sign-in-sign-out.html#code-before_create_remember_token">リスト8.18</a>で定義した<code>User.encrypt</code>を使用します。</p>
 
 <div class="label" id="code-current_user_working"></div>
 
@@ -1189,14 +1189,14 @@
 </div></div>
 
 
-<p><a class="ref" href="./sign-in-sign-out#code-current_user_working">リスト8.22</a>では、Rubyでは定番の (しかし最初はまごつきやすい) <code>||=</code> (“or equals”) 代入演算子を使用しています (<a class="ref" href="./sign-in-sign-out#sidebar-or_equals">コラム 8.2</a>)。この代入演算子は、<code>@current_user</code>が未定義の場合にのみ、<code>@current_user</code>インスタンス変数に記憶トークンを設定します<sup class="footnote" id="fnref-8_6"><a href="./sign-in-sign-out#fn-8_6">6</a></sup>。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#code-current_user_working">リスト8.22</a>では、Rubyでは定番の (しかし最初はまごつきやすい) <code>||=</code> (“or equals”) 代入演算子を使用しています (<a class="ref" href="./sign-in-sign-out.html#sidebar-or_equals">コラム 8.2</a>)。この代入演算子は、<code>@current_user</code>が未定義の場合にのみ、<code>@current_user</code>インスタンス変数に記憶トークンを設定します<sup class="footnote" id="fnref-8_6"><a href="./sign-in-sign-out.html#fn-8_6">6</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="vi">@current_user</span> <span class="o">||=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">remember_token:</span> <span class="n">remember_token</span><span class="p">)</span>
 </pre></div>
 </div>
 
 
-<p>あるユーザーに対して<code>current_user</code>が初めて呼び出される場合は<code>find_by</code>メソッドを呼び出しますが、以後の呼び出しではデータベースにアクセスせずに<code>@current_user</code>を返します<sup class="footnote" id="fnref-8_7"><a href="./sign-in-sign-out#fn-8_7">7</a></sup>。このコードは、ひとつのユーザーリクエストに対して<code>current_user</code>が何度も使用される場合にのみ有用です。いずれの場合も、ユーザーがWebサイトにアクセスすると<code>find_by</code>は最低1回は呼び出されます。</p>
+<p>あるユーザーに対して<code>current_user</code>が初めて呼び出される場合は<code>find_by</code>メソッドを呼び出しますが、以後の呼び出しではデータベースにアクセスせずに<code>@current_user</code>を返します<sup class="footnote" id="fnref-8_7"><a href="./sign-in-sign-out.html#fn-8_7">7</a></sup>。このコードは、ひとつのユーザーリクエストに対して<code>current_user</code>が何度も使用される場合にのみ有用です。いずれの場合も、ユーザーがWebサイトにアクセスすると<code>find_by</code>は最低1回は呼び出されます。</p>
 
 <div class="label" id="sidebar-or_equals"></div>
 
@@ -1229,7 +1229,7 @@
 
 <p>いずれの場合も、<tt>●</tt>という演算子があるときの「<tt>x = x ● y</tt>」と「<tt>x ●= y</tt>」の動作は同じです。</p>
 
-<p>Rubyでは、「変数の値が<tt>nil</tt>なら変数に代入するが、nilでなければ代入しない (変数の値を変えない)」という操作が非常によく使われます。<em>4.2.3</em>で説明した<tt>or</tt>演算子<a class="ref" href="./rails-flavored-ruby#sec-objects_and_message_passing">||</a>を使用すれば、以下のように書くことができます。</p>
+<p>Rubyでは、「変数の値が<tt>nil</tt>なら変数に代入するが、nilでなければ代入しない (変数の値を変えない)」という操作が非常によく使われます。<em>4.2.3</em>で説明した<tt>or</tt>演算子<a class="ref" href="./rails-flavored-ruby.html#sec-objects_and_message_passing">||</a>を使用すれば、以下のように書くことができます。</p>
 
 <pre class="verbatim">  &gt;&gt; @user
   =&gt; nil
@@ -1256,10 +1256,10 @@
 <div class="label" id="sec-changing_the_layout_links"></div>
 
 
-<h3><a id="sec-8_2_4" href="./sign-in-sign-out#sec-changing_the_layout_links" class="heading"><span class="number">8.2.4</span>レイアウトリンクを変更する</a></h3>
+<h3><a id="sec-8_2_4" href="./sign-in-sign-out.html#sec-changing_the_layout_links" class="heading"><span class="number">8.2.4</span>レイアウトリンクを変更する</a></h3>
 
 
-<p>サインイン/サインアウトが動作するようになり、実用的なアプリケーションらしくなってきました。今度は、サインインの状態に合わせてレイアウト上のリンクが変わるようにしましょう。特に、<a class="ref" href="./sign-in-sign-out#fig-signin_success_mockup">図8.3</a>のモックアップで示したように、ユーザーがサインインしているときとサインアウトしているときでリンクを変更し、すべてのユーザーを表示するリンクとユーザー設定用のリンクも追加し (<a class="ref" href="./updating-showing-and-deleting-users#top">第9章</a>で完成する予定)、さらに現在のユーザーのプロファイルのリンクも追加します。これらを実装することで、<a class="ref" href="./sign-in-sign-out#code-signin_success_tests">リスト8.6</a>のテストがパスするようになります。つまり、本章開始以来初めてテストスイート全体が緑色 (成功) になるということです。</p>
+<p>サインイン/サインアウトが動作するようになり、実用的なアプリケーションらしくなってきました。今度は、サインインの状態に合わせてレイアウト上のリンクが変わるようにしましょう。特に、<a class="ref" href="./sign-in-sign-out.html#fig-signin_success_mockup">図8.3</a>のモックアップで示したように、ユーザーがサインインしているときとサインアウトしているときでリンクを変更し、すべてのユーザーを表示するリンクとユーザー設定用のリンクも追加し (<a class="ref" href="./updating-showing-and-deleting-users.html#top">第9章</a>で完成する予定)、さらに現在のユーザーのプロファイルのリンクも追加します。これらを実装することで、<a class="ref" href="./sign-in-sign-out.html#code-signin_success_tests">リスト8.6</a>のテストがパスするようになります。つまり、本章開始以来初めてテストスイート全体が緑色 (成功) になるということです。</p>
 
 <p>サイトレイアウトのリンクを変更するには、埋め込みRubyの内側でif-else分岐構造を使用します。</p>
 
@@ -1274,7 +1274,7 @@
 
 <p>この種のコードでは、<code>signed_in?</code> 論理値が必要になりますので、これから定義しましょう。</p>
 
-<p>ユーザーがサインインしている状態は、セッションに現在のユーザーがいる (<code>current_user</code>が<code>nil</code>でない) ことで表されます。これを表現するには否定の演算子が必要なので、<code>!</code> (&quot;bang&quot; と読みます) を使用します。<a class="ref" href="./sign-in-sign-out#code-signed_in_p">リスト8.23</a>に示すとおり、現在の文脈では<code>current_user</code>が<code>nil</code>で<em>ない</em>場合にユーザーがサインインしています。</p>
+<p>ユーザーがサインインしている状態は、セッションに現在のユーザーがいる (<code>current_user</code>が<code>nil</code>でない) ことで表されます。これを表現するには否定の演算子が必要なので、<code>!</code> (&quot;bang&quot; と読みます) を使用します。<a class="ref" href="./sign-in-sign-out.html#code-signed_in_p">リスト8.23</a>に示すとおり、現在の文脈では<code>current_user</code>が<code>nil</code>で<em>ない</em>場合にユーザーがサインインしています。</p>
 
 <div class="label" id="code-signed_in_p"></div>
 
@@ -1301,7 +1301,7 @@
 </div></div>
 
 
-<p><code>signed_in?</code>メソッドを手作りしてあるので、レイアウトのリンクはすぐに作成できます。なお、新しく作るリンクは4つですが、そのうち以下の2つのリンクは未実装です (<a class="ref" href="./updating-showing-and-deleting-users#top">第9章</a>で完成の予定)。</p>
+<p><code>signed_in?</code>メソッドを手作りしてあるので、レイアウトのリンクはすぐに作成できます。なお、新しく作るリンクは4つですが、そのうち以下の2つのリンクは未実装です (<a class="ref" href="./updating-showing-and-deleting-users.html#top">第9章</a>で完成の予定)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Users&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Settings&quot;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span> <span class="cp">%&gt;</span>
@@ -1309,14 +1309,14 @@
 </div>
 
 
-<p>サインアウトのリンクには、<a class="ref" href="./sign-in-sign-out#code-sessions_resource">リスト8.2</a>で定義したサインアウトのパスを使用します。</p>
+<p>サインアウトのリンクには、<a class="ref" href="./sign-in-sign-out.html#code-sessions_resource">リスト8.2</a>で定義したサインアウトのパスを使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Sign out&quot;</span><span class="p">,</span> <span class="n">signout_path</span><span class="p">,</span> <span class="nb">method</span><span class="p">:</span> <span class="s2">&quot;delete&quot;</span> <span class="cp">%&gt;</span>
 </pre></div>
 </div>
 
 
-<p>(上のコードでは、サインアウトのリンクがハッシュ引数を渡していることにご注目ください。このハッシュ引数は、HTTPの<tt>DELETE</tt>リクエストを使用して送信される必要があることを示しています<sup class="footnote" id="fnref-8_8"><a href="./sign-in-sign-out#fn-8_8">8</a></sup>)。</p>
+<p>(上のコードでは、サインアウトのリンクがハッシュ引数を渡していることにご注目ください。このハッシュ引数は、HTTPの<tt>DELETE</tt>リクエストを使用して送信される必要があることを示しています<sup class="footnote" id="fnref-8_8"><a href="./sign-in-sign-out.html#fn-8_8">8</a></sup>)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Profile&quot;</span><span class="p">,</span> <span class="n">current_user</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -1332,7 +1332,7 @@
 
 <p>Railsでは、このユーザーへの直接リンクが許されるので、この場合<code>current_user</code>は<code>user_path(current_user)</code>に自動的に変換されます。</p>
 
-<p>新しいリンクをレイアウトに追加するときに、Bootstrapの機能を使用してドロップダウンメニューを実現しましょう。詳細については「<a href="http://twitter.github.com/bootstrap/components.html">Bootstrapコンポーネント</a> (英語)」を参照してください。完全なコードを<a class="ref" href="./sign-in-sign-out#code-layout_signin_signout_links">リスト8.24</a>に示します。このコードでは、Bootstrapのドロップダウンメニューに関連するCSSのidとクラスが与えられていることにご注目ください。</p>
+<p>新しいリンクをレイアウトに追加するときに、Bootstrapの機能を使用してドロップダウンメニューを実現しましょう。詳細については「<a href="http://twitter.github.com/bootstrap/components.html">Bootstrapコンポーネント</a> (英語)」を参照してください。完全なコードを<a class="ref" href="./sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>に示します。このコードでは、Bootstrapのドロップダウンメニューに関連するCSSのidとクラスが与えられていることにご注目ください。</p>
 
 <div class="label" id="code-layout_signin_signout_links"></div>
 
@@ -1374,7 +1374,7 @@
 </div></div>
 
 
-<p>ドロップダウンメニューを実現するには、BootstrapのJavaScriptライブラリが必要です。このライブラリは、RailsのAsset Pipelineを使用してインクルードすることができます。そのためには、<a class="ref" href="./sign-in-sign-out#code-bootstrap_js">リスト8.25</a>に示すようにアプリケーションのJavaScriptファイルを編集します。</p>
+<p>ドロップダウンメニューを実現するには、BootstrapのJavaScriptライブラリが必要です。このライブラリは、RailsのAsset Pipelineを使用してインクルードすることができます。そのためには、<a class="ref" href="./sign-in-sign-out.html#code-bootstrap_js">リスト8.25</a>に示すようにアプリケーションのJavaScriptファイルを編集します。</p>
 
 <div class="label" id="code-bootstrap_js"></div>
 
@@ -1390,16 +1390,16 @@
 </div></div>
 
 
-<p>上のコードは、Sprocketsライブラリを使用してBootstrap JavaScriptをインクルードします。<a class="ref" href="./filling-in-the-layout#sec-custom_css">5.1.2</a>で<tt>bootstrap-sass</tt> gemを導入してあるので、これでBootstrapが利用できるようになります。</p>
+<p>上のコードは、Sprocketsライブラリを使用してBootstrap JavaScriptをインクルードします。<a class="ref" href="./filling-in-the-layout.html#sec-custom_css">5.1.2</a>で<tt>bootstrap-sass</tt> gemを導入してあるので、これでBootstrapが利用できるようになります。</p>
 
-<p><a class="ref" href="./sign-in-sign-out#code-layout_signin_signout_links">リスト8.24</a>のコードを使用することで、すべてのテストにパスするはずです。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>のコードを使用することで、すべてのテストにパスするはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
 </div>
 
 
-<p>以上の変更を行ったことで、<a class="ref" href="./sign-in-sign-out#fig-profile_with_signout_link">図8.9</a>に示したように、<a class="ref" href="./sign-in-sign-out#code-layout_signin_signout_links">リスト8.24</a>で定義したドロップダウンメニューがサインインしたユーザーに表示されるようになりました。</p>
+<p>以上の変更を行ったことで、<a class="ref" href="./sign-in-sign-out.html#fig-profile_with_signout_link">図8.9</a>に示したように、<a class="ref" href="./sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>で定義したドロップダウンメニューがサインインしたユーザーに表示されるようになりました。</p>
 
 <div class="label" id="fig-profile_with_signout_link"></div>
 
@@ -1407,7 +1407,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/profile_with_signout_link_bootstrap.png" alt="profile_with_signout_link_bootstrap" /></span></div><div class="caption"><span class="header">図8.9</span><span class="description">サインインしたユーザーにリンクとドロップダウンが表示されるようになった。<a href="../images/figures/profile_with_signout_link_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>この時点で、ブラウザで実際にサインインできることを確認し、続いてブラウザを閉じてから再度サンプルアプリケーションを表示するとサインインしたままになっていることを確認してください。その気になれば、ブラウザのcookiesをブラウザで調べて結果を直接確認することもできます (<a class="ref" href="./sign-in-sign-out#fig-cookie_in_browser">図8.10</a>)。</p>
+<p>この時点で、ブラウザで実際にサインインできることを確認し、続いてブラウザを閉じてから再度サンプルアプリケーションを表示するとサインインしたままになっていることを確認してください。その気になれば、ブラウザのcookiesをブラウザで調べて結果を直接確認することもできます (<a class="ref" href="./sign-in-sign-out.html#fig-cookie_in_browser">図8.10</a>)。</p>
 
 <div class="label" id="fig-cookie_in_browser"></div>
 
@@ -1420,10 +1420,10 @@
 <div class="label" id="sec-signin_upon_signup"></div>
 
 
-<h3><a id="sec-8_2_5" href="./sign-in-sign-out#sec-signin_upon_signup" class="heading"><span class="number">8.2.5</span>ユーザー登録と同時にサインインする</a></h3>
+<h3><a id="sec-8_2_5" href="./sign-in-sign-out.html#sec-signin_upon_signup" class="heading"><span class="number">8.2.5</span>ユーザー登録と同時にサインインする</a></h3>
 
 
-<p>認証機能の基本的な部分はできましたが、ユーザーが登録を行った後、そのユーザーがデフォルトではサインインしておらず、このままではユーザーが混乱する可能性があります。そこで、サインアウトの機能を実装する前にその部分をもう少し作り込みましょう。最初に、認証のテストを追加します (<a class="ref" href="./sign-in-sign-out#code-sign_up_sign_in">リスト8.26</a>)。ここには、<a class="ref" href="./sign-up#sec-signup_exercises">7.6</a>の演習にある<a class="ref" href="./sign-up#code-after_save_tests">リスト7.32</a>でも使った “after saving the user” <code>describe</code>ブロックが含まれています。このリストに対応する演習を行なっていなかった方は、この時点で追加する必要があります。</p>
+<p>認証機能の基本的な部分はできましたが、ユーザーが登録を行った後、そのユーザーがデフォルトではサインインしておらず、このままではユーザーが混乱する可能性があります。そこで、サインアウトの機能を実装する前にその部分をもう少し作り込みましょう。最初に、認証のテストを追加します (<a class="ref" href="./sign-in-sign-out.html#code-sign_up_sign_in">リスト8.26</a>)。ここには、<a class="ref" href="./sign-up.html#sec-signup_exercises">7.6</a>の演習にある<a class="ref" href="./sign-up.html#code-after_save_tests">リスト7.32</a>でも使った “after saving the user” <code>describe</code>ブロックが含まれています。このリストに対応する演習を行なっていなかった方は、この時点で追加する必要があります。</p>
 
 <div class="label" id="code-sign_up_sign_in"></div>
 
@@ -1457,7 +1457,7 @@
 
 <p>上のコードでは、ユーザー登録後にサインインしていることを確認するために、サインアウト用のリンクが表示されているかどうかをテストしています。</p>
 
-<p><a class="ref" href="./sign-in-sign-out#sec-signin_success">8.2</a>で<code>sign_in</code>メソッドを作成してあるので、ユーザーをデータベースに保存した直後に<code>sign_in @user</code>を追加するだけで、ユーザーが実際にサインインしてテストにパスするようになります (<a class="ref" href="./sign-in-sign-out#code-signin_upon_signup">リスト8.27</a>)。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#sec-signin_success">8.2</a>で<code>sign_in</code>メソッドを作成してあるので、ユーザーをデータベースに保存した直後に<code>sign_in @user</code>を追加するだけで、ユーザーが実際にサインインしてテストにパスするようになります (<a class="ref" href="./sign-in-sign-out.html#code-signin_upon_signup">リスト8.27</a>)。</p>
 
 <div class="label" id="code-signin_upon_signup"></div>
 
@@ -1491,12 +1491,12 @@
 <div class="label" id="sec-signing_out"></div>
 
 
-<h3><a id="sec-8_2_6" href="./sign-in-sign-out#sec-signing_out" class="heading"><span class="number">8.2.6</span>サインアウトする</a></h3>
+<h3><a id="sec-8_2_6" href="./sign-in-sign-out.html#sec-signing_out" class="heading"><span class="number">8.2.6</span>サインアウトする</a></h3>
 
 
-<p><a class="ref" href="./sign-in-sign-out#sec-signin_failure">8.1</a>で説明したとおり、このアプリケーションで使用する認証モデルでは、ユーザーは明示的にサインアウトするまでサインインしたままになります。この節では、そのサインアウト機能を追加します。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#sec-signin_failure">8.1</a>で説明したとおり、このアプリケーションで使用する認証モデルでは、ユーザーは明示的にサインアウトするまでサインインしたままになります。この節では、そのサインアウト機能を追加します。</p>
 
-<p>Sessionsコントローラのアクションは、これまでもRESTful慣例に従ってサインインページには<code>new</code>を使用し、サインインの完了には<code>create</code>を使用しました。今回も同様に慣例に従い、セッションの削除 (サインアウト) には<code>destroy</code>を使用します。このことをテストするには、[Sign out] リンクをクリックして、そこにサインイン用のリンクが再び現れるかどうかを確認します (<a class="ref" href="./sign-in-sign-out#code-signout_test">リスト8.28</a>)。</p>
+<p>Sessionsコントローラのアクションは、これまでもRESTful慣例に従ってサインインページには<code>new</code>を使用し、サインインの完了には<code>create</code>を使用しました。今回も同様に慣例に従い、セッションの削除 (サインアウト) には<code>destroy</code>を使用します。このことをテストするには、[Sign out] リンクをクリックして、そこにサインイン用のリンクが再び現れるかどうかを確認します (<a class="ref" href="./sign-in-sign-out.html#code-signout_test">リスト8.28</a>)。</p>
 
 <div class="label" id="code-signout_test"></div>
 
@@ -1528,7 +1528,7 @@
 </div></div>
 
 
-<p>サインインが<code>sign_in</code>関数に依存しているのと同様に、サインアウトでも<code>sign_out</code>関数を単に実行します (<a class="ref" href="./sign-in-sign-out#code-destroy_session">リスト8.29</a>)。</p>
+<p>サインインが<code>sign_in</code>関数に依存しているのと同様に、サインアウトでも<code>sign_out</code>関数を単に実行します (<a class="ref" href="./sign-in-sign-out.html#code-destroy_session">リスト8.29</a>)。</p>
 
 <div class="label" id="code-destroy_session"></div>
 
@@ -1548,7 +1548,7 @@
 </div></div>
 
 
-<p>他の認証用機能と同様に、<code>sign_out</code>もSessionsヘルパーモジュールの中に置きます。実装は極めてシンプルです。現在のユーザーを<code>nil</code>にし、<code>delete</code>メソッドを使用して、cookiesにあるセッションの記憶トークンを削除します (<a class="ref" href="./sign-in-sign-out#code-sign_out_method">リスト8.30</a>)。(直後に<code>destroy</code>アクションにリダイレクトされるので、現在のユーザーを<code>nil</code>にする必要は必ずしもありません。ただし、リダイレクトなしで<code>sign_out</code>を使用したい状況が今後発生するかもしれないので、そのときに役立つでしょう。)</p>
+<p>他の認証用機能と同様に、<code>sign_out</code>もSessionsヘルパーモジュールの中に置きます。実装は極めてシンプルです。現在のユーザーを<code>nil</code>にし、<code>delete</code>メソッドを使用して、cookiesにあるセッションの記憶トークンを削除します (<a class="ref" href="./sign-in-sign-out.html#code-sign_out_method">リスト8.30</a>)。(直後に<code>destroy</code>アクションにリダイレクトされるので、現在のユーザーを<code>nil</code>にする必要は必ずしもありません。ただし、リダイレクトなしで<code>sign_out</code>を使用したい状況が今後発生するかもしれないので、そのときに役立つでしょう。)</p>
 
 <div class="label" id="code-sign_out_method"></div>
 
@@ -1587,7 +1587,7 @@
 <div class="label" id="sec-cucumber"></div>
 
 
-<h2><a id="sec-8_3" href="./sign-in-sign-out#sec-cucumber" class="heading"><span class="number">8.3</span>Cucumberの紹介 (オプション)</a></h2>
+<h2><a id="sec-8_3" href="./sign-in-sign-out.html#sec-cucumber" class="heading"><span class="number">8.3</span>Cucumberの紹介 (オプション)</a></h2>
 
 
 <p>サンプルアプリケーションの認証システムの基礎部分が無事完成したので、この機会に<a href="http://cukes.info">Cucumber</a>を使用したサインインのテスト方法をご紹介します。Cucumberは振舞駆動開発用のツールとして有名で、Rubyコミュニティに多くの愛用者がいます。この節の内容は必須ではありませんので、スキップしても問題ありません。</p>
@@ -1599,10 +1599,10 @@
 <div class="label" id="sec-installation_and_setup"></div>
 
 
-<h3><a id="sec-8_3_1" href="./sign-in-sign-out#sec-installation_and_setup" class="heading"><span class="number">8.3.1</span>インストールと設定</a></h3>
+<h3><a id="sec-8_3_1" href="./sign-in-sign-out.html#sec-installation_and_setup" class="heading"><span class="number">8.3.1</span>インストールと設定</a></h3>
 
 
-<p>Cucumberをインストールするには、最初に<tt>cucumber-rails</tt> gemと<tt>database_cleaner</tt>というユーティリティgemを<code>Gemfile</code>の<code>:test</code>グループに追加します (<a class="ref" href="./sign-in-sign-out#code-cucumber_rails">リスト8.31</a>)。</p>
+<p>Cucumberをインストールするには、最初に<tt>cucumber-rails</tt> gemと<tt>database_cleaner</tt>というユーティリティgemを<code>Gemfile</code>の<code>:test</code>グループに追加します (<a class="ref" href="./sign-in-sign-out.html#code-cucumber_rails">リスト8.31</a>)。</p>
 
 <div class="label" id="code-cucumber_rails"></div>
 
@@ -1645,12 +1645,12 @@
 <div class="label" id="sec-features_and_steps"></div>
 
 
-<h3><a id="sec-8_3_2" href="./sign-in-sign-out#sec-features_and_steps" class="heading"><span class="number">8.3.2</span>フィーチャーとステップ</a></h3>
+<h3><a id="sec-8_3_2" href="./sign-in-sign-out.html#sec-features_and_steps" class="heading"><span class="number">8.3.2</span>フィーチャーとステップ</a></h3>
 
 
 <p>Cucumberでは、<a href="https://github.com/cucumber/gherkin">Gherkin</a> (キュウリ属の植物: ガーキン) と呼ばれるテキストベースの言語を使用して、アプリケーションに期待される振る舞いを記述します。Gherkinで書かれたテストは、ちゃんと書かれたRSpecの例と同じぐらい読みやすくできています。どちらもテキストベースであり、自然な英語に近くRubyコードよりも読みやすいためです。</p>
 
-<p>ここでは、<a class="ref" href="./sign-in-sign-out#code-initial_failing_signin_test">リスト8.5</a>と<a class="ref" href="./sign-in-sign-out#code-signin_success_tests">リスト8.6</a>のサインインのテスト例のサブセットをCucumberで実装してみましょう。最初に、<code>features/</code>ディレクトリ内に<code>signing_in.feature</code>というファイルを作成します。</p>
+<p>ここでは、<a class="ref" href="./sign-in-sign-out.html#code-initial_failing_signin_test">リスト8.5</a>と<a class="ref" href="./sign-in-sign-out.html#code-signin_success_tests">リスト8.6</a>のサインインのテスト例のサブセットをCucumberで実装してみましょう。最初に、<code>features/</code>ディレクトリ内に<code>signing_in.feature</code>というファイルを作成します。</p>
 
 <p>Cucumberのフィーチャーファイルは、以下のようにその機能の簡単な説明から始まります。</p>
 
@@ -1681,7 +1681,7 @@
 </div>
 
 
-<p>これらをまとめたものを<a class="ref" href="./sign-in-sign-out#code-signin_features">リスト8.32</a>に示します。</p>
+<p>これらをまとめたものを<a class="ref" href="./sign-in-sign-out.html#code-signin_features">リスト8.32</a>に示します。</p>
 
 <div class="label" id="code-signin_features"></div>
 
@@ -1776,7 +1776,7 @@
 
 <p>最初のステップでもCapybaraが使用されていますが、その次のステップではCapybaraの<code>page</code>オブジェクトとRSpecが併用されています。見てのとおり、RSpecとCapybaraで行えるテストは、すべてCucumberでも行えます。</p>
 
-<p>残りのステップも同様に進められます。最終的なステップ定義ファイルを<a class="ref" href="./sign-in-sign-out#code-authentication_steps">リスト8.33</a>に示します。ステップを追加したら、以下を実行します。</p>
+<p>残りのステップも同様に進められます。最終的なステップ定義ファイルを<a class="ref" href="./sign-in-sign-out.html#code-authentication_steps">リスト8.33</a>に示します。ステップを追加したら、以下を実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>cucumber features/
 </pre></div>
@@ -1824,7 +1824,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./sign-in-sign-out#code-authentication_steps">リスト8.33</a>のコードにより、以下のCucumberのテストはパスするはずです。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#code-authentication_steps">リスト8.33</a>のコードにより、以下のCucumberのテストはパスするはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>cucumber features/
 </pre></div>
@@ -1836,10 +1836,10 @@
 <div class="label" id="sec-rspec_custom_matchers"></div>
 
 
-<h3><a id="sec-8_3_3" href="./sign-in-sign-out#sec-rspec_custom_matchers" class="heading"><span class="number">8.3.3</span>対比: RSpecのカスタムマッチャー</a></h3>
+<h3><a id="sec-8_3_3" href="./sign-in-sign-out.html#sec-rspec_custom_matchers" class="heading"><span class="number">8.3.3</span>対比: RSpecのカスタムマッチャー</a></h3>
 
 
-<p>簡単なCucumberのシナリオをいくつか紹介したので、それらと同等のRSpecの例と比較してみましょう。まず、<a class="ref" href="./sign-in-sign-out#code-signin_features">リスト8.32</a>のCucumberフィーチャーと、それに対応する<a class="ref" href="./sign-in-sign-out#code-authentication_steps">リスト8.33</a>のステップ定義をもう一度見てみましょう。次に、以下のRSpecリクエストspec (結合テスト) を見てみましょう。</p>
+<p>簡単なCucumberのシナリオをいくつか紹介したので、それらと同等のRSpecの例と比較してみましょう。まず、<a class="ref" href="./sign-in-sign-out.html#code-signin_features">リスト8.32</a>のCucumberフィーチャーと、それに対応する<a class="ref" href="./sign-in-sign-out.html#code-authentication_steps">リスト8.33</a>のステップ定義をもう一度見てみましょう。次に、以下のRSpecリクエストspec (結合テスト) を見てみましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;Authentication&quot;</span> <span class="k">do</span>
 
@@ -1908,7 +1908,7 @@
 </div>
 
 
-<p>このマッチャーは、<a class="ref" href="./filling-in-the-layout#sec-pretty_rspec">5.3.4</a>で<code>full_title</code>テストヘルパーを置いたのと同じユーティリティファイル内で定義することができます。コード自体は以下のようになります。</p>
+<p>このマッチャーは、<a class="ref" href="./filling-in-the-layout.html#sec-pretty_rspec">5.3.4</a>で<code>full_title</code>テストヘルパーを置いたのと同じユーティリティファイル内で定義することができます。コード自体は以下のようになります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="ss">RSpec::Matchers</span><span class="o">.</span><span class="n">define</span> <span class="ss">:have_error_message</span> <span class="k">do</span> <span class="o">|</span><span class="n">message</span><span class="o">|</span>
   <span class="n">match</span> <span class="k">do</span> <span class="o">|</span><span class="n">page</span><span class="o">|</span>
@@ -1930,7 +1930,7 @@
 </div>
 
 
-<p>作成したサポートコードを<a class="ref" href="./sign-in-sign-out#code-have_error_message">リスト8.34</a>に示します (<a class="ref" href="./filling-in-the-layout#sec-layout_exercises">5.6</a>の演習の<a class="ref" href="./filling-in-the-layout#code-full_title_helper_tests">リスト5.38</a>と<a class="ref" href="./filling-in-the-layout#code-rspec_utilities_simplified">リスト5.39</a>の結果を含みます)。 この方法は、Cucumberのステップ定義よりも柔軟であることがわかってきました。特に、マッチャーやshouldヘルパーが<code>valid_signin(user)</code>のように引数を自然に取ることができます。ステップ定義は正規表現マッチャーによって繰り返すことができますが、この手法は一般に厄介なものになりやすいという印象です。</p>
+<p>作成したサポートコードを<a class="ref" href="./sign-in-sign-out.html#code-have_error_message">リスト8.34</a>に示します (<a class="ref" href="./filling-in-the-layout.html#sec-layout_exercises">5.6</a>の演習の<a class="ref" href="./filling-in-the-layout.html#code-full_title_helper_tests">リスト5.38</a>と<a class="ref" href="./filling-in-the-layout.html#code-rspec_utilities_simplified">リスト5.39</a>の結果を含みます)。 この方法は、Cucumberのステップ定義よりも柔軟であることがわかってきました。特に、マッチャーやshouldヘルパーが<code>valid_signin(user)</code>のように引数を自然に取ることができます。ステップ定義は正規表現マッチャーによって繰り返すことができますが、この手法は一般に厄介なものになりやすいという印象です。</p>
 
 <div class="label" id="code-have_error_message"></div>
 
@@ -1954,7 +1954,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./sign-in-sign-out#code-have_error_message">リスト8.34</a>を使用することで、以下のように書くことができます。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#code-have_error_message">リスト8.34</a>を使用することで、以下のように書くことができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_error_message</span><span class="p">(</span><span class="s1">&#39;Invalid&#39;</span><span class="p">)</span> <span class="p">}</span>
 </pre></div>
@@ -1973,12 +1973,12 @@
 </div>
 
 
-<p>テストとサイトの実装を結びつける方法の例は他にも多数あります。現在のテストスイート全般にわたって、カスタムマッチャーとカスタムメソッドを作成してテストと実装の詳細を切り離す作業については、演習に回すことにします (<a class="ref" href="./sign-in-sign-out#sec-sign_in_out_exercises">8.5</a>)。</p>
+<p>テストとサイトの実装を結びつける方法の例は他にも多数あります。現在のテストスイート全般にわたって、カスタムマッチャーとカスタムメソッドを作成してテストと実装の詳細を切り離す作業については、演習に回すことにします (<a class="ref" href="./sign-in-sign-out.html#sec-sign_in_out_exercises">8.5</a>)。</p>
 
-<h2><a id="sec-8_4" href="./sign-in-sign-out#sec-8_4" class="heading"><span class="number">8.4</span>最後に</a></h2>
+<h2><a id="sec-8_4" href="./sign-in-sign-out.html#sec-8_4" class="heading"><span class="number">8.4</span>最後に</a></h2>
 
 
-<p>本章では多くの分野をカバーし、約束どおり、かつて未成熟だったアプリケーションを、ユーザー登録とログインをフル装備したWeサイトに変身させました。認証機能を完成させるためには、サインインの状態とユーザーidに基いてページのアクセスに制限を与える必要もあります。ページごとのアクセス制限機能の実装については、ユーザー情報を編集する機能と、ユーザーをシステムから削除できる権限を管理者に与える機能を実装するときに同時に行う予定です。このアクセス制限は、<a class="ref" href="./updating-showing-and-deleting-users#top">第9章</a>の主な目標でもあります。</p>
+<p>本章では多くの分野をカバーし、約束どおり、かつて未成熟だったアプリケーションを、ユーザー登録とログインをフル装備したWeサイトに変身させました。認証機能を完成させるためには、サインインの状態とユーザーidに基いてページのアクセスに制限を与える必要もあります。ページごとのアクセス制限機能の実装については、ユーザー情報を編集する機能と、ユーザーをシステムから削除できる権限を管理者に与える機能を実装するときに同時に行う予定です。このアクセス制限は、<a class="ref" href="./updating-showing-and-deleting-users.html#top">第9章</a>の主な目標でもあります。</p>
 
 <p>次の章に進む前に、変更をmasterブランチにマージしておきましょう。</p>
 
@@ -2002,7 +2002,7 @@
 <div class="label" id="sec-sign_in_out_exercises"></div>
 
 
-<h2><a id="sec-8_5" href="./sign-in-sign-out#sec-sign_in_out_exercises" class="heading"><span class="number">8.5</span>演習</a></h2>
+<h2><a id="sec-8_5" href="./sign-in-sign-out.html#sec-sign_in_out_exercises" class="heading"><span class="number">8.5</span>演習</a></h2>
 
 
 
@@ -2011,28 +2011,28 @@
 
 <li><code>form_for</code>の代わりに<code>form_tag</code>を使用して、サインインフォームをリファクタリングしてください。テストスイートが以前と同様にパスすることも確認してください。<em>ヒント</em>: RailsCastの「<a href="http://railscasts.com/episodes/270-authentication-in-rails-3-1">Rails 3.1における認証</a> (英語)」を参照してください。特に、<code>params</code>ハッシュの構造の変更にご注目ください。</li>
 
-<li><a class="ref" href="./sign-in-sign-out#sec-rspec_custom_matchers">8.3.3</a>の例に従い、ユーザー用リクエストspecと認証リクエストspec (<code>spec/requests</code>ディレクトリの下にあるファイル) を見直し、<code>spec/support/utilities.rb</code>でユーティリティ関数を定義して、テストを実装から切り離してください。<em>課外活動:</em> サポートコードを独立したファイルとモジュールに再編成し、specヘルパーファイルでそれらのモジュールを適切にインクルードしてすべて動作するようにしてください。</li>
+<li><a class="ref" href="./sign-in-sign-out.html#sec-rspec_custom_matchers">8.3.3</a>の例に従い、ユーザー用リクエストspecと認証リクエストspec (<code>spec/requests</code>ディレクトリの下にあるファイル) を見直し、<code>spec/support/utilities.rb</code>でユーティリティ関数を定義して、テストを実装から切り離してください。<em>課外活動:</em> サポートコードを独立したファイルとモジュールに再編成し、specヘルパーファイルでそれらのモジュールを適切にインクルードしてすべて動作するようにしてください。</li>
 
 </ol>
 
 
 
 
-<div class="navigation">  <a class="prev_page" href="./sign-up#top">
-</a><a class="prev_page" href="./sign-up#top">    « <span class="number">第7章</span>ユーザー登録</a><a class="prev_page" href="./sign-up#top">  </a>
-  <a class="next_page" href="./updating-showing-and-deleting-users#top">
-</a><a class="next_page" href="./updating-showing-and-deleting-users#top">    <span class="number">第9章</span> ユーザーの更新表示削除 »
-</a><a class="next_page" href="./updating-showing-and-deleting-users#top">  </a>
+<div class="navigation">  <a class="prev_page" href="./sign-up.html#top">
+</a><a class="prev_page" href="./sign-up.html#top">    « <span class="number">第7章</span>ユーザー登録</a><a class="prev_page" href="./sign-up.html#top">  </a>
+  <a class="next_page" href="./updating-showing-and-deleting-users.html#top">
+</a><a class="next_page" href="./updating-showing-and-deleting-users.html#top">    <span class="number">第9章</span> ユーザーの更新表示削除 »
+</a><a class="next_page" href="./updating-showing-and-deleting-users.html#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-8_1">他に、一定時間が経過するとセッションを期限切れにするモデルもあります。このモデルは、インターネットバンキングや金融取引口座などの重要な情報を扱うWebサイトに向いています。<a class="arrow" href="./sign-in-sign-out#fnref-8_1">↑</a></li>
-<li id="fn-8_2">画像は<a href="http://www.flickr.com/photos/hermanusbackpackers/3343254977/">http://www.flickr.com/photos/hermanusbackpackers/3343254977/</a>からの引用です。<a class="arrow" href="./sign-in-sign-out#fnref-8_2">↑</a></li>
-<li id="fn-8_3">このメソッドは、RailsCastの「<a href="http://railscasts.com/episodes/274-remember-me-reset-password">remember me</a>」の記事を元に選びました。<a class="arrow" href="./sign-in-sign-out#fnref-8_3">↑</a></li>
-<li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Rails Guidesの「<a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html">コールバックについて</a> (英語)」を参照してください。<a class="arrow" href="./sign-in-sign-out#fnref-8_4">↑</a></li>
-<li id="fn-8_5">実は、この2つは完全に同等です。<code>attr_accessor</code>は、単にゲッターメソッドやセッターメソッドを自動的に作成する便利な方法でしかありません。<a class="arrow" href="./sign-in-sign-out#fnref-8_5">↑</a></li>
-<li id="fn-8_6">通常、これは初期値が<code>nil</code>である変数への代入を意味しますが、<code>false</code>値も<code>||=</code>演算子によって上書きされることにご注意ください。<a class="arrow" href="./sign-in-sign-out#fnref-8_6">↑</a></li>
-<li id="fn-8_7">これは、<a class="ref" href="./modeling-users#sidebar-let">コラム 6.3</a>で説明した<em>メモ化 (memoization) </em>の例になっています。<a class="arrow" href="./sign-in-sign-out#fnref-8_7">↑</a></li>
-<li id="fn-8_8">Webブラウザは実際には<tt>DELETE</tt>リクエストを発行できないので、RailsではJavaScriptを使用してこのリクエストを偽造します。<a class="arrow" href="./sign-in-sign-out#fnref-8_8">↑</a></li>
+<li id="fn-8_1">他に、一定時間が経過するとセッションを期限切れにするモデルもあります。このモデルは、インターネットバンキングや金融取引口座などの重要な情報を扱うWebサイトに向いています。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_1">↑</a></li>
+<li id="fn-8_2">画像は<a href="http://www.flickr.com/photos/hermanusbackpackers/3343254977/">http://www.flickr.com/photos/hermanusbackpackers/3343254977/</a>からの引用です。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_2">↑</a></li>
+<li id="fn-8_3">このメソッドは、RailsCastの「<a href="http://railscasts.com/episodes/274-remember-me-reset-password">remember me</a>」の記事を元に選びました。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_3">↑</a></li>
+<li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Rails Guidesの「<a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html">コールバックについて</a> (英語)」を参照してください。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_4">↑</a></li>
+<li id="fn-8_5">実は、この2つは完全に同等です。<code>attr_accessor</code>は、単にゲッターメソッドやセッターメソッドを自動的に作成する便利な方法でしかありません。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_5">↑</a></li>
+<li id="fn-8_6">通常、これは初期値が<code>nil</code>である変数への代入を意味しますが、<code>false</code>値も<code>||=</code>演算子によって上書きされることにご注意ください。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_6">↑</a></li>
+<li id="fn-8_7">これは、<a class="ref" href="./modeling-users.html#sidebar-let">コラム 6.3</a>で説明した<em>メモ化 (memoization) </em>の例になっています。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_7">↑</a></li>
+<li id="fn-8_8">Webブラウザは実際には<tt>DELETE</tt>リクエストを発行できないので、RailsではJavaScriptを使用してこのリクエストを偽造します。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_8">↑</a></li>
 </ol>
 </div>
 
