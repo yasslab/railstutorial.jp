@@ -22,10 +22,9 @@ Icon
 *.pdf
 *~
 *.pyc
-#*
 *#
 *.out
 .DS_Store
 config.json
 .#*
-main.sh
+*.sh
