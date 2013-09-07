@@ -1278,12 +1278,12 @@
   <span class="n">desc</span> <span class="s2">&quot;Fill database with sample data&quot;</span>
   <span class="n">task</span> <span class="ss">populate:</span> <span class="ss">:environment</span> <span class="k">do</span>
     <span class="no">User</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span>
-                 <span class="ss">email:</span> <span class="s2">&quot;example@railstutorial.org&quot;</span><span class="p">,</span>
+                 <span class="ss">email:</span> <span class="s2">&quot;example@railstutorial.jp&quot;</span><span class="p">,</span>
                  <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span>
                  <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
     <span class="mi">99</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
       <span class="nb">name</span>  <span class="o">=</span> <span class="ss">Faker::Name</span><span class="o">.</span><span class="n">name</span>
-      <span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;example-</span><span class="si">#{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">@railstutorial.org&quot;</span>
+      <span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;example-</span><span class="si">#{</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">@railstutorial.jp&quot;</span>
       <span class="n">password</span>  <span class="o">=</span> <span class="s2">&quot;password&quot;</span>
       <span class="no">User</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="nb">name</span><span class="p">,</span>
                    <span class="ss">email:</span> <span class="n">email</span><span class="p">,</span>
@@ -1774,7 +1774,7 @@
   <span class="n">desc</span> <span class="s2">&quot;Fill database with sample data&quot;</span>
   <span class="n">task</span> <span class="ss">populate:</span> <span class="ss">:environment</span> <span class="k">do</span>
     <span class="n">admin</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span>
-                         <span class="ss">email:</span> <span class="s2">&quot;example@railstutorial.org&quot;</span><span class="p">,</span>
+                         <span class="ss">email:</span> <span class="s2">&quot;example@railstutorial.jp&quot;</span><span class="p">,</span>
                          <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span>
                          <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
     <span class="n">admin</span><span class="o">.</span><span class="n">toggle!</span><span class="p">(</span><span class="ss">:admin</span><span class="p">)</span>

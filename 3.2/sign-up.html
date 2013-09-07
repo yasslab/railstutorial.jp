@@ -644,7 +644,7 @@
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">first</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span><span class="o">.</span><span class="n">update_attributes</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span>
-<span class="gp">?</span><span class="gp">&gt; </span>                       <span class="ss">email:</span> <span class="s2">&quot;example@railstutorial.org&quot;</span><span class="p">,</span>
+<span class="gp">?</span><span class="gp">&gt; </span>                       <span class="ss">email:</span> <span class="s2">&quot;example@railstutorial.jp&quot;</span><span class="p">,</span>
 <span class="gp">?</span><span class="gp">&gt; </span>                       <span class="ss">password:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">,</span>
 <span class="gp">?</span><span class="gp">&gt; </span>                       <span class="ss">password_confirmation:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">)</span>
 <span class="go">=&gt; true</span>
@@ -652,7 +652,7 @@
 </div>
 
 
-<p>ここではユーザーのメールアドレスに <code>example@railstutorial.org</code> を使用しました (<a class="ref" href="./sign-up.html#fig-profile_custom_gravatar">図7.8</a>)。このメールアドレスはRailsチュートリアルのロゴでも使用されています。</p>
+<p>ここではユーザーのメールアドレスに <code>example@railstutorial.jp</code> を使用しました (<a class="ref" href="./sign-up.html#fig-profile_custom_gravatar">図7.8</a>)。このメールアドレスはRailsチュートリアルのロゴでも使用されています。</p>
 
 <div class="label" id="fig-profile_custom_gravatar"></div>
 
@@ -1678,7 +1678,7 @@
 <h3><a id="sec-7_4_3" href="./sign-up.html#sec-the_first_signup" class="heading"><span class="number">7.4.3</span>実際のユーザー登録</a></h3>
 
 
-<p>ついに、ユーザー登録が完成しました。名前: “Rails Tutorial”、メールアドレス: “<tt>example@railstutorial.org</tt>”とでも登録してみましょう。登録結果 (<a class="ref" href="./sign-up.html#fig-signup_flash">図7.20</a>)にはユーザー登録成功を示すウェルカムメッセージが、<code>success</code>クラスのさわやかな緑色の背景で表示されています。このクラスは<a class="ref" href="./filling-in-the-layout.html#sec-custom_css">5.1.2</a>のBootstrap CSSフレームワークのものです。(もしメールアドレスが既に使用されているというメッセージが表示されたら、<a class="ref" href="./sign-up.html#sec-signup_form">7.2</a>でやったようにRakeの<code>db:reset</code>を実行してデータベースをリセットしてください)。ユーザー表示ページを再度読み込むと、今度はフラッシュメッセージは表示されなくなりました (<a class="ref" href="./sign-up.html#fig-signup_flash_reloaded">図7.21</a>)。</p>
+<p>ついに、ユーザー登録が完成しました。名前: “Rails Tutorial”、メールアドレス: “<tt>example@railstutorial.jp</tt>”とでも登録してみましょう。登録結果 (<a class="ref" href="./sign-up.html#fig-signup_flash">図7.20</a>)にはユーザー登録成功を示すウェルカムメッセージが、<code>success</code>クラスのさわやかな緑色の背景で表示されています。このクラスは<a class="ref" href="./filling-in-the-layout.html#sec-custom_css">5.1.2</a>のBootstrap CSSフレームワークのものです。(もしメールアドレスが既に使用されているというメッセージが表示されたら、<a class="ref" href="./sign-up.html#sec-signup_form">7.2</a>でやったようにRakeの<code>db:reset</code>を実行してデータベースをリセットしてください)。ユーザー表示ページを再度読み込むと、今度はフラッシュメッセージは表示されなくなりました (<a class="ref" href="./sign-up.html#fig-signup_flash_reloaded">図7.21</a>)。</p>
 
 <div class="label" id="fig-signup_flash"></div>
 
@@ -1697,8 +1697,8 @@
 <p>今度はデータベースを覗いて、新規ユーザーが確かに登録されていることをダブルチェックしましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
-<span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">find_by_email</span><span class="p">(</span><span class="s2">&quot;example@railstutorial.org&quot;</span><span class="p">)</span>
-<span class="go">=&gt; #&lt;User id: 1, name: &quot;Rails Tutorial&quot;, email: &quot;example@railstutorial.org&quot;,</span>
+<span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">find_by_email</span><span class="p">(</span><span class="s2">&quot;example@railstutorial.jp&quot;</span><span class="p">)</span>
+<span class="go">=&gt; #&lt;User id: 1, name: &quot;Rails Tutorial&quot;, email: &quot;example@railstutorial.jp&quot;,</span>
 <span class="go">created_at: &quot;2011-12-13 05:51:34&quot;, updated_at: &quot;2011-12-13 05:51:34&quot;,</span>
 <span class="go">password_digest: &quot;$2a$10$A58/j7wwh3aAffGkMAO9Q.jjh3jshd.6akh...&quot;</span><span class="go">&gt;</span>
 </pre></div>
