@@ -1,10 +1,5 @@
 # Ruby on Rails チュートリアル
 
-## 重要なお知らせ
-
-### [fork 元](https://github.com/mhartl/rails_tutorial_translation_2nd_ed)に Pull Request を送信する予定が無く、また、複数のバージョン (Rails 3.2, Rails 4.0, etc.) の日本語訳を１つのリポジトリにまとめたいので、最新版は [yasulab/railstutorial.jp](https://github.com/yasulab/railstutorial.jp) に移行しました。現在は、そこで日本語訳のリポジトリを一括して管理しています。
-
-
 ## はじめに
 
 [本家サイトのリポジトリ](https://github.com/mhartl/rails_tutorial_translation_2nd_ed) と同様に、[Ruby on Rails チュートリアル](http://railstutorial.jp/) で使われている HTML や CSS、画像ファイル等を公開しています。
