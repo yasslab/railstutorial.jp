@@ -249,7 +249,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>さっそく動的なページを作ってみましょう。まずは、<a class="ref" href="./beginning.html#sec-git_commands">1.3.5</a>で紹介したように、Gitを使ってトピックブランチを作ります。今回のように新しい機能やページを作成するときは、masterブランチではなくトピックブランチで作業するのがよいでしょう。Git でバージョン管理をしている場合は、次のコマンドでトピックブランチを作成してください。</p>
+<p>さっそく静的なページを作ってみましょう。まずは、<a class="ref" href="./beginning.html#sec-git_commands">1.3.5</a>で紹介したように、Gitを使ってトピックブランチを作ります。今回のように新しい機能やページを作成するときは、masterブランチではなくトピックブランチで作業するのがよいでしょう。Git でバージョン管理をしている場合は、次のコマンドでトピックブランチを作成してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git checkout -b static-pages
 </pre></div>
@@ -2061,7 +2061,7 @@ bundler_stubs/
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト3.39</span> <span class="description">Spork向けに<code>Guardfile</code>を更新する。</span> </div>
+<div class="listing"><span class="header">リスト3.39</span> <span class="description">Spork向けに更新した<code>Guardfile</code>。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;active_support/inflector&#39;</span>
 
 <span class="n">guard</span> <span class="s1">&#39;spork&#39;</span><span class="p">,</span> <span class="ss">:cucumber_env</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s1">&#39;RAILS_ENV&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span> <span class="p">},</span>
