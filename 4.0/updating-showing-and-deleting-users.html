@@ -29,7 +29,7 @@
 <h2><a id="sec-9_1" href="./updating-showing-and-deleting-users.html#sec-updating_users" class="heading"><span class="number">9.1</span>ユーザーを更新する</a></h2>
 
 
-<p>ユーザー情報を編集するパターンは、(<a class="ref" href="./sign-up.html#top">第7章</a>)の新規ユーザーの作成ときわめて似通っています。新規ユーザー用のビューを出力する<code>new</code>アクションの代わりに、ユーザーを編集するための<code>edit</code>アクションを作成すればよいのです。 <tt>POST</tt>リクエストに応答する<code>create</code>の代わりに、<tt>PATCH</tt>リクエストに応答する<code>update</code>アクションを作成すればよいのです (<a class="ref" href="./static-pages.html#sidebar-get_etc">コラム 3.3</a>)。最大の違いは、ユーザー登録は誰でも実行できますが、ユーザー情報を更新できるのはそのユーザー自身に限られるということです。つまり、アクセス制御を行なって、認可された (authorized) ユーザーだけが編集と更新を行えるようにすればよいということです。<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>の認証 (authentication) システムを使えば、<em>before_filter</em>を使用してこれを行えます。</p>
+<p>ユーザー情報を編集するパターンは、(<a class="ref" href="./sign-up.html#top">第7章</a>)の新規ユーザーの作成ときわめて似通っています。新規ユーザー用のビューを出力する<code>new</code>アクションの代わりに、ユーザーを編集するための<code>edit</code>アクションを作成すればよいのです。 <tt>POST</tt>リクエストに応答する<code>create</code>の代わりに、<tt>PATCH</tt>リクエストに応答する<code>update</code>アクションを作成すればよいのです (<a class="ref" href="./static-pages.html#sidebar-get_etc">コラム 3.3</a>)。最大の違いは、ユーザー登録は誰でも実行できますが、ユーザー情報を更新できるのはそのユーザー自身に限られるということです。つまり、アクセス制御を行なって、認可された (authorized) ユーザーだけが編集と更新を行えるようにすればよいということです。<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>の認証 (authentication) システムを使えば、<em>before_action</em>を使用してこれを行えます。</p>
 
 <div class="label" id="sec-edit_form"></div>
 
@@ -430,13 +430,12 @@
 <p>テストにパスする必要のある、<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_update_specs">リスト9.9</a>の<code>update</code>アクションは、<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_update_action">リスト9.10</a>に示したように、<code>create</code>アクション (<a class="ref" href="./sign-in-sign-out.html#code-signin_upon_signup">リスト8.27</a>) の最終的なフォームとほぼ同じです。 変更すべき点は、以下を</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">flash</span><span class="o">[</span><span class="ss">:success</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Profile updated&quot;</span>
-<span class="n">sign_in</span> <span class="vi">@user</span>
 <span class="n">redirect_to</span> <span class="vi">@user</span>
 </pre></div>
 </div>
 
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-user_update_action_unsuccessful">リスト9.8</a>のコードに追加するだけで済みます。ここで、プロファイルの更新が成功した後には、続けてこのユーザーへのサインインを行う必要があることに注意してください。その理由は、ユーザーが保存された時点で (<a class="ref" href="./sign-in-sign-out.html#code-before_create_remember_token">リスト8.18</a>) 情報記憶用のトークン (remember token) がリセットされ、セッションが無効になってしまうためです (<a class="ref" href="./sign-in-sign-out.html#code-current_user_working">リスト8.22</a>)。これはセキュリティ上望ましい動作です。なぜなら、たとえセッションがハイジャックされるようなことがあったとしても、ユーザー情報が変更されると同時にセッションが必ず期限切れになるためです。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-user_update_action_unsuccessful">リスト9.8</a>のコードに追加するだけで済みます。</p>
 
 <div class="label" id="code-user_update_action"></div>
 
@@ -451,7 +450,6 @@
     <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
     <span class="k">if</span> <span class="vi">@user</span><span class="o">.</span><span class="n">update_attributes</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
       <span class="n">flash</span><span class="o">[</span><span class="ss">:success</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Profile updated&quot;</span>
-      <span class="n">sign_in</span> <span class="vi">@user</span>
       <span class="n">redirect_to</span> <span class="vi">@user</span>
     <span class="k">else</span>
       <span class="n">render</span> <span class="s1">&#39;edit&#39;</span>
@@ -556,13 +554,13 @@
 </div>
 
 
-<p>認可のアプリケーションコードでは、<em>before_filter</em>を使用して、与えられたアクションが呼び出される前に特定のメソッド向けの操作を行うことができます。ユーザーにサインインを要求するために、<a class="ref" href="./updating-showing-and-deleting-users.html#code-authorize_before_filter">リスト9.12</a>のように<code>signed_in_user</code>メソッドを定義して<code>before_action :signed_in_user</code>という形式で呼び出します。</p>
+<p>認可のアプリケーションコードでは、<em>before_action</em>を使用して、与えられたアクションが呼び出される前に特定のメソッド向けの操作を行うことができます。(この操作は、かつて &quot;before_filter&quot; と呼ばれていました。しかし、コントローラの特定のアクションの前に操作が実行されることを明示的にするため、Rails のコアチームによって &quot;before_action&quot; に改名されました。)  ユーザーにサインインを要求するために、<a class="ref" href="./updating-showing-and-deleting-users.html#code-authorize_before_filter">リスト9.12</a>のように<code>signed_in_user</code>メソッドを定義して<code>before_action :signed_in_user</code>という形式で呼び出します。</p>
 
 <div class="label" id="code-authorize_before_filter"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.12</span> <span class="description">before_filterに<code>signed_in_user</code>を追加する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.12</span> <span class="description">before_actionに<code>signed_in_user</code>を追加する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
   <span class="o">.</span>
@@ -575,7 +573,7 @@
                                    <span class="ss">:password_confirmation</span><span class="p">)</span>
     <span class="k">end</span>
 
-    <span class="c1"># Before filters</span>
+    <span class="c1"># Before actions</span>
 
     <span class="k">def</span> <span class="nf">signed_in_user</span>
       <span class="n">redirect_to</span> <span class="n">signin_url</span><span class="p">,</span> <span class="ss">notice:</span> <span class="s2">&quot;Please sign in.&quot;</span> <span class="k">unless</span> <span class="n">signed_in?</span>
@@ -585,7 +583,7 @@
 </div></div>
 
 
-<p>デフォルトでは、before_filterはコントローラ内の<em>すべての</em>アクションに適用されるので、ここでは<code>:only</code>オプションハッシュを渡すことによって<code>:edit</code>と<code>:update</code>アクションにのみこのフィルタが適用されるように制限をかけています。</p>
+<p>デフォルトでは、before_actionはコントローラ内の<em>すべての</em>アクションに適用されるので、ここでは<code>:only</code>オプションハッシュを渡すことによって<code>:edit</code>と<code>:update</code>アクションにのみこのフィルタが適用されるように制限をかけています。</p>
 
 <p><a class="ref" href="./updating-showing-and-deleting-users.html#code-authorize_before_filter">リスト9.12</a>では、<code>redirect_to</code>にオプションハッシュを渡すことによって、<code>flash[:notice]</code>の記述を簡素化していることにご注目ください。<a class="ref" href="./updating-showing-and-deleting-users.html#code-authorize_before_filter">リスト9.12</a>のその箇所をもっと冗長に書くと以下のようになります。</p>
 
@@ -662,7 +660,7 @@
 <h3><a id="sec-9_2_2" href="./updating-showing-and-deleting-users.html#sec-requiring_the_right_user" class="heading"><span class="number">9.2.2</span>正しいユーザーを要求する</a></h3>
 
 
-<p>当然のことですが、サインインを要求するだけでは十分ではありません。ユーザーが<em>自分自身の</em>情報以外の他ユーザーの情報を編集できないようにする必要もあります。これをテストするには、無効なユーザーとしてサインインしてから、<code>edit</code>アクションと <code>update</code>アクションにアクセスします (<a class="ref" href="./updating-showing-and-deleting-users.html#code-edit_update_wrong_user_tests">リスト9.14</a>)。ここで、ユーザーは他のユーザーのプロファイルを編集<em>しようとする</em>ことすらできないようにしないといけないという点にご注意ください。そこで、そのような場合にはユーザーをサインインページではなくルートURLに移動します。</p>
+<p>当然のことですが、サインインを要求するだけでは十分ではありません。ユーザーが<em>自分自身の</em>情報以外の他ユーザーの情報を編集できないようにする必要もあります。これをテストするには、無効なユーザーとしてサインインしてから、<code>edit</code>アクションと <code>update</code>アクションにアクセスします (<a class="ref" href="./updating-showing-and-deleting-users.html#code-edit_update_wrong_user_tests">リスト9.14</a>)。このとき、今回は Capybara を使わずにテストしているため (<code>no_capybara: true</code>)、<code>get</code> や <code>patch</code> メソッドを使って <code>edit</code> や <code>update</code> アクションに直接アクセスしていることに注意してください。また、ユーザーは他のユーザーのプロファイルを編集<em>しようとする</em>ことすらできないようにしないといけません。そのため、そのような不正なアクセスを検出したら、サインインページではなくルートURLにリダイレクトさせなくてはいけません。</p>
 
 <div class="label" id="code-edit_update_wrong_user_tests"></div>
 
@@ -684,9 +682,10 @@
       <span class="n">let</span><span class="p">(</span><span class="ss">:wrong_user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;wrong@example.com&quot;</span><span class="p">)</span> <span class="p">}</span>
       <span class="n">before</span> <span class="p">{</span> <span class="n">sign_in</span> <span class="n">user</span><span class="p">,</span> <span class="ss">no_capybara:</span> <span class="kp">true</span> <span class="p">}</span>
 
-      <span class="n">describe</span> <span class="s2">&quot;visiting Users#edit page&quot;</span> <span class="k">do</span>
-        <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">edit_user_path</span><span class="p">(</span><span class="n">wrong_user</span><span class="p">)</span> <span class="p">}</span>
-        <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">have_title</span><span class="p">(</span><span class="n">full_title</span><span class="p">(</span><span class="s1">&#39;Edit user&#39;</span><span class="p">))</span> <span class="p">}</span>
+      <span class="n">describe</span> <span class="s2">&quot;submitting a GET request to the Users#edit action&quot;</span> <span class="k">do</span>
+        <span class="n">before</span> <span class="p">{</span> <span class="n">get</span> <span class="n">edit_user_path</span><span class="p">(</span><span class="n">wrong_user</span><span class="p">)</span> <span class="p">}</span>
+        <span class="n">specify</span> <span class="p">{</span> <span class="n">expect(response.body).not_to match(full_title</span><span class="p">(</span><span class="s1">&#39;Edit user&#39;</span><span class="p">))</span> <span class="p">}</span>
+        <span class="n">specify</span> <span class="p">{</span> <span class="n">expect(response).to redirect_to</span><span class="p">(</span><span class="n">root_url</span><span class="p">)</span> <span class="p">}</span>
       <span class="k">end</span>
 
       <span class="n">describe</span> <span class="s2">&quot;submitting a PATCH request to the Users#update action&quot;</span> <span class="k">do</span>
@@ -709,13 +708,13 @@
 
 <p>上のコードは、作成するユーザーのメールアドレスをデフォルトと異なるものに変更します。このテストでは、元のユーザーが別のユーザーの<code>edit</code>アクションや<code>update</code>アクションにアクセスできないことを確認します。</p>
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-correct_user_before_filter">リスト9.15</a>のアプリケーションコードでは、<code>correct_user</code>メソッドを呼び出すためにbefore_filterをもう1つ追加しています。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-correct_user_before_filter">リスト9.15</a>のアプリケーションコードでは、<code>correct_user</code>メソッドを呼び出すためにbefore_actionをもう1つ追加しています。</p>
 
 <div class="label" id="code-correct_user_before_filter"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.15</span> <span class="description">edit/updateページを保護するための<code>correct_user</code> before_filter。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.15</span> <span class="description">edit/updateページを保護するための<code>correct_user</code> before_action。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
   <span class="n">before_action</span> <span class="ss">:correct_user</span><span class="p">,</span>   <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
@@ -728,7 +727,6 @@
   <span class="k">def</span> <span class="nf">update</span>
     <span class="k">if</span> <span class="vi">@user</span><span class="o">.</span><span class="n">update_attributes</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
       <span class="n">flash</span><span class="o">[</span><span class="ss">:success</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;Profile updated&quot;</span>
-      <span class="n">sign_in</span> <span class="vi">@user</span>
       <span class="n">redirect_to</span> <span class="vi">@user</span>
     <span class="k">else</span>
       <span class="n">render</span> <span class="s1">&#39;edit&#39;</span>
@@ -744,7 +742,7 @@
                                    <span class="ss">:password_confirmation</span><span class="p">)</span>
     <span class="k">end</span>
 
-    <span class="c1"># Before filters</span>
+    <span class="c1"># Before actions</span>
 
     <span class="k">def</span> <span class="nf">signed_in_user</span>
       <span class="n">redirect_to</span> <span class="n">signin_url</span><span class="p">,</span> <span class="ss">notice:</span> <span class="s2">&quot;Please sign in.&quot;</span> <span class="k">unless</span> <span class="n">signed_in?</span>
@@ -795,7 +793,7 @@
 </div>
 
 
-<p>このコードは<code>update</code>アクションでも同様でした。しかし既に<code>correct_user</code> before_filterで<code>@user</code>を定義したので、updateアクションとeditアクションからこのコードを削除できました。</p>
+<p>このコードは<code>update</code>アクションでも同様でした。しかし既に<code>correct_user</code> before_actionで<code>@user</code>を定義したので、updateアクションとeditアクションからこのコードを削除できました。</p>
 
 <p>以下を実行してテストスイートがパスすることを確認してから先に進むことにしましょう。</p>
 
@@ -886,13 +884,13 @@
 
 <p>ここで、リダイレクト先を保存するメカニズムは、Railsが提供する<code>session</code>機能を使用しています。これは、<a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>で説明した、ブラウザを閉じたときに自動的に破棄される<code>cookies</code>変数のインスタンスと同様のものと考えていただければよいでしょう。また、<code>url</code> (ここではリクエストされたページのURL) の取得には<code>request</code>オブジェクトを使用しています。<code>store_location</code>メソッドでは、リクエストされたURLを<code>:return_to</code>というキーで<code>session</code>変数に保存しています。</p>
 
-<p><code>store_location</code>メソッドを使用するためには、<a class="ref" href="./updating-showing-and-deleting-users.html#code-add_store_location">リスト9.19</a>のようにこのメソッドを<code>signed_in_user</code> before_filterに追加しておく必要があります。</p>
+<p><code>store_location</code>メソッドを使用するためには、<a class="ref" href="./updating-showing-and-deleting-users.html#code-add_store_location">リスト9.19</a>のようにこのメソッドを<code>signed_in_user</code> before_actionに追加しておく必要があります。</p>
 
 <div class="label" id="code-add_store_location"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.19</span> <span class="description"><code>store_location</code>メソッドを、サインインしたユーザーのbefore_filterに追加する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.19</span> <span class="description"><code>store_location</code>メソッドを、サインインしたユーザーのbefore_actionに追加する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
   <span class="n">before_action</span> <span class="ss">:correct_user</span><span class="p">,</span>   <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
@@ -911,7 +909,7 @@
                                    <span class="ss">:password_confirmation</span><span class="p">)</span>
     <span class="k">end</span>
 
-    <span class="c1"># Before filters</span>
+    <span class="c1"># Before actions</span>
 
     <span class="k">def</span> <span class="nf">signed_in_user</span>
       <span class="k">unless</span> <span class="n">signed_in?</span>
@@ -1036,7 +1034,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-signed_in_user_index">リスト9.22</a>にアプリケーションのコードを示しました。ここでは、<code>signed_in_user</code> before_filterで保護するアクションのリストに<code>index</code>を追加するだけです。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-signed_in_user_index">リスト9.22</a>にアプリケーションのコードを示しました。ここでは、<code>signed_in_user</code> before_actionで保護するアクションのリストに<code>index</code>を追加するだけです。</p>
 
 <div class="label" id="code-signed_in_user_index"></div>
 
@@ -1998,7 +1996,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/index_delete_links_rails_3_bootstrap.png" alt="index_delete_links_rails_3_bootstrap" /></span></div><div class="caption"><span class="header">図9.14</span><span class="description">ユーザーインデックス<a href="http://localhost:3000/users">/users</a>に削除リンクが表示されている。<a href="../images/figures/index_delete_links_rails_3_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>この削除リンクが動作するためには、<code>destroy</code>アクション (<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>) を追加する必要があります。このアクションでは、該当するユーザーを見つけてActive Recordの<code>destroy</code>メソッドを使用して削除し、最後にユーザーインデックスに移動します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-destroy_action">リスト9.46</a>)。<code>signed_in_user</code> before_filterに追加したことにも注目してください。</p>
+<p>この削除リンクが動作するためには、<code>destroy</code>アクション (<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>) を追加する必要があります。このアクションでは、該当するユーザーを見つけてActive Recordの<code>destroy</code>メソッドを使用して削除し、最後にユーザーインデックスに移動します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-destroy_action">リスト9.46</a>)。なお、このとき、<code>:destroy</code> も <code>signed_in_user</code> の before_action に追加しています。</p>
 
 <div class="label" id="code-destroy_action"></div>
 
@@ -2067,13 +2065,13 @@
 
 <p>原則に従えば、ここにはまだ小さなセキュリティホールが残っています。管理者がやろうと思えば、<tt>DELETE</tt>リクエストをコマンドラインで直接発行して自分自身を削除できてしまいます。単なる管理者の自業自得ではないかという考えもあるかと思いますが、こういう事故を未然に防ぐに越したことはありません。この対策については演習の課題に回します (<a class="ref" href="./updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>)。</p>
 
-<p>上のテストに対応するアプリケーションコードではbefore_filterを使用していますが、ここでも同じように<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用します。変更後の<code>admin_user</code> before_filterを<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト9.47</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードではbefore_actionを使用していますが、ここでも同じように<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用します。変更後の<code>admin_user</code> before_actionを<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト9.47</a>に示します。</p>
 
 <div class="label" id="code-admin_destroy_before_filter"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.47</span> <span class="description"><code>destroy</code>アクションから管理者へのアクセスを制限するbefore_filter。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.47</span> <span class="description"><code>destroy</code>アクションから管理者へのアクセスを制限するbefore_action。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:index</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
   <span class="n">before_action</span> <span class="ss">:correct_user</span><span class="p">,</span>   <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
@@ -2161,20 +2159,20 @@
 <span class="n">gem</span> <span class="s1">&#39;bootstrap-will_paginate&#39;</span><span class="p">,</span> <span class="s1">&#39;0.0.9&#39;</span>
 
 <span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
-  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.7&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.8&#39;</span>
   <span class="n">gem</span> <span class="s1">&#39;rspec-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.13.1&#39;</span>
   <span class="c1"># The following optional lines are part of the advanced setup.</span>
   <span class="c1"># gem &#39;guard-rspec&#39;, &#39;2.5.0&#39;</span>
-  <span class="c1"># gem &#39;spork-rails&#39;, github: &#39;sporkrb/spork-rails&#39;</span>
+  <span class="c1"># gem &#39;spork-rails&#39;, &#39;4.0.0&#39;</span>
   <span class="c1"># gem &#39;guard-spork&#39;, &#39;1.5.0&#39;</span>
   <span class="c1"># gem &#39;childprocess&#39;, &#39;0.3.6&#39;</span>
 <span class="k">end</span>
 
 <span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
-  <span class="n">gem</span> <span class="s1">&#39;selenium-webdriver&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0.0&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;selenium-webdriver&#39;</span><span class="p">,</span> <span class="s1">&#39;2.35.1&#39;</span>
   <span class="n">gem</span> <span class="s1">&#39;capybara&#39;</span><span class="p">,</span> <span class="s1">&#39;2.1.0&#39;</span>
   <span class="n">gem</span> <span class="s1">&#39;factory_girl_rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.2.0&#39;</span>
-  <span class="n">gem</span> <span class="s1">&#39;cucumber-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;1.3.0&#39;</span><span class="p">,</span> <span class="ss">:require</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+  <span class="n">gem</span> <span class="s1">&#39;cucumber-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;1.4.0&#39;</span><span class="p">,</span> <span class="ss">:require</span> <span class="o">=&gt;</span> <span class="kp">false</span>
   <span class="n">gem</span> <span class="s1">&#39;database_cleaner&#39;</span><span class="p">,</span> <span class="ss">github:</span> <span class="s1">&#39;bmabey/database_cleaner&#39;</span>
 
   <span class="c1"># Uncomment this line on OS X.</span>
@@ -2185,13 +2183,14 @@
 
   <span class="c1"># Uncomment these lines on Windows.</span>
   <span class="c1"># gem &#39;rb-notifu&#39;, &#39;0.0.4&#39;</span>
-  <span class="c1"># gem &#39;win32console&#39;, &#39;1.3.2&#39;</span>
+  <span class="c1"># gem &#39;win32console&#39;, &#39;1.3.2&#39;
+   # gem &#39;wdm&#39;, &#39;0.1.0&#39;</span>
 <span class="k">end</span>
 
 <span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
 <span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span><span class="p">,</span> <span class="s1">&#39;2.1.1&#39;</span>
 <span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.0&#39;</span>
-<span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;2.2.1&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span><span class="p">,</span> <span class="s1">&#39;3.0.4&#39;</span>
 <span class="n">gem</span> <span class="s1">&#39;turbolinks&#39;</span><span class="p">,</span> <span class="s1">&#39;1.1.1&#39;</span>
 <span class="n">gem</span> <span class="s1">&#39;jbuilder&#39;</span><span class="p">,</span> <span class="s1">&#39;1.0.2&#39;</span>
 
