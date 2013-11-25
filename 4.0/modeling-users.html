@@ -217,7 +217,7 @@
 
 <p>上の出力は、ユーザーオブジェクトをコンソール用に出力したものです。</p>
 
-<p><code>User.new</code>を引数なしで呼んだ場合は、すべての属性が<code>nil</code>のオブジェクトを返します。<a class="ref" href="./rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>では、オブジェクトの属性を設定する<em>初期化ハッシュ (hash) </em>を引数に取るために、Userクラスの例 (user_example.rb) を設計しました。この設計にはActive Recordが使用されており、ここでも同じ方法で初期化できます。</p>
+<p><code>User.new</code>を引数なしで呼んだ場合は、すべての属性が<code>nil</code>のオブジェクトを返します。<a class="ref" href="./rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>では、オブジェクトの属性を設定するための<em>初期化ハッシュ (hash) </em>を引数に取るように、Userクラスの例 (user_example.rb) を設計しました。この設計は、同様の方法でオブジェクトを初期化するActive Recordの設計に基づいています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
 <span class="go">=&gt; #&lt;User id: nil, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
@@ -589,7 +589,7 @@
 
 <p>おそらく最も基本的な検証 (validation) は<em>プレゼンス (存在性) </em>です。これは単に、与えられた属性が存在することを検証します。たとえばこの節では、ユーザーがデータベースに保存される前にnameとemailフィールドの両方が存在することを保証します。<a class="ref" href="./sign-up.html#sec-signup_error_messages">7.3.3</a>では、この要求を新しいユーザーを作るためのユーザー登録フォームにまで徹底させる方法を確認します。</p>
 
-<p>最初に<code>name</code>属性の存在を確認するテストを行いましょう。テスト駆動開発の最初のステップは<em>失敗する</em>テスト (<a class="ref" href="./static-pages.html#sec-TDD">3.2.1</a>) を書くことですが、今回は適切なテストを書くための検証機能についてまだ十分に理解していないので、まず最初に検証を書きます。検証についてはコンソールを使って理解することにします。次に、検証部分をコメントアウトし、失敗するテストを書いて、最後にコメントアウトを解除した検証でテストがパスするかどうかを確認します。この手続きは、このような単純なテストでは大げさで気取ったものに感じられるかもしれませんが、著者はこれまでにテストそのものに誤りのある「単純な」テストを山ほど見てきました。テスト駆動開発を慎重に進めることは、テストが正しく進められているという自信を得る<em>唯一の</em>方法です (上で紹介したコメントアウトのテクニックは、コードはあってもテストがどこにもないような<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>ひどい</em></a>アプリケーションを急いで救出するときにも役に立ちます)。</p>
+<p>最初に<code>name</code>属性の存在を確認するテストを行いましょう。テスト駆動開発の最初のステップは<em>失敗する</em>テスト (<a class="ref" href="./static-pages.html#sec-TDD">3.2.1</a>) を書くことですが、今回は、適切なテストを書くための検証事項についてまだ十分に理解していないので、まず最初に検証を書きます。検証については、コンソールを使って理解することにします。次に、その検証をコメントアウトし、失敗するテストを書き、そして検証のコメントアウトを解除することで、そのテストをパスさせられるかどうかを確認します。この手続きは、このような単純なテストでは、大げさで気取ったものに感じられるかもしれません。しかし著者はこれまでに、実際には見当違いなことをテストしている「単純な」テストを山ほど見てきました。テスト駆動開発を慎重に進めることは、結局は「私たちが正しい事項をテストしている」という自信を得る為の<em>唯一の</em>方法なのです。(上で紹介したコメントアウトのテクニックは、コードはあってもテストがどこにもないような<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>ひどい</em></a>アプリケーションを急いで救出するときにも役に立ちます)。</p>
 
 <p>name属性の存在を検査する方法は、<a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.6</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="./rails-flavored-ruby.html#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波かっこを付けなくても問題ありません (<a class="ref" href="./filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
 
@@ -996,9 +996,9 @@
 </div></div>
 
 
-<p>上のコードのメソッドは、<code>@user</code>と同じメールアドレスでユーザーを作成します。そのために、<code>@user.dup</code>を使用して同じ属性を持つ重複ユーザーを作ります。次にそのユーザーを保存しようとすると、元の<code>@user</code>のメールアドレスが既にデータベースに存在するため、この重複メールアドレスは無効になるはずです。</p>
+<p>上のコードは、<code>@user</code>と同じメールアドレスのユーザーを事前に作成する手法です。今回は、同じ属性のユーザーを作るために、<code>@user.dup</code>を使っています。同じ属性のユーザーが保存された後では、元の<code>@user</code>と同じメールアドレスが既にデータベース内に存在しているため、<code>@user</code>は無効になります。</p>
 
-<p><a class="ref" href="./modeling-users.html#code-validates_uniqueness_of_email_test">リスト6.15</a>の新しいテストがパスするためのコードを<a class="ref" href="./modeling-users.html#code-validates_uniqueness_of_email">リスト6.16</a>に示します。</p>
+<p>先ほどの<a class="ref" href="./modeling-users.html#code-validates_uniqueness_of_email_test">リスト6.15</a>のテストは、<a class="ref" href="./modeling-users.html#code-validates_uniqueness_of_email">リスト6.18</a>のコードを用いてパスさせることができます。</p>
 
 <div class="label" id="code-validates_uniqueness_of_email"></div>
 

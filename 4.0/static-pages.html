@@ -188,12 +188,17 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>ここまで作業を進めると、<a href="https://github.com/railstutorial/sample_app_rails_4">著者がGitHubにアップロードしたRailsチュートリアルのサンプルアプリケーション</a>のようになります (ユーザー名は<tt>railstutorial</tt>で、アプリケーション名は<tt>sample_app_rails_4</tt>と若干異なります)<sup class="footnote" id="fnref-3_4"><a href="./static-pages.html#fn-3_4">4</a></sup>。</p>
 
-<p>もちろん、この時点でHerokuにデプロイすることもできます。</p>
+<p>もちろん、お望みであれば、この時点で Heroku にデプロイすることもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku create
 <span class="gp">$</span> git push heroku master
 <span class="gp">$</span> heroku run rake db:migrate
-</pre></div>
+
+# もし Heroku のデプロイに失敗したときは、次のコマンドを試してみて下さい。
+<span class="gp">$</span> rake assets:precompile
+<span class="gp">$</span> git add .
+<span class="gp">$</span> git commit -m &quot;Add precompiled assets for Heroku&quot;
+<span class="gp">$</span> git push heroku master</pre></div>
 </div>
 
 
@@ -348,7 +353,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/config_directory_rails_4.png" alt="config_directory_rails_4" /></span></div><div class="caption"><span class="header">図3.1</span><span class="description">サンプルアプリケーションの<code>config</code>ディレクトリの内容。<a href="../images/figures/config_directory_rails_4-full.png">(拡大)</a></span></div></div>
 
 
-<p>先ほど<code>home</code>アクションと<code>help</code>アクションを生成したので、<a class="ref" href="./static-pages.html#code-pages_routes">リスト 3.5</a>に示したように、routesファイルにはそれぞれのアクションで使用されるルールが定義されています。</p>
+<p>先ほど<code>home</code>アクションと<code>help</code>アクションを生成したので、次の<a class="ref" href="./static-pages.html#code-pages_routes">リスト 3.5</a> に示されるように、routesファイルにはそれぞれのアクションで使用されるルールが定義されています。</p>
 
 <div class="label" id="code-pages_routes"></div>
 
@@ -477,7 +482,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p><em>Railsチュートリアル</em> では、一字一句間違えることなく最初から正確に実装するのではなく、アプリケーションの振る舞いをテストしながら実装する直観的な手法を採用しています。この開発手法は、テスト駆動開発 (Test-Driven Develpment, TDD) から派生した振舞駆動開発 (Behavior-Driven Development, BDD) として知られています。本書でこれから頻繁に使うツールは、<em>結合テスト (integration test) </em>と<em>単体テスト (unit test) </em>の2つです。結合テストについてはこの節から、単体テストについては<a class="ref" href="./modeling-users.html#top">第6章</a>から解説していきます。結合テスト (RSpec では <em>リクエストspec</em> と呼んでいます) は、ユーザーがアプリケーションを使う際の一連のアクションをシミュレーションします。結合テストは、アプリケーションの各ページが正常に動作するかどうかをテストしてくれる強力なツールです。手動でブラウザを操作してテストする必要がなくなり、Capybaraを併用すれば自然言語 (英語) に近い文法でテストを記述する事もできます (Capybara以外にも、Cucumberという振舞駆動開発用ツールが有名です。詳細については<a class="ref" href="./sign-in-sign-out.html#sec-cucumber">8.3</a>で紹介します)。</p>
 
-<p>テスト駆動開発の定義とは、アプリケーションを開発するときに<em>最初に</em>テストを作成し、次にコードを作成することです。この開発手法に慣れるまでには多少時間がかかるかもしれませんが、一度慣れてしまえば大きなメリットを得られます。<em>失敗する</em>テストを最初に書き、テストにパスするコードを次に実装することで、しかるべき振る舞いがテストによって正しく検証されている、という自信が付きます。さらに、この「失敗-実装-成功」という開発サイクルは、「<a href="http://en.wikipedia.org/wiki/Flow_(psychology)">開発フロー</a>」を生み出します。そしてこの開発フローに乗ることで、コーディングが楽しくなり、開発の生産性も向上します。また、テストはアプリケーションのコードに対して<em>クライアント</em>として振る舞うので、ソフトウェア設計の改良につながることも多くなるでしょう。</p>
+<p>テスト駆動開発の定義とは、アプリケーションを開発するときに<em>最初に</em>テストを作成し、次にコードを作成することです。この開発手法に慣れるまでには多少時間がかかるかもしれませんが、一度慣れてしまえば大きなメリットを得られます。<em>失敗する</em>テストを最初に書き、テストにパスするコードを次に実装することで、しかるべき振る舞いがテストによって正しく検証されている、という自信が付きます。さらに、この「失敗-実装-成功」という開発サイクルは、「<a href="http://en.wikipedia.org/wiki/Flow_(psychology)">フロー体験</a>」を誘発します。フローに入ることで、コーディングが楽しくなり、開発の生産性も向上します。また、テストはアプリケーションのコードに対して<em>クライアント</em>として振る舞うので、ソフトウェア設計の改良につながることも多くなるでしょう。</p>
 
 <p>ただし、テスト駆動開発がどんな仕事に対しても常に正しい手法であるとは限りません。このことは十分に理解しておいてください。「最初にテストを書くべきである」、「テストはひとつひとつの機能を完全にカバーするべきである」、「すべての箇所をテストすべきである」などのような教条的な主張を正当化できる理由はどこにもありません。たとえば、与えられた課題の解決法に今ひとつ確信が持てないときは、(テストを書かずに) まず試しにアプリケーションコードだけを書いてみて、どんな解決方法があるのか模索してみる方が良い結果を得られることもあります (<a href="http://en.wikipedia.org/wiki/Extreme_Programming">エクストリームプログラミング (Extreme Programming, XP)</a> という開発手法では、この模索段階を<em>スパイク (spike) </em>と呼んでいます)。そして解決策が明確になった段階で、テスト駆動開発でコードを清書するという方法もありえます。</p>
 

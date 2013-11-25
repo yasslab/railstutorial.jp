@@ -447,7 +447,7 @@
 </div></div>
 
 
-<p><code>index</code>アクションに<code>@users = User.all</code>という行があります (図2.11 の③に相当)。これによって、Userモデルからすべてのユーザーの一覧を取り出し (④)、<code>@users</code>という変数に保存します (⑤)。なお、@usersは “at-users” と発音します。Userモデルの内容は<a class="ref" href="./a-demo-app.html#code-demo_user_model">リスト2.5</a>にあります。驚くほどシンプルな内容ですが、継承 (<a class="ref" href="./a-demo-app.html#sec-inheritance_hierarchies">2.3.4</a>および<a class="ref" href="./rails-flavored-ruby.html#sec-ruby_classes">4.4</a>) によって多くの機能が備わっています。特に、<em>Active Record</em>というRubyライブラリのおかげで、<a class="ref" href="./a-demo-app.html#code-demo_user_model">リスト2.5</a>のUserモデルは<code>User.all</code>というリクエストに対してすべてのユーザーを返すことができます。(<code>attr_accessible</code>という行については<a class="ref" href="./modeling-users.html#sec-accessible_attributes">6.1.2.2</a>で説明します。<em>注</em>: この行はRails 3.2.2以前の場合にはありません)</p>
+<p><code>index</code>アクションに<code>@users = User.all</code>という行があります (図2.11 の③に相当)。これによって、Userモデルからすべてのユーザーの一覧を取り出し (④)、<code>@users</code>という変数に保存します (⑤)。なお、@usersは「あっと ゆーざーず」と発音します。Userモデルの内容は<a class="ref" href="./a-demo-app.html#code-demo_user_model">リスト2.5</a>にあります。驚くほどシンプルな内容ですが、継承 (<a class="ref" href="./a-demo-app.html#sec-inheritance_hierarchies">2.3.4</a>および<a class="ref" href="./rails-flavored-ruby.html#sec-ruby_classes">4.4</a>) によって多くの機能が備わっています。特に、<em>Active Record</em>というRubyライブラリのおかげで、<a class="ref" href="./a-demo-app.html#code-demo_user_model">リスト2.5</a>のUserモデルは<code>User.all</code>というリクエストに対してすべてのユーザーを返すことができます。(<code>attr_accessible</code>という行については<a class="ref" href="./modeling-users.html#sec-accessible_attributes">6.1.2.2</a>で説明します。<em>注</em>: この行はRails 3.2.2以前の場合にはありません)</p>
 
 <div class="label" id="code-demo_user_model"></div>
 
@@ -908,14 +908,14 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 </div>
 
 
-<p>Herokuでエラーが生じた場合は、以下のように本番 (production) データベースをマイグレートします。</p>
+<p>Herokuでエラーが生じた場合は、以下のように本番環境 (production) のデータベースをマイグレートします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku run rake db:migrate
 </pre></div>
 </div>
 
 
-<p>このコマンドを実行すると、Heroku上のデータベースが、ユーザーとマイクロソフトのデータモデルで更新されます。<code>vendor/plugins</code>にあるアセットに関連するエラーが生じた場合は無視してください。今はこのディレクトリにはプラグインがありません。</p>
+<p>このコマンドを実行すると、先ほど定義したユーザーとマイクロポストのデータモデルを使って、Heroku上のデータベースが更新されます。なお、もし<code>vendor/plugins</code>のアセットに関するエラーが生じたときは、無視してください。この時点では、まだこのディレクトリにあるプラグインを使っていないので、問題ありません。</p>
 
 <h2><a id="sec-2_4" href="./a-demo-app.html#sec-2_4" class="heading"><span class="number">2.4</span>最後に</a></h2>
 
@@ -958,7 +958,7 @@ created_at: &quot;2011-11-03 02:37:37&quot;, updated_at: &quot;2011-11-03 02:37:
 </a><a class="next_page" href="./static-pages.html#top">    <span class="number">第3章</span>ほぼ静的なページの作成</a><a class="next_page" href="./static-pages.html#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-2_1">もっと普通の、マイクロでないポストを扱いたい場合は、<code>string</code>の代わりに<code>text</code>を指定します。<a class="arrow" href="./a-demo-app.html#fnref-2_1">↑</a></li>
+<li id="fn-2_1">もっと多い文字数の投稿できるモデルにしたい場合は (たとえば、マイクロポストではなく、ブログのような投稿を許可したい場合は)、<code>string</code>の代わりに<code>text</code>を使うとよいでしょう。<a class="arrow" href="./a-demo-app.html#fnref-2_1">↑</a></li>
 <li id="fn-2_2">scaffoldにおける命名は、<em>モデル</em>名の命名の習慣に従っています。リソースやコントローラは複数形で表し、モデルは単数形で表すのが普通です。<code>User</code>ではなく<code>Users</code>としたのはこのためです。<a class="arrow" href="./a-demo-app.html#fnref-2_2">↑</a></li>
 <li id="fn-2_3">ビューは、(ApacheやNginxなどのWebサーバーを経由してはいるが) ブラウザにHTMLを直接返すと説明している文献もあります。私は、Railsの実際の実装とは無関係に、コントローラを情報の流れの中心となるハブとみなすことを好んでいます。<a class="arrow" href="./a-demo-app.html#fnref-2_3">↑</a></li>
 <li id="fn-2_4">Fielding, Roy Thomas. <em>Architectural Styles and the Design of Network-based Software Architectures</em>. Doctoral dissertation, University of California, Irvine, 2000. <a class="arrow" href="./a-demo-app.html#fnref-2_4">↑</a></li>

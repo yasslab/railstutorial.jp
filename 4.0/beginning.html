@@ -14,35 +14,35 @@
 <h1 class="chapter"><a id="sec-1" href="./beginning.html#top" class="heading"><span class="number">第1章</span> ゼロからデプロイまで</a></h1>
 
 
-<p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Rails チュートリアル</em></a>へようこそ。本書は「<a href="http://rubyonrails.org/">Ruby on Rails</a> を使ったウェブ開発を学びたいのだけれど、何から始めれば良いでしょうか？」といった質問に答えるために作成されました。<em>本書</em>を読み終わったときには、あなたは自分の手で Web アプリケーションを開発することから、デプロイ (deploy: 本番環境でアプリを動かし、一般公開すること) までの全ての技術を習得できるはずです。また、Rails の教育エコシステムに存在する、さらに高度な内容の本やブログ、スクリーンキャストなどを読み解く力も身につけられるでしょう。加えて、<em>Ruby on Rails チュートリアル</em>は Rails 4 を使用しているため、これからあなたが本書で学ぶ内容は、Web 開発の最前線の話だと言えます。(なお、この <em>Ruby on Rails チュートリアル</em>が最新版かどうかについては、本書の公式サイト (<a href="./">http://railstutorial.jp/</a>) でチェックすることができます。特に、本書をオフラインで読んでいる方は、<a href="./book">オンライン版のRailsチュートリアル</a>で最新版かどうかを一度ご確認してください。)</p>
+<p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。本書は「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったウェブ開発を学びたいのだけれど、何から始めればよいのかを教えて欲しい」という要望に応えるために作成されました。<em>本書</em>を読み終わる頃には、自分の手でWebアプリケーションを開発するための技術のみならず、デプロイ(deploy: 本番環境でアプリを動かし、一般公開すること)を行なうための技術もすべて習得できます。Railsの教育エコシステムにはさらに高度な内容の書籍、ブログ、スクリーンキャストなどが数多くありますが、それらを読み解く力も身につきます。<em>Ruby on Railsチュートリアル</em>は最新のRails 4を使用していますので、Web開発の最前線を本書で学ぶことができます。(<em>Ruby on Railsチュートリアル</em>が最新版かどうかについては、本書の公式サイト(<a href="./">http://railstutorial.jp/</a>)でチェックすることができます。特に、本書をオフラインで読んでいる方は、本書が最新版かどうかを<a href="./book">http://railstutorial.jp/</a>にある<a href="./book">オンライン版のRailsチュートリアル</a>でご確認ください。</p>
 
-<p>(<em>注</em>: あなたが読んでいるこの本は、Rails 4.0 という<em>バージョン</em>に対応している本です。本書は Rails 3.2 から Rail 4.0 に向けて改定されましたが、<em>版</em>は更新されていないのでご注意ください。というのも、Rails 4.0 に対応するために行った変更は、本書の版を改めるほどではないと判断したためです。本書は、「チュートリアル」という導入部分を手助けする立場にあるので、Rails の深い内容までは踏み込みません。したがって、以前の Rails 3.2 対応版と本書の Rails 4.0 対応版との間には、そこまで大きな変更はありません。もちろん、次の<a class="ref" href="./beginning.html#sidebar-diffs">コラム 1.1</a>で示されているように、細かな変更は多数あります。しかし、重要な変更は、<a class="ref" href="./sign-up.html#sec-strong_parameters">7.3.2</a> に追加した <em>Strong Parameters</em> と呼ばれるセキュリティ関係の新しい機能だけです。一方、今後 Rails で重要な変更が生じれば、<em>Rails チュートリアル</em>の版を改訂するつもりです。新しい版では、<em>Turbolinks</em> や <em>Russian doll caching</em>、RSpec の新機能「<em>feature specs</em>」なども本書に含まれる予定です。)</p>
+<p>(<em>注</em>: 今皆様が読んでいるこのチュートリアルは、Rails 4.0という<em>バージョン</em>に対応しています。本書はRails 3.2からRail 4.0へのバージョンアップにともなって改定されましたが、チュートリアルとしての<em>版(エディション)</em>は更新されていないことにご注意ください。Rails 4.0に対応するために行った変更の量がわずかで、本書の版を改めるには及ばない判断したためです。本書はWeb開発へといざなう「チュートリアル」に徹しており、Railsの高度な内容にまでは踏み込んでいません。以前のRails 3.2対応版と今回のRails4.0対応版との差分が少ないのは、このような理由によるものです。もちろん、<a class="ref" href="./beginning.html#sidebar-diffs">コラム1.1</a>でも紹介しているとおり、細かな変更は多数あります。しかし、その中で重要な変更と呼べるのは、<a class="ref" href="./sign-up.html#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>と呼ばれるセキュリティ関係の新しい機能だけです。今後Railsで重要な変更が生じることがあれば、<em>Railsチュートリアル</em>の版を改訂するつもりです。新しい版では、<em>Turbolinks</em>、<em>Russian doll caching</em>、RSpec の新機能「<em>feature specs</em>」などについても取り上げる予定です。)</p>
 
 <div class="label" id="sidebar-diffs"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 1.1</span><span class="description">第2版との違いについて</span></span>
-<p><em>Ruby on Rails チュートリアル</em>の第2版と本書のバージョンとの違いは、次のリストの通りです。(といっても、重要な変更は Strong Parameters だけであり、それ以外は些細な変更です) 。Rails 3.2 対応の第2版を既に読み終わった方のために、変更した箇所だけをまとめています。したがって、まだ Rails 3.2 対応版を読んでいない方は、本コラムを読み飛ばしても問題ありません。</p>
+<div class="sidebar"><span class="title"><span class="header">コラム1.1</span><span class="description">第2版との違いについて</span></span>
+<p><em>Ruby on Railsチュートリアル</em>の第2版と本書のバージョンとの違いを、この後のリストに示します(この中で重要な変更はStrong Parametersだけであり、それ以外の変更はさほど重要ではありません)。このリストでは、Rails 3.2向けの第2版を既に読み終わった方のために、変更された箇所だけをまとめました。Rails3.2対応版を読んだことのない方は、本コラムを読み飛ばしても構いません。</p>
 
-<p>なお、次のリストには、変更を加えた節またはコードへのリンクが含まれています。</p>
+<p>なお、次のリストには、変更を加えた節またはコードへのリンクが追加してあります。</p>
 
 <ul>
-<li>Rails 3.2 から Rails 4.0 への変更 (<a class="ref" href="./beginning.html#sec-rubygems">1.2.2</a>)</li>
-<li>Capybara DSL を明示的にインクルード (<a class="ref" href="./static-pages.html#code-capybara_dsl">リスト3.10</a>)</li>
-<li>RSpec の<code>.should</code>を<code>expect().to</code>に変更 (<a class="ref" href="./static-pages.html#sec-TDD">3.2.1</a>)</li>
-<li><code>have_selector(’title’, …)</code> を <code>have_title(…)</code> に変更 (<a class="ref" href="./static-pages.html#sec-testing_a_title_change">3.3.1</a>)</li>
-<li>HTTP メソッドを <tt>PUT</tt> から<tt>PATCH</tt> に変更 (<a class="ref" href="./static-pages.html#sidebar-get_etc">コラム 3.3</a>)</li>
-<li>Turbolinks 用のハッシュ引数をスタイルシートと JavaScript に追加 (<a class="ref" href="./static-pages.html#code-application_layout">リスト3.26</a>)</li>
-<li><code>root to: ’path’</code> を <code>root ’path’</code> に変更 (<a class="ref" href="./filling-in-the-layout.html#code-root_route">リスト5.24</a>)</li>
-<li><code>find_by_thing(…)</code> を <code>find_by(thing: …)</code> に変更 (<a class="ref" href="./modeling-users.html#sec-finding_user_objects">6.1.4</a>)</li>
-<li><code>rake db:test:prepare</code> を <code>rake test:prepare</code> に切り替え (<a class="ref" href="./modeling-users.html#sec-initial_user_tests">6.2.1</a>)</li>
-<li><code>attr_accessible</code> を Strong Parameters に変更 (<a class="ref" href="./sign-up.html#sec-strong_parameters">7.3.2</a>)</li>
+<li>Rails 3.2からRails 4.0への変更 (<a class="ref" href="./beginning.html#sec-rubygems">1.2.2</a>)</li>
+<li>Capybara DSLを明示的にインクルード (<a class="ref" href="./static-pages.html#code-capybara_dsl">リスト3.10</a>)</li>
+<li>RSpecの<code>.should</code>を<code>expect().to</code>に変更(<a class="ref" href="./static-pages.html#sec-TDD">3.2.1</a>)</li>
+<li><code>have_selector(’title’, …)</code>を<code>have_title(…)</code>に変更(<a class="ref" href="./static-pages.html#sec-testing_a_title_change">3.3.1</a>)</li>
+<li>HTTP メソッドを<tt>PUT</tt>から<tt>PATCH</tt>に変更(<a class="ref" href="./static-pages.html#sidebar-get_etc">コラム3.3</a>)</li>
+<li>Turbolinks用のハッシュ引数をスタイルシートとJavaScriptに追加(<a class="ref" href="./static-pages.html#code-application_layout">リスト3.26</a>)</li>
+<li><code>root to: ’path’</code>を<code>root ’path’</code>に変更(<a class="ref" href="./filling-in-the-layout.html#code-root_route">リスト5.24</a>)</li>
+<li><code>find_by_thing(…)</code>を<code>find_by(thing: …)</code>に変更(<a class="ref" href="./modeling-users.html#sec-finding_user_objects">6.1.4</a>)</li>
+<li><code>rake db:test:prepare</code>を<code>rake test:prepare</code>に切り替え(<a class="ref" href="./modeling-users.html#sec-initial_user_tests">6.2.1</a>)</li>
+<li><code>attr_accessible</code>をStrong Parametersに変更(<a class="ref" href="./sign-up.html#sec-strong_parameters">7.3.2</a>)</li>
 <li>暗号化された記憶トークンに変更 (<a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>)</li>
-<li><code>before_filter</code> を <code>before_action</code> に変更 (<a class="ref" href="./updating-showing-and-deleting-users.html#code-authorize_before_filter">リスト9.12</a>)</li>
-<li>最初にマッチしたリンクをクリックするのに Capybara の <code>match: :first</code> を使用 (<a class="ref" href="./updating-showing-and-deleting-users.html#code-delete_link_tests">リスト9.43</a>)</li>
-<li><code>default_scope</code> をハッシュ引数からラムダに変更 (<a class="ref" href="./user-microposts.html#code-micropost_ordering">リスト10.11</a>)</li>
-<li><code>dup</code> を <code>to_a</code> に変更 (<a class="ref" href="./user-microposts.html#code-micropost_dependency_test">リスト10.12</a>)</li>
-<li>XPath を使ってボタンの切り替えをテストするように変更 (<a class="ref" href="./following-users.html#sec-a_working_follow_button_the_standard_way"> 11.2.4</a>)</li>
+<li><code>before_filter</code>を<code>before_action</code>に変更 (<a class="ref" href="./updating-showing-and-deleting-users.html#code-authorize_before_filter">リスト9.12</a>)</li>
+<li>最初にマッチしたリンクをクリックするためにCapybaraの<code>match: :first</code>を使用 (<a class="ref" href="./updating-showing-and-deleting-users.html#code-delete_link_tests">リスト9.43</a>)</li>
+<li><code>default_scope</code>をハッシュ引数からラムダに変更(<a class="ref" href="./user-microposts.html#code-micropost_ordering">リスト10.11</a>)</li>
+<li><code>dup</code>を<code>to_a</code>に変更 (<a class="ref" href="./user-microposts.html#code-micropost_dependency_test">リスト10.12</a>)</li>
+<li>XPathを使ってボタンの切り替えをテストするように変更 (<a class="ref" href="./following-users.html#sec-a_working_follow_button_the_standard_way"> 11.2.4</a>)</li>
 </ul>
 
 
@@ -50,25 +50,25 @@
 </div>
 
 
-<p>本書の目的は、単に Rails を教えることでは<em>ではなく</em>、<em>Rails を使った Web アプリケーションの開発</em>を教えることです。具体的には、World Wide Web 上で動くソフトウェアを開発できるようにすること (あるいは洗練すること) が本書の目的になります。したがって、Ruby on Rails だけではなく、HTML や CSS、データベース、バージョン管理、テスト、デプロイといった技術も、本書で教える対象となります。この目的を達成するため、<em>Ruby on Rails チュートリアル</em>では、統合的なアプローチを採用しています。つまり、「実際に動くサンプルアプリケーションをゼロから開発する」という例題をこなしていきながら、Rails について総合的に学んでいきます。<a href="http://sivers.org">Derek Sivers</a> が前書きで述べたとおり、本書は一本道のストーリーで構成されていて、最初から最後まで飛ばさずに読まれることを前提としています。そのため、技術書を飛ばし読みするのが習慣になっている方にとっては、少し頭の切り替えが必要になるかもしれません。しかし、その価値は十分にあります。ぜひトライしてみてください。<em>Ruby on Rails チュートリアル</em>をTVゲームで例えると、あなたは主人公であり、各章をこなす度に Rails 開発者としてレベルアップしていくと考えてください (演習は<a href="http://en.wikipedia.org/wiki/Boss_(video_gaming)#Miniboss">中ボス</a>です)。</p>
+<p>本書の目的は、単にRailsを学ぶことでは<em>ではなく</em>、Railsを例にとって広い意味での<em>Webアプリケーション開発</em>そのものを学ぶことにあります。つまり、Railsに限らず、World Wide Web上で動くソフトウェアを開発したり改良したりするための技術を習得することを目指します。したがって、Ruby on Railsの他に、HTML、CSS、データベース、バージョン管理、テスト、デプロイなどの多くの技術についても本書で学びます。この目的を達成するため、<em>Ruby on Rails チュートリアル</em>では、統合的なアプローチを採用しています。つまり、「実際に動くサンプルアプリケーションをゼロから開発する」という例題をこなすことによって、Railsについて総合的に学ぶのです。<a href="http://sivers.org">Derek Sivers</a>が前書きで述べているように、本書は一本道のストーリーで構成されていて、最初から最後まで飛ばさずに読むことを前提としています。技術書を飛ばし読みするのが習慣になっている方にとっては少々頭の切り替えが必要になるかもしれませんが、それだけの値打ちは十分にあります。ぜひトライしてみてください。<em>Ruby on Railsチュートリアル</em>をTVゲームにたとえると、あなたは主人公であり、各章をクリアするたびにRails開発者としてレベルアップしていくと考えてください (演習は<a href="http://en.wikipedia.org/wiki/Boss_(video_gaming)#Miniboss">中ボス</a>です)。</p>
 
-<p>第1章では、必要なソフトウェアをインストールし、開発環境 (<a class="ref" href="./beginning.html#sec-up_and_running">1.2</a>) を整えて Ruby on Rails を動かす準備をします。その後、<code>first_app</code> という最初の Rails アプリの作成に着手します。<em>Rails チュートリアル</em>では、ソフトウェア開発のベストプラクティスを重要視しているので、新しい Rails プロジェクトを作成した後に、すぐに Git (<a class="ref" href="./beginning.html#sec-version_control">1.3</a>) を使ったバージョン管理を実践してもらいます。そして最後に、本番 (production) 環境 (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) に<em>デプロイして、作成したアプリを一般公開する</em>ところまで一通り実践します。</p>
+<p>第1章では、最初に必要なソフトウェアをインストールし、開発環境 (<a class="ref" href="./beginning.html#sec-up_and_running">1.2</a>) を整えて Ruby on Railsを動かす準備をします。次に<code>first_app</code>という最初の Rails アプリの作成に着手します。<em>Rails チュートリアル</em> では、実戦的なソフトウェア開発のベストプラクティスを重要視しているので、新しいRailsプロジェクトを作成した直後にGit(<a class="ref" href="./beginning.html#sec-version_control">1.3</a>) を使ったバージョン管理を行います。最後に、作成したアプリを本番 (production) 環境 (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) に<em>デプロイして一般公開する</em>ところまで実践します。</p>
 
-<p><a class="ref" href="./a-demo-app.html#top">第2章</a>では、Rails アプリケーションの基本的な仕組みを体験してもらうために、新たなプロジェクトを作成します。手っ取り早く動かしたいので、この<em>デモアプリ </em>(<code>demo_app</code>) では、scaffold (<a class="ref" href="./beginning.html#sidebar-scaffolding">コラム 1.2</a>) を使ってコードを自動生成します。ただし、scaffold で自動生成されたコードは、複雑であまり美しくありません。このため、<a class="ref" href="./a-demo-app.html#top">第2章</a>では、自動生成されたコードを解説するのではなく、生成された <em>URI</em> (ウェブブラウザで言う <em>URL</em><sup class="footnote" id="fnref-1_1"><a href="./beginning.html#fn-1_1">1</a></sup>) がどのように動くのか、ウェブブラウザを使って確かめることに焦点を当てます。</p>
+<p><a class="ref" href="./a-demo-app.html#top">第2章</a>では、Railsアプリケーションの基本的な仕組みを体験してもらうために、別のプロジェクトを作成します。この<em>デモアプリ</em>(<code>demo_app</code>)を短時間で作成するために、scaffold (<a class="ref" href="./beginning.html#sidebar-scaffolding">コラム1.2</a>) を使ってコードを自動生成します。ただし、scaffoldで自動生成されたコードは、込み入っていて美しくありません。このため、<a class="ref" href="./a-demo-app.html#top">第2章</a>では自動生成されたコードについては解説せず、生成された<em>URI</em> (いわゆる <em>URL</em><sup class="footnote" id="fnref-1_1"><a href="./beginning.html#fn-1_1">1</a></sup>) がどのように動くのかをウェブブラウザで確かめることに焦点を当てます。</p>
 
-<p>第3章以降では、１つの大きな<em>サンプルアプリケーション</em> (<code>sample_app</code>) を開発していきます。また、コードを自動生成するのではなく、ゼロからコードを書いていきます。加えて、サンプルアプリケーションからは、TDD (<em>テスト駆動開発</em>) という開発手法で開発を進めていきます。具体的には、<a class="ref" href="./static-pages.html#top">第3章</a>では、静的ページと若干の動的コンテンツを追加するところから始めます。その後、<a class="ref" href="./rails-flavored-ruby.html#top">第4章</a>では、少し回り道をし、Rails を動かしている Ruby 言語について簡単に学びます。<a class="ref" href="./filling-in-the-layout.html#top">第5章</a>から<a class="ref" href="./updating-showing-and-deleting-users.html#top">第9章</a>では、レイアウトやユーザーのデータモデル、そして、ユーザー登録・認証システムを作っていき、サンプルアプリケーションの基本的な部分を実装します。最後に、<a class="ref" href="./user-microposts.html#top">第10章</a>と<a class="ref" href="./following-users.html#top">第11章</a>では、マイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
+<p>第3章以降では、１つの大きな<em>サンプルアプリケーション</em> (<code>sample_app</code> )を開発します。コードは自動生成せず、ゼロからコードを書き進めます。さらに、このサンプルアプリケーションからTDD (<em>テスト駆動開発</em>) という開発手法を導入します。<a class="ref" href="./static-pages.html#top">第3章</a>では、静的ページと若干の動的コンテンツを追加するところから始めます。次の<a class="ref" href="./rails-flavored-ruby.html#top">第4章</a>では少し回り道をし、Railsを支えているRubyという言語について簡単に学びます。<a class="ref" href="./filling-in-the-layout.html#top">第5章</a>から<a class="ref" href="./updating-showing-and-deleting-users.html#top">第9章</a>にかけて、レイアウト、ユーザーのデータモデル、ユーザー登録・認証システムを順に作成し、サンプルアプリケーションの基本的な部分を実装します。最後の<a class="ref" href="./user-microposts.html#top">第10章</a>と<a class="ref" href="./following-users.html#top">第11章</a>では、マイクロブログ機能とソーシャル機能を実装し、実際に動作するWebサイトを完成させます。</p>
 
-<p>最終的なサンプルアプリケーションは、(偶然にも、かつては Rails で実装されていた) <a href="http://twitter.com/">某ソーシャルマイクロブログサイト</a>にとてもよく似た仕上がりになります。<em>Rails チュートリアル</em>では、サンプルアプリケーションの開発を中心にして話が進められていきますが、(サンプルアプリケーションに特化した技術ではなく) Web アプリケーションの開発で必要になる一般的な技術を重点的に解説していきます。このため、本書を読み終わる事には、あなたが今後どんな Web アプリケーションを開発したいのかに関わらず、どんな開発にも通用する基礎的な力を身につけることができます。</p>
+<p>最終的なサンプルアプリケーションは、(偶然にも、かつてはRailsで実装されていた) <a href="http://twitter.com/">某ソーシャルマイクロブログサイト</a>にとてもよく似た仕上がりになります。<em>Railsチュートリアル</em>ではサンプルアプリケーションの開発を中心に解説を進めますが、サンプルアプリケーションに限定された技術にとどまらず、Webアプリケーションの開発で必要になる一般性の高い技術の解説に重点を置いています。本書を読み終える頃には、今後どのようなWebアプリケーション開発にも通用する本物の実力を身につけることができます。</p>
 
 <div class="label" id="sidebar-scaffolding"></div>
 
 
-<div class="sidebar"><span class="title"><span class="header">コラム 1.2</span><span class="description">早くて簡単な Scaffold の甘い誘惑</span></span>
-<p>Rails の作者 David Heinemer Hansson 氏による有名な動画「<a href="http://www.youtube.com/watch?v=Gzj723LkRJY">15分で作るブログ</a>」を見て頂ければわかるように、Rails は初期の頃から、明快で刺激的なフレームワークです。この動画や、これに続く関連動画を見ることは、Rails のパワーを知る最適な方法の１つなので、ぜひ一度視聴する事をお勧めします。ただし、気をつけなくてはならない点が１つあります。それは、これらの動画では「15分でブログを作る」といった離れ業を、<em>scaffold</em> という機能を利用して成し遂げている点です。このため、15分で作られた機能は、Rails の <code>generate</code> コマンドによって (まるで魔法のように) <em>自動生成されたコード</em>に強く依存しています。</p>
+<div class="sidebar"><span class="title"><span class="header">コラム1.2</span><span class="description">早くて簡単なScaffoldの甘い誘惑</span></span>
+<p>Railsの作者David Heinemer Hansson氏による有名な動画「<a href="http://www.youtube.com/watch?v=Gzj723LkRJY">15分で作るブログ</a>」を見ていただければわかるように、Railsは誕生した直後から刺激的なフレームワークでありつづけています。この動画はRailsの能力を知るにはうってつけなので、ぜひ一度視聴する事をお勧めします。他にも多くの関連動画があります。ただし、「15分でブログを作る」という離れ業を成し遂げているのは、あくまで<em>scaffold</em>という機能のおかげであるという点にご注意ください。scaffoldはRailsの<code>generate</code>コマンドによって (まるで魔法のように) コードを<em>自動生成</em>します。</p>
 
-<p>実際、Ruby on Rails のチュートリアルを書いているとき、<a href="http://en.wikipedia.org/wiki/Dark_side_(Star_Wars)">あまりにも素早く簡単にコードが生成できる</a> (訳注: 原文の「quicker, easier, more seductive」は、スターウォーズ エピソードV のヨーダの台詞の引用) scaffold の機能を、つい使ってしまいたくなりました。しかし、初心者にとっては、自動生成されたコードの複雑さと、そのコード量の多さに圧倒されてしまうでしょう。また、自動生成されたコードが運良く動いたとしても、何故そのコードがうまく動いているのかを理解することは難しいでしょう。scaffold を使ってコードを自動生成することばかりに頼っていると、コードを自動生成する達人にはなれるかもしれませんが、Rails に関する実践的な知識はほとんど身に付きません。</p>
+<p>実際、Ruby on Railsチュートリアルを書いていて、<a href="http://en.wikipedia.org/wiki/Dark_side_(Star_Wars)">あまりにも素早く簡単にコードが生成できる</a> (訳注: 原文の「quicker, easier, more seductive」は、スターウォーズ・エピソードVのヨーダの台詞の引用) scaffoldの機能を使ってみたい誘惑に何度もかられたものです。しかし、自動生成されたコードのは初心者にとってはあまりに量が多く、複雑です。さらに、自動生成されたコードが運よく動いたとしても、そのコードが正常に動いている理由を理解するのはかなり困難です。scaffoldを使ったコードの自動生成に頼っていると、コード自動生成の達人にはなれるかもしれませんが、Railsに関する実践的な知識はほとんど身に付きません。</p>
 
-<p>このため、<em>Ruby on Rails チュートリアル</em>では、(より実践的な知識を身につけるために) ほぼ逆のアプローチで開発を進めていきます。具体的には、<a class="ref" href="./a-demo-app.html#top">第2章</a>で作成する簡単なデモアプリでは scaffold を使いますが、<em>このチュートリアル</em>の中核である<a class="ref" href="./static-pages.html#top">第3章以降</a>のサンプルアプリケーションからは、scaffold を一切使わずに開発を進めていきます。scaffold を使わない代わりに、開発の各ステップで、手頃な<em>一口サイズ</em>のコードを書いてもらいます。この一口サイズコードは、無理なく理解できる程度にシンプルで、かつ、ある程度の歯ごたえとやりがいを得られるように配慮してあります。各ステップで理解してもらうコードの量は小さいですが、少しずつ理解を積み重ねていくと、最終的には、どんな Web アプリを作成する時でも役立つ、より深く柔軟な Rails の知識を身につけられるように構成されています。</p>
+<p><em>Ruby on Railsチュートリアル</em>では、より実践的な知識を身につけるために、これとほぼ逆のアプローチで開発を進めていきます。具体的には、scaffoldは<a class="ref" href="./a-demo-app.html#top">第2章</a>で作成する簡単なデモアプリでのみ使用し、<em>このチュートリアル</em>の中核である<a class="ref" href="./static-pages.html#top">第3章以降</a>のサンプルアプリケーションではscaffoldを一切使わずに開発を進めていきます。scaffoldを使わない代わりに、開発の各ステップで、手頃な大きさの<em>ひとくちサイズ</em>コードを書いてもらいます。このひとくちサイズコードは、無理なく理解できる程度にシンプルで、かつ、ある程度の歯ごたえとやりがいを得られるように配慮してあります。各ステップで理解する必要のあるコードの量はわずかですが、こうした理解を積み重ねていくことで、最終的にRailsの知識を高いレベルで身につけられるように構成されています。この知識は、どのようなWebアプリを作成する時にも応用が効く柔軟性の高いものです。</p>
 </div>
 
 
@@ -80,13 +80,13 @@
 <h2><a id="sec-1_1" href="./beginning.html#sec-introduction" class="heading"><span class="number">1.1</span>はじめに</a></h2>
 
 
-<p>Ruby on Rails は2004年にデビューして以来、急速に成長していきました。現在では、動的な Web アプリケーションを開発するフレームワークとして、最も有力かつ人気のあるフレームワークの１つになっています。小さなスタートアップから巨大企業まで、多くの組織が Rails を使っています。例えば、<a href="http://37signals.com/">37signals</a> や <a href="http://github.com/">GitHub</a>、<a href="http://shopify.com/">Shopify</a>、<a href="http://scribd.com/">Scribd</a>、<a href="http://twitter.com/">Twitter</a>、<a href="http://disney.com/">Disney</a>、<a href="http://hulu.com/">Hulu</a>、<a href="http://yellowpages.com/">Yellow Pages</a> など、<a href="http://rubyonrails.org/applications">Ruby on Rails を使っているサイトのリスト</a>は増える一方です。他にも、<a href="http://entp.com/">ENTP</a> や <a href="http://thoughtbot.com/">thoughtbot</a>、<a href="http://pivotallabs.com/">Pivotal Labs</a>、<a href="http://hashrocket.com/">Hashrocket</a> といった、Rails を専門的に扱う会社も数多くあります。また、Rails を専門にしたフリーランスのコンサルタントやインストラクター、開発者については、数え切るのが難しいほどです。</p>
+<p>Ruby on Railsは2004年にデビューして以来、急速に成長していきました。現在では、動的なWebアプリケーションを開発するフレームワークとして、最も有力かつ人気のあるフレームワークの１つになっています。小さなスタートアップから巨大企業まで、多くの組織が Rails を使っています。例えば、<a href="http://37signals.com/">37signals</a> や <a href="http://github.com/">GitHub</a>、<a href="http://shopify.com/">Shopify</a>、<a href="http://scribd.com/">Scribd</a>、<a href="http://twitter.com/">Twitter</a>、<a href="http://disney.com/">Disney</a>、<a href="http://hulu.com/">Hulu</a>、<a href="http://yellowpages.com/">Yellow Pages</a> など、<a href="http://rubyonrails.org/applications">Ruby on Rails を使っているサイトのリスト</a>は増える一方です。他にも、<a href="http://entp.com/">ENTP</a>や<a href="http://thoughtbot.com/">thoughtbot</a>、<a href="http://pivotallabs.com/">Pivotal Labs</a>、<a href="http://hashrocket.com/">Hashrocket</a>といった、Railsを専門的に扱う会社も数多くあります。また、Railsを専門にしたフリーランスのコンサルタントやインストラクター、開発者については数えきれません。</p>
 
-<p>どうして Rails はこれだけ多くに人達に使われているのでしょうか？その理由の１つは、Rails が100%オープンソースで、制限の緩い <a href="http://www.opensource.org/licenses/mit-license.php">MIT ライセンス</a>で公開されているからです。これにより、Rails をダウンロードしたり使ったりしても、一切コストがかかりません。また、Rails が簡潔で美しく設計されていることも、Rails の成功を支えている秘訣の１つです。これは、Rails の背後で動いている <a href="http://ruby-lang.org/">Ruby</a> 言語の柔軟性によって実現されています。具体的には、Web アプリケーションの作成に特化した <a href="http://en.wikipedia.org/wiki/Domain_Specific_Language">DSL (ドメイン固有言語)</a> を Ruby 言語で実装しているため、HTML やデータモデルの生成、URL のルーティングなど、Web プログラミングで必要な多くの作業が簡単になります。結果として、Rails を使ってアプリケーションを開発すると、コードが簡潔になり、読みやすくなります。</p>
+<p>Railsがこれだけ多くに人達に使われているのはなぜでしょうか。理由の１つは、Railsが100%オープンソースで、制限の緩い<a href="http://www.opensource.org/licenses/mit-license.php">MITライセンス</a>で公開されているからです。これにより、Railsをダウンロードしたり使ったりする際のコストが一切かかりません。また、Railsの設計が簡潔で美しいことも、Railsの成功を支えている秘訣の１つです。これを実現できたのは、Railsの背後で動いている<a href="http://ruby-lang.org/">Ruby</a>言語の驚異的な柔軟性のおかげです。具体的には、Webアプリケーションの作成に特化した<a href="http://en.wikipedia.org/wiki/Domain_Specific_Language">DSL (ドメイン固有言語)</a> を Ruby言語で実装していることにより、HTMLやデータモデルの生成、URL のルーティングなど、Webプログラミングで必要な多くの作業が簡単になります。その結果、Railsを使用してアプリケーションを開発すると、コードが簡潔になり、読みやすくなります。</p>
 
-<p>さらに、Rails は、最新の Web テクノロジーやフレームワーク設計に素早く適応しています。例えば、Rails は、REST という設計思想の重要性をいち早く理解し、対応したフレームワークの１つです (RESTについて後で解説します)。また、他のフレームワークで成功した新しい技術があれば、Railsの創始者である <a href="http://loudthinking.com/">David Heinemeier Hansson</a> や <a href="http://rubyonrails.org/core">Rails のコアチーム</a>は、そのアイデアをためらうことなく取り入れています。最も印象深い例の１つは、恐らく、当時ライバルの関係にあった Merb と Rails との統合です。この統合の結果、Rails は、Merb のモジュール設計や安定した <a href="http://en.wikipedia.org/wiki/Application_programming_interface">API</a>、そして、パフォーマンスの向上といった恩恵を受けることができました。</p>
+<p>さらに、Railsは最新のWebテクノロジーやフレームワーク設計に素早く適応しています。たとえば、Rails は「REST」という設計思想の重要性をいち早く理解し、対応したフレームワークの１つです (RESTについては後で解説します)。また、他のフレームワークで何か新しい技術が成功すれば、Railsの創始者である<a href="http://loudthinking.com/">David Heinemeier Hansson</a>や<a href="http://rubyonrails.org/core">Railsのコアチーム</a>は、そうしたアイデアを常に積極的に取り入れています。印象的な例として、かつて互いにライバルの関係にあったMerbとRailsとの統合が挙げられます。この統合の結果、RailsはMerbのモジュール設計や安定した<a href="http://en.wikipedia.org/wiki/Application_programming_interface">API</a>、そしてパフォーマンスの向上など多くの恩恵を受けることができました。</p>
 
-<p>最後に、Rails には、非常に熱心で多様なコミュニティがあります。具体的には、何百人ものオープンソース<a href="http://contributors.rubyonrails.org/">コントリビュータ</a>達や、多くの参加者で賑わう<a href="http://railsconf.com/">カンファレンス</a>、膨大な数の <a href="https://rubygems.org/">gem</a> (例えば、ページネーションや画像アップロードといった特定の問題を解決するための gem など) 、情報豊かなブログの数々、そして、掲示板や IRC の宝庫が、Rails コミュニティの中に存在しています。このような熱心で多様なコミュニティのおかげで、例えば、開発中に何らかのエラーに遭遇したとしても、エラー内容を Google で検索するだけで、関連するブログ記事や掲示板のスレッドを見つけることができます。</p>
+<p>最後に、Railsには驚くほど熱心かつ多様なコミュニティという素晴らしい財産があります。Railsコミュニティには、何百人ものオープンソース<a href="http://contributors.rubyonrails.org/">コントリビュータ</a>達や、多くの参加者で賑わう<a href="http://railsconf.com/">カンファレンス</a>、膨大な数の<a href="https://rubygems.org/">gem</a> (ページネーションや画像アップロードといった特定の問題を解決するためのgemなど)、多くの情報を発信し続けるブログ、掲示板、IRCがあります。このような熱心で多様なコミュニティのおかげで、開発中に何らかのエラーに遭遇したとしても、エラーメッセージをそのままGoogleで検索するだけで、関連するブログ記事や掲示板のスレッドをたちどころに見つけることができます。</p>
 
 <div class="label" id="sec-comments_for_various_readers"></div>
 
@@ -94,31 +94,31 @@
 <h3><a id="sec-1_1_1" href="./beginning.html#sec-comments_for_various_readers" class="heading"><span class="number">1.1.1</span> 読者の皆さまへ</a></h3>
 
 
-<p><em>Rails チュートリアル</em>は、統合的なチュートリアルになっています。本チュートリアルは Rails を中心に構成されていますが、他にも、Ruby 言語や RSpec を使ったテスト、<a href="http://en.wikipedia.org/wiki/HTML">HTML</a>、<a href="http://en.wikipedia.org/wiki/CSS">CSS</a>、そして、わずかな <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> と <a href="http://en.wikipedia.org/wiki/SQL">SQL</a>のチュートリアルも含まれています。このような統合的なチュートリアルになっているため、現時点の Web 開発の知識量に関わらず、このチュートリアルを読み終える頃には、あなたは上述した各トピックを卒なくこなせるようになるだけではなく、より高度な情報源を難なく読みこなす実力がつくようになります。言い換えると、本書で扱うトピックの範囲が<em>広い</em>ということでもあります。もしまだ十分なプログラミング経験を持っていないのであれば、その情報量の多さに圧倒されるかもしれません。そこで、読者の経験や知識に応じた、<em>Railsチュートリアル</em>を読破するためのアドバイスを用意しました。ぜひ参考にしてください。<br /></p>
+<p><em>Railsチュートリアル</em>は、統合的な構成を採用しています。構成の中心となるのはもちろんRailsですが、他にもRuby言語やRSpecを使ったテスト、<a href="http://en.wikipedia.org/wiki/HTML">HTML</a>、<a href="http://en.wikipedia.org/wiki/CSS">CSS</a>、若干の<a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a>と<a href="http://en.wikipedia.org/wiki/SQL">SQL</a>のチュートリアルが含まれています。チュートリアルが統合的に構成されていることにより、本書を最後まで完了することができれば、現時点のWeb開発の知識量に関わらず、より高度な情報源を難なく読みこなす実力が身につき、上に挙げたJavaScriptなどのRails以外のトピックについても理解しやすくなります。言い換えると、本書で扱うトピックの範囲がそれだけ<em>広い</em>ということでもあります。プログラミング経験の浅い方にとっては、その情報量の多さに圧倒されるかもしれません。そこで、読者の経験や知識に応じた、<em>Railsチュートリアル</em>を読破するためのアドバイスを用意しました。ぜひ参考にしてください。<br /></p>
 
-<p><strong>すべての読者へ:</strong> よく聞かれる質問の１つが「Rails を覚える前に Ruby を勉強した方が良いでしょうか？」という質問です。この質問の答えは、あなたの学習スタイルやプログラミング経験によります。もしあなたが全てを最初から体系的に学びたい場合や、プログラミングの経験が全くない場合は、恐らく、Ruby を最初に学んだ方が良いでしょう。また、Ruby を学ぶのであれば、Peter Cooper の「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」をお勧めします。一方で、これから Rails で開発を始めようとする人の多くは「<em>Web アプリケーション</em>を作りたい！」と考えているので、たった1つの Web ページを作成するために 500 ページもある Ruby の本を読み通す気にはなれないでしょう。したがって、このような方には、Ruby を対話的に学習できる Web サービス「<a href="http://tryruby.org/">Try Ruby</a><sup class="footnote" id="fnref-1_2"><a href="./beginning.html#fn-1_2">2</a></sup>」を使って、Ruby をザックリと理解しておくことをお勧めします。また、必要であれば、<a href="http://railsforzombies.org/">Rails for Zombies</a><sup class="footnote" id="fnref-1_3"><a href="./beginning.html#fn-1_3">3</a></sup>で Rails の全体像を把握しておくと良いかもしれません (訳注: いずれも英語版のみ)。</p>
+<p><strong>【すべての読者へ】</strong> 「Railsを学ぶ前にRubyを勉強した方がよいでしょうか？」は定番の質問です。この質問への回答は、読者の学習スタイルやプログラミング経験次第で異なるため、一口には言えません。Web開発を最初から体系的に学びたい場合や、プログラミングの経験が全くない場合は、Rubyを最初に学ぶのがよいでしょう。Rubyを学ぶのであれば、Peter Cooperの「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」がお勧めです。これからRailsで開発を始めようとする人は「とにかく<em>Webアプリケーション</em>を作りたい！」と考えていることがほとんどなので、たった1つのWebページを作成するために500ページものRuby本を読み通す気にはなれないでしょう。Rubyを急いで学びたいのであれば、Rubyを対話的に学習できるWebサービス「<a href="http://tryruby.org/">Try Ruby</a><sup class="footnote" id="fnref-1_2"><a href="./beginning.html#fn-1_2">2</a></sup>」を使ってRubyをおおまかに理解しておくことをお勧めします。必要であれば、<a href="http://railsforzombies.org/">Rails for Zombies</a><sup class="footnote" id="fnref-1_3"><a href="./beginning.html#fn-1_3">3</a></sup>に目を通してRailsの全体像を把握しておくとよいかもしれません (訳注: いずれも英語版のみ)。</p>
 
-<p>もう１つよく聞かれる質問が「最初からテストを書くべきですか？」という質問です。「はじめに」で述べたように、<em>Rails チュートリアル</em>では、テスト駆動開発 (TDD) を最初から採用しています。というのも、著者の開発経験から、テスト駆動開発が、Rails アプリケーションの開発に最も適切な手法だと考えているからです。ただし、テスト駆動開発を採用したことにより、本チュートリアルの複雑さが増し、読者への負担も増えています。そこで、もしテストで行き詰まってしまった場合には、思い切って (一周目は) その箇所を飛ばしてしまいましょう。あるいは、もっとお勧めの方法としては、「テストがどのように動くか」は気にせずに、あなたの書いたコードが正しく動くかどうかの検証ツールとして、本書のテストを使う方法です。具体的には、<em>spec</em> と呼ばれるテストファイルを作成し、そのファイルに、<em>本書で指示された通りに</em>テストコードをコピー＆ペーストして下さい。<a class="ref" href="./filling-in-the-layout.html#top">第5章</a>で詳しく説明しますが、テストスイート (複数のテストケースを束ねたもの) を実行すると、最初はテストに失敗します。失敗することを確認したら、チュートリアルに従って、今度はアプリケーションのコードを書きます。最後に、同じテストスイートをもう一度実行すると、今度はテストに成功するようになっています。つまり、無事にテストに成功すれば、あなたが書いたコードは正しく動いている、ということになります。<br /></p>
+<p>「最初からテストを書かないといけないでしょうか？」も定番の質問です。「はじめに」で述べたように、<em>Railsチュートリアル</em>では最初からテスト駆動開発 (TDD) を採用しています。その理由は、著者の開発経験に基づき、テスト駆動開発こそがRailsアプリケーションの開発に最も適切な手法だと考えられるからです。ただし、テスト駆動開発を全面的に採用したことにより、本チュートリアルはその分複雑になり、読者の負担も増えています。Railsのコードだけでなく、テストコードも書かなくていけないからです。そこで、もしテストで行き詰まってしまった場合には、そこで長々と悩むよりも思い切って (一周目は) その箇所をスキップしてしまいましょう。よりお勧めの方法は、テストコードの完全な理解については欲張らずに後回しにし、本書のテストは自分の書いたコードが正しく動くかどうかの検証ツールと割り切って使うことです。具体的には、<em>spec</em>と呼ばれるテストファイルを作成し、そのファイルに、<em>本書で指示された通りに</em>テストコードをコピー＆ペーストするだけにしておくのです。<a class="ref" href="./filling-in-the-layout.html#top">第5章</a>で詳しく説明しますが、テストスイート (複数のテストケースを束ねたもの) を実行すると、最初はテストに失敗します (この時点では失敗するのが正しいのです)。失敗することを確認したら、チュートリアルに従って、今度はアプリケーションのコードを書きます。最後に、同じテストスイートをもう一度実行すると、今度はテストに成功するようになっています。つまり、最終的にテストが成功すれば、自分が書いたコードは正しく動いていることが確認できたことになります。<br /></p>
 
-<p><strong>初めてプログラミングを始める方:</strong> <em>Rails チュートリアル</em>は、完全なプログラミング初心者を対象にして書かれたものではありません。というのも、比較的シンプルなウェブアプリケーションであっても、ある程度の複雑さが必ず存在するからです。したがって、もしあなたが Web プログラミングの初心者で、かつ、この <em>Rails チュートリアル</em>を難しすぎると感じた場合は、まずは HTML や CSS の基礎を勉強してみると良いでしょう。それらの基礎が備わったら、是非もう一度 <em>Rails チュートリアル</em>に挑戦してください。(ちなみに、「これだ！」というお勧めの教材は思いつかなかったのですが、「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」は良い本のように思えます。また、David Sawyer McFarland による「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>」を推薦してくれた読者もいます。)  Peter Cooper の「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の2, 3章をやってみるのも良いでしょう。同書で扱うサンプルアプリケーションは、本格的な Web アプリケーションに比べて非常に小さいので、比較的やりやすいと思います。何故このようなセクションを設けたかというと、驚くほど多くの初心者の方々が、本書で Web 開発を学ぼうとしているからです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。最後に、そうした方々に特にお勧めするのは「<a href="./screencasts"><em>Rails Tutorial</em> のスクリーンキャストのシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="./beginning.html#fn-1_4">4</a></sup>」(英語のみ) です。この動画版 Rails チュートリアルでは、Rails を使ったソフトウェア開発の作業を、まるで 「肩越しに」見ているかのように学ぶことができます。<br /></p>
+<p><strong>【初めてプログラミングを始める方へ】</strong> 残念ながら、<em>Railsチュートリアル</em>は、まったくのプログラミング初心者を対象にして書かれたものではありません。どれほど単純なWebアプリケーションであっても、それを作るために理解しておかなければいけないことがたくさんあり、そうした予備知識は省略できないからです。Webプログラミングをまったくしたことのない初心者の方が、この<em>Railsチュートリアル</em>を難しすぎると感じた場合は、本書を学ぶ前にまずHTMLやCSSの基礎を勉強してください。それらの基礎が身についたら、是非もう一度<em>Railsチュートリアル</em>に挑戦してください。(HTML関連ではこれといったお勧めの教材は思いつかなかったのですが、「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」はなかなかよさそうです。David Sawyer McFarland著「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>」を推薦してくれた読者もいます。)Peter Cooper著「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の2、3章をやってみるのもよいでしょう。同書で扱っているサンプルアプリケーションは、本格的なWebアプリケーションに比べて非常に小さいので、比較的やりやすいと思います。この節を本書に追加したのは、まったくの初心者の方々がいきなり本書でWeb開発を学ぼうとしているケースが実に多かったからです。そうした方々が本書に挑むこと自体はもちろんOKです。最も大事なのは情熱なのですから。最後に、そうした方々に特にお勧めな教材として「<a href="./screencasts"><em>Rails Tutorial</em> のスクリーンキャストのシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="./beginning.html#fn-1_4">4</a></sup>」(英語のみ) をご紹介いたします。この動画版Railsチュートリアルでは、Railsを使ったソフトウェア開発の作業を、まるで「達人の肩越しに」のぞきこんでいるかのように見て学ぶことができます。<br /></p>
 
-<p><strong>プログラミングの経験があり、これから Web 開発を始める方:</strong> 既にクラスやメソッド、データ構造などの概念に馴染みがある方であれば、その知識は有利に働きます。ただし、Java や C/C++ といった言語と Ruby 言語では、記法が異なるので、少し違和感を感じるかもしれません。しかし、Ruby 言語の記法に慣れるまでに、そこまで時間はかかりません。(例えば、行末にセミコロンを書く習慣がついているかもしれませんが、Ruby では行末にセミコロンを置いても問題なく動きます。) <em>Rails チュートリアル</em>では、覚える必要のある Web 特有の概念を全てカバーしているので、例えば、もし今 <tt>POST</tt> や <tt>PATCH</tt> の違いが分からなくても、心配する必要はありません。<br /></p>
+<p><strong>【プログラミングの経験があり、これからWeb開発を始める方へ】</strong> 既にクラスやメソッド、データ構造などの概念に馴染みがある方であれば、それらの知識は大いに役立ちます。JavaやC/C++といった言語とRuby言語では記法が異なるので、最初は若干違和感を感じるかもしれませんが、すぐにRuby言語の記法に慣れるでしょう。(Rubyでは行末にセミコロンを置いても置かなくても問題なく動きますので、行末にセミコロンがないとどうしても落ち着かない方はそうしてみてもよいかもしれません。お勧めはしませんが。)<em>Rails チュートリアル</em>では、覚えておく必要のあるWeb特有の概念をすべてカバーしているので、<tt>POST</tt>や<tt>PATCH</tt>の違いが分からなくても今は心配する必要はありません。<br /></p>
 
-<p><strong>Web 開発の経験があり、これから Railsを始める方:</strong> もし PHP や Python といった動的言語を使った経験がある場合、楽に本書を読め進められるはずです。特に、Python の経験があると非常に有利です。本書でカバーする基本的な概念については既に知っていると思いますが、テスト駆動開発や REST 構造については、初めて触れる概念になるかもしれません。また、Ruby には特有のクセがあるので、これも本書で初めて触れる知識になるでしょう。<br /></p>
+<p><strong>【Web開発の経験があり、これからRailsを始める方へ】</strong> PHPやPythonなどの動的言語の経験があれば、楽に本書を読め進められるはずです。特にPythonの経験は非常に有利です。本書でカバーする基本的な概念については既に知っていると思いますが、テスト駆動開発やREST構造などの概念については馴染みがない方もいるでしょう。Rubyには独特のクセがあるので、多少戸惑うこともあるかもしれません。<br /></p>
 
-<p><strong>Ruby プログラミングの経験があり、これから Rails を始める方:</strong> 最近では多くの Ruby プログラマが Rails を使っているので、純粋に Ruby のみを使っている方は少ないと思います。ただ、もしあなたが純粋な Ruby プログラマであれば、本書をすらすら読めるに違いありません。また、本書を読み終わった後に、独自のアプリケーションを開発することも難しくないはずです。<br /></p>
+<p><strong>【Rubyプログラミングの経験があり、これからRailsを始める方へ】</strong> 最近ではRubyプログラマがRailsを使うのは当たり前になりつつあるので、純粋にRubyのみを使っている方は少ないと思います。生粋のRubyプログラマであれば、本書を楽に読み進められるでしょう。本書を読み終わった頃には、すぐにも独自のアプリケーションを開発できるでしょう。<br /></p>
 
-<p><strong>Rails を使った経験はあるが、まだ十分ではない方:</strong> もしかしたら、既に他のチュートリアルを読んだり、小規模な Rails アプリをいくつかの作った経験があるかもしれません。読者からのフィードバックを読む限りでは、そのような背景を持った方であっても、本書から多くのことを学べるはずだと自信を持って言えます。本書には、あなたが初めて Rails を学んだ頃よりも新しい技術がふんだんに盛り込まれているため、本書で学ぶ技術はきっと役に立つはずです。<br /></p>
+<p><strong>【Railsを使った経験はあるが、まだ十分ではない方へ】</strong> 既に他のチュートリアルを読んだり、小規模なRailsアプリをいくつか作った経験がおありだと思います。読者からのフィードバックを読んだ限りでは、そのような方であっても本書から多くのことを学べるはずだと自信を持って言えます。本書には、そうした方々が初めてRailsを学んだ頃よりも新しい技術がふんだんに盛り込まれているため、本書で学ぶ技術はきっと役に立つはずです。<br /></p>
 
-<p><strong>Rails を使った経験が十分にある方:</strong> Rails を使った開発の経験が既に十分にある場合、本書は必要ないでしょう。しかし、多くの Rails 開発者から「意外と役に立った」との声を頂いているので、Rails 開発者であっても、Rails を違う視点から見て楽しめるかもしれません。<br /></p>
+<p><strong>【Rails経験の豊富な方へ】</strong> Railsを使った開発の経験が既に十分にあるのであれば本書は必要ないはずなのですが、意外にも多くのRails開発者から「思ったよりも役に立った」との声を頂いているので、Rails開発のベテランであってもRailsを違う視点から見ることで楽しめるかもしれません。<br /></p>
 
-<p>最後に、<em>Ruby on Rails チュートリアル</em>を読み終えた経験豊富なプログラマの方には、さらに高度な話題を扱っている「<a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a>」(David A. Black 著) または「<a href="./www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional-Series/dp/0321584104/#"><em>Eloquent Ruby</em></a>」(Russ Olsen 著) を読むことをお勧めします。あるいは、トピック別に書かれている「<a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a>」(Hal Fulton 著) を読んでみるのも良いでしょう。<br /></p>
+<p>最後に、<em>Ruby on Railsチュートリアル</em>を読み終えた経験豊富なプログラマの方には、さらに高度な話題を扱っている「<a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a>」(David A. Black 著) または「<a href="./www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional-Series/dp/0321584104/#"><em>Eloquent Ruby</em></a>」(Russ Olsen 著) をお勧めします。あるいは、トピック別に書かれている「<a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a>」(Hal Fulton 著) を読んでみるのも良いでしょう。<br /></p>
 
-<p>本書を読み始めた時の知識量がどのようなレベルであったとして、本書を読み終えた頃には、あなたはより高度な Rails の情報源を読めるようになっているはずです。中でも、特にお勧めしたい Rails の情報源は、次のとおりです。</p>
+<p>本書を読み終える頃には、本書を読む前の知識量の多少にかかわらず、より高度なRailsの情報源を理解できるようになっているはずです。その中でも特にお勧めのRailsの情報源を紹介します。</p>
 
 <ul>
 
-<li><a href="http://railscasts.com/">RailsCasts</a> (Ryan Bates) : 質の高い (ほぼ) 無料のスクリーンキャスト</li>
+<li><a href="http://railscasts.com/">RailsCasts</a> (Ryan Bates) : きわめて質の高い (ほぼ) 無料のスクリーンキャスト</li>
 <li><a href="http://peepcode.com/">PeepCode</a>: 質の高い商用のスクリーンキャスト</li>
 <li><a href="http://www.codeschool.com/">Code School</a>: プログラミングを対話的に学習できるコース</li>
 <li><a href="http://guides.rubyonrails.org/">Rails Guides</a>: トピック毎に分類された最新の Rails リファレンス</li>
@@ -133,7 +133,7 @@
 <h3><a id="sec-1_1_2" href="./beginning.html#sec-1_1_2" class="heading"><span class="number">1.1.2</span> Railsと「スケール」について</a></h3>
 
 
-<p>本節を続ける前に、一旦ここで、初期の頃から Rails フレームワークに対して指摘されていた「Rails はスケールできない」という主張について触れたいと思います。すなわち、「Rails では大量のトラフィックを裁くことができない」という主張です。この主張の一部には、間違った認識があります。それは、<a href="http://idleprocess.wordpress.com/2009/11/24/presentation-summary-high-performance-at-massive-scale-lessons-learned-at-facebook/">あなたが<em>ウェブサイト</em>をスケールさせるのであって、フレームワークがウェブサイトをスケールさせるのではない</a>、ということです。Rails は素晴らしいフレームワークではありますが、しかし、ただのフレームワークでしかありません。したがって、本来のあるべき問いは「Rails で構築されたウェブサイトはスケールできるのか？」となります。そして、今となっては、この主張の答えは明白です。なぜなら、世界で最もトラフィックの大きいウェブサイトのいくつかは、Rails で構築されているからです。ただし、ウェブサイトをスケール<em>させる</em>ことは、Rails だけで出来ることではありません。Rails 以外の知識も必要になります。といっても、Hulu や Yellow Pages といった大量のトラフィックを捌いているウェブアプリケーションも Rails で構築されているので、そこまで心配する必要はありません。少なくとも、<em>あなたの</em>アプリケーションが Hulu や Yellow Pages 並みに成長するまでの間は、「Rails だからスケールできない」ということにはならないでしょう。</p>
+<p>本節を続ける前に、一旦ここで、Railsフレームワークに対して初期の頃から 指摘され続けている「Railsはスケールアップできない」という主張について触れたいと思います。「Railsでは大量のトラフィックを捌くことができない」という主張です。この主張には、一部間違った認識があります。それは、ウェブサイトをスケールさせるのは<a href="http://idleprocess.wordpress.com/2009/11/24/presentation-summary-high-performance-at-massive-scale-lessons-learned-at-facebook/">あなた<em>が行わなければいけない作業であって、フレームワークがウェブサイトをスケールさせるのではない</em></a>、ということです。Railsは素晴らしいフレームワークではありますが、やはりただのフレームワークでしかありません。正しい問いかけは「Railsで構築されたウェブサイトをスケールできるか？」です。この問いかけに対する回答は現時点で明白です。なぜなら、世界で最もトラフィックの大きいウェブサイトのいくつかはRailsで構築されており、実績が示されているからです。ただし、ウェブサイトをスケール<em>させる</em>ことは、Railsだけでできることではなく、Rails以外の多くの知識も必要になります。HuluやYellow Pagesなどの大量のトラフィックを日々捌いているウェブアプリケーションもRailsで構築されているので、そこまで心配する必要はありません。少なくとも、<em>あなたの</em>アプリケーションがHuluやYellow Pages並みに成長するまでの間は、「Railsだからスケールできない」ということにはならないでしょう。</p>
 
 <div class="label" id="sec-conventions"></div>
 
@@ -141,11 +141,11 @@
 <h3><a id="sec-1_1_3" href="./beginning.html#sec-conventions" class="heading"><span class="number">1.1.3</span> この本における取り決め</a></h3>
 
 
-<p>本書では、できるだけ分かりやすい取り決めを使っています。本項では、その中でも、分かりにくいかもしれない一部の取り決めについて説明します。</p>
+<p>本書で使用している取り決めや表記はわかりやすいものなので、ほとんどは説明不要でしょう。一部の取り決めについては説明が必要かもしれないので本項で補足します。</p>
 
-<p><a href="./book">HTML 版</a>、<a href="./">PDF 版</a>ともに、文中には内部リンク (<a class="ref" href="./beginning.html#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロードページ</a>など) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="./beginning.html#fn-1_5">5</a></sup>。</p>
+<p>本書の文中には内部リンク (<a class="ref" href="./beginning.html#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロードページ</a>など) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="./beginning.html#fn-1_5">5</a></sup>。これは<a href="./book">HTML版</a>、<a href="./">PDF版</a>いずれの場合も同じです。</p>
 
-<p>本書の出てくる例の多くは、コマンドライン (ターミナル) のコマンドを使っています。簡素化のため、コマンドラインを使った例では、次のような Unix スタイルのプロンプト (行の頭に &#39;$&#39; を表示するスタイル) を使っています。</p>
+<p>本書に登場する例の多くは、コマンドライン (ターミナル) のコマンドを使っています。簡素化のため、次のようなUnixスタイルのプロンプト (行の頭に &#39;$&#39; を表示するスタイル) を使用して、その例がコマンドラインであることを示しています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">echo</span> <span class="s2">&quot;hello, world&quot;</span>
 <span class="go">&quot;hello world&quot;</span>
@@ -153,7 +153,7 @@
 </div>
 
 
-<p>なお、Windows のコマンドラインでは、大なり記号 (<code>&gt;</code>) がプロンプトに表示されるので、$ を &gt; に置き換えて読んで下さい。</p>
+<p>なお、Windows のコマンドラインでは、$の代わりに大なり記号 (<code>&gt;</code>) がプロンプトに表示されるので、$ を &gt; に置き換えて読んで下さい。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">C:\Sites&gt; echo &quot;hello, world&quot;</span>
 <span class="go">&quot;hello world&quot;</span>
@@ -161,59 +161,59 @@
 </div>
 
 
-<p>また、Unix システム上では、いくつかのコマンドを入力する際に <code>sudo</code> コマンド (他のユーザーとしてプログラムを実行するためのコマンド) を使わなければならない場合があります<sup class="footnote" id="fnref-1_6"><a href="./beginning.html#fn-1_6">6</a></sup>。<code>sudo</code> コマンドを使って実行されたプログラムは、通常のユーザーではアクセスできないファイルやディレクトリにアクセスできる「管理者権限」で実行されます。例えば、<a class="ref" href="./beginning.html#sec-rubygems">1.2.2</a> では、次のような管理者権限で実行するコマンドが出てきます。</p>
+<p>また、Unixシステム上では、いくつかのコマンドを入力する際に<code>sudo</code>コマンド (他のユーザーの権限でプログラムを実行するためのコマンド) を使わなければならない場合があります<sup class="footnote" id="fnref-1_6"><a href="./beginning.html#fn-1_6">6</a></sup>。<code>sudo</code>コマンドを使って実行されたプログラムは、通常のユーザーではアクセスできないファイルやディレクトリにアクセスできる「管理者権限」で実行されます。たとえば、<a class="ref" href="./beginning.html#sec-rubygems">1.2.2</a>では、次のような管理者権限で実行するコマンドが登場します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> sudo ruby setup.rb</pre></div>
 </div>
 
 
-<p>ほとんどの Unix/Linux/OS X のシステムでは、<code>sudo</code> の実行が必要です。ただし、<a class="ref" href="./beginning.html#sec-install_ruby">1.2.2.3</a> で推奨されている Ruby Version Manager を使っている場合は、次の例のように、管理者権限を使わずに実行することができます。</p>
+<p><code>sudo</code> の実行は、ほとんどのUnix/Linux/OS X のシステムで必要です。ただし、<a class="ref" href="./beginning.html#sec-install_ruby">1.2.2.3</a>で推奨されているRuby Version Manager (RVM) を使っている場合は、次の例のように管理者権限を使わずに実行できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby setup.rb</pre></div>
 </div>
 
 
-<p>Rails には、コマンドラインで実行できる多数のコマンドが付属しています。例えば、<a class="ref" href="./beginning.html#sec-rails_server">1.2.5</a> で使われる次のコマンドは、開発用 Web サーバーをローカル PC 上で実行するコマンドです。</p>
+<p>Railsには、コマンドラインで実行できるコマンドが多数付属しています。たとえば、<a class="ref" href="./beginning.html#sec-rails_server">1.2.5</a>で使われる以下のコマンドは、開発用WebサーバーをローカルPC上で実行するコマンドです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nv">$ </span>rails server</pre></div>
 </div>
 
 
-<p>コマンドラインのプロンプトと土曜に、<em>Rails チュートリアル</em>では、ディレクトリの区切りに Unix スタイルのスラッシュ(<code>/</code>)を使っています。したがって、例えばサンプルアプリケーションの場所は、次にように表記されます。</p>
+<p><em>Railsチュートリアル</em>におけるディレクトリの区切りは、コマンドラインのプロンプトと同様にUnixスタイルのスラッシュ(<code>/</code>)を使っています。サンプルアプリケーションの場所は、たとえば次のように表記されます。</p>
 
 <div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app</pre></div>
 </div>
 
 
-<p>なお、Windows のコマンドプロンプトでは、ディレクトリの区切りは次のように表示されるはずです。</p>
+<p>なお、Windowsのコマンドプロンプトでは、ディレクトリの区切りは次のようにバックスラッシュまたは円マークで表示されます。</p>
 
 <div class="code"><div class="highlight"><pre>C:\Sites\sample_app</pre></div>
 </div>
 
 
-<p>Rails で作成するアプリケーションのルートディレクトリを、<em>Rails ルート</em>と呼びます。この用語は誤解されやすいようで、多くの人が Rails ルートを「Railsがインストールされたディレクトリ」だと勘違いします。この点を明確にするため、<em>Rails チュートリアル</em>では、Rails ルートは <em>Rails アプリケーションのルートディレクトリ</em>を指すものとします。また、全てのディレクトリは、このルートディレクトリを起点とした相対パスで示します。例えば、著者のサンプルアプリケーションの <code>config</code> ディレクトリは、次の場所にあります。</p>
+<p>Railsで作成するWebアプリケーションが置かれているディレクトリのルート (root) を、<em>Railsルート</em>と呼ぶことにします。この用語は誤解されやすいようで、多くの人がRailsルートを「Railsというアプリケーションそのものがインストールされているディレクトリのルート」だと勘違いします。この点を明確にするため、<em>Railsチュートリアル</em>では、「Railsルート」については<em>(Railsで作成した)Webアプリケーションのルートディレクトリ</em>を指すものとします。また、すべてのディレクトリは、このルートディレクトリを起点とした相対パスで示します。たとえば、著者のサンプルアプリケーションの <code>config</code> ディレクトリは、次の場所にあります。</p>
 
 <div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app/config</pre></div>
 </div>
 
 
-<p>このとき、この Rails アプリケーションのルートディレクトリは、<code>config</code> ディレクトリの1つ上の階層にあります。したがって、次の場所にあります。</p>
+<p>このとき、このRailsアプリケーションのルートディレクトリは、<code>config</code>ディレクトリの1つ上の階層にあります。したがって、以下の場所がルートディレクトリになります。</p>
 
 <div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app</pre></div>
 </div>
 
 
-<p>しかし、長いパスを毎回表記すると、読みづらくなります。そこで、本書では、次のようなディレクトリパスを参照する場合、</p>
+<p>長いパスを毎回表記すると読みづらくなるので、本書では以下のようなディレクトリパスを参照する場合、</p>
 
 <div class="code"><div class="highlight"><pre>/Users/mhartl/rails_projects/sample_app/config/routes.rb</pre></div>
 </div>
 
 
-<p>アプリケーションのルートパスを省略して、単純に <code>config/routes.rb</code> と表記することにします。</p>
+<p>アプリケーションのルートパスを省略して、単純に<code>config/routes.rb</code>と表記することにします。</p>
 
-<p><em>Rails チュートリアル</em>では、様々なプログラムの出力結果  (例えば、シェルコマンドやバージョン管理ツール、Ruby プログラムの出力結果) を、頻繁に記載するようにしています。出力結果は、コンピュータシステムによって微妙に異なるので、本書の出力結果と実際の出力が正確に一致するとは限りません。しかし、細かい出力結果の差異が問題になることはないので、あまり気にする必要はありません。</p>
+<p><em>Railsチュートリアル</em>では、様々なプログラムの出力結果 (シェルコマンド、バージョン管理ツール、Rubyプログラムの出力結果など) をこまめに記載するようにしています。出力結果は、コンピュータシステムによって微妙に異なるので、本書の出力結果と実際の出力が正確に一致するとは限りません。しかし、細かい出力結果の差異が問題になることはないので、あまり気にする必要はありません。</p>
 
-<p>一方、コンピュータシステムによっては、一部のコマンドを実行した時にエラーが発生するかもしれません。しかし本書では、あらゆる場面を想定して、全てのエラーの対策を記載するような<a href="http://en.wikipedia.org/wiki/Sisyphus">果てしない徒労</a>はしていません。その代わり、エラーメッセージを Google で検索してください (原文: &quot;Google the error message&quot; algorithm) &quot;。エラーメッセージを Google で検索することは、実際のソフトウェア開発でも使われているテクニックなので、その良い練習にも繋がります。もし本書のチュートリアルを進めていくうちに何か問題が生じたら、<a href="./help">Rails チュートリアルの Help ページ</a>を読んでみて下さい。このページには、問題を解決するためのリソースやヒントが記載されているので、問題を解決する手掛かりになるはずです<sup class="footnote" id="fnref-1_7"><a href="./beginning.html#fn-1_7">7</a></sup>。</p>
+<p>コンピュータシステムによっては、コマンドを実行した時にエラーが発生するかもしれません。しかし本書では、あらゆる場面を想定してエラー対策をもれなく記載するような<a href="http://en.wikipedia.org/wiki/Sisyphus">不毛な作業</a>は行っていません。そのような場合は、即座にエラーメッセージをGoogleで検索してください。エラーメッセージをGoogleで検索することは、実際のソフトウェア開発でも使われている基本的なテクニックなので、よい練習にもなります。本書のチュートリアルを進めていくうちに何か問題が生じたら、<a href="./help">RailsチュートリアルのHelpページ</a>を読んでみて下さい。このページには問題を解決するためのリソースやヒントが記載されているので、問題を解決する手掛かりになるはずです<sup class="footnote" id="fnref-1_7"><a href="./beginning.html#fn-1_7">7</a></sup>。</p>
 
 <div class="label" id="sec-up_and_running"></div>
 
@@ -227,7 +227,7 @@
 </blockquote>
 
 
-<p>いよいよ、Ruby on Rails の開発構築と、最初のアプリを作成する時が来ました。プログラミング経験が無い方は少し苦労すると思いますが、どうか諦めずに頑張ってください。苦労するのはあなただけではありません。これは全ての開発者が何度も通る道であり、そして、ここでの苦労が大いに報われることは、筆者が保証いたします。</p>
+<p>それでは、Ruby on Railsの開発環境を構築し、最初のアプリを作成してみましょう。プログラミング経験のない方は多少苦労することもあると思いますが、どうか諦めずに頑張ってください。苦労するのは自分だけではありません。これはどんな開発者でも幾度となく通過する道です。ここでの苦労はいつか必ず報われることは、著者が保証いたします。</p>
 
 <div class="label" id="sec-development_tools"></div>
 
@@ -235,31 +235,31 @@
 <h3><a id="sec-1_2_1" href="./beginning.html#sec-development_tools" class="heading"><span class="number">1.2.1</span>開発環境</a></h3>
 
 
-<p>開発環境はRailsプログラマの数だけあります。開発者たちは自分の環境を、最早自分でもわからなくなるぐらいにとことんカスタマイズするものだからです。開発環境は、大きく分けてテキストエディタとコマンドラインを使用する環境とIDE (統合開発環境) を使った環境に分けられます。まずは後者から見てみましょう。</p>
+<p>開発環境はRailsプログラマ一人ひとりすべて異なります。開発者は慣れてくるに従い、自分の環境を徹底的にカスタマイズするものだからです。開発環境を大別すると、テキストエディタやコマンドラインを使う環境と、IDE (統合開発環境) の2つに分けられます。まずは後者から見てみましょう。</p>
 
 <h4><a id="sec-1_2_1_1" href="./beginning.html#sec-1_2_1_1" class="heading">IDE</a></h4>
 
 
-<p>Rails向けの統合開発環境 (IDE) として最も有名なのは<a href="http://www.aptana.com/rails/">RadRails</a>と<a href="http://www.jetbrains.com/ruby/index.html">RubyMine</a>です。特にRubyMineの評判がよいようです。さらに、David Loefflerという読者が「<a href="https://github.com/perfectionist/sample_project/wiki">RailsチュートリアルでRubyMineを使用する方法</a><sup class="footnote" id="fnref-1_8"><a href="./beginning.html#fn-1_8">8</a></sup>」というドキュメントまでまとめてくれました。IDEでの開発が好みという方は、自分のスタイルに合うかどうか上のリンクをチェックしてみるとよいでしょう。</p>
+<p>Rails 用IDEとして最も有名なのは<a href="http://www.aptana.com/rails/">RadRails</a>と<a href="http://www.jetbrains.com/ruby/index.html">RubyMine</a>です。中でもRubyMineが良いという評判をよく聞きます。本書の読者の一人 (David Loeffler) は、<a href="https://github.com/perfectionist/sample_project/wiki">RailsチュートリアルでRubyMineを使用する方法</a><sup class="footnote" id="fnref-1_8"><a href="./beginning.html#fn-1_8">8</a></sup> というドキュメントまで作ってくれました。IDEでの開発を好む方は、上のリンクをチェックしてみて、自分のスタイルに合うかどうか試してみるとよいでしょう。</p>
 
 <h4><a id="sec-1_2_1_2" href="./beginning.html#sec-1_2_1_2" class="heading">テキストエディタとコマンドライン</a></h4>
 
 
-<p>著者自身は、すべてが整った強力なIDEの代わりに、<em>テキストエディタ</em>でテキストを編集し、<em>コマンドライン</em>でコマンドを実行するというシンプルな手段を好んでいます (<a class="ref" href="./beginning.html#fig-editor_shell">図 1.1</a>)。どの組み合わせを使うかは自身の好みとプラットフォームによりますが。</p>
+<p>著者自身は、すべてが整った強力なIDEで作業するよりも、「<em>テキストエディタ</em>でテキストを編集し、<em>コマンドライン</em>でコマンドを実行する」というシンプルな手段が好みです (<a class="ref" href="./beginning.html#fig-editor_shell">図1.1</a>)。ツールの組み合わせは各人の好みやプラットフォームによって変わってきますが、著者がお勧めするツールを以下にご紹介します。</p>
 
 <ul>
-<li><strong>テキストエディタ</strong>: 断然<a href="http://www.sublimetext.com/2">Sublime Text 2</a>をお勧めします。これは非常によくできたクロスプラットフォームのテキストエディタであり、現段階ではまだベータ版ですが、とてもそうは思えないほどパワフルです<sup class="footnote" id="fnref-1_9"><a href="./beginning.html#fn-1_9">9</a></sup>。Sublime Textは<a href="http://macromates.com">TextMate</a>の影響を強く受けています。そして実際、スニペットやカラースキームなどについてはTextMateのカスタマイズ設定と互換性があります (あなたがMacユーザーであれば、TextMateは今でも良い選択であると言えます。OS X版しかありませんが)。2番目の選択肢にふさわしい<a href="http://www.vim.org/">Vim</a><sup class="footnote" id="fnref-1_10"><a href="./beginning.html#fn-1_10">10</a></sup>も多くのプラットフォームで動作します。Vimは無償で手に入りますが、Sublime Textは商用版を入手できます。どちらもプロの使用に耐えうるものですが、著者の経験ではSublime Textは初心者にとって<em>はるかに</em>扱いやすいものであると言えます。</li>
+<li><strong>テキストエディタ:</strong> 断然<a href="http://www.sublimetext.com/2">Sublime Text 2</a>をお勧めします。これは非常によくできたクロスプラットフォームのテキストエディタです。現時点ではまだベータ版であるにもかかわらず、既にベータ版とは思えないほどパワフルなエディタです<sup class="footnote" id="fnref-1_9"><a href="./beginning.html#fn-1_9">9</a></sup>。Sublime Textは<a href="http://macromates.com">TextMate</a>の影響を強く受けています。実際、スニペットやカラースキームなどの設定はTextMateと互換性があります。（TextMateはMac OS X版しかありませんが、MacユーザーにとってはTextMateは現在でも良い選択であると言えます。) 次にお勧めするテキストエディタは<a href="http://www.vim.org/">Vim</a><sup class="footnote" id="fnref-1_10"><a href="./beginning.html#fn-1_10">10</a></sup>です。Vimは多くのプラットフォーム上で動作します。Vimは無償で入手できますが、Sublime Textは有償です (訳注: ただし無料の試用期間に制限はありません)。どちらもプロの開発者が使っているエディタですが、著者の経験では、Sublime Text の方が初心者にとって<em>はるかに</em>扱いやすいエディタであると思います。</li>
 
-<li><strong>ターミナル:</strong> OS Xの場合、<a href="http://iterm.sourceforge.net/">iTerm</a>かシステム備え付けのTerminal appをお勧めします。Linuxの場合、デフォルトのターミナルで構いません。Windowsの場合、Rails環境をそのままインストールするよりも、Linuxが動作する仮想マシン上にインストールすることを好む人が多いようです。この場合、コマンドラインオプションは従来通りです。開発環境をWindows自身にインストールするのであれば、コマンドラインは<a href="http://railsinstaller.org/">Railsインストーラ</a>付属の物がおすすめです (<a class="ref" href="./beginning.html#sec-rails_installer_windows">1.2.2.1</a>)。</li>
+<li><strong>ターミナル:</strong> OS Xの場合、<a href="http://iterm.sourceforge.net/">iTerm</a>か、OSに最初からインストールされているTerminal.appをお勧めします。Linux の場合、デフォルトのターミナルで問題ありません。Windowsの場合、Linuxが動作する仮想マシンを用意して、その仮想マシン上でRailsアプリケーションを開発することが好まれています。この場合、お勧めのコマンドラインは上記と変わりません。Windows自身にRails開発環境をインストールしたい場合、<a href="http://railsinstaller.org/">Railsインストーラ</a>付属のコマンドプロンプトを使うことをお勧めします (<a class="ref" href="./beginning.html#sec-rails_installer_windows">1.2.2.1</a>)。</li>
 </ul>
 
 
-<p>Sublime Textを選んだ方のために、オプション設定方法を解説した<a href="https://github.com/mhartl/rails_tutorial_sublime_text">Railsチュートリアル: Sublime Text</a><sup class="footnote" id="fnref-1_11"><a href="./beginning.html#fn-1_11">11</a></sup>を用意してあります。(この種の設定はいろいろと面倒でエラーも起きやすいので、あくまで上級者向けです。Sublime Textはデフォルト設定のままでも依然としてRailsアプリケーションを編集するための良い選択肢です。)</p>
+<p>なお、Sublime Textを選んだ方のために、より高度な設定方法を解説した「<a href="https://github.com/mhartl/rails_tutorial_sublime_text">Railsチュートリアル: Sublime Text</a><sup class="footnote" id="fnref-1_11"><a href="./beginning.html#fn-1_11">11</a></sup>」を用意しました。ただしエディタのカスタマイズは何かと厄介でエラーも起きやすいので、この解説はあくまで上級者向けです。Sublime Textは、デフォルト設定のままでもRailsアプリケーションのエディタとして十分に機能します。</p>
 
 <div class="label" id="fig-editor_shell"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/editor_shell.png" alt="editor_shell" /></span></div><div class="caption"><span class="header">図1.1</span> <span class="description">テキストエディタ/コマンドライン開発環境 (TextMate/ ITERMを使用) <a href="../images/figures/editor_shell-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/editor_shell.png" alt="editor_shell" /></span></div><div class="caption"><span class="header">図1.1</span> <span class="description">テキストエディタ/コマンドライン開発環境 (TextMate/ ITERM) <a href="../images/figures/editor_shell-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -267,12 +267,12 @@
 <h4><a id="sec-1_2_1_3" href="./beginning.html#sec-1_2_1_3" class="heading">ブラウザ</a></h4>
 
 
-<p>ブラウザの種類は豊富ですが、大半のRails開発者はFirefox、Safari、もしくはChromeを選ぶ傾向にあるようです。これらの3つのブラウザには、ページの任意の部分を右クリック (またはcontrolを押しながらクリック) して要素を表示する機能が組み込まれています。</p>
+<p>ウェブブラウザの種類は豊富ですが、多くのRails 開発者はFirefox、Safari、Chromeを使っています。これらの3つのブラウザには、ページの任意の部分を右クリック (またはControlキーを押しながらクリック) して、要素を表示する機能 (Inspect element機能) が標準で組み込まれています。</p>
 
 <h4><a id="sec-1_2_1_4" href="./beginning.html#sec-1_2_1_4" class="heading">使用するツールについて</a></h4>
 
 
-<p>開発環境を整える過程で、すべてを思い通りに設定するには<em>かなり</em>長い時間がかかる事を実感するかもしれません。Sublime TextやVimなどのエディタやIDEは特に、何週間かかっても極めるのは難しいものです。初めての方に申し上げておきますが、心配はいりません。<em>開発ツールを覚えるのに時間をかけるのはいたって普通の事なのです</em>。これもまた、開発者なら誰もが通る道です。「良いアイディアが浮かんで<em>今すぐにでもRailsでWebアプリを作りたいだけ</em>なのに、Unixエディタの使い方を覚えるのに1週間もかかって前に進めない！」とイライラする事もあるでしょう。しかしながら、道具の使い方は職人にとって当然の心得です。払った努力に見合う見返りは必ずあります。</p>
+<p>開発環境をあれこれ整え始めると、「すべてのツールを自在に使いこなすには<em>かなり</em>長い時間がかかりそうだ」と実感することでしょう。実際、テキストエディタやIDEを使いこなせるようになるまでには相当な時間が必要になります。たとえばSublime TextやVimにも専用のチュートリアルがあり、このようなチュートリアルを読み終えるだけでも数週間かかります。開発の経験がない方にとっては相当な驚きだと思いますが、仕事の道具である<em>開発ツールの学習に時間をかけることはいたって普通の事</em>であり、開発者であれば誰もが通る道です。「せっかく良いアイディアが浮かんだから、<em>とにかくRailsでWebアプリをさっと作ってみたいだけ</em>なのに、奇妙で古くさい Unix のエディタの使い方を覚えるだけで1週間もかかってる！」とイライラする事もあるでしょう。しかしながら、道具の使い方を覚えることが職人にとって当然の心得であるように、使用するツールについて学ぶことは大切なことです。払った努力に見合う見返りは必ずあります。</p>
 
 <div class="label" id="sec-rubygems"></div>
 
@@ -286,9 +286,9 @@
 </blockquote>
 
 
-<p>さあ、RubyとRailsをインストールしましょう。本書では可能な限り多くの環境をカバーするようにしていますが、システムが変われば手順がうまくいかないこともあります。問題が生じた場合は、エラーメッセージをGoogleで検索するか、<a href="./help">RailsチュートリアルのHelpページ</a>を参照してください。</p>
+<p>それでは、RubyとRailsをインストールしましょう。本書では可能な限り多くの環境をカバーするようにしていますが、システムが変われば手順がうまくいかないこともあります。問題が生じた場合は、エラーメッセージをGoogleで検索するか、<a href="./help">RailsチュートリアルのHelpページ</a>を参照してください。</p>
 
-<p><strong>なお、特に断りのない限り、Railsを含むすべてのソフトウェアはチュートリアルで使用されているものと同じバージョンを使用してください。そうでないと同じ結果を得られないことがあります。</strong> バージョンが少々異なっていても同じ結果を得られることもありますが、特にRailsのバージョンに関しては必ず指定を守ってください。一方、例外もあります。たとえば、Rubyのバージョンがその例外に該当します。本チュートリアル内では、Ruby 1.9.3とRuby 2.0.0は実質的に同じように動作するので、どちらを使ってもチュートリアルには影響しません。お好きな方をご使用ください。</p>
+<p><strong>なお、特に断りのない限り、Railsを含むすべてのソフトウェアはチュートリアルで使用されているものと同じバージョンを使用してください。そうでないと同じ結果を得られないことがあります。</strong> バージョンが少々異なっていても同じ結果を得られることもありますが、特にRailsのバージョンに関しては必ず指定を守ってください。なお、Ruby自身のバージョンは例外的にバージョンにそれほど厳しくありません。本チュートリアル内では、Ruby 1.9.3とRuby 2.0.0は実質的に同じように動作するため、どちらを使ってもチュートリアルには影響しません。お好きな方をご使用ください。</p>
 
 <div class="label" id="sec-rails_installer_windows"></div>
 
@@ -296,9 +296,9 @@
 <h4><a id="sec-1_2_2_1" href="./beginning.html#sec-rails_installer_windows" class="heading">Railsインストーラ (Windows)</a></h4>
 
 
-<p>最近までWindows上でのRailsのインストールは困難だったのですが、<a href="http://engineyard.com/">Engine Yard</a>の皆様 (特にDr. Nic WilliamsとWayne E. Seguin) のおかげで非常に簡単になりました。Windowsユーザーの方は<a href="http://railsinstaller.org/">Railsインストーラ</a>からインストーラをダウンロードしてください。exeファイルをダブルクリックし、指示に従ってGit、Ruby、RubyGems、そしてRails自身をインストールします (<a class="ref" href="./beginning.html#sec-install_git">1.2.2.2</a>、<a class="ref" href="./beginning.html#sec-install_ruby">1.2.2.3</a>、<a class="ref" href="./beginning.html#sec-install_rubygems">1.2.2.4</a>、<a class="ref" href="./beginning.html#sec-install_rails">1.2.2.5</a>はスキップしてください)。インストール完了後、<a class="ref" href="./beginning.html#sec-the_first_application">1.2.3</a>までスキップして最初のアプリケーション作成を開始してください。</p>
+<p>最近までWindows上でのRailsのインストールは困難だったのですが、<a href="http://engineyard.com/">Engine Yard</a>のメンバー (特にDr. Nic WilliamsとWayne E. Seguin) のおかげでインストールが非常に簡単になりました。Windowsユーザーの方は<a href="http://railsinstaller.org/">Railsインストーラ</a>からインストーラをダウンロードしてください。exeファイルをダブルクリックし、指示に従ってGit、Ruby、RubyGems、そしてRails自身をインストールします (<a class="ref" href="./beginning.html#sec-install_git">1.2.2.2</a>、<a class="ref" href="./beginning.html#sec-install_ruby">1.2.2.3</a>、<a class="ref" href="./beginning.html#sec-install_rubygems">1.2.2.4</a>、<a class="ref" href="./beginning.html#sec-install_rails">1.2.2.5</a>はスキップしてください)。インストール完了後、<a class="ref" href="./beginning.html#sec-the_first_application">1.2.3</a>までスキップして最初のアプリケーション作成を開始してください。</p>
 
-<p>注意: このRailsインストーラによってインストールされるRailsのバージョンは<a class="ref" href="./beginning.html#sec-install_rails">1.2.2.5</a>に記載のものと異なることがあります。その場合、互換性の問題が生じることもありえます。この問題を解決するために、Railsのバージョン番号順に並んだRubyインストーラのリストを作成してもらうようNicとWayneに働きかけています。</p>
+<p>注意: このRailsインストーラによってインストールされるRailsのバージョンは、<a class="ref" href="./beginning.html#sec-install_rails">1.2.2.5</a>に記載のものと異なることがあります。その場合は互換性の問題が生じることもありえます。この問題を解決するために、Railsのバージョン番号順に並んだRubyインストーラのリストを作成してもらうようNicとWayneに働きかけています。</p>
 
 <div class="label" id="sec-install_git"></div>
 
@@ -306,7 +306,7 @@
 <h4><a id="sec-1_2_2_2" href="./beginning.html#sec-install_git" class="heading">Gitのインストール</a></h4>
 
 
-<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="./beginning.html#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早い内にインストールを済ませておきます。<a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にしてください。</p>
+<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="./beginning.html#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早めにインストールを済ませておきます。<a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にしてください。</p>
 
 <div class="label" id="sec-install_ruby"></div>
 
@@ -314,9 +314,9 @@
 <h4><a id="sec-1_2_2_3" href="./beginning.html#sec-install_ruby" class="heading">Rubyのインストール</a></h4>
 
 
-<p>次にRubyをインストールします (Rubyのインストールは割りと面倒でエラーもよく発生します。正直、新しいバージョンのRubyをインストールするのが怖いのですが、仕事を進める上では避けて通れません)。</p>
+<p>次にRubyをインストールします (Rubyのインストールは面倒が多く、エラーもよく発生します。正直、新しいバージョンのRubyをインストールするのが怖いのですが、仕事を進める上では避けて通れません)。</p>
 
-<p>もしかすると既に自分のシステムにRubyがあるかもしれません。以下を実行して、</p>
+<p>場合によっては、既に自分のシステムにRubyがインストール済みであることもありえます。以下を実行して、</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby -v
 </pre></div>
@@ -325,9 +325,9 @@
 
 <p>バージョン情報を確認してください。Rails 4ではRuby 1.9以降が必須であり、Ruby 2.0が最適です (Rails 4はRuby 1.8.7では動作しません)。本書では、Ruby 1.9.3または2.0.0を前提としますが、Ruby 1.9.2でも動作するはずです。</p>
 
-<p>OS X、またはLinuxを使う場合、<a href="http://rvm.io/">Ruby Version Manager (RVM)</a> または<a href="https://github.com/sstephenson/rbenv">rbenv</a>を使用してRubyをインストールすることを強くお勧めします。RVMを使うと、複数のRubyバージョンを共存させられるのでとても便利です (Windows上で動作する同様のソフトに<a href="http://github.com/vertiginous/pik">Pik</a>があります)。同じマシン上で異なるバージョンのRubyやRailsを実行したい場合、これは特に重要です。ただし、残念ながらRVMとrbenvは共存できませんのでご注意ください。著者は本書でRVMを使い続けているので、今回もRVMを使用します。rbenvもかなり評判がよいようなので、rbenvをよく知っているか、rbenvの達人が身近にいるのであればそちらをお使いいただいてもかまいません。</p>
+<p>OS X、またはLinuxを使う場合、<a href="http://rvm.io/">Ruby Version Manager (RVM)</a> または<a href="https://github.com/sstephenson/rbenv">rbenv</a>を使用してRubyをインストールすることを強くお勧めします。RVMを使うと、複数のRubyバージョンを共存させられるのでとても便利です (Windows上で動作する同様のソフトに<a href="http://github.com/vertiginous/pik">Pik</a>があります)。同じコンピュータ上で異なるバージョンのRubyやRailsを使い分けたい場合、これらのツールは特に重要です。残念ながら、RVMとrbenvは共存できませんのでご注意ください。著者は本書でRVMを使い続けているので、今回もRVMを使用します。rbenvもかなり評判がよいようなので、rbenvに慣れ親しんでいるか、rbenvに詳しい人が身近にいるのであればそちらをお使いいただいてもかまいません。</p>
 
-<p>Mac OS Xユーザーの場合、Xcodeという開発ツールのインストールが必要なことがあります。Xcodeのサイズは大きいので、それよりはるかにサイズの小さい<a href="https://developer.apple.com/downloads/">Command Line Tools for Xcode</a>をお勧めします<sup class="footnote" id="fnref-1_12"><a href="./beginning.html#fn-1_12">12</a></sup>。</p>
+<p>Mac OS Xユーザーの場合、Xcodeという開発ツールのインストールが必要なことがあります。Xcodeはサイズが大きいので、それよりもずっとサイズの小さい<a href="https://developer.apple.com/downloads/">Command Line Tools for Xcode</a>をお勧めします<sup class="footnote" id="fnref-1_12"><a href="./beginning.html#fn-1_12">12</a></sup>。</p>
 
 <p>Rubyをインストールする前に、以下を実行して<a href="http://rvm.io/rvm/install/">RVM</a>をインストールします。</p>
 
@@ -450,7 +450,7 @@ with gemset railstutorial_rails_4_0</span>
 </div></div>
 
 
-<p>冒頭の<code>subl</code>はOS Xで Sublime Textを起動するコマンドです。 設定方法については「<a href="http://www.sublimetext.com/docs/2/osx_command_line.html">OS X コマンドライン用Sublime Text 2ドキュメント</a> (英語)」を参照してください。使用しているプラットフォームやエディタが異なる場合、sublを他のエディタコマンドに読み替えてください (エディタのアイコンをダブルクリックするか、<code>mate</code>、<code>vim</code>、<code>gvim</code>、<code>mvim</code>などのコマンドに差し替えます)。記述を簡素化するため、本書で以後<code>subl</code>と書かれていたら各自好みのエディタに読み替えてください。</p>
+<p>冒頭の<code>subl</code>はOS XでSublime Textを起動するコマンドです。設定方法については「<a href="http://www.sublimetext.com/docs/2/osx_command_line.html">OS X コマンドライン用Sublime Text 2ドキュメント</a> (英語)」を参照してください。使用しているプラットフォームやエディタが異なる場合、sublを他のエディタコマンドに読み替えてください (エディタのアイコンをダブルクリックするか、<code>mate</code>、<code>vim</code>、<code>gvim</code>、<code>mvim</code>などのコマンドに差し替えます)。記述を簡素化するため、本書で以後<code>subl</code>と書かれている箇所はお好みのエディタに読み替えてください。</p>
 
 <div class="label" id="code-gemrc"></div>
 
@@ -636,7 +636,7 @@ to see where a bundled</span> <span class="go">gem is installed.</span>
 
 <p>ほとんどの行はハッシュシンボル <code>#</code>でコメントされています。これらの行では、よく使われているgemとBundlerの文法の例をコメント形式で紹介しています。この時点では、デフォルト以外のgemをインストールする必要はありません。</p>
 
-<p><code>gem</code> コマンドで特定のバージョン番号を指定しない限り、Bundlerは自動的に最新バージョンのgemを取得してインストールしてくれます。残念ながらgemを更新すると小さな問題を起こすことがよくあるので、<a class="ref" href="./beginning.html#code-default_gemfile">リスト1.4</a>からコメントアウト行を除いた<a class="ref" href="./beginning.html#code-gemfile_sqlite_version">リスト1.5</a>に示したように、このチュートリアルではたいていの場合動作確認済みのバージョン番号を指定しています。</p>
+<p><code>gem</code>コマンドで特定のバージョン番号を指定しない限り、Bundlerは自動的に最新バージョンのgemを取得してインストールしてくれます。残念ながらgemを更新すると小さな問題を起こすことがよくあるので、<a class="ref" href="./beginning.html#code-default_gemfile">リスト1.4</a>からコメントアウト行を除いた<a class="ref" href="./beginning.html#code-gemfile_sqlite_version">リスト1.5</a>に示したように、このチュートリアルではたいていの場合動作確認済みのバージョン番号を指定しています。</p>
 
 <div class="label" id="code-gemfile_sqlite_version"></div>
 
@@ -707,7 +707,7 @@ to see where a bundled</span> <span class="go">gem is installed.</span>
 </div>
 
 
-<p>この変更を行うと、Bundlerは<code>sqlite3</code> gemの<code>1.3.8</code>を強制的にインストールします。ここではさらに、SQLiteをdevelopment環境 (<a class="ref" href="./sign-up.html#sec-rails_environments">7.1.1</a>) でのみ使用するための指定も行なっていることに注意してください。こうすることで、Heroku (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) で使用するデータベースソフトウェアと衝突する可能性を避けられます。</p>
+<p>この変更を行うと、Bundlerは<code>sqlite3</code> gemの<code>1.3.8</code>を強制的にインストールします。ここではさらに、SQLiteをdevelopment環境 (<a class="ref" href="./sign-up.html#sec-rails_environments">7.1.1</a>) でのみ使用するための指定も行なっていることにご注目ください。こうすることで、Heroku (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) で使用するデータベースソフトウェアと衝突する可能性を避けられます。</p>
 
 <p><a class="ref" href="./beginning.html#code-gemfile_sqlite_version">リスト1.5</a>では他にもいくつかの変更を行なっています。</p>
 
@@ -902,7 +902,7 @@ to see where a bundled</span> <span class="go">gem is installed.</span>
 </div></div>
 
 
-<p><a class="ref" href="./beginning.html#code-default_gitignore">リスト1.6</a>の設定では、ログファイル、Railsの一時ファイル (<code>tmp</code>)、SQLiteデータベースなどが除外されます。(<code>log/</code>ディレクトリ以下のログファイルを除外したい場合は、<code>log/*.log</code>と指定することで、ファイル名が<code>.log</code>で終わるファイルが除外されます。これらのファイルは頻繁に更新されるため、バージョン管理に含めるのは何かと不便です。さらに、他の開発者と共同作業を行う場合にこのようなファイルをバージョン管理に含めると無用な衝突 (conflict) が発生し、関係者一同が無駄にいらいらすることになりかねません。</p>
+<p><a class="ref" href="./beginning.html#code-default_gitignore">リスト1.6</a>の設定では、ログファイル、Railsの一時ファイル (<code>tmp</code>)、SQLiteデータベースなどが除外されます。(<code>log/</code>ディレクトリ以下のログファイルを除外したい場合は、<code>log/*.log</code>と指定することで、ファイル名が<code>.log</code>で終わるファイルが除外されます。これらのファイルは頻繁に更新されるため、バージョン管理に含めるのは何かと不便です。さらに、他の開発者と共同作業を行う場合にこのようなファイルをバージョン管理に含めると無用な衝突 (conflict) が発生し、関係者一同が無用のストレスにさらされることになりかねません。</p>
 
 <p>最初のうちは<a class="ref" href="./beginning.html#code-default_gitignore">リスト1.6</a>の<code>.gitignore</code>設定でもよいでしょう。しかし、<a class="ref" href="./beginning.html#code-gitignore">リスト1.7</a>の方がさらに便利で、セキュリティ上も有利 (<a class="ref" href="./static-pages.html#code-secret_token">リスト3.2</a>) なのでお勧めです。この<code>.gitignore</code>では、Railsドキュメントファイル、VimやEmacsのスワップファイル、そしてOS Xユーザーにはお馴染みの、あのいまいましい<code>.DS_Store</code>ディレクトリ (MacのFinder操作で作成される隠しディレクトリ) も管理対象から除外されます。この拡張版除外設定を使用したい場合は、<code>.gitignore</code>を好みのテキストエディタで開き、<a class="ref" href="./beginning.html#code-gitignore">リスト1.7</a>の内容で置き換えます。</p>
 
@@ -949,7 +949,7 @@ doc/
 </div>
 
 
-<p>ここで「<code>.</code>」は現在のディレクトリ (カレントディレクトリ) を指します。Gitは<em>再帰的に</em>ファイルを追加できるので、自動的にすべてのサブディレクトリも追加されます。このコマンドによりプロジェクトのファイルは、コミット待ちの変更が格納されている「<em>ステージングエリア</em>」という一種の待機場所に追加されます。ステージングエリアにあるファイルのリストを表示するには、<code>status</code>コマンドを実行します<sup class="footnote" id="fnref-1_18"><a href="./beginning.html#fn-1_18">18</a></sup>。</p>
+<p>ここで「<code>.</code>」は現在のディレクトリ (カレントディレクトリ) を指します。Gitは<em>再帰的に</em>ファイルを追加できるので、自動的にすべてのサブディレクトリも追加されます。このコマンドにより、プロジェクトのファイルは、コミット待ちの変更が格納されている「<em>ステージングエリア</em>」という一種の待機場所に追加されます。ステージングエリアにあるファイルのリストを表示するには、<code>status</code>コマンドを実行します<sup class="footnote" id="fnref-1_18"><a href="./beginning.html#fn-1_18">18</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git status
 <span class="gp">#</span> On branch master
@@ -986,7 +986,7 @@ doc/
 
 <p><code>-m</code>フラグは、コミットメッセージ (コミット内容の覚書) をその場で追加する場合に使用します。<code>-m</code>を省略した場合、<a class="ref" href="./beginning.html#sec-git_setup">1.3.1</a>で設定されたエディタが起動され、コミットメッセージの入力を求められます。</p>
 
-<p>ここでコミットについて少し解説しておきます。Gitにおけるコミットは、あくまで<em>ローカル</em>マシン上での操作であることに注意してください。この点について、もう一つの有名なオープンソースバージョン管理システムであるSubversionとははっきり異なります。Gitの場合、コミットを実行してもリモート上にあるリポジトリを直接変更することはありません。Gitでは、ローカルでの変更保存 (<code>git commit</code>) と、リモート上のリポジトリへの変更反映 (<code>git push</code>) の2段階に分かれています。<a class="ref" href="./beginning.html#sec-git_commands">1.3.5</a>にはこのpushの例が記載されています。</p>
+<p>ここでコミットについて少し解説しておきます。Gitにおけるコミットは、あくまで<em>ローカル</em>マシン上での操作であることにご注意ください。この点については、もう一つの有名なオープンソースバージョン管理システムであるSubversionとははっきり異なります。Gitの場合、コミットを実行してもリモート上にあるリポジトリを直接変更することはありません。Gitでは、ローカルでの変更保存 (<code>git commit</code>) と、リモート上のリポジトリへの変更反映 (<code>git push</code>) の2段階に分かれています。<a class="ref" href="./beginning.html#sec-git_commands">1.3.5</a>にはこのpushの例が記載されています。</p>
 
 <p>ちなみに、<code>log</code>コマンドでコミットメッセージの履歴を参照できます。</p>
 
@@ -1005,7 +1005,7 @@ doc/
 <h3><a id="sec-1_3_3" href="./beginning.html#sec-1_3_3" class="heading"><span class="number">1.3.3</span>Gitのメリット</a></h3>
 
 
-<p>今の時点では、ソースコードをバージョン管理下に置かなければならない理由が今ひとつよくわからないという方がいるかもしれませんので、例を１つ紹介します (この後の章でも多くの実例を紹介します)。仮に、あなたが重要な<code>app/controllers/</code>ディレクトリを削除してしまったとしましょう。</p>
+<p>今の時点では、ソースコードをバージョン管理下に置かなければならない理由が今ひとつよくわからないという方がいるかもしれませんので、例を1つ紹介します (この後の章でも多くの実例を紹介します)。仮に、あなたが重要な<code>app/controllers/</code>ディレクトリを削除してしまったとしましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> ls app/controllers/
 <span class="go">application_controller.rb</span>
@@ -1053,7 +1053,7 @@ doc/
 <h3><a id="sec-1_3_4" href="./beginning.html#sec-github" class="heading"><span class="number">1.3.4</span>GitHub</a></h3>
 
 
-<p>Gitを使用してプロジェクトをバージョン管理下に置くことができたので、今度は<a href="http://github.com">GitHub</a>にソースコードをアップロードしてみましょう。GitHubは、Gitリポジトリの置き場所を提供したり (ホスティング)、リポジトリを開発者同士で共有するサービスを提供するWebサービスとして有名です。GitHubにわざわざリポジトリをプッシュするのには2つの理由があります。１つ目は、ソースコード (とそのすべての変更履歴) の完全なバックアップを作成することです。２つ目は、他の開発者との共同作業をより簡単に行うことです。GitHubへのプッシュは必須ではありませんが、GitHubのメンバーになっておくと、多くのオープンソースプロジェクトに参加できるようになります。</p>
+<p>Gitを使用してプロジェクトをバージョン管理下に置くことができたので、今度は<a href="http://github.com">GitHub</a>にソースコードをアップロードしてみましょう。GitHubは、Gitリポジトリの置き場所を提供したり (ホスティング)、リポジトリを開発者同士で共有するサービスを提供したりするWebサービスとして有名です。リポジトリをGitHubにわざわざプッシュするのには2つの理由があります。1つ目は、ソースコード (とそのすべての変更履歴) の完全なバックアップを作成することです。2つ目は、他の開発者との共同作業をより簡単に行うことです。GitHubへのプッシュは必須ではありませんが、GitHubのメンバーになっておくと、多くのオープンソースプロジェクトに参加できるようになります。</p>
 
 <div class="label" id="fig-create_first_repository"></div>
 
@@ -1296,7 +1296,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p><tt>rails_12factor</tt> gemが追加されている点にご注目ください。これは画像やスタイルシートなどの静的なアセットを提供するためにHerokuで使用されます。</p>
 
-<p><a class="ref" href="./beginning.html#sec-bundler">1.2.4</a>でも説明したように、アプリケーションが前提としているRubyのバージョンを明示的に指定するのは良い考えです。</p>
+<p><a class="ref" href="./beginning.html#sec-bundler">1.2.4</a>でも説明したように、アプリケーションが前提としているRubyのバージョンを明示的に指定するのはよい考えです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
 <span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
@@ -1410,7 +1410,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/heroku_app_4_0.png" alt="heroku_app_4_0" /></span></div><div class="caption"><span class="header">図1.10</span><span class="description">Heroku上で動作しているRailsチュートリアルの最初のアプリケーション。<a href="../images/figures/heroku_app_4_0-full.png">(拡大)</a></span></div></div>
 
 
-<p>Herokuへのデプロイが完了した後は、アプリケーションの管理と設定に以下のような美しいユーザーインターフェイスを使用できます (<a class="ref" href="./beginning.html#fig-heroku_info">図1.11</a>)。</p>
+<p>Herokuへのデプロイが完了した後は、以下のような美しいユーザーインターフェイスを使用してアプリケーションの管理と設定を行えます (<a class="ref" href="./beginning.html#fig-heroku_info">図1.11</a>)。</p>
 
 <div class="label" id="fig-heroku_info"></div>
 

@@ -62,21 +62,21 @@
 
 <p><em>Rails チュートリアル</em>は、統合的なチュートリアルになっています。本チュートリアルは Rails を中心に構成されていますが、他にも、Ruby 言語や RSpec を使ったテスト、<a href="http://en.wikipedia.org/wiki/HTML">HTML</a>、<a href="http://en.wikipedia.org/wiki/CSS">CSS</a>、そして、わずかな <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> と <a href="http://en.wikipedia.org/wiki/SQL">SQL</a>のチュートリアルも含まれています。このような統合的なチュートリアルになっているため、現時点の Web 開発の知識量に関わらず、このチュートリアルを読み終える頃には、あなたは上述した各トピックを卒なくこなせるようになるだけではなく、より高度な情報源を難なく読みこなす実力がつくようになります。言い換えると、本書で扱うトピックの範囲が<em>広い</em>ということでもあります。もしまだ十分なプログラミング経験を持っていないのであれば、その情報量の多さに圧倒されるかもしれません。そこで、読者の経験や知識に応じた、<em>Railsチュートリアル</em>を読破するためのアドバイスを用意しました。ぜひ参考にしてください。<br /></p>
 
-<p><strong>すべての読者へ:</strong> よく聞かれる質問の１つが「Rails を覚える前に Ruby を勉強した方が良いでしょうか？」という質問です。この質問の答えは、あなたの学習スタイルやプログラミング経験によります。もしあなたが全てを最初から体系的に学びたい場合や、プログラミングの経験が全くない場合は、恐らく、Ruby を最初に学んだ方が良いでしょう。また、Ruby を学ぶのであれば、Peter Cooper の「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」をお勧めします。一方で、これから Rails で開発を始めようとする人の多くは「<em>Web アプリケーション</em>を作りたい！」と考えているので、たった1つの Web ページを作成するために 500 ページもある Ruby の本を読み通す気にはなれないでしょう。したがって、このような方には、Ruby を対話的に学習できる Web サービス「<a href="http://tryruby.org/">Try Ruby</a><sup class="footnote" id="fnref-1_2"><a href="./beginning.html#fn-1_2">2</a></sup>」を使って、Ruby をザックリと理解しておくことをお勧めします。また、必要であれば、<a href="http://railsforzombies.org/">Rails for Zombies</a><sup class="footnote" id="fnref-1_3"><a href="./beginning.html#fn-1_3">3</a></sup>で Rails の全体像を把握しておくと良いかもしれません (訳注: いずれも英語版のみ)。</p>
+<p><strong>【すべての読者へ】</strong> よく聞かれる質問の１つが「Rails を覚える前に Ruby を勉強した方が良いでしょうか？」という質問です。この質問の答えは、あなたの学習スタイルやプログラミング経験によります。もしあなたが全てを最初から体系的に学びたい場合や、プログラミングの経験が全くない場合は、恐らく、Ruby を最初に学んだ方が良いでしょう。また、Ruby を学ぶのであれば、Peter Cooper の「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」をお勧めします。一方で、これから Rails で開発を始めようとする人の多くは「<em>Web アプリケーション</em>を作りたい！」と考えているので、たった1つの Web ページを作成するために 500 ページもある Ruby の本を読み通す気にはなれないでしょう。したがって、このような方には、Ruby を対話的に学習できる Web サービス「<a href="http://tryruby.org/">Try Ruby</a><sup class="footnote" id="fnref-1_2"><a href="./beginning.html#fn-1_2">2</a></sup>」を使って、Ruby をザックリと理解しておくことをお勧めします。また、必要であれば、<a href="http://railsforzombies.org/">Rails for Zombies</a><sup class="footnote" id="fnref-1_3"><a href="./beginning.html#fn-1_3">3</a></sup>で Rails の全体像を把握しておくと良いかもしれません (訳注: いずれも英語版のみ)。</p>
 
 <p>もう１つよく聞かれる質問が「最初からテストを書くべきですか？」という質問です。「はじめに」で述べたように、<em>Rails チュートリアル</em>では、テスト駆動開発 (TDD) を最初から採用しています。というのも、著者の開発経験から、テスト駆動開発が、Rails アプリケーションの開発に最も適切な手法だと考えているからです。ただし、テスト駆動開発を採用したことにより、本チュートリアルの複雑さが増し、読者への負担も増えています。そこで、もしテストで行き詰まってしまった場合には、思い切って (一周目は) その箇所を飛ばしてしまいましょう。あるいは、もっとお勧めの方法としては、「テストがどのように動くか」は気にせずに、あなたの書いたコードが正しく動くかどうかの検証ツールとして、本書のテストを使う方法です。具体的には、<em>spec</em> と呼ばれるテストファイルを作成し、そのファイルに、<em>本書で指示された通りに</em>テストコードをコピー＆ペーストして下さい。<a class="ref" href="./filling-in-the-layout.html#top">第5章</a>で詳しく説明しますが、テストスイート (複数のテストケースを束ねたもの) を実行すると、最初はテストに失敗します。失敗することを確認したら、チュートリアルに従って、今度はアプリケーションのコードを書きます。最後に、同じテストスイートをもう一度実行すると、今度はテストに成功するようになっています。つまり、無事にテストに成功すれば、あなたが書いたコードは正しく動いている、ということになります。<br /></p>
 
-<p><strong>初めてプログラミングを始める方:</strong> <em>Rails チュートリアル</em>は、完全なプログラミング初心者を対象にして書かれたものではありません。というのも、比較的シンプルなウェブアプリケーションであっても、ある程度の複雑さが必ず存在するからです。したがって、もしあなたが Web プログラミングの初心者で、かつ、この <em>Rails チュートリアル</em>を難しすぎると感じた場合は、まずは HTML や CSS の基礎を勉強してみると良いでしょう。それらの基礎が備わったら、是非もう一度 <em>Rails チュートリアル</em>に挑戦してください。(ちなみに、「これだ！」というお勧めの教材は思いつかなかったのですが、「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」は良い本のように思えます。また、David Sawyer McFarland による「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>」を推薦してくれた読者もいます。)  Peter Cooper の「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の2, 3章をやってみるのも良いでしょう。同書で扱うサンプルアプリケーションは、本格的な Web アプリケーションに比べて非常に小さいので、比較的やりやすいと思います。何故このようなセクションを設けたかというと、驚くほど多くの初心者の方々が、本書で Web 開発を学ぼうとしているからです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。最後に、そうした方々に特にお勧めするのは「<a href="./screencasts"><em>Rails Tutorial</em> のスクリーンキャストのシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="./beginning.html#fn-1_4">4</a></sup>」(英語のみ) です。この動画版 Rails チュートリアルでは、Rails を使ったソフトウェア開発の作業を、まるで 「肩越しに」見ているかのように学ぶことができます。<br /></p>
+<p><strong>【初めてプログラミングを始める方へ】</strong> <em>Rails チュートリアル</em>は、完全なプログラミング初心者を対象にして書かれたものではありません。というのも、比較的シンプルなウェブアプリケーションであっても、ある程度の複雑さが必ず存在するからです。したがって、もしあなたが Web プログラミングの初心者で、かつ、この <em>Rails チュートリアル</em>を難しすぎると感じた場合は、まずは HTML や CSS の基礎を勉強してみると良いでしょう。それらの基礎が備わったら、是非もう一度 <em>Rails チュートリアル</em>に挑戦してください。(ちなみに、「これだ！」というお勧めの教材は思いつかなかったのですが、「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」は良い本のように思えます。また、David Sawyer McFarland による「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>」を推薦してくれた読者もいます。)  Peter Cooper の「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の2, 3章をやってみるのも良いでしょう。同書で扱うサンプルアプリケーションは、本格的な Web アプリケーションに比べて非常に小さいので、比較的やりやすいと思います。何故このようなセクションを設けたかというと、驚くほど多くの初心者の方々が、本書で Web 開発を学ぼうとしているからです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。最後に、そうした方々に特にお勧めするのは「<a href="./screencasts"><em>Rails Tutorial</em> のスクリーンキャストのシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="./beginning.html#fn-1_4">4</a></sup>」(英語のみ) です。この動画版 Rails チュートリアルでは、Rails を使ったソフトウェア開発の作業を、まるで 「肩越しに」見ているかのように学ぶことができます。<br /></p>
 
-<p><strong>プログラミングの経験があり、これから Web 開発を始める方:</strong> 既にクラスやメソッド、データ構造などの概念に馴染みがある方であれば、その知識は有利に働きます。ただし、Java や C/C++ といった言語と Ruby 言語では、記法が異なるので、少し違和感を感じるかもしれません。しかし、Ruby 言語の記法に慣れるまでに、そこまで時間はかかりません。(例えば、行末にセミコロンを書く習慣がついているかもしれませんが、Ruby では行末にセミコロンを置いても問題なく動きます。) <em>Rails チュートリアル</em>では、覚える必要のある Web 特有の概念を全てカバーしているので、例えば、もし今 <tt>POST</tt> や <tt>PATCH</tt> の違いが分からなくても、心配する必要はありません。<br /></p>
+<p><strong>【プログラミングの経験があり、これから Web 開発を始める方へ】</strong> 既にクラスやメソッド、データ構造などの概念に馴染みがある方であれば、その知識は有利に働きます。ただし、Java や C/C++ といった言語と Ruby 言語では、記法が異なるので、少し違和感を感じるかもしれません。しかし、Ruby 言語の記法に慣れるまでに、そこまで時間はかかりません。(例えば、行末にセミコロンを書く習慣がついているかもしれませんが、Ruby では行末にセミコロンを置いても問題なく動きます。) <em>Rails チュートリアル</em>では、覚える必要のある Web 特有の概念を全てカバーしているので、例えば、もし今 <tt>POST</tt> や <tt>PATCH</tt> の違いが分からなくても、心配する必要はありません。<br /></p>
 
-<p><strong>Web 開発の経験があり、これから Railsを始める方:</strong> もし PHP や Python といった動的言語を使った経験がある場合、楽に本書を読め進められるはずです。特に、Python の経験があると非常に有利です。本書でカバーする基本的な概念については既に知っていると思いますが、テスト駆動開発や REST 構造については、初めて触れる概念になるかもしれません。また、Ruby には特有のクセがあるので、これも本書で初めて触れる知識になるでしょう。<br /></p>
+<p><strong>【Web 開発の経験があり、これから Railsを始める方へ】</strong> もし PHP や Python といった動的言語を使った経験がある場合、楽に本書を読め進められるはずです。特に、Python の経験があると非常に有利です。本書でカバーする基本的な概念については既に知っていると思いますが、テスト駆動開発や REST 構造については、初めて触れる概念になるかもしれません。また、Ruby には特有のクセがあるので、これも本書で初めて触れる知識になるでしょう。<br /></p>
 
-<p><strong>Ruby プログラミングの経験があり、これから Rails を始める方:</strong> 最近では多くの Ruby プログラマが Rails を使っているので、純粋に Ruby のみを使っている方は少ないと思います。ただ、もしあなたが純粋な Ruby プログラマであれば、本書をすらすら読めるに違いありません。また、本書を読み終わった後に、独自のアプリケーションを開発することも難しくないはずです。<br /></p>
+<p><strong>【Ruby プログラミングの経験があり、これから Rails を始める方へ】</strong> 最近では多くの Ruby プログラマが Rails を使っているので、純粋に Ruby のみを使っている方は少ないと思います。ただ、もしあなたが純粋な Ruby プログラマであれば、本書をすらすら読めるに違いありません。また、本書を読み終わった後に、独自のアプリケーションを開発することも難しくないはずです。<br /></p>
 
-<p><strong>Rails を使った経験はあるが、まだ十分ではない方:</strong> もしかしたら、既に他のチュートリアルを読んだり、小規模な Rails アプリをいくつかの作った経験があるかもしれません。読者からのフィードバックを読む限りでは、そのような背景を持った方であっても、本書から多くのことを学べるはずだと自信を持って言えます。本書には、あなたが初めて Rails を学んだ頃よりも新しい技術がふんだんに盛り込まれているため、本書で学ぶ技術はきっと役に立つはずです。<br /></p>
+<p><strong>【Rails を使った経験はあるが、まだ十分ではない方へ】</strong> もしかしたら、既に他のチュートリアルを読んだり、小規模な Rails アプリをいくつかの作った経験があるかもしれません。読者からのフィードバックを読む限りでは、そのような背景を持った方であっても、本書から多くのことを学べるはずだと自信を持って言えます。本書には、あなたが初めて Rails を学んだ頃よりも新しい技術がふんだんに盛り込まれているため、本書で学ぶ技術はきっと役に立つはずです。<br /></p>
 
-<p><strong>Rails を使った経験が十分にある方:</strong> Rails を使った開発の経験が既に十分にある場合、本書は必要ないでしょう。しかし、多くの Rails 開発者から「意外と役に立った」との声を頂いているので、Rails 開発者であっても、Rails を違う視点から見て楽しめるかもしれません。<br /></p>
+<p><strong>【Rails を使った経験が十分にある方へ】</strong> Rails を使った開発の経験が既に十分にある場合、本書は必要ないでしょう。しかし、多くの Rails 開発者から「意外と役に立った」との声を頂いているので、Rails 開発者であっても、Rails を違う視点から見て楽しめるかもしれません。<br /></p>
 
 <p>最後に、<em>Ruby on Rails チュートリアル</em>を読み終えた経験豊富なプログラマの方には、さらに高度な話題を扱っている「The Well-Grounded Rubyist」(David A. Black 著) または「Eloquent Ruby」(Russ Olsen 著) を読むことをお勧めします。あるいは、トピック別に書かれている「The Ruby Way」(Hal Fulton 著) を読んでみるのも良いでしょう。<br /></p>
 
@@ -193,7 +193,7 @@
 </blockquote>
 
 
-<p>いよいよ、Ruby on Rails の開発構築と、最初のアプリを作成する時が来ました。プログラミング経験が無い方は少し苦労すると思いますが、どうか諦めずに頑張ってください。苦労するのはあなただけではありません。これは全ての開発者が何度も通る道であり、そして、ここでの苦労が大いに報われることは、筆者が保証いたします。</p>
+<p>いよいよ、Ruby on Rails の開発構築と、最初のアプリを作成する時が来ました。プログラミング経験が無い方は少し苦労すると思いますが、どうか諦めずに頑張ってください。苦労するのはあなただけではありません。これは全ての開発者が何度も通る道であり、そして、ここでの苦労が大いに報われることは、著者が保証いたします。</p>
 
 <div class="label" id="sec-development_tools"></div>
 
@@ -201,31 +201,31 @@
 <h3><a id="sec-1_2_1" href="./beginning.html#sec-development_tools" class="heading"><span class="number">1.2.1</span>開発環境</a></h3>
 
 
-<p>開発環境は Rails プログラマの数だけあります。というのも、開発者たちは自分の環境を、とことんカスタマイズするものだからです。開発環境は、大きく分けてテキストエディタとコマンドラインを使用する環境と IDE (統合開発環境) を使った環境に分けられます。まずは後者から見てみましょう。</p>
+<p>開発環境は Rails プログラマの数だけあります。というのも、開発者は慣れてくると、自分の環境をとことんカスタマイズするものだからです。しかし、大別すると、開発環境はテキストエディタやコマンドラインを使う環境と、IDE 環境 (統合開発環境) の２つに分けられます。まずは後者から見てみましょう。</p>
 
 <h4><a id="sec-1_2_1_1" href="./beginning.html#sec-1_2_1_1" class="heading">IDE</a></h4>
 
 
-<p>Rails用のIDEの数は多く、<a href="http://www.aptana.com/rails/">RadRails</a>、<a href="http://www.jetbrains.com/ruby/index.html">RubyMine</a>、<a href="http://www.codegear.com/products/3rdrail">3rd Rail</a>などさまざまなものがあります。特にRubyMineの評判がよいようです。さらに、David Loefflerという読者が<a href="https://github.com/perfectionist/sample_project/wiki">RailsチュートリアルでRubyMineを使用する方法</a><sup class="footnote" id="fnref-1_8"><a href="./beginning.html#fn-1_8">8</a></sup>というドキュメントまでまとめてくれました。IDEでの開発が好みという方は、自分のスタイルに合うかどうか上のリンクをチェックしてみるとよいでしょう。</p>
+<p>最も有名な Rails 用 IDE として、<a href="http://www.aptana.com/rails/">RadRails</a> と <a href="http://www.jetbrains.com/ruby/index.html">RubyMine</a> が挙げられます。中でも、RubyMine が良いという評判をよく聞きます。本書の読者の一人 (David Loeffler) は、<a href="https://github.com/perfectionist/sample_project/wiki">Rails チュートリアルで RubyMine を使用する方法</a><sup class="footnote" id="fnref-1_8"><a href="./beginning.html#fn-1_8">8</a></sup> というドキュメントをまとめてくれました。IDE での開発が好みという方は、先ほど挙げたリンクをチェックしてみて、自分のスタイルに合うかどうか試しに使ってみるとよいでしょう。</p>
 
 <h4><a id="sec-1_2_1_2" href="./beginning.html#sec-1_2_1_2" class="heading">テキストエディタとコマンドライン</a></h4>
 
 
-<p>私自身は、すべてが整った強力なIDEの代わりに、<em>テキストエディタ</em>でテキストを編集し、<em>コマンドライン</em>でコマンドを実行するというシンプルな手段を好んでいます (<a class="ref" href="./beginning.html#fig-editor_shell">図 1.1</a>)。どの組み合わせを使うかは自身の好みとプラットフォームによりますが。</p>
+<p>著者自身は、全てが整った強力な IDE の代わりに、「<em>テキストエディタ</em>でテキストを編集し、<em>コマンドライン</em>でコマンドを実行する」というシンプルな手段を好んでいます (<a class="ref" href="./beginning.html#fig-editor_shell">図 1.1</a>)。どのように組み合わせて使うべきかはあなたの好みやプラットフォームによって異なりますが、私がお勧めするツールを次の通りです。</p>
 
 <ul>
-<li><strong>テキストエディタ:</strong> 私は断然<a href="http://www.sublimetext.com/2">Sublime Text 2</a>をお勧めします。これは非常によくできたクロスプラットフォームのテキストエディタであり、現段階ではまだベータ版ですが、とてもそうは思えないほどパワフルです。Sublime Textは<a href="http://macromates.com">TextMate</a>の影響を強く受けています。そして実際、スニペットやカラースキームなどについてはTextMateのカスタマイズ設定と互換性があります。（あなたがMacユーザーであれば、TextMateは今でも良い選択であると言えます。OS X版しかありませんが。)2番目の選択肢にふさわしい<a href="http://www.vim.org/">Vim</a><sup class="footnote" id="fnref-1_9"><a href="./beginning.html#fn-1_9">9</a></sup>は多くのプラットフォームで動作します。Vimは無償で手に入りますが、Sublime Textは商用版しかありません。どちらもプロの使用に耐えうるものですが、私の経験ではSublime Textは初心者にとって<em>はるかに</em>扱いやすいものであると言えます。</li>
+<li><strong>テキストエディタ:</strong> 断然 <a href="http://www.sublimetext.com/2">Sublime Text 2</a> をお勧めします。これは非常によくできたクロスプラットフォームのテキストエディタです。現時点ではまだベータ版ですが、既にベータ版とは思えないほどパワフルなエディタです。Sublime Text は、<a href="http://macromates.com">TextMate</a> の影響を強く受けています。実際、スニペットやカラースキームなどの設定では TextMate との互換性があります。（TextMate は Mac OS X 版しかありませんが、もしあなたが Mac ユーザーであれば、TextMate は今でも良い選択であると言えます。) 次に私がお勧めするテキストエディタは <a href="http://www.vim.org/">Vim</a><sup class="footnote" id="fnref-1_9"><a href="./beginning.html#fn-1_9">9</a></sup> です。Vim は多くのプラットフォーム上で動作します。Vim は無償で手に入りますが、Sublime Text は有償です (訳注: ただし、無料の試用期間に制限はありません)。どちらもプロの開発者が使っているエディタですが、私の経験では、Sublime Text の方が初心者にとって<em>はるかに</em>扱いやすいエディタだと言えます。</li>
 
-<li><strong>ターミナル:</strong> OS Xの場合、<a href="http://iterm.sourceforge.net/">iTerm</a>かシステム備え付けのTerminal appをお勧めします。Linuxの場合、デフォルトのターミナルで構いません。Windowsの場合、Rails環境をそのままインストールするよりも、Linuxが動作する仮想マシン上にインストールすることを好む人が多いようです。この場合、コマンドラインオプションは従来通りです。開発環境をWindows自身にインストールするのであれば、コマンドラインは<a href="http://railsinstaller.org/">Railsインストーラ</a>付属の物がおすすめです (<a class="ref" href="./beginning.html#sec-rails_installer_windows">1.2.2.1</a>)。</li>
+<li><strong>ターミナル:</strong> OS X の場合、<a href="http://iterm.sourceforge.net/">iTerm</a> か、最初からインストールされている Terminal.app をお勧めします。Linux の場合、デフォルトのターミナルで問題ありません。Windows の場合、Linux が動作する仮想マシンを用意して、その仮想マシン上で Rails アプリケーションを開発する人が多いです。この場合、お勧めのコマンドラインの上記の通りです。一方で、Windows 自身に開発環境をインストールしたい場合、<a href="http://railsinstaller.org/">Rails インストーラ</a>付属のコマンドプロンプトを使うことをお勧めします (<a class="ref" href="./beginning.html#sec-rails_installer_windows">1.2.2.1</a>)。</li>
 </ul>
 
 
-<p>Sublime Textを選んだ方のために、オプション設定方法を解説した<a href="https://github.com/mhartl/rails_tutorial_sublime_text">Railsチュートリアル: Sublime Text</a><sup class="footnote" id="fnref-1_10"><a href="./beginning.html#fn-1_10">10</a></sup>を用意してあります。(この種の設定はいろいろと面倒でエラーも起きやすいので、あくまで上級者向けです。Sublime Textはデフォルト設定のままでも依然としてRailsアプリケーションを編集するための良い選択肢です。)</p>
+<p>なお、Sublime Text を選んだ方の中のために、より高度な設定方法を解説した <a href="https://github.com/mhartl/rails_tutorial_sublime_text">Railsチュートリアル: Sublime Text</a><sup class="footnote" id="fnref-1_10"><a href="./beginning.html#fn-1_10">10</a></sup> を用意しました。ただし、この種の設定は厄介でエラーも起きやすいので、あくまで上級者向けです。Sublime Text は、デフォルト設定のままでも、Rails アプリケーションのエディタとして十分に機能します。</p>
 
 <div class="label" id="fig-editor_shell"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/editor_shell.png" alt="editor_shell" /></span></div><div class="caption"><span class="header">図1.1：</span> <span class="description">テキストエディタ/コマンドライン開発環境(TextMate/ ITERMを使用) <a href="../images/figures/editor_shell-full.png">(拡大)</a></span></div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/editor_shell.png" alt="editor_shell" /></span></div><div class="caption"><span class="header">図1.1：</span> <span class="description">テキストエディタ/コマンドライン開発環境 (TextMate/ iTerm) <a href="../images/figures/editor_shell-full.png">(拡大)</a></span></div></div>
 
 
 
@@ -233,12 +233,12 @@
 <h4><a id="sec-1_2_1_3" href="./beginning.html#sec-1_2_1_3" class="heading">ブラウザ</a></h4>
 
 
-<p>ブラウザの種類は豊富ですが、大半のRails開発者はFirefox、Safari、もしくはChromeを選ぶ傾向にあるようです。Rails チュートリアル内のスクリーンショットも原則としてFirefoxの物を使用しています。Firefoxを使う場合、HTMLの構造とCSSのルールをダイナミックに調査/編集できる<a href="http://getfirebug.com/">Firebug</a>アドオンがおすすめです。Firefoxを使用しない場合、SafariとChromeにはページの調査したい部分を右クリックする事で情報を調べられる機能があります。</p>
+<p>ウェブブラウザの種類は豊富ですが、大半の Rails 開発者は Firefox や Safari、あるいは Chrome を使います。これらの3つのブラウザには、ページの任意の部分を右クリック (または control を押しながらクリック) して、要素を表示する機能 (Inspect element 機能) が標準で組み込まれています。</p>
 
 <h4><a id="sec-1_2_1_4" href="./beginning.html#sec-1_2_1_4" class="heading">使用するツールについて</a></h4>
 
 
-<p>開発環境を整える過程で、すべてを思い通りに設定するには<em>かなり</em>長い時間がかかる事を実感するかもしれません。Sublime TextやVimなどのエディタやIDEは特に、何週間かかっても極めるのは難しいものです。初めての方に申し上げておきますが、心配はいりません。<em>開発ツールを覚えるのに時間をかけるのはいたって普通の事なのです</em>。これもまた、開発者なら誰もが通る道です。「良いアイディアが浮かんで<em>今すぐにでもRailsでWebアプリを作りたいだけ</em>なのに、Unixエディタの使い方を覚えるのに1週間もかかって前に進めない！」とイライラする事もあるでしょう。しかしながら、道具の使い方は職人にとって当然の心得です。払った努力に見合う見返りは必ずあります。</p>
+<p>開発環境を整えていく過程で、「全てを思い通りに使いこなすには<em>かなり</em>長い時間がかかる」と実感するかもしれません。実際、テキストエディタや IDE を使いこなせるようになるまでには、非常に長い時間が必要になります。例えば、Sublime Text や Vim にも専用のチュートリアルがあり、このようなチュートリアルを読み終えるだけでも数週間かかります。初めて開発する方は驚いたかもしれませんが、<em>開発ツールの学習に時間をかけることは、いたって普通の事</em>であり、開発者であれば誰もが通る道です。「良いアイディアが浮かんだから、<em>ただ Rails で Web アプリを作りたいだけ</em>なのに、奇妙で古くさい Unix のエディタの使い方を覚えるだけで1週間もかかってる！」とイライラする事もあるでしょう。しかしながら、道具の使い方を覚えることが職人にとって当然の心得であるように、使用するツールについて学ぶことは大切なことです。払った努力に見合う見返りが、必ずあります。</p>
 
 <div class="label" id="sec-rubygems"></div>
 

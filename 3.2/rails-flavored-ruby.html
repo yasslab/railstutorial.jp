@@ -184,7 +184,7 @@
 </div></div>
 
 
-<p>ここで、現在のテストを変更せずに新しいテストを追加した理由を考えてみてください (<em>ヒント</em>: 答えは<a class="ref" href="./static-pages.html#sec-testing_a_title_change">3.3.1</a>にあります)。</p>
+<p>ここで、単に既存のテストコードを修正するだけではなく、新しいテストコードを追加した理由について考えてみてください (<em>ヒント</em>: 答えは<a class="ref" href="./static-pages.html#sec-testing_a_title_change">3.3.1</a>にあります)。</p>
 
 <p>ここでテストスイートを実行して、テストが失敗することを確認します。</p>
 
@@ -1194,7 +1194,7 @@ end
 </div>
 
 
-<p>もし上の例が少し不自然に思えるならば、勘が鋭いといえます。これは仕様です。文字列を引数に取るメソッドを作るためだけに、わざわざ新しいクラスを作るのは変です。単語<em>は</em>文字列なので、<a class="ref" href="./rails-flavored-ruby.html#code-word_class">リスト4.8</a>のように<code>Word</code>クラスは <code>String</code>クラスを<em>継承</em>するのが自然です (以下のリストを入力する前に、古い<code>Word</code>クラスの定義を消去するために、Railsコンソールをいったん終了してください)。</p>
+<p>もし上の例が少し不自然に思えるならば、勘が鋭いといえます。というのも、これはわざと不自然に書いたからです。文字列を引数に取るメソッドを作るためだけに、わざわざ新しいクラスを作るのは変です。単語<em>は</em>文字列なので、<a class="ref" href="./rails-flavored-ruby.html#code-word_class">リスト4.8</a>のように<code>Word</code>クラスは <code>String</code>クラスを<em>継承</em>するのが自然です (以下のリストを入力する前に、古い<code>Word</code>クラスの定義を消去するために、Railsコンソールをいったん終了してください)。</p>
 
 <div class="label" id="code-word_class"></div>
 
@@ -1212,7 +1212,7 @@ end
 </div></div>
 
 
-<p><a class="ref" href="./static-pages.html#sec-static_pages_with_rails">3.1.2</a>でも簡単に説明しましたが、上のコードの<code>Word &lt; String</code>は継承のためのRubyの記法です。こうすることで、新しい<code>palindrome?</code>メソッドだけではなく、Stringsクラスで使用できるすべてのメソッドをWordクラスに対しても使用できるようになります。10</p>
+<p><a class="ref" href="./static-pages.html#sec-static_pages_with_rails">3.1.2</a>でも簡単に説明しましたが、上のコードの<code>Word &lt; String</code>は継承のためのRubyの記法です。こうすることで、新しい<code>palindrome?</code>メソッドだけではなく、Stringsクラスで使用できるすべてのメソッドをWordクラスに対しても使用できるようになります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="no">Word</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;level&quot;</span><span class="p">)</span>    <span class="c1"># 新しいWordを作成し、&quot;level&quot; で初期化する</span>
 <span class="go">=&gt; &quot;level&quot;</span>
@@ -1361,7 +1361,7 @@ end
 
 <p>ここでは、<code>home</code>アクションの中身は空なので<code>nil</code>が返されます。</p>
 
-<p>ここで重要な点があります。Railsのアクションには返し値がありません。少なくとも、返される値は重要ではありません。<a class="ref" href="./static-pages.html#top">第3章</a>で示したとおり、<code>home</code>アクションはWebページを表示するためのものであり、値を返すためのものではありませんでした。しかも、第3章では一度も<code>StaticPagesController.new</code>を実行しませんでした。どうしてこれでうまくいっているのでしょうか。</p>
+<p>ここで重要な点があります。Railsのアクションには戻り値がありません。少なくとも、返される値は重要ではありません。<a class="ref" href="./static-pages.html#top">第3章</a>で示したとおり、<code>home</code>アクションはWebページを表示するためのものであり、値を返すためのものではありませんでした。しかも、第3章では一度も<code>StaticPagesController.new</code>を実行しませんでした。どうしてこれでうまくいっているのでしょうか。</p>
 
 <p>実は、Railsは確かにRubyで<em>書かれて</em>いますが、既にRubyとは別物なのです。Railsのクラスは、普通のRubyオブジェクトと同様に振る舞うものもありますが、多くのクラスにはRailsの<a href="http://www.answers.com/grist">魔法の粉</a>が振りかけられています。Railsは<a href="http://en.wikipedia.org/wiki/Sui_generis"><em>独特</em></a>であり、 Rubyとは切り離して学習する必要があります。このため、とにかくWebアプリケーションを書けるようになりたい方は、最初にRailsを学び、次にRubyを学んでから再びRailsに戻ってくることをお勧めします。</p>
 

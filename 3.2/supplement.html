@@ -14,11 +14,11 @@
 <h1 class="chapter"><a id="sec-12" href="./chapters/supplement.html#top" class="heading"><span class="number">第12章</span>Rails 4.0へのアップグレード</a></h1>
 
 
-<p>本章は、Railsの最新バージョンであるRails 4.0にアップグレードするために追加された、補足的な資料です。幸いなことに、本書はRailsの導入部分を抑えた内容になっているため、本書のRails 3.2対応版とRails 4.0対応版の違いは、さほど大きくはありません。実際、本章で補足すべきRail 4.0の重要な新機能は、Strong Parameterしかありません。また、「Rail 4.0を使用してWeb開発をしたい！」という要望に応えて、<a href="./book">Rails 4.0対応版の<em>Railsチュートリアル</em></a>も公開しておきました。<a href="./book">オンライン版</a>は無料で提供されていて、電子書籍版 (PDF/EPUB/MOBI) は <a href="./#ebooks">http://railstutorial.jp/</a> (訳注: 和書の電子書籍版も近日出版予定) から購入することができます。なお、Rails 3.2対応版とRails 4.0対応版の主な違いについては、Rails 4.0向けチュートリアルの<a href="./beginning.html#sidebar-diffs">コラム1.1</a>を参照してください。</p>
+<p>本章は、Railsを最新バージョンであるRails 4.0にアップグレードするために追加された補足資料です。本書はRails入門を目的としたチュートリアルであるため、その意味では本書のRails 3.2対応版とRails 4.0対応版には大きな違いは生じません。実際、本章で補足すべきRail 4.0の重要な新機能は、Strong Parameterしかありません。Rail 4.0を使用した本格的なWeb開発を学びたいという要望に応えて、<a href="./book">Rails 4.0対応版の<em>Railsチュートリアル</em></a>も公開いたしました。<a href="./book">オンライン版</a>は無料にて提供、電子書籍版 (PDF/EPUB) は <a href="http://tatsu-zine.com/books/railstutorials">http://tatsu-zine.com/books/railstutorial</a> から購入することができます。なお、Rails 3.2対応版とRails 4.0対応版の主な違いについては、Rails 4.0向けチュートリアルの<a href="./beginning.html#sidebar-diffs">コラム1.1</a>を参照してください。</p>
 
-<p>本章の主な目的は、<em>Railsチュートリアル</em>のサンプルアプリケーションを、Rails 3.2からRails 4.0にアップグレードすることです (<a class="ref" href="./chapters/supplement.html#sec-upgrading_from_rails_3_2_to_4_0">12.1</a>)。具体的には、主要な変更点である、<em>attr_accessible</em> (<a class="ref" href="./chapters/modeling-users.html#sec-accessible_attributes">6.1.2.2</a><em>) から<em>Strong Parameter</em> (<a class="ref" href="./chapters/supplement.html#sec-strong_parameters">12.2</a></em>) への変更について説明します。最後に、2つの小さな機能をサンプルアプリケーションに追加します。この追加機能は、Rails 4.0とは<em>本質的には</em>関係ありませんが、セキュリティ上の理由から、この場を借りて<a class="ref" href="./chapters/supplement.html#sec-security_updates">12.3</a>で解説します。</p>
+<p>本章の最初の目的は、<em>Railsチュートリアル</em>のサンプルアプリケーションを、Rails 3.2からRails 4.0にアップグレードすることです (<a class="ref" href="./chapters/supplement.html#sec-upgrading_from_rails_3_2_to_4_0">12.1</a>)。次に、主要な変更点である、<em>attr_accessible</em> (<a class="ref" href="./chapters/modeling-users.html#sec-accessible_attributes">6.1.2.2</a>) から<em>Strong Parameter</em> (<a class="ref" href="./chapters/supplement.html#sec-strong_parameters">12.2</a>) への変更について説明します。最後に、2つの小さな機能をサンプルアプリケーションに追加します。この追加機能は、Rails 4.0とは<em>本質的には</em>関係ありませんが、セキュリティ上の理由から、この場を借りて<a class="ref" href="./chapters/supplement.html#sec-security_updates">12.3</a>で解説します。</p>
 
-<p>加えて、本章の内容を補うため、2本のスクリーンキャスト (英語) も制作しました。こちらも<a href="./#supplement">railstutorial.jp</a> から購入することができます。なお、１つ目のスクリーンキャストは、サンプルアプリケーションをRails 3.2からRails 4.0にアップグレードするところをライブデモする動画です。２つ目のスクリーンキャストは、Strong Parametersとセキュリティ上の更新について解説する動画です。</p>
+<p>加えて、本章の内容を補うために2本のスクリーンキャスト (英語) も制作しました。こちらも<a href="./#supplement">railstutorial.jp</a> から購入することができます。1つ目のスクリーンキャストは、サンプルアプリケーションをRails 3.2からRails 4.0にアップグレードするところをライブデモする動画です。2つ目のスクリーンキャストは、Strong Parametersとセキュリティ上の更新について解説する動画です。</p>
 
 <div class="label" id="sec-upgrading_from_rails_3_2_to_4_0"></div>
 
@@ -26,9 +26,9 @@
 <h2><a id="sec-12_1" href="./chapters/supplement.html#sec-upgrading_from_rails_3_2_to_4_0" class="heading"><span class="number">12.1</span>Rails 3.2からRails 4.0へのアップグレード</a></h2>
 
 
-<p>Railsとそれを取り囲むエコシステムは比較的成熟して来ていますが、今だに変化するスピードは早いままです。例えば、大きなバージョンの更新があれば、多くの細かな機能が損なわれるのが普通です。実際、著者自身も、既存のRailsプロジェクトを<a href="http://en.wikipedia.org/wiki/In_situ"><em>その場で</em></a>アップグレードしようとした際、しばしば苦い経験をしてきました。また、いつも、最終的には<code>rails new</code>を使ってアプリケーションを最初から作り直したような状態になってしまいます。というのも、<code>rails new</code>によって生成される大量の設定ファイルには、それぞれ数値やデフォルト値があるのですが、これらの値はバージョンによって異なっているからです。また、既存のプロジェクトでこれらの値を再現する作業は、非常に困難です。そこで、本節では、次のような方針でアップグレードの作業を進めることにします。最初に、空のRails 4.0のプロジェクトを作成し、まずは<em>とにかく動く</em>状態にします。その後、既存のプロジェクトから順次コードを移植していき、アプリケーションが正しく動作することを1つずつ確認しながら、作業を進めていきます。</p>
+<p>Railsとそれを取り囲むエコシステムは比較的成熟してきましたが、Railsは今でも急速に変化し続けています。今回のようなメジャーな更新が発生すると、多くの細かな機能が損なわれるのが普通です。実際、著者自身も既存のRailsプロジェクトを<a href="http://en.wikipedia.org/wiki/In_situ"><em>その場で</em></a>アップグレードしようとした際、しばしば苦い経験をしてきました。そしてそのたびに、最後には<code>rails new</code>を使ってアプリケーションを最初から作り直すはめになってしまいました。それというのも、<code>rails new</code>によって生成される大量の設定ファイルにはさまざまな数値やデフォルト値が設定されているのですが、これらの値はバージョンによって異なっているからです。そしてこれらの値を既存のプロジェクトに反映する作業は非常に困難です。そこで本節では、次のような方針でアップグレードの作業を進めることにします。最初に、空のRails 4.0のプロジェクトを作成し、プロジェクトを<em>とにかく動く</em>状態にします。その後、既存のプロジェクトから順次コードを移植していき、アプリケーションが正しく動作することを1つずつ確認しながら、作業を進めていきます。</p>
 
-<p>Railsアプリケーションをアップグレードすることは、<em>難易度の高い作業</em>です。したがって、本節の<em>難易度も高い</em>と言えます。また、本節の作業を体験することで、Rails のアプリケーションをアップグレードすることは、「本に載っている手順に従うだけでできるような簡単な作業ではない」ということを実感できます。実際、本節で行う作業は、演習の延長線上のような作業です。今までの演習との違いは、多くの役に立つヒントとマニュアル (スクリーンキャスト) が用意されている点です。例えば、<a href="./#supplement">アップグレードされたスクリーンキャスト</a> (英語) では、著者が悪戦苦闘の末にアップグレードを成功させるシーンを見ることができます。なお、「Railsアプリケーションのアップグレードの途中で行き詰まってしまったけど、スクリーンキャストは購入したくない」という場合は、<a href="https://github.com/mhartl/sample_app_4_0_upgrade">GitHub上のアップグレード済みサンプルアプリケーション</a>を参考にして下さい。</p>
+<p>Railsアプリケーションのアップグレードは<em>難易度の高い作業</em>です。したがって、本節の<em>難易度も高くなっています</em>。本節をお読みいただければわかるように、Railsのアプリケーションのアップグレードは、残念ながら「本に載っている手順に従うだけで完了するような作業」ではありません。実際、本節で行うのは演習の延長線上にある応用作業です。これまでの演習との違いは、多くの役に立つヒントとマニュアル (スクリーンキャスト) が用意されている点です。たとえば「<a href="./#supplement">アップグレードされたスクリーンキャスト</a> (英語)」では、著者が悪戦苦闘の末にアップグレードを成功させる様子を見ることができます。なお、「Railsアプリケーションのアップグレードの途中で行き詰まってしまったけど、スクリーンキャストは購入したくない」という場合は、<a href="https://github.com/mhartl/sample_app_4_0_upgrade">GitHub上のアップグレード済みサンプルアプリケーション</a>を参考にして下さい。</p>
 
 <div class="label" id="sec-rails_4_0_setup"></div>
 
@@ -36,9 +36,9 @@
 <h3><a id="sec-12_1_1" href="./chapters/supplement.html#sec-rails_4_0_setup" class="heading"><span class="number">12.1.1</span>Rails 4.0のセットアップ</a></h3>
 
 
-<p>Rails 4.0を使ってアプリケーションをセットアップする手順は、<a class="ref" href="./chapters/beginning.html#top">第1章</a>から<a class="ref" href="./chapters/static-pages.html#top">第3章</a>までの手順と実質的には同じです。具体的には、1) RVM の gemset の作成 (または rbenv の環境構築)、2) Railsのインストール、3) Bundlerを使ったgemのインストール、4) RSpecの設定、といった手順で進めていきます。</p>
+<p>Rails 4.0を使ってアプリケーションをセットアップする手順は、<a class="ref" href="./chapters/beginning.html#top">第1章</a>から<a class="ref" href="./chapters/static-pages.html#top">第3章</a>までの手順と実質的には同じです。具体的には、1) RVMのgemsetの作成 (またはrbenvの環境構築)、2) Railsのインストール、3) Bundlerを使ったgemのインストール、4) RSpecの設定、という手順で進めます。</p>
 
-<p>もしRVMまたはrbenvを既に使っているのであれば、<a href="./beginning.html#sec-install_ruby">Rails 4.0 対応版チュートリアルの第1章</a>に従って、システムを設定することできます。たとえば、RVMを使っている場合は、Rails 4.0のサンプルアプリケーション用に新しくgemsetを作成することをお勧めします。実行するコマンドは次の通りです。</p>
+<p>もしRVMまたはrbenvを既に使っているのであれば、<a href="./beginning.html#sec-install_ruby">Rails 4.0対応版チュートリアルの第1章</a>に従って、システムを設定することできます。たとえばRVMを使っている場合は、Rails 4.0のサンプルアプリケーション用に新しくgemsetを作成することをお勧めします。その場合は次のコマンドを実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm use 2.0.0@railstutorial_rails_4_0_upgrade --create
 </pre></div>
@@ -52,7 +52,7 @@
 </div>
 
 
-<p>その後、アプリケーションをアップグレードするための新規プロジェクトを作成します。</p>
+<p>次に、アプリケーションをアップグレードするための新規プロジェクトを作成します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/rails_projects
 <span class="gp">$</span> rails new sample_app_4_0 --skip-test-unit
@@ -63,7 +63,7 @@
 
 <p>この時点で、<code>rails server</code>を実行してアプリケーションをローカルで走らせ、正常に動作していることを確認してください。</p>
 
-<p>次に、アップグレードに必要な全てのgemをインストールします。具体的には、Gemfile を<a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>のように書き換えます。</p>
+<p>次に、アップグレードに必要な全てのgemをインストールします。具体的には、Gemfileを<a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>のように書き換えます。</p>
 
 <div class="label" id="code-rails_4_0_upgrade_gemfile"></div>
 
@@ -129,16 +129,16 @@
 </div></div>
 
 
-<p><a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>の最後の行に注目してください。この gem は、 <code>attr_accessible</code> (<a class="ref" href="./chapters/modeling-users.html#sec-accessible_attributes">6.1.2.2</a>) をRails 4.0のアプリケーションでも使えるようにするために必要な gem です。</p>
+<p><a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>の最後の行にご注目ください。このgem は、<code>attr_accessible</code> (<a class="ref" href="./chapters/modeling-users.html#sec-accessible_attributes">6.1.2.2</a>) をRails 4.0のアプリケーションでも使えるようにするために必要なgemです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;protected_attributes&#39;</span>
 </pre></div>
 </div>
 
 
-<p>なお、attr_accessible を Strong Parameters に変更し終わったらこの gem は必要なくなるので、この gem は <a class="ref" href="./chapters/supplement.html#sec-strong_parameters">12.2</a> で削除されます。</p>
+<p>なお、attr_accessibleをStrong Parametersに変更し終わったらこのgemは必要なくなるので、このgemは<a class="ref" href="./chapters/supplement.html#sec-strong_parameters">12.2</a>で削除する予定です。</p>
 
-<p>いつもと同様に、<code>bundle install</code> を実行することで<a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>の gem をインストールできます。また、<code>bundle update</code> も実行しておいて下さい (念のため、もう一度 <code>bundle install</code> を実行しておくと安心です)。</p>
+<p>いつもと同様に、<code>bundle install</code>を実行することで<a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>のgemをインストールできます。また、<code>bundle update</code>も実行しておいて下さい (念のため、もう一度<code>bundle install</code>を実行しておくと安心です)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install --without production
 <span class="gp">$</span> bundle update
@@ -147,14 +147,14 @@
 </div>
 
 
-<p>gem をインストールする際に (<tt>rspec-rails</tt> を通じて) RSpec も一緒にインストールされますが、generateコマンドを使って RSpec を再度インストールする必要があります。</p>
+<p>gemをインストールする際に (<tt>rspec-rails</tt>と一緒に) RSpecもインストールされますが、generateコマンドを使ってRSpecを再度インストールする必要があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate rspec:install
 </pre></div>
 </div>
 
 
-<p>それでは、Rails 3.2 のアプリケーションの移植作業を始めていきます。まずは、生成された <code>README</code> ファイルを削除して、Markdown 版の README (<a class="ref" href="./chapters/static-pages.html#code-sample_app_readme">リスト3.2</a>) に置き換えてください。</p>
+<p>それではRails 3.2のアプリケーションの移植作業を始めましょう。最初に、生成された<code>README</code>ファイルを削除して、Markdown 版の README (<a class="ref" href="./chapters/static-pages.html#code-sample_app_readme">リスト3.2</a>) に置き換えてください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rm -f README.rdoc
 <span class="gp">$</span> cp ../sample_app_2nd_ed/README.md .
@@ -165,7 +165,7 @@
 
 <p>このとき、RSpec の設定ファイル (<code>.rspec</code>) も一緒にコピーしておいて下さい。</p>
 
-<p>この時点で、サンプルアプリケーションをGit管理下に置くのが賢い方法です。Railsのアップグレードのような多くのエラーが発生する作業では、Gitは本当に役に立ちます。また、今のうちに、Railsが自動生成した <code>.gitignore</code> ファイルを、<a class="ref" href="./chapters/supplement.html#code-gitignore_rails_4_upgrade">リスト12.2</a> の内容に置き換えておくことをお勧めします。</p>
+<p>この時点で、サンプルアプリケーションをGit管理下に置くのが賢い方法です。Railsのアップグレードのような多くのエラーが発生する作業では、Gitは本当に役に立ちます。また、今のうちにRailsが自動生成した<code>.gitignore</code>ファイルを<a class="ref" href="./chapters/supplement.html#code-gitignore_rails_4_upgrade">リスト12.2</a>の内容に置き換えておくことをお勧めします。</p>
 
 <div class="label" id="code-gitignore_rails_4_upgrade"></div>
 
@@ -195,15 +195,15 @@ doc/
 </div></div>
 
 
-<p><a class="ref" href="./chapters/supplement.html#code-gitignore_rails_4_upgrade">リスト12.2</a> では、<code>.secret</code> ファイルを無視する行が追加されていることに注目して下さい。このファイルは、セキュリティの向上のために生成されたファイルです。詳しくは、<a class="ref" href="./chapters/supplement.html#sec-secret_key">12.3.1</a> で説明します。</p>
+<p><a class="ref" href="./chapters/supplement.html#code-gitignore_rails_4_upgrade">リスト12.2</a>では、<code>.secret</code>ファイルを無視する行が追加されていることに注目して下さい。このファイルは、セキュリティの向上のために生成されたファイルです。詳細については<a class="ref" href="./chapters/supplement.html#sec-secret_key">12.3.1</a>で説明します。</p>
 
-<p>最後に、Capybaraのドメイン固有言語 (DSL: domain-specific language) を明示的にインクルードする設定が必要です。というのも、RSpec の request spec 機能を使うために (統合テストをするために)、デフォルトの文法を変更する必要があるからです。具体的には、<a class="ref" href="./chapters/supplement.html#code-capybara_dsl">リスト12.3</a> に示すように、<code>spec_helper.rb</code> に1行追加することで設定できます。</p>
+<p>最後に、Capybaraのドメイン固有言語 (DSL: domain-specific language) を明示的にインクルードする設定が必要です。これは、RSpecのrequest spec (統合テスト) 機能を使うために、デフォルトの文法を変更しておく必要があるからです。実際には、<a class="ref" href="./chapters/supplement.html#code-capybara_dsl">リスト12.3</a>に示すように、<code>spec_helper.rb</code>に1行追加するだけで設定できます。</p>
 
 <div class="label" id="code-capybara_dsl"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト12.3</span> <span class="description">Capybara DSL を RSpec に追加する。</span><br /><span class="description"> <code>spec/spec_helper.rb</code></span> </div>
+<div class="listing"><span class="header">リスト12.3</span> <span class="description">Capybara DSLをRSpecに追加する。</span><br /><span class="description"> <code>spec/spec_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="o">.</span>
 <span class="o">.</span>
 <span class="o">.</span>
@@ -215,7 +215,7 @@ doc/
 <span class="k">end</span>
 </pre></div>
 </div>
-もしバージョン管理に Git を使っているのであれば、この時点で最初のコミットを行うとよいでしょう。
+バージョン管理にGitを使っているのであれば、この時点で最初のコミットを行うとよいでしょう。
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git init
 <span class="gp">$</span> git add .
 <span class="gp">$</span> git commit -m <span class="s2">&quot;Initialize repository&quot;</span>
@@ -223,7 +223,7 @@ doc/
 </div></div>
 
 
-<p>本書の内容を簡潔にするために、以後、Git コミットに関する記述を省略しますが、区切りが良い時には Git コミットするように心掛けてください。</p>
+<p>本書の内容を簡潔にするために、以後、Gitコミットの指示を省略しますが、折を見てGitコミットするように心掛けてください。</p>
 
 <div class="label" id="sec-getting_to_green"></div>
 
@@ -231,9 +231,9 @@ doc/
 <h3><a id="sec-12_1_2" href="./chapters/supplement.html#sec-getting_to_green" class="heading"><span class="number">12.1.2</span>テストをパスするようにする</a></h3>
 
 
-<p>アップグレードの戦略として、本チュートリアルで全面的に使用されているテストスイートを活用することにします。このようなときには、既存アプリケーションのtestディレクトリ (またはテストファイル) を先に新しいRailsプロジェクトにコピーし、それからそれに対応するアプリケーションコードをコピーすることをお勧めします。最初のうちは、テストを実行するだけでも簡単ではありません。テストを行えば、まず間違いなく失敗 (赤色) になるでしょう。要するに、ファイルを変更してこのテストがパスする (緑色になる) ようになればよいわけです。ファイルを変更するということは、たいていの場合既存のアプリケーションから対応するコードをコピーしてくるということになります。ただし、Rails 3.2とRails 4.0の違い、または関連するgem (特にRSpecとCapybara) の違いによってテストが失敗することもあります。</p>
+<p>アップグレードを完了するために、本チュートリアルで全面的に使用されているテストスイートをここでも活用することにします。このようなときには、既存アプリケーションのtestディレクトリまたはテストファイルを (一度にすべてではなく) 1つずつ新しいRailsプロジェクトにコピーし、そのたびにそれに対応するアプリケーションコードを順次コピーする、という手順をお勧めします。最初はテストを実行できる状態にするだけで試行錯誤が必要になることでしょう。それを終え、実際にテストを行うと、当初はほとんどの場合失敗する (赤色になる) はずです。その状態からファイルを変更して、このテストがパスする (緑色になる) ようになればよいわけです。ファイルを変更するとは、つまりそのテストに対応するコードを既存のアプリケーションからコピーしてくるということです。ただし、Rails 3.2とRails 4.0の違い、または関連するgem (特にRSpecとCapybara) の違いによってはこのシナリオ通りにならず、コードをコピーしてきてもテストが失敗することがあります。</p>
 
-<p>著者の経験では、最初にモデルのspecと、それに対応するモデルをコピーするのがよいようです。モデルのテストは、コントローラやビューの結合テストと比べるとモデル内で完結している傾向が高いためです。そこで、最初にマイグレーションからコピーしましょう。</p>
+<p>著者の経験では、最初にコピーするのはモデルのspecと、それに対応するモデルのコードにしておくのがよいようです。モデルのテストは、コントローラやビューの結合テストと比べるとモデル内で完結している傾向が高いためです。そこで、モデルをテストできるようにするために最初にマイグレーションからコピーしましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> cp -r ../sample_app_2nd_ed/db/migrate db/
 <span class="gp">$</span> rake db:migrate
@@ -242,9 +242,9 @@ doc/
 </div>
 
 
-<p><code>../sample_app_2nd_ed/db/migrate</code>の末尾にスラッシュを追加しないようご注意ください。システムによっては、マイグレーション<em>ファイル</em>がコピーされてもディレクトリがコピーされないことがあります。なお、Rails 4.0では<code>rake test:prepare</code>を使用するのが一般的です (従来は<code>rake db:test:prepare</code>でした) が、どちらも問題なく動作します。</p>
+<p><code>../sample_app_2nd_ed/db/migrate</code>の末尾にスラッシュを追加しないようご注意ください。システムによっては、マイグレーション<em>ファイル</em>がコピーされてもディレクトリがコピーされないことがあります。なお、Rails 4.0では<code>rake test:prepare</code>コマンドを使用するのが一般的ですが、従来の<code>rake db:test:prepare</code>コマンドも問題なく動作します。</p>
 
-<p>本章では以後、既存のアプリケーションからテストとアプリケーションを新しいアプリケーションに何度もコピーすることになります。コピーにはコマンドラインでもGUIファイルブラウザでも好みのものを使用できます。</p>
+<p>以後、このようにテストとアプリケーションを既存のアプリケーションから順次新しいアプリケーションにコピーすることを繰り返し、移行を完了させます。コピーに使用するツールは、コマンドラインでもGUIファイルブラウザでも好みのもので構いません。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> cp -r ../sample_app_2nd_ed/spec/models spec/
 <span class="gp">$</span> cp -r ../sample_app_2nd_ed/app/models app/
@@ -254,7 +254,7 @@ doc/
 
 <p>ファイルのコピー時にはエラーが発生することも多く、システム環境に依存するコピー項目もあるので、本書ではコピーするファイルをすべての場合について列挙することはしません。ファイルをどのような順序でコピーするかについては、各自にお任せすることにします。</p>
 
-<p>特にご注意いただきたいのが、一部のファイル (アプリケーションレイアウト<code>application.html.erb</code>など) については単純な上書きを行えない場合があることです。このような場合には、ご面倒でもコピー元とコピー先のファイルを開き、必要なコードだけを手動でコピーしてください (<a href="./#supplement">Screencast</a>はこういう作業の説明が楽ですね)。</p>
+<p>特にご注意いただきたいのが、generateで生成されたファイル (アプリケーションレイアウト<code>application.html.erb</code>など) には重要なコードが含まれていることがあり、単純な上書きコピーを行えない場合があるということです。このような場合には、ご面倒でもコピー元とコピー先のファイルを開き、内容を確認しながら必要なコードだけを手動でコピーしてください (<a href="./#supplement">Screencast</a>はこういう作業の説明が楽ですね)。</p>
 
 <div class="label" id="sec-some_specific_issues"></div>
 
@@ -262,7 +262,7 @@ doc/
 <h3><a id="sec-12_1_3" href="./chapters/supplement.html#sec-some_specific_issues" class="heading"><span class="number">12.1.3</span>特定の問題</a></h3>
 
 
-<p>普通、アップグレードにともなって発生する問題を事前にすべて予測することはきわめて困難です。本章では基本的に、一般的な戦略を述べるだけにしておきます。著者が遭遇した特定の問題をある程度記載いたしましたが、すべてのトラブルを網羅することは事実上不可能ですので、どうかご容赦願います。この作業には、どうしてもある程度のフラストレーションがつきまといます。困難を突破するには、ひたすら忍耐、そしてひたすらネット検索、それしかありません (大丈夫、ちゃんと<a href="https://github.com/mhartl/sample_app_4_0_upgrade">カンニングペーパー</a>も用意してあります)。</p>
+<p>アップグレードにともなって発生する多数の問題を事前にすべて予測することは、一般にきわめて困難です。本章では基本的に、一般的な戦略を述べるだけにしておきます。著者が遭遇した特定の問題についてはある程度記載いたしましたが、すべてのトラブルを網羅することは事実上不可能ですので、どうかご容赦願います。アップグレード作業にはどうしても相当なフラストレーションがつきまといます。この困難を突破するには、とにかく忍耐、とにかくネット検索、それしかありません (ご心配なく、ちゃんと<a href="https://github.com/mhartl/sample_app_4_0_upgrade">カンニングペーパー</a>も用意してあります)。</p>
 
 <div class="label" id="sec-models"></div>
 
@@ -270,7 +270,7 @@ doc/
 <h4><a id="sec-12_1_3_1" href="./chapters/supplement.html#sec-models" class="heading">モデル</a></h4>
 
 
-<p><tt>protected_attributes</tt> gem (<a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>) の動作がRails 3.2の「アクセス可能な属性」と異なっているため、マスアサインメントのセキュリティエラーをテストするコードは4.0では動作しません。このテストコードは削除する必要があります。たとえば、以下のコードはUserモデルのspec (<code>spec/models/user_spec.rb)</code>ですが、これは削除の必要があります。</p>
+<p><tt>protected_attributes</tt> gem (<a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>) の動作がRails 3.2の「アクセス可能な属性」と異なっているため、マスアサインメントのセキュリティエラーをテストするコードは4.0では動作しなくなりました。このテストコードは削除する必要があります。たとえば、以下のコードはUserモデルのspec (<code>spec/models/user_spec.rb)</code>ですが、これは削除が必要です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;accessible attributes&quot;</span> <span class="k">do</span>
   <span class="n">it</span> <span class="s2">&quot;should not allow access to admin&quot;</span> <span class="k">do</span>
@@ -307,9 +307,9 @@ with a hash is deprecated.</span>
 </div>
 
 
-<p>置き換えるコードは<code>app/models/micropost.rb</code>にあります。Rails 4.0の<code>default_scope</code>は、従来のハッシュに代えて、Ruby 1.9で導入された<code>lambda</code>を引数に取るように変更されました。また、<code>-&gt;</code>もRuby 1.9で導入された<code>lambda</code>の略記法です。詳細については4.0チュートリアルの<a href="./user-microposts.html#top">第10章</a>を参照してください。</p>
+<p>置き換え対象のコードは<code>app/models/micropost.rb</code>にあります。Rails 4.0の<code>default_scope</code>は、従来のハッシュに代えて、Ruby 1.9で導入された<code>lambda</code>を引数に取るように変更されました。<code>-&gt;</code>は、Ruby 1.9で導入された<code>lambda</code>の略記法です。詳細については<a href="./user-microposts.html#top">4.0チュートリアルの第10章</a>を参照してください。</p>
 
-<p>Micropost spec (<code>spec/models/micropost_spec.rb</code>) でもわずかに変更が必要です。<code>dup</code>メソッドを使用して@user.micropostsを複製していますが、これを<code>to_a</code>メソッド (配列への変換) に置き換えます。以下は<code>dup</code>を使用した既存のコードです。</p>
+<p>Micropost spec (<code>spec/models/micropost_spec.rb</code>) もわずかに変更が必要です。<code>dup</code>メソッドを使用して@user.micropostsを複製していますが、これを<code>to_a</code>メソッド (配列への変換) に置き換えます。以下は<code>dup</code>を使用した既存のコードです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should destroy associated microposts&quot;</span> <span class="k">do</span>
   <span class="n">microposts</span> <span class="o">=</span> <span class="vi">@user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">dup</span>
@@ -345,8 +345,7 @@ with a hash is deprecated.</span>
 <h4><a id="sec-12_1_3_2" href="./chapters/supplement.html#sec-controllers_and_views" class="heading">コントローラとビュー</a></h4>
 
 
-<p>Relationshipsはテストの量がかなり少ないので、次はRelationshipsのテストを行うことをお勧めします。テストを行うと、ルーティングが失敗します。これは、Rails 4.0
-では<code>config/routes.rb</code>の<code>match</code>でHTTPメソッドを<code>via</code>で明示的に指定することが要求されるようになったためです。</p>
+<p>Relationshipsはテストの量がかなり少ないので、次はRelationshipsのテストを行うことをお勧めします。テストを行うと、ルーティングが失敗します。これは、Rails 4.0では<code>config/routes.rb</code>の<code>match</code>でHTTPメソッドを<code>via</code>で明示的に指定することが要求されるようになったためです。</p>
 
 <div class="code"><div class="highlight"><pre>  <span class="n">resources</span> <span class="ss">:users</span> <span class="k">do</span>
     <span class="n">member</span> <span class="k">do</span>
@@ -374,7 +373,7 @@ with a hash is deprecated.</span>
 </div>
 
 
-<p>上のコードは、Capybaraの変更が原因で失敗します。Capybaraの<code>have_selector</code>は画面に<em>実際に表示される</em>要素にしか適用できなくなりました (一部のブラウザではこの項目がトップバーに表示されますが、ページタイトルは実際の表示に含まれません)。これを解決するには、新しい<code>have_title</code>メソッドを使用します。</p>
+<p>上のようなコードは、Capybaraの変更が原因で失敗します。Capybaraの<code>have_selector</code>は画面に<em>実際に表示される</em>要素にしか適用できなくなりました (ページタイトルは一部のブラウザではトップバーに表示されますが、「実際に表示される要素」としては扱われません)。これを解決するには、新しい<code>have_title</code>メソッドを使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_title</span><span class="p">(</span><span class="ss">text:</span> <span class="s1">&#39;Sign up&#39;</span><span class="p">)</span> <span class="p">}</span>
 </pre></div>
@@ -456,7 +455,7 @@ with a hash is deprecated.</span>
 </div>
 
 
-<p>上のコードは<code>specs/requests/user_pages_spec.rb</code>にあります。以前のCapybaraは上の古いdeleteリンクを問題なくクリックすることができましたが、新しいバージョンでは動作が厳密になり、リンクをCSS idなどで正確に指定することが要求されるようになりました。これはもちろん歓迎すべき変更です。そうでないと、テスト中に誤ったリンクがクリックされる可能性があるからです。しかしこのチュートリアルのサンプルでは、どのリンクがクリックされるかは重要ではありません。これを解決するには、<code>match: :first</code>オプションハッシュを渡して、最初に見つけたdeleteリンクをクリックするようCapybaraに指示します。</p>
+<p>上のコードは<code>specs/requests/user_pages_spec.rb</code>にあります。以前のCapybaraは、古いdeleteリンクを問題なくクリックすることができましたが、新しいバージョンでは動作が厳密になり、リンクをCSS idなどで正確に指定することが要求されるようになりました。これはもちろん歓迎すべき変更です。このおかげで、テスト中に誤ったリンクがクリックされずに済むからです。しかしこのチュートリアルのサンプルでは、どのリンクがクリックされるかは重要ではありません。これを解決するには、<code>match: :first</code>オプションハッシュを渡して、最初に見つけたdeleteリンクをクリックするようCapybaraに指示します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="s2">&quot;should be able to delete another user&quot;</span> <span class="k">do</span>
   <span class="n">expect</span> <span class="k">do</span>
@@ -467,7 +466,7 @@ with a hash is deprecated.</span>
 </div>
 
 
-<p>今度はテストスイートはパスするはずです。</p>
+<p>これでテストスイートはパスするはずです。</p>
 
 <div class="label" id="sec-finishing_up"></div>
 
@@ -475,14 +474,14 @@ with a hash is deprecated.</span>
 <h3><a id="sec-12_1_4" href="./chapters/supplement.html#sec-finishing_up" class="heading"><span class="number">12.1.4</span>仕上げ</a></h3>
 
 
-<p>残る作業は、スタイルシートのコピーと、Bootstrap JavaScriptを<code>application.js</code>にコピーすることです。</p>
+<p>残る作業は、スタイルシートのコピーと、Bootstrap JavaScriptを<code>application.js</code>に追加することです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> cp -r ../sample_app_2nd_ed/app/assets/* app/assets/
 </pre></div>
 </div>
 
 
-<p>このとき、<code>application.js</code>を上書きしないように注意してください (上書きの警告が表示されたら [いいえ] をクリックします)。次に、<code>application.js</code>の内容を<a class="ref" href="./chapters/supplement.html#code-application_js_bootstrap">12.4</a>のとおりに更新し、Bootstrap Javascriptを追加します。</p>
+<p>上のコピー中に<code>application.js</code>を上書きしないように注意してください (上書きの警告が表示されたら [いいえ] をクリックします)。次に、<code>application.js</code>の内容を<a class="ref" href="./chapters/supplement.html#code-application_js_bootstrap">12.4</a>のとおりに更新し、Bootstrap Javascriptを追加します。</p>
 
 <div class="label" id="code-application_js_bootstrap"></div>
 
@@ -501,7 +500,7 @@ with a hash is deprecated.</span>
 </div></div>
 
 
-<p>ここまで問題なく進めることができれば、アプリケーションは4.0で動作するようになったはずです。以下のようにデータベースにサンプルデータをアップロードしてローカルサーバーで実行することで、実際の動作を確認できます。</p>
+<p>ここまで問題なく進めることができれば、アプリケーションは4.0で動作するようになるはずです。以下のようにデータベースにサンプルデータを導入してローカルサーバーで実行することで、実際の動作を確認できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> cp ../sample_app_2nd_ed/lib/tasks/* lib/tasks
 <span class="gp">$</span> rake db:populate
@@ -510,7 +509,7 @@ with a hash is deprecated.</span>
 </div>
 
 
-<p>(上の手順でスタイルシートのコピーを行っていないことに気付いた方がいるかもしれません。著者もScreencastを制作中に気付きました。でもこのぐらいは簡単に修正できるはずです)</p>
+<p>(上の手順ではスタイルシートがコピーされないことに気付いた方がいるかもしれません。著者もScreencastを制作中に気付きました。でもこのぐらいは簡単に修正できるはずです)</p>
 
 <div class="label" id="sec-additional_resources"></div>
 
@@ -518,7 +517,7 @@ with a hash is deprecated.</span>
 <h3><a id="sec-12_1_5" href="./chapters/supplement.html#sec-additional_resources" class="heading"><span class="number">12.1.5</span>追加機能</a></h3>
 
 
-<p>Rails 4.0には、本章の範疇を超える追加機能がいくつかあります。中でも代表的なのは<em>Turbolinks</em>でしょう。これはJavaScriptを使用してアプリケーションのユーザーインターフェイスを高速化する技法です。他に<em>Russian doll caching</em> (一度描画したHTMLをインテリジェントに保存して不要な再描画を抑制する新機能) もあります。このようなやや高度なトピックについて頼りになるのは、やはり<a href="http://railscasts.com/">RailsCasts</a>です。</p>
+<p>Rails 4.0には、本章の範疇を超える追加機能がいくつかあります。中でも代表的なのは<em>Turbolinks</em>でしょう。これはJavaScriptを使用してアプリケーションのユーザーインターフェイスを高速化する技法です。他に<em>Russian doll caching</em> (一度描画したHTMLをインテリジェントに保存して不要な再描画を抑制する新機能) もあります。このようなやや高度なトピックを理解するには、<a href="http://railscasts.com/">RailsCasts</a>が便利です。</p>
 
 <ul>
 <li><a href="http://railscasts.com/episodes/400-what-s-new-in-rails-4?view=asciicast">Rails 4の新機能</a></li>
@@ -535,7 +534,7 @@ with a hash is deprecated.</span>
 <h2><a id="sec-12_2" href="./chapters/supplement.html#sec-strong_parameters" class="heading"><span class="number">12.2</span>Strong parameters</a></h2>
 
 
-<p>いよいよ、(<em>Railsチュートリアル</em>にとっては) Rails 3.2とRails 4.0の最大の違いである<em>Strong Parameters</em>について説明します。これは<code>attr_accessible</code>を置き換えるものであり、マスアサインメントの脆弱性 (<a class="ref" href="./chapters/updating-showing-and-deleting-users.html#sec-revisiting_attr_accessible">9.4.1.1</a>) を防止するためのものです。<code>attr_accessible</code>はモデルに対して適用するものですが、Strong Parametersは<em>コントローラ</em>層に対して適用するという点が大きく異なります。認証や認可はコントローラで行われますが、それと同じ場所に適用するという点で、Strong Parametersは従来よりも適切な手法です。</p>
+<p>いよいよ、(<em>Railsチュートリアル</em>にとっては) Rails 3.2とRails 4.0の最大の違いである<em>Strong Parameters</em>について説明します。これは<code>attr_accessible</code>を置き換えるものであり、マスアサインメントの脆弱性 (<a class="ref" href="./chapters/updating-showing-and-deleting-users.html#sec-revisiting_attr_accessible">9.4.1.1</a>) を防止するためのものです。<code>attr_accessible</code>はモデルに対して適用しますが、Strong Parametersは<em>コントローラ</em>層に対して適用するという点が大きく異なります。認証や認可はコントローラで行われますが、それと同じ場所に適用するという点で、Strong Parametersは従来よりも適切な手法です。</p>
 
 <p>以下の作業は、<a class="ref" href="./chapters/supplement.html#sec-upgrading_from_rails_3_2_to_4_0">12.1</a>でアップグレード完了したアプリケーションに対して行うことをお勧めしますが、<a href="https://github.com/mhartl/sample_app_4_0_upgrade/">GitHub上の完成品</a>を使用してもかまいません。後者の場合は、ここより先の変更を<em>適用していない</em>ブランチがありますので、それをチェックアウトすることをお勧めします。</p>
 
@@ -548,7 +547,7 @@ with a hash is deprecated.</span>
 
 <p>Strong Parametersを実装するために、最初に<tt>protected_attributes</tt> gemを<code>Gemfile</code>から削除してください (<a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>)。次に、UserモデルとMicropostモデルから<code>attr_accessible</code>を削除します。</p>
 
-<p>Strong parametersは、どのパラメータが<em>要求されている</em>もので、どのパラメータが <em>許可されている</em>ものであるかを指定します。さらに、<code>params</code>ハッシュをまるごと渡すとエラーが発生するようになっているので、Railsはデフォルトでマスアサインメントの脆弱性から守られるようになりました。上の変更により、テストは失敗するようになったはずです。</p>
+<p>Strong parametersを使用して、どのパラメータを<em>必須</em>とし、どのパラメータを<em>許可する</em>かを指定できます。さらに、<code>params</code>ハッシュをまるごと渡すとエラーが発生するようになっているので、Railsはデフォルトでマスアサインメントの脆弱性から保護されるようになりました。この変更により、テストは失敗するようになったはずです。</p>
 
 <p>この場合、<code>params</code>ハッシュでは<code>:user</code>属性を必須とし、名前、メールアドレス、パスワード、パスワードの確認の属性をそれぞれ許可し、それ以外を許可しないようにしたいと考えています。これは、以下のように記述することで行うことができます。</p>
 
@@ -607,7 +606,7 @@ with a hash is deprecated.</span>
 </div></div>
 
 
-<p>マイクロソフトも同様に保護します (<a class="ref" href="./chapters/supplement.html#code-microposts_create_action_strong_parameters">リスト12.6</a>)。</p>
+<p>同じようなコードを使用して、マイクロポストも同様に保護します (<a class="ref" href="./chapters/supplement.html#code-microposts_create_action_strong_parameters">リスト12.6</a>)。</p>
 
 <div class="label" id="code-microposts_create_action_strong_parameters"></div>
 
@@ -640,7 +639,7 @@ with a hash is deprecated.</span>
 </div></div>
 
 
-<p>以上で完了です。ついにサンプルアプリケーションはマスアサインメントの脆弱性に対する免疫を獲得しました。必要なデータ更新も問題なく行えます。テストスイートを実行することでこのことを確認できます。</p>
+<p>以上で完了です。ついにサンプルアプリケーションはマスアサインメントの脆弱性に対する免疫を獲得しました。必要な更新も問題なく行えています。テストスイートを実行することでこのことを確認できます。</p>
 
 <div class="label" id="sec-security_updates"></div>
 
@@ -648,7 +647,7 @@ with a hash is deprecated.</span>
 <h2><a id="sec-12_3" href="./chapters/supplement.html#sec-security_updates" class="heading"><span class="number">12.3</span>セキュリティのアップデート</a></h2>
 
 
-<p>本章の最後に、小規模なセキュリティアップデートを2つ紹介します。通常、マイナーな変更の紹介は次の版に回すのですが、本章の冒頭に記したとおりセキュリティ問題は常に最優先課題であるため、ここに記載いたします。</p>
+<p>本章の最後に、小規模なセキュリティアップデートを2つ紹介します。通常、マイナーな変更の紹介は次の版に回すのですが、本章の冒頭に記したとおり、セキュリティ問題は常に最優先課題であるため、ここに記載いたします。</p>
 
 <div class="label" id="sec-secret_key"></div>
 
@@ -656,7 +655,7 @@ with a hash is deprecated.</span>
 <h3><a id="sec-12_3_1" href="./chapters/supplement.html#sec-secret_key" class="heading"><span class="number">12.3.1</span>秘密鍵</a></h3>
 
 
-<p>1番目のセキュリティ変更は、<code>secret_token.rb</code>を使用して<em>秘密鍵</em>を動的に生成します。この秘密鍵は、セッション変数を暗号化するためにRailsで使用されます。この秘密鍵は、デフォルトでは<a class="ref" href="./chapters/supplement.html#code-default_secret_token">リスト12.7</a>に示したようにランダムにハードコードされます。ソースコードが非公開のWebアプリケーションであればこれでよいのですが、Githubなどでソースを公開する場合にはこれは危険です。このトークンを一般にさらしてしまうと、悪意のある攻撃者が<a href="http://www.phenoelit.org/stuff/tokenfaq.html">セッションcookiesを改ざんする</a>可能性が生じます。</p>
+<p>1番目のセキュリティ変更は、<code>secret_token.rb</code>を更新して<em>秘密鍵</em>を動的に生成するようにします。この秘密鍵は、セッション変数を暗号化するためにRailsで使用されます。この秘密鍵は、デフォルトでは<a class="ref" href="./chapters/supplement.html#code-default_secret_token">リスト12.7</a>に示したようにランダムな文字列がハードコードされます。ソースコードが非公開のWebアプリケーションであればこれでもよいのですが、Githubなどでソースを公開する場合にはこのままでは危険です。このトークンを一般にさらしてしまうと、悪意のある攻撃者が<a href="http://www.phenoelit.org/stuff/tokenfaq.html">セッションcookiesを改ざんする</a>可能性が生じます。</p>
 
 <div class="label" id="code-default_secret_token"></div>
 
@@ -676,7 +675,7 @@ c1b783bae98e4e56db</span><span class="s1">aee787747e92a141565f7c61d0ab2c6f98f739
 </div></div>
 
 
-<p>これを解決するには、秘密鍵をローカルで動的に生成してファイルに保存することです (実はこの問題はPhenoelit作 “Rails脆弱性自動レポート用ボット” が著者に親切にも警告してくれたことで気付いたもので、同ページに解決法も示されています)。<a class="ref" href="./chapters/supplement.html#code-dynamic_secure_token">リスト12.8</a>に示したように、この秘密鍵は必要に応じて読み出して利用されます。ここで特にご注意いただきたいのは、<a class="ref" href="./chapters/supplement.html#code-gitignore_rails_4_upgrade">リスト12.2</a>にも示したように、<code>.secret</code>ファイルを<code>.gitignore</code>に追記し、このファイルが間違っても一般からアクセス可能なリポジトリに置かれることの<em>ない</em>ようにする必要があるという点です。</p>
+<p>これを解決する方法は、秘密鍵をローカルで動的に生成してファイルに保存することです。実はこの問題はPhenoelit作 “Rails脆弱性自動レポート用ボット” が著者に親切にも警告してくれたおかげで気付いたもので、同ページに解決法も示されています。<a class="ref" href="./chapters/supplement.html#code-dynamic_secure_token">リスト12.8</a>に示したように、この秘密鍵は必要に応じて読み出して利用されます。ここで特にご注意いただきたいのは、<a class="ref" href="./chapters/supplement.html#code-gitignore_rails_4_upgrade">リスト12.2</a>にも示したように、<code>.secret</code>ファイルを<code>.gitignore</code>に追記し、このファイルが間違っても一般からアクセス可能なリポジトリに置かれることの<em>ない</em>ようにする必要があるという点です。</p>
 
 <div class="label" id="code-dynamic_secure_token"></div>
 
@@ -752,7 +751,7 @@ c1b783bae98e4e56db</span><span class="s1">aee787747e92a141565f7c61d0ab2c6f98f739
 </div></div>
 
 
-<p>次に、<code>sign_in</code>メソッドと<code>current_user</code>メソッドを更新して、cookies内の新しいトークンを使用するようにし、続いてトークンを暗号化してデータベースに保存します (<a class="ref" href="./chapters/supplement.html#code-sign_in_function_encrypted_token">リスト12.10</a>)。(追記: ソルト (暗号を強化するために元の平文に追加する短い文字列のこと) を追加していないSHA1ハッシュは一般にはセキュアではないと言われることがありますが、これは元の平文がパスワードのような短くかつランダムではないものの場合です。ここで暗号化する平文は十分長くかつランダムなので、生成されたハッシュは本質的にクラック不可能です。)</p>
+<p>次に、<code>sign_in</code>メソッドと<code>current_user</code>メソッドを更新して、cookies内の新しいトークンを使用するようにし、続いてトークンを暗号化してデータベースに保存します (<a class="ref" href="./chapters/supplement.html#code-sign_in_function_encrypted_token">リスト12.10</a>)。(追記: ソルト (暗号を強化するために元の平文に追加する短い文字列のこと) を追加していないSHA1ハッシュは一般にはセキュアではないと言われることがありますが、これは元の平文がパスワードのような短くかつランダムではない文字列の場合です。ここで暗号化する平文は十分長くかつランダムなので、生成されたハッシュは本質的にクラック不可能です。)</p>
 
 <div class="label" id="code-sign_in_function_encrypted_token"></div>
 
@@ -815,7 +814,7 @@ c1b783bae98e4e56db</span><span class="s1">aee787747e92a141565f7c61d0ab2c6f98f739
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト12.12</span> <span class="description">Relationshipのコントローラspecに<code>no_capybara</code>オプションを追加する。</span><br /><span class="description"> <code>spec/controllers/relationships_controller_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト12.12</span> <span class="description">Relationshipコントローラspecに<code>no_capybara</code>オプションを追加する。</span><br /><span class="description"> <code>spec/controllers/relationships_controller_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">RelationshipsController</span> <span class="k">do</span>
@@ -839,7 +838,7 @@ c1b783bae98e4e56db</span><span class="s1">aee787747e92a141565f7c61d0ab2c6f98f739
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト12.13</span> <span class="description">認証のページspecに<code>no_capybara</code>を追加する。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト12.13</span> <span class="description">認証ページspecに<code>no_capybara</code>を追加する</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Authentication&quot;</span> <span class="k">do</span>
@@ -883,9 +882,9 @@ c1b783bae98e4e56db</span><span class="s1">aee787747e92a141565f7c61d0ab2c6f98f739
 </div></div>
 
 
-<p>以上で、必要な変更は完了です。テストスイートは緑色 (成功) になるはずです。3.2から4.0へのアップグレードについては、<a href="./#supplement">追加情報Screencasts</a>もご覧ください。Strong Parametersやセキュリティアップデートの実装を手順を追って動画で解説しています。アップグレード中に行き詰まってしまった場合にもお勧めです。</p>
+<p>以上で、必要な変更は完了です。テストスイートは緑色 (成功) になるはずです。3.2から4.0へのアップグレードについては、<a href="./#supplement">追加のScreencasts</a>もご覧ください。Strong Parametersやセキュリティアップデートの実装を手順を追って動画で解説しています。アップグレード中に行き詰まってしまった場合にもお勧めです。</p>
 
-<p>アプリケーションのアップグレードとセキュリティアップデートの適用が終わったとなれば、次は <a href="./book">Rails 4.0用Railsチュートリアル</a>に進むことになるでしょう (もちろん皆様の自由です)。3.2用チュートリアルを完了させた今なら、4.0用チュートリアルは短時間で完了させることができるでしょう。4.0用チュートリアルもやっておけば、新機能について学ぶことができ、3.2用チュートリアルから十分に見直された記述に触れることもできます。4.0のすべては無理としても、3.2から4.0の変更点について言及している<a href="./beginning.html#sidebar-diffs">コラム1.1</a>は読んでおくことをお勧めします。</p>
+<p>アプリケーションのアップグレードとセキュリティアップデートの適用が完了したら、次は<a href="./book">Rails 4.0用Railsチュートリアル</a>に進むことになるでしょう (そうするかどうかはもちろん皆様の自由です)。3.2用チュートリアルを完了させた今なら、4.0用チュートリアルは短時間で完了させることができるでしょう。4.0用チュートリアルもやっておけば、新機能について学ぶことができ、3.2用チュートリアルから十分に見直された記述に触れることもできます。4.0のすべては無理としても、3.2から4.0の変更点について言及している<a href="./beginning.html#sidebar-diffs">コラム1.1</a>は読んでおくことをお勧めします。</p>
 <div class="navigation">
   <a class="prev_page" href="./chapters/following-users.html#top">
 </a><a class="prev_page" href="./chapters/following-users.html#top"><span class="number">第11章</span>ユーザーをフォローする »
