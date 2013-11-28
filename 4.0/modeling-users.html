@@ -535,7 +535,9 @@
 </div>
 
 
-<p>これらのサンプルではRubyの<code>respond_to?</code>メソッドを暗黙的に使っています。このメソッドはシンボルを1つ引数として受け取り、引数として与えられたそのシンボルが表すメソッドまたは属性にオブジェクトが応答する場合は<code>true</code>を返し、応答しない場合は<code>false</code>を返します。</p>
+<p>Userオブジェクトが<code>name</code>属性を持っていない場合、<code>before</code>ブロックの中で例外を投げるので、一見、これらのテストが冗長に思えるかもしれません。しかし、これらのテストを追加することで、<code>user.name</code>や<code>user.email</code>が正しく動作することを保証できます (<code>before</code>ブロック内では、ただ属性のハッシュを<code>new</code>に渡せるかどうかをテストしているだけです)。また、モデルの属性をテストすることは良い習慣です。なぜなら、モデルの属性についてテストをすることで、そのモデルが応答すべきメソッドの一覧が一目で分かるからです。
+
+そして、このテストで使われている<code>respond_to</code>メソッドは、Rubyの<code>respond_to?</code>メソッドを暗黙的に使っています。<code>respond_to?</code>メソッドは、シンボルを1つ引数として受け取り、そのシンボルが表すメソッドまたは属性に対して、オブジェクトが応答する場合は<code>true</code>を返し、応答しない場合は<code>false</code>を返します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console --sandbox</span>
 <span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span>

@@ -2261,7 +2261,10 @@
         <span class="p">{</span> <span class="ss">user:</span> <span class="p">{</span> <span class="ss">admin:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">password:</span> <span class="n">user</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
                   <span class="ss">password_confirmation:</span> <span class="n">user</span><span class="o">.</span><span class="n">password</span> <span class="p">}</span> <span class="p">}</span>
       <span class="k">end</span>
-      <span class="n">before</span> <span class="p">{</span> <span class="n">patch</span> <span class="n">user_path</span><span class="p">(</span><span class="n">user</span><span class="p">),</span> <span class="n">params</span> <span class="p">}</span>
+      <span class="n">before</span> <span class="k">do</span>
+        <span class="n">sign_in user</span><span class="p">,</span> <span class="ss">no_capybara:</span> <span class="kp">true</span>
+        <span class="n">patch</span> <span class="n">user_path</span><span class="p">(</span><span class="n">user</span><span class="p">),</span> <span class="n">params</span> <span class="p">}</span>
+      <span class="k">end</span>
       <span class="n">specify</span> <span class="p">{</span> <span class="n">expect</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">reload</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">be_admin</span> <span class="p">}</span>
     <span class="k">end</span>
   <span class="k">end</span>
