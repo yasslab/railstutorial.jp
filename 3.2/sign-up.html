@@ -604,7 +604,7 @@
 </div>
 
 
-<p>メールアドレスは大文字と小文字を区別しませんが (<a class="ref" href="./modeling-users.html#sec-format_validation">6.2.4</a>)、MD5ハッシュでは大文字と小文字を区別するので、Rubyの<code>downcase</code>メソッドを使用して<code>hexdigest</code>の引数を小文字に変換しています。<code>gravatar_for</code>ヘルパーを組み込んだ結果を<a class="ref" href="./sign-up.html#code-gravatar_for_helper">リスト7.13</a>に示しました。</p>
+<p>メールアドレスは大文字と小文字を区別しませんが (<a class="ref" href="./modeling-users.html#sec-format_validation">6.2.4</a>)、MD5ハッシュでは大文字と小文字が区別されるので、Rubyの<code>downcase</code>メソッドを使用して<code>hexdigest</code>の引数を小文字に変換しています。<code>gravatar_for</code>ヘルパーを組み込んだ結果を<a class="ref" href="./sign-up.html#code-gravatar_for_helper">リスト7.13</a>に示しました。</p>
 
 <div class="label" id="code-gravatar_for_helper"></div>
 
