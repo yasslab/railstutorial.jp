@@ -390,7 +390,10 @@
   <span class="o">.</span>
   <span class="n">describe</span> <span class="s2">&quot;edit&quot;</span> <span class="k">do</span>
     <span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
-    <span class="n">before</span> <span class="p">{</span> <span class="n">visit</span> <span class="n">edit_user_path</span><span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">before</span> <span class="k">do</span>
+      <span class="n">sign_in</span> <span class="n">user</span>
+      <span class="n">visit</span> <span class="n">edit_user_path</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="k">end</span>
     <span class="o">.</span>
     <span class="o">.</span>
     <span class="o">.</span>
