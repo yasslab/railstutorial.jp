@@ -445,12 +445,12 @@
 <h3><a id="sec-6_2_1" href="./modeling-users.html#sec-initial_user_tests" class="heading"><span class="number">6.2.1</span>最初のユーザーテスト</a></h3>
 
 
-<p>サンプルアプリケーションの他の機能と同様、Userモデルへの検証の追加もテスト駆動開発 (TDD) で行います。その理由は、Userモデルを作成したときに</p>
+<p>サンプルアプリケーションの他の機能と同様、Userモデルへの検証の追加もテスト駆動開発 (TDD) で行います。今回はUserモデルを作成したときに</p>
 
 <pre class="verbatim">--no-test-framework</pre>
 
 
-<p>(<a class="ref" href="./filling-in-the-layout.html#code-generate_users_controller">リスト5.29</a>などでは渡した) 上のフラグを渡さなかったからです。<a class="ref" href="./modeling-users.html#code-generate_user_model">リスト6.1</a>のコマンドは、モデル作成の際に、ユーザーをテストするための初期のspecも同時に作成します。しかし今回の場合、specは実質的には空です (<a class="ref" href="./modeling-users.html#code-default_user_spec">リスト6.4</a>)。</p>
+<p>(<a class="ref" href="./filling-in-the-layout.html#code-generate_users_controller">リスト5.29</a>の例とは異なり) 上のフラグを渡さなかったので、<a class="ref" href="./modeling-users.html#code-generate_user_model">リスト6.1</a>のコマンドでは、モデル作成時に、ユーザーをテストするための初期specも同時に生成しています。ただし、生成された初期specは、実質的には空の状態です (<a class="ref" href="./modeling-users.html#code-default_user_spec">リスト6.4</a>)。</p>
 
 <div class="label" id="code-default_user_spec"></div>
 
