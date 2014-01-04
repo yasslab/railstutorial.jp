@@ -819,7 +819,7 @@
 
 <p><em>Sass</em> は、スタイルシートを記述するための言語であり、CSSに比べて多くの点が強化されています。この節では、Sassが提供する2つの重要な機能である<em>ネスト</em>と<em>変数</em>について説明します (3つ目の重要な機能である<em>ミックスイン</em>については、<a class="ref" href="./sign-up.html#sec-rails_environments">7.1.1</a>で紹介します)。</p>
 
-<p><a class="ref" href="./filling-in-the-layout.html#sec-custom_css">5.1.2</a>でも簡単に説明しましたが、SassはSCSSというフォーマットに対応しています (<code>.scss</code>という拡張子はSCSSをであることを表します)。SCSSは、CSSの機能をすべて包含する、厳密なスーパーセットです。つまり、SCSSはCSSに新しい機能を<em>追加</em>しただけで、まったく新しい構文を定義したものではありません<sup class="footnote" id="fnref-5_9"><a href="./filling-in-the-layout.html#fn-5_9">9</a></sup>。このため、有効なCSSファイルは、すべてSCSSファイルとしても扱うことができ、既存の記法ルールを使用しているプロジェクトにとっても互換性のある便利なフォーマットになっています。本書の例では、Bootstrapの恩恵を得るために、最初からSCSSを使用してきました。Railsのアセットパイプラインは、<code>.scss</code>という拡張子を持つファイルをSassを使って自動的に処理してくれます。このため、<code>custom.css.scss</code>ファイルはSassプリプロセッサによって前処理され、その後ブラウザでの配信に備えてパッケージ化されます。</p>
+<p><a class="ref" href="./filling-in-the-layout.html#sec-custom_css">5.1.2</a>でも簡単に説明しましたが、SassはSCSSというフォーマットに対応しています (<code>.scss</code>という拡張子はSCSSであることを表します)。SCSSは、CSSの機能をすべて包含する、厳密なスーパーセットです。つまり、SCSSはCSSに新しい機能を<em>追加</em>しただけで、まったく新しい構文を定義したものではありません<sup class="footnote" id="fnref-5_9"><a href="./filling-in-the-layout.html#fn-5_9">9</a></sup>。このため、有効なCSSファイルは、すべてSCSSファイルとしても扱うことができ、既存の記法ルールを使用しているプロジェクトにとっても互換性のある便利なフォーマットになっています。本書の例では、Bootstrapの恩恵を得るために、最初からSCSSを使用してきました。Railsのアセットパイプラインは、<code>.scss</code>という拡張子を持つファイルをSassを使って自動的に処理してくれます。このため、<code>custom.css.scss</code>ファイルはSassプリプロセッサによって前処理され、その後ブラウザでの配信に備えてパッケージ化されます。</p>
 
 <h4><a id="sec-5_2_2_1" href="./filling-in-the-layout.html#sec-5_2_2_1" class="heading">ネスト</a></h4>
 
@@ -1490,7 +1490,7 @@
 </div></div>
 
 
-<p>上のコードは、ルート (root) URIを/static_pages/homeに割り当て、URIヘルパーに以下のの設定を与えます。</p>
+<p>上のコードは、ルート (root) URLである / を/static_pages/homeに割り当て、URIヘルパーに以下の設定を与えます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">root_path</span> <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span>
 <span class="n">root_url</span>  <span class="o">=&gt;</span> <span class="s1">&#39;http://localhost:3000/&#39;</span>
@@ -1745,6 +1745,7 @@
 
     <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span>    <span class="ss">text:</span> <span class="s1">&#39;Sample App&#39;</span><span class="p">)</span> <span class="p">}</span>
     <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="ss">text:</span> <span class="n">full_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="p">}</span>
+    <span class="n">it</span> <span class="p">{</span> <span class="n">should_not</span> <span class="n">have_selector</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="ss">text:</span> <span class="s1">&#39;| Home&#39;</span><span class="p">)</span> <span class="p">}</span>
   <span class="k">end</span>
 </pre></div>
 </div>
@@ -1941,7 +1942,7 @@
 
 <p>(実際には<code>rake</code>とタイプするだけで済みます。<code>rake</code>のデフォルトの動作はテストスイートの実行です。)</p>
 
-<p>Usersコントローラは、作成時に既に<code>new</code>アクションを持っているため、後はテストをパスさせるために正しいルートとビューの中身を作成すればよいのです。<a class="ref" href="./filling-in-the-layout.html#code-static_page_routes">リスト5.21</a>の例に従い、サインアップURI用の<code>match ’/signup’</code>をルールを追加します。(<a class="ref" href="./filling-in-the-layout.html#code-signup_route">リスト5.32</a>)。</p>
+<p>Usersコントローラは、作成時に既に<code>new</code>アクションを持っているため、後はテストをパスさせるために正しいルートとビューの中身を作成すればよいのです。<a class="ref" href="./filling-in-the-layout.html#code-static_page_routes">リスト5.21</a>の例に従い、ユーザ登録URL用に<code>match ’/signup’</code>のルールを追加します。(<a class="ref" href="./filling-in-the-layout.html#code-signup_route">リスト5.32</a>)。</p>
 
 <div class="label" id="code-signup_route"></div>
 

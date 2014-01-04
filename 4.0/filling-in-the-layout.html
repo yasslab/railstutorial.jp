@@ -1494,7 +1494,7 @@
 </div></div>
 
 
-<p>上のコードは、ルート (root) URLである / を/static_pages/homeに割り当てます。これにより、<a href="http://localhost:3000/">http://localhost:3000/</a>の表示が<a class="ref" href="./beginning.html#fig-riding_rails">図1.3</a>のデフォルトのRailsページから変更されます。また、URLヘルパーに以下の設定を与えます。</p>
+<p>上のコードは、ルート (root) URLである &#39;/&#39; を/static_pages/homeに割り当てます。これにより、<a href="http://localhost:3000/">http://localhost:3000/</a>の表示が<a class="ref" href="./beginning.html#fig-riding_rails">図1.3</a>のデフォルトのRailsページから変更されます。また、URLヘルパーに以下の設定を与えます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">root_path</span> <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span>
 <span class="n">root_url</span>  <span class="o">=&gt;</span> <span class="s1">&#39;http://localhost:3000/&#39;</span>
@@ -1936,7 +1936,7 @@
 
 <p>(実際には<code>rake</code>とタイプするだけで済みます。<code>rake</code>のデフォルトの動作はテストスイートの実行です)。注意: 現在のサンプルアプリケーションに対して、<code>rake</code>を使用してこのテストを実行するとエラーが発生します。これはテスト環境用データベースが正しく設定されていないためです。これについては<a class="ref" href="./modeling-users.html#sec-initial_user_tests">6.2.1</a>で対応します。</p>
 
-<p>Usersコントローラは、作成時に既に<code>new</code>アクションを持っているため、後はテストをパスさせるために正しいルートとビューの中身を作成すればよいのです。<a class="ref" href="./filling-in-the-layout.html#code-static_page_routes">リスト5.22</a>の例に従い、ユーザー登録URL用の<code>match ’/signup’</code>をルールに追加します。(<a class="ref" href="./filling-in-the-layout.html#code-signup_route">リスト5.33</a>)。</p>
+<p>Usersコントローラは、作成時に既に<code>new</code>アクションを持っているため、後はテストをパスさせるために正しいルートとビューの中身を作成すればよいのです。<a class="ref" href="./filling-in-the-layout.html#code-static_page_routes">リスト5.22</a>の例に従い、ユーザー登録URL用に<code>match ’/signup’</code>のルールを追加します。(<a class="ref" href="./filling-in-the-layout.html#code-signup_route">リスト5.33</a>)。</p>
 
 <div class="label" id="code-signup_route"></div>
 
