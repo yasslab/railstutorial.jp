@@ -471,7 +471,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>シンボル<code>:user</code>が<code>factory</code>コマンドに渡されると、Factory Girlはそれに続く定義がUserモデルオブジェクトを対象としていることを認識します。</p>
 
-<p><a class="ref" href="./sign-up.html#code-user_factory">リスト7.8</a>の定義を使用することで、Factory Girlの<code>let</code>コマンドと<code>FactoryGirl</code>メソッド (<a class="ref" href="./modeling-users.html#sidebar-let">コラム 6.3</a>) を使用してUserのファクトリーを作成することができます。</p>
+<p><a class="ref" href="./sign-up.html#code-user_factory">リスト7.8</a>の定義をしたことにより、<code>let</code>コマンド (<a class="ref" href="./modeling-users.html#sidebar-let">コラム 6.3</a>) とFactory Girlの<code>FactoryGirl</code>メソッドを使ってUserのファクトリーを作成することができるようになります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
 </pre></div>
