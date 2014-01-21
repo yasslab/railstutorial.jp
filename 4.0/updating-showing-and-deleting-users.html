@@ -420,8 +420,8 @@
 </div></div>
 
 
-<p>なお、<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_update_specs">リスト 9.9</a>では、リスト9.6で使われた<code>sign_in</code>メソッドを<code>before</code>ブロック内に追加しています。これにより、&quot;Sign Out&quot; リンクのテストをパスさせることができます。また、サインインしていないユーザが<code>edit</code>アクションを実行できないことも確認しています (詳しくは9.2.1項で説明します)。
-
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-user_update_specs">リスト 9.9</a>では、リスト9.6で使われた<code>sign_in</code>メソッドを<code>before</code>ブロック内に追加しています。これにより、&quot;Sign Out&quot; リンクのテストをパスさせることができます。また、サインインしていないユーザが<code>edit</code>アクションを実行できないことも確認しています (詳しくは9.2.1項で説明します)。
+</p><p>
 <a class="ref" href="./updating-showing-and-deleting-users.html#code-user_update_specs">リスト9.9</a>で唯一目新しいのは<code>reload</code>メソッドです。これはテスト内でユーザーの属性を変更するのに使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">specify</span> <span class="p">{</span> <span class="n">expect</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">reload</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">to</span>  <span class="n">eq</span> <span class="n">new_name</span> <span class="p">}</span>
