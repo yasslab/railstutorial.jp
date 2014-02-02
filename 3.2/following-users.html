@@ -2199,13 +2199,13 @@
 <h3><a id="sec-11_3_4" href="./following-users.html#sec-the_new_status_feed" class="heading"><span class="number">11.3.4</span>新しいステータスフィード</a></h3>
 
 
-<p>ステータスフィードのコードは<a class="ref" href="./following-users.html#code-from_users_followed_by_final">リスト11.45</a>で完成しました。予告どおり、Homeページ用のコードも<a class="ref" href="./following-users.html#code-real_feed_instance_variable">リスト11.46</a>に示します。このコードは、<a class="ref" href="./following-users.html#fig-home_page_with_feed">図11.20</a>に示したように、ビューで使用するマイクロポストに関連するフィードをページネーションして作成します<sup class="footnote" id="fnref-11_14"><a href="./following-users.html#fn-11_14">14</a></sup>。この<code>paginate</code>メソッドは、データベースから一度に30ずつマイクロポストを取り出しますが、実はこのメソッドが<a class="ref" href="./following-users.html#code-from_users_followed_by_final">リスト11.45</a>のMicropostモデルのメソッドにまではるばる到達して動作することにご注目ください (開発サーバーのログ・ファイルに出力されたSQL文を調べることでこのことを確認できます)。</p>
+<p>ステータスフィードのコードは<a class="ref" href="./following-users.html#code-from_users_followed_by_final">リスト11.45</a>で完成しました。確認のため、Homeページ用のコードも<a class="ref" href="./following-users.html#code-real_feed_instance_variable">リスト11.46</a>に示します。このコードは、<a class="ref" href="./following-users.html#fig-home_page_with_feed">図11.20</a>に示したように、ビューで使用するマイクロポストに関連するフィードをページネーションして作成します<sup class="footnote" id="fnref-11_14"><a href="./following-users.html#fn-11_14">14</a></sup>。この<code>paginate</code>メソッドは、データベースから一度に30ずつマイクロポストを取り出しますが、実はこのメソッドが<a class="ref" href="./following-users.html#code-from_users_followed_by_final">リスト11.45</a>のMicropostモデルのメソッドにまではるばる到達して動作することにご注目ください (開発サーバーのログ・ファイルに出力されたSQL文を調べることでこのことを確認できます)。</p>
 
 <div class="label" id="code-real_feed_instance_variable"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト11.46</span> <span class="description"><code>home</code>アクションにフィードのページネーションを追加する。</span><br /><span class="description"> <code>app/controllers/static_pages_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト11.46</span> <span class="description"><code>home</code>アクションのページネーション付きフィード (再掲)。</span><br /><span class="description"> <code>app/controllers/static_pages_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">StaticPagesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
 
   <span class="k">def</span> <span class="nf">home</span>
