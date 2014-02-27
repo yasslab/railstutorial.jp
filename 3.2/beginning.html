@@ -64,7 +64,7 @@
 
 <p><strong>【すべての読者へ】</strong> よく聞かれる質問の１つが「Rails を覚える前に Ruby を勉強した方が良いでしょうか？」という質問です。この質問の答えは、あなたの学習スタイルやプログラミング経験によります。もしあなたが全てを最初から体系的に学びたい場合や、プログラミングの経験が全くない場合は、恐らく、Ruby を最初に学んだ方が良いでしょう。また、Ruby を学ぶのであれば、Peter Cooper の「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」をお勧めします。一方で、これから Rails で開発を始めようとする人の多くは「<em>Web アプリケーション</em>を作りたい！」と考えているので、たった1つの Web ページを作成するために 500 ページもある Ruby の本を読み通す気にはなれないでしょう。したがって、このような方には、Ruby を対話的に学習できる Web サービス「<a href="http://tryruby.org/">Try Ruby</a><sup class="footnote" id="fnref-1_2"><a href="./beginning.html#fn-1_2">2</a></sup>」を使って、Ruby をザックリと理解しておくことをお勧めします。また、必要であれば、<a href="http://railsforzombies.org/">Rails for Zombies</a><sup class="footnote" id="fnref-1_3"><a href="./beginning.html#fn-1_3">3</a></sup>で Rails の全体像を把握しておくと良いかもしれません (訳注: いずれも英語版のみ)。</p>
 
-<p>もう１つよく聞かれる質問が「最初からテストを書くべきですか？」という質問です。「はじめに」で述べたように、<em>Rails チュートリアル</em>では、テスト駆動開発 (TDD) を最初から採用しています。というのも、著者の開発経験から、テスト駆動開発が、Rails アプリケーションの開発に最も適切な手法だと考えているからです。ただし、テスト駆動開発を採用したことにより、本チュートリアルの複雑さが増し、読者への負担も増えています。そこで、もしテストで行き詰まってしまった場合には、思い切って (一周目は) その箇所を飛ばしてしまいましょう。あるいは、もっとお勧めの方法としては、「テストがどのように動くか」は気にせずに、あなたの書いたコードが正しく動くかどうかの検証ツールとして、本書のテストを使う方法です。具体的には、<em>spec</em> と呼ばれるテストファイルを作成し、そのファイルに、<em>本書で指示された通りに</em>テストコードをコピー＆ペーストして下さい。<a class="ref" href="./filling-in-the-layout.html#top">第5章</a>で詳しく説明しますが、テストスイート (複数のテストケースを束ねたもの) を実行すると、最初はテストに失敗します。失敗することを確認したら、チュートリアルに従って、今度はアプリケーションのコードを書きます。最後に、同じテストスイートをもう一度実行すると、今度はテストに成功するようになっています。つまり、無事にテストに成功すれば、あなたが書いたコードは正しく動いている、ということになります。<br /></p>
+<p>もう１つよく聞かれる質問が「最初からテストを書くべきですか？」という質問です。「はじめに」で述べたように、<em>Rails チュートリアル</em>では、テスト駆動開発 (TDD) を最初から採用しています。というのも、著者の開発経験から、テスト駆動開発が、Rails アプリケーションの開発に最も適切な手法だと考えているからです。ただし、テスト駆動開発を採用したことにより、本チュートリアルの複雑さが増し、読者への負担も増えています。そこで、もしテストで行き詰まってしまった場合には、思い切って (一周目は) その箇所を飛ばしてしまいましょう。あるいは、もっとお勧めの方法としては、「テストがどのように動くか」は気にせずに、あなたの書いたコードが正しく動くかどうかの検証ツールとして、本書のテストを使う方法です。具体的には、<em>spec</em> と呼ばれるテストファイルを作成し、そのファイルに、<em>本書で指示された通りに</em>テストコードをコピー＆ペーストしてください。<a class="ref" href="./filling-in-the-layout.html#top">第5章</a>で詳しく説明しますが、テストスイート (複数のテストケースを束ねたもの) を実行すると、最初はテストに失敗します。失敗することを確認したら、チュートリアルに従って、今度はアプリケーションのコードを書きます。最後に、同じテストスイートをもう一度実行すると、今度はテストに成功するようになっています。つまり、無事にテストに成功すれば、あなたが書いたコードは正しく動いている、ということになります。<br /></p>
 
 <p><strong>【初めてプログラミングを始める方へ】</strong> <em>Rails チュートリアル</em>は、完全なプログラミング初心者を対象にして書かれたものではありません。というのも、比較的シンプルなウェブアプリケーションであっても、ある程度の複雑さが必ず存在するからです。したがって、もしあなたが Web プログラミングの初心者で、かつ、この <em>Rails チュートリアル</em>を難しすぎると感じた場合は、まずは HTML や CSS の基礎を勉強してみると良いでしょう。それらの基礎が備わったら、是非もう一度 <em>Rails チュートリアル</em>に挑戦してください。(ちなみに、「これだ！」というお勧めの教材は思いつかなかったのですが、「<a href="http://headfirstlabs.com/books/hfhtml/"><em>Head First HTML</em></a>」は良い本のように思えます。また、David Sawyer McFarland による「<a href="http://www.amazon.com/gp/product/0596526873"><em>CSS: The Missing Manual</em></a>」を推薦してくれた読者もいます。)  Peter Cooper の「<a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>」の最初の2, 3章をやってみるのも良いでしょう。同書で扱うサンプルアプリケーションは、本格的な Web アプリケーションに比べて非常に小さいので、比較的やりやすいと思います。何故このようなセクションを設けたかというと、驚くほど多くの初心者の方々が、本書で Web 開発を学ぼうとしているからです。もちろん、それを止めるようなことはしません。ぜひ挑戦してみてください。最後に、そうした方々に特にお勧めするのは「<a href="./screencasts"><em>Rails Tutorial</em> のスクリーンキャストのシリーズ</a><sup class="footnote" id="fnref-1_4"><a href="./beginning.html#fn-1_4">4</a></sup>」(英語のみ) です。この動画版 Rails チュートリアルでは、Rails を使ったソフトウェア開発の作業を、まるで 「肩越しに」見ているかのように学ぶことができます。<br /></p>
 
@@ -119,7 +119,7 @@
 </div>
 
 
-<p>なお、Windows のコマンドラインでは、大なり記号 (<code>&gt;</code>) がプロンプトに表示されるので、$ を &gt; に置き換えて読んで下さい。</p>
+<p>なお、Windows のコマンドラインでは、大なり記号 (<code>&gt;</code>) がプロンプトに表示されるので、$ を &gt; に置き換えて読んでください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">C:\Sites&gt; echo &quot;hello, world&quot;</span>
 <span class="go">&quot;hello world&quot;</span>
@@ -179,7 +179,7 @@
 
 <p><em>Rails チュートリアル</em>では、様々なプログラムの出力結果  (例えば、シェルコマンドやバージョン管理ツール、Ruby プログラムの出力結果) を、頻繁に記載するようにしています。出力結果は、コンピュータシステムによって微妙に異なるので、本書の出力結果と実際の出力が正確に一致するとは限りません。しかし、細かい出力結果の差異が問題になることはないので、あまり気にする必要はありません。</p>
 
-<p>一方、コンピュータシステムによっては、一部のコマンドを実行した時にエラーが発生するかもしれません。しかし本書では、あらゆる場面を想定して、全てのエラーの対策を記載するような<a href="http://en.wikipedia.org/wiki/Sisyphus">果てしない徒労</a>はしていません。その代わり、エラーメッセージを Google で検索してください (原文: &quot;Google the error message&quot; algorithm) &quot;。エラーメッセージを Google で検索することは、実際のソフトウェア開発でも使われているテクニックなので、その良い練習にも繋がります。もし本書のチュートリアルを進めていくうちに何か問題が生じたら、<a href="./help">Rails チュートリアルの Help ページ</a>を読んでみて下さい。このページには、問題を解決するためのリソースやヒントが記載されているので、問題を解決する手掛かりになるはずです<sup class="footnote" id="fnref-1_7"><a href="./beginning.html#fn-1_7">7</a></sup>。</p>
+<p>一方、コンピュータシステムによっては、一部のコマンドを実行した時にエラーが発生するかもしれません。しかし本書では、あらゆる場面を想定して、全てのエラーの対策を記載するような<a href="http://en.wikipedia.org/wiki/Sisyphus">果てしない徒労</a>はしていません。その代わり、エラーメッセージを Google で検索してください (原文: &quot;Google the error message&quot; algorithm) &quot;。エラーメッセージを Google で検索することは、実際のソフトウェア開発でも使われているテクニックなので、その良い練習にも繋がります。もし本書のチュートリアルを進めていくうちに何か問題が生じたら、<a href="./help">Rails チュートリアルの Help ページ</a>を読んでみてください。このページには、問題を解決するためのリソースやヒントが記載されているので、問題を解決する手掛かりになるはずです<sup class="footnote" id="fnref-1_7"><a href="./beginning.html#fn-1_7">7</a></sup>。</p>
 
 <div class="label" id="sec-up_and_running"></div>
 
@@ -262,7 +262,7 @@
 <h4><a id="sec-1_2_2_1" href="./beginning.html#sec-rails_installer_windows" class="heading">Railsインストーラ (Windows)</a></h4>
 
 
-<p>最近までWindows上でのRailsのインストールは困難だったのですが、<a href="http://engineyard.com/">Engine Yard</a>の方々(特にDr. Nic WilliamsとWayne E. Seguin)のおかげで非常に簡単になりました。Windowsユーザーの方は<a href="http://railsinstaller.org/">Railsインストーラ</a>からインストーラをダウンロードして下さい。exeファイルをダブルクリックし、指示に従ってGit、Ruby、RubyGems、そしてRails自身をインストールします (<a class="ref" href="./beginning.html#sec-install_git">1.2.2.2</a>、<a class="ref" href="./beginning.html#sec-install_ruby">1.2.2.3</a>、<a class="ref" href="./beginning.html#sec-install_rubygems">1.2.2.4</a>、<a class="ref" href="./beginning.html#sec-install_rails">1.2.2.5</a>はスキップしてください)。インストール完了後、<a class="ref" href="./beginning.html#sec-the_first_application">1.2.3</a>までスキップして最初のアプリケーション作成に取りかかってください。</p>
+<p>最近までWindows上でのRailsのインストールは困難だったのですが、<a href="http://engineyard.com/">Engine Yard</a>の方々(特にDr. Nic WilliamsとWayne E. Seguin)のおかげで非常に簡単になりました。Windowsユーザーの方は<a href="http://railsinstaller.org/">Railsインストーラ</a>からインストーラをダウンロードしてください。exeファイルをダブルクリックし、指示に従ってGit、Ruby、RubyGems、そしてRails自身をインストールします (<a class="ref" href="./beginning.html#sec-install_git">1.2.2.2</a>、<a class="ref" href="./beginning.html#sec-install_ruby">1.2.2.3</a>、<a class="ref" href="./beginning.html#sec-install_rubygems">1.2.2.4</a>、<a class="ref" href="./beginning.html#sec-install_rails">1.2.2.5</a>はスキップしてください)。インストール完了後、<a class="ref" href="./beginning.html#sec-the_first_application">1.2.3</a>までスキップして最初のアプリケーション作成に取りかかってください。</p>
 
 <p>注意: このRailsインストーラによってインストールされるRailsのバージョンは<a class="ref" href="./beginning.html#sec-install_rails">1.2.2.5</a>に記載のものと異なることがあります。その場合、互換性の問題が生じることもありえます。この問題を解決するために、Railsのバージョン番号順に並んだRubyインストーラのリストを作成してもらうようNicとWayneに働きかけています。</p>
 
@@ -272,7 +272,7 @@
 <h4><a id="sec-1_2_2_2" href="./beginning.html#sec-install_git" class="heading">Gitのインストール</a></h4>
 
 
-<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="./beginning.html#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早い内にインストールを済ませておきます。<a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にして下さい。</p>
+<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="./beginning.html#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早い内にインストールを済ませておきます。<a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にしてください。</p>
 
 <div class="label" id="sec-install_ruby"></div>
 
@@ -357,7 +357,7 @@ ruby &quot;1.9.3&quot;</span>
 </div>
 
 
-<p>RubyGemsがインストールされていない場合は、<a href="http://rubyforge.org/frs/?group_id=126">RubyGemsをダウンロード</a>して解凍し、作成された<code>rubygems</code>ディレクトリでセットアッププログラムを実行して下さい。</p>
+<p>RubyGemsがインストールされていない場合は、<a href="http://rubyforge.org/frs/?group_id=126">RubyGemsをダウンロード</a>して解凍し、作成された<code>rubygems</code>ディレクトリでセットアッププログラムを実行してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby setup.rb
 </pre></div>
@@ -366,7 +366,7 @@ ruby &quot;1.9.3&quot;</span>
 
 <p>(アクセス権の問題が生じたら、<a class="ref" href="./beginning.html#sec-conventions">1.1.3</a>を参照してください。おそらく<code>sudo</code>コマンドを併用する必要があります。)</p>
 
-<p>既にRubyGemsがインストールされている場合は、システムをチュートリアルで使われているバージョンに更新して下さい。</p>
+<p>既にRubyGemsがインストールされている場合は、システムをチュートリアルで使われているバージョンに更新してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> gem update --system 1.8.24
 </pre></div>
@@ -716,7 +716,7 @@ to see where a bundled gem is installed.</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/riding_rails_31.png" alt="riding_rails_31" /></span></div><div class="caption"><span class="header">図1.3:</span> <span class="description">デフォルトのRailsページ。 <a href="../images/figures/riding_rails_31-full.png">（拡大）</a></span></div></div>
 
 
-<p>この最初のアプリケーションの情報を見るには、「About your application’s environment」のリンクをクリックして下さい。<a class="ref" href="./beginning.html#fig-riding_rails_32_environment">図1.4</a>のような画面が表示されます (<a class="ref" href="./beginning.html#fig-riding_rails_32_environment">図1.4</a>は私の環境でキャプチャしたものなので、これとは若干異なる可能性があります)。</p>
+<p>この最初のアプリケーションの情報を見るには、「About your application’s environment」のリンクをクリックしてください。<a class="ref" href="./beginning.html#fig-riding_rails_32_environment">図1.4</a>のような画面が表示されます (<a class="ref" href="./beginning.html#fig-riding_rails_32_environment">図1.4</a>は私の環境でキャプチャしたものなので、これとは若干異なる可能性があります)。</p>
 
 <div class="label" id="fig-riding_rails_32_environment"></div>
 
@@ -1156,7 +1156,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>上で述べたように、<code>git branch -D</code>でトピックブランチ上の変更を破棄することもできます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="c"># これはあくまで例です。ブランチでミスをした時以外は実行しないで下さい。</span>
+<div class="code"><div class="highlight"><pre><span class="c"># これはあくまで例です。ブランチでミスをした時以外は実行しないでください。</span>
 <span class="nv">$ </span>git checkout -b topic-branch
 <span class="nv">$ </span>&lt;really screw up the branch&gt;
 <span class="nv">$ </span>git add .
@@ -1303,7 +1303,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h3><a id="sec-1_4_3" href="./beginning.html#sec-1_4_3" class="heading"><span class="number">1.4.3</span> Herokuにデプロイする (2)</a></h3>
 
 
-<p>失礼、その2はありません。これで終わりです (<a class="ref" href="./beginning.html#fig-heroku_app_31">図1.10</a>)。デプロイされたアプリケーションの表示は、<code>heroku create</code> (<a class="ref" href="./beginning.html#code-heroku_create">リスト1.10</a>) を実行した際に生成されたアドレスをブラウザで開くだけです (もちろんここに出てくる私のアドレスではなく、あなたのアドレスを使って下さい)。<code>heroku</code>コマンドに以下の引数を与えるだけで、正しいアドレスでブラウザが起動します。</p>
+<p>失礼、その2はありません。これで終わりです (<a class="ref" href="./beginning.html#fig-heroku_app_31">図1.10</a>)。デプロイされたアプリケーションの表示は、<code>heroku create</code> (<a class="ref" href="./beginning.html#code-heroku_create">リスト1.10</a>) を実行した際に生成されたアドレスをブラウザで開くだけです (もちろんここに出てくる私のアドレスではなく、あなたのアドレスを使ってください)。<code>heroku</code>コマンドに以下の引数を与えるだけで、正しいアドレスでブラウザが起動します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku open
 </pre></div>

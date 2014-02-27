@@ -28,7 +28,7 @@
 
 <p>Railsとそれを取り囲むエコシステムは比較的成熟してきましたが、Railsは今でも急速に変化し続けています。今回のようなメジャーな更新が発生すると、多くの細かな機能が損なわれるのが普通です。実際、著者自身も既存のRailsプロジェクトを<a href="http://en.wikipedia.org/wiki/In_situ"><em>その場で</em></a>アップグレードしようとした際、しばしば苦い経験をしてきました。そしてそのたびに、最後には<code>rails new</code>を使ってアプリケーションを最初から作り直すはめになってしまいました。それというのも、<code>rails new</code>によって生成される大量の設定ファイルにはさまざまな数値やデフォルト値が設定されているのですが、これらの値はバージョンによって異なっているからです。そしてこれらの値を既存のプロジェクトに反映する作業は非常に困難です。そこで本節では、次のような方針でアップグレードの作業を進めることにします。最初に、空のRails 4.0のプロジェクトを作成し、プロジェクトを<em>とにかく動く</em>状態にします。その後、既存のプロジェクトから順次コードを移植していき、アプリケーションが正しく動作することを1つずつ確認しながら、作業を進めていきます。</p>
 
-<p>Railsアプリケーションのアップグレードは<em>難易度の高い作業</em>です。したがって、本節の<em>難易度も高くなっています</em>。本節をお読みいただければわかるように、Railsのアプリケーションのアップグレードは、残念ながら「本に載っている手順に従うだけで完了するような作業」ではありません。実際、本節で行うのは演習の延長線上にある応用作業です。これまでの演習との違いは、多くの役に立つヒントとマニュアル (スクリーンキャスト) が用意されている点です。たとえば「<a href="./#supplement">アップグレードされたスクリーンキャスト</a> (英語)」では、著者が悪戦苦闘の末にアップグレードを成功させる様子を見ることができます。なお、「Railsアプリケーションのアップグレードの途中で行き詰まってしまったけど、スクリーンキャストは購入したくない」という場合は、<a href="https://github.com/mhartl/sample_app_4_0_upgrade">GitHub上のアップグレード済みサンプルアプリケーション</a>を参考にして下さい。</p>
+<p>Railsアプリケーションのアップグレードは<em>難易度の高い作業</em>です。したがって、本節の<em>難易度も高くなっています</em>。本節をお読みいただければわかるように、Railsのアプリケーションのアップグレードは、残念ながら「本に載っている手順に従うだけで完了するような作業」ではありません。実際、本節で行うのは演習の延長線上にある応用作業です。これまでの演習との違いは、多くの役に立つヒントとマニュアル (スクリーンキャスト) が用意されている点です。たとえば「<a href="./#supplement">アップグレードされたスクリーンキャスト</a> (英語)」では、著者が悪戦苦闘の末にアップグレードを成功させる様子を見ることができます。なお、「Railsアプリケーションのアップグレードの途中で行き詰まってしまったけど、スクリーンキャストは購入したくない」という場合は、<a href="https://github.com/mhartl/sample_app_4_0_upgrade">GitHub上のアップグレード済みサンプルアプリケーション</a>を参考にしてください。</p>
 
 <div class="label" id="sec-rails_4_0_setup"></div>
 
@@ -138,7 +138,7 @@
 
 <p>なお、attr_accessibleをStrong Parametersに変更し終わったらこのgemは必要なくなるので、このgemは<a class="ref" href="./chapters/supplement.html#sec-strong_parameters">12.2</a>で削除する予定です。</p>
 
-<p>いつもと同様に、<code>bundle install</code>を実行することで<a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>のgemをインストールできます。また、<code>bundle update</code>も実行しておいて下さい (念のため、もう一度<code>bundle install</code>を実行しておくと安心です)。</p>
+<p>いつもと同様に、<code>bundle install</code>を実行することで<a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>のgemをインストールできます。また、<code>bundle update</code>も実行しておいてください (念のため、もう一度<code>bundle install</code>を実行しておくと安心です)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle install --without production
 <span class="gp">$</span> bundle update
@@ -163,7 +163,7 @@
 </div>
 
 
-<p>このとき、RSpec の設定ファイル (<code>.rspec</code>) も一緒にコピーしておいて下さい。</p>
+<p>このとき、RSpec の設定ファイル (<code>.rspec</code>) も一緒にコピーしておいてください。</p>
 
 <p>この時点で、サンプルアプリケーションをGit管理下に置くのが賢い方法です。Railsのアップグレードのような多くのエラーが発生する作業では、Gitは本当に役に立ちます。また、今のうちにRailsが自動生成した<code>.gitignore</code>ファイルを<a class="ref" href="./chapters/supplement.html#code-gitignore_rails_4_upgrade">リスト12.2</a>の内容に置き換えておくことをお勧めします。</p>
 
@@ -195,7 +195,7 @@ doc/
 </div></div>
 
 
-<p><a class="ref" href="./chapters/supplement.html#code-gitignore_rails_4_upgrade">リスト12.2</a>では、<code>.secret</code>ファイルを無視する行が追加されていることに注目して下さい。このファイルは、セキュリティの向上のために生成されたファイルです。詳細については<a class="ref" href="./chapters/supplement.html#sec-secret_key">12.3.1</a>で説明します。</p>
+<p><a class="ref" href="./chapters/supplement.html#code-gitignore_rails_4_upgrade">リスト12.2</a>では、<code>.secret</code>ファイルを無視する行が追加されていることに注目してください。このファイルは、セキュリティの向上のために生成されたファイルです。詳細については<a class="ref" href="./chapters/supplement.html#sec-secret_key">12.3.1</a>で説明します。</p>
 
 <p>最後に、Capybaraのドメイン固有言語 (DSL: domain-specific language) を明示的にインクルードする設定が必要です。これは、RSpecのrequest spec (統合テスト) 機能を使うために、デフォルトの文法を変更しておく必要があるからです。実際には、<a class="ref" href="./chapters/supplement.html#code-capybara_dsl">リスト12.3</a>に示すように、<code>spec_helper.rb</code>に1行追加するだけで設定できます。</p>
 

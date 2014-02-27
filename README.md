@@ -8,7 +8,7 @@
 [Facebook グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) を用いて、
 同書の日本語版がより読みやすくなるように編集しています。
 
-もし誤字・誤訳などがあれば、お気軽に [@yasulab](http://twitter.com/yasulab) までお声かけ下さい :D
+もし誤字・誤訳などがあれば、お気軽に [@yasulab](http://twitter.com/yasulab) までお声かけください :D
 
 - [Ruby on Rails チュートリアル：実例を使ってRailsを学ぼう](http://railstutorial.jp/)
 
