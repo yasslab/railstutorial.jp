@@ -14,7 +14,7 @@
 <h1 class="chapter"><a id="sec-9" href="./updating-showing-and-deleting-users.html#top" class="heading"><span class="number">第9章</span> ユーザーの更新・表示・削除</a></h1>
 
 
-<p>この章では、Usersリソース用のRESTアクション (<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>) のうち、これまで未実装だった<code>edit</code>、<code>update</code>、<code>index</code>、<code>destroy</code>アクションを追加し、RESTアクションを完成させます。まずはユーザーが自分のプロファイルを自分で更新できるようにします。これにより、<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>で実装した認証用のコードによるセキュリティモデルを適用する機会を自然に提供することもできます。次に、すべてのユーザーを一覧できるようにします (もちろん認証を要求します)。これはサンプルデータとページネーション (pagenation) を導入する動機にもなります。最後に、ユーザーを削除し、データベースから完全に消去する機能を追加します。ユーザーの削除はどのユーザーにも許可できるものではないので、管理ユーザー (admin) の特権クラスを作成し、このユーザーにのみ削除を許可するようにします。</p>
+<p>この章では、Usersリソース用のRESTアクション (<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>) のうち、これまで未実装だった<code>edit</code>、<code>update</code>、<code>index</code>、<code>destroy</code>アクションを追加し、RESTアクションを完成させます。まずはユーザーが自分のプロファイルを自分で更新できるようにします。これにより、<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>で実装した認証用のコードによるセキュリティモデルを適用する機会を自然に提供することもできます。次に、すべてのユーザーを一覧できるようにします (もちろん認証を要求します)。これはサンプルデータとページネーション (pagination) を導入する動機にもなります。最後に、ユーザーを削除し、データベースから完全に消去する機能を追加します。ユーザーの削除はどのユーザーにも許可できるものではないので、管理ユーザー (admin) の特権クラスを作成し、このユーザーにのみ削除を許可するようにします。</p>
 
 <p>では最初に、いつものように<code>updating-users</code>トピックブランチを作成しましょう。</p>
 
@@ -985,7 +985,7 @@
 <h2><a id="sec-9_3" href="./updating-showing-and-deleting-users.html#sec-showing_all_users" class="heading"><span class="number">9.3</span>すべてのユーザーを表示する</a></h2>
 
 
-<p>この節では、いよいよ<a href="http://www.answers.com/penultimate">最後から2番目の</a>ユーザーアクションである<code>index</code>アクションを追加しましょう。このアクションは、<em>すべての</em>ユーザーを一覧表示します。その際、データベースにサンプルデータを追加する方法や、将来ユーザー数が膨大になってもindexページを問題なく表示できるようにするためのユーザー出力の<em>ページネーション (pagenation=ページ分割)</em> の方法を学びます。ユーザーの一覧、ページネーション用リンク、移動用の [Users]リンクのモックアップを<a class="ref" href="./updating-showing-and-deleting-users.html#fig-user_index_mockup">図9.7</a>に示します<sup class="footnote" id="fnref-9_5"><a href="./updating-showing-and-deleting-users.html#fn-9_5">5</a></sup>。<a class="ref" href="./updating-showing-and-deleting-users.html#sec-destroying_users">9.4</a>では、ユーザーのインデックスページに管理用のインターフェイスを追加し、トラブルを起こしているユーザーなどをそこで削除できるようにします。</p>
+<p>この節では、いよいよ<a href="http://www.answers.com/penultimate">最後から2番目の</a>ユーザーアクションである<code>index</code>アクションを追加しましょう。このアクションは、<em>すべての</em>ユーザーを一覧表示します。その際、データベースにサンプルデータを追加する方法や、将来ユーザー数が膨大になってもindexページを問題なく表示できるようにするためのユーザー出力の<em>ページネーション (pagination=ページ分割)</em> の方法を学びます。ユーザーの一覧、ページネーション用リンク、移動用の [Users]リンクのモックアップを<a class="ref" href="./updating-showing-and-deleting-users.html#fig-user_index_mockup">図9.7</a>に示します<sup class="footnote" id="fnref-9_5"><a href="./updating-showing-and-deleting-users.html#fn-9_5">5</a></sup>。<a class="ref" href="./updating-showing-and-deleting-users.html#sec-destroying_users">9.4</a>では、ユーザーのインデックスページに管理用のインターフェイスを追加し、トラブルを起こしているユーザーなどをそこで削除できるようにします。</p>
 
 <div class="label" id="fig-user_index_mockup"></div>
 
@@ -1368,7 +1368,7 @@
 <h3><a id="sec-9_3_3" href="./updating-showing-and-deleting-users.html#sec-pagination" class="heading"><span class="number">9.3.3</span>ページネーション</a></h3>
 
 
-<p>これで、最初のユーザーにも仲間ができました。しかし今度は逆に、1つのページに<em>大量の</em>ユーザーが表示されてしまっています。100人でもかなり大きい数であると思いますし、今後は数千ユーザーに増える可能性もあります。これを解決するのが<em>ページネーション (pagenation) </em>というもので、この場合は、たとえば1つのページに一度に30人だけユーザーを表示するというものです。</p>
+<p>これで、最初のユーザーにも仲間ができました。しかし今度は逆に、1つのページに<em>大量の</em>ユーザーが表示されてしまっています。100人でもかなり大きい数であると思いますし、今後は数千ユーザーに増える可能性もあります。これを解決するのが<em>ページネーション (pagination) </em>というもので、この場合は、たとえば1つのページに一度に30人だけユーザーを表示するというものです。</p>
 
 <p>Railsには豊富なページネーションメソッドがあります。今回はその中で最もシンプルかつ堅牢な<a href="http://wiki.github.com/mislav/will_paginate/">will_paginate</a>メソッドを使用してみましょう。これを使用するには、Gemfileに<tt>will_paginate</tt> gem と<tt>bootstrap-will_paginate</tt> gemを両方インクルードし、Bootstrapのページネーションスタイルを使用してwill_pagenateを構成します。更新した<code>Gemfile</code>を<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_gem">リスト9.31</a>に示します。</p>
 
