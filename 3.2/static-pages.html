@@ -16,7 +16,7 @@
 
 <p>本章では、今後のチュートリアルを楽に理解できるように、簡単なサンプルアプリケーションを開発してみます。本書を通して開発するアプリケーションは、最終的にはユーザやマイクロポスト、ログイン／ログアウトなどの認証機能を持ちますが、まずは簡単なトピックである「静的なページの作成」から始めます。非常にシンプルなページではありますが、静的なページを作成することは良い経験になり、また、多くの示唆も得られます。私達がこれから開発するアプリケーションにとって、最高のスタート地点といえるでしょう。</p>
 
-<p>Rails はデータベースと連携して動的なウェブサイトを開発するように設計されていますが、HTMLファイルだけで構成されている静的なページを作ることもできます。実際、静的なページをRailsで作ることのメリットもあります。たとえば、あとで<em>ほんの少し</em>動的なコンテンツを追加することができます。本章では、このような静的なページの作成について学んでいきます。まずは、<em>自動化テスト</em>の雰囲気を掴んでいきます。自動化テストは、私達のコードが正しく動いているという自信を与えてくれます。さらに、良いテストを書くことで、自信をもって<em>リファクタリング</em>を行うことができます。たとえば、フォームの振る舞いを変更せずに、フォーム内で使われている関数を書き換えたいときに便利です。</p>
+<p>Rails はデータベースと連携して動的なWebサイトを開発するように設計されていますが、HTMLファイルだけで構成されている静的なページを作ることもできます。実際、静的なページをRailsで作ることのメリットもあります。たとえば、あとで<em>ほんの少し</em>動的なコンテンツを追加することができます。本章では、このような静的なページの作成について学んでいきます。まずは、<em>自動化テスト</em>の雰囲気を掴んでいきます。自動化テストは、私達のコードが正しく動いているという自信を与えてくれます。さらに、良いテストを書くことで、自信をもって<em>リファクタリング</em>を行うことができます。たとえば、フォームの振る舞いを変更せずに、フォーム内で使われている関数を書き換えたいときに便利です。</p>
 
 <p>本章には多くのサンプルコードがあります。特に <a class="ref" href="./static-pages.html#sec-first_tests">3.2</a> や <a class="ref" href="./static-pages.html#sec-slightly_dynamic_pages">3.3</a> で多くのコードを紹介していますが、Rubyが初めての方は、コードを隅々まで理解しなければならないのだろうかと心配する必要はありません。<a class="ref" href="./beginning.html#sec-comments_for_various_readers">1.1.1</a> で紹介したように、まずはテストをコピー&amp;ペーストしてみて、アプリケーションがうまく動くかどうか検証してみると良いでしょう。この時点では、テストどのようにして動くかは気にしなくても大丈夫です。また、<a class="ref" href="./rails-flavored-ruby.html#top">第4章</a>ではRubyについて解説します。そこでは、Rubyの書き方やコンセプトについて学びます。最後に、本書ではRSpecを使ったテストを繰り返し実施していきます。ですから、もし途中でよく分からないテストがあったとしても、読み飛ばして先に進むことをお勧めします。1、2章先を読み進めた後に読み返してみると、あのときはよく分からなかったテストが、実はとてもシンプルであることを理解できるはずです。</p>
 
@@ -427,7 +427,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 
 <div class="sidebar"><span class="title"><span class="header">コラム 3.2</span></span><span class="title"><span class="description"><tt>GET</tt>やその他のHTTPメソッドについて</span></span>
-<p><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP</a> (HyperText Transfer Protocol) には4つの基本的な操作があり、それぞれ<em>get</em>、<em>post</em>、<em>put</em>、<em>delete</em>という４つの動詞に対応づけられています。<em>クライアント</em> (通常、FirefoxやSafariなどのウェブブラウザ) と<em>サーバー</em> (ApacheやNginxなどのWebサーバー) は、上で述べた4つの基本操作を互いに認識できるようになっています (ローカル環境でRailsアプリケーションを開発しているときは、クライアントとサーバーが同じコンピュータ上で動いていますが、一般的には、それぞれ別のコンピュータで動作している点を理解しておいてください)。Railsを含む多くのWebフレームワークは、HTTPの各操作を発展させた<em>REST アーキテクチャ</em>の影響を受けています。<a class="ref" href="./a-demo-app.html#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="./sign-up.html#top">第7章</a>では、より深い内容について学びます。</p>
+<p><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP</a> (HyperText Transfer Protocol) には4つの基本的な操作があり、それぞれ<em>get</em>、<em>post</em>、<em>put</em>、<em>delete</em>という４つの動詞に対応づけられています。<em>クライアント</em> (通常、FirefoxやSafariなどのWebブラウザ) と<em>サーバー</em> (ApacheやNginxなどのWebサーバー) は、上で述べた4つの基本操作を互いに認識できるようになっています (ローカル環境でRailsアプリケーションを開発しているときは、クライアントとサーバーが同じコンピュータ上で動いていますが、一般的には、それぞれ別のコンピュータで動作している点を理解しておいてください)。Railsを含む多くのWebフレームワークは、HTTPの各操作を発展させた<em>REST アーキテクチャ</em>の影響を受けています。<a class="ref" href="./a-demo-app.html#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="./sign-up.html#top">第7章</a>では、より深い内容について学びます。</p>
 
 <p><tt>GET</tt> は、最も頻繁に使用されるHTTP操作で、主にWeb上のデータを<em>読み取る</em>際に使われます。“ページを取得する” という意味のとおり、ブラウザはgoogle.comやwikipedia.orgなどのWebサイトを開くたびに<tt>GET</tt>リクエストを送信します。<tt>POST</tt> は、GETの次によく使用される操作で、ページ上のフォームに入力した値を、ブラウザから送信する時に送られるリクエストです。Railsアプリケーションでは、<tt>POST</tt>リクエストは何かを<em>作成する</em>ときによく使われます (なお本来のHTTPでは、<tt>POST</tt>を更新に使ってもよいとしています)。たとえば、ユーザー登録フォームで新しいユーザを作成するときは、<tt>POST</tt>リクエストを送信します。他にも、<tt>PUT</tt>と <tt>DELETE</tt>という2つの操作があり、それぞれサーバー上の何かを<em>更新</em>したり<em>削除</em>したりするときに使われます。これら2つの操作は、<tt>GET</tt>や<tt>POST</tt>ほどは使用されていません。これは、ブラウザがPUTとDELETEをネイティブでは送信しないからです。しかし、Ruby on Railsなどの多くのWebフレームワークは、ブラウザがこれらの操作のリクエストを<em>送信しているかのように見せかける</em>技術 (偽装) を駆使して、PUTとDELETEという操作を実現しています。</p>
 </div>
@@ -527,7 +527,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h3><a id="sec-3_2_1" href="./static-pages.html#sec-TDD" class="heading"><span class="number">3.2.1</span>テスト駆動開発</a></h3>
 
 
-<p>テスト駆動開発で最初に書く、<em>失敗する</em>テストのことを、一般的なテストツールでは「赤色 (Red)」と表現します (失敗時に表示が赤くなるツールが多いため)。同様に、次に書く、テストにパスするコードのことを「緑色 (Green)」と表現します。最後に、必要に応じてコードをリファクタリング (動作を変えずにコードを改善すること) したりフォームを変更したりします。冗長なコードを削除したりするのもリファクタリングの例です。このサイクルのことを「Red/Green/Refactor」と呼びます。</p>
+<p>テスト駆動開発で最初に書く、<em>失敗する</em>テストのことを、一般的なテストツールでは「赤色 (Red)」と表現します (失敗時に表示が赤くなるツールが多いため)。同様に、次に書く、テストにパスするコードのことを「緑色 (Green)」と表現します。最後に、必要に応じてコードをリファクタリング (例えば、動作を変えずにコードを改善したり、冗長なコードを削除したりすること) します。このサイクルのことを「Red/Green/Refactor」と呼びます。</p>
 
 <p>それでは、テスト駆動開発でいくつかのコンテンツをHomeページに追加してみましょう。トップレベルの見出し (<code>&lt;h1&gt;</code>) に &quot;<code>Sample App</code>&quot; という語を追加する作業もこの中に含まれます。 まず、静的なページに対する結合テスト (request spec) を生成するところから始めましょう。</p>
 
@@ -920,7 +920,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h3><a id="sec-3_3_1" href="./static-pages.html#sec-testing_a_title_change" class="heading"><span class="number">3.3.1</span>タイトル変更をテストする</a></h3>
 
 
-<p>ここでの目標は、Home、Help、Aboutページをそれぞれ編集し、ページごとに異なるタイトルが表示されるようにすることです。ここではビューの<code>&lt;title&gt;</code>タグの内容を変更します。タイトルタグは、ほとんどのブラウザでウィンドウの上に表示されます (Google Chromeは例外ですが)。タイトルタグは、検索エンジン最適化 (SEO) においても重要な役割を担っています。最初にタイトルのテストを作成し、次にタイトルを追加し、さらに<em>レイアウト</em>ファイルを使ってリファクタリングと重複の排除を行います。</p>
+<p>ここでの目標は、Home、Help、Aboutページをそれぞれ編集し、ページごとに異なるタイトルが表示されるようにすることです。ここではビューの<code>&lt;title&gt;</code>タグの内容を変更します。titleタグは、ほとんどのブラウザでウィンドウの上に表示されます (Google Chromeは例外ですが)。titleタグは、検索エンジン最適化 (SEO) においても重要な役割を担っています。最初にタイトルのテストを作成し、次にタイトルを追加し、さらに<em>レイアウト</em>ファイルを使ってリファクタリングと重複の排除を行います。</p>
 
 <p>レイアウトファイルは、<code>rails new</code>コマンドを実行していれば既に作成されているはずです。レイアウトファイルの役割についてはこの後説明しますが、まずは作業開始前にレイアウトファイルのファイル名を変更しておきましょう。</p>
 
@@ -1185,7 +1185,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p><a class="ref" href="./static-pages.html#code-home_view_erb_title">リスト3.22</a>は、<em>ERb</em>と呼ばれている、Rubyの埋め込みの最初の例です (これで、HTMLビューのファイルの拡張子が<code>.html.erb</code>となっている理由をおわかりいただけたと思います)。 ERbはウェブページに動的な要素を加えるときに使うテンプレートシステムです<sup class="footnote" id="fnref-3_13"><a href="./static-pages.html#fn-3_13">13</a></sup>。</p>
+<p><a class="ref" href="./static-pages.html#code-home_view_erb_title">リスト3.22</a>は、<em>ERb</em>と呼ばれている、Rubyの埋め込みの最初の例です (これで、HTMLビューのファイルの拡張子が<code>.html.erb</code>となっている理由をおわかりいただけたと思います)。 ERbはWebページに動的な要素を加えるときに使うテンプレートシステムです<sup class="footnote" id="fnref-3_13"><a href="./static-pages.html#fn-3_13">13</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Home&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -1343,7 +1343,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>これらのコードはそれぞれ、スタイルシート、JavaScript、<code>csrf_meta_tags</code>メソッドをページにインクルードするためのものです。スタイルシートとJavaScriptは、アセットパイプライン (<a class="ref" href="./filling-in-the-layout.html#sec-the_asset_pipeline">5.2.1</a>) の一部です。csrf_meta_tagsは、Web攻撃手法のひとつである<a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">クロスサイトリクエストフォージェリー</a> (cross-site request forgery, CSRF)を防ぐために使われるRailsのメソッドです。</p>
+<p>これらのコードはそれぞれ、スタイルシート、JavaScript、<code>csrf_meta_tags</code>メソッドをページにインクルードするためのものです。スタイルシートとJavaScriptは、Asset Pipeline (<a class="ref" href="./filling-in-the-layout.html#sec-the_asset_pipeline">5.2.1</a>) の一部です。csrf_meta_tagsは、Web攻撃手法のひとつである<a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">クロスサイトリクエストフォージェリー</a> (cross-site request forgery, CSRF)を防ぐために使われるRailsのメソッドです。</p>
 
 <p>もちろん、<a class="ref" href="./static-pages.html#code-home_view_erb_title">リスト3.22</a>、<a class="ref" href="./static-pages.html#code-help_view_erb_title">リスト3.23</a>、 <a class="ref" href="./static-pages.html#code-about_view_erb_title">リスト3.24</a>のビューには、レイアウトと重複するHTMLがまだ残っているので、それらを削除して、内部のコンテツだけ残します。これにより、 <a class="ref" href="./static-pages.html#code-home_view_interior">リスト3.26</a>、<a class="ref" href="./static-pages.html#code-help_view_interior">リスト3.27</a>、<a class="ref" href="./static-pages.html#code-about_view_interior">リスト .28</a>にそれぞれ示したように、ビューのコードが美しく簡潔なものになります。</p>
 
@@ -1689,7 +1689,7 @@ bundler_stubs/
 <div class="label" id="sec-binstubs"></div>
 
 
-<h4><a id="sec-3_6_1_2" href="./static-pages.html#sec-binstubs" class="heading">binstubオプション</a></h4>
+<h4><a id="sec-3_6_1_2" href="./static-pages.html#sec-binstubs" class="heading">binstubsオプション</a></h4>
 
 
 <p>RVMを使用していない場合でも、<code>bundle exec</code>を省略する方法があります。Bundlerは、関連するバイナリを以下のように作成することができます。</p>
@@ -1994,7 +1994,7 @@ bundler_stubs/
 </div>
 
 
-<p>上の実行結果では、実際のテストは1/10秒以下で実行されますが、テストスイートは7秒以上かかっています。実行時間のスピートアップのため、別のターミナルウィンドウを開いてアプリケーションのルートディレクトリに移動し、以下のようにSporkサーバーを起動します。</p>
+<p>上の実行結果では、実際のテストは1/10秒以下で実行されますが、テストスイートは7秒以上かかっています。実行時間のスピードアップのため、別のターミナルウィンドウを開いてアプリケーションのルートディレクトリに移動し、以下のようにSporkサーバーを起動します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>spork
 <span class="go">Using RSpec</span>
@@ -2158,7 +2158,7 @@ bundler_stubs/
 <li id="fn-3_11">改行は、行の末尾と次の行の始まりを示します。コードの中では、<tt class="verb">\n</tt>の文字列で表します。<a class="arrow" href="./static-pages.html#fnref-3_11">↑</a></li>
 <li id="fn-3_12">もちろん、人間がいちいち文字数を<em>数えて</em>いたら頭がどうにかなってしまいます。だからこそ、多くのテキストエディタにはこれらを支援する機能が備わっています。たとえば、<a class="ref" href="./beginning.html#fig-editor_shell">図1.1</a>をもう一度見てみると、コードを80文字以下に抑えるための小さな縦線が右側に見えます (実際には少し余裕を持たせて78列にしてあります) 。TextMateを使用していれば、<tt>View &gt; Wrap Column &gt; 78</tt>で設定できます。Sublime Textを使用していれば、<tt>View &gt; Ruler &gt; 78</tt>、または<tt>View &gt; Ruler &gt; 80</tt>で設定できます。<a class="arrow" href="./static-pages.html#fnref-3_12">↑</a></li>
 <li id="fn-3_13">2番目によく使われている<a href="http://haml-lang.com/">Haml</a>というテンプレートシステムもあります。Hamlは個人的に非常に気に入っているのですが、初心者向けのチュートリアルで使うには<em>やや</em>標準から外れています。<a class="arrow" href="./static-pages.html#fnref-3_13">↑</a></li>
-<li id="fn-3_14">Railsでの開発経験者であれば、この時点で<code>content_for</code>の使用を検討すると思いますが、残念ながらアセットパイプラインと併用すると正常に動作しないことがあります。<code>provide</code>関数はcontent_forの代替です。<a class="arrow" href="./static-pages.html#fnref-3_14">↑</a></li>
+<li id="fn-3_14">Railsでの開発経験者であれば、この時点で<code>content_for</code>の使用を検討すると思いますが、残念ながらAsset Pipelineと併用すると正常に動作しないことがあります。<code>provide</code>関数はcontent_forの代替です。<a class="arrow" href="./static-pages.html#fnref-3_14">↑</a></li>
 <li id="fn-3_15">Rubyを勉強したことのある方であれば、Railsはブロックの内容を<em>yield</em>していると推測することでしょう。そして、その推測はおそらく正しいでしょう。しかし、Rails開発のためにこれらの詳細を知る必要はありません。<a class="arrow" href="./static-pages.html#fnref-3_15">↑</a></li>
 <li id="fn-3_16">http://rvm.io/integration/bundler/ <a class="arrow" href="./static-pages.html#fnref-3_16">↑</a></li>
 <li id="fn-3_17"><em>spork</em>はspoon-forkを組み合わせた造語です。このプロジェクト名は、<a href="http://en.wikipedia.org/wiki/POSIX">POSIX</a>の<a href="http://en.wikipedia.org/wiki/Fork_(software_development)">fork</a>におけるSporkの用法をもじったものです。<a class="arrow" href="./static-pages.html#fnref-3_17">↑</a></li>

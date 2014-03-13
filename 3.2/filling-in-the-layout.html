@@ -22,7 +22,7 @@
 <h2><a id="sec-5_1" href="./filling-in-the-layout.html#sec-structure" class="heading"><span class="number">5.1</span>構造を追加する</a></h2>
 
 
-<p><em>Railsチュートリアル</em>はWeb開発のための本であり、Webデザインの本ではありませんが、だからといって<em>何のスタイルもない</em>寒々しい外観のアプリケーションでいつまでも作業を続けていると憂鬱になってしまいます。そこで、この章ではレイアウトにいくつかの構造とCSSを与えて最小限のスタイルを追加します。カスタムCSSルールの他に、Twitter社によるオープンソースのウェブデザインフレームワークである<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>を利用します。また、<em>コード</em>そのものにもスタイルを与えます。つまり、散らかりはじめたコードレイアウトを<em>パーシャル</em>を使用して整えるということです。</p>
+<p><em>Railsチュートリアル</em>はWeb開発のための本であり、Webデザインの本ではありませんが、だからといって<em>何のスタイルもない</em>寒々しい外観のアプリケーションでいつまでも作業を続けていると憂鬱になってしまいます。そこで、この章ではレイアウトにいくつかの構造とCSSを与えて最小限のスタイルを追加します。カスタムCSSルールの他に、Twitter社によるオープンソースのWebデザインフレームワークである<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>を利用します。また、<em>コード</em>そのものにもスタイルを与えます。つまり、散らかりはじめたコードレイアウトを<em>パーシャル</em>を使用して整えるということです。</p>
 
 <p>Webアプリケーションを作成するときに、ユーザーインターフェイスの概要をできるだけ早いうちに把握しておくことがしばしば有用です。本書ではこれより、<em>モックアップ</em> (Webの文脈ではよく <em>ワイヤーフレーム</em>と呼ばれます) という、最終的なアプリケーションの外観を示す一種のラフスケッチを使用することにします<sup class="footnote" id="fnref-5_2"><a href="./filling-in-the-layout.html#fn-5_2">2</a></sup>。この章では、 主に<a class="ref" href="./static-pages.html#sec-static_pages">3.1</a>で紹介したサイトロゴ、ナビゲーションヘッダー、サイトフッタを含む静的ページを開発します。これらのページの中で最も重要な、Homeページのモックアップを<a class="ref" href="./filling-in-the-layout.html#fig-home_page_mockup">図5.1</a>に示します。モックアップに基いて作成した最終結果は<a class="ref" href="./filling-in-the-layout.html#fig-site_with_footer">図5.7</a>で確認することができます。両者を見比べると、細部が若干異なることに気が付くでしょう (たとえば、実際には最後にRailsのロゴをページに追加します)。しかしモックアップは正確である必要はありませんので、これで十分です。</p>
 
@@ -174,7 +174,7 @@
 </div>
 
 
-<p>ここでは、リンク (<a class="ref" href="./static-pages.html#sec-passing_title_tests">3.3.2</a>で、アンカータグ<code>a</code>を使用して作成) を生成するために、Railsヘルパーの<code>link_to</code>を使用しています。<code>link_to</code>の第1引数はリンクテキスト、第2引数はURIです。このURIは<a class="ref" href="./filling-in-the-layout.html#sec-named_routes">5.3.3</a>で<em>名前付きルート</em>のURIに変更しますが、今はウェブデザインで一般に使用されるスタブURI<code>’#’</code>にしておきます。第3引数はオプションハッシュで、この場合はサンプルアプリのリンクでCSSのid <code>logo</code>を指定しています (他の3つのリンクにはオプションハッシュが指定されていませんが、必須ではないので構いません)。Railsヘルパーは、このようにオプションのハッシュを取ることがよくあり、これによりRailsのコードから離れることなく任意のHTMLオプションを柔軟に追加することができます。</p>
+<p>ここでは、リンク (<a class="ref" href="./static-pages.html#sec-passing_title_tests">3.3.2</a>で、アンカータグ<code>a</code>を使用して作成) を生成するために、Railsヘルパーの<code>link_to</code>を使用しています。<code>link_to</code>の第1引数はリンクテキスト、第2引数はURIです。このURIは<a class="ref" href="./filling-in-the-layout.html#sec-named_routes">5.3.3</a>で<em>名前付きルート</em>のURIに変更しますが、今はWebデザインで一般に使用されるスタブURI<code>’#’</code>にしておきます。第3引数はオプションハッシュで、この場合はサンプルアプリのリンクでCSSのid <code>logo</code>を指定しています (他の3つのリンクにはオプションハッシュが指定されていませんが、必須ではないので構いません)。Railsヘルパーは、このようにオプションのハッシュを取ることがよくあり、これによりRailsのコードから離れることなく任意のHTMLオプションを柔軟に追加することができます。</p>
 
 <p>divの内側の2番目の要素は、<em>リストアイテム</em>タグ<code>li</code>と<em>順不同リスト</em>タグ<code>ul</code>によって作られた、ナビゲーションリンクのリストです。</p>
 
@@ -1536,7 +1536,7 @@
 
 <p></p>
 
-<p>最初に、HomeページとHelpページへのリンクを持つヘッダーパーシャル<code>_header.html.erb</code> (<a class="ref" href="./filling-in-the-layout.html#code-header_partial_links">リスト5.24</a>) から取りかかります。ヘッダーパーシャルでは、ウェブ共通の慣習に従って、ロゴにもHomeページへのリンクを追加します。</p>
+<p>最初に、HomeページとHelpページへのリンクを持つヘッダーパーシャル<code>_header.html.erb</code> (<a class="ref" href="./filling-in-the-layout.html#code-header_partial_links">リスト5.24</a>) から取りかかります。ヘッダーパーシャルでは、Web共通の慣習に従って、ロゴにもHomeページへのリンクを追加します。</p>
 
 <div class="label" id="code-header_partial_links"></div>
 
