@@ -83,7 +83,7 @@
 </div>
 
 
-<p>Herokuは、開発環境と本番環境とで同じデータベースを使うことを推奨していますが、今回開発するサンプルアプリケーションでは、データベースが異なっていても特に問題はありません。また、SQLiteはPostgreSQLに比べて<em>きわめて簡単に</em> セットアップできます。なお、ローカルの開発マシンへのPostgreSQLのインストールと構築については、<a class="ref" href="./static-pages.html#sec-static_pages_exercises">3.5</a>の演習課題に含めました。</p>
+<p>Herokuは、開発環境と本番環境とで同じデータベースを使うことを推奨していますが、今回開発するサンプルアプリケーションでは、データベースが異なっていても特に問題はありません。また、SQLiteはPostgreSQLに比べて<em>極めて簡単に</em> セットアップできます。なお、ローカルの開発マシンへのPostgreSQLのインストールと構築については、<a class="ref" href="./static-pages.html#sec-static_pages_exercises">3.5</a>の演習課題に含めました。</p>
 
 <p>Gemfileに新しく追加したgemを実際にインストールするには、<code>bundle update</code>と<code>bundle install</code>を実行します。</p>
 
@@ -676,7 +676,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>テストのうち、1つは失敗するはずです。(注: 執筆作業軽減のため、今後はRSpecの出力結果を掲載しません。画面表示の内容はシステムによって大きく異なるうえ、各段階での出力画面数を把握してメンテナンスし続けるのがきわめて困難なためです。ご了承ください。)</p>
+<p>テストのうち、1つは失敗するはずです。(注: 執筆作業軽減のため、今後はRSpecの出力結果を掲載しません。画面表示の内容はシステムによって大きく異なるうえ、各段階での出力画面数を把握してメンテナンスし続けるのが極めて困難なためです。ご了承ください。)</p>
 
 <p><a class="ref" href="./static-pages.html#code-help_page_passing">リスト3.13</a>に示したように、このアプリケーションコードは<a class="ref" href="./static-pages.html#code-home_page_passing">リスト3.11</a>と同じようなコードになります。</p>
 
@@ -2160,10 +2160,10 @@ bundler_stubs/
 <li id="fn-3_2">なお、<code>install</code>は省略可能です。実は、<code>bundle</code>コマンドは<code>bundle install</code>のエイリアスでもあります。<a class="arrow" href="./static-pages.html#fnref-3_2">↑</a></li>
 <li id="fn-3_3">システムによっては、<a class="ref" href="./beginning.html#code-gitignore">リスト1.7</a>の.gitignoreを参考にして、さらに便利な設定にすることもできます。<a class="arrow" href="./static-pages.html#fnref-3_3">↑</a></li>
 <li id="fn-3_4">https://github.com/railstutorial/sample_app_rails_4 <a class="arrow" href="./static-pages.html#fnref-3_4">↑</a></li>
-<li id="fn-3_5">ここで静的なページを作るために採用した方法は、おそらく最もシンプルな方法です。ただし他にも方法はあります。最適な方法は状況によって異なり、たとえば<em>きわめて多数</em>の静的なページを1つのStaticPagesコントローラだけまかなおうとすると重荷になる可能性があります。今回はいくつかの静的なページを作るだけなので、重荷にはなりません。<a class="arrow" href="./static-pages.html#fnref-3_5">↑</a></li>
+<li id="fn-3_5">ここで静的なページを作るために採用した方法は、おそらく最もシンプルな方法です。ただし他にも方法はあります。最適な方法は状況によって異なり、たとえば<em>極めて多数</em>の静的なページを1つのStaticPagesコントローラだけまかなおうとすると重荷になる可能性があります。今回はいくつかの静的なページを作るだけなので、重荷にはなりません。<a class="arrow" href="./static-pages.html#fnref-3_5">↑</a></li>
 <li id="fn-3_6">毎回<code>bundle exec</code>を追加するのは面倒ですが、<a class="ref" href="./static-pages.html#sec-advanced_setup">3.6</a>のオプションを使うと省略できます。<a class="arrow" href="./static-pages.html#fnref-3_6">↑</a></li>
 <li id="fn-3_7">筆者は普段、ターミナルやテキストエディタの背景は黒色にしていますが、明るい色の背景の方がスクリーンショットの見栄えが良いので、(一時的に) 明るい背景を使用しています。<a class="arrow" href="./static-pages.html#fnref-3_7">↑</a></li>
-<li id="fn-3_8">HTMLは常に変化しています。doctypeを明示的に宣言することで、今後もブラウザが正しくページを描画してくれる可能性が高まります。きわめてシンプルなdoctype宣言である<code>&lt;!DOCTYPE html&gt;</code>は、最新の標準HTML (HTML5) であることを示しています。<a class="arrow" href="./static-pages.html#fnref-3_8">↑</a></li>
+<li id="fn-3_8">HTMLは常に変化しています。doctypeを明示的に宣言することで、今後もブラウザが正しくページを描画してくれる可能性が高まります。極めてシンプルなdoctype宣言である<code>&lt;!DOCTYPE html&gt;</code>は、最新の標準HTML (HTML5) であることを示しています。<a class="arrow" href="./static-pages.html#fnref-3_8">↑</a></li>
 <li id="fn-3_9">2番目によく使われている<a href="http://haml-lang.com/">Haml</a>というテンプレートシステムもあります。Hamlは個人的に非常に気に入っているのですが、初心者向けのチュートリアルで使うには<em>やや</em>標準から外れています。<a class="arrow" href="./static-pages.html#fnref-3_9">↑</a></li>
 <li id="fn-3_10">Railsでの開発経験者であれば、この時点で<code>content_for</code>の使用を検討すると思いますが、残念ながらAsset Pipelineと併用すると正常に動作しないことがあります。<code>provide</code>関数はcontent_forの代替です。<a class="arrow" href="./static-pages.html#fnref-3_10">↑</a></li>
 <li id="fn-3_11">Rubyを勉強したことのある方であれば、Railsはブロックの内容を<em>yield</em>していると推測することでしょう。そして、その推測はおそらく正しいでしょう。しかし、Rails開発のためにこれらの詳細を知る必要はありません。<a class="arrow" href="./static-pages.html#fnref-3_11">↑</a></li>

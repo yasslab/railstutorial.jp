@@ -60,7 +60,7 @@
 <h3><a id="sec-6_1_1" href="./modeling-users.html#sec-database_migrations" class="heading"><span class="number">6.1.1</span>データベースの移行</a></h3>
 
 
-<p><a class="ref" href="./rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>で扱ったカスタムビルドクラスの<code>User</code>を思い出してください。このクラスは、<code>name</code>と<code>email</code>を属性に持つユーザーオブジェクトでした。このクラスは役に立つ例として提供されましたが、Railsにとってきわめて重要な部分である<em>永続性</em>という要素が欠けていました。RailsコンソールでUserクラスのオブジェクトを作っても、コンソールからexitするとそのオブジェクトはすぐに消えてしまいました。この節での目的は、簡単に消えることのないユーザーのモデルを構築することです。</p>
+<p><a class="ref" href="./rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>で扱ったカスタムビルドクラスの<code>User</code>を思い出してください。このクラスは、<code>name</code>と<code>email</code>を属性に持つユーザーオブジェクトでした。このクラスは役に立つ例として提供されましたが、Railsにとって極めて重要な部分である<em>永続性</em>という要素が欠けていました。RailsコンソールでUserクラスのオブジェクトを作っても、コンソールからexitするとそのオブジェクトはすぐに消えてしまいました。この節での目的は、簡単に消えることのないユーザーのモデルを構築することです。</p>
 
 <p><a class="ref" href="./rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>のユーザークラスと同様に、<code>name</code>と<code>email</code>の2つの属性からなるユーザーをモデリングするところから始めましょう。後者のemailを一意のユーザー名として使用します<sup class="footnote" id="fnref-6_3"><a href="./modeling-users.html#fn-6_3">3</a></sup> (パスワードのための属性は<a class="ref" href="./modeling-users.html#sec-adding_a_secure_password">6.3</a>で扱います) 。<a class="ref" href="./rails-flavored-ruby.html#code-example_user">リスト4.9</a>では、以下のようにRubyの<code>attr_accessor</code>メソッドを使用しました。</p>
 
@@ -1169,7 +1169,7 @@
 
 
 <div class="sidebar"><span class="title"><span class="header">コラム 6.2</span><span class="description">データベースのインデックス</span></span>
-<p>データベースにカラムを作成するとき、そのカラムでレコードを<em>検索する (find) </em>必要があるかどうかを考えることは重要です。たとえば、<a class="ref" href="./modeling-users.html#code-users_migration">リスト6.2</a>のマイグレーションによって作成された<tt>email</tt>属性について考えてみましょう。<a class="ref" href="./sign-up.html#top">第7章</a>ではユーザーをサンプルアプリにログインできるようにしますが、このとき、送信されたものと一致するメールアドレスのユーザーのレコードをデータベースの中から探しだす必要があります。残念なことに、(インデックスなどの機能を持たない) 素朴なデータモデルにおいてユーザーをメールアドレスで検索するには、データベースの<em>ひとりひとりの</em>ユーザーの行を端から順に読み出し、そのemail属性と与えられたメールアドレスを比較するという非効率的な方法しかありません。これは、データベースの世界では<em>全表スキャン</em>として知られており、数千のユーザーがいる実際のサイトでは<a href="http://catb.org/jargon/html/B/Bad-Thing.html">きわめて不都合</a>です。</p>
+<p>データベースにカラムを作成するとき、そのカラムでレコードを<em>検索する (find) </em>必要があるかどうかを考えることは重要です。たとえば、<a class="ref" href="./modeling-users.html#code-users_migration">リスト6.2</a>のマイグレーションによって作成された<tt>email</tt>属性について考えてみましょう。<a class="ref" href="./sign-up.html#top">第7章</a>ではユーザーをサンプルアプリにログインできるようにしますが、このとき、送信されたものと一致するメールアドレスのユーザーのレコードをデータベースの中から探しだす必要があります。残念なことに、(インデックスなどの機能を持たない) 素朴なデータモデルにおいてユーザーをメールアドレスで検索するには、データベースの<em>ひとりひとりの</em>ユーザーの行を端から順に読み出し、そのemail属性と与えられたメールアドレスを比較するという非効率的な方法しかありません。これは、データベースの世界では<em>全表スキャン</em>として知られており、数千のユーザーがいる実際のサイトでは<a href="http://catb.org/jargon/html/B/Bad-Thing.html">極めて不都合</a>です。</p>
 
 <p>emailカラムにインデックスを追加することで、この問題を解決することができます。データベースのインデックスを理解するためには、本の索引との類似性を考えるとよいでしょう。本の中で、与えられた言葉 (例えば、“foobar”) が出てくる箇所をすべて見つけるためには、ページを端から順にめくって最後まで探す必要があります。本の索引を利用すれば、“foobar”を含むすべてのページを索引の中から探すだけで済みます。データベースのインデックスも本質的には本の索引と同じように動作します。</p>
 </div>

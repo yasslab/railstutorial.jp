@@ -1774,7 +1774,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>上の例は、RSpecの論理値変換機能の柔軟性がきわめて高いことを示しています。<code>include</code>メソッドは本来、モジュールをインクルードするために使用するRubyキーワードであるにもかかわらず (<a class="ref" href="./sign-in-sign-out.html#code-sessions_helper_include">リスト8.14</a>など)、このRSpecのコンテキストでは配列が要素を含んでいるかどうかをテストしたいという開発者の意図を正確に推測してくれます。</p>
+<p>上の例は、RSpecの論理値変換機能の柔軟性が極めて高いことを示しています。<code>include</code>メソッドは本来、モジュールをインクルードするために使用するRubyキーワードであるにもかかわらず (<a class="ref" href="./sign-in-sign-out.html#code-sessions_helper_include">リスト8.14</a>など)、このRSpecのコンテキストでは配列が要素を含んでいるかどうかをテストしたいという開発者の意図を正確に推測してくれます。</p>
 
 <p><a class="ref" href="./user-microposts.html#code-proto_status_feed">リスト10.39</a>で示すように、<code>user_id</code>が現在のユーザーidと等しいマイクロポストを見つけることによって、適切なマイクロポストの<code>feed</code>メソッドを実装することができます。これは<code>Micropost</code>モデルで<code>where</code>メソッドを使用することで実現できます<sup class="footnote" id="fnref-10_11"><a href="./user-microposts.html#fn-10_11">11</a></sup>。</p>
 
@@ -2232,7 +2232,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <li><code>if</code>-<code>else</code>文の2つの分岐に対して、それぞれ異なるパーシャルを使用するようにホームページをリファクタリングしてください。</li>
 <li>削除リンクが、現在のユーザーによって作成されていないマイクロポストには表示されないことを確認するためのテストを作成してください。</li>
 <li>パーシャルを使用して、<a class="ref" href="./user-microposts.html#code-micropost_partial_with_delete">リスト10.46</a>および<a class="ref" href="./user-microposts.html#code-feed_item_partial_with_delete">リスト10.47</a>から削除リンクの重複を削除してください。</li>
-<li><a class="ref" href="./user-microposts.html#fig-long_word_micropost">図10.18</a>に示すように、非常に長い単語を入力するとレイアウトが崩れてしまいます。<a class="ref" href="./user-microposts.html#code-wrap">リスト10.50</a>で定義した<code>wrap</code>ヘルパーを使用して、この問題を修正してください。このとき、出力されたHTMLがRailsによってエスケープされるのを防ぐために<code>raw</code>メソッドを使用してください。また、クロスサイトスクリプティング (XSS) を防ぐために<code>sanitize</code>メソッドも使用してください。さらに、このコードでは<em>3項演算子</em> (<a class="ref" href="./user-microposts.html#sidebar-ternary_operator">コラム  10.1</a>) も使用してください。3項演算子は一見奇妙ですが、きわめて便利なものです。</li>
+<li><a class="ref" href="./user-microposts.html#fig-long_word_micropost">図10.18</a>に示すように、非常に長い単語を入力するとレイアウトが崩れてしまいます。<a class="ref" href="./user-microposts.html#code-wrap">リスト10.50</a>で定義した<code>wrap</code>ヘルパーを使用して、この問題を修正してください。このとき、出力されたHTMLがRailsによってエスケープされるのを防ぐために<code>raw</code>メソッドを使用してください。また、クロスサイトスクリプティング (XSS) を防ぐために<code>sanitize</code>メソッドも使用してください。さらに、このコードでは<em>3項演算子</em> (<a class="ref" href="./user-microposts.html#sidebar-ternary_operator">コラム  10.1</a>) も使用してください。3項演算子は一見奇妙ですが、極めて便利なものです。</li>
 <li><strong>(チャレンジ)</strong> 入力できる残り文字数を140 文字からカウントダウンするためのJavaScriptをHomeページに追加してください。</li>
 </ol>
 

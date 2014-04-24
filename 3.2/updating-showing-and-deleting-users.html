@@ -1631,7 +1631,7 @@
 </div></div>
 
 
-<p>Railsは<code>@users</code>を<code>User</code>オブジェクトのリストであると推測します。さらに、ユーザーのコレクションを与えて呼び出すと、Railsは自動的にユーザーのコレクションを列挙し、それぞれのユーザーを<code>_user.html.erb</code>パーシャルで出力します (訳注: each doで囲む必要がなくなります)。これにより、<a class="ref" href="./updating-showing-and-deleting-users.html#code-index_final_refactoring">リスト9.38</a>のコードはきわめてコンパクトになります。これに限らず、リファクタリングを行う場合には、アプリケーションのコードを変更する前と後で必ずテストを実行し、いずれも緑色 (成功) になることを確認するようにしてください。</p>
+<p>Railsは<code>@users</code>を<code>User</code>オブジェクトのリストであると推測します。さらに、ユーザーのコレクションを与えて呼び出すと、Railsは自動的にユーザーのコレクションを列挙し、それぞれのユーザーを<code>_user.html.erb</code>パーシャルで出力します (訳注: each doで囲む必要がなくなります)。これにより、<a class="ref" href="./updating-showing-and-deleting-users.html#code-index_final_refactoring">リスト9.38</a>のコードは極めてコンパクトになります。これに限らず、リファクタリングを行う場合には、アプリケーションのコードを変更する前と後で必ずテストを実行し、いずれも緑色 (成功) になることを確認するようにしてください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>

@@ -755,7 +755,7 @@
 </div>
 
 
-<p>インデックスに-1という値を指定できるのはきわめて便利です。-1を使用すると、配列の長さを<em>知らなくても</em>配列の最後の要素を指定することができ、これにより配列を特定の開始位置の要素から最後の要素までを一度に選択することができます。</p>
+<p>インデックスに-1という値を指定できるのは極めて便利です。-1を使用すると、配列の長さを<em>知らなくても</em>配列の最後の要素を指定することができ、これにより配列を特定の開始位置の要素から最後の要素までを一度に選択することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>
 <span class="go">=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] </span>
@@ -1330,7 +1330,7 @@
 
 <p>(Rubyで組み込みクラスにメソッドを追加できるということは実にクールですが、<code>&quot;deified&quot;</code> (=神格化された) という単語が回文になっていることも、それに劣らずクールではないでしょうか。)</p>
 
-<p>組み込みクラスの変更はきわめて強力なテクニックですが、大いなる力には大いなる責任が伴います (訳注: 「スパイダーマン」の名台詞)。従って、<em>真に</em>正当な理由がない限り、組み込みクラスにメソッドを追加することは無作法であると考えられています。Railsの場合、組み込みクラスの変更を正当化できる理由がいくつもあります。たとえば、Web アプリケーションでは、変数が絶対に<em>空白</em>にならないようにしたくなることがよくあります (ユーザー名などはスペースや<a href="http://en.wikipedia.org/wiki/Whitespace_(computer_science)">その他の空白文字</a>になって欲しくないものです) ので、Railsは<code>blank?</code>メソッドをRuby に追加しています。Railsの拡張は自動的にRailsコンソールにも取り込まれるので、以下のようにコンソールで拡張の結果を確認できます (注意: 以下のコードは純粋な <code>irb</code> では動作しません)。</p>
+<p>組み込みクラスの変更は極めて強力なテクニックですが、大いなる力には大いなる責任が伴います (訳注: 「スパイダーマン」の名台詞)。従って、<em>真に</em>正当な理由がない限り、組み込みクラスにメソッドを追加することは無作法であると考えられています。Railsの場合、組み込みクラスの変更を正当化できる理由がいくつもあります。たとえば、Web アプリケーションでは、変数が絶対に<em>空白</em>にならないようにしたくなることがよくあります (ユーザー名などはスペースや<a href="http://en.wikipedia.org/wiki/Whitespace_(computer_science)">その他の空白文字</a>になって欲しくないものです) ので、Railsは<code>blank?</code>メソッドをRuby に追加しています。Railsの拡張は自動的にRailsコンソールにも取り込まれるので、以下のようにコンソールで拡張の結果を確認できます (注意: 以下のコードは純粋な <code>irb</code> では動作しません)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">blank?</span>
 <span class="go">=&gt; true</span>

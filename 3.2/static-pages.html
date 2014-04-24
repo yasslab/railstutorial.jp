@@ -77,7 +77,7 @@
 </div>
 
 
-<p>Herokuは、開発環境とプロダクション環境とで同じデータベースを使うことを推奨していますが、今回開発するサンプルアプリケーションでは、データベースが異なっていても特に問題はありません。また、SQLiteはPostgreSQLに比べて<em>きわめて簡単に</em> セットアップできます。なお、ローカルの開発マシンへのPostgreSQLのインストールと構築については、<a class="ref" href="./static-pages.html#sec-static_pages_exercises">3.5</a>の演習課題として取り上げています。</p>
+<p>Herokuは、開発環境とプロダクション環境とで同じデータベースを使うことを推奨していますが、今回開発するサンプルアプリケーションでは、データベースが異なっていても特に問題はありません。また、SQLiteはPostgreSQLに比べて<em>極めて簡単に</em> セットアップできます。なお、ローカルの開発マシンへのPostgreSQLのインストールと構築については、<a class="ref" href="./static-pages.html#sec-static_pages_exercises">3.5</a>の演習課題として取り上げています。</p>
 
 <p>Gemfileに新しく追加したgemを実際にインストールするには、<code>bundle update</code>と<code>bundle install</code>を実行します。</p>
 
@@ -684,7 +684,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>テストのうち、1つは失敗するはずです。(注: 執筆作業軽減のため、今後はRSpecの出力結果を掲載しません。画面表示の内容はシステムによって大きく異なるうえ、各段階での出力画面数を把握してメンテナンスし続けるのがきわめて困難なためです。ご了承ください。)</p>
+<p>テストのうち、1つは失敗するはずです。(注: 執筆作業軽減のため、今後はRSpecの出力結果を掲載しません。画面表示の内容はシステムによって大きく異なるうえ、各段階での出力画面数を把握してメンテナンスし続けるのが極めて困難なためです。ご了承ください。)</p>
 
 <p><a class="ref" href="./static-pages.html#code-help_page_passing">リスト3.12</a>に示したように、テストにパスするアプリケーションコード (現時点では生のHTML) は<a class="ref" href="./static-pages.html#code-home_page_passing">リスト3.10</a>と同じようなコードになります。</p>
 
@@ -2151,8 +2151,8 @@ bundler_stubs/
 <li id="fn-3_4">https://github.com/railstutorial/sample_app_2nd_ed <a class="arrow" href="./static-pages.html#fnref-3_4">↑</a></li>
 <li id="fn-3_5">実は、これらのファイルに対するリクエストはRails内のスタックに決して到達しないようになっています。そのようなファイルへのリクエストは、ファイルシステムに直接渡されます (詳細については「<a href="http://www.amazon.com/gp/product/0321601661"><em>The Rails 3 Way</em></a>」を参照してください)。<a class="arrow" href="./static-pages.html#fnref-3_5">↑</a></li>
 <li id="fn-3_6">いつもと同じように、<code>subl</code> コマンドを、使用しているテキストエディタを呼び出すコマンド (vim, emacsなど) に置き換えてください。<a class="arrow" href="./static-pages.html#fnref-3_6">↑</a></li>
-<li id="fn-3_7">HTMLは常に変化しています。doctypeを明示的に宣言することで、今後もブラウザが正しくページを描画してくれる可能性が高まります。きわめてシンプルなdoctype宣言である<code>&lt;!DOCTYPE html&gt;</code>は、最新の標準HTML (HTML5) であることを示しています。<a class="arrow" href="./static-pages.html#fnref-3_7">↑</a></li>
-<li id="fn-3_8">ここで静的なページを作るために採用した方法は、おそらく最もシンプルな方法です。ただし他にも方法はあります。最適な方法は状況によって異なり、たとえば<em>きわめて多数</em>の静的なページを1つのStaticPagesコントローラだけまかなおうとすると重荷になる可能性があります。今回はいくつかの静的なページを作るだけなので、重荷にはなりません。Railsで静的なページを作成するテクニックの詳細については、ブログ<a href="http://blog.hasmanythrough.com/2008/4/2/simple-pages">has_many :throughの「<tt>simple pages</tt>」という記事</a>を参照してください。<em>警告:</em> この記事の内容はかなり高度なので、もっと後になって読む方がよいかもしれません。<a class="arrow" href="./static-pages.html#fnref-3_8">↑</a></li>
+<li id="fn-3_7">HTMLは常に変化しています。doctypeを明示的に宣言することで、今後もブラウザが正しくページを描画してくれる可能性が高まります。極めてシンプルなdoctype宣言である<code>&lt;!DOCTYPE html&gt;</code>は、最新の標準HTML (HTML5) であることを示しています。<a class="arrow" href="./static-pages.html#fnref-3_7">↑</a></li>
+<li id="fn-3_8">ここで静的なページを作るために採用した方法は、おそらく最もシンプルな方法です。ただし他にも方法はあります。最適な方法は状況によって異なり、たとえば<em>極めて多数</em>の静的なページを1つのStaticPagesコントローラだけまかなおうとすると重荷になる可能性があります。今回はいくつかの静的なページを作るだけなので、重荷にはなりません。Railsで静的なページを作成するテクニックの詳細については、ブログ<a href="http://blog.hasmanythrough.com/2008/4/2/simple-pages">has_many :throughの「<tt>simple pages</tt>」という記事</a>を参照してください。<em>警告:</em> この記事の内容はかなり高度なので、もっと後になって読む方がよいかもしれません。<a class="arrow" href="./static-pages.html#fnref-3_8">↑</a></li>
 <li id="fn-3_9">毎回<code>bundle exec</code>を追加するのは面倒ですが、<a class="ref" href="./static-pages.html#sec-advanced_setup">3.6</a>のオプションを使うと省略できます。<a class="arrow" href="./static-pages.html#fnref-3_9">↑</a></li>
 <li id="fn-3_10">筆者は普段、ターミナルやテキストエディタの背景は黒色にしていますが、明るい色の背景の方がスクリーンショットの見栄えが良いので、(一時的に) 明るい背景を使用しています。<a class="arrow" href="./static-pages.html#fnref-3_10">↑</a></li>
 <li id="fn-3_11">改行は、行の末尾と次の行の始まりを示します。コードの中では、<tt class="verb">\n</tt>の文字列で表します。<a class="arrow" href="./static-pages.html#fnref-3_11">↑</a></li>

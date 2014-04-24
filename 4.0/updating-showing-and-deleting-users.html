@@ -29,7 +29,7 @@
 <h2><a id="sec-9_1" href="./updating-showing-and-deleting-users.html#sec-updating_users" class="heading"><span class="number">9.1</span>ユーザーを更新する</a></h2>
 
 
-<p>ユーザー情報を編集するパターンは、(<a class="ref" href="./sign-up.html#top">第7章</a>)の新規ユーザーの作成ときわめて似通っています。新規ユーザー用のビューを出力する<code>new</code>アクションの代わりに、ユーザーを編集するための<code>edit</code>アクションを作成すればよいのです。 <tt>POST</tt>リクエストに応答する<code>create</code>の代わりに、<tt>PATCH</tt>リクエストに応答する<code>update</code>アクションを作成すればよいのです (<a class="ref" href="./static-pages.html#sidebar-get_etc">コラム 3.3</a>)。最大の違いは、ユーザー登録は誰でも実行できますが、ユーザー情報を更新できるのはそのユーザー自身に限られるということです。つまり、アクセス制御を行なって、認可された (authorized) ユーザーだけが編集と更新を行えるようにすればよいということです。<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>の認証 (authentication) システムを使えば、<em>before_action</em>を使用してこれを行えます。</p>
+<p>ユーザー情報を編集するパターンは、(<a class="ref" href="./sign-up.html#top">第7章</a>)の新規ユーザーの作成と極めて似通っています。新規ユーザー用のビューを出力する<code>new</code>アクションの代わりに、ユーザーを編集するための<code>edit</code>アクションを作成すればよいのです。 <tt>POST</tt>リクエストに応答する<code>create</code>の代わりに、<tt>PATCH</tt>リクエストに応答する<code>update</code>アクションを作成すればよいのです (<a class="ref" href="./static-pages.html#sidebar-get_etc">コラム 3.3</a>)。最大の違いは、ユーザー登録は誰でも実行できますが、ユーザー情報を更新できるのはそのユーザー自身に限られるということです。つまり、アクセス制御を行なって、認可された (authorized) ユーザーだけが編集と更新を行えるようにすればよいということです。<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>の認証 (authentication) システムを使えば、<em>before_action</em>を使用してこれを行えます。</p>
 
 <div class="label" id="sec-edit_form"></div>
 
@@ -101,7 +101,7 @@
 </div></div>
 
 
-<p>テストにパスするためには、実際のeditビューを<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_edit_view">リスト9.3</a>のように変更する必要があります。このコードが<a class="ref" href="./sign-up.html#code-signup_form">リスト7.17</a>ときわめて似通っていることに注目してください。重複が多いということは、それらのコードの繰り返しをパーシャルにまとめることができるということです。パーシャルにまとめる作業は演習の課題 (<a class="ref" href="./updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>) に回します。</p>
+<p>テストにパスするためには、実際のeditビューを<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_edit_view">リスト9.3</a>のように変更する必要があります。このコードが<a class="ref" href="./sign-up.html#code-signup_form">リスト7.17</a>と極めて似通っていることに注目してください。重複が多いということは、それらのコードの繰り返しをパーシャルにまとめることができるということです。パーシャルにまとめる作業は演習の課題 (<a class="ref" href="./updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>) に回します。</p>
 
 <div class="label" id="code-user_edit_view"></div>
 
@@ -313,7 +313,7 @@
 <h3><a id="sec-9_1_2" href="./updating-showing-and-deleting-users.html#sec-unsuccessful_edits" class="heading"><span class="number">9.1.2</span>編集の失敗</a></h3>
 
 
-<p>この節では、編集 (の保存) に失敗した場合を扱います。また、<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_edit_specs">リスト9.1</a>のエラーメッセージのテストがパスするようにします。このアプリケーションコードは<code>update</code>アクションを作成しますが、これは<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_update_action_unsuccessful">リスト9.8</a>のように、<code>update_attributes</code> (<a class="ref" href="./modeling-users.html#sec-updating_user_objects">6.1.5</a>) を使用して、送信された<code>params</code>ハッシュに基いてユーザーを更新します。 無効な情報が送信された場合、更新の結果として<code>false</code>が返され、<code>else</code>に分岐して編集ページを再度レンダリングします。このパターンは以前にも出現したことを覚えているでしょうか。この構造は<code>create</code>アクションの最初のバージョン (<a class="ref" href="./sign-up.html#code-first_create_action">リスト7.21</a>) ときわめて似通っています。</p>
+<p>この節では、編集 (の保存) に失敗した場合を扱います。また、<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_edit_specs">リスト9.1</a>のエラーメッセージのテストがパスするようにします。このアプリケーションコードは<code>update</code>アクションを作成しますが、これは<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_update_action_unsuccessful">リスト9.8</a>のように、<code>update_attributes</code> (<a class="ref" href="./modeling-users.html#sec-updating_user_objects">6.1.5</a>) を使用して、送信された<code>params</code>ハッシュに基いてユーザーを更新します。 無効な情報が送信された場合、更新の結果として<code>false</code>が返され、<code>else</code>に分岐して編集ページを再度レンダリングします。このパターンは以前にも出現したことを覚えているでしょうか。この構造は<code>create</code>アクションの最初のバージョン (<a class="ref" href="./sign-up.html#code-first_create_action">リスト7.21</a>) と極めて似通っています。</p>
 
 <div class="label" id="code-user_update_action_unsuccessful"></div>
 
@@ -1666,7 +1666,7 @@
 </div></div>
 
 
-<p>Railsは<code>@users</code>を<code>User</code>オブジェクトのリストであると推測します。さらに、ユーザーのコレクションを与えて呼び出すと、Railsは自動的にユーザーのコレクションを列挙し、それぞれのユーザーを<code>_user.html.erb</code>パーシャルで出力します (訳注: each doとendで囲む必要がなくなります)。これにより、<a class="ref" href="./updating-showing-and-deleting-users.html#code-index_final_refactoring">リスト9.38</a>のコードはきわめてコンパクトになります。これに限らず、リファクタリングを行う場合には、アプリケーションのコードを変更する前と後で必ずテストを実行し、いずれも緑色 (成功) になることを確認するようにしてください。</p>
+<p>Railsは<code>@users</code>を<code>User</code>オブジェクトのリストであると推測します。さらに、ユーザーのコレクションを与えて呼び出すと、Railsは自動的にユーザーのコレクションを列挙し、それぞれのユーザーを<code>_user.html.erb</code>パーシャルで出力します (訳注: each doとendで囲む必要がなくなります)。これにより、<a class="ref" href="./updating-showing-and-deleting-users.html#code-index_final_refactoring">リスト9.38</a>のコードは極めてコンパクトになります。これに限らず、リファクタリングを行う場合には、アプリケーションのコードを変更する前と後で必ずテストを実行し、いずれも緑色 (成功) になることを確認するようにしてください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
