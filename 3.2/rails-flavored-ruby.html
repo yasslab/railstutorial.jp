@@ -14,7 +14,7 @@
 <h1 class="chapter"><a id="sec-4" href="./rails-flavored-ruby.html#top" class="heading"><span class="number">第4章</span>Rails風味のRuby</a></h1>
 
 
-<p><a class="ref" href="./static-pages.html#top">3章</a> で使用した例に基いて、この章ではRailsにおいて重要となるRubyのさまざまな要素について探っていくことにしましょう。Rubyは巨大な仕様を持つ言語ですが、幸い、Rails開発者にとって必要な知識は比較的少なくて済みます。さらに、Railsのために必要なRubyの知識は、通常のRubyを学ぶ過程とは<em>異なります</em>。動的なWebアプリを作ることができればそれでよいというのであれば、まずRailsを学ぶようにし、Rubyについては当分の間、必要が生じた場合にのみ学習することをお勧めします。そうではなく、真のRails<em>エキスパート</em>になりたいのであれば、Rubyをさらに深いレベルまで理解する必要があります。本書は、そのための開発技術の基礎を築く助けになるでしょう。<a class="ref" href="./beginning.html#sec-comments_for_various_readers">1.1.1</a>で示したように、<em>Railsチュートリアル</em> を終えた後には <a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>、<a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a>、<a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a> などの純粋なRubyについての本を読むことをお勧めします。</p>
+<p><a class="ref" href="./static-pages.html#top">第3章</a> で使用した例に基いて、この章ではRailsにおいて重要となるRubyのさまざまな要素について探っていくことにしましょう。Rubyは巨大な仕様を持つ言語ですが、幸い、Rails開発者にとって必要な知識は比較的少なくて済みます。さらに、Railsのために必要なRubyの知識は、通常のRubyを学ぶ過程とは<em>異なります</em>。動的なWebアプリを作ることができればそれでよいというのであれば、まずRailsを学ぶようにし、Rubyについては当分の間、必要が生じた場合にのみ学習することをお勧めします。そうではなく、真のRails<em>エキスパート</em>になりたいのであれば、Rubyをさらに深いレベルまで理解する必要があります。本書は、そのための開発技術の基礎を築く助けになるでしょう。<a class="ref" href="./beginning.html#sec-comments_for_various_readers">1.1.1</a>で示したように、<em>Railsチュートリアル</em> を終えた後には <a href="http://www.amazon.com/gp/product/1430223634"><em>Beginning Ruby</em></a>、<a href="http://www.amazon.com/gp/product/1933988657"><em>The Well-Grounded Rubyist</em></a>、<a href="http://www.amazon.com/gp/product/0672328844"><em>The Ruby Way</em></a> などの純粋なRubyについての本を読むことをお勧めします。</p>
 
 <p>この章には多くの話題が盛り込まれていますが、一度読んだだけで理解する必要はまったくありません。今後もこの章には頻繁に立ち戻って参照します。</p>
 
@@ -225,7 +225,7 @@
 <h2><a id="sec-4_2" href="./rails-flavored-ruby.html#sec-strings_and_methods" class="heading"><span class="number">4.2</span>文字列(string)とメソッド</a></h2>
 
 
-<p>Ruby を学ぶためのツールとして、主に<em>Railsコンソール</em>を使用することにします。これは<a class="ref" href="./a-demo-app.html#sec-demo_user_has_many_microposts">2.3.3</a> でも登場した、Railアプリケーションを対話的に操作するためのコマンドラインツールです。コンソールはインタラクティブRuby(<code>irb</code>) 上に構築されているため、Rubyの機能をすべて使うことができます (<a class="ref" href="./rails-flavored-ruby.html#sec-a_controller_class">4.4.4</a>でも説明しますが、コンソールからRails環境にアクセスすることもできます)。以下のコマンドをコマンドラインで実行し、Railsコンソールを起動しましょう。</p>
+<p>Ruby を学ぶためのツールとして、主に<em>Railsコンソール</em>を使用することにします。これは<a class="ref" href="./a-demo-app.html#sec-demo_user_has_many_microposts">2.3.3</a> でも登場した、Railsアプリケーションを対話的に操作するためのコマンドラインツールです。コンソールはインタラクティブRuby(<code>irb</code>) 上に構築されているため、Rubyの機能をすべて使うことができます (<a class="ref" href="./rails-flavored-ruby.html#sec-a_controller_class">4.4.4</a>でも説明しますが、コンソールからRails環境にアクセスすることもできます)。以下のコマンドをコマンドラインで実行し、Railsコンソールを起動しましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="go">Loading development environment</span>
@@ -267,7 +267,7 @@
 </div>
 
 
-<p>この章のコードを (ファイルに保存するのでなく) Railsコンソールに入力したりコピペしたりするときであれば、コメントを省略してもかまいません。コメントをRailsにコンソールに入力しても、コメントは常に無視されるので問題ありません。</p>
+<p>この章のコードを (ファイルに保存するのでなく) Railsコンソールに入力したりコピペしたりするときであれば、コメントを省略してもかまいません。コメントをRailsコンソールに入力しても、コメントは常に無視されるので問題ありません。</p>
 
 <div class="label" id="sec-strings"></div>
 
@@ -339,7 +339,7 @@
 </div>
 
 
-<p><code>puts</code> メソッドは<em>副作用</em>として動作します。<code>puts &quot;foo&quot;</code>は文字列をスクリーンに表示し、文字どおり「無を返します」(正確には<a href="http://www.answers.com/nil">nilというリテラル</a>を返します。<code>nil</code> は &quot;まったく無い&quot;ことを表すRubyの特別な値です)。(<code>=&gt; nil</code> という結果は、今後簡素化のために省略することがあります。)</p>
+<p><code>puts</code> メソッドは<em>副作用</em>が重要な役割を果たします。どういうことかと言うと、<code>puts &quot;foo&quot;</code>は文字列 <code>foo</code> を副作用としてスクリーンに表示しますが、返り値には「無」を返します (正確には<a href="http://www.answers.com/nil">nilというリテラル</a>を返します。<code>nil</code> は &quot;まったく無い&quot;ことを表すRubyの特別な値です)。(<code>=&gt; nil</code> という結果は、今後簡素化のために省略することがあります。)</p>
 
 <p><code>puts</code>を使用して出力すると、改行文字である<tt class="verb">\n</tt>が自動的に出力の末尾に追加されます。<code>print</code>メソッドも同様の出力を行いますが、以下のように、改行文字を追加しない点が異なります。</p>
 
@@ -624,7 +624,7 @@
 </div>
 
 
-<p>多くのコンピュータ言語の慣習と同様、 Rubyの配列も<em>ゼロオフセット</em>を採用しています。これは、配列の最初の要素のインデックスは0、2番目は1...と続くことを意味します。</p>
+<p>多くのコンピュータ言語の慣習と同様、 Rubyの配列も<em>ゼロオリジン</em>を採用しています。これは、配列の最初の要素のインデックスは0、2番目は1...と続くことを意味します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="o">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">17</span><span class="o">]</span>
 <span class="go">=&gt; [42, 8, 17]</span>
@@ -897,7 +897,7 @@ end
 </div>
 
 
-<p>ここではRubyにおける通常の慣習として、ハッシュの最初と最後に空白を追加しています。この空白はあってもなくてもよく、コンソールでは無視されます (なぜスペースを置くようになったのかはわかりません。おそらく初期の有力な Rubyプログラマが好んだ結果、慣習となったのでしょう)。</p>
+<p>ここではRubyにおける慣習として、ハッシュの最初と最後に空白を追加しています。この空白はあってもなくてもよく、コンソールでは無視されます (なぜスペースを置くようになったのかはわかりません。おそらく初期の有力な Rubyプログラマが好んだ結果、慣習となったのでしょう)。</p>
 
 <p>ここまではハッシュのキーとして文字列を使用していましたが、Railsでは文字列よりも<em>シンボル</em>を使用する方が普通です。シンボルは文字列と似ていますが、クォートで囲む代わりにコロンが前に置かれている点が異なります。たとえば、<code>:name</code>はシンボルです。もちろん、余計なことを一切考えずに、シンボルを単なる文字列とみなしても構いません<sup class="footnote" id="fnref-4_9"><a href="./rails-flavored-ruby.html#fn-4_9">9</a></sup>。</p>
 
@@ -913,7 +913,7 @@ end
 </div>
 
 
-<p>シンボルは、Ruby以外ではごく一部の言語にしか採用されていない特殊なデータ形式です。最初は奇妙に思うかもしれませんが、Railsではシンボルをふんだんに使用していますので、すぐに慣れるでしょう。</p>
+<p>シンボルは、Ruby以外ではごく一部の言語にしか採用されていない特殊なデータ形式です。最初は奇妙に思うかもしれませんが、Railsではシンボルをふんだんに使用しているので、すぐに慣れるでしょう。</p>
 
 <p>ハッシュのキーとしてシンボルを採用する場合、<code>user</code> のハッシュは以下のように定義できます。</p>
 
@@ -948,7 +948,7 @@ end
 </div>
 
 
-<p>この構成は、JavaScriptなどの他の言語でのハッシュ記法により近いものになっており、Railsコミュニティでも人気が高まっています。どちらの記法もよく使われているので、両方の見分けがつくことが重要です。本書の他の章では、ほとんどの場合新しい記法でハッシュを記述しています。この記法はRuby 1.8.7以前では動作しないのでご注意ください。もし古いバージョンのRubyを使用している場合は、Ruby 1.9に更新する (推奨) か、古い記法に書き換えてください。</p>
+<p>この構成は、JavaScriptなど他の言語のハッシュ記法により近いものになっており、Railsコミュニティでも人気が高まっています。どちらの記法もよく使われているので、両方の見分けがつくことが重要です。本書の他の章では、ほとんどの場合新しい記法でハッシュを記述しています。この記法はRuby 1.8.7以前では動作しないのでご注意ください。もし古いバージョンのRubyを使用している場合は、Ruby 1.9に更新する (推奨) か、古い記法に書き換えてください。</p>
 
 <p><a class="ref" href="./rails-flavored-ruby.html#code-nested_hashes">リスト4.6</a>に示したように、ハッシュの値にはほぼ何でも使用することができ、他のハッシュを使用することすらできます。</p>
 
@@ -1102,7 +1102,7 @@ end
 
 <p>上のコードでは、文字列が<code>class</code>メソッドに応答しており、その文字列が所属するクラスを単に返していることがわかります。</p>
 
-<p>暗黙のリテラルコンストラクタを使う代わりに、明示的に同等の<em>名前付きコンストラクタ</em>を使うことができます。名前付きコンストラクタは、クラス名に対して<code>new</code>メソッドを呼びだします<sup class="footnote" id="fnref-4_10"><a href="./rails-flavored-ruby.html#fn-4_10">10</a></sup>。</p>
+<p>暗黙のリテラルコンストラクタを使う代わりに、明示的に同等の<em>名前付きコンストラクタ</em>を使うことができます。名前付きコンストラクタは、クラス名に対して<code>new</code>メソッドを呼び出します<sup class="footnote" id="fnref-4_10"><a href="./rails-flavored-ruby.html#fn-4_10">10</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="nb">String</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;foobar&quot;</span><span class="p">)</span>   <span class="c1"># 文字列の名前付きコンストラクタ</span>
 <span class="go">=&gt; &quot;foobar&quot;</span>
@@ -1212,7 +1212,7 @@ end
 </div></div>
 
 
-<p><a class="ref" href="./static-pages.html#sec-static_pages_with_rails">3.1.2</a>でも簡単に説明しましたが、上のコードの<code>Word &lt; String</code>は継承のためのRubyの記法です。こうすることで、新しい<code>palindrome?</code>メソッドだけではなく、Stringsクラスで使用できるすべてのメソッドをWordクラスに対しても使用できるようになります。</p>
+<p><a class="ref" href="./static-pages.html#sec-static_pages_with_rails">3.1.2</a>でも簡単に説明しましたが、上のコードの<code>Word &lt; String</code>は継承のためのRubyの記法です。こうすることで、新しい<code>palindrome?</code>メソッドだけではなく、Stringクラスで使用できるすべてのメソッドをWordクラスに対しても使用できるようになります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="no">Word</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;level&quot;</span><span class="p">)</span>    <span class="c1"># 新しいWordを作成し、&quot;level&quot; で初期化する</span>
 <span class="go">=&gt; &quot;level&quot;</span>
@@ -1473,7 +1473,7 @@ end
 <h2><a id="sec-4_5" href="./rails-flavored-ruby.html#sec-conclusion" class="heading"><span class="number">4.5</span>最後に</a></h2>
 
 
-<p>以上で、Ruby言語の概要の説明を終わります。<a class="ref" href="./filling-in-the-layout.html#top">第5章</a>では、この章で学んだ内容をサンプルアプリケーションの開発に生かしていきます。</p>
+<p>以上で、Ruby言語の概要の説明を終わります。<a class="ref" href="./filling-in-the-layout.html#top">第5章</a>では、この章で学んだ内容をサンプルアプリケーションの開発に活かしていきます。</p>
 
 <p><a class="ref" href="./rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>で作成した<code>example_user.rb</code>ファイルは今後使用することはありませんので、削除してください。</p>
 
