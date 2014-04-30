@@ -1548,7 +1548,7 @@
 </div></div>
 
 
-<p>他の認証用機能と同様に、<code>sign_out</code>もSessionsヘルパーモジュールの中に置きます。実装は極めてシンプルです。現在のユーザーを<code>nil</code>にし、<code>delete</code>メソッドを使用して、cookiesにあるセッションの記憶トークンを削除します (<a class="ref" href="./sign-in-sign-out.html#code-sign_out_method">リスト8.30</a>)。(直後に<code>destroy</code>アクションにリダイレクトされるので、現在のユーザーを<code>nil</code>にする必要は必ずしもありません。ただし、リダイレクトなしで<code>sign_out</code>を使用したい状況が今後発生するかもしれないので、そのときに役立つでしょう。)</p>
+<p>他の認証用機能と同様に、<code>sign_out</code>もSessionsヘルパーモジュールの中に置きます。実装は極めてシンプルです。現在のユーザーを<code>nil</code>にし、<code>delete</code>メソッドを使用して、cookiesにあるセッションの記憶トークンを削除します (<a class="ref" href="./sign-in-sign-out.html#code-sign_out_method">リスト8.30</a>)。(<code>destroy</code>アクション内ですぐにリダイレクトされるので、現在のユーザーを<code>nil</code>にする必要は必ずしもありません。ただし、リダイレクトなしで<code>sign_out</code>を使用したい状況が今後発生するかもしれないので、そのときに役立つでしょう。)</p>
 
 <div class="label" id="code-sign_out_method"></div>
 
