@@ -593,7 +593,7 @@
 
 <p>最初に<code>name</code>属性の存在を確認するテストを行いましょう。テスト駆動開発の最初のステップは<em>失敗する</em>テスト (<a class="ref" href="./static-pages.html#sec-TDD">3.2.1</a>) を書くことですが、今回は、適切なテストを書くための検証事項についてまだ十分に理解していないので、まず最初に検証を書きます。検証については、コンソールを使って理解することにします。次に、その検証をコメントアウトし、失敗するテストを書き、そして検証のコメントアウトを解除することで、そのテストをパスさせられるかどうかを確認します。この手続きは、このような単純なテストでは、大げさで気取ったものに感じられるかもしれません。しかし著者はこれまでに、実際には見当違いなことをテストしている「単純な」テストを山ほど見てきました。テスト駆動開発を慎重に進めることは、結局は「私たちが正しい事項をテストしている」という自信を得る為の<em>唯一の</em>方法なのです。(上で紹介したコメントアウトのテクニックは、コードはあってもテストがどこにもないような<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>ひどい</em></a>アプリケーションを急いで救出するときにも役に立ちます)。</p>
 
-<p>name属性の存在を検査する方法は、<a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.6</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="./rails-flavored-ruby.html#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波かっこを付けなくても問題ありません (<a class="ref" href="./filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
+<p>name属性の存在を検査する方法は、<a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.6</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="./rails-flavored-ruby.html#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波括弧を付けなくても問題ありません (<a class="ref" href="./filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
 
 <div class="label" id="code-validates_presence_of_name"></div>
 
@@ -607,7 +607,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.6</a>は一見魔法のように見えるかもしれませんが、<code>validates</code>は単なるメソッドです。かっこを使用して<a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.6</a>を同等のコードに書き換えたものを以下に示します。</p>
+<p><a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.6</a>は一見魔法のように見えるかもしれませんが、<code>validates</code>は単なるメソッドです。括弧を使用して<a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.6</a>を同等のコードに書き換えたものを以下に示します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span>
   <span class="n">validates</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">presence:</span> <span class="kp">true</span><span class="p">)</span>

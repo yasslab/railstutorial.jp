@@ -669,7 +669,7 @@
 
 <p>最初に<code>name</code>属性の存在を確認するテストを行いましょう。テスト駆動開発の最初のステップは<em>失敗する</em>テスト (<a class="ref" href="./static-pages.html#sec-TDD">3.2.1</a>) を書くことですが、今回は、適切なテストを書くための検証事項についてまだ十分に理解していないので、まず最初に検証を書きます。検証については、コンソールを使って理解することにします。次に、検証部分をコメントアウトし、失敗するテストを書いて、最後にコメントアウトを解除した検証でテストがパスするかどうかを確認します。この手続きは、このような単純なテストでは大げさで気取ったものに感じられるかもしれませんが、著者はこれまでにテストそのものが間違っている “単純な” テストを山ほど見てきました。テスト駆動開発を慎重に進めることは、テストが正しく進められているという自信を得る<em>唯一の</em>方法です (上で紹介したコメントアウトのテクニックは、コードはあってもテストがどこにもないような<a href="http://en.wiktionary.org/wiki/quelle_horreur"><em>ひどい</em></a>アプリケーションを急いで救出するときにも役に立ちます)。</p>
 
-<p>name属性の存在を検査する方法は、<a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.9</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="./rails-flavored-ruby.html#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波かっこを付けなくても問題ありません (<a class="ref" href="./filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
+<p>name属性の存在を検査する方法は、<a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.9</a>に示したとおり、<code>validates</code>メソッドに<code>presence: true</code>という引数を与えて使うことです。<code>presence: true</code>という引数は、要素がひとつの<em>オプションハッシュ</em>です。<a class="ref" href="./rails-flavored-ruby.html#sec-css_revisited">4.3.4</a>のようにメソッドの最後の引数としてハッシュを渡す場合、波括弧を付けなくても問題ありません (<a class="ref" href="./filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>でも説明したように、Railsのオプションハッシュは繰り返し登場するテーマです)。</p>
 
 <div class="label" id="code-validates_presence_of_name"></div>
 
@@ -685,7 +685,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.9</a>は一見魔法のように見えるかもしれません。しかし<code>attr_accessible</code>同様、<code>validates</code>もただのメソッドに過ぎません。かっこを使用して<a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.9</a>を同等のコードに書き換えたものを以下に示します。</p>
+<p><a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.9</a>は一見魔法のように見えるかもしれません。しかし<code>attr_accessible</code>同様、<code>validates</code>もただのメソッドに過ぎません。括弧を使用して<a class="ref" href="./modeling-users.html#code-validates_presence_of_name">リスト6.9</a>を同等のコードに書き換えたものを以下に示します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Base</span> 
   <span class="n">attr_accessible</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">)</span>

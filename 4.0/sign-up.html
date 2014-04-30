@@ -832,7 +832,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p>ここで、<code>expect</code>が<code>click_button</code>を中かっこで囲んでブロックになっていることに注目してください (<a class="ref" href="./rails-flavored-ruby.html#sec-blocks">4.3.2</a>)。これは<code>change</code>メソッドで役に立ちます。このメソッドはオブジェクトとシンボルを引数に取り、シンボルを呼び出した結果を計算してオブジェクト上のメソッドとします。これはブロックの前と後いずれについても行われます。つまり、以下のコードは</p>
+<p>ここで、<code>expect</code>が<code>click_button</code>を中括弧で囲んでブロックになっていることに注目してください (<a class="ref" href="./rails-flavored-ruby.html#sec-blocks">4.3.2</a>)。これは<code>change</code>メソッドで役に立ちます。このメソッドはオブジェクトとシンボルを引数に取り、シンボルを呼び出した結果を計算してオブジェクト上のメソッドとします。これはブロックの前と後いずれについても行われます。つまり、以下のコードは</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">expect</span> <span class="p">{</span> <span class="n">click_button</span> <span class="s2">&quot;Create my account&quot;</span> <span class="p">}</span><span class="o">.</span><span class="n">not_to</span> <span class="n">change</span><span class="p">(</span><span class="no">User</span><span class="p">,</span> <span class="ss">:count</span><span class="p">)</span>
 </pre></div>
