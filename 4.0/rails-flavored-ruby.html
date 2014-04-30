@@ -58,7 +58,7 @@
 </div>
 
 
-<p>ここでは、Railsの組み込み関数<code>stylesheet_link_tag</code> (詳細は<a href="http://api.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-stylesheet_link_tag">Rails API</a>を参照) を使用して、<code>application.css</code>をすべての<a href="http://www.w3.org/TR/CSS2/media.html">メディアタイプ</a>にインクルードしています (メディアタイプには、コンピュータの画面や印刷画面なども含まれます)。Rails開発経験者にとってこの行は実にシンプルですが、しかしここには少なくとも混乱を生じる可能性のあるRubyの概念が4つあります。Railsの組み込み関数、かっこを使わない関数呼び出し、シンボル、そしてハッシュです。これらの概念についてはこの章ですべて説明します。</p>
+<p>ここでは、Railsの組み込み関数<code>stylesheet_link_tag</code> (詳細は<a href="http://api.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html#method-i-stylesheet_link_tag">Rails API</a>を参照) を使用して、<code>application.css</code>をすべての<a href="http://www.w3.org/TR/CSS2/media.html">メディアタイプ</a>にインクルードしています (メディアタイプには、コンピュータの画面や印刷画面なども含まれます)。Rails開発経験者にとってこの行は実にシンプルですが、しかしここには少なくとも混乱を生じる可能性のあるRubyの概念が4つあります。Railsの組み込み関数、括弧を使わない関数呼び出し、シンボル、そしてハッシュです。これらの概念についてはこの章ですべて説明します。</p>
 
 <p>Railsのビューでは膨大な組み込み関数を使用することができますが、それに加えて新しい関数を作成することもできます。この関数は<em>ヘルパー</em>と呼ばれます。カスタムヘルパーを作成する方法を学ぶために、まず<a class="ref" href="./rails-flavored-ruby.html#code-application_layout_redux">リスト4.1</a>のタイトル行の部分に注目しましょう。</p>
 
@@ -643,7 +643,7 @@
 </div>
 
 
-<p>上で示したとおり、配列の要素にアクセスするには角かっこを使用します。Rubyでは、角かっこによるアクセス方法以外にも配列の要素にアクセスする方法が提供されています<sup class="footnote" id="fnref-4_6"><a href="./rails-flavored-ruby.html#fn-4_6">6</a></sup>。</p>
+<p>上で示したとおり、配列の要素にアクセスするには角括弧を使用します。Rubyでは、角括弧によるアクセス方法以外にも配列の要素にアクセスする方法が提供されています<sup class="footnote" id="fnref-4_6"><a href="./rails-flavored-ruby.html#fn-4_6">6</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>                  <span class="c1"># &#39;a&#39; の内容にご注目</span>
 <span class="go">=&gt; [42, 8, 17]</span>
@@ -737,13 +737,13 @@
 <span class="go">=&gt; 0..9</span>
 <span class="gp">&gt;&gt; </span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">9</span><span class="o">.</span><span class="n">to_a</span>              <span class="c1"># 配列でない数字の9にto_aを実行してしまった</span>
 <span class="go">NoMethodError: undefined method `to_a&#39; for 9:Fixnum</span>
-<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>            <span class="c1"># 範囲にto_aを実行するには丸かっこで囲む</span>
+<span class="gp">&gt;&gt; </span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>            <span class="c1"># 範囲にto_aを実行するには丸括弧で囲む</span>
 <span class="go">=&gt; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] </span>
 </pre></div>
 </div>
 
 
-<p><code>0..9</code> は範囲として有効ですが、上の2番目の表記ではメソッドを呼ぶ際にかっこを追加する必要があることを示しています。</p>
+<p><code>0..9</code> は範囲として有効ですが、上の2番目の表記ではメソッドを呼ぶ際に括弧を追加する必要があることを示しています。</p>
 
 <p>範囲は、配列の要素を取り出すのに便利です。</p>
 
@@ -796,7 +796,7 @@
 
 <p>上のコードは、範囲オブジェクトである<code>(1..5)</code>に対して<code>each</code>メソッドを呼び出します。そのときに、<code>{ |i| puts 2 * i }</code>というブロックを渡します。<code>|i|</code>では変数名が縦棒に囲まれていますが、これはブロック変数に対して使用するRubyの構文で、ブロックを操作するときに使用する変数を指定します。この場合、範囲オブジェクトの<code>each</code>メソッドは、<code>i</code>という1つのローカル変数を使用してブロックを操作できます。そして、範囲に含まれるそれぞれの値をこの変数に次々に代入してブロックを実行します。</p>
 
-<p>ブロックは波かっこ { } で囲んで示すことができますが、以下のようにdoとendで囲んで示すこともできます。</p>
+<p>ブロックは波括弧 { } で囲んで示すことができますが、以下のようにdoとendで囲んで示すこともできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
 <span class="gp">?</span><span class="gp">&gt; </span>  <span class="nb">puts</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span>
@@ -811,7 +811,7 @@
 </div>
 
 
-<p>ブロックには複数の行を記述できます (実際ほとんどの場合複数です)。<em>Rails チュートリアル</em>では、波かっこを短い1行のブロックに使用し、<code>do..end</code>記法を長い1行や複数行のブロックに使用するという、Ruby共通の慣習に従っています。</p>
+<p>ブロックには複数の行を記述できます (実際ほとんどの場合複数です)。<em>Rails チュートリアル</em>では、波括弧を短い1行のブロックに使用し、<code>do..end</code>記法を長い1行や複数行のブロックに使用するという、Ruby共通の慣習に従っています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">number</span><span class="o">|</span>
 <span class="gp">?</span><span class="gp">&gt; </span>  <span class="nb">puts</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">number</span>
@@ -902,9 +902,9 @@
 </div>
 
 
-<p>ハッシュは、キーと値のペアを波かっこで囲んで表記します。キーと値のペアを持たないかっこの組 (<code>{}</code>) は空のハッシュです。ここで重要なのは、ハッシュの波かっこは、ブロックの波かっことはまったく別物であるという点です (これは確かに紛らわしいものです) 。ハッシュは配列と似ていますが、1つの重要な違いとして、ハッシュでは要素の「並び順」が保証されないという点があります<sup class="footnote" id="fnref-4_8"><a href="./rails-flavored-ruby.html#fn-4_8">8</a></sup>。</p>
+<p>ハッシュは、キーと値のペアを波括弧で囲んで表記します。キーと値のペアを持たない括弧の組 (<code>{}</code>) は空のハッシュです。ここで重要なのは、ハッシュの波括弧は、ブロックの波括弧とはまったく別物であるという点です (これは確かに紛らわしいものです) 。ハッシュは配列と似ていますが、1つの重要な違いとして、ハッシュでは要素の「並び順」が保証されないという点があります<sup class="footnote" id="fnref-4_8"><a href="./rails-flavored-ruby.html#fn-4_8">8</a></sup>。</p>
 
-<p>ハッシュの要素を1つずつ角かっこを使って定義するよりも、キーと値をハッシュロケットと呼ばれる<code>=&gt;</code> によってリテラル表現するほうが簡単です。</p>
+<p>ハッシュの要素を1つずつ角括弧を使って定義するよりも、キーと値をハッシュロケットと呼ばれる<code>=&gt;</code> によってリテラル表現するほうが簡単です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;first_name&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Michael&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Hartl&quot;</span> <span class="p">}</span>
 <span class="go">=&gt; {&quot;last_name&quot;=&gt;&quot;Hartl&quot;, &quot;first_name&quot;=&gt;&quot;Michael&quot;}</span>
@@ -1053,9 +1053,9 @@
 </div>
 
 
-<p>上のコードは、その特別な関数を呼んでいます。しかし、ここで不思議な点がいくつもあります。まず、丸かっこがないのが不思議です。実は、Ruby では丸かっこは使用してもしなくても構いません。以下の2つの行は同等です。</p>
+<p>上のコードは、その特別な関数を呼んでいます。しかし、ここで不思議な点がいくつもあります。まず、丸括弧がないのが不思議です。実は、Ruby では丸括弧は使用してもしなくても構いません。以下の2つの行は同等です。</p>
 
-<div class="code"><div class="highlight"><pre><span class="c1"># 関数呼び出しの丸かっこは省略可能。</span>
+<div class="code"><div class="highlight"><pre><span class="c1"># 関数呼び出しの丸括弧は省略可能。</span>
 <span class="n">stylesheet_link_tag</span><span class="p">(</span><span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
                                    <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span>
 <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
@@ -1064,7 +1064,7 @@
 </div>
 
 
-<p>次に、<code>:media</code>引数はハッシュのようですが、波かっこがない点が不思議です。実は、ハッシュが関数呼び出しの<em>最後の</em>引数である場合は、波かっこを省略できます。以下の2つの行は同等です。</p>
+<p>次に、<code>:media</code>引数はハッシュのようですが、波括弧がない点が不思議です。実は、ハッシュが関数呼び出しの<em>最後の</em>引数である場合は、波括弧を省略できます。以下の2つの行は同等です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="c1"># 最後の引数がハッシュの場合、波括弧は省略可能。</span>
 <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
@@ -1501,7 +1501,7 @@
 
 <p><code>@name</code>変数に<code>&quot;Example User&quot;</code>という値を設定します。同様に<code>email</code>属性にも値を設定します。これらの値は<code>formatted_email</code>メソッドで使用されます。</p>
 
-<p><a class="ref" href="./rails-flavored-ruby.html#sec-css_revisited">4.3.4</a>では、最後のハッシュ引数の波かっこを省略できることを説明しました。それと同じ要領で<code>initialize</code>メソッドにハッシュを渡すことで、属性が定義済みの他のユーザーを作成することができます。</p>
+<p><a class="ref" href="./rails-flavored-ruby.html#sec-css_revisited">4.3.4</a>では、最後のハッシュ引数の波括弧を省略できることを説明しました。それと同じ要領で<code>initialize</code>メソッドにハッシュを渡すことで、属性が定義済みの他のユーザーを作成することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
 <span class="go">=&gt; #&lt;User:0x225167c @email=&quot;mhartl@example.com&quot;,
