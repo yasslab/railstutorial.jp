@@ -1692,28 +1692,29 @@ bundler_stubs/
 <h4><a id="sec-3_6_1_2" href="./static-pages.html#sec-binstubs" class="heading">binstubsオプション</a></h4>
 
 
-<p>RVMを使用していない場合でも、<code>bundle exec</code>を省略する方法があります。Bundlerは、関連するバイナリを以下のように作成することができます。</p>
+<p>RVMを使用していない場合でも、 <a href='https://github.com/mpapis/rubygems-bundler'>rubygems-bundler</a>というgemを使うことで、<code>bundle exec</code>を省略することができます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle --binstubs
-</pre></div>
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> gem install rubygems-bundler
+<span class="gp">$</span> gem regenerate_binstubs</pre></div>
 </div>
 
 
-<p>(実は、RVMを使用している場合でも、他のターゲットディレクトリに対してこのコマンドを使用します)。このコマンドは、アプリケーションの<code>bin/</code>ディレクトリに必要な実行ファイルをすべて作ります。これにより、以下のようにテストスイートを実行できます。</p>
+<p>上記の２つ目のコマンドを実行すると、ローカル環境に必要な全ての設定を自動で作成してくれます。このため、今後は以下のようにテストスイートを実行できます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">$</span> bin/rspec spec/
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rspec spec/
 </pre></div>
 </div>
 
 
 <p>同様に<code>rake</code>なども以下のように実行できます。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">$</span> bin/rake db:migrate
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> rake db:migrate
 </pre></div>
 </div>
 
 
-<p><a class="ref" href="./static-pages.html#sec-guard">3.6.2</a>の<code>guard</code>など、他の実行ファイルを追加する場合は、<tt class="verb">bundle</tt> <tt class="verb">--binstubs</tt>コマンドを再実行してください。</p>
+<p><a class="ref" href="./static-pages.html#sec-guard">3.6.2</a>の<code>guard</code>など、他の実行ファイルを追加した場合は、<tt class="verb">gem</tt> <tt class="verb"> regenerate_binstubs</tt>コマンドを再実行する必要があるかもしれません (ほとんどの場合、再実行しなくても問題ないとは思いますが、念のため)。
+</p>
 
 <p>本書の以後の章では、この節をスキップする方に配慮して明示的に<code>bundle exec</code>を与えてコマンドを実行するようにしています。もちろん、ご利用のシステムが適切に設定されていれば、bundle execを省略しても構いません。</p>
 
