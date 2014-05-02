@@ -1664,7 +1664,7 @@
 </div>
 
 
-<p>ここでは、formタグの内部で<code>data-remote=&quot;true&quot;</code>変数を設定しています。これは、JavaScriptによるフォーム操作を許可することをRailsに知らせるためのものです。以前のRailsでは完全なJavaScriptコードを挿入していましたが、現在のRails3ではこのようにHTMLプロパティを使用して簡単にJavaScriptを使用できます。Rails 3は、<a href="http://railscasts.com/episodes/205-unobtrusive-javascript"><em>JavaScriptを前面に出すべからず</em></a>という哲学に従っています。</p>
+<p>ここでは、formタグの内部で<code>data-remote=&quot;true&quot;</code>変数を設定しています。これは、JavaScriptによるフォーム操作を許可することをRailsに知らせるためのものです。以前のRailsでは完全なJavaScriptコードを挿入していましたが、Rails 3からは、このようにHTMLプロパティを使用して簡単にJavaScriptを使用できます。これは、<a href="http://railscasts.com/episodes/205-unobtrusive-javascript"><em>JavaScriptを前面に出すべからず</em></a>という哲学に従っています。</p>
 
 <p>フォームの更新が終わったので、今度はこれに対応するRelationshipsコントローラを改造して、Ajaxリクエストに応答できるようにしましょう。実は、Ajaxを使用するとテスティングがかなりトリッキーになってしまいます。Ajaxのテストはそれだけで大きなテーマなので、本格的に説明しようとすると本書の範囲を超えてしまいます。ここでは<a class="ref" href="./following-users.html#code-relationships_controller_spec_ajax">リスト11.37</a>のテストを使用しましょう。ここでは<code>xhr</code>メソッド (“XmlHttpRequest” の略です) を使用してAjaxリクエストを発行しています。以前の、<code>get</code>、<code>post</code>、<code>patch</code>、<code>delete</code>メソッドを使用したテストと比べてみてください。それから、Ajaxリクエストを受信したときに<code>create</code>アクションと<code>destroy</code>アクションが正常に動作することを確認します (Ajaxを多用するアプリケーションを徹底的にテストしたい方は、<a href="http://seleniumhq.org/">Selenium</a>と<a href="http://watir.com/">Watir</a>を参照してみてください)。</p>
 
