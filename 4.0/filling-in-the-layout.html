@@ -261,7 +261,7 @@
 <p><a class="ref" href="./filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>では、多くのHTML要素にCSSクラスを関連付けました。こうしておくことで、CSSベースでレイアウトを構成する際に高い柔軟性を与えてくれます。<a class="ref" href="./filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>で述べたように、これらのクラスの多くは、Twitterが作成したフレームワークである<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>特有のものです。Bootstrapを使用すると、洗練されたWebデザインとユーザーインターフェイス要素を簡単にHTML5アプリケーションに追加することができます。このセクションでは、サンプルアプリケーションにスタイルを追加するために、カスタムCSSルールとBootstrapを組み合わせます。
 </p>
 
-<p>最初に、<a class="ref" href="./filling-in-the-layout.html#code-bootstrap_sass">リスト5.3</a>で示しているようにBootstrapを追加しましょう。これは、<tt>bootstrap-sass</tt> gemを使用してRailsアプリケーションに導入できます。Bootstrapフレームワークでは、動的なスタイルシートを生成するために<a href="http://lesscss.org/">LESS CSS</a>言語を使用していますが、RailsのAsset Pipelineはデフォルトでは (LESSと非常によく似た) Sass言語をサポートします (<a class="ref" href="./filling-in-the-layout.html#sec-sass_and_the_asset_pipeline">5.2</a>)。そのため、<tt>bootstrap-sass</tt>は、LESSをSassへ変換し、必要なBootstrapファイルを現在のアプリケーションですべて利用できるようにします<sup class="footnote" id="fnref-5_5"><a href="./filling-in-the-layout.html#fn-5_5">5</a></sup>。</p>
+<p>最初に、<a class="ref" href="./filling-in-the-layout.html#code-bootstrap_sass">リスト5.3</a>で示しているようにBootstrapを追加しましょう。これは、<tt>bootstrap-sass</tt> gemを使用してRailsアプリケーションに導入できます (バージョンの不一致によるエラーを直すために、<a class="ref" href="./filling-in-the-layout.html#code-bootstrap_sass">リスト5.3</a>ではSprocketsのバージョンも固定しています。Sprocketsは、<a class="ref" href="./filling-in-the-layout.html#sec-sass_and_the_asset_pipeline">5.2</a>で紹介したアセットパイプラインの一部の機能です)。Bootstrapフレームワークでは、動的なスタイルシートを生成するために<a href="http://lesscss.org/">LESS CSS</a>言語を使用していますが、RailsのAsset Pipelineはデフォルトでは (LESSと非常によく似た) Sass言語をサポートします (<a class="ref" href="./filling-in-the-layout.html#sec-sass_and_the_asset_pipeline">5.2</a>)。そのため、<tt>bootstrap-sass</tt>は、LESSをSassへ変換し、必要なBootstrapファイルを現在のアプリケーションですべて利用できるようにします<sup class="footnote" id="fnref-5_5"><a href="./filling-in-the-layout.html#fn-5_5">5</a></sup>。</p>
 
 <div class="label" id="code-bootstrap_sass"></div>
 
@@ -272,8 +272,9 @@
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
 <span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
 
-<span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.2&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.0.4&#39;</span>
 <span class="n">gem</span> <span class="s1">&#39;bootstrap-sass&#39;</span><span class="p">,</span> <span class="s1">&#39;2.3.2.0&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;sprockets&#39;</span><span class="p">,</span> <span class="s1">&#39;2.11.0&#39;</span>
 <span class="o">.</span>
 <span class="o">.</span>
 <span class="o">.</span>
