@@ -79,7 +79,7 @@
 </div></div>
 
 
-<p>これに対応するアプリケーションコードは、Usersコントローラの<code>edit</code>アクションの中に書き込みます。ここでご注意いただきたいのは、<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>ではユーザー編集ページの正しいURIが/users/1/editとなっていることです (ユーザーのidが<tt>1</tt>の場合)。 ユーザーのidは<code>params[:id]</code>変数で取り出すことができるのを思い出してください。つまり、<a class="ref" href="./updating-showing-and-deleting-users.html#code-initial_edit_action">リスト9.2</a>のコードを使えばそのユーザーを指定できるということです。</p>
+<p>これに対応するアプリケーションコードは、Usersコントローラの<code>edit</code>アクションの中に書き込みます。ここで注意して頂きたいのは、<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>ではユーザー編集ページの正しいURIが/users/1/editとなっていることです (ユーザーのidが<tt>1</tt>の場合)。 ユーザーのidは<code>params[:id]</code>変数で取り出すことができるのを思い出してください。つまり、<a class="ref" href="./updating-showing-and-deleting-users.html#code-initial_edit_action">リスト9.2</a>のコードを使えばそのユーザーを指定できるということです。</p>
 
 <div class="label" id="code-initial_edit_action"></div>
 
@@ -648,7 +648,7 @@
 <h3><a id="sec-9_2_2" href="./updating-showing-and-deleting-users.html#sec-requiring_the_right_user" class="heading"><span class="number">9.2.2</span>正しいユーザーを要求する</a></h3>
 
 
-<p>当然のことですが、サインインを要求するだけでは十分ではありません。ユーザーが<em>自分自身の</em>情報以外の他ユーザーの情報を編集できないようにする必要もあります。これをテストするには、無効なユーザーとしてサインインしてから、<code>edit</code>アクションと <code>update</code>アクションにアクセスします (<a class="ref" href="./updating-showing-and-deleting-users.html#code-edit_update_wrong_user_tests">リスト9.14</a>)。ここで、ユーザーは他のユーザーのプロファイルを編集<em>しようとする</em>ことすらできないようにしないといけないという点にご注意ください。そこで、そのような場合にはユーザーをサインインページではなくルートURIに移動します。</p>
+<p>当然のことですが、サインインを要求するだけでは十分ではありません。ユーザーが<em>自分自身の</em>情報以外の他ユーザーの情報を編集できないようにする必要もあります。これをテストするには、無効なユーザーとしてサインインしてから、<code>edit</code>アクションと <code>update</code>アクションにアクセスします (<a class="ref" href="./updating-showing-and-deleting-users.html#code-edit_update_wrong_user_tests">リスト9.14</a>)。ここで、ユーザーは他のユーザーのプロファイルを編集<em>しようとする</em>ことすらできないようにしないといけないという点に注意してください。そこで、そのような場合にはユーザーをサインインページではなくルートURIに移動します。</p>
 
 <div class="label" id="code-edit_update_wrong_user_tests"></div>
 
@@ -1428,9 +1428,9 @@
 </div>
 
 
-<p>ここで<code>before(:all)</code>を使用して、ブロックにあるすべてのテストの前にサンプルユーザーを<em>一括</em>作成するようにしていることにご注目ください。これは、ユーザーを30人も作成するとシステムによっては速度が低下することがあり、それを防ぐためのものです。これと対になる<code>after(:all)</code>を使用して、完了後ユーザーをすべて削除します。</p>
+<p>ここで<code>before(:all)</code>を使用して、ブロックにあるすべてのテストの前にサンプルユーザーを<em>一括</em>作成するようにしていることに注目してください。これは、ユーザーを30人も作成するとシステムによっては速度が低下することがあり、それを防ぐためのものです。これと対になる<code>after(:all)</code>を使用して、完了後ユーザーをすべて削除します。</p>
 
-<p>ページネーションの<code>div</code>の表示テストと正しいユーザーのテストを<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_test">リスト9.33</a>に示します。<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_tests">リスト9.23</a>の<code>User.all</code>配列が<code>User.paginate(page: 1)</code>に置き換えられていることにご注目ください。この後お見せしますが、これはデータベースから最初の1ページを取り出す方法です。また、<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_test">リスト9.33</a>では、<code>before(:all)</code>との違いを強調するために<code>before(:each)</code>も使用しています。</p>
+<p>ページネーションの<code>div</code>の表示テストと正しいユーザーのテストを<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_test">リスト9.33</a>に示します。<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_tests">リスト9.23</a>の<code>User.all</code>配列が<code>User.paginate(page: 1)</code>に置き換えられていることに注目してください。この後お見せしますが、これはデータベースから最初の1ページを取り出す方法です。また、<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_test">リスト9.33</a>では、<code>before(:all)</code>との違いを強調するために<code>before(:each)</code>も使用しています。</p>
 
 <div class="label" id="code-will_paginate_test"></div>
 
@@ -1697,7 +1697,7 @@
 </div></div>
 
 
-<p>ここでは<code>toggle!</code>メソッドを使用して <code>admin</code>属性の状態を<code>false</code>から<code>true</code>に反転しています。また、以下の行にもご注目ください。</p>
+<p>ここでは<code>toggle!</code>メソッドを使用して <code>admin</code>属性の状態を<code>false</code>から<code>true</code>に反転しています。また、以下の行にも注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_admin</span> <span class="p">}</span>
 </pre></div>
@@ -1993,14 +1993,14 @@
 </div></div>
 
 
-<p><code>destroy</code>アクションでは、<code>find</code>メソッドと<code>destroy</code>メソッドを1行で書くために2つのメソッドを連結 (chain) している点にご注目ください。</p>
+<p><code>destroy</code>アクションでは、<code>find</code>メソッドと<code>destroy</code>メソッドを1行で書くために2つのメソッドを連結 (chain) している点に注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">destroy</span>
 </pre></div>
 </div>
 
 
-<p>既に、管理者のみがユーザーを削除できるように構成済みです。削除リンクは管理者にしか表示されません。残念なことに、実はまだ大きなセキュリティホールがあります。ある程度の腕前を持つ攻撃者なら、コマンドラインで<tt>DELETE</tt>リクエストを直接発行するという方法でサイトの全ユーザーを削除してしまうことができるでしょう。サイトを正しく防衛するには、<code>destroy</code>アクションにもアクセス制御を行う必要があります。そこで、管理者はユーザーを削除<em>できる</em>が一般ユーザーは<em>できない</em>ことをテストで確認しましょう。作成したテストを<a class="ref" href="./updating-showing-and-deleting-users.html#code-delete_destroy_test">リスト9.47</a>に示します。<a class="ref" href="./updating-showing-and-deleting-users.html#code-protected_edit_update_tests">リスト9.11</a>の<code>put</code>メソッドのときと同様、<code>delete</code>メソッドを使用して<tt>DELETE</tt>リクエストを指定のURI (ここでは<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>で要求されているユーザーパス) に直接発行していることにご注目ください。</p>
+<p>既に、管理者のみがユーザーを削除できるように構成済みです。削除リンクは管理者にしか表示されません。残念なことに、実はまだ大きなセキュリティホールがあります。ある程度の腕前を持つ攻撃者なら、コマンドラインで<tt>DELETE</tt>リクエストを直接発行するという方法でサイトの全ユーザーを削除してしまうことができるでしょう。サイトを正しく防衛するには、<code>destroy</code>アクションにもアクセス制御を行う必要があります。そこで、管理者はユーザーを削除<em>できる</em>が一般ユーザーは<em>できない</em>ことをテストで確認しましょう。作成したテストを<a class="ref" href="./updating-showing-and-deleting-users.html#code-delete_destroy_test">リスト9.47</a>に示します。<a class="ref" href="./updating-showing-and-deleting-users.html#code-protected_edit_update_tests">リスト9.11</a>の<code>put</code>メソッドのときと同様、<code>delete</code>メソッドを使用して<tt>DELETE</tt>リクエストを指定のURI (ここでは<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>で要求されているユーザーパス) に直接発行していることに注目してください。</p>
 
 <div class="label" id="code-delete_destroy_test"></div>
 
@@ -2312,7 +2312,7 @@
 <li id="fn-9_3">この動作の詳細を気にする必要はありません (悪いことをしているわけでもありません)。この詳細に関心を抱くのはRailsフレームワークそのものの開発者ぐらいであり、Railsでアプリケーションを開発する人にとっては重要ではありません。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_3">↑</a></li>
 <li id="fn-9_4">この節のコードは、<a href="http://thoughtbot.com/">thoughtbot</a>が作成した<a href="http://github.com/thoughtbot/clearance">Clearance</a> gemに合わせたものです。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_4">↑</a></li>
 <li id="fn-9_5">赤ちゃんの写真は<a href="http://www.flickr.com/photos/glasgows/338937124/">http://www.flickr.com/photos/glasgows/338937124/</a>より引用しました。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_5">↑</a></li>
-<li id="fn-9_6">この<code>user</code>という名前そのものはまったく重要ではないことにご注意ください。たとえばuserをfoobarに置き換え、<code>@users.each do |foobar|</code>と書いてから<code>render foobar</code>と呼び出しても問題なく動作します。重要なのは、そのオブジェクトそのものではなく、そのオブジェクトが属している<em>クラス</em> (この場合は<code>User</code>クラス) の方です。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_6">↑</a></li>
+<li id="fn-9_6">この<code>user</code>という名前そのものはまったく重要ではないことに注意してください。たとえばuserをfoobarに置き換え、<code>@users.each do |foobar|</code>と書いてから<code>render foobar</code>と呼び出しても問題なく動作します。重要なのは、そのオブジェクトそのものではなく、そのオブジェクトが属している<em>クラス</em> (この場合は<code>User</code>クラス) の方です。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_6">↑</a></li>
 <li id="fn-9_7"><tt>curl</tt>などのコマンドラインツールを使用すると、<tt>PUT</tt>リクエストをこの形式で送信することができます。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_7">↑</a></li>
 <li id="fn-9_8">http://api.rubyonrails.org/v3.2.0/classes/ActionDispatch/Request.html <a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_8">↑</a></li>
 </ol>

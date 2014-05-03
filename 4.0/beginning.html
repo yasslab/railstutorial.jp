@@ -16,7 +16,7 @@
 
 <p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。本書は「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったWeb開発を学びたいのだけれど、何から始めればよいのかを教えて欲しい」という要望に応えるために作成されました。<em>本書</em>を読み終わる頃には、自分の手でWebアプリケーションを開発するための技術のみならず、デプロイ(deploy: 本番環境でアプリを動かし、一般公開すること)を行なうための技術もすべて習得できます。Railsの教育エコシステムにはさらに高度な内容の書籍、ブログ、スクリーンキャストなどが数多くありますが、それらを読み解く力も身につきます。<em>Ruby on Railsチュートリアル</em>は最新のRails 4を使用していますので、Web開発の最前線を本書で学ぶことができます。(<em>Ruby on Railsチュートリアル</em>が最新版かどうかについては、本書の公式サイト(<a href="./">http://railstutorial.jp/</a>)でチェックすることができます。特に、本書をオフラインで読んでいる方は、本書が最新版かどうかを<a href="./book">http://railstutorial.jp/</a>にある<a href="./book">オンライン版のRailsチュートリアル</a>でご確認ください。</p>
 
-<p>(<em>注</em>: 今皆様が読んでいるこのチュートリアルは、Rails 4.0という<em>バージョン</em>に対応しています。本書はRails 3.2からRail 4.0へのバージョンアップにともなって改定されましたが、チュートリアルとしての<em>版(エディション)</em>は更新されていないことにご注意ください。Rails 4.0に対応するために行った変更の量がわずかで、本書の版を改めるには及ばないと判断したためです。本書はWeb開発へといざなう「チュートリアル」に徹しており、Railsの高度な内容にまでは踏み込んでいません。以前のRails 3.2対応版と今回のRails4.0対応版との差分が少ないのは、このような理由によるものです。もちろん、<a class="ref" href="./beginning.html#sidebar-diffs">コラム1.1</a>でも紹介しているとおり、細かな変更は多数あります。しかし、その中で重要な変更と呼べるのは、<a class="ref" href="./sign-up.html#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>と呼ばれるセキュリティ関係の新しい機能だけです。今後Railsで重要な変更が生じることがあれば、<em>Railsチュートリアル</em>の版を改訂するつもりです。新しい版では、<em>Turbolinks</em>、<em>Russian doll caching</em>、RSpec の新機能「<em>feature specs</em>」などについても取り上げる予定です。)</p>
+<p>(<em>注</em>: 今皆様が読んでいるこのチュートリアルは、Rails 4.0という<em>バージョン</em>に対応しています。本書はRails 3.2からRail 4.0へのバージョンアップにともなって改定されましたが、チュートリアルとしての<em>版(エディション)</em>は更新されていないことに注意してください。Rails 4.0に対応するために行った変更の量がわずかで、本書の版を改めるには及ばないと判断したためです。本書はWeb開発へといざなう「チュートリアル」に徹しており、Railsの高度な内容にまでは踏み込んでいません。以前のRails 3.2対応版と今回のRails4.0対応版との差分が少ないのは、このような理由によるものです。もちろん、<a class="ref" href="./beginning.html#sidebar-diffs">コラム1.1</a>でも紹介しているとおり、細かな変更は多数あります。しかし、その中で重要な変更と呼べるのは、<a class="ref" href="./sign-up.html#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>と呼ばれるセキュリティ関係の新しい機能だけです。今後Railsで重要な変更が生じることがあれば、<em>Railsチュートリアル</em>の版を改訂するつもりです。新しい版では、<em>Turbolinks</em>、<em>Russian doll caching</em>、RSpec の新機能「<em>feature specs</em>」などについても取り上げる予定です。)</p>
 
 <div class="label" id="sidebar-diffs"></div>
 
@@ -325,7 +325,7 @@
 
 <p>バージョン情報を確認してください。Rails 4ではRuby 1.9以降が必須であり、Ruby 2.0が最適です (Rails 4はRuby 1.8.7では動作しません)。本書では、Ruby 1.9.3または2.0.0を前提としますが、Ruby 1.9.2でも動作するはずです。</p>
 
-<p>OS X、またはLinuxを使う場合、<a href="http://rvm.io/">Ruby Version Manager (RVM)</a> または<a href="https://github.com/sstephenson/rbenv">rbenv</a>を使用してRubyをインストールすることを強くお勧めします。RVMを使うと、複数のRubyバージョンを共存させられるのでとても便利です (Windows上で動作する同様のソフトに<a href="http://github.com/vertiginous/pik">Pik</a>があります)。同じコンピュータ上で異なるバージョンのRubyやRailsを使い分けたい場合、これらのツールは特に重要です。残念ながら、RVMとrbenvは共存できませんのでご注意ください。著者は本書でRVMを使い続けているので、今回もRVMを使用します。rbenvもかなり評判がよいようなので、rbenvに慣れ親しんでいるか、rbenvに詳しい人が身近にいるのであればそちらをお使いいただいてもかまいません (訳注: 最近ではrbenvも有力です。rbenvのセットアップ方法については、こちらをご参照ください: <a href='https://gist.github.com/axross/8429061'>rbenvを使ったRailsチュートリアルの進め方</a>)。</p>
+<p>OS X、またはLinuxを使う場合、<a href="http://rvm.io/">Ruby Version Manager (RVM)</a> または<a href="https://github.com/sstephenson/rbenv">rbenv</a>を使用してRubyをインストールすることを強くお勧めします。RVMを使うと、複数のRubyバージョンを共存させられるのでとても便利です (Windows上で動作する同様のソフトに<a href="http://github.com/vertiginous/pik">Pik</a>があります)。同じコンピュータ上で異なるバージョンのRubyやRailsを使い分けたい場合、これらのツールは特に重要です。残念ながら、RVMとrbenvは共存できませんので注意してください。著者は本書でRVMを使い続けているので、今回もRVMを使用します。rbenvもかなり評判がよいようなので、rbenvに慣れ親しんでいるか、rbenvに詳しい人が身近にいるのであればそちらをお使いいただいてもかまいません (訳注: 最近ではrbenvも有力です。rbenvのセットアップ方法については、こちらをご参照ください: <a href='https://gist.github.com/axross/8429061'>rbenvを使ったRailsチュートリアルの進め方</a>)。</p>
 
 <p>Mac OS Xユーザーの場合、Xcodeという開発ツールのインストールが必要なことがあります。Xcodeはサイズが大きいので、それよりもずっとサイズの小さい<a href="https://developer.apple.com/downloads/">Command Line Tools for Xcode</a>をお勧めします<sup class="footnote" id="fnref-1_12"><a href="./beginning.html#fn-1_12">12</a></sup>。</p>
 
@@ -543,9 +543,9 @@ to see where a bundled</span> <span class="go">gem is installed.</span>
 </div></div>
 
 
-<p><a class="ref" href="./beginning.html#code-rails_command">リスト1.3</a>の下の方にご注目ください。<code>rails new</code>を実行すると、ファイルの作成後に<code>bundle install</code>コマンドが自動的に実行されています。もしbundle installが実行されていなくても心配はいりません。落ち着いて<a class="ref" href="./beginning.html#sec-bundler">1.2.4</a>の手順に従えば実行できます。</p>
+<p><a class="ref" href="./beginning.html#code-rails_command">リスト1.3</a>の下の方に注目してください。<code>rails new</code>を実行すると、ファイルの作成後に<code>bundle install</code>コマンドが自動的に実行されています。もしbundle installが実行されていなくても心配はいりません。落ち着いて<a class="ref" href="./beginning.html#sec-bundler">1.2.4</a>の手順に従えば実行できます。</p>
 
-<p><code>rails</code>コマンドによって非常に多くのファイルとディレクトリが作成されていることにご注目ください。ディレクトリとファイルの構造 (<a class="ref" href="./beginning.html#fig-directory_structure_rails">図1.2</a>) がこのように標準化されていることは数あるRailsの利点の1つであり、何もない状態から実際に動かせるアプリケーションをただちに作成することができます。さらに、この構造はすべてのRailsアプリに共通しているので、他の開発者の書いたコードの挙動を容易に推察できます。Railsがデフォルトで作成するファイルについては<a class="ref" href="./beginning.html#table-rails_directory_structure">表1.1</a>を参照してください。これらのファイルやディレクトリの目的については本書全体に渡って説明いたします。特に、<a class="ref" href="./filling-in-the-layout.html#sec-the_asset_pipeline">5.2.1</a>以降ではRails 3.1の新機能である<em>Asset Pipeline</em>の一部となる<code>app/assets</code>ディレクトリについて詳しく説明します。Asset Pipelineによって、CSS (Cascading Style Sheet) やJavaScriptファイルなどのアセットを簡単に編成したりデプロイすることができます。</p>
+<p><code>rails</code>コマンドによって非常に多くのファイルとディレクトリが作成されていることに注目してください。ディレクトリとファイルの構造 (<a class="ref" href="./beginning.html#fig-directory_structure_rails">図1.2</a>) がこのように標準化されていることは数あるRailsの利点の1つであり、何もない状態から実際に動かせるアプリケーションをただちに作成することができます。さらに、この構造はすべてのRailsアプリに共通しているので、他の開発者の書いたコードの挙動を容易に推察できます。Railsがデフォルトで作成するファイルについては<a class="ref" href="./beginning.html#table-rails_directory_structure">表1.1</a>を参照してください。これらのファイルやディレクトリの目的については本書全体に渡って説明いたします。特に、<a class="ref" href="./filling-in-the-layout.html#sec-the_asset_pipeline">5.2.1</a>以降ではRails 3.1の新機能である<em>Asset Pipeline</em>の一部となる<code>app/assets</code>ディレクトリについて詳しく説明します。Asset Pipelineによって、CSS (Cascading Style Sheet) やJavaScriptファイルなどのアセットを簡単に編成したりデプロイすることができます。</p>
 
 <div class="label" id="fig-directory_structure_rails"></div>
 
@@ -707,7 +707,7 @@ to see where a bundled</span> <span class="go">gem is installed.</span>
 </div>
 
 
-<p>この変更を行うと、Bundlerは<code>sqlite3</code> gemの<code>1.3.8</code>を強制的にインストールします。ここではさらに、SQLiteをdevelopment環境 (<a class="ref" href="./sign-up.html#sec-rails_environments">7.1.1</a>) でのみ使用するための指定も行なっていることにご注目ください。こうすることで、Heroku (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) で使用するデータベースソフトウェアと衝突する可能性を避けられます。</p>
+<p>この変更を行うと、Bundlerは<code>sqlite3</code> gemの<code>1.3.8</code>を強制的にインストールします。ここではさらに、SQLiteをdevelopment環境 (<a class="ref" href="./sign-up.html#sec-rails_environments">7.1.1</a>) でのみ使用するための指定も行なっていることに注目してください。こうすることで、Heroku (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) で使用するデータベースソフトウェアと衝突する可能性を避けられます。</p>
 
 <p><a class="ref" href="./beginning.html#code-gemfile_sqlite_version">リスト1.5</a>では他にもいくつかの変更を行なっています。</p>
 
@@ -986,7 +986,7 @@ doc/
 
 <p><code>-m</code>フラグは、コミットメッセージ (コミット内容の覚書) をその場で追加する場合に使用します。<code>-m</code>を省略した場合、<a class="ref" href="./beginning.html#sec-git_setup">1.3.1</a>で設定されたエディタが起動され、コミットメッセージの入力を求められます。</p>
 
-<p>ここでコミットについて少し解説しておきます。Gitにおけるコミットは、あくまで<em>ローカル</em>マシン上での操作であることにご注意ください。この点については、もう一つの有名なオープンソースバージョン管理システムであるSubversionとははっきり異なります。Gitの場合、コミットを実行してもリモート上にあるリポジトリを直接変更することはありません。Gitでは、ローカルでの変更保存 (<code>git commit</code>) と、リモート上のリポジトリへの変更反映 (<code>git push</code>) の2段階に分かれています。<a class="ref" href="./beginning.html#sec-git_commands">1.3.5</a>にはこのpushの例が記載されています。</p>
+<p>ここでコミットについて少し解説しておきます。Gitにおけるコミットは、あくまで<em>ローカル</em>マシン上での操作であることに注意してください。この点については、もう一つの有名なオープンソースバージョン管理システムであるSubversionとははっきり異なります。Gitの場合、コミットを実行してもリモート上にあるリポジトリを直接変更することはありません。Gitでは、ローカルでの変更保存 (<code>git commit</code>) と、リモート上のリポジトリへの変更反映 (<code>git push</code>) の2段階に分かれています。<a class="ref" href="./beginning.html#sec-git_commands">1.3.5</a>にはこのpushの例が記載されています。</p>
 
 <p>ちなみに、<code>log</code>コマンドでコミットメッセージの履歴を参照できます。</p>
 
@@ -1294,7 +1294,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p><tt>rails_12factor</tt> gemが追加されている点にご注目ください。これは画像やスタイルシートなどの静的なアセットを提供するためにHerokuで使用されます。</p>
+<p><tt>rails_12factor</tt> gemが追加されている点に注目してください。これは画像やスタイルシートなどの静的なアセットを提供するためにHerokuで使用されます。</p>
 
 <p><a class="ref" href="./beginning.html#sec-bundler">1.2.4</a>でも説明したように、アプリケーションが前提としているRubyのバージョンを明示的に指定するのはよい考えです。</p>
 

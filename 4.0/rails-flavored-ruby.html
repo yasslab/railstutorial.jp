@@ -50,7 +50,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./rails-flavored-ruby.html#code-application_layout_redux">リスト4.1</a>の以下の行にご注目ください。</p>
+<p><a class="ref" href="./rails-flavored-ruby.html#code-application_layout_redux">リスト4.1</a>の以下の行に注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">media:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
                                        <span class="s2">&quot;data-turbolinks-track&quot;</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="cp">%&gt;</span>
@@ -324,7 +324,7 @@
 </div>
 
 
-<p>最後の2つの結果は同等であることにご注目ください。なお、著者は後者の式展開が好みです。空白を<code>&quot; &quot;</code>という形式で加えるのはぎこちなく思えます。</p>
+<p>最後の2つの結果は同等であることに注目してください。なお、著者は後者の式展開が好みです。空白を<code>&quot; &quot;</code>という形式で加えるのはぎこちなく思えます。</p>
 
 <div class="label" id="sec-printing"></div>
 
@@ -427,7 +427,7 @@
 </div>
 
 
-<p><code>empty?</code>メソッドの末尾にある疑問符にご注目ください。これは Rubyの慣習で、<code>true</code> もしくは <code>false</code>という<em>論理値 (boolean)</em>を返すことを示します。論理値は特に<em>制御フロー</em>において有用です。</p>
+<p><code>empty?</code>メソッドの末尾にある疑問符に注目してください。これは Rubyの慣習で、<code>true</code> もしくは <code>false</code>という<em>論理値 (boolean)</em>を返すことを示します。論理値は特に<em>制御フロー</em>において有用です。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;foobar&quot;</span>
 <span class="gp">&gt;&gt; </span><span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">empty?</span>
@@ -557,7 +557,7 @@
 </div>
 
 
-<p>ここで、Rubyの関数は <em>暗黙の戻り値</em>を持つということにご注意ください。これは、最後に評価された式の値が自動的に返されることを意味します。この場合、引数の<code>string</code>が空かどうかに基づいた2つのメッセージ文字列のうちのいずれかが返されます。Rubyでは、戻り値を明示的に指定することもできます。以下の関数は上の関数と同じ結果を返します。</p>
+<p>ここで、Rubyの関数は <em>暗黙の戻り値</em>を持つということに注意してください。これは、最後に評価された式の値が自動的に返されることを意味します。この場合、引数の<code>string</code>が空かどうかに基づいた2つのメッセージ文字列のうちのいずれかが返されます。Rubyでは、戻り値を明示的に指定することもできます。以下の関数は上の関数と同じ結果を返します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="k">def</span> <span class="nf">string_message</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 <span class="gp">&gt;&gt; </span>  <span class="k">return</span> <span class="s2">&quot;It&#39;s an empty string!&quot;</span> <span class="k">if</span> <span class="n">string</span><span class="o">.</span><span class="n">empty?</span>
@@ -645,7 +645,7 @@
 
 <p>上で示したとおり、配列の要素にアクセスするには角括弧を使用します。Rubyでは、角括弧によるアクセス方法以外にも配列の要素にアクセスする方法が提供されています<sup class="footnote" id="fnref-4_6"><a href="./rails-flavored-ruby.html#fn-4_6">6</a></sup>。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>                  <span class="c1"># &#39;a&#39; の内容にご注目</span>
+<div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>                  <span class="c1"># &#39;a&#39; の内容に注目</span>
 <span class="go">=&gt; [42, 8, 17]</span>
 <span class="gp">&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">first</span>
 <span class="go">=&gt; 42</span>
@@ -693,7 +693,7 @@
 </div>
 
 
-<p>上のどのメソッドを実行した場合にも、<code>a</code>自身は変更されていないという点にご注目ください。配列の内容を<em>変更</em>したい場合は、そのメソッドに対応する “破壊的” メソッドを使用します。</p>
+<p>上のどのメソッドを実行した場合にも、<code>a</code>自身は変更されていないという点に注目してください。配列の内容を<em>変更</em>したい場合は、そのメソッドに対応する “破壊的” メソッドを使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">a</span>
 <span class="go">=&gt; [42, 8, 17]</span>
@@ -999,7 +999,7 @@
 </div>
 
 
-<p>ここで、配列の<code>each</code>メソッドでは、ブロックの変数は1つだけですが、ハッシュの<code>each</code>メソッドでは、ブロックの変数は<em>キー</em>と<em>値</em>の2つになっていることにご注意ください。従って、 ハッシュに対して<code>each</code>メソッドを実行すると、ハッシュの1つの「キーと値の<em>ペア</em>」ごとに処理を繰り返します。</p>
+<p>ここで、配列の<code>each</code>メソッドでは、ブロックの変数は1つだけですが、ハッシュの<code>each</code>メソッドでは、ブロックの変数は<em>キー</em>と<em>値</em>の2つになっていることに注意してください。従って、 ハッシュに対して<code>each</code>メソッドを実行すると、ハッシュの1つの「キーと値の<em>ペア</em>」ごとに処理を繰り返します。</p>
 
 <p>最後の例として、便利な<code>inspect</code>メソッドを紹介します。これは要求されたオブジェクトを表現する文字列を返します。</p>
 
@@ -1290,7 +1290,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/word_inheritance_ruby_1_9.png" alt="word_inheritance_ruby_1_9" /></span></div><div class="caption"><span class="header">図4.2</span><span class="description"><a class="ref" href="./rails-flavored-ruby.html#code-word_class">リスト4.8</a>の (組み込みではない) <code>Word</code>クラスの継承階層</span>。</div></div>
 
 
-<p><a class="ref" href="./rails-flavored-ruby.html#code-word_class">リスト4.8</a>では、単語の文字を逆順にしたものが元の単語と同じであるかどうかのチェックを、<code>Word</code>クラスの中から自分自身が持つ単語にアクセスすることで行なっていることにご注目ください。Rubyでは、<code>self</code>キーワードを使用してこれを指定することができます。<code>Word</code>クラスの中では、<code>self</code>はオブジェクト自身を指します。これはつまり、以下のコードを使用して、</p>
+<p><a class="ref" href="./rails-flavored-ruby.html#code-word_class">リスト4.8</a>では、単語の文字を逆順にしたものが元の単語と同じであるかどうかのチェックを、<code>Word</code>クラスの中から自分自身が持つ単語にアクセスすることで行なっていることに注目してください。Rubyでは、<code>self</code>キーワードを使用してこれを指定することができます。<code>Word</code>クラスの中では、<code>self</code>はオブジェクト自身を指します。これはつまり、以下のコードを使用して、</p>
 
 <div class="code"><div class="highlight"><pre><span class="nb">self</span> <span class="o">==</span> <span class="nb">self</span><span class="o">.</span><span class="n">reverse</span>
 </pre></div>
@@ -1344,7 +1344,7 @@
 </div>
 
 
-<p>スペースが集まってできた文字列は<em>空 (empty) </em>とは認識されませんが、<em>空白 (blank) </em>であると認識されていることがわかります。ここで、<code>nil</code>は空白と認識されることにご注意ください。<code>nil</code>は文字列ではないので、Railsが実は<code>blank?</code>メソッドを<code>String</code>クラスではなく、そのさらに上の基底クラスに追加していることが推測できます。その基底クラスとは、(この章の最初で説明した) <code>Object</code>自身です。RailsによってRubyの組み込みクラスに追加が行われている例については、<a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>で説明します。</p>
+<p>スペースが集まってできた文字列は<em>空 (empty) </em>とは認識されませんが、<em>空白 (blank) </em>であると認識されていることがわかります。ここで、<code>nil</code>は空白と認識されることに注意してください。<code>nil</code>は文字列ではないので、Railsが実は<code>blank?</code>メソッドを<code>String</code>クラスではなく、そのさらに上の基底クラスに追加していることが推測できます。その基底クラスとは、(この章の最初で説明した) <code>Object</code>自身です。RailsによってRubyの組み込みクラスに追加が行われている例については、<a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>で説明します。</p>
 
 <div class="label" id="sec-a_controller_class"></div>
 

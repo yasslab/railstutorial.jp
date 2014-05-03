@@ -346,7 +346,7 @@
 
 <p>上は<a class="ref" href="./modeling-users.html#sec-finding_user_objects">6.1.4</a>で使用したものです (技術的な補足: <code>params[:id]</code>は文字列型の <code>&quot;1&quot;</code> ですが、<code>find</code>メソッドでは自動的に整数型に変換されます)。</p>
 
-<p>ユーザーのビューとアクションが定義されたので、URI <a href="http://localhost:3000/users/1">/users/1</a>は完全に動作するようになりました (<a class="ref" href="./sign-up.html#fig-user_show_rails_3">図7.6</a>)。<a class="ref" href="./sign-up.html#fig-user_show_rails_3">図7.6</a>のデバッグ情報で<code>params[:id]</code>の値を確認できることにもご注目ください。</p>
+<p>ユーザーのビューとアクションが定義されたので、URI <a href="http://localhost:3000/users/1">/users/1</a>は完全に動作するようになりました (<a class="ref" href="./sign-up.html#fig-user_show_rails_3">図7.6</a>)。<a class="ref" href="./sign-up.html#fig-user_show_rails_3">図7.6</a>のデバッグ情報で<code>params[:id]</code>の値を確認できることにも注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nn">---</span>
 <span class="l-Scalar-Plain">action</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">show</span>
@@ -1356,7 +1356,7 @@
 
 <p><a class="ref" href="./modeling-users.html#sec-presence_validation">6.2.2</a>でも簡単に説明しましたが、<code>errors.full_messages</code>オブジェクトにはエラーメッセージの配列が含まれています。</p>
 
-<p>上のコンソールセッションに示されているように、<a class="ref" href="./sign-up.html#code-first_create_action">リスト7.21</a>で保存に失敗すると、<code>@user</code>オブジェクトに関連付けられたエラーメッセージの一覧が生成されます。このメッセージをブラウザで表示するには、ユーザーの<code>new</code>ページでエラーメッセージのパーシャル (partial) を出力します。<a class="ref" href="./sign-up.html#code-f_error_messages">リスト7.22</a>に示します。(このエラーメッセージのテストを行うのはよいことですが、演習の課題としてあえて残しておきます。<a class="ref" href="./sign-up.html#sec-signup_exercises">7.6</a>を参照してください。) ここで使用しているエラーメッセージのパーシャルはあくまで試作品である点にご注意ください。最終版は<a class="ref" href="./user-microposts.html#sec-creating_microposts">10.3.2</a>を参照してください。</p>
+<p>上のコンソールセッションに示されているように、<a class="ref" href="./sign-up.html#code-first_create_action">リスト7.21</a>で保存に失敗すると、<code>@user</code>オブジェクトに関連付けられたエラーメッセージの一覧が生成されます。このメッセージをブラウザで表示するには、ユーザーの<code>new</code>ページでエラーメッセージのパーシャル (partial) を出力します。<a class="ref" href="./sign-up.html#code-f_error_messages">リスト7.22</a>に示します。(このエラーメッセージのテストを行うのはよいことですが、演習の課題としてあえて残しておきます。<a class="ref" href="./sign-up.html#sec-signup_exercises">7.6</a>を参照してください。) ここで使用しているエラーメッセージのパーシャルはあくまで試作品である点に注意してください。最終版は<a class="ref" href="./user-microposts.html#sec-creating_microposts">10.3.2</a>を参照してください。</p>
 
 <div class="label" id="code-f_error_messages"></div>
 
@@ -1380,7 +1380,7 @@
 </div></div>
 
 
-<p>ここでは、<code>’shared/error_messages’</code>というパーシャルを<code>出力 (レンダリング) </code>している点にご注目ください。これはRails全般の慣習で、パーシャルは複数のコントローラにわたるビューに対し、専用の<code>shared/</code>ディレクトリを使用するようにしています (これは<a class="ref" href="./updating-showing-and-deleting-users.html#sec-edit_form">9.1.1</a>で実現します)。 つまり、<code>app/views/shared</code>ディレクトリと<code>_error_messages.html.erb</code>パーシャルファイルの両方を作成する必要があるということです。パーシャル自身の内容を<a class="ref" href="./sign-up.html#code-errors_partial">リスト7.23</a>に示します。</p>
+<p>ここでは、<code>’shared/error_messages’</code>というパーシャルを<code>出力 (レンダリング) </code>している点に注目してください。これはRails全般の慣習で、パーシャルは複数のコントローラにわたるビューに対し、専用の<code>shared/</code>ディレクトリを使用するようにしています (これは<a class="ref" href="./updating-showing-and-deleting-users.html#sec-edit_form">9.1.1</a>で実現します)。 つまり、<code>app/views/shared</code>ディレクトリと<code>_error_messages.html.erb</code>パーシャルファイルの両方を作成する必要があるということです。パーシャル自身の内容を<a class="ref" href="./sign-up.html#code-errors_partial">リスト7.23</a>に示します。</p>
 
 <div class="label" id="code-errors_partial"></div>
 
@@ -1643,7 +1643,7 @@
 </div>
 
 
-<p>(ハッシュの<code>:success</code>キーはシンボルである点にご注目ください。Rubyはシンボルを自動的に <code>&quot;success&quot;</code> という文字列に変換してからテンプレートに挿入します。) 使用するすべてのキーと値を列挙する理由は、他のフラッシュメッセージも使えるようにするためです。たとえば、<a class="ref" href="./sign-in-sign-out.html#sec-rendering_with_a_flash_message">8.1.5</a>では<code>flash[:error]</code>を使用してサインインに失敗したことを表すメッセージを表示します<sup class="footnote" id="fnref-7_10"><a href="./sign-up.html#fn-7_10">10</a></sup>。</p>
+<p>(ハッシュの<code>:success</code>キーはシンボルである点に注目してください。Rubyはシンボルを自動的に <code>&quot;success&quot;</code> という文字列に変換してからテンプレートに挿入します。) 使用するすべてのキーと値を列挙する理由は、他のフラッシュメッセージも使えるようにするためです。たとえば、<a class="ref" href="./sign-in-sign-out.html#sec-rendering_with_a_flash_message">8.1.5</a>では<code>flash[:error]</code>を使用してサインインに失敗したことを表すメッセージを表示します<sup class="footnote" id="fnref-7_10"><a href="./sign-up.html#fn-7_10">10</a></sup>。</p>
 
 <p>フラッシュメッセージが正しく表示されているかどうかのテストは演習に回します (<a class="ref" href="./sign-up.html#sec-signup_exercises">7.6</a>)。<a class="ref" href="./sign-up.html#code-signup_flash">リスト7.27</a>のように、<code>create</code>アクションで<code>flash[:success]</code>にウェルカムメッセージを割り当てれば 、テストにパスするようになります。</p>
 
@@ -1774,7 +1774,7 @@
 </div>
 
 
-<p><a class="ref" href="./sign-up.html#fig-signup_in_production">Figure 7.22</a>では、通常の<tt>http://</tt>ではなく<tt>https://</tt>になっていることにご注目ください。この余分な ‘s’ はSSLが有効であることを表しています。</p>
+<p><a class="ref" href="./sign-up.html#fig-signup_in_production">Figure 7.22</a>では、通常の<tt>http://</tt>ではなく<tt>https://</tt>になっていることに注目してください。この余分な ‘s’ はSSLが有効であることを表しています。</p>
 
 <p>今や好きなだけユーザー登録ページを表示して新規ユーザーを作成できます。何か問題が生じた場合は、以下を実行して</p>
 

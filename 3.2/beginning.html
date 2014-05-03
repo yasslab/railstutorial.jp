@@ -489,7 +489,7 @@ to see where a bundled gem is installed.</span>
 
 <p><a class="ref" href="./beginning.html#code-rails_command">Listing 1.3</a>の下の方に注目してください。<code>rails new</code>を実行すると、ファイルの作成後に<code>bundle install</code>コマンドが自動的に実行されています。もしbundle installが実行されていなくても心配はいりません。落ち着いて<a class="ref" href="./beginning.html#sec-bundler">1.2.4</a>の手順に従えば実行できます。</p>
 
-<p><code>rails</code>コマンドによって非常に多くのファイルとディレクトリが作成されていることにご注目ください。ディレクトリとファイルの構造 (<a class="ref" href="./beginning.html#fig-directory_structure_rails_3_2">図1.2</a>) がこのように標準化されていることは数あるRailsの利点の１つであり、実際に動作するアプリケーションを何も無い状態からただちに作成することができるのです。さらに、この構造はすべてのRailsアプリに共通しているので、他の開発者の書いたコードの挙動を容易に推察できます。Railsがデフォルトで作成するファイルについては<a class="ref" href="./beginning.html#table-rails_directory_structure">表1.1</a>を参照してください。本書を通してこれらのファイルやディレクトリの目的を学んでいきます。特に、<a class="ref" href="./filling-in-the-layout.html#sec-the_asset_pipeline">5.2.1</a>以降ではRails 3.1の新機能である<em>アセットパイプライン</em>の一部となる<code>app/assets</code>ディレクトリについて詳しく説明します。アセットパイプラインによって、CSS (Cascading Style Sheet) やJavaScriptファイルなどのアセットを簡単に編成したりデプロイすることができます。</p>
+<p><code>rails</code>コマンドによって、非常に多くのファイルとディレクトリが作成されていることに注目してください。ディレクトリとファイルの構造 (<a class="ref" href="./beginning.html#fig-directory_structure_rails_3_2">図1.2</a>) がこのように標準化されていることは数あるRailsの利点の１つであり、実際に動作するアプリケーションを何も無い状態からただちに作成することができるのです。さらに、この構造はすべてのRailsアプリに共通しているので、他の開発者の書いたコードの挙動を容易に推察できます。Railsがデフォルトで作成するファイルについては<a class="ref" href="./beginning.html#table-rails_directory_structure">表1.1</a>を参照してください。本書を通してこれらのファイルやディレクトリの目的を学んでいきます。特に、<a class="ref" href="./filling-in-the-layout.html#sec-the_asset_pipeline">5.2.1</a>以降ではRails 3.1の新機能である<em>アセットパイプライン</em>の一部となる<code>app/assets</code>ディレクトリについて詳しく説明します。アセットパイプラインによって、CSS (Cascading Style Sheet) やJavaScriptファイルなどのアセットを簡単に編成したりデプロイすることができます。</p>
 
 <div class="label" id="fig-directory_structure_rails_3_2"></div>
 
@@ -667,7 +667,7 @@ to see where a bundled gem is installed.</span>
 </div>
 
 
-<p><code>coffee-rails</code> (これもアセットパイプラインで使用するgemです) のバージョンが<code>3.3</code> より小さい場合にインストールします。つまり、<tt class="verb">&gt;=</tt>と書くと必ずアップグレードが行われますが、<tt class="verb">~&gt; 3.2.2</tt>と書くとマイナーなアップグレードしか行われないことになります。この場合<code>3.2.1</code> から<code>3.2.2</code>へのアップグレードは行われますが、<code>3.2</code>から <code>3.3</code>へのアップグレードは行われません。経験上、残念ながらマイナーアップグレードですら問題を引き起こすことがあります。このため、<em>Railsチュートリアル</em>では基本的にすべてのgemでバージョンをピンポイントで指定してます。(例外として、執筆時点でベータ版やRC (Release Candidate) 版のgemについては<tt class="verb">~&gt;</tt>を使用し、最終版がリリースされたときに読み込まれるようにしてあります。) 主にベテラン開発者の方へ: <code>Gemfile</code>で<tt class="verb">~&gt;</tt>が指定されているgemも含め、基本的にはなるべく最新のgemを使用してください。ただし、それによって本書に記載されているのと異なる挙動を示す可能性がある点にご注意ください。</p>
+<p><code>coffee-rails</code> (これもアセットパイプラインで使用するgemです) のバージョンが<code>3.3</code> より小さい場合にインストールします。つまり、<tt class="verb">&gt;=</tt>と書くと必ずアップグレードが行われますが、<tt class="verb">~&gt; 3.2.2</tt>と書くとマイナーなアップグレードしか行われないことになります。この場合<code>3.2.1</code> から<code>3.2.2</code>へのアップグレードは行われますが、<code>3.2</code>から <code>3.3</code>へのアップグレードは行われません。経験上、残念ながらマイナーアップグレードですら問題を引き起こすことがあります。このため、<em>Railsチュートリアル</em>では基本的にすべてのgemでバージョンをピンポイントで指定してます。(例外として、執筆時点でベータ版やRC (Release Candidate) 版のgemについては<tt class="verb">~&gt;</tt>を使用し、最終版がリリースされたときに読み込まれるようにしてあります。) 主にベテラン開発者の方へ: <code>Gemfile</code>で<tt class="verb">~&gt;</tt>が指定されているgemも含め、基本的にはなるべく最新のgemを使用してください。ただし、それによって本書に記載されているのと異なる挙動を示す可能性がある点に注意してください。</p>
 
 <p><code>Gemfile</code>を正しく設定した後、<code>bundle update</code><sup class="footnote" id="fnref-1_14"><a href="./beginning.html#fn-1_14">14</a></sup>と<code>bundle install</code>を使用してgemをインストールします。</p>
 

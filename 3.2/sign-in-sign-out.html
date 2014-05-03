@@ -152,7 +152,7 @@
 </div></div>
 
 
-<p>最後に、サインインページを新規に定義します。このページは新規セッション用なので、今から作成するサインインページを<code>app/views/sessions/new.html.erb</code>に置くことにご注目ください。<a class="ref" href="./sign-in-sign-out.html#code-initial_signin_page">リスト 8.4</a>に示したように、今の時点ではタイトルと一番上のヘッダ部分のみを定義します。</p>
+<p>最後に、サインインページを新規に定義します。このページは新規セッション用なので、今から作成するサインインページを<code>app/views/sessions/new.html.erb</code>に置くことに注目してください。<a class="ref" href="./sign-in-sign-out.html#code-initial_signin_page">リスト 8.4</a>に示したように、今の時点ではタイトルと一番上のヘッダ部分のみを定義します。</p>
 
 <div class="label" id="code-initial_signin_page"></div>
 
@@ -300,7 +300,7 @@
 </div>
 
 
-<p>アンカータグ<code>a</code>に<code>href</code> (URI) 属性を追加することもできます (この例では、ユーザープロファイルへのリンク)。上のテストでは、<code>upcase</code>メソッドを使用してユーザーのメールアドレスを大文字に変換することで、大文字小文字を区別しないデータベースが使用されている場合であってもユーザーを確実に検索できるように配慮してあることにご注目ください。</p>
+<p>アンカータグ<code>a</code>に<code>href</code> (URI) 属性を追加することもできます (この例では、ユーザープロファイルへのリンク)。上のテストでは、<code>upcase</code>メソッドを使用してユーザーのメールアドレスを大文字に変換することで、大文字小文字を区別しないデータベースが使用されている場合であってもユーザーを確実に検索できるように配慮してあることに注目してください。</p>
 
 <div class="label" id="sec-signin_form"></div>
 
@@ -365,7 +365,7 @@
 </div></div>
 
 
-<p>ユーザーにとって便利なように、ユーザー登録ページのリンクを追加してあることにご注目ください。<a class="ref" href="./sign-in-sign-out.html#code-signin_form">リスト 8.7</a>のコードで生成されるサインインフォームを<a class="ref" href="./sign-in-sign-out.html#fig-signin_form">図 8.4</a>に示します。</p>
+<p>ユーザーにとって便利なように、ユーザー登録ページのリンクを追加してあることに注目してください。<a class="ref" href="./sign-in-sign-out.html#code-signin_form">リスト 8.7</a>のコードで生成されるサインインフォームを<a class="ref" href="./sign-in-sign-out.html#fig-signin_form">図 8.4</a>に示します。</p>
 
 <div class="label" id="fig-signin_form"></div>
 
@@ -437,7 +437,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/initial_failed_signin_rails_3_bootstrap.png" alt="initial_failed_signin_rails_3_bootstrap" /></span></div><div class="caption"><span class="header">図8.5</span><span class="description"><a class="ref" href="./sign-in-sign-out.html#code-initial_create_session">リスト8.9</a>の<code>create</code>へのサインイン失敗結果。<a href="../images/figures/initial_failed_signin_rails_3_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p><a class="ref" href="./sign-in-sign-out.html#fig-initial_failed_signin_rails_3">図8.5</a> に表示されているデバッグ情報にご注目ください。<a class="ref" href="./sign-in-sign-out.html#sec-signin_form">8.1.3</a> の終わりにもヒントがありましたが、<code>params</code>ハッシュはメールアドレスとパスワードを以下のように<code>:session</code>キーの下に持ちます。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#fig-initial_failed_signin_rails_3">図8.5</a> に表示されているデバッグ情報に注目してください。<a class="ref" href="./sign-in-sign-out.html#sec-signin_form">8.1.3</a> の終わりにもヒントがありましたが、<code>params</code>ハッシュはメールアドレスとパスワードを以下のように<code>:session</code>キーの下に持ちます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nn">---</span>
 <span class="l-Scalar-Plain">session</span><span class="p-Indicator">:</span>
@@ -798,7 +798,7 @@
 </div>
 
 
-<p>次に、上で生成されたマイグレーションに<a class="ref" href="./sign-in-sign-out.html#code-add_remember_token_to_users">リスト8.16</a>のコードを記入します。ユーザーを記憶トークンで検索できるように、インデックス (<a class="ref" href="./modeling-users.html#sidebar-database_indices">コラム 6.2</a>) を<code>remember_token</code>カラムに追加していることにご注目ください。</p>
+<p>次に、上で生成されたマイグレーションに<a class="ref" href="./sign-in-sign-out.html#code-add_remember_token_to_users">リスト8.16</a>のコードを記入します。ユーザーを記憶トークンで検索できるように、インデックス (<a class="ref" href="./modeling-users.html#sidebar-database_indices">コラム 6.2</a>) を<code>remember_token</code>カラムに追加していることに注目してください。</p>
 
 <div class="label" id="code-add_remember_token_to_users"></div>
 
@@ -1049,7 +1049,7 @@
 </div>
 
 
-<p>関数の2行目にある以下のコードにご注目ください。</p>
+<p>関数の2行目にある以下のコードに注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nb">self</span><span class="o">.</span><span class="n">current_user</span> <span class="o">=</span> <span class="n">user</span>
 </pre></div>
@@ -1079,7 +1079,7 @@
 </div>
 
 
-<p>上は「<em>要素代入 (assignment)</em>」であることにご注意ください。このcurrent_user=は別途定義が必要です。<a class="ref" href="./sign-in-sign-out.html#code-current_user_equals">リスト8.20</a>に示したように、Rubyにはこのような要素代入関数を定義する特殊な文法があります。</p>
+<p>上は「<em>要素代入 (assignment)</em>」であることに注意してください。このcurrent_user=は別途定義が必要です。<a class="ref" href="./sign-in-sign-out.html#code-current_user_equals">リスト8.20</a>に示したように、Rubyにはこのような要素代入関数を定義する特殊な文法があります。</p>
 
 <div class="label" id="code-current_user_equals"></div>
 
@@ -1102,7 +1102,7 @@
 </div></div>
 
 
-<p>上のコードで使用されている特殊な文法は混乱しやすいのでご注意ください。普通のプログラミング言語では、定義するメソッドの名前に等号を使用することはできませんが、Rubyではメソッド名末尾の等号には特殊な意味があり、上のコードは<code>current_user</code>への要素代入を扱うように設計された<code>current_user=</code>というメソッドを単に定義します。つまり、以下のコードは</p>
+<p>上のコードで使用されている特殊な文法は混乱しやすいので注意してください。普通のプログラミング言語では、定義するメソッドの名前に等号を使用することはできませんが、Rubyではメソッド名末尾の等号には特殊な意味があり、上のコードは<code>current_user</code>への要素代入を扱うように設計された<code>current_user=</code>というメソッドを単に定義します。つまり、以下のコードは</p>
 
 <div class="code"><div class="highlight"><pre><span class="nb">self</span><span class="o">.</span><span class="n">current_user</span> <span class="o">=</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
 </pre></div>
@@ -1293,7 +1293,7 @@
 </div>
 
 
-<p>(上のコードでは、サインアウトのリンクがハッシュ引数を渡していることにご注目ください。このハッシュ引数は、HTTPの<tt>DELETE</tt>リクエストを使用して送信される必要があることを示しています<sup class="footnote" id="fnref-8_8"><a href="./sign-in-sign-out.html#fn-8_8">8</a></sup>)。最後に、以下のようにプロファイルへのリンクも追加します。</p>
+<p>(上のコードでは、サインアウトのリンクがハッシュ引数を渡していることに注目してください。このハッシュ引数は、HTTPの<tt>DELETE</tt>リクエストを使用して送信される必要があることを示しています<sup class="footnote" id="fnref-8_8"><a href="./sign-in-sign-out.html#fn-8_8">8</a></sup>)。最後に、以下のようにプロファイルへのリンクも追加します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s2">&quot;Profile&quot;</span><span class="p">,</span> <span class="n">current_user</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -1309,7 +1309,7 @@
 
 <p>Railsでは、このユーザーへの直接リンクが許されるので、この場合<code>current_user</code>は<code>user_path(current_user)</code>に自動的に変換されます。</p>
 
-<p>新しいリンクをレイアウトに追加するときに、Bootstrapの機能を使用してドロップダウンメニューを実現しましょう。詳細については「<a href="http://twitter.github.com/bootstrap/components.html">Bootstrapコンポーネント</a> (英語)」を参照してください。完全なコードを<a class="ref" href="./sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>に示します。このコードでは、Bootstrapのドロップダウンメニューに関連するCSSのidとクラスが与えられていることにご注目ください。</p>
+<p>新しいリンクをレイアウトに追加するときに、Bootstrapの機能を使用してドロップダウンメニューを実現しましょう。詳細については「<a href="http://twitter.github.com/bootstrap/components.html">Bootstrapコンポーネント</a> (英語)」を参照してください。完全なコードを<a class="ref" href="./sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>に示します。このコードでは、Bootstrapのドロップダウンメニューに関連するCSSのidとクラスが与えられていることに注目してください。</p>
 
 <div class="label" id="code-layout_signin_signout_links"></div>
 
@@ -1387,7 +1387,7 @@
 </div>
 
 
-<p>なお、上ではユーザー登録フォームで試しに何人もユーザーを登録していた方向けに、念のためすべてのユーザーを列挙しています。そのコマンドでは、オプションを<code>save</code>メソッドに渡していることにご注目ください。既に述べたように、パスワードとパスワードの確認を含めなかったので<code>save</code>メソッド自身は動作しません。実際のWebサイトではユーザーのパスワードを知ることはできませんが、それでも (メンテナンス目的などで) ユーザーを保存する必要が生じることがあります。この問題を解決するためには、<code>validate: false</code>を渡し、Active Recordに検証をスキップさせます (Rails APIの「<a href="http://api.rubyonrails.org/v3.2.0/classes/ActiveRecord/Persistence.html#method-i-save"><tt>save</tt></a>」を参照)。</p>
+<p>なお、上ではユーザー登録フォームで試しに何人もユーザーを登録していた方向けに、念のためすべてのユーザーを列挙しています。そのコマンドでは、オプションを<code>save</code>メソッドに渡していることに注目してください。既に述べたように、パスワードとパスワードの確認を含めなかったので<code>save</code>メソッド自身は動作しません。実際のWebサイトではユーザーのパスワードを知ることはできませんが、それでも (メンテナンス目的などで) ユーザーを保存する必要が生じることがあります。この問題を解決するためには、<code>validate: false</code>を渡し、Active Recordに検証をスキップさせます (Rails APIの「<a href="http://api.rubyonrails.org/v3.2.0/classes/ActiveRecord/Persistence.html#method-i-save"><tt>save</tt></a>」を参照)。</p>
 
 <p>以上の変更を行ったことで、<a class="ref" href="./sign-in-sign-out.html#fig-profile_with_signout_link">図8.9</a>に示したように、<a class="ref" href="./sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>で定義したドロップダウンメニューがサインインしたユーザーに表示されるようになりました。</p>
 
@@ -1998,7 +1998,7 @@
 
 <ol>
 
-<li><code>form_for</code>の代わりに<code>form_tag</code>を使用して、サインインフォームをリファクタリングしてください。テストスイートが以前と同様にパスすることも確認してください。<em>ヒント</em>: RailsCastの「<a href="http://railscasts.com/episodes/270-authentication-in-rails-3-1">Rails 3.1における認証</a> (英語)」を参照してください。特に、<code>params</code>ハッシュの構造の変更にご注目ください。</li>
+<li><code>form_for</code>の代わりに<code>form_tag</code>を使用して、サインインフォームをリファクタリングしてください。テストスイートが以前と同様にパスすることも確認してください。<em>ヒント</em>: RailsCastの「<a href="http://railscasts.com/episodes/270-authentication-in-rails-3-1">Rails 3.1における認証</a> (英語)」を参照してください。特に、<code>params</code>ハッシュの構造の変更に注目してください。</li>
 
 <li><a class="ref" href="./sign-in-sign-out.html#sec-rspec_custom_matchers">8.3.3</a>の例に従い、ユーザー用のリクエストspecと認証リクエストspec (<code>spec/requests</code>ディレクトリの下にあるファイル) を見直し、<code>spec/support/utilities.rb</code>でユーティリティ関数を定義して、テストを実装から切り離してください。<em>課外活動:</em> サポートコードを独立したファイルとモジュールに再編成し、specヘルパーファイルでそれらのモジュールを適切にインクルードしてすべて動作するようにしてください。</li>
 
@@ -2018,7 +2018,7 @@
 <li id="fn-8_3">このメソッドは、RailsCastの「<a href="http://railscasts.com/episodes/274-remember-me-reset-password">remember me</a>」の記事を元に選びました。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_3">↑</a></li>
 <li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Rails Guidesの「<a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#callbacks-overview">コールバックについて</a> (英語)」を参照してください。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_4">↑</a></li>
 <li id="fn-8_5">実は、この2つは完全に同等です。<code>attr_accessor</code>は、単にゲッターメソッドやセッターメソッドを自動的に作成する便利な方法でしかありません。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_5">↑</a></li>
-<li id="fn-8_6">通常、これは初期値が<code>nil</code>である変数への代入を意味しますが、<code>false</code>値も<code>||=</code>演算子によって上書きされることにご注意ください。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_6">↑</a></li>
+<li id="fn-8_6">通常、これは初期値が<code>nil</code>である変数への代入を意味しますが、<code>false</code>値も<code>||=</code>演算子によって上書きされることに注意してください。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_6">↑</a></li>
 <li id="fn-8_7">これは、<a class="ref" href="./modeling-users.html#sidebar-let">コラム 6.3</a>で説明した<em>メモ化 (memoization) </em>の例になっています。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_7">↑</a></li>
 <li id="fn-8_8">Webブラウザは実際には<tt>DELETE</tt>リクエストを発行できないので、RailsではJavaScriptを使用してこのリクエストを偽造します。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_8">↑</a></li>
 </ol>

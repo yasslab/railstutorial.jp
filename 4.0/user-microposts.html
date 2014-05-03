@@ -76,14 +76,14 @@
 </div></div>
 
 
-<p>ここで、<a class="ref" href="./user-microposts.html#code-micropost_migration">リスト10.1</a>では<code>user_id</code>と<code>created_at</code>カラムにインデックスが付与されていることにご注目ください (<a class="ref" href="./modeling-users.html#sidebar-database_indices">コラム  6.2</a>)。user idに関連付けられたすべてのマイクロポストを作成時刻の逆順で取り出すためです。</p>
+<p>ここで、<a class="ref" href="./user-microposts.html#code-micropost_migration">リスト10.1</a>では<code>user_id</code>と<code>created_at</code>カラムにインデックスが付与されていることに注目してください (<a class="ref" href="./modeling-users.html#sidebar-database_indices">コラム  6.2</a>)。user idに関連付けられたすべてのマイクロポストを作成時刻の逆順で取り出すためです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">add_index</span> <span class="ss">:microposts</span><span class="p">,</span> <span class="o">[</span><span class="ss">:user_id</span><span class="p">,</span> <span class="ss">:created_at</span><span class="o">]</span>
 </pre></div>
 </div>
 
 
-<p><code>user_id</code>と<code>created_at</code>両方のカラムを1つの配列に含めることで、Active Recordで<em>両方</em>のキーを同時に使用する<em>複合キーインデックス</em>を作成できます。また<a class="ref" href="./modeling-users.html#sec-database_migrations">6.1.1</a>でも述べたように、<code>t.timestamps</code>の行によって<code>created_at</code>カラムと<code>updated_at</code>カラムが作成されていることにもご注目ください。この後、<a class="ref" href="./user-microposts.html#sec-ordering_and_dependency">10.1.4</a>および<a class="ref" href="./user-microposts.html#sec-augmenting_the_user_show_page">10.2.1</a>で<code>created_at</code>カラムをさらに追加します。</p>
+<p><code>user_id</code>と<code>created_at</code>両方のカラムを1つの配列に含めることで、Active Recordで<em>両方</em>のキーを同時に使用する<em>複合キーインデックス</em>を作成できます。また<a class="ref" href="./modeling-users.html#sec-database_migrations">6.1.1</a>でも述べたように、<code>t.timestamps</code>の行によって<code>created_at</code>カラムと<code>updated_at</code>カラムが作成されていることにも注目してください。この後、<a class="ref" href="./user-microposts.html#sec-ordering_and_dependency">10.1.4</a>および<a class="ref" href="./user-microposts.html#sec-augmenting_the_user_show_page">10.2.1</a>で<code>created_at</code>カラムをさらに追加します。</p>
 
 <p>それではUserモデルの場合 (<a class="ref" href="./modeling-users.html#code-user_spec">リスト6.5</a>) と同様に、Micropostモデルに対する最小限のテストを書くところから始めましょう。具体的には <a class="ref" href="./user-microposts.html#code-initial_micropost_spec">リスト10.2</a> に示すように、micropostオブジェクトが <code>content</code>属性と<code>user_id</code>属性を持っていることを確認するテストを作成します。</p>
 
@@ -244,7 +244,7 @@
 </div>
 
 
-<p>以下のメソッドになっていることにご注意ください。</p>
+<p>以下のメソッドになっていることに注意してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">create</span>
 <span class="n">user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">create!</span>
@@ -553,7 +553,7 @@
 </div>
 
 
-<p>上のコードで、<code>to_a</code>メソッドが呼び出されていることでマイクロポストのコピーが作成されていることにご注目ください (参照のコピーではなく、オブジェクト自体がコピーされています)。さらに、以下の行にもご注目ください。</p>
+<p>上のコードで、<code>to_a</code>メソッドが呼び出されていることでマイクロポストのコピーが作成されていることに注目してください (参照のコピーではなく、オブジェクト自体がコピーされています)。さらに、以下の行にも注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">expect</span><span class="p">(</span><span class="n">microposts</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">be_empty</span>
 </pre></div>
@@ -817,7 +817,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p><code>count</code>メソッドは、関連付けを<em>経由して</em>使用していることにご注目ください。</p>
+<p><code>count</code>メソッドは、関連付けを<em>経由して</em>使用していることに注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">count</span>
 </pre></div>
@@ -859,7 +859,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p>すぐにもマイクロポスト一覧の実装に取りかかりますが、その前に注意すべき点がいくつかあります。<a class="ref" href="./user-microposts.html#code-user_show_microposts">リスト10.17</a>では、<code>if @user.microposts.any?</code>を使用することによって (以前<a class="ref" href="./sign-up.html#code-errors_partial">リスト7.24</a>でも使用した) ユーザーのマイクロポストが1つもない場合に空のリストが表示されないようにしています。</p>
 
-<p><a class="ref" href="./user-microposts.html#code-user_show_microposts">リスト10.17</a>では、以下のようにマイクロポストに対するページネーションのコードを加えていたことにご注意ください。</p>
+<p><a class="ref" href="./user-microposts.html#code-user_show_microposts">リスト10.17</a>では、以下のようにマイクロポストに対するページネーションのコードを加えていたことに注意してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">will_paginate</span> <span class="vi">@microposts</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -949,7 +949,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p><code>paginate</code>メソッドの素晴らしさにご注目ください。マイクロポストの関連付けを経由して<tt>micropost</tt>テーブルに到達し、必要なマイクロポストのページを引き出してくれます。</p>
+<p><code>paginate</code>メソッドの素晴らしさに注目してください。マイクロポストの関連付けを経由して<tt>micropost</tt>テーブルに到達し、必要なマイクロポストのページを引き出してくれます。</p>
 
 <p>ここで、今作成した新しいユーザープロファイルページ (<a class="ref" href="./user-microposts.html#fig-user_profile_no_microposts">図10.5</a>) をブラウザで見てみましょう。...何というさみしいページ、がっかりですね。マイクロポストが1つもないのでは無理もありません。ではここでマイクロポストを追加しましょう。</p>
 
@@ -1015,7 +1015,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/user_profile_microposts_no_styling_bootstrap.png" alt="user_profile_microposts_no_styling_bootstrap" /></span></div><div class="caption"><span class="header">図10.6</span><span class="description">ユーザープロファイル <a href="http://localhost:3000/users/1">/users/1</a> とスタイルのないマイクロポスト。<a href="../images/figures/user_profile_microposts_no_styling_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p><a class="ref" href="./user-microposts.html#fig-user_profile_microposts_no_styling">図10.6</a>のページにはマイクロポスト固有のスタイルが与えられていないので、<a class="ref" href="./user-microposts.html#code-micropost_css">リスト10.21</a>を追加して、結果のページを見てみましょう<sup class="footnote" id="fnref-10_6"><a href="./user-microposts.html#fn-10_6">6</a></sup>。<a class="ref" href="./user-microposts.html#fig-user_profile_with_microposts">図10.7</a>が1番目の (ログインした) ユーザーのプロファイルページで、<a class="ref" href="./user-microposts.html#fig-other_profile_with_microposts">図10.8</a>が2番目のユーザーのプロファイルページです。最後に<a class="ref" href="./user-microposts.html#fig-user_profile_microposts_page_2_rails_3">図10.9</a>は、1番目のユーザーのためのマイクロポストの<em>2番目</em>のページと、下部に改ページのリンクを表示しています。各マイクロポストの表示には、3つのどの場合にも、それが作成されてからの時間 (&quot;1分​​前に投稿&quot; など) が表示されていることにご注目ください。これは<a class="ref" href="./user-microposts.html#code-micropost_partial">リスト10.18</a>の<code>time_ago_in_words</code>メソッドによるものです。数分待ってからページを再度読み込むと、このテキストは自動的に新しい時間に基づいて更新されます。</p>
+<p><a class="ref" href="./user-microposts.html#fig-user_profile_microposts_no_styling">図10.6</a>のページにはマイクロポスト固有のスタイルが与えられていないので、<a class="ref" href="./user-microposts.html#code-micropost_css">リスト10.21</a>を追加して、結果のページを見てみましょう<sup class="footnote" id="fnref-10_6"><a href="./user-microposts.html#fn-10_6">6</a></sup>。<a class="ref" href="./user-microposts.html#fig-user_profile_with_microposts">図10.7</a>が1番目の (ログインした) ユーザーのプロファイルページで、<a class="ref" href="./user-microposts.html#fig-other_profile_with_microposts">図10.8</a>が2番目のユーザーのプロファイルページです。最後に<a class="ref" href="./user-microposts.html#fig-user_profile_microposts_page_2_rails_3">図10.9</a>は、1番目のユーザーのためのマイクロポストの<em>2番目</em>のページと、下部に改ページのリンクを表示しています。各マイクロポストの表示には、3つのどの場合にも、それが作成されてからの時間 (&quot;1分​​前に投稿&quot; など) が表示されていることに注目してください。これは<a class="ref" href="./user-microposts.html#code-micropost_partial">リスト10.18</a>の<code>time_ago_in_words</code>メソッドによるものです。数分待ってからページを再度読み込むと、このテキストは自動的に新しい時間に基づいて更新されます。</p>
 
 <div class="label" id="code-micropost_css"></div>
 
@@ -1221,7 +1221,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>before_actionはデフォルトで両方のアクションに適用されるため、制限を適用するアクションを明示していないことにご注意ください。もし仮に<code>index</code>アクションを追加し、サインインしていないユーザーでもアクセス可能にしたい場合は、以下のようにindexアクション以外のアクションを明示的に指定する必要があります。</p>
+<p>before_actionはデフォルトで両方のアクションに適用されるため、制限を適用するアクションを明示していないことに注意してください。もし仮に<code>index</code>アクションを追加し、サインインしていないユーザーでもアクセス可能にしたい場合は、以下のようにindexアクション以外のアクションを明示的に指定する必要があります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MicropostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
@@ -1313,7 +1313,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>次に、マイクロポストの<code>create</code>アクションを作成しましょう。このアクションも、<a class="ref" href="./sign-up.html#code-user_create_action">リスト7.26</a>のユーザー用アクションと似ています。違いは、新しいマイクロポストを<code>build</code>するためにuser/micropost関連付けを使用している点です (<a class="ref" href="./user-microposts.html#code-microposts_create_action">リスト10.27</a>)。<code>micropost_params</code>でStrong Parametersを使用していることにより、マイクロポストのコンテンツだけがWeb経由で編集可能になっていることにご注目ください。</p>
+<p>次に、マイクロポストの<code>create</code>アクションを作成しましょう。このアクションも、<a class="ref" href="./sign-up.html#code-user_create_action">リスト7.26</a>のユーザー用アクションと似ています。違いは、新しいマイクロポストを<code>build</code>するためにuser/micropost関連付けを使用している点です (<a class="ref" href="./user-microposts.html#code-microposts_create_action">リスト10.27</a>)。<code>micropost_params</code>でStrong Parametersを使用していることにより、マイクロポストのコンテンツだけがWeb経由で編集可能になっていることに注目してください。</p>
 
 <div class="label" id="code-microposts_create_action"></div>
 
@@ -1409,7 +1409,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <p><a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_view">リスト9.25</a>と同様、<a class="ref" href="./user-microposts.html#code-user_info">リスト10.29</a>のコードでも<a class="ref" href="./sign-up.html#code-gravatar_option">リスト7.30</a>で定義した<code>gravatar_for</code>ヘルパーを使用します。</p>
 
-<p>プロファイルサイドバー (<a class="ref" href="./user-microposts.html#code-user_show_microposts">リスト10.17</a>) のときと同様、<a class="ref" href="./user-microposts.html#code-user_info">リスト10.29</a>のユーザー情報にも、そのユーザーが投稿したマイクロポストの総数が表示されていることにご注目ください。ただし少し表示に違いがあります。プロファイルサイドバーでは、 “Microposts” をラベルとし、“Microposts (1)” と表示することは問題ありません。しかし今回のように “1 microposts” と表示してしまうと英語の文法上誤りになってしまうので、<code>pluralize</code>メソッドを使用して “1 micropost” や “2 microposts” と表示するように調整します。</p>
+<p>プロファイルサイドバー (<a class="ref" href="./user-microposts.html#code-user_show_microposts">リスト10.17</a>) のときと同様、<a class="ref" href="./user-microposts.html#code-user_info">リスト10.29</a>のユーザー情報にも、そのユーザーが投稿したマイクロポストの総数が表示されていることに注目してください。ただし少し表示に違いがあります。プロファイルサイドバーでは、 “Microposts” をラベルとし、“Microposts (1)” と表示することは問題ありません。しかし今回のように “1 microposts” と表示してしまうと英語の文法上誤りになってしまうので、<code>pluralize</code>メソッドを使用して “1 micropost” や “2 microposts” と表示するように調整します。</p>
 
 <p>次はマイクロポスト作成フォームを定義します (<a class="ref" href="./user-microposts.html#code-micropost_form">リスト10.30</a>)。これはユーザー登録フォームに似ています (<a class="ref" href="./sign-up.html#code-signup_form">リスト7.17</a>)。</p>
 
@@ -1761,7 +1761,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>それにより、上のコードが各アイテムに対してマッチするようにするのが目的です (<code>li##{item.id}</code>の最初の<code>#</code> は CSS idを示す Capybara独自の文法で、2番目の<code>#</code>は Rubyの式展開<code>#{}</code>の先頭部分であることにご注意ください)。</p>
+<p>それにより、上のコードが各アイテムに対してマッチするようにするのが目的です (<code>li##{item.id}</code>の最初の<code>#</code> は CSS idを示す Capybara独自の文法で、2番目の<code>#</code>は Rubyの式展開<code>#{}</code>の先頭部分であることに注意してください)。</p>
 
 <p>サンプルアプリケーションでフィードを使うために、カレントユーザーの (ページネーション) フィードに<code>@feed_items</code>インスタンス変数を追加し (<a class="ref" href="./user-microposts.html#code-feed_instance_variable">リスト10.38</a>)、次にフィードパーシャル (<a class="ref" href="./user-microposts.html#code-feed_partial">リスト10.39</a>) をHomeページに追加します (<a class="ref" href="./user-microposts.html#code-home_with_feed">リスト10.41</a>)。(ページネーションのテストは演習に回すことにします。<a class="ref" href="./user-microposts.html#sec-micropost_exercises">10.5</a>参照)。</p>
 
@@ -2044,7 +2044,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p><code>correct_user</code> before_actionでは、マイクロポストを以下のように関連付けを<em>経由して</em>見つけていることにご注目ください。
+<p><code>correct_user</code> before_actionでは、マイクロポストを以下のように関連付けを<em>経由して</em>見つけていることに注目してください。
 </p>
 
 <div class="code"><div class="highlight"><pre><span class="n">current_user</span><span class="o">.</span><span class="n">microposts</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>

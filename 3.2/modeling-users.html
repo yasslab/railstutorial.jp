@@ -266,7 +266,7 @@
 </div></div>
 
 
-<p>データモデルをモデルファイルの中にコメントとして残しておくと、モデルにどんな属性があるかを楽に思い出せます。なお簡潔さのため、本書で今後使用するコードにはこの注釈を付けません (もし注釈を最新の状態に保ちたいのであれば、データモデルが変わるたびに<code>annotate</code>を実行しなければならないことにご注意ください)。</p>
+<p>データモデルをモデルファイルの中にコメントとして残しておくと、モデルにどんな属性があるかを楽に思い出せます。なお簡潔さのため、本書で今後使用するコードにはこの注釈を付けません (もし注釈を最新の状態に保ちたいのであれば、データモデルが変わるたびに<code>annotate</code>を実行しなければならないことに注意してください)。</p>
 
 <div class="label" id="sec-accessible_attributes"></div>
 
@@ -274,7 +274,7 @@
 <h4><a id="sec-6_1_2_2" href="./modeling-users.html#sec-accessible_attributes" class="heading">アクセス可能な属性</a></h4>
 
 
-<p>それではもう一度Userモデルに戻りましょう。<code>attr_accessible</code>の行にご注目ください (<a class="ref" href="./modeling-users.html#code-attr_accessible">リスト6.6</a>)。この行は、モデルのどの属性を<em>アクセス可能</em>にするかをRailsに伝えます。たとえば、外部のユーザー (Webブラウザを使用してリクエストを送信するユーザーなど) が変更してもよい属性を指定します。</p>
+<p>それではもう一度Userモデルに戻りましょう。<code>attr_accessible</code>の行に注目してください (<a class="ref" href="./modeling-users.html#code-attr_accessible">リスト6.6</a>)。この行は、モデルのどの属性を<em>アクセス可能</em>にするかをRailsに伝えます。たとえば、外部のユーザー (Webブラウザを使用してリクエストを送信するユーザーなど) が変更してもよい属性を指定します。</p>
 
 <div class="label" id="code-attr_accessible"></div>
 
@@ -374,7 +374,7 @@
 </div>
 
 
-<p><code>User.create</code>は、<code>true</code>か<code>false</code>を返す代わりに、ユーザーオブジェクト自身を返すことにご注目ください。返されたユーザーオブジェクトは (上の2つ目のコマンドにある<code>foo</code>のように) 変数に代入することもできます。</p>
+<p><code>User.create</code>は、<code>true</code>か<code>false</code>を返す代わりに、ユーザーオブジェクト自身を返すことに注目してください。返されたユーザーオブジェクトは (上の2つ目のコマンドにある<code>foo</code>のように) 変数に代入することもできます。</p>
 
 <p><code>destroy</code>は<code>create</code>の逆です。</p>
 
@@ -939,7 +939,7 @@
 
 <p><code>name</code>属性の検証には、空文字でない、名前が51文字未満であるという最小限の制約しか与えていませんでした。<code>email</code>属性の場合は、もっと厳重な要求を満たさなければなりません。これまでは空のメールアドレスのみを禁止してきましたが、ここではメールアドレスにおなじみのパターン<code>user@example.com</code>に合っているかどうかも確認することを要求します。</p>
 
-<p>なお、ここで使用するテストや検証は、形式の有効なメールアドレスを受け入れ、形式の無効なものを拒否するだけであり、決して徹底的なものではないという点にご注意ください。最初に、有効なメールアドレスと無効なメールアドレスのコレクションに対するテストを行いましょう。このコレクションを作るために、以下のコンソールセッションに示したような、文字列の配列を簡単に作れる<code>%w[]</code>という便利なテクニックを知っておくと良いでしょう。</p>
+<p>なお、ここで使用するテストや検証は、形式の有効なメールアドレスを受け入れ、形式の無効なものを拒否するだけであり、決して徹底的なものではないという点に注意してください。最初に、有効なメールアドレスと無効なメールアドレスのコレクションに対するテストを行いましょう。このコレクションを作るために、以下のコンソールセッションに示したような、文字列の配列を簡単に作れる<code>%w[]</code>という便利なテクニックを知っておくと良いでしょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="sx">%w[foo bar baz]</span>
 <span class="go">=&gt; [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]</span>
@@ -1167,7 +1167,7 @@
 </div></div>
 
 
-<p>上のコードでは、単に<code>true</code>を<code>case_sensitive: false</code>で置き換えただけであることにご注目ください。Railsはこの場合、<code>:uniqueness</code>を<code>true</code>と判断します。この時点で、アプリケーションは重要な警告と共にメールアドレスの一意性を強制し、テストスイートもパスするはずです。</p>
+<p>上のコードでは、単に<code>true</code>を<code>case_sensitive: false</code>で置き換えただけであることに注目してください。Railsはこの場合、<code>:uniqueness</code>を<code>true</code>と判断します。この時点で、アプリケーションは重要な警告と共にメールアドレスの一意性を強制し、テストスイートもパスするはずです。</p>
 
 <div class="label" id="sec-the_caveat"></div>
 
@@ -1273,7 +1273,7 @@
 
 <p>この節では、ユーザーに最後の属性を追加します。セキュアパスワードは、サンプルアプリケーションでユーザーを認証するために使用します。セキュアパスワードという手法では、各ユーザーにパスワードとパスワードの確認を入力させ、それを (そのままではなく) 暗号化したものをデータベースに保存します。また、入力されたパスワードを使用してユーザーを<em>認証</em>する手段と、<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>で使用する、ユーザーがサイトにサインインできるようにする手段も提供します。</p>
 
-<p>ユーザーの認証は、パスワードの送信、暗号化、データベース内の暗号化された値との比較という手順を踏みます。比較の結果が一致すれば、送信されたパスワードは正しいと認識され、そのユーザーは認証されます。ここで、生のパスワードではなく、暗号化されたパスワード同士を比較していることにご注目ください。こうすることで、生のパスワードをデータベースに保存するという危険なことをしなくてもユーザーを認証できます。これで、仮にデータベースの内容が盗まれたり覗き見されるようなことがあっても、パスワードの安全性が保たれます。</p>
+<p>ユーザーの認証は、パスワードの送信、暗号化、データベース内の暗号化された値との比較という手順を踏みます。比較の結果が一致すれば、送信されたパスワードは正しいと認識され、そのユーザーは認証されます。ここで、生のパスワードではなく、暗号化されたパスワード同士を比較していることに注目してください。こうすることで、生のパスワードをデータベースに保存するという危険なことをしなくてもユーザーを認証できます。これで、仮にデータベースの内容が盗まれたり覗き見されるようなことがあっても、パスワードの安全性が保たれます。</p>
 
 <p>セキュアなパスワードの実装は、<code>has_secure_password</code>というRailsのメソッドを呼び出すだけでほとんど終わってしまいます (このメソッドはRails 3.1から導入されました)。このメソッド1つだけでセキュアなパスワードの実装がほとんど終わってしまうので、逆にこの機能を一から手作りするのは簡単ではありません。そのため、<a class="ref" href="./modeling-users.html#sec-password_and_confirmation">6.3.2</a>からは多数のテストを作成し、これらをすべてパスするようにします。この機能の実装中に泥沼にはまり込んでしまうこともあると思いますが、どうかあきらめずに最後までやり通してください。<a class="ref" href="./modeling-users.html#sec-has_secure_password">6.3.4</a>までたどり着ければ、その苦労を補って余りある褒美が待っています (スクリーンキャストは、このような一からの手作り開発手順を解説するのに向いています。この課題を十分に理解したい方は「<a href="./screencasts">Ruby on Rails Tutorial screencasts</a> (英語)」を参照してください)。</p>
 
@@ -1436,7 +1436,7 @@
 </div></div>
 
 
-<p>上のコードでは、以下のように<code>User.new</code>ハッシュの初期化に<code>:password</code>と<code>:password_confirmation</code>を追加していることにご注目ください。</p>
+<p>上のコードでは、以下のように<code>User.new</code>ハッシュの初期化に<code>:password</code>と<code>:password_confirmation</code>を追加していることに注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">before</span> <span class="k">do</span>
   <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Example User&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;user@example.com&quot;</span><span class="p">,</span> 
@@ -1615,7 +1615,7 @@
 
 <p>これまでいくつかの演習で<code>let</code>メソッドを使用してきましたが、今回のようにチュートリアルの本文で言及するのはこれが初めてです。<code>let</code>メソッドの詳細については<a class="ref" href="./modeling-users.html#sidebar-let">コラム 6.3</a>を参照してください。</p>
 
-<p>2つの<code>describe</code>ブロックでは、<code>@user</code>と<code>found_user</code>が一致する場合と一致しない場合についてそれぞれテストします。コードで使用されている二重等号の演算子<code>==</code>は、オブジェクト同士が同値であるかどうかを調べます(<a class="ref" href="./rails-flavored-ruby.html#sec-arrays_and_ranges">4.3.1</a>)。以下のコードにご注目ください。</p>
+<p>2つの<code>describe</code>ブロックでは、<code>@user</code>と<code>found_user</code>が一致する場合と一致しない場合についてそれぞれテストします。コードで使用されている二重等号の演算子<code>==</code>は、オブジェクト同士が同値であるかどうかを調べます(<a class="ref" href="./rails-flavored-ruby.html#sec-arrays_and_ranges">4.3.1</a>)。以下のコードに注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;with invalid password&quot;</span> <span class="k">do</span>
   <span class="n">let</span><span class="p">(</span><span class="ss">:user_for_invalid_password</span><span class="p">)</span> <span class="p">{</span> <span class="n">found_user</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s2">&quot;invalid&quot;</span><span class="p">)</span> <span class="p">}</span>
@@ -1742,7 +1742,7 @@
 
 <p>データベースに<code>password_digest</code>カラムを置くという条件さえ守れば、上のメソッドをモデルに追加するだけで新規ユーザーの作成と認証をセキュアにすることができます。</p>
 
-<p>(<code>has_secure_password</code>の実装に興味のある方は、<a href="https://github.com/rails/rails/blob/master/activemodel/lib/active_model/secure_password.rb"><tt>secure_password.rb</tt>のソースコード</a>を参照してみるとよいでしょう。このソースコードには十分な解説があり、しかも読みやすくできています。そのコードに、以下の行があることにご注目ください。</p>
+<p>(<code>has_secure_password</code>の実装に興味のある方は、<a href="https://github.com/rails/rails/blob/master/activemodel/lib/active_model/secure_password.rb"><tt>secure_password.rb</tt>のソースコード</a>を参照してみるとよいでしょう。このソースコードには十分な解説があり、しかも読みやすくできています。そのコードに、以下の行があることに注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">validates_confirmation_of</span> <span class="ss">:password</span>
 </pre></div>
@@ -1946,12 +1946,12 @@
 <li id="fn-6_4"><code>t</code>オブジェクトが具体的に何をしているのかを正確に知る必要はありませんので、どうか心配しないでください。<em>抽象化レイヤ</em>の素晴らしい点は、それが何であるかを知る必要がないという点です。安心して<code>t</code>オブジェクトに仕事を任せればよいのです。<a class="arrow" href="./modeling-users.html#fnref-6_4">↑</a></li>
 <li id="fn-6_5">公式には「エスキューエライト」と発音しますが、(本来は誤りとされている)「スィークゥエライト」もよく使われています。<a class="arrow" href="./modeling-users.html#fnref-6_5">↑</a></li>
 <li id="fn-6_6"><code>&quot;2011-12-05 00:57:46&quot;</code>というタイムスタンプが気になった方もいると思いますが、著者はこの箇所を真夜中過ぎに書いたわけではありません。実はこのタイムスタンプは<a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">協定世界時</a> (UTC) に合わせてあります。これは<a href="http://en.wikipedia.org/wiki/Greenwich_Mean_Time">グリニッジ標準時</a> (GMT) と同様、標準時間として使用されます。「<a href="http://tf.nist.gov/general/misc.htm">NIST時刻と周波数FAQ</a>」によると、<strong>問:</strong> 協定世界時 (Coordinated Universal Time) の略称がCUTではなくUTCなのはなぜですか。<strong>答え:</strong> 協定世界時システムは、1970年に国際電気通信連合 (ITU) の技術専門家の国際諮問グループによって考案されました。このときITUは、混乱を最小限にとどめるために、略称を1つだけにしたいと考えました。このとき、英語式のCUTもフランス式のTUCも満場一致とならず、両者の妥協案としてUTCという略語が採用されました。<a class="arrow" href="./modeling-users.html#fnref-6_6">↑</a></li>
-<li id="fn-6_7"><code>user.updated_at</code>の値にご注目ください。上の脚注にも書いたとおり、このタイムスタンプはUTCベースです。<a class="arrow" href="./modeling-users.html#fnref-6_7">↑</a></li>
+<li id="fn-6_7"><code>user.updated_at</code>の値に注目してください。上の脚注にも書いたとおり、このタイムスタンプはUTCベースです。<a class="arrow" href="./modeling-users.html#fnref-6_7">↑</a></li>
 <li id="fn-6_8">例外と例外ハンドリングは、ある意味でRubyの高度なテーマです。本書では例外についてこれ以上言及しません。しかし例外が重要なものであることも確かなので、<a class="ref" href="./beginning.html#sec-comments_for_various_readers">1.1.1</a>で推薦したRuby本で例外について詳しく学ぶことをお勧めします。<a class="arrow" href="./modeling-users.html#fnref-6_8">↑</a></li>
 <li id="fn-6_9">今後、コンソールコマンドの出力は、特に教育的効果が高いと思える場合 (ここでの<code>User.new</code>の場合など) を除いて省略いたします。<a class="arrow" href="./modeling-users.html#fnref-6_9">↑</a></li>
-<li id="fn-6_10"><a class="ref" href="./modeling-users.html#table-valid_email_regex">表6.1</a>の正規表現の説明における「文字」は、実は「小文字のみ」が対象になっていることにご注意ください。ただし、正規表現の末尾に<code>i</code>オプションを追加してあるので、大文字小文字が区別されずにマッチするようになっています。<a class="arrow" href="./modeling-users.html#fnref-6_10">↑</a></li>
+<li id="fn-6_10"><a class="ref" href="./modeling-users.html#table-valid_email_regex">表6.1</a>の正規表現の説明における「文字」は、実は「小文字のみ」が対象になっていることに注意してください。ただし、正規表現の末尾に<code>i</code>オプションを追加してあるので、大文字小文字が区別されずにマッチするようになっています。<a class="arrow" href="./modeling-users.html#fnref-6_10">↑</a></li>
 <li id="fn-6_11">著者同様このツールを便利だと思ってくださる方は、<a href="http://lovitt.net/">Michael Lovitt</a>の素晴らしい成果に報いるために、どうか<a href="http://bit.ly/donate-to-rubular">Rubularへの寄付</a>をお願いいたします。<a class="arrow" href="./modeling-users.html#fnref-6_11">↑</a></li>
-<li id="fn-6_12">驚いたことに、公式標準によると<code>&quot;Michael Hartl&quot;@example.com</code>のようなクォートとスペースを使用したメールアドレスも有効なのだそうです。まったく馬鹿げています。今あなたが使用しているメールアドレスが、英文字、数字、アンダースコア、ドット以外の文字を含んでいるのであれば、そういう文字を含まないメールアドレスに変えることをお勧めします。ただしここで注意すべきことがあります。<a class="ref" href="./modeling-users.html#code-validates_format_of_email">リスト6.17</a>の正規表現では、プラス記号の使用を許していることにご注目ください。これは、Gmail (他のメールサービスにもあるかもしれません) ではプラス記号を使用すると便利なことがあるためです。Gmailでは、example.comからのメールをフィルタするために<tt>username+example@gmail.com</tt>を使用することができます。こうすると、Gmailの<tt>username@gmail.com</tt>というアドレスに転送され、<tt>example</tt>という文字をフィルタできるようになります。<a class="arrow" href="./modeling-users.html#fnref-6_12">↑</a></li>
+<li id="fn-6_12">驚いたことに、公式標準によると<code>&quot;Michael Hartl&quot;@example.com</code>のようなクォートとスペースを使用したメールアドレスも有効なのだそうです。まったく馬鹿げています。今あなたが使用しているメールアドレスが、英文字、数字、アンダースコア、ドット以外の文字を含んでいるのであれば、そういう文字を含まないメールアドレスに変えることをお勧めします。ただしここで注意すべきことがあります。<a class="ref" href="./modeling-users.html#code-validates_format_of_email">リスト6.17</a>の正規表現では、プラス記号の使用を許していることに注目してください。これは、Gmail (他のメールサービスにもあるかもしれません) ではプラス記号を使用すると便利なことがあるためです。Gmailでは、example.comからのメールをフィルタするために<tt>username+example@gmail.com</tt>を使用することができます。こうすると、Gmailの<tt>username@gmail.com</tt>というアドレスに転送され、<tt>example</tt>という文字をフィルタできるようになります。<a class="arrow" href="./modeling-users.html#fnref-6_12">↑</a></li>
 <li id="fn-6_13">この節の冒頭で簡単に紹介したように、この目的に使用できる専用のテストデータベース<code>db/test.sqlite3</code>があります。<a class="arrow" href="./modeling-users.html#fnref-6_13">↑</a></li>
 <li id="fn-6_14">技術的には、メールアドレスのうちドメイン名部分だけが (本当は) 大文字小文字を区別しません。foo@bar.comは、本来はFoo@bar.comとは別のアドレスです。ただし現実的には、<a href="http://email.about.com/od/emailbehindthescenes/f/email_case_sens.htm">about.com</a>でも指摘されているように、メールアドレスの大文字小文字を区別することを前提にするのはまずい方法です。「メールアドレスの大文字小文字を区別すると、果てしない混乱と相互運用性の問題とひどい頭痛が発生する。メールアドレスの入力時に大文字小文字の区別を要求するのは賢い方法とは言えない。現実には、メールアドレスの大文字小文字の区別を強制するメールサービスやISPはめったに存在しない。メールアドレスのすべての文字を大文字にするなど、受信者のメールアドレスが誤って入力されていれば、メールは返送されるだけだ。」Riley Mosesによるご指摘に感謝いたします。<a class="arrow" href="./modeling-users.html#fnref-6_14">↑</a></li>
 <li id="fn-6_15">もちろん、<a class="ref" href="./modeling-users.html#code-users_migration">リスト6.2</a>の<code>users</code>テーブル用のマイグレーションファイルを単に編集することも可能なのですが、その場合ロールバックが必要となり、マイグレーションが戻ってしまいます。データモデルの変更が必要になったらその都度マイグレーションを行うのがRails流です。<a class="arrow" href="./modeling-users.html#fnref-6_15">↑</a></li>

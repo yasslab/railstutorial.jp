@@ -129,7 +129,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>の最後の行にご注目ください。このgem は、<code>attr_accessible</code> (<a class="ref" href="./chapters/modeling-users.html#sec-accessible_attributes">6.1.2.2</a>) をRails 4.0のアプリケーションでも使えるようにするために必要なgemです。</p>
+<p><a class="ref" href="./chapters/supplement.html#code-rails_4_0_upgrade_gemfile">リスト12.1</a>の最後の行に注目してください。このgem は、<code>attr_accessible</code> (<a class="ref" href="./chapters/modeling-users.html#sec-accessible_attributes">6.1.2.2</a>) をRails 4.0のアプリケーションでも使えるようにするために必要なgemです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">gem</span> <span class="s1">&#39;protected_attributes&#39;</span>
 </pre></div>
@@ -242,7 +242,7 @@ doc/
 </div>
 
 
-<p><code>../sample_app_2nd_ed/db/migrate</code>の末尾にスラッシュを追加しないようご注意ください。システムによっては、マイグレーション<em>ファイル</em>がコピーされてもディレクトリがコピーされないことがあります。なお、Rails 4.0では<code>rake test:prepare</code>コマンドを使用するのが一般的ですが、従来の<code>rake db:test:prepare</code>コマンドも問題なく動作します。</p>
+<p><code>../sample_app_2nd_ed/db/migrate</code>の末尾にスラッシュを追加しないよう注意してください。システムによっては、マイグレーション<em>ファイル</em>がコピーされてもディレクトリがコピーされないことがあります。なお、Rails 4.0では<code>rake test:prepare</code>コマンドを使用するのが一般的ですが、従来の<code>rake db:test:prepare</code>コマンドも問題なく動作します。</p>
 
 <p>以後、このようにテストとアプリケーションを既存のアプリケーションから順次新しいアプリケーションにコピーすることを繰り返し、移行を完了させます。コピーに使用するツールは、コマンドラインでもGUIファイルブラウザでも好みのもので構いません。</p>
 
@@ -254,7 +254,7 @@ doc/
 
 <p>ファイルのコピー時にはエラーが発生することも多く、システム環境に依存するコピー項目もあるので、本書ではコピーするファイルをすべての場合について列挙することはしません。ファイルをどのような順序でコピーするかについては、各自にお任せすることにします。</p>
 
-<p>特にご注意いただきたいのが、generateで生成されたファイル (アプリケーションレイアウト<code>application.html.erb</code>など) には重要なコードが含まれていることがあり、単純な上書きコピーを行えない場合があるということです。このような場合には、ご面倒でもコピー元とコピー先のファイルを開き、内容を確認しながら必要なコードだけを手動でコピーしてください (<a href="./#supplement">Screencast</a>はこういう作業の説明が楽ですね)。</p>
+<p>特に注意して頂きたいのが、generateで生成されたファイル (アプリケーションレイアウト<code>application.html.erb</code>など) には重要なコードが含まれていることがあり、単純な上書きコピーを行えない場合があるということです。このような場合には、ご面倒でもコピー元とコピー先のファイルを開き、内容を確認しながら必要なコードだけを手動でコピーしてください (<a href="./#supplement">Screencast</a>はこういう作業の説明が楽ですね)。</p>
 
 <div class="label" id="sec-some_specific_issues"></div>
 
@@ -675,7 +675,7 @@ c1b783bae98e4e56db</span><span class="s1">aee787747e92a141565f7c61d0ab2c6f98f739
 </div></div>
 
 
-<p>これを解決する方法は、秘密鍵をローカルで動的に生成してファイルに保存することです。実はこの問題はPhenoelit作 “Rails脆弱性自動レポート用ボット” が著者に親切にも警告してくれたおかげで気付いたもので、同ページに解決法も示されています。<a class="ref" href="./chapters/supplement.html#code-dynamic_secure_token">リスト12.8</a>に示したように、この秘密鍵は必要に応じて読み出して利用されます。ここで特にご注意いただきたいのは、<a class="ref" href="./chapters/supplement.html#code-gitignore_rails_4_upgrade">リスト12.2</a>にも示したように、<code>.secret</code>ファイルを<code>.gitignore</code>に追記し、このファイルが間違っても一般からアクセス可能なリポジトリに置かれることの<em>ない</em>ようにする必要があるという点です。</p>
+<p>これを解決する方法は、秘密鍵をローカルで動的に生成してファイルに保存することです。実はこの問題はPhenoelit作 “Rails脆弱性自動レポート用ボット” が著者に親切にも警告してくれたおかげで気付いたもので、同ページに解決法も示されています。<a class="ref" href="./chapters/supplement.html#code-dynamic_secure_token">リスト12.8</a>に示したように、この秘密鍵は必要に応じて読み出して利用されます。ここで特に注意して頂きたいのは、<a class="ref" href="./chapters/supplement.html#code-gitignore_rails_4_upgrade">リスト12.2</a>にも示したように、<code>.secret</code>ファイルを<code>.gitignore</code>に追記し、このファイルが間違っても一般からアクセス可能なリポジトリに置かれることの<em>ない</em>ようにする必要があるという点です。</p>
 
 <div class="label" id="code-dynamic_secure_token"></div>
 
@@ -808,7 +808,7 @@ c1b783bae98e4e56db</span><span class="s1">aee787747e92a141565f7c61d0ab2c6f98f739
 </div></div>
 
 
-<p><code>no_capybara</code>オプションが必要な部分は3箇所のみです (<a class="ref" href="./chapters/supplement.html#code-relationships_test_no_capybara">リスト12.12</a>の1箇所と<a class="ref" href="./chapters/supplement.html#code-authentication_pages_test_no_capybara">リスト12.13</a>の2箇所)。ここで、<a class="ref" href="./chapters/supplement.html#code-authentication_pages_test_no_capybara">リスト12.13</a>では<code>patch</code>メソッドが導入されたことにご注目ください。これはHTTPの<tt>PATCH</tt>動詞に対応します。現時点では<tt>PUT</tt>から<tt>PATCH</tt>への変更は必須ではありませんが、Rails 4.0ではモデルオブジェクトの更新にはPATCHを使用することが推奨されており、将来のバージョンでは必須になる予定です。詳細については、4.0用のチュートリアル、特に「<a href="./static-pages.html#sidebar-get_etc">コラム 3.3 GETやその他のHTTPメソッドについて</a>」を参照してください。</p>
+<p><code>no_capybara</code>オプションが必要な部分は3箇所のみです (<a class="ref" href="./chapters/supplement.html#code-relationships_test_no_capybara">リスト12.12</a>の1箇所と<a class="ref" href="./chapters/supplement.html#code-authentication_pages_test_no_capybara">リスト12.13</a>の2箇所)。ここで、<a class="ref" href="./chapters/supplement.html#code-authentication_pages_test_no_capybara">リスト12.13</a>では<code>patch</code>メソッドが導入されたことに注目してください。これはHTTPの<tt>PATCH</tt>動詞に対応します。現時点では<tt>PUT</tt>から<tt>PATCH</tt>への変更は必須ではありませんが、Rails 4.0ではモデルオブジェクトの更新にはPATCHを使用することが推奨されており、将来のバージョンでは必須になる予定です。詳細については、4.0用のチュートリアル、特に「<a href="./static-pages.html#sidebar-get_etc">コラム 3.3 GETやその他のHTTPメソッドについて</a>」を参照してください。</p>
 
 <div class="label" id="code-relationships_test_no_capybara"></div>
 

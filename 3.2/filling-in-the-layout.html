@@ -538,7 +538,7 @@
 </div>
 
 
-<p>この行では、<code>app/views/layouts/_shim.html.erb</code>というファイルを探してその内容を評価し、結果をビューのその場所に挿入しています<sup class="footnote" id="fnref-5_6"><a href="./filling-in-the-layout.html#fn-5_6">6</a></sup>  (<tt class="verb">&lt;%= ... %&gt;</tt>は、テンプレート内でRubyの式を評価するための埋め込みRuby記法であることを思い出してください。評価した結果がテンプレートに挿入されます)。ファイル名<code>_shim.html.erb</code>の前のアンダースコアにご注目ください。このアンダースコアは、パーシャルで使用する普遍的な命名規約であり、また、一目見ただけでディレクトリ中のすべてのパーシャルを識別することが可能になります。</p>
+<p>この行では、<code>app/views/layouts/_shim.html.erb</code>というファイルを探してその内容を評価し、結果をビューのその場所に挿入しています<sup class="footnote" id="fnref-5_6"><a href="./filling-in-the-layout.html#fn-5_6">6</a></sup>  (<tt class="verb">&lt;%= ... %&gt;</tt>は、テンプレート内でRubyの式を評価するための埋め込みRuby記法であることを思い出してください。評価した結果がテンプレートに挿入されます)。ファイル名<code>_shim.html.erb</code>の前のアンダースコアに注目してください。このアンダースコアは、パーシャルで使用する普遍的な命名規約であり、また、一目見ただけでディレクトリ中のすべてのパーシャルを識別することが可能になります。</p>
 
 <p>もちろん、パーシャルが動作するためには、その中にコンテンツを記述しなければなりません。このshimパーシャルの場合は、<a class="ref" href="./filling-in-the-layout.html#code-layout_new_structure">リスト5.1</a>のわずか3行のshimコードだけです。追加した結果を<a class="ref" href="./filling-in-the-layout.html#code-stylesheets_partial">リスト5.9</a>に示します。</p>
 
@@ -1157,7 +1157,7 @@
 <table class="tabular"><tr><th class="align_left"><strong>ページ</strong></th><th class="align_left"><strong>URI</strong></th><th class="align_right"><strong>名前付きルート</strong></th></tr><tr class="top_bar"><td class="align_left">Home</td><td class="align_left">/</td><td class="align_right"><code>root_path</code></td></tr><tr><td class="align_left">About</td><td class="align_left">/about</td><td class="align_right"><code>about_path</code></td></tr><tr><td class="align_left">Help</td><td class="align_left">/help</td><td class="align_right"><code>help_path</code></td></tr><tr><td class="align_left">Contact</td><td class="align_left">/contact</td><td class="align_right"><code>contact_path</code></td></tr><tr><td class="align_left">Sign up</td><td class="align_left">/signup</td><td class="align_right"><code>signup_path</code></td></tr><tr><td class="align_left">Sign in</td><td class="align_left">/signin</td><td class="align_right"><code>signin_path</code></td></tr></table></div><div class="caption"><span class="header">表 5.1</span><span class="description">サイトリンクのルート (routing) とURIのマッピング。</span></div></div>
 
 
-<p>先に進む前にContactページを追加しましょう (これは<a class="ref" href="./static-pages.html#top">第3章</a>の演習の積み残しです)。Contactページのテストを<a class="ref" href="./filling-in-the-layout.html#code-contact_page_test">リスト5.16</a>に示します。これは単に<a class="ref" href="./static-pages.html#code-pages_controller_spec_title">リスト3.18</a>で使用されているテストのパターンに従ったものです。<a class="ref" href="./filling-in-the-layout.html#code-contact_page_test">リスト5.16</a>のアプリケーションコードでは、Ruby 1.9スタイルのハッシュに変更していることにご注意ください。</p>
+<p>先に進む前にContactページを追加しましょう (これは<a class="ref" href="./static-pages.html#top">第3章</a>の演習の積み残しです)。Contactページのテストを<a class="ref" href="./filling-in-the-layout.html#code-contact_page_test">リスト5.16</a>に示します。これは単に<a class="ref" href="./static-pages.html#code-pages_controller_spec_title">リスト3.18</a>で使用されているテストのパターンに従ったものです。<a class="ref" href="./filling-in-the-layout.html#code-contact_page_test">リスト5.16</a>のアプリケーションコードでは、Ruby 1.9スタイルのハッシュに変更していることに注意してください。</p>
 
 <div class="label" id="code-contact_page_test"></div>
 
@@ -1429,7 +1429,7 @@
 </div>
 
 
-<p><code>about_url</code>は<em>フル</em>URI http://localhost:3000/about であることにご注目ください (なお、<code>localhost:3000</code>は本番環境で<code>example.com</code>のようなドメイン名へ置き換えられます)。<a class="ref" href="./filling-in-the-layout.html#sec-layout_links">5.3</a>で説明したように、/about のみを取得する場合は <code>about_path</code>を使います。なお、<em>Railsチュートリアル</em>では、<code>path</code>書式を使用する一般的な規約に従い、リダイレクトの場合のみ<code>url</code>書式を使用します。これは、HTTP標準では技術的にリダイレクト後にフルURIが要求されるためです。ただし、ほとんどのブラウザではどちらの方法でも動作します。</p>
+<p><code>about_url</code>は<em>フル</em>URI http://localhost:3000/about であることに注目してください (なお、<code>localhost:3000</code>は本番環境で<code>example.com</code>のようなドメイン名へ置き換えられます)。<a class="ref" href="./filling-in-the-layout.html#sec-layout_links">5.3</a>で説明したように、/about のみを取得する場合は <code>about_path</code>を使います。なお、<em>Railsチュートリアル</em>では、<code>path</code>書式を使用する一般的な規約に従い、リダイレクトの場合のみ<code>url</code>書式を使用します。これは、HTTP標準では技術的にリダイレクト後にフルURIが要求されるためです。ただし、ほとんどのブラウザではどちらの方法でも動作します。</p>
 
 <p>ルーティングが定義されたので、Help、About、Contactページのテストはパスするはずです。</p>
 
@@ -1498,7 +1498,7 @@
 </div>
 
 
-<p><a class="ref" href="./filling-in-the-layout.html#code-root_route_hint">リスト5.22</a>の他のコメントの内容にもご注意ください。/にアクセスする際にRailsがデフォルトのページ (<a class="ref" href="./beginning.html#fig-riding_rails_31">図1.3</a>) を表示しないように、<code>public/index.html</code>を削除しておきます。もちろん、単にこのファイルを削除しても構いませんが、バージョン管理にGitを使用している場合は、<code>git rm</code>を使用することでファイル削除と同時にGitに削除を通知することもできます。</p>
+<p><a class="ref" href="./filling-in-the-layout.html#code-root_route_hint">リスト5.22</a>の他のコメントの内容にも注意してください。/にアクセスする際にRailsがデフォルトのページ (<a class="ref" href="./beginning.html#fig-riding_rails_31">図1.3</a>) を表示しないように、<code>public/index.html</code>を削除しておきます。もちろん、単にこのファイルを削除しても構いませんが、バージョン管理にGitを使用している場合は、<code>git rm</code>を使用することでファイル削除と同時にGitに削除を通知することもできます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git rm public/index.html
 </pre></div>
@@ -1589,7 +1589,7 @@
 
 <p>これで、レイアウトに<a class="ref" href="./static-pages.html#top">第3章</a>で作成したすべての静的ページへのリンクができました。たとえば<a href="http://localhost:3000/about">/about</a>の場合はAboutページ (<a class="ref" href="./filling-in-the-layout.html#fig-about_page">図5.8</a>) に移動します。</p>
 
-<p>ところで、実際にレイアウト上にリンクが存在するかどうかをまだテストしていませんが、テスト方法のヒントとして、名前付きルートが定義されていなければテストは失敗するいうことにご注目ください。このことは、<a class="ref" href="./filling-in-the-layout.html#code-static_page_routes">リスト5.21</a>のルーティング定義をコメントアウトし、テストスイートを実行することで確認できます。リンクが実際に正しい場所を指していることを確認するテストの手法については、<a class="ref" href="./filling-in-the-layout.html#sec-layout_exercises">5.6</a>で説明します。</p>
+<p>ところで、実際にレイアウト上にリンクが存在するかどうかをまだテストしていませんが、テスト方法のヒントとして、「名前付きルートが定義されていなければテストは失敗する」ということに注目してください。このことは、<a class="ref" href="./filling-in-the-layout.html#code-static_page_routes">リスト5.21</a>のルーティング定義をコメントアウトし、テストスイートを実行することで確認できます。リンクが実際に正しい場所を指していることを確認するテストの手法については、<a class="ref" href="./filling-in-the-layout.html#sec-layout_exercises">5.6</a>で説明します。</p>
 
 <div class="label" id="fig-about_page"></div>
 
@@ -1967,7 +1967,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./filling-in-the-layout.html#code-generate_users_controller">リスト5.28</a>では、Usersコントローラを生成したときに自動的に生成された<code>get &quot;users/new&quot;</code>のルールはそのままにしてあることにご注目ください。現時点では、このルールは<code>’users/new’</code>のルーティングが動作するために必要ですが、適切なREST規約 (<a class="ref" href="./a-demo-app.html#table-demo_RESTful_users">表2.2</a>) に従っていません。これは<a class="ref" href="./sign-up.html#sec-a_users_resource">7.1.2</a>で取り除きます。</p>
+<p><a class="ref" href="./filling-in-the-layout.html#code-generate_users_controller">リスト5.28</a>では、Usersコントローラを生成したときに自動的に生成された<code>get &quot;users/new&quot;</code>のルールはそのままにしてあることに注目してください。現時点では、このルールは<code>’users/new’</code>のルーティングが動作するために必要ですが、適切なREST規約 (<a class="ref" href="./a-demo-app.html#table-demo_RESTful_users">表2.2</a>) に従っていません。これは<a class="ref" href="./sign-up.html#sec-a_users_resource">7.1.2</a>で取り除きます。</p>
 
 <p>テストをパスさせるために今必要なのは、“Sign up” のタイトルとヘッダーがあるビューです (<a class="ref" href="./filling-in-the-layout.html#code-initial_signup_page">リスト5.33</a>)。</p>
 
@@ -2082,7 +2082,7 @@
 
 <ol>
 
-<li><a class="ref" href="./filling-in-the-layout.html#code-pretty_page_tests">リスト5.27</a>の静的ページのテストコードは簡潔ですが、まだ繰り返しが残っています。RSpecには、冗長性を排除するための<em>Shared Examples</em>と呼ばれる機能があります。<a class="ref" href="./filling-in-the-layout.html#code-static_pages_spec_shared_example">リスト5.35</a>の例に従い、Help、AboutとContactページで不足しているテストを補ってください。<a class="ref" href="./static-pages.html#code-pages_controller_spec_exercise">リスト3.30</a>で簡単に紹介した<code>let</code>コマンドは、要求 (変数が使用されるときなど) に応じて与えられた値を持つ「ローカル変数」を作成することにご注意ください。対照的にインスタンス変数は、要素代入 (assignment) されたときに作成されます。</li>
+<li><a class="ref" href="./filling-in-the-layout.html#code-pretty_page_tests">リスト5.27</a>の静的ページのテストコードは簡潔ですが、まだ繰り返しが残っています。RSpecには、冗長性を排除するための<em>Shared Examples</em>と呼ばれる機能があります。<a class="ref" href="./filling-in-the-layout.html#code-static_pages_spec_shared_example">リスト5.35</a>の例に従い、Help、AboutとContactページで不足しているテストを補ってください。<a class="ref" href="./static-pages.html#code-pages_controller_spec_exercise">リスト3.30</a>で簡単に紹介した<code>let</code>コマンドは、要求 (変数が使用されるときなど) に応じて与えられた値を持つ「ローカル変数」を作成することに注意してください。対照的にインスタンス変数は、要素代入 (assignment) されたときに作成されます。</li>
 
 <li>既にお気付きの方もいると思いますが、これまで行なってきた、レイアウト上のリンクのルーティングテストは、そのリンクが実際に正しいページへのリンクになっているかどうかをチェックしていません。このようなテストを実装する方法のひとつは、RSpecの結合テスト内で<code>visit</code>と<code>click_link</code>を使用することです。レイアウトのリンクが正しく定義されていることを確認するコードを追加して、<a class="ref" href="./filling-in-the-layout.html#code-layout_links_test">リスト5.36</a>を補ってください。</li>
 

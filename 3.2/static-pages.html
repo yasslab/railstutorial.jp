@@ -324,7 +324,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>今回はRSpecのテストを使わないため、<tt class="verb">--no-test-framework</tt>というオプションを付け加えることで、RSpecのテストを自動的に生成しないようにしています。代わりに、<a class="ref" href="./static-pages.html#sec-first_tests">3.2</a>からは手動でテストを作成します。また、<a class="ref" href="./static-pages.html#code-generating_pages">リスト 3.4</a>に示したように、今回は意図的に<code>about</code>アクションをコマンドライン引数から取り除きました。 これは、同じく<a class="ref" href="./static-pages.html#sec-first_tests">3.2</a> から、テスト駆動開発 (Test-Driven Development, TDD) という開発手法を学ぶためです。</p>
 
-<p><a class="ref" href="./static-pages.html#code-generating_pages">リスト 3.4</a>では、コントローラ名を<a href="https://en.wikipedia.org/wiki/CamelCase">キャメルケース</a> (訳注: 単語の頭文字を大文字にしてつなぎ合わせた名前) で渡していることにご注目ください。こうすると、StaticPagesコントローラは、<a href="https://en.wikipedia.org/wiki/Snake_case">スネークケース</a> (訳注: 単語間にアンダースコアを加えて繋ぎ合わせた名前) のファイル <code>static_pages_controller.rb</code> を自動的に生成します。ただし、上のような命名は単なる慣習に過ぎません。実際、コマンドライン上で以下のようなスネークケースのコントローラ名を入力しても、</p>
+<p><a class="ref" href="./static-pages.html#code-generating_pages">リスト 3.4</a>では、コントローラ名を<a href="https://en.wikipedia.org/wiki/CamelCase">キャメルケース</a> (訳注: 単語の頭文字を大文字にしてつなぎ合わせた名前) で渡していることに注目してください。こうすると、StaticPagesコントローラは、<a href="https://en.wikipedia.org/wiki/Snake_case">スネークケース</a> (訳注: 単語間にアンダースコアを加えて繋ぎ合わせた名前) のファイル <code>static_pages_controller.rb</code> を自動的に生成します。ただし、上のような命名は単なる慣習に過ぎません。実際、コマンドライン上で以下のようなスネークケースのコントローラ名を入力しても、</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate controller static_pages ...
 </pre></div>
@@ -433,7 +433,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>このページがどのようにして表示されるのかを理解するために、まずはテキストエディタでStaticPagesコントローラを開いてみましょう。<a class="ref" href="./static-pages.html#code-static_pages_controller">リスト3.6</a>のような内容になっているはずです。ここで、<a class="ref" href="./a-demo-app.html#top">第2章</a>のUsersコントローラやMicropostsコントローラとは異なり、StaticPagesコントローラは一般的なRESTアクションに対応していないことにご注意ください。これは、静的なページの集合に対しては、適切なアクションと言えます。言い換えると、RESTアーキテクチャは、あらゆる問題に対して最適な解決方法であるとは限らないということです。</p>
+<p>このページがどのようにして表示されるのかを理解するために、まずはテキストエディタでStaticPagesコントローラを開いてみましょう。<a class="ref" href="./static-pages.html#code-static_pages_controller">リスト3.6</a>のような内容になっているはずです。ここで、<a class="ref" href="./a-demo-app.html#top">第2章</a>のUsersコントローラやMicropostsコントローラとは異なり、StaticPagesコントローラは一般的なRESTアクションに対応していないことに注意してください。これは、静的なページの集合に対しては、適切なアクションと言えます。言い換えると、RESTアーキテクチャは、あらゆる問題に対して最適な解決方法であるとは限らないということです。</p>
 
 <div class="label" id="code-static_pages_controller"></div>
 
@@ -978,7 +978,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>上のコードでもタイトル全体とマッチします。</p>
 
-<p><a class="ref" href="./static-pages.html#code-title_test">リスト 3.17</a>では<code>have_selector</code>を2行に分けていることにご注目ください。これは、改行の有無に影響されないというRubyの記法を生かしたものです<sup class="footnote" id="fnref-3_11"><a href="./static-pages.html#fn-3_11">11</a></sup>。行を分割した<em>理由</em>は、1行を80字以内に収めてソースコードを読みやすくするためです<sup class="footnote" id="fnref-3_12"><a href="./static-pages.html#fn-3_12">12</a></sup>。現状では、それでもこのコードは読みにくいままですが、<a class="ref" href="./static-pages.html#sec-static_pages_exercises">3.5</a>でより見やすくなるようにリファクタリングをします。また、<a class="ref" href="./filling-in-the-layout.html#sec-pretty_rspec">5.3.4</a>で最新版のRspecの機能を使ってStaticPagesのテストを完全に書き換えます。</p>
+<p><a class="ref" href="./static-pages.html#code-title_test">リスト 3.17</a>では<code>have_selector</code>を2行に分けていることに注目してください。これは、改行の有無に影響されないというRubyの記法を生かしたものです<sup class="footnote" id="fnref-3_11"><a href="./static-pages.html#fn-3_11">11</a></sup>。行を分割した<em>理由</em>は、1行を80字以内に収めてソースコードを読みやすくするためです<sup class="footnote" id="fnref-3_12"><a href="./static-pages.html#fn-3_12">12</a></sup>。現状では、それでもこのコードは読みにくいままですが、<a class="ref" href="./static-pages.html#sec-static_pages_exercises">3.5</a>でより見やすくなるようにリファクタリングをします。また、<a class="ref" href="./filling-in-the-layout.html#sec-pretty_rspec">5.3.4</a>で最新版のRspecの機能を使ってStaticPagesのテストを完全に書き換えます。</p>
 
 <p><a class="ref" href="./static-pages.html#code-title_test">リスト3.17</a>と同じ要領で、StaticPagesのテストに3つの静的ページのテストを追加します (<a class="ref" href="./static-pages.html#code-pages_controller_spec_title">リスト3.18</a>)。</p>
 
@@ -1037,7 +1037,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>上のコードでは、<code>have_content</code>を<code>have_selector(’h1’, …)</code>に変更していることにご注目ください。変更した理由を考えてみてください (<em>ヒント:</em> もしタイトルに &#39;Help&#39; という文字が含まれていて、<code>h1</code>のタグの内容が &#39;Helf&#39; だったら何が起こるでしょうか)。</p>
+<p>上のコードでは、<code>have_content</code>を<code>have_selector(’h1’, …)</code>に変更していることに注目してください。変更した理由を考えてみてください (<em>ヒント:</em> もしタイトルに &#39;Help&#39; という文字が含まれていて、<code>h1</code>のタグの内容が &#39;Helf&#39; だったら何が起こるでしょうか)。</p>
 
 <p><a class="ref" href="./static-pages.html#code-pages_controller_spec_title">リスト 3.18</a>の内容を反映後、以下を実行します。</p>
 
@@ -1192,7 +1192,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div>
 
 
-<p>上のコードに<tt class="verb">&lt;% ... %&gt;</tt>と書かれていることにご注目ください。Railsはこの中で<code>provide</code>関数を呼び出し、<code>:title</code>というラベルに <code>’Home’</code> という文字列を関連付けます<sup class="footnote" id="fnref-3_14"><a href="./static-pages.html#fn-3_14">14</a></sup>。次に、以下のコードでRubyの<code>yield</code>関数を使用し、それを<tt class="verb">&lt;%= ... %&gt;</tt>表記 (上と微妙に異なることにご注目ください) で囲むことにより、テンプレートにタイトルを挿入します<sup class="footnote" id="fnref-3_15"><a href="./static-pages.html#fn-3_15">15</a></sup>。</p>
+<p>上のコードに<tt class="verb">&lt;% ... %&gt;</tt>と書かれていることに注目してください。Railsはこの中で<code>provide</code>関数を呼び出し、<code>:title</code>というラベルに <code>’Home’</code> という文字列を関連付けます<sup class="footnote" id="fnref-3_14"><a href="./static-pages.html#fn-3_14">14</a></sup>。次に、以下のコードでRubyの<code>yield</code>関数を使用し、それを<tt class="verb">&lt;%= ... %&gt;</tt>表記 (上と微妙に異なることに注目してください) で囲むことにより、テンプレートにタイトルを挿入します<sup class="footnote" id="fnref-3_15"><a href="./static-pages.html#fn-3_15">15</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;title&gt;</span>Ruby on Rails Tutorial Sample App | <span class="cp">&lt;%=</span> <span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
 </pre></div>
@@ -1325,7 +1325,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 </div></div>
 
 
-<p>上のコードにある、以下の特殊なコードにご注目ください。</p>
+<p>上のコードにある、以下の特殊なコードに注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="k">yield</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -1334,7 +1334,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>このコードは、各ページの内容をレイアウトに挿入するためのものです。ここでは、このコードの詳細な動作を正確に理解することは重要ではありません。レイアウトを使用するうえでは、/static_pages/homeにアクセスすると、<code>home.html.erb</code>の内容がHTMLに変換され、<tt class="verb">&lt;%= yield %&gt;</tt>の位置に挿入されるということだけ理解しておけば問題ありません。</p>
 
-<p>Railsのデフォルトのレイアウトには、以下の行が追加されていることにもご注目ください。</p>
+<p>Railsのデフォルトのレイアウトには、以下の行が追加されていることにも注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span>    <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">:media</span> <span class="o">=&gt;</span> <span class="s2">&quot;all&quot;</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%=</span> <span class="n">javascript_include_tag</span> <span class="s2">&quot;application&quot;</span> <span class="cp">%&gt;</span>
@@ -1846,7 +1846,7 @@ bundler_stubs/
 </div></div>
 
 
-<p>上のコードにある以下の行にご注目ください。</p>
+<p>上のコードにある以下の行に注目してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">guard</span> <span class="s1">&#39;rspec&#39;</span><span class="p">,</span> <span class="ss">:version</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="ss">:all_after_pass</span> <span class="o">=&gt;</span> <span class="kp">false</span> <span class="k">do</span>
 </pre></div>
