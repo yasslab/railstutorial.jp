@@ -1151,7 +1151,7 @@
 
 <div class="codelisting">
 <div class="listing"><span class="header">リスト11.26</span> <span class="description">ユーザーをフォロー解除するフォーム。</span><br /><span class="description"> <code>app/views/users/_unfollow.html.erb</code></span> </div>
-<div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">form_for</span><span class="p">(</span><span class="n">current_user</span><span class="o">.</span><span class="n">relationships</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">followed_id:</span> <span class="vi">@user</span><span class="p">),</span>
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">form_for</span><span class="p">(</span><span class="n">current_user</span><span class="o">.</span><span class="n">relationships</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">followed_id:</span> <span class="vi">@user</span>.id<span class="p">),</span>
              <span class="ss">html:</span> <span class="p">{</span> <span class="nb">method</span><span class="p">:</span> <span class="ss">:delete</span> <span class="p">})</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="s2">&quot;Unfollow&quot;</span><span class="p">,</span> <span class="ss">class:</span> <span class="s2">&quot;btn btn-large&quot;</span> <span class="cp">%&gt;</span>
 <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
