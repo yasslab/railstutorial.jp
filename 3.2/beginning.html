@@ -1277,6 +1277,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 <div class="codelisting">
 <div class="listing"><span class="header">リスト1.10</span> <span class="description">Herokuに新しいアプリケーションを作成する。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd</span> ~/rails_projects/first_app
+<span class="gp">$</span> heroku addons:add heroku-postgresql
+<span class="nb"># 訳注: ↑Heroku上の更新により、PostgreSQLの使用を明示的に示す必要があります。</span>
+<span class="nb"># 詳細: https://devcenter.heroku.com/articles/pre-provision-database</span>
 <span class="gp">$</span> heroku create
 <span class="go">Created http://stormy-cloud-5881.herokuapp.com/ |</span>
 <span class="go">git@heroku.com:stormy-cloud-5881.herokuapp.com</span>
