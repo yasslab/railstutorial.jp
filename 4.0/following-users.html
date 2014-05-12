@@ -1643,7 +1643,7 @@
 
 <div class="codelisting">
 <div class="listing"><span class="header">リスト11.36</span> <span class="description">フォロー解除用のフォームでAjaxを使用する。</span><br /><span class="description"> <code>app/views/users/_unfollow.html.erb</code></span> </div>
-<div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">form_for</span><span class="p">(</span><span class="n">current_user</span><span class="o">.</span><span class="n">relationships</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">followed_id:</span> <span class="vi">@user</span><span class="p">),</span>
+<div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">form_for</span><span class="p">(</span><span class="n">current_user</span><span class="o">.</span><span class="n">relationships</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">followed_id:</span> <span class="vi">@user</span>.id<span class="p">),</span>
              <span class="ss">html:</span> <span class="p">{</span> <span class="nb">method</span><span class="p">:</span> <span class="ss">:delete</span> <span class="p">},</span>
              <span class="ss">remote:</span> <span class="kp">true</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="s2">&quot;Unfollow&quot;</span><span class="p">,</span> <span class="ss">class:</span> <span class="s2">&quot;btn btn-large&quot;</span> <span class="cp">%&gt;</span>
@@ -1699,7 +1699,9 @@
   <span class="n">describe</span> <span class="s2">&quot;destroying a relationship with Ajax&quot;</span> <span class="k">do</span>
 
     <span class="n">before</span> <span class="p">{</span> <span class="n">user</span><span class="o">.</span><span class="n">follow!</span><span class="p">(</span><span class="n">other_user</span><span class="p">)</span> <span class="p">}</span>
-    <span class="n">let</span><span class="p">(</span><span class="ss">:relationship</span><span class="p">)</span> <span class="p">{</span> <span class="n">user</span><span class="o">.</span><span class="n">relationships</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">followed_id:</span> <span class="n">other_user</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">let</span><span class="p">(</span><span class="ss">:relationship</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">user</span><span class="o">.</span><span class="n">relationships</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">followed_id:</span> <span class="n">other_user</span>.id<span class="p">)</span>
+    <span class="k">end</span>
 
     <span class="n">it</span> <span class="s2">&quot;should decrement the Relationship count&quot;</span> <span class="k">do</span>
       <span class="n">expect</span> <span class="k">do</span>
