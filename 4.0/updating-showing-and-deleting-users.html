@@ -610,7 +610,7 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/protected_sign_in_bootstrap.png" alt="protected_sign_in_bootstrap" /></span></div><div class="caption"><span class="header">図9.6</span><span class="description">保護されたページにアクセスした直後のサインインフォーム。<a href="../images/figures/protected_sign_in_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>なお、<a class="ref" href="./updating-showing-and-deleting-users.html#code-protected_edit_update_tests">リスト9.11</a>で承認テストにパスするようにしたことで、 <a class="ref" href="./updating-showing-and-deleting-users.html#code-user_edit_specs">リスト9.1</a>の以下のようなコードは残念ながら動かなくなりました。</p>
+<p><!--なお、<a class="ref" href="./updating-showing-and-deleting-users.html#code-protected_edit_update_tests">リスト9.11</a>で承認テストにパスするようにしたことで、 <a class="ref" href="./updating-showing-and-deleting-users.html#code-user_edit_specs">リスト9.1</a>の以下のようなコードは残念ながら動かなくなりました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;edit&quot;</span> <span class="k">do</span>
   <span class="n">let</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">{</span> <span class="no">FactoryGirl</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="p">}</span>
@@ -650,7 +650,7 @@
 </div></div>
 
 
-<p>今度はテストスイートはパスするはずです。</p>
+<p>-->今度はテストスイートがパスするはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
@@ -665,13 +665,13 @@
 <h3><a id="sec-9_2_2" href="./updating-showing-and-deleting-users.html#sec-requiring_the_right_user" class="heading"><span class="number">9.2.2</span>正しいユーザーを要求する</a></h3>
 
 
-<p>当然のことですが、サインインを要求するだけでは十分ではありません。ユーザーが<em>自分自身の</em>情報以外の他ユーザーの情報を編集できないようにする必要もあります。これをテストするには、無効なユーザーとしてサインインしてから、<code>edit</code>アクションと <code>update</code>アクションにアクセスします (<a class="ref" href="./updating-showing-and-deleting-users.html#code-edit_update_wrong_user_tests">リスト9.14</a>)。このとき、今回は Capybara を使わずにテストしているため (<code>no_capybara: true</code>)、<code>get</code> や <code>patch</code> メソッドを使って <code>edit</code> や <code>update</code> アクションに直接アクセスしていることに注意してください。また、ユーザーは他のユーザーのプロファイルを編集<em>しようとする</em>ことすらできないようにしないといけません。そのため、そのような不正なアクセスを検出したら、サインインページではなくルートURLにリダイレクトさせなくてはいけません。</p>
+<p>当然のことですが、サインインを要求するだけでは十分ではありません。ユーザーが<em>自分自身の</em>情報以外の他ユーザーの情報を編集できないようにする必要もあります。これをテストするには、無効なユーザーとしてサインインしてから、<code>edit</code>アクションと <code>update</code>アクションにアクセスします (<a class="ref" href="./updating-showing-and-deleting-users.html#code-edit_update_wrong_user_tests">リスト9.13</a>)。このとき、今回は Capybara を使わずにテストしているため (<code>no_capybara: true</code>)、<code>get</code> や <code>patch</code> メソッドを使って <code>edit</code> や <code>update</code> アクションに直接アクセスしていることに注意してください。また、ユーザーは他のユーザーのプロファイルを編集<em>しようとする</em>ことすらできないようにしないといけません。そのため、そのような不正なアクセスを検出したら、サインインページではなくルートURLにリダイレクトさせなくてはいけません。</p>
 
 <div class="label" id="code-edit_update_wrong_user_tests"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.14</span> <span class="description"><code>edit</code>アクションと<code>update</code>アクションで正しいユーザーを要求することをテストする。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.13</span> <span class="description"><code>edit</code>アクションと<code>update</code>アクションで正しいユーザーを要求することをテストする。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Authentication&quot;</span> <span class="k">do</span>
@@ -713,13 +713,13 @@
 
 <p>上のコードは、作成するユーザーのメールアドレスをデフォルトと異なるものに変更します。このテストでは、元のユーザーが別のユーザーの<code>edit</code>アクションや<code>update</code>アクションにアクセスできないことを確認します。</p>
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-correct_user_before_filter">リスト9.15</a>のアプリケーションコードでは、<code>correct_user</code>メソッドを呼び出すためにbefore_actionをもう1つ追加しています。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-correct_user_before_filter">リスト9.14</a>のアプリケーションコードでは、<code>correct_user</code>メソッドを呼び出すためにbefore_actionをもう1つ追加しています。</p>
 
 <div class="label" id="code-correct_user_before_filter"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.15</span> <span class="description">edit/updateページを保護するための<code>correct_user</code> before_action。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.14</span> <span class="description">edit/updateページを保護するための<code>correct_user</code> before_action。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
   <span class="n">before_action</span> <span class="ss">:correct_user</span><span class="p">,</span>   <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
@@ -762,13 +762,13 @@
 </div></div>
 
 
-<p><code>correct_user</code>フィルタでは<code>current_user?</code>論理値 (boolean) メソッドを使用しています。このメソッドはセッションヘルパーで定義します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-current_user_p">リスト9.16</a>)。</p>
+<p><code>correct_user</code>フィルタでは<code>current_user?</code>論理値 (boolean) メソッドを使用しています。このメソッドはセッションヘルパーで定義します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-current_user_p">リスト9.15</a>)。</p>
 
 <div class="label" id="code-current_user_p"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.16</span> <span class="description"><code>current_user?</code></span><span class="description">メソッド。</span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.15</span> <span class="description"><code>current_user?</code></span><span class="description">メソッド。</span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">SessionsHelper</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -789,7 +789,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-correct_user_before_filter">リスト9.15</a>では、<code>edit</code>アクションと<code>update</code>アクションも更新されていることに注目してください。<a class="ref" href="./updating-showing-and-deleting-users.html#code-initial_edit_action">リスト9.2</a>の時点では以下のようなコードでした。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-correct_user_before_filter">リスト9.14</a>では、<code>edit</code>アクションと<code>update</code>アクションも更新されていることに注目してください。<a class="ref" href="./updating-showing-and-deleting-users.html#code-initial_edit_action">リスト9.2</a>の時点では以下のようなコードでした。</p>
 
 <div class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">edit</span>
   <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
@@ -817,13 +817,13 @@
 
 <p>ここまででWebサイトの認可機能は完成したかのように見えますが、後1つ小さなキズがあります。保護されたページにアクセスしようとすると、問答無用で自分のプロファイルページに移動させられてしまいます。別の言い方をすれば、ログオンしていないユーザーが編集ページにアクセスしようとしていたなら、ユーザーがサインインした後にはその編集ページにリダイレクトされるようにするのが望ましい動作です。リダイレクト先は、ユーザーが開こうとしていたページにしてあげるのが親切というものです。</p>
 
-<p>このような動作を “フレンドリーフォワーディング” と呼びますが、これをテストするには次のような手順を踏みます。まずユーザーのeditページにアクセスし、その後サインインページにリダイレクトします。それから正しいサインイン情報を入力し、[Sign in] ボタンをクリックします。サインイン後にリダイレクトされるのはユーザーのプロファイルページですが、この場合はもともと &quot;Edit user&quot; ページにアクセスしようとしていたのですから、そのページにリダイレクトするようにします。この手順のテストを<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_forwarding_test">リスト9.17</a>に示します。</p>
+<p>このような動作を “フレンドリーフォワーディング” と呼びますが、これをテストするには次のような手順を踏みます。まずユーザーのeditページにアクセスし、その後サインインページにリダイレクトします。それから正しいサインイン情報を入力し、[Sign in] ボタンをクリックします。サインイン後にリダイレクトされるのはユーザーのプロファイルページですが、この場合はもともと &quot;Edit user&quot; ページにアクセスしようとしていたのですから、そのページにリダイレクトするようにします。この手順のテストを<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_forwarding_test">リスト9.16</a>に示します。</p>
 
 <div class="label" id="code-friendly_forwarding_test"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.17</span> <span class="description">フレンドリーフォワーディングのテスト。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.16</span> <span class="description">フレンドリーフォワーディングのテスト。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Authentication&quot;</span> <span class="k">do</span>
@@ -863,13 +863,13 @@
 </div></div>
 
 
-<p>いよいよ実装です<sup class="footnote" id="fnref-9_4"><a href="./updating-showing-and-deleting-users.html#fn-9_4">4</a></sup>。 この動作を、<code>store_location</code>と<code>redirect_back_or</code>の2つのメソッドを使用して実現します。これらのメソッドは、セッションヘルパーで定義します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_forwarding_code">リスト9.18</a>)。</p>
+<p>いよいよ実装です<sup class="footnote" id="fnref-9_4"><a href="./updating-showing-and-deleting-users.html#fn-9_4">4</a></sup>。 この動作を、<code>store_location</code>と<code>redirect_back_or</code>の2つのメソッドを使用して実現します。これらのメソッドは、セッションヘルパーで定義します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_forwarding_code">リスト9.17</a>)。</p>
 
 <div class="label" id="code-friendly_forwarding_code"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.18</span> <span class="description">フレンドリーフォワーディングを実装したコード。</span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.17</span> <span class="description">フレンドリーフォワーディングを実装したコード。</span><br /><span class="description"> <code>app/helpers/sessions_helper.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">module</span> <span class="nn">SessionsHelper</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -889,13 +889,13 @@
 
 <p>ここで、リダイレクト先を保存するメカニズムは、Railsが提供する<code>session</code>機能を使用しています。これは、<a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>で説明した、ブラウザを閉じたときに自動的に破棄される<code>cookies</code>変数のインスタンスと同様のものと考えていただければよいでしょう。また、<code>url</code> (ここではリクエストされたページのURL) の取得には<code>request</code>オブジェクトを使用しています。<code>store_location</code>メソッドでは、リクエストされたURLを<code>:return_to</code>というキーで<code>session</code>変数に保存しています。</p>
 
-<p><code>store_location</code>メソッドを使用するためには、<a class="ref" href="./updating-showing-and-deleting-users.html#code-add_store_location">リスト9.19</a>のようにこのメソッドを<code>signed_in_user</code> before_actionに追加しておく必要があります。</p>
+<p><code>store_location</code>メソッドを使用するためには、<a class="ref" href="./updating-showing-and-deleting-users.html#code-add_store_location">リスト9.18</a>のようにこのメソッドを<code>signed_in_user</code> before_actionに追加しておく必要があります。</p>
 
 <div class="label" id="code-add_store_location"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.19</span> <span class="description"><code>store_location</code>メソッドを、サインインしたユーザーのbefore_actionに追加する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.18</span> <span class="description"><code>store_location</code>メソッドを、サインインしたユーザーのbefore_actionに追加する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
   <span class="n">before_action</span> <span class="ss">:correct_user</span><span class="p">,</span>   <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
@@ -932,7 +932,7 @@
 </div></div>
 
 
-<p>フォワーディング自体を実装するには、<code>redirect_back_or</code>メソッドを使用します。リクエストされたURLが存在する場合はそこにリダイレクトし、ない場合は何らかのデフォルトのURLにリダイレクトします。デフォルトのURLは、Sessionコントローラの<code>create</code>アクションに追加し、サインイン成功後にリダイレクトします (<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_session_create">リスト9.20</a>)。<code>redirect_back_or</code>メソッドでは、以下のようにor演算子<code>||</code>を使用します。</p>
+<p>フォワーディング自体を実装するには、<code>redirect_back_or</code>メソッドを使用します。リクエストされたURLが存在する場合はそこにリダイレクトし、ない場合は何らかのデフォルトのURLにリダイレクトします。デフォルトのURLは、Sessionコントローラの<code>create</code>アクションに追加し、サインイン成功後にリダイレクトします (<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_session_create">リスト9.19</a>)。<code>redirect_back_or</code>メソッドでは、以下のようにor演算子<code>||</code>を使用します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">session</span><span class="o">[</span><span class="ss">:return_to</span><span class="o">]</span> <span class="o">||</span> <span class="n">default</span>
 </pre></div>
@@ -945,7 +945,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.20</span> <span class="description">セッションの<code>create</code>アクションでフレンドリーフォワーディングを実装する。</span><br /><span class="description"> <code>app/controllers/sessions_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.19</span> <span class="description">セッションの<code>create</code>アクションでフレンドリーフォワーディングを実装する。</span><br /><span class="description"> <code>app/controllers/sessions_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">SessionsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="o">.</span>
   <span class="o">.</span>
@@ -968,9 +968,9 @@
 </div></div>
 
 
-<p>(<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>の最初の演習が終わっている場合は、必ず<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_session_create">リスト9.20</a>の正しい<code>params</code> ハッシュを使用してください。)</p>
+<p>(<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>の最初の演習が終わっている場合は、必ず<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_session_create">リスト9.19</a>の正しい<code>params</code> ハッシュを使用してください。)</p>
 
-<p>これで、<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_forwarding_test">リスト9.17</a>のフレンドリーフォワーディング用結合テストはパスするはずです。成功すれば、基本ユーザー認証機能とページ保護機能の実装は完了です。いつものように、以下を実行してテストスイートが緑色 (成功) になることを確認してから先に進みましょう。</p>
+<p>これで、<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_forwarding_test">リスト9.16</a>のフレンドリーフォワーディング用結合テストはパスするはずです。成功すれば、基本ユーザー認証機能とページ保護機能の実装は完了です。いつものように、以下を実行してテストスイートが緑色 (成功) になることを確認してから先に進みましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
@@ -1001,13 +1001,13 @@
 <h3><a id="sec-9_3_1" href="./updating-showing-and-deleting-users.html#sec-user_index" class="heading"><span class="number">9.3.1</span>ユーザーインデックス</a></h3>
 
 
-<p>ユーザーの<code>show</code>ページについては、今後も (サインインしているかどうかにかかわらず) サイトを訪れたすべてのユーザーから見えるようにしておきますが、ユーザー<code>index</code>ページはサインインしたユーザーにしか見せないようにし、未登録のユーザーがデフォルトで表示できるページを制限します。そこで、<code>users_path</code> (<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>) にアクセスしたときに<code>index</code>アクションが保護され、サインインページにリダイレクトされることをテストすることから始めます。他の認可テストと同様、この例は<a class="ref" href="./updating-showing-and-deleting-users.html#code-protected_index_test">リスト9.21</a>のように認証の結合テストの中に置くことにします。</p>
+<p>ユーザーの<code>show</code>ページについては、今後も (サインインしているかどうかにかかわらず) サイトを訪れたすべてのユーザーから見えるようにしておきますが、ユーザー<code>index</code>ページはサインインしたユーザーにしか見せないようにし、未登録のユーザーがデフォルトで表示できるページを制限します。そこで、<code>users_path</code> (<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>) にアクセスしたときに<code>index</code>アクションが保護され、サインインページにリダイレクトされることをテストすることから始めます。他の認可テストと同様、この例は<a class="ref" href="./updating-showing-and-deleting-users.html#code-protected_index_test">リスト9.20</a>のように認証の結合テストの中に置くことにします。</p>
 
 <div class="label" id="code-protected_index_test"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.21</span> <span class="description"><code>index</code>アクションが保護されていることをテストする。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.20</span> <span class="description"><code>index</code>アクションが保護されていることをテストする。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Authentication&quot;</span> <span class="k">do</span>
@@ -1039,13 +1039,13 @@
 </div></div>
 
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-signed_in_user_index">リスト9.22</a>にアプリケーションのコードを示しました。ここでは、<code>signed_in_user</code> before_actionで保護するアクションのリストに<code>index</code>を追加するだけです。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-signed_in_user_index">リスト9.21</a>にアプリケーションのコードを示しました。ここでは、<code>signed_in_user</code> before_actionで保護するアクションのリストに<code>index</code>を追加するだけです。</p>
 
 <div class="label" id="code-signed_in_user_index"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.22</span> <span class="description"><code>index</code>アクションでユーザーのサインインを要求する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.21</span> <span class="description"><code>index</code>アクションでユーザーのサインインを要求する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:index</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
   <span class="n">before_action</span> <span class="ss">:correct_user</span><span class="p">,</span>   <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
@@ -1064,13 +1064,13 @@
 </div></div>
 
 
-<p>次の一連のテストでは、サインインしたユーザーから見たインデックスページに、タイトルとコンテンツとサイトのすべてのユーザーが正しく表示されていることを確認します。このメソッドでは、3つのファクトリーユーザー (最初の1人としてサインインします) を作成し、インデックスページに表示されているそれぞれのユーザーにリスト要素 (<code>li</code>) タグが与えられていることを確認します。<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_tests">リスト9.23</a>のように、3人のユーザーはそれぞれ異なる名前にしておき、ユーザーのリストの要素がそれぞれ一意になるように (重複しないように) していることに注意してください。</p>
+<p>次の一連のテストでは、サインインしたユーザーから見たインデックスページに、タイトルとコンテンツとサイトのすべてのユーザーが正しく表示されていることを確認します。このメソッドでは、3つのファクトリーユーザー (最初の1人としてサインインします) を作成し、インデックスページに表示されているそれぞれのユーザーにリスト要素 (<code>li</code>) タグが与えられていることを確認します。<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_tests">リスト9.22</a>のように、3人のユーザーはそれぞれ異なる名前にしておき、ユーザーのリストの要素がそれぞれ一意になるように (重複しないように) していることに注意してください。</p>
 
 <div class="label" id="code-user_index_tests"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.23</span> <span class="description">ユーザーのインデックスページのテスト。</span><br /><span class="description"> <code>spec/requests/user_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.22</span> <span class="description">ユーザーのインデックスページのテスト。</span><br /><span class="description"> <code>spec/requests/user_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;User pages&quot;</span> <span class="k">do</span>
@@ -1102,13 +1102,13 @@
 </div></div>
 
 
-<p>デモアプリケーション (<a class="ref" href="./a-demo-app.html#code-demo_index_action">リスト2.4</a>) にも同様のアクションがあったことを思い出した人もいると思います。このアプリケーションコードでも、<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index">リスト9.24</a>のように<code>User.all</code>を使用してすべてのユーザーをデータベースから取り出し、それらを<code>@users</code>インスタンス変数に割り当ててビューで使用しています。(すべてのユーザーを一気に読みだすのはデータ量が多い場合に問題が生じるのではないかと思われる方、そのとおりです。このキズは<a class="ref" href="./updating-showing-and-deleting-users.html#sec-pagination">9.3.3</a>で修正します。)</p>
+<p>デモアプリケーション (<a class="ref" href="./a-demo-app.html#code-demo_index_action">リスト2.4</a>) にも同様のアクションがあったことを思い出した人もいると思います。このアプリケーションコードでも、<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index">リスト9.23</a>のように<code>User.all</code>を使用してすべてのユーザーをデータベースから取り出し、それらを<code>@users</code>インスタンス変数に割り当ててビューで使用しています。(すべてのユーザーを一気に読みだすのはデータ量が多い場合に問題が生じるのではないかと思われる方、そのとおりです。このキズは<a class="ref" href="./updating-showing-and-deleting-users.html#sec-pagination">9.3.3</a>で修正します。)</p>
 
 <div class="label" id="code-user_index"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.24</span> <span class="description">ユーザーの<code>index</code>アクション。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.23</span> <span class="description">ユーザーの<code>index</code>アクション。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:index</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
   <span class="o">.</span>
@@ -1125,13 +1125,13 @@
 </div></div>
 
 
-<p>実際のインデックスページを作成するには、ユーザーを列挙してユーザーごとに<code>li</code>タグで囲むビューを作成する必要があります。ここでは<code>each</code>メソッドを使用してこれを行います。それぞれの行を非序列リスト (<code>ul</code>)タグで囲いながら、各ユーザーのGravatarと名前を表示します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_view">リスト9.25</a>)。<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_view">リスト9.25</a>では、<a class="ref" href="./sign-up.html#sec-signup_exercises">7.6</a>の演習の<a class="ref" href="./sign-up.html#code-gravatar_option">リスト7.30</a>の結果を利用しています。これは、Gravatarヘルパーにデフォルト以外のサイズを指定するオプションを渡します。この演習をまだやっていない場合は、<a class="ref" href="./sign-up.html#code-gravatar_option">リスト7.30</a>に従ってUsersヘルパーファイルを更新してから先に進んでください。</p>
+<p>実際のインデックスページを作成するには、ユーザーを列挙してユーザーごとに<code>li</code>タグで囲むビューを作成する必要があります。ここでは<code>each</code>メソッドを使用してこれを行います。それぞれの行を非序列リスト (<code>ul</code>)タグで囲いながら、各ユーザーのGravatarと名前を表示します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_view">リスト9.24</a>)。<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_view">リスト9.24</a>では、<a class="ref" href="./sign-up.html#sec-signup_exercises">7.6</a>の演習の<a class="ref" href="./sign-up.html#code-gravatar_option">リスト7.30</a>の結果を利用しています。これは、Gravatarヘルパーにデフォルト以外のサイズを指定するオプションを渡します。この演習をまだやっていない場合は、<a class="ref" href="./sign-up.html#code-gravatar_option">リスト7.30</a>に従ってUsersヘルパーファイルを更新してから先に進んでください。</p>
 
 <div class="label" id="code-user_index_view"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.25</span> <span class="description">ユーザーのindexビュー。</span><br /><span class="description"> <code>app/views/users/index.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト9.24</span> <span class="description">ユーザーのindexビュー。</span><br /><span class="description"> <code>app/views/users/index.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;All users&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>All users<span class="nt">&lt;/h1&gt;</span>
 
@@ -1147,13 +1147,13 @@
 </div></div>
 
 
-<p>CSS (正確にはSCSSですが) にもちょっぴり手を加えておきましょう (<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_css">リスト9.26</a>)。</p>
+<p>CSS (正確にはSCSSですが) にもちょっぴり手を加えておきましょう (<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_css">リスト9.25</a>)。</p>
 
 <div class="label" id="code-user_index_css"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.26</span> <span class="description">ユーザーインデックス用のスタイル。</span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
+<div class="listing"><span class="header">リスト9.25</span> <span class="description">ユーザーインデックス用のスタイル。</span><br /><span class="description"> <code>app/assets/stylesheets/custom.css.scss</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nc">.</span>
 <span class="nc">.</span>
 <span class="nc">.</span>
@@ -1176,13 +1176,13 @@
 </div></div>
 
 
-<p>最後に、サイト内移動用のヘッダーにユーザー一覧表示用のリンクを追加します。これには<code>users_path</code>を使用し、<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>に残っている最後の名前付きルートを割り当てます。<a class="ref" href="./updating-showing-and-deleting-users.html#code-users_link_test">リスト9.27</a>のテストと<a class="ref" href="./updating-showing-and-deleting-users.html#code-users_link">リスト9.28</a>のアプリケーションのコードは、いずれも素直な作りです。</p>
+<p>最後に、サイト内移動用のヘッダーにユーザー一覧表示用のリンクを追加します。これには<code>users_path</code>を使用し、<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>に残っている最後の名前付きルートを割り当てます。<a class="ref" href="./updating-showing-and-deleting-users.html#code-users_link_test">リスト9.26</a>のテストと<a class="ref" href="./updating-showing-and-deleting-users.html#code-users_link">リスト9.27</a>のアプリケーションのコードは、いずれも素直な作りです。</p>
 
 <div class="label" id="code-users_link_test"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.27</span> <span class="description">[Users] リンク用のURL。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.26</span> <span class="description">[Users] リンク用のURL。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Authentication&quot;</span> <span class="k">do</span>
@@ -1215,7 +1215,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.28</span> <span class="description">このURLにユーザー一覧へのリンクを追加する。</span><br /><span class="description"> <code>app/views/layouts/_header.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト9.27</span> <span class="description">このURLにユーザー一覧へのリンクを追加する。</span><br /><span class="description"> <code>app/views/layouts/_header.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;navbar navbar-fixed-top navbar-inverse&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;navbar-inner&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
@@ -1276,13 +1276,13 @@
 
 <p>この節では、一人ぼっちのユーザーに仲間を加えてあげることにします。複数のユーザーが表示されたユーザーインデックスページにするためには、ブラウザでサインアップページを表示してユーザーを手作業で1人ずつ追加<em>するという方法もありますが</em>、せっかくなのでRubyとRakeを使用してユーザーを一気に作成しましょう。</p>
 
-<p>まず、<code>Gemfile</code>に<em>Faker</em> gemを追加します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-faker_gemfile">リスト9.29</a>)。これは、実際にありそうなユーザー名とメールアドレスを持つサンプルユーザーを自動的に作成するものです。</p>
+<p>まず、<code>Gemfile</code>に<em>Faker</em> gemを追加します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-faker_gemfile">リスト9.28</a>)。これは、実際にありそうなユーザー名とメールアドレスを持つサンプルユーザーを自動的に作成するものです。</p>
 
 <div class="label" id="code-faker_gemfile"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.29</span> <span class="description"><code>Gemfile</code>にFakerを追加する。</span> </div>
+<div class="listing"><span class="header">リスト9.28</span> <span class="description"><code>Gemfile</code>にFakerを追加する。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
 <span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
@@ -1306,13 +1306,13 @@
 </div>
 
 
-<p>次に、サンプルユーザーを作成するRakeタスクを追加します。Rakeタスクは<code>lib/tasks</code>ディレクトリに置きます。また、Rakeタスクを定義するときには、<a class="ref" href="./updating-showing-and-deleting-users.html#code-db_populate">リスト9.30</a>のように<em>名前空間</em> (この場合は<code>:db</code>) を使用します (ここは若干高度な内容ですが、今は詳細を理解する必要はありません)。</p>
+<p>次に、サンプルユーザーを作成するRakeタスクを追加します。Rakeタスクは<code>lib/tasks</code>ディレクトリに置きます。また、Rakeタスクを定義するときには、<a class="ref" href="./updating-showing-and-deleting-users.html#code-db_populate">リスト9.29</a>のように<em>名前空間</em> (この場合は<code>:db</code>) を使用します (ここは若干高度な内容ですが、今は詳細を理解する必要はありません)。</p>
 
 <div class="label" id="code-db_populate"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.30</span> <span class="description">データベースにサンプルユーザーを追加するRakeタスク。</span><br /><span class="description"> <code>lib/tasks/sample_data.rake</code></span> </div>
+<div class="listing"><span class="header">リスト9.29</span> <span class="description">データベースにサンプルユーザーを追加するRakeタスク。</span><br /><span class="description"> <code>lib/tasks/sample_data.rake</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
   <span class="n">desc</span> <span class="s2">&quot;Fill database with sample data&quot;</span>
   <span class="n">task</span> <span class="ss">populate:</span> <span class="ss">:environment</span> <span class="k">do</span>
@@ -1344,7 +1344,7 @@
 
 <p><code>User.create!</code>を実行する前に、RakeタスクがUserモデルなどのローカルのRails環境にアクセスできるようにします。 ここで<code>create!</code>は基本的に<code>create</code>メソッドと同じものですが、ユーザーが無効な場合に<code>false</code>を返すのではなく例外を発生させる (<a class="ref" href="./modeling-users.html#sec-finding_user_objects">6.1.4</a>) 点が異なります。こうしておくとより多くのメッセージを生成でき、サイレントエラーを回避できるのでデバッグが容易になります。</p>
 
-<p><code>:db</code>名前空間を<a class="ref" href="./updating-showing-and-deleting-users.html#code-db_populate">リスト9.30</a>のように設定後、以下のようにRakeタスクを呼び出します。</p>
+<p><code>:db</code>名前空間を<a class="ref" href="./updating-showing-and-deleting-users.html#code-db_populate">リスト9.29</a>のように設定後、以下のようにRakeタスクを呼び出します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:reset
 <span class="gp">$</span> bundle <span class="nb">exec </span>rake db:populate
@@ -1371,13 +1371,13 @@
 
 <p>これで、最初のユーザーにも仲間ができました。しかし今度は逆に、1つのページに<em>大量の</em>ユーザーが表示されてしまっています。100人でもかなり大きい数であると思いますし、今後は数千ユーザーに増える可能性もあります。これを解決するのが<em>ページネーション (pagination) </em>というもので、この場合は、たとえば1つのページに一度に30人だけユーザーを表示するというものです。</p>
 
-<p>Railsには豊富なページネーションメソッドがあります。今回はその中で最もシンプルかつ堅牢な<a href="http://wiki.github.com/mislav/will_paginate/">will_paginate</a>メソッドを使用してみましょう。これを使用するには、Gemfileに<tt>will_paginate</tt> gem と<tt>bootstrap-will_paginate</tt> gemを両方インクルードし、Bootstrapのページネーションスタイルを使用してwill_paginateを構成します。更新した<code>Gemfile</code>を<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_gem">リスト9.31</a>に示します。</p>
+<p>Railsには豊富なページネーションメソッドがあります。今回はその中で最もシンプルかつ堅牢な<a href="http://wiki.github.com/mislav/will_paginate/">will_paginate</a>メソッドを使用してみましょう。これを使用するには、Gemfileに<tt>will_paginate</tt> gem と<tt>bootstrap-will_paginate</tt> gemを両方インクルードし、Bootstrapのページネーションスタイルを使用してwill_paginateを構成します。更新した<code>Gemfile</code>を<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_gem">リスト9.30</a>に示します。</p>
 
 <div class="label" id="code-will_paginate_gem"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.31</span> <span class="description"><tt>will_paginate</tt>を<code>Gemfile</code>にインクルードする。</span> </div>
+<div class="listing"><span class="header">リスト9.30</span> <span class="description"><tt>will_paginate</tt>を<code>Gemfile</code>にインクルードする。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
 <span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
@@ -1440,13 +1440,13 @@
 </div>
 
 
-<p>ブロック変数<code>n</code>は自動的にインクリメントされますので、最初のユーザーは名前が “Person 1” でメールアドレスが “person_1@example.com”、次のユーザーは名前が “Person 2” でメールアドレスが “person_2@example.com”、というように生成されます。完全なコードを<a class="ref" href="./updating-showing-and-deleting-users.html#code-factory_sequence">リスト9.32</a>に示します。</p>
+<p>ブロック変数<code>n</code>は自動的にインクリメントされますので、最初のユーザーは名前が “Person 1” でメールアドレスが “person_1@example.com”、次のユーザーは名前が “Person 2” でメールアドレスが “person_2@example.com”、というように生成されます。完全なコードを<a class="ref" href="./updating-showing-and-deleting-users.html#code-factory_sequence">リスト9.31</a>に示します。</p>
 
 <div class="label" id="code-factory_sequence"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.32</span> <span class="description">Factory Girlでシーケンスを定義する。</span><br /><span class="description"> <code>spec/factories.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.31</span> <span class="description">Factory Girlでシーケンスを定義する。</span><br /><span class="description"> <code>spec/factories.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">define</span> <span class="k">do</span>
   <span class="n">factory</span> <span class="ss">:user</span> <span class="k">do</span>
     <span class="n">sequence</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>  <span class="p">{</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="s2">&quot;Person </span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
@@ -1469,13 +1469,13 @@
 
 <p>ここで<code>before(:all)</code>を使用して、ブロックにあるすべてのテストの前にサンプルユーザーを<em>一括</em>作成するようにしていることに注目してください。これは、ユーザーを30人も作成するとシステムによっては速度が低下することがあり、それを防ぐためのものです。これと対になる<code>after(:all)</code>を使用して、完了後ユーザーをすべて削除します。</p>
 
-<p>ページネーションの<code>div</code>の表示テストと正しいユーザーのテストを<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_test">リスト9.33</a>に示します。<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_tests">リスト9.23</a>の<code>User.all</code>配列が<code>User.paginate(page: 1)</code>に置き換えられていることに注目してください。この後お見せしますが、これはデータベースから最初の1ページを取り出す方法です。また、<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_test">リスト9.33</a>では、<code>before(:all)</code>との違いを強調するために<code>before(:each)</code>も使用しています。</p>
+<p>ページネーションの<code>div</code>の表示テストと正しいユーザーのテストを<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_test">リスト9.32</a>に示します。<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_tests">リスト9.22</a>の<code>User.all</code>配列が<code>User.paginate(page: 1)</code>に置き換えられていることに注目してください。この後お見せしますが、これはデータベースから最初の1ページを取り出す方法です。また、<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_test">リスト9.32</a>では、<code>before(:all)</code>との違いを強調するために<code>before(:each)</code>も使用しています。</p>
 
 <div class="label" id="code-will_paginate_test"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.33</span> <span class="description">ページネーションのテスト。</span><br /><span class="description"> <code>spec/requests/user_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.32</span> <span class="description">ページネーションのテスト。</span><br /><span class="description"> <code>spec/requests/user_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;User pages&quot;</span> <span class="k">do</span>
@@ -1514,13 +1514,13 @@
 </div></div>
 
 
-<p>ページネーションが動作するには、ユーザーのページネーションを行うようにRailsに指示するコードをindexビューに追加する必要があります。また、<code>index</code>アクションにある<code>User.all</code>を、ページネーションを理解できるオブジェクトに置き換える必要もあります。まずは、ビューに特殊な<code>will_paginate</code>メソッドを追加しましょう (<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.34</a>)。同じコードがリストの上と下に2つありますが、その理由はこの後で説明します。</p>
+<p>ページネーションが動作するには、ユーザーのページネーションを行うようにRailsに指示するコードをindexビューに追加する必要があります。また、<code>index</code>アクションにある<code>User.all</code>を、ページネーションを理解できるオブジェクトに置き換える必要もあります。まずは、ビューに特殊な<code>will_paginate</code>メソッドを追加しましょう (<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.33</a>)。同じコードがリストの上と下に2つありますが、その理由はこの後で説明します。</p>
 
 <div class="label" id="code-will_paginate_index_view"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.34</span> <span class="description">ユーザーインデックスのページネーション。</span><br /><span class="description"> <code>app/views/users/index.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト9.33</span> <span class="description">ユーザーインデックスのページネーション。</span><br /><span class="description"> <code>app/views/users/index.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;All users&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>All users<span class="nt">&lt;/h1&gt;</span>
 
@@ -1540,7 +1540,7 @@
 </div></div>
 
 
-<p>この<code>will_paginate</code>メソッドは少々不思議なことに、<code>users</code>ビューのコードの中から<code>@users</code>オブジェクトを自動的に見つけ出し、それから他のページにアクセスするためのページネーションリンクを作成しています。実は、<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.34</a>のビューはこのままでは動きません。<code>@users</code>オブジェクトに現在含まれているのは<code>User.all</code> (<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index">リスト9.24</a>) の結果であり、しかもそれが<code>Array</code>クラスに属しているからです。<code>will_paginate</code>では、オブジェクトのクラスは<code>ActiveRecord::Relation</code>であることが前提となっています。幸い、<code>will_paginate</code> gemによって、すべてのActive Recordオブジェクトに<tt>paginate</tt>メソッドが追加されます。そのメソッドが返すオブジェクトのクラスがこのActiveRecord::Relationになっているのです。</p>
+<p>この<code>will_paginate</code>メソッドは少々不思議なことに、<code>users</code>ビューのコードの中から<code>@users</code>オブジェクトを自動的に見つけ出し、それから他のページにアクセスするためのページネーションリンクを作成しています。実は、<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.33</a>のビューはこのままでは動きません。<code>@users</code>オブジェクトに現在含まれているのは<code>User.all</code> (<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index">リスト9.23</a>) の結果であり、しかもそれが<code>Array</code>クラスに属しているからです。<code>will_paginate</code>では、オブジェクトのクラスは<code>ActiveRecord::Relation</code>であることが前提となっています。幸い、<code>will_paginate</code> gemによって、すべてのActive Recordオブジェクトに<tt>paginate</tt>メソッドが追加されます。そのメソッドが返すオブジェクトのクラスがこのActiveRecord::Relationになっているのです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">class</span>
@@ -1553,13 +1553,13 @@
 
 <p><code>paginate</code>は、キーが<code>:page</code>で値がリクエストページに等しいハッシュ引数を取る必要があることに注意してください。<code>User.paginate</code>は、<code>:page</code>パラメーターに基いて、データベースからひとかたまりのデータ (デフォルトでは30) を取り出します。従って、1ページ目は1から30のユーザー、2ページ目は31から60のユーザーという具合にデータが取り出されます。ページが<code>nil</code>の場合、 <code>paginate</code>は単に最初のページを返します。</p>
 
-<p><code>paginate</code>を使用することで、サンプルアプリケーションのユーザーのページネーションを行えるようになります。具体的には、<code>index</code>アクション内の<code>all</code>を<code>paginate</code>メソッドに置き換えます (<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_action">リスト9.35</a>)。ここで<code>:page</code>パラメーターには<code>params[:page]</code>が使用されていますが、これは<code>will_paginate</code>によって自動的に生成されます。</p>
+<p><code>paginate</code>を使用することで、サンプルアプリケーションのユーザーのページネーションを行えるようになります。具体的には、<code>index</code>アクション内の<code>all</code>を<code>paginate</code>メソッドに置き換えます (<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_action">リスト9.34</a>)。ここで<code>:page</code>パラメーターには<code>params[:page]</code>が使用されていますが、これは<code>will_paginate</code>によって自動的に生成されます。</p>
 
 <div class="label" id="code-will_paginate_index_action"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.35</span> <span class="description"><code>index</code>アクションのユーザーをページネーションする。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.34</span> <span class="description"><code>index</code>アクションのユーザーをページネーションする。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:index</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
   <span class="o">.</span>
@@ -1609,13 +1609,13 @@
 
 <p>ユーザーインデックスへのページネーション実装はついに完了しました。でも私は、ここでぜひともある1つの改良を加えてみたいのです。実はRailsにはコンパクトなビューを作成するための素晴らしいツールがいくつもあります。この節ではそれらのツールを使用してインデックスページのリファクタリング (動作を変えずにコードを整理すること) を行うことにします。サンプルアプリケーションのテストは既に完了しているので、Webサイトの機能を損なうことなく安心してリファクタリングに取りかかれます。</p>
 
-<p>リファクタリングの第一歩は、<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.34</a>のユーザーの<code>li</code>を<code>render</code>呼び出しに置き換えることです (<a class="ref" href="./updating-showing-and-deleting-users.html#code-index_view_first_refactoring">リスト9.36</a>)。</p>
+<p>リファクタリングの第一歩は、<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.33</a>のユーザーの<code>li</code>を<code>render</code>呼び出しに置き換えることです (<a class="ref" href="./updating-showing-and-deleting-users.html#code-index_view_first_refactoring">リスト9.35</a>)。</p>
 
 <div class="label" id="code-index_view_first_refactoring"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.36</span> <span class="description">インデックスビューで最初のリファクタリングを行う。</span><br /><span class="description"> <code>app/views/users/index.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト9.35</span> <span class="description">インデックスビューで最初のリファクタリングを行う。</span><br /><span class="description"> <code>app/views/users/index.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;All users&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>All users<span class="nt">&lt;/h1&gt;</span>
 
@@ -1632,13 +1632,13 @@
 </div></div>
 
 
-<p>ここでは、<code>render</code>をパーシャルの名前の文字列に対してではなく、<code>User</code>クラスの<code>user</code>変数に対して実行していることに注意してください<sup class="footnote" id="fnref-9_6"><a href="./updating-showing-and-deleting-users.html#fn-9_6">6</a></sup>。この場合、Railsは自動的に<code>_user.html.erb</code>という名前のパーシャルを探します。このパーシャルを作成する必要があります (<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_partial">リスト9.37</a>)。</p>
+<p>ここでは、<code>render</code>をパーシャルの名前の文字列に対してではなく、<code>User</code>クラスの<code>user</code>変数に対して実行していることに注意してください<sup class="footnote" id="fnref-9_6"><a href="./updating-showing-and-deleting-users.html#fn-9_6">6</a></sup>。この場合、Railsは自動的に<code>_user.html.erb</code>という名前のパーシャルを探します。このパーシャルを作成する必要があります (<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_partial">リスト9.36</a>)。</p>
 
 <div class="label" id="code-user_partial"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.37</span> <span class="description">単一のユーザーを出力するパーシャル。</span><br /><span class="description"> <code>app/views/users/_user.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト9.36</span> <span class="description">単一のユーザーを出力するパーシャル。</span><br /><span class="description"> <code>app/views/users/_user.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;li&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">gravatar_for</span> <span class="n">user</span><span class="p">,</span> <span class="ss">size:</span> <span class="mi">52</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">user</span> <span class="cp">%&gt;</span>
@@ -1647,13 +1647,13 @@
 </div></div>
 
 
-<p>これは間違いなく大きな進歩です。しかしここで終わらせず、さらに改良してみましょう。今度は<code>render</code>を<code>@users</code>変数に対して<em>直接</em>実行します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-index_final_refactoring">リスト9.38</a>)。</p>
+<p>これは間違いなく大きな進歩です。しかしここで終わらせず、さらに改良してみましょう。今度は<code>render</code>を<code>@users</code>変数に対して<em>直接</em>実行します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-index_final_refactoring">リスト9.37</a>)。</p>
 
 <div class="label" id="code-index_final_refactoring"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.38</span> <span class="description">完全にリファクタリングされたユーザーインデックス。</span><br /><span class="description"> <code>app/views/users/index.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト9.37</span> <span class="description">完全にリファクタリングされたユーザーインデックス。</span><br /><span class="description"> <code>app/views/users/index.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;All users&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>All users<span class="nt">&lt;/h1&gt;</span>
 
@@ -1668,7 +1668,7 @@
 </div></div>
 
 
-<p>Railsは<code>@users</code>を<code>User</code>オブジェクトのリストであると推測します。さらに、ユーザーのコレクションを与えて呼び出すと、Railsは自動的にユーザーのコレクションを列挙し、それぞれのユーザーを<code>_user.html.erb</code>パーシャルで出力します (訳注: each doとendで囲む必要がなくなります)。これにより、<a class="ref" href="./updating-showing-and-deleting-users.html#code-index_final_refactoring">リスト9.38</a>のコードは極めてコンパクトになります。これに限らず、リファクタリングを行う場合には、アプリケーションのコードを変更する前と後で必ずテストを実行し、いずれも緑色 (成功) になることを確認するようにしてください。</p>
+<p>Railsは<code>@users</code>を<code>User</code>オブジェクトのリストであると推測します。さらに、ユーザーのコレクションを与えて呼び出すと、Railsは自動的にユーザーのコレクションを列挙し、それぞれのユーザーを<code>_user.html.erb</code>パーシャルで出力します (訳注: each doとendで囲む必要がなくなります)。これにより、<a class="ref" href="./updating-showing-and-deleting-users.html#code-index_final_refactoring">リスト9.37</a>のコードは極めてコンパクトになります。これに限らず、リファクタリングを行う場合には、アプリケーションのコードを変更する前と後で必ずテストを実行し、いずれも緑色 (成功) になることを確認するようにしてください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
@@ -1699,13 +1699,13 @@
 <h3><a id="sec-9_4_1" href="./updating-showing-and-deleting-users.html#sec-administrative_users" class="heading"><span class="number">9.4.1</span>管理ユーザー</a></h3>
 
 
-<p>特権を持つ管理ユーザーを識別するために、論理値をとる<code>admin</code>属性をUserモデルに追加します。この後で説明しますが、こうすると自動的に<code>admin?</code>メソッド (論理値を返す) も使えるようになりますので、これを使用して管理ユーザーの状態をテストできます。この属性に対するテストは<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_specs">リスト9.39</a>のように書くことができます。</p>
+<p>特権を持つ管理ユーザーを識別するために、論理値をとる<code>admin</code>属性をUserモデルに追加します。この後で説明しますが、こうすると自動的に<code>admin?</code>メソッド (論理値を返す) も使えるようになりますので、これを使用して管理ユーザーの状態をテストできます。この属性に対するテストは<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_specs">リスト9.38</a>のように書くことができます。</p>
 
 <div class="label" id="code-admin_specs"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.39</span> <span class="description"><code>admin</code>属性に対するテスト。</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.38</span> <span class="description"><code>admin</code>属性に対するテスト。</span><br /><span class="description"> <code>spec/models/user_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="no">User</span> <span class="k">do</span>
@@ -1750,13 +1750,13 @@
 </div>
 
 
-<p>マイグレーションを実行すると単に<code>admin</code>カラムが<code>users</code>テーブル (<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_migration">リスト9.40</a>) に追加され、<a class="ref" href="./updating-showing-and-deleting-users.html#fig-user_model_admin">図9.13</a>のデータモデルが生成されます。</p>
+<p>マイグレーションを実行すると単に<code>admin</code>カラムが<code>users</code>テーブル (<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_migration">リスト9.39</a>) に追加され、<a class="ref" href="./updating-showing-and-deleting-users.html#fig-user_model_admin">図9.13</a>のデータモデルが生成されます。</p>
 
 <div class="label" id="code-admin_migration"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.40</span> <span class="description">論理値を取る<code>admin</code>属性をユーザーに追加するマイグレーション。</span><br /><span class="description"> <code>db/migrate/[timestamp]_add_admin_to_users.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.39</span> <span class="description">論理値を取る<code>admin</code>属性をユーザーに追加するマイグレーション。</span><br /><span class="description"> <code>db/migrate/[timestamp]_add_admin_to_users.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">AddAdminToUsers</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord::Migration</span>
   <span class="k">def</span> <span class="nf">change</span>
     <span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:admin</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default:</span> <span class="kp">false</span>
@@ -1766,7 +1766,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_migration">リスト9.40</a>では、<code>default: false</code>という引数を<code>add_column</code>に追加しています。これは、デフォルトでは管理者に<em>なれない</em>ということを示すためです (<code>default: false</code>引数を与えない場合、 <code>admin</code>の値はデフォルトで<code>nil</code>になりますが、これは<code>false</code>と同じ意味ですので、必ずしもこの引数を与える必要はありません。ただし、このように明示的に引数を与えておけば、コードの意図をRailsと開発者に明確に示すことができます)。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_migration">リスト9.39</a>では、<code>default: false</code>という引数を<code>add_column</code>に追加しています。これは、デフォルトでは管理者に<em>なれない</em>ということを示すためです (<code>default: false</code>引数を与えない場合、 <code>admin</code>の値はデフォルトで<code>nil</code>になりますが、これは<code>false</code>と同じ意味ですので、必ずしもこの引数を与える必要はありません。ただし、このように明示的に引数を与えておけば、コードの意図をRailsと開発者に明確に示すことができます)。</p>
 
 <div class="label" id="fig-user_model_admin"></div>
 
@@ -1803,13 +1803,13 @@
 </div>
 
 
-<p>仕上げに、最初のユーザーだけをデフォルトで管理者にするようサンプルデータ生成を更新しましょう (<a class="ref" href="./updating-showing-and-deleting-users.html#code-populator_with_admin">リスト9.41</a>)。</p>
+<p>仕上げに、最初のユーザーだけをデフォルトで管理者にするようサンプルデータ生成を更新しましょう (<a class="ref" href="./updating-showing-and-deleting-users.html#code-populator_with_admin">リスト9.40</a>)。</p>
 
 <div class="label" id="code-populator_with_admin"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.41</span> <span class="description">サンプルデータ生成コードに管理者を1人追加する</span><br /><span class="description"> <code>lib/tasks/sample_data.rake</code></span> </div>
+<div class="listing"><span class="header">リスト9.40</span> <span class="description">サンプルデータ生成コードに管理者を1人追加する</span><br /><span class="description"> <code>lib/tasks/sample_data.rake</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span> 
   <span class="n">desc</span> <span class="s2">&quot;Fill database with sample data&quot;</span>
   <span class="n">task</span> <span class="ss">populate:</span> <span class="ss">:environment</span> <span class="k">do</span>
@@ -1842,7 +1842,7 @@
 <h4><a id="sec-9_4_1_1" href="./updating-showing-and-deleting-users.html#sec-revisiting_strong_parameters" class="heading">Strong Parameters、再び</a></h4>
 
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-populator_with_admin">リスト9.41</a>では、初期化ハッシュに<code>admin: true</code>を設定することでユーザーを管理者にしていることにお気付きになりましたでしょうか。ここでは、荒れ狂うWeb世界にオブジェクトをさらすことの危険性を改めて強調しています。もし、任意のWebリクエストの初期化ハッシュをオブジェクトに渡せるとなると、攻撃者は以下のような<tt>PATCH</tt>リクエストを送信してくるかもしれません<sup class="footnote" id="fnref-9_7"><a href="./updating-showing-and-deleting-users.html#fn-9_7">7</a></sup>。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-populator_with_admin">リスト9.40</a>では、初期化ハッシュに<code>admin: true</code>を設定することでユーザーを管理者にしていることにお気付きになりましたでしょうか。ここでは、荒れ狂うWeb世界にオブジェクトをさらすことの危険性を改めて強調しています。もし、任意のWebリクエストの初期化ハッシュをオブジェクトに渡せるとなると、攻撃者は以下のような<tt>PATCH</tt>リクエストを送信してくるかもしれません<sup class="footnote" id="fnref-9_7"><a href="./updating-showing-and-deleting-users.html#fn-9_7">7</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre>patch /users/17?admin=1
 </pre></div>
@@ -1871,13 +1871,13 @@
 
 <p>Usersリソースの最後の仕上げとして、<code>destroy</code>アクションへのリンクを追加しましょう。まず、ユーザーインデックスページの各ユーザーに削除用のリンクを追加し、続いて管理ユーザーへのアクセスを制限します。</p>
 
-<p>削除機能をテストするには、管理者を作成するファクトリーがあると便利です。これを行うには、<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_factory">リスト9.42</a>のように既存のファクトリーに<code>:admin</code>ブロックを追加します。</p>
+<p>削除機能をテストするには、管理者を作成するファクトリーがあると便利です。これを行うには、<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_factory">リスト9.41</a>のように既存のファクトリーに<code>:admin</code>ブロックを追加します。</p>
 
 <div class="label" id="code-admin_factory"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.42</span> <span class="description">管理ユーザー向けのファクトリーを追加する。</span><br /><span class="description"> <code>spec/factories.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.41</span> <span class="description">管理ユーザー向けのファクトリーを追加する。</span><br /><span class="description"> <code>spec/factories.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="no">FactoryGirl</span><span class="o">.</span><span class="n">define</span> <span class="k">do</span>
   <span class="n">factory</span> <span class="ss">:user</span> <span class="k">do</span>
     <span class="n">sequence</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>  <span class="p">{</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="s2">&quot;Person </span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
@@ -1894,7 +1894,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_factory">リスト9.42</a>のコードによって、<code>FactoryGirl.create(:admin)</code>を使用してテスト内に管理ユーザーを作成することができるようになります。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_factory">リスト9.41</a>のコードによって、<code>FactoryGirl.create(:admin)</code>を使用してテスト内に管理ユーザーを作成することができるようになります。</p>
 
 <p>私たちのセキュリティモデルでは、一般ユーザーにはこの削除リンクを表示しないようにします。</p>
 
@@ -1916,13 +1916,13 @@
 </div>
 
 
-<p>上のコードには<code>match: :first</code>という記述があります。これは、<em>どの</em>削除リンクをクリックするかは問わないことをCapybaraに伝えます。これによりCapybaraは、最初に見つけたリンクを単にクリックするようになります。このテストには、管理者自身を削除するためのリンクが管理者に表示されていないことを確認するテストも含まれていることに注意してください。削除リンクテストのフルセットを<a class="ref" href="./updating-showing-and-deleting-users.html#code-delete_link_tests">リスト9.43</a>に示します。</p>
+<p>上のコードには<code>match: :first</code>という記述があります。これは、<em>どの</em>削除リンクをクリックするかは問わないことをCapybaraに伝えます。これによりCapybaraは、最初に見つけたリンクを単にクリックするようになります。このテストには、管理者自身を削除するためのリンクが管理者に表示されていないことを確認するテストも含まれていることに注意してください。削除リンクテストのフルセットを<a class="ref" href="./updating-showing-and-deleting-users.html#code-delete_link_tests">リスト9.42</a>に示します。</p>
 
 <div class="label" id="code-delete_link_tests"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.43</span> <span class="description">削除リンクのテスト。</span><br /><span class="description"> <code>spec/requests/user_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.42</span> <span class="description">削除リンクのテスト。</span><br /><span class="description"> <code>spec/requests/user_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;User pages&quot;</span> <span class="k">do</span>
@@ -1976,13 +1976,13 @@
 </div></div>
 
 
-<p>上のテストに対応するアプリケーションコードは、現在のユーザーが管理者の場合に <code>[delete]</code> リンクを有効にします (<a class="ref" href="./updating-showing-and-deleting-users.html#code-delete_links">リスト9.44</a>)。ここで、必要な<tt>DELETE</tt>リクエストを発行するリンクの生成は<code>method: :delete</code>引数によって行われている点に注目してください。また、各リンクを<code>if</code>文で囲い、管理者にだけ削除リンクが表示されるようにしています。管理者から見えるページを<a class="ref" href="./updating-showing-and-deleting-users.html#fig-index_delete_links_rails_3">図9.14</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードは、現在のユーザーが管理者の場合に <code>[delete]</code> リンクを有効にします (<a class="ref" href="./updating-showing-and-deleting-users.html#code-delete_links">リスト9.43</a>)。ここで、必要な<tt>DELETE</tt>リクエストを発行するリンクの生成は<code>method: :delete</code>引数によって行われている点に注目してください。また、各リンクを<code>if</code>文で囲い、管理者にだけ削除リンクが表示されるようにしています。管理者から見えるページを<a class="ref" href="./updating-showing-and-deleting-users.html#fig-index_delete_links_rails_3">図9.14</a>に示します。</p>
 
 <div class="label" id="code-delete_links"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.44</span> <span class="description">ユーザー削除用リンク (管理者にのみ表示される)。</span><br /><span class="description"> <code>app/views/users/_user.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト9.43</span> <span class="description">ユーザー削除用リンク (管理者にのみ表示される)。</span><br /><span class="description"> <code>app/views/users/_user.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;li&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">gravatar_for</span> <span class="n">user</span><span class="p">,</span> <span class="ss">size:</span> <span class="mi">52</span> <span class="cp">%&gt;</span>
   <span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">user</span> <span class="cp">%&gt;</span>
@@ -2003,13 +2003,13 @@
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/index_delete_links_rails_3_bootstrap.png" alt="index_delete_links_rails_3_bootstrap" /></span></div><div class="caption"><span class="header">図9.14</span><span class="description">ユーザーインデックス<a href="http://localhost:3000/users">/users</a>に削除リンクが表示されている。<a href="../images/figures/index_delete_links_rails_3_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p>この削除リンクが動作するためには、<code>destroy</code>アクション (<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>) を追加する必要があります。このアクションでは、該当するユーザーを見つけてActive Recordの<code>destroy</code>メソッドを使用して削除し、最後にユーザーインデックスに移動します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-destroy_action">リスト9.46</a>)。なお、このとき、<code>:destroy</code> も <code>signed_in_user</code> の before_action に追加しています。</p>
+<p>この削除リンクが動作するためには、<code>destroy</code>アクション (<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>) を追加する必要があります。このアクションでは、該当するユーザーを見つけてActive Recordの<code>destroy</code>メソッドを使用して削除し、最後にユーザーインデックスに移動します (<a class="ref" href="./updating-showing-and-deleting-users.html#code-destroy_action">リスト9.44</a>)。なお、このとき、<code>:destroy</code> も <code>signed_in_user</code> の before_action に追加しています。</p>
 
 <div class="label" id="code-destroy_action"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.45</span> <span class="description">実際に動作する<code>destroy</code>アクションを追加する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.44</span> <span class="description">実際に動作する<code>destroy</code>アクションを追加する。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:index</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
   <span class="n">before_action</span> <span class="ss">:correct_user</span><span class="p">,</span>   <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
@@ -2036,13 +2036,13 @@
 </div>
 
 
-<p>既に、管理者のみがユーザーを削除できるように構成済みです。削除リンクは管理者にしか表示されません。残念なことに、実はまだ大きなセキュリティホールがあります。ある程度の腕前を持つ攻撃者なら、コマンドラインで<tt>DELETE</tt>リクエストを直接発行するという方法でサイトの全ユーザーを削除してしまうことができるでしょう。サイトを正しく防衛するには、<code>destroy</code>アクションにもアクセス制御を行う必要があります。そこで、管理者はユーザーを削除<em>できる</em>が一般ユーザーは<em>できない</em>ことをテストで確認しましょう。作成したテストを<a class="ref" href="./updating-showing-and-deleting-users.html#code-delete_destroy_test">リスト9.46</a>に示します。<a class="ref" href="./updating-showing-and-deleting-users.html#code-protected_edit_update_tests">リスト9.11</a>の<code>patch</code>メソッドのときと同様、<code>delete</code>メソッドを使用して<tt>DELETE</tt>リクエストを指定のURL (ここでは<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>で要求されているユーザーパス) に直接発行していることに注目してください。</p>
+<p>既に、管理者のみがユーザーを削除できるように構成済みです。削除リンクは管理者にしか表示されません。残念なことに、実はまだ大きなセキュリティホールがあります。ある程度の腕前を持つ攻撃者なら、コマンドラインで<tt>DELETE</tt>リクエストを直接発行するという方法でサイトの全ユーザーを削除してしまうことができるでしょう。サイトを正しく防衛するには、<code>destroy</code>アクションにもアクセス制御を行う必要があります。そこで、管理者はユーザーを削除<em>できる</em>が一般ユーザーは<em>できない</em>ことをテストで確認しましょう。作成したテストを<a class="ref" href="./updating-showing-and-deleting-users.html#code-delete_destroy_test">リスト9.45</a>に示します。<a class="ref" href="./updating-showing-and-deleting-users.html#code-protected_edit_update_tests">リスト9.11</a>の<code>patch</code>メソッドのときと同様、<code>delete</code>メソッドを使用して<tt>DELETE</tt>リクエストを指定のURL (ここでは<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>で要求されているユーザーパス) に直接発行していることに注目してください。</p>
 
 <div class="label" id="code-delete_destroy_test"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.46</span> <span class="description"><code>destroy</code>アクションの保護のテスト。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.45</span> <span class="description"><code>destroy</code>アクションの保護のテスト。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Authentication&quot;</span> <span class="k">do</span>
@@ -2072,13 +2072,13 @@
 
 <p>原則に従えば、ここにはまだ小さなセキュリティホールが残っています。管理者がやろうと思えば、<tt>DELETE</tt>リクエストをコマンドラインで直接発行して自分自身を削除できてしまいます。単なる管理者の自業自得ではないかという考えもあるかと思いますが、こういう事故を未然に防ぐに越したことはありません。この対策については演習の課題に回します (<a class="ref" href="./updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>)。</p>
 
-<p>上のテストに対応するアプリケーションコードではbefore_actionを使用していますが、ここでも同じように<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用します。変更後の<code>admin_user</code> before_actionを<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト9.47</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードではbefore_actionを使用していますが、ここでも同じように<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用します。変更後の<code>admin_user</code> before_actionを<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト9.46</a>に示します。</p>
 
 <div class="label" id="code-admin_destroy_before_filter"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.47</span> <span class="description"><code>destroy</code>アクションから管理者へのアクセスを制限するbefore_action。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.46</span> <span class="description"><code>destroy</code>アクションから管理者へのアクセスを制限するbefore_action。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:index</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
   <span class="n">before_action</span> <span class="ss">:correct_user</span><span class="p">,</span>   <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
@@ -2147,13 +2147,13 @@
 </div>
 
 
-<p>なお、必要なgemはここまでですべてインストールしたので、今後の章では新たなgemは追加しません。参考までに、最終状態の<code>Gemfile</code>を<a class="ref" href="./updating-showing-and-deleting-users.html#code-final_gemfile">リスト9.48</a>に示します。(システム環境に依存する可能性のあるgemはコメントアウトされています。自分の環境で動作するのであれば、それらのgemの行をコメント解除しても構いません。)</p>
+<p>なお、必要なgemはここまでですべてインストールしたので、今後の章では新たなgemは追加しません。参考までに、最終状態の<code>Gemfile</code>を<a class="ref" href="./updating-showing-and-deleting-users.html#code-final_gemfile">リスト9.47</a>に示します。(システム環境に依存する可能性のあるgemはコメントアウトされています。自分の環境で動作するのであれば、それらのgemの行をコメント解除しても構いません。)</p>
 
 <div class="label" id="code-final_gemfile"></div>
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.48</span> <span class="description">サンプルアプリケーションの最終<code>Gemfile</code>。</span> </div>
+<div class="listing"><span class="header">リスト9.47</span> <span class="description">サンプルアプリケーションの最終<code>Gemfile</code>。</span> </div>
 <div class="code"><div class="highlight"><pre><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 <span class="n">ruby</span> <span class="s1">&#39;2.0.0&#39;</span>
 <span class="c1">#ruby-gemset=railstutorial_rails_4_0</span>
@@ -2226,7 +2226,7 @@
 
 <ol>
 
-<li>Web経由で<code>admin</code>属性を変更できないことを確認してください。<a class="ref" href="./updating-showing-and-deleting-users.html#code-forbidden_admin_test">リスト9.49</a>に示したように、<tt>PATCH</tt>リクエストを <code>update</code>メソッドに直接発行するテストを作成してください。テストは最初は赤色 (失敗)、次に緑色 (成功) になるようにしてください (<em>ヒント</em>: 最初に、<code>user_params</code>の許可リストに<code>admin</code>を<em>追加</em>する必要があります)。</li>
+<li>Web経由で<code>admin</code>属性を変更できないことを確認してください。<a class="ref" href="./updating-showing-and-deleting-users.html#code-forbidden_admin_test">リスト9.48</a>に示したように、<tt>PATCH</tt>リクエストを <code>update</code>メソッドに直接発行するテストを作成してください。テストは最初は赤色 (失敗)、次に緑色 (成功) になるようにしてください (<em>ヒント</em>: 最初に、<code>user_params</code>の許可リストに<code>admin</code>を<em>追加</em>する必要があります)。</li>
 
 <li><a class="ref" href="./updating-showing-and-deleting-users.html#code-user_edit_view">リスト9.3</a>の Gravatarの [change] リンクを改造し、別ウィンドウ (または別タブ) で開くようにしてください。<em>ヒント:</em> Webを検索してみましょう。この目的にうってつけの堅牢なメソッドが見つかるはずです。<code>_blank</code>という文字も一緒に検索してみてください。</li>
 
@@ -2234,13 +2234,13 @@
 
 <li><a class="ref" href="./updating-showing-and-deleting-users.html#code-sign_in_helper">リスト9.6</a>の<code>sign_in</code>テストヘルパーを、なるべく多くの場所で使ってください。</li>
 
-<li><a class="ref" href="./updating-showing-and-deleting-users.html#code-new_edit_partial">リスト9.50</a>のパーシャルを使用して、<code>new.html.erb</code>ビューと<code>edit.html.erb</code>ビューをリファクタリングし、コードの重複を取り除いてください。  このとき、<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_user_with_partial">リスト9.51</a>のようにフォーム変数<code>f</code>を明示的にローカル変数として渡す必要があることに注意してください。また、それぞれのフォームは<em>完全に同じではない</em>ため、テストも更新の必要があります。フォームのわずかな違いを見つけ出し、テストの更新にそれを反映してください。</li>
+<li><a class="ref" href="./updating-showing-and-deleting-users.html#code-new_edit_partial">リスト9.49</a>のパーシャルを使用して、<code>new.html.erb</code>ビューと<code>edit.html.erb</code>ビューをリファクタリングし、コードの重複を取り除いてください。  このとき、<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_user_with_partial">リスト9.50</a>のようにフォーム変数<code>f</code>を明示的にローカル変数として渡す必要があることに注意してください。また、それぞれのフォームは<em>完全に同じではない</em>ため、テストも更新の必要があります。フォームのわずかな違いを見つけ出し、テストの更新にそれを反映してください。</li>
 
 <li>サインインしたユーザーは、もはやUsersコントローラの<code>new</code>アクションや <code>create</code>アクションにアクセスする必要はありません。サインインしたユーザーがこれらのアクションをブラウザで開こうとしたら、ルートURLにリダイレクトするようにしてください。</li>
 
 <li><code>request</code>オブジェクトについて調べてください。具体的には、<a href="http://api.rubyonrails.org/v4.0.0/classes/ActionDispatch/Request.html">Rails API</a><sup class="footnote" id="fnref-9_8"><a href="./updating-showing-and-deleting-users.html#fn-9_8">8</a></sup>の一覧に記載されているメソッドのうちいくつかをサイトのレイアウトに挿入することによってこれを調べます (やり方がわからない場合は<a class="ref" href="./sign-up.html#code-rails_debug">リスト7.1</a>を参照してください)。</li>
 
-<li>フレンドリーフォワーディングで、最初に与えられたURLにのみ確実に転送されていることを確認するテストを作成してください。続けてサインインを行った後、転送先のURLはデフォルト (ユーザープロファイルページ) に戻る必要もありますので、これもテストで確認してください。<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_forgetting_test">リスト9.52</a>がヒントです (と言いつつそこで全部やってしまってますが)。</li>
+<li>フレンドリーフォワーディングで、最初に与えられたURLにのみ確実に転送されていることを確認するテストを作成してください。続けてサインインを行った後、転送先のURLはデフォルト (ユーザープロファイルページ) に戻る必要もありますので、これもテストで確認してください。<a class="ref" href="./updating-showing-and-deleting-users.html#code-friendly_forgetting_test">リスト9.51</a>がヒントです (と言いつつそこで全部やってしまってますが)。</li>
 
 <li><code>destroy</code>アクションを改造し、管理者が自分自身を削除できないようにしてください。(最初にテストを作成してからにしてください。)</li>
 
@@ -2253,7 +2253,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.49</span> <span class="description"><code>admin</code>属性へのアクセスが禁止されていることをテストする。</span><br /><span class="description"> <code>spec/requests/user_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.48</span> <span class="description"><code>admin</code>属性へのアクセスが禁止されていることをテストする。</span><br /><span class="description"> <code>spec/requests/user_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;User pages&quot;</span> <span class="k">do</span>
@@ -2286,7 +2286,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.50</span> <span class="description">newフォームとeditフォームのフィールドに使用するパーシャル。</span><br /><span class="description"> <code>app/views/users/_fields.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト9.49</span> <span class="description">newフォームとeditフォームのフィールドに使用するパーシャル。</span><br /><span class="description"> <code>app/views/users/_fields.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">&#39;shared/error_messages&#39;</span> <span class="cp">%&gt;</span>
 
 <span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:name</span> <span class="cp">%&gt;</span>
@@ -2310,7 +2310,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.51</span> <span class="description">パーシャルを使用したnewユーザービュー。</span><br /><span class="description"> <code>app/views/users/new.html.erb</code></span> </div>
+<div class="listing"><span class="header">リスト9.50</span> <span class="description">パーシャルを使用したnewユーザービュー。</span><br /><span class="description"> <code>app/views/users/new.html.erb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%</span> <span class="n">provide</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="s1">&#39;Sign up&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span>
 <span class="nt">&lt;h1&gt;</span>Sign up<span class="nt">&lt;/h1&gt;</span>
 
@@ -2332,7 +2332,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.52</span> <span class="description">フレンドリーフォワーディングの後、転送先がデフォルトページに変わることを確認するテスト。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.51</span> <span class="description">フレンドリーフォワーディングの後、転送先がデフォルトページに変わることを確認するテスト。</span><br /><span class="description"> <code>spec/requests/authentication_pages_spec.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
 
 <span class="n">describe</span> <span class="s2">&quot;Authentication&quot;</span> <span class="k">do</span>

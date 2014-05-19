@@ -866,7 +866,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.34</a>のユーザーインデックスページのコードと比較すると、以前は以下のように単純なコードでした。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.33</a>のユーザーインデックスページのコードと比較すると、以前は以下のように単純なコードでした。</p>
 
 <div class="code"><div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">will_paginate</span> <span class="cp">%&gt;</span>
 </pre></div>
@@ -1168,7 +1168,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p>未制作のマイクロポストのWebインターフェースと違い、<a class="ref" href="./user-microposts.html#code-micropost_access_control">リスト10.23</a>のコードは、<a class="ref" href="./updating-showing-and-deleting-users.html#code-edit_update_wrong_user_tests">リスト9.14</a>のときの手法と同様に、それぞれのマイクロポストアクションのレベルで動作します。サインインしていないユーザーは、<tt>POST</tt>リクエストを/microposts (<code>post microposts_path</code>、<code>create</code>アクションが呼び出される) に送信した場合、または <tt>DELETE</tt>リクエストを/microposts/1 (<code>delete micropost_path(micropost)</code>、<code>destroy</code>アクションが呼び出される) に送信した場合にリダイレクトされます。</p>
+<p>未制作のマイクロポストのWebインターフェースと違い、<a class="ref" href="./user-microposts.html#code-micropost_access_control">リスト10.23</a>のコードは、<a class="ref" href="./updating-showing-and-deleting-users.html#code-edit_update_wrong_user_tests">リスト9.13</a>のときの手法と同様に、それぞれのマイクロポストアクションのレベルで動作します。サインインしていないユーザーは、<tt>POST</tt>リクエストを/microposts (<code>post microposts_path</code>、<code>create</code>アクションが呼び出される) に送信した場合、または <tt>DELETE</tt>リクエストを/microposts/1 (<code>delete micropost_path(micropost)</code>、<code>destroy</code>アクションが呼び出される) に送信した場合にリダイレクトされます。</p>
 
 <p><a class="ref" href="./user-microposts.html#code-micropost_access_control">リスト10.23</a>のテストにパスするためのアプリケーションコードを作成する前に、少しリファクタリングを行いましょう。 <a class="ref" href="./updating-showing-and-deleting-users.html#sec-requiring_signed_in_users">9.2.1</a>では、<code>signed_in_user</code>メソッドと呼ばれるbefore_actionを使用して、サインインを必須にしたことを思い出してください (<a class="ref" href="./updating-showing-and-deleting-users.html#code-authorize_before_filter">リスト9.12</a>)。あのときは、このメソッドをUsersコントローラでしか使用しませんでしたが、今回はMicropostsコントローラでもこのメソッドが必要となることがわかったので、<a class="ref" href="./user-microposts.html#code-sessions_helper_authenticate">リスト10.24</a>に示すように、セッションヘルパーに移動します<sup class="footnote" id="fnref-10_8"><a href="./user-microposts.html#fn-10_8">8</a></sup>。</p>
 
@@ -1407,7 +1407,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_view">リスト9.25</a>と同様、<a class="ref" href="./user-microposts.html#code-user_info">リスト10.29</a>のコードでも<a class="ref" href="./sign-up.html#code-gravatar_option">リスト7.30</a>で定義した<code>gravatar_for</code>ヘルパーを使用します。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index_view">リスト9.24</a>と同様、<a class="ref" href="./user-microposts.html#code-user_info">リスト10.29</a>のコードでも<a class="ref" href="./sign-up.html#code-gravatar_option">リスト7.30</a>で定義した<code>gravatar_for</code>ヘルパーを使用します。</p>
 
 <p>プロファイルサイドバー (<a class="ref" href="./user-microposts.html#code-user_show_microposts">リスト10.17</a>) のときと同様、<a class="ref" href="./user-microposts.html#code-user_info">リスト10.29</a>のユーザー情報にも、そのユーザーが投稿したマイクロポストの総数が表示されていることに注目してください。ただし少し表示に違いがあります。プロファイルサイドバーでは、 “Microposts” をラベルとし、“Microposts (1)” と表示することは問題ありません。しかし今回のように “1 microposts” と表示してしまうと英語の文法上誤りになってしまうので、<code>pluralize</code>メソッドを使用して “1 micropost” や “2 microposts” と表示するように調整します。</p>
 
@@ -1518,7 +1518,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>残念ながら、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="./user-microposts.html#code-signup_errors_updated">リスト10.33</a>および<a class="ref" href="./user-microposts.html#code-edit_errors_updated">リスト10.34</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>注</em>: もし<a class="ref" href="./updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>の演習で、<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_edit_partial">リスト9.50</a>および<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_user_with_partial">リスト9.51</a>のコードを「<a href="http://en.wikipedia.org/wiki/Mutatis_mutandis">必要に応じて流用 (<em>Mutatis mutandis</em>)</a>」して実装していた場合、異なるコードを使用する必要があります。)</p>
+<p>残念ながら、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="./user-microposts.html#code-signup_errors_updated">リスト10.33</a>および<a class="ref" href="./user-microposts.html#code-edit_errors_updated">リスト10.34</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>注</em>: もし<a class="ref" href="./updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>の演習で、<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_edit_partial">リスト9.49</a>および<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_user_with_partial">リスト9.50</a>のコードを「<a href="http://en.wikipedia.org/wiki/Mutatis_mutandis">必要に応じて流用 (<em>Mutatis mutandis</em>)</a>」して実装していた場合、異なるコードを使用する必要があります。)</p>
 
 <div class="label" id="code-signup_errors_updated"></div>
 
@@ -2011,7 +2011,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div></div>
 
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト9.47</a>のユーザー用アプリケーションコードと似ていますが、最も大きく異なるのは、マイクロポストの場合は、カレントユーザーが実際に指定のidのマイクロポストを持っているのかをチェックするのに<code>admin_user</code> before_actionではなく、 <code>correct_user</code> before_actionを使用している点です。コードを<a class="ref" href="./user-microposts.html#code-microposts_destroy_action">リスト10.46</a>に示します。2番目に新しいポストを削除した場合の結果を<a class="ref" href="./user-microposts.html#fig-home_post_delete">図10.17</a>に示します。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト9.46</a>のユーザー用アプリケーションコードと似ていますが、最も大きく異なるのは、マイクロポストの場合は、カレントユーザーが実際に指定のidのマイクロポストを持っているのかをチェックするのに<code>admin_user</code> before_actionではなく、 <code>correct_user</code> before_actionを使用している点です。コードを<a class="ref" href="./user-microposts.html#code-microposts_destroy_action">リスト10.46</a>に示します。2番目に新しいポストを削除した場合の結果を<a class="ref" href="./user-microposts.html#fig-home_post_delete">図10.17</a>に示します。</p>
 
 <div class="label" id="code-microposts_destroy_action"></div>
 
