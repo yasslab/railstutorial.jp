@@ -1540,13 +1540,13 @@
 </div></div>
 
 
-<p>この<code>will_paginate</code>メソッドは少々不思議なことに、<code>users</code>ビューのコードの中から<code>@users</code>オブジェクトを自動的に見つけ出し、それから他のページにアクセスするためのページネーションリンクを作成しています。実は、<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.33</a>のビューはこのままでは動きません。<code>@users</code>オブジェクトに現在含まれているのは<code>User.all</code> (<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index">リスト9.23</a>) の結果であり、しかもそれが<code>Array</code>クラスに属しているからです。<code>will_paginate</code>では、オブジェクトのクラスは<code>ActiveRecord::Relation</code>であることが前提となっています。幸い、<code>will_paginate</code> gemによって、すべてのActive Recordオブジェクトに<tt>paginate</tt>メソッドが追加されます。そのメソッドが返すオブジェクトのクラスがこのActiveRecord::Relationになっているのです。</p>
+<p>この<code>will_paginate</code>メソッドは少々不思議なことに、<code>users</code>ビューのコードの中から<code>@users</code>オブジェクトを自動的に見つけ出し、それから他のページにアクセスするためのページネーションリンクを作成しています。実は、<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_index_view">リスト9.33</a>のビューはこのままでは動きません。<code>@users</code>オブジェクトに現在含まれているのは<code>User.all</code> (<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_index">リスト9.23</a>) の結果ですが、<code>will_paginate</code>では、結果が明示的にpaginateメソッドを使っている必要があるからです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
-<span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">class</span>
-<span class="go">=&gt; Array</span>
-<span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">paginate</span><span class="p">(</span><span class="ss">page:</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">class</span>
-<span class="go">=&gt; ActiveRecord::Relation</span>
+<span class="gp">&gt;&gt; </span><span class="no">User</span><span class="o">.</span><span class="n">paginate</span><span class="p">(</span><span class="ss">page:</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">  User Load (1.5ms)  SELECT &quot;users&quot;.* FROM &quot;users&quot; LIMIT 30 OFFSET 0
+   (1.7ms)  SELECT COUNT(*) FROM &quot;users&quot;
+=&gt; #&lt;ActiveRecord::Relation [#&lt;User id: 1,...</span>
 </pre></div>
 </div>
 
