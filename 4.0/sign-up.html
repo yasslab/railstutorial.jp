@@ -590,7 +590,7 @@ Loading development environment  &gt;&gt; Rails.env
 </div>
 
 
-<p><code>gravatar_for</code>メソッドが未定義のため、ユーザー表示ビューは現在動作していません。(このようなエラーを捉えることができるのが、ビューでSpecsを使用する大きなメリットです。だからこそ、どんなに小規模であってもよいのでビューで<em>何らかの</em>テストを行っておくことが重要なのです。)</p>
+<p><code>gravatar_for</code>メソッドが未定義のため、ユーザー表示ビューは現在動作していません。(このようなエラーを捉えることができるのが、ビューでRSpecを使用する大きなメリットです。だからこそ、どんなに小規模であってもよいのでビューで<em>何らかの</em>テストを行っておくことが重要なのです。)</p>
 
 <p>デフォルトでは、ヘルパーファイルで定義されているメソッドは自動的にすべてのビューで利用できます。ここでは、利便性を考えて<code>gravatar_for</code>をUsersコントローラに関連付けられているヘルパーファイルに置くことにしましょう。<a href="http://en.gravatar.com/site/implement/hash/">Gravatarのホームページ</a>にも書かれているように、GravatarのURLは<a href="http://en.wikipedia.org/wiki/MD5">MD5ハッシュ</a>を用いてユーザーのメールアドレスをハッシュ化しています。Rubyでは、<code>Digest</code>ライブラリの<code>hexdigest</code>メソッドを使用したMD5ハッシュアルゴリズムが実装されています。</p>
 
