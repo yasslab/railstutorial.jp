@@ -719,7 +719,7 @@
 
 
 <div class="codelisting">
-<div class="listing"><span class="header">リスト9.14</span> <span class="description">edit/updateページを保護するための<code>correct_user</code> before_action。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
+<div class="listing"><span class="header">リスト9.14</span> <span class="description">edit/updateページを保護するための<code>correct_user</code> の before_action。</span><br /><span class="description"> <code>app/controllers/users_controller.rb</code></span> </div>
 <div class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="n">before_action</span> <span class="ss">:signed_in_user</span><span class="p">,</span> <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
   <span class="n">before_action</span> <span class="ss">:correct_user</span><span class="p">,</span>   <span class="ss">only:</span> <span class="o">[</span><span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="o">]</span>
@@ -798,7 +798,7 @@
 </div>
 
 
-<p>このコードは<code>update</code>アクションでも同様でした。しかし既に<code>correct_user</code> before_actionで<code>@user</code>を定義したので、updateアクションとeditアクションからこのコードを削除できました。</p>
+<p>このコードは<code>update</code>アクションでも同様でした。しかし既に<code>correct_user</code> の before_action で<code>@user</code>を定義したので、updateアクションとeditアクションからこのコードを削除できました。</p>
 
 <p>以下を実行してテストスイートがパスすることを確認してから先に進むことにしましょう。</p>
 
@@ -889,7 +889,7 @@
 
 <p>ここで、リダイレクト先を保存するメカニズムは、Railsが提供する<code>session</code>機能を使用しています。これは、<a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>で説明した、ブラウザを閉じたときに自動的に破棄される<code>cookies</code>変数のインスタンスと同様のものと考えていただければよいでしょう。また、<code>url</code> (ここではリクエストされたページのURL) の取得には<code>request</code>オブジェクトを使用しています。<code>store_location</code>メソッドでは、リクエストされたURLを<code>:return_to</code>というキーで<code>session</code>変数に保存しています。</p>
 
-<p><code>store_location</code>メソッドを使用するためには、<a class="ref" href="./updating-showing-and-deleting-users.html#code-add_store_location">リスト9.18</a>のようにこのメソッドを<code>signed_in_user</code> before_actionに追加しておく必要があります。</p>
+<p><code>store_location</code>メソッドを使用するためには、<a class="ref" href="./updating-showing-and-deleting-users.html#code-add_store_location">リスト9.18</a>のようにこのメソッドを<code>signed_in_user</code> の before_action に追加しておく必要があります。</p>
 
 <div class="label" id="code-add_store_location"></div>
 
@@ -1039,7 +1039,7 @@
 </div></div>
 
 
-<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-signed_in_user_index">リスト9.21</a>にアプリケーションのコードを示しました。ここでは、<code>signed_in_user</code> before_actionで保護するアクションのリストに<code>index</code>を追加するだけです。</p>
+<p><a class="ref" href="./updating-showing-and-deleting-users.html#code-signed_in_user_index">リスト9.21</a>にアプリケーションのコードを示しました。ここでは、<code>signed_in_user</code> の before_action で保護するアクションのリストに<code>index</code>を追加するだけです。</p>
 
 <div class="label" id="code-signed_in_user_index"></div>
 
@@ -2072,7 +2072,7 @@
 
 <p>原則に従えば、ここにはまだ小さなセキュリティホールが残っています。管理者がやろうと思えば、<tt>DELETE</tt>リクエストをコマンドラインで直接発行して自分自身を削除できてしまいます。単なる管理者の自業自得ではないかという考えもあるかと思いますが、こういう事故を未然に防ぐに越したことはありません。この対策については演習の課題に回します (<a class="ref" href="./updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>)。</p>
 
-<p>上のテストに対応するアプリケーションコードではbefore_actionを使用していますが、ここでも同じように<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用します。変更後の<code>admin_user</code> before_actionを<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト9.46</a>に示します。</p>
+<p>上のテストに対応するアプリケーションコードではbefore_actionを使用していますが、ここでも同じように<code>destroy</code>アクションから管理者へのアクセスを制限するのに使用します。変更後の<code>admin_user</code> の before_action を<a class="ref" href="./updating-showing-and-deleting-users.html#code-admin_destroy_before_filter">リスト9.46</a>に示します。</p>
 
 <div class="label" id="code-admin_destroy_before_filter"></div>
 
