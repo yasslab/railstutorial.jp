@@ -14,7 +14,7 @@
 <h1 class="chapter"><a id="sec-1" href="./beginning.html#top" class="heading"><span class="number">第1章</span> ゼロからデプロイまで</a></h1>
 
 
-<p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。本書は「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったWeb開発を学びたいのだけれど、何から始めればよいのかを教えて欲しい」という要望に応えるために作成されました。<em>本書</em>を読み終わる頃には、自分の手でWebアプリケーションを開発するための技術のみならず、デプロイ(deploy: 本番環境でアプリを動かし、一般公開すること)を行なうための技術もすべて習得できます。Railsの教育エコシステムにはさらに高度な内容の書籍、ブログ、スクリーンキャストなどが数多くありますが、それらを読み解く力も身につきます。<em>Ruby on Railsチュートリアル</em>は最新のRails 4を使用していますので、Web開発の最前線を本書で学ぶことができます。(<em>Ruby on Railsチュートリアル</em>が最新版かどうかについては、本書の公式サイト(<a href="./">http://railstutorial.jp/</a>)でチェックすることができます。特に、本書をオフラインで読んでいる方は、本書が最新版かどうかを<a href="./book">http://railstutorial.jp/</a>にある<a href="./book">オンライン版のRailsチュートリアル</a>でご確認ください。</p>
+<p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。本書は「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったWeb開発を学びたいのだけれど、何から始めればよいのかを教えて欲しい」という要望に応えるために作成されました。<em>本書</em>を読み終わる頃には、自分の手でWebアプリケーションを開発するための技術のみならず、デプロイ(deploy: 本番環境でアプリを動かし、一般公開すること)を行なうための技術もすべて習得できます。Railsの教育エコシステムにはさらに高度な内容の書籍、ブログ、スクリーンキャストなどが数多くありますが、それらを読み解く力も身につきます。<em>Ruby on Railsチュートリアル</em>は最新のRails 4を使用していますので、Web開発の最前線を本書で学ぶことができます。(<em>Ruby on Railsチュートリアル</em>が最新版かどうかについては、本書の公式サイト(<a href="http://railstutorial.jp">http://railstutorial.jp/</a>)でチェックすることができます。特に、本書をオフラインで読んでいる方は、本書が最新版かどうかを<a href="./book">http://railstutorial.jp/</a>にある<a href="./book">オンライン版のRailsチュートリアル</a>でご確認ください。</p>
 
 <p>(<em>注</em>: 今皆様が読んでいるこのチュートリアルは、Rails 4.0という<em>バージョン</em>に対応しています。本書はRails 3.2からRail 4.0へのバージョンアップにともなって改定されましたが、チュートリアルとしての<em>版(エディション)</em>は更新されていないことに注意してください。Rails 4.0に対応するために行った変更の量がわずかで、本書の版を改めるには及ばないと判断したためです。本書はWeb開発へといざなう「チュートリアル」に徹しており、Railsの高度な内容にまでは踏み込んでいません。以前のRails 3.2対応版と今回のRails4.0対応版との差分が少ないのは、このような理由によるものです。もちろん、<a class="ref" href="./beginning.html#sidebar-diffs">コラム1.1</a>でも紹介しているとおり、細かな変更は多数あります。しかし、その中で重要な変更と呼べるのは、<a class="ref" href="./sign-up.html#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>と呼ばれるセキュリティ関係の新しい機能だけです。今後Railsで重要な変更が生じることがあれば、<em>Railsチュートリアル</em>の版を改訂するつもりです。新しい版では、<em>Turbolinks</em>、<em>Russian doll caching</em>、RSpec の新機能「<em>feature specs</em>」などについても取り上げる予定です。)</p>
 
@@ -143,7 +143,7 @@
 
 <p>本書で使用している取り決めや表記はわかりやすいものなので、ほとんどは説明不要でしょう。一部の取り決めについては説明が必要かもしれないので本項で補足します。</p>
 
-<p>本書の文中には内部リンク (<a class="ref" href="./beginning.html#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロードページ</a>など) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="./beginning.html#fn-1_5">5</a></sup>。これは<a href="./book">HTML版</a>、<a href="./">PDF版</a>いずれの場合も同じです。</p>
+<p>本書の文中には内部リンク (<a class="ref" href="./beginning.html#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロードページ</a>など) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="./beginning.html#fn-1_5">5</a></sup>。これは<a href="./book">HTML版</a>、<a href="http://tatsu-zine.com/books/railstutorial">PDF版</a>いずれの場合も同じです。</p>
 
 <p>本書に登場する例の多くは、コマンドライン (ターミナル) のコマンドを使っています。簡素化のため、次のようなUnixスタイルのプロンプト (行の頭に &#39;$&#39; を表示するスタイル) を使用して、その例がコマンドラインであることを示しています。</p>
 
