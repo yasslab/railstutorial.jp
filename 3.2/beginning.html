@@ -87,7 +87,7 @@
 <li><a href="http://railscasts.com/">RailsCasts</a> (Ryan Bates) : 質の高い (ほぼ) 無料のスクリーンキャスト</li>
 <li><a href="http://peepcode.com/">PeepCode</a>: 質の高い商用のスクリーンキャスト</li>
 <li><a href="http://www.codeschool.com/">Code School</a>: プログラミングを対話的に学習できるコース</li>
-<li><a href="http://guides.rubyonrails.org/">Rails Guides</a>: トピック毎に分類された最新の Rails リファレンス</li>
+<li><a href="http://guides.rubyonrails.org/">Rails Guides</a>: トピック毎に分類された最新の Rails リファレンス (<a href="http://railsguides.jp">日本語版</a>)</li>
 <li><a href="http://railscasts.com/">RailsCasts</a> (Ryan Bates): さっきも <a href="http://railscasts.com/">RailsCasts</a> を紹介しましたっけ？そのぐらい <a href="http://railscasts.com/"><em>RailsCasts</em></a> はお勧めです。</li>
 
 
@@ -272,7 +272,7 @@
 <h4><a id="sec-1_2_2_2" href="./beginning.html#sec-install_git" class="heading">Gitのインストール</a></h4>
 
 
-<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="./beginning.html#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早い内にインストールを済ませておきます。<a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にしてください。</p>
+<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="./beginning.html#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早い内にインストールを済ませておきます。<a href="http://git-scm.com/book/ja/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にしてください。</p>
 
 <div class="label" id="sec-install_ruby"></div>
 
@@ -752,7 +752,7 @@ to see where a bundled gem is installed.</span>
 
 <p>新しく動作するRailsアプリが完成したところで、さっそくアプリケーションのソースコードを<em>バージョン管理</em>下に置きましょう。これを行わないとアプリケーションが動かないということではありませんが、ほとんどのRails開発者はバージョン管理は開発現場において必要不可欠であると考えています。バージョン管理システムを導入しておけば、プロジェクトのコードの履歴を追ったり、うっかり削除してしまったファイルを復旧 (ロールバック) したりという作業が行えるようになります。バージョン管理システムを熟知することは、今やあらゆるソフトウェア開発者にとって必須のスキルであると言ってよいでしょう。</p>
 
-<p>バージョン管理システムにもさまざまなものがありますが、RailsコミュニティではLinuxカーネル用にLinus Torvaldsにより開発された分散バージョン管理システムである<a href="http://git-scm.com/">Git</a>が主流になっています。Git (というよりバージョン管理) はそれだけで大きなテーマなので、すべてを説明しようとすると軽く一冊の本を超えてしまいます。本書では簡単に言及するにとどめますが、幸いネット上には無償で利用できるリソースがあふれています。その中でも特に「<a href="http://progit.org"><em>Pro Git</em></a>」Scott Chacon (Apress, 2009) をお勧めいたします (訳注: Pro Gitには素晴らしい日本語版があります: http://git-scm.com/book/ja/ )。ソースコードのバージョン管理は<em>何としても</em>導入してください。バージョン管理はRailsを使用するどんな場面でも必要になりますし、バージョン管理システムを応用して、自分の作成したコードを他の開発者と簡単に共有したり <a class="ref" href="./beginning.html#sec-github">1.3.4</a>)、最初の章で作成したアプリケーションを本番サーバーへデプロイしたりすることもできる (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) からです。</p>
+<p>バージョン管理システムにもさまざまなものがありますが、RailsコミュニティではLinuxカーネル用にLinus Torvaldsにより開発された分散バージョン管理システムである<a href="http://git-scm.com/">Git</a>が主流になっています。Git (というよりバージョン管理) はそれだけで大きなテーマなので、すべてを説明しようとすると軽く一冊の本を超えてしまいます。本書では簡単に言及するにとどめますが、幸いネット上には無償で利用できるリソースがあふれています。その中でも特に「<a href="http://progit.org"><em>Pro Git</em></a>」Scott Chacon (Apress, 2009) をお勧めいたします (訳注: Pro Gitには素晴らしい<a href="http://git-scm.com/book/ja/">日本語版</a>があります)。ソースコードのバージョン管理は<em>何としても</em>導入してください。バージョン管理はRailsを使用するどんな場面でも必要になりますし、バージョン管理システムを応用して、自分の作成したコードを他の開発者と簡単に共有したり <a class="ref" href="./beginning.html#sec-github">1.3.4</a>)、最初の章で作成したアプリケーションを本番サーバーへデプロイしたりすることもできる (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) からです。</p>
 
 <div class="label" id="sec-git_setup"></div>
 
@@ -760,7 +760,7 @@ to see where a bundled gem is installed.</span>
 <h3><a id="sec-1_3_1" href="./beginning.html#sec-git_setup" class="heading"><span class="number">1.3.1</span>インストールとセットアップ</a></h3>
 
 
-<p>Gitがインストールされていない場合は、まず<a class="ref" href="./beginning.html#sec-install_git">1.2.2.2</a>に従ってGitをインストールしてください (リンク先の節でも述べているように、<a href="http://progit.org/book/ch1-4.html"><em>Pro Git</em>の「Gitのインストール</a>」の記載に従うことになります)。</p>
+<p>Gitがインストールされていない場合は、まず<a class="ref" href="./beginning.html#sec-install_git">1.2.2.2</a>に従ってGitをインストールしてください (リンク先の節でも述べているように、<a href="http://git-scm.com/book/ja/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><em>Pro Git</em>の「Gitのインストール</a>」の記載に従うことになります)。</p>
 
 <h4><a id="sec-1_3_1_1" href="./beginning.html#sec-1_3_1_1" class="heading">最初のシステムセットアップ</a></h4>
 

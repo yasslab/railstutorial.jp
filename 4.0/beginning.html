@@ -14,7 +14,7 @@
 <h1 class="chapter"><a id="sec-1" href="./beginning.html#top" class="heading"><span class="number">第1章</span> ゼロからデプロイまで</a></h1>
 
 
-<p><a href="http://ruby.railstutorial.jp/ruby-on-rails-tutorial-book"><em>Ruby on Railsチュートリアル</em></a>へようこそ。本書は「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったWeb開発を学びたいのだけれど、何から始めればよいのかを教えて欲しい」という要望に応えるために作成されました。<em>本書</em>を読み終わる頃には、自分の手でWebアプリケーションを開発するための技術のみならず、デプロイ(deploy: 本番環境でアプリを動かし、一般公開すること)を行なうための技術もすべて習得できます。Railsの教育エコシステムにはさらに高度な内容の書籍、ブログ、スクリーンキャストなどが数多くありますが、それらを読み解く力も身につきます。<em>Ruby on Railsチュートリアル</em>は最新のRails 4を使用していますので、Web開発の最前線を本書で学ぶことができます。(<em>Ruby on Railsチュートリアル</em>が最新版かどうかについては、本書の公式サイト(<a href="http://railstutorial.jp">http://railstutorial.jp/</a>)でチェックすることができます。特に、本書をオフラインで読んでいる方は、本書が最新版かどうかを<a href="./book">http://railstutorial.jp/</a>にある<a href="./book">オンライン版のRailsチュートリアル</a>でご確認ください。</p>
+<p><a href="#"><em>Ruby on Railsチュートリアル</em></a>へようこそ。本書は「<a href="http://rubyonrails.org/">Ruby on Rails</a>を使ったWeb開発を学びたいのだけれど、何から始めればよいのかを教えて欲しい」という要望に応えるために作成されました。<em>本書</em>を読み終わる頃には、自分の手でWebアプリケーションを開発するための技術のみならず、デプロイ(deploy: 本番環境でアプリを動かし、一般公開すること)を行なうための技術もすべて習得できます。Railsの教育エコシステムにはさらに高度な内容の書籍、ブログ、スクリーンキャストなどが数多くありますが、それらを読み解く力も身につきます。<em>Ruby on Railsチュートリアル</em>は最新のRails 4を使用していますので、Web開発の最前線を本書で学ぶことができます。(<em>Ruby on Railsチュートリアル</em>が最新版かどうかについては、本書の公式サイト(<a href="http://railstutorial.jp">http://railstutorial.jp/</a>)でチェックすることができます。特に、本書をオフラインで読んでいる方は、本書が最新版かどうかを<a href="./book">http://railstutorial.jp/</a>にある<a href="./book">オンライン版のRailsチュートリアル</a>でご確認ください。</p>
 
 <p>(<em>注</em>: 今皆様が読んでいるこのチュートリアルは、Rails 4.0という<em>バージョン</em>に対応しています。本書はRails 3.2からRail 4.0へのバージョンアップにともなって改定されましたが、チュートリアルとしての<em>版(エディション)</em>は更新されていないことに注意してください。Rails 4.0に対応するために行った変更の量がわずかで、本書の版を改めるには及ばないと判断したためです。本書はWeb開発へといざなう「チュートリアル」に徹しており、Railsの高度な内容にまでは踏み込んでいません。以前のRails 3.2対応版と今回のRails4.0対応版との差分が少ないのは、このような理由によるものです。もちろん、<a class="ref" href="./beginning.html#sidebar-diffs">コラム1.1</a>でも紹介しているとおり、細かな変更は多数あります。しかし、その中で重要な変更と呼べるのは、<a class="ref" href="./sign-up.html#sec-strong_parameters">7.3.2</a>に追加した<em>Strong Parameters</em>と呼ばれるセキュリティ関係の新しい機能だけです。今後Railsで重要な変更が生じることがあれば、<em>Railsチュートリアル</em>の版を改訂するつもりです。新しい版では、<em>Turbolinks</em>、<em>Russian doll caching</em>、RSpec の新機能「<em>feature specs</em>」などについても取り上げる予定です。)</p>
 
@@ -121,7 +121,7 @@
 <li><a href="http://railscasts.com/">RailsCasts</a> (Ryan Bates) : 極めて質の高い (ほぼ) 無料のスクリーンキャスト</li>
 <li><a href="http://peepcode.com/">PeepCode</a>: 質の高い商用のスクリーンキャスト</li>
 <li><a href="http://www.codeschool.com/">Code School</a>: プログラミングを対話的に学習できるコース</li>
-<li><a href="http://guides.rubyonrails.org/">Rails Guides</a>: トピック毎に分類された最新の Rails リファレンス</li>
+<li><a href="http://guides.rubyonrails.org/">Rails Guides</a>: トピック毎に分類された最新の Rails リファレンス (<a href="http://railsguides.jp">日本語版</a>)</li>
 <li><a href="http://railscasts.com/">RailsCasts</a> (Ryan Bates): さっきも <a href="http://railscasts.com/">RailsCasts</a> を紹介しましたっけ？そのぐらい <a href="http://railscasts.com/"><em>RailsCasts</em></a> はお勧めです。</li>
 
 
@@ -306,7 +306,7 @@
 <h4><a id="sec-1_2_2_2" href="./beginning.html#sec-install_git" class="heading">Gitのインストール</a></h4>
 
 
-<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="./beginning.html#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早めにインストールを済ませておきます。<a href="http://www.git-scm.com/book/en/Getting-Started-Installing-Git"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にしてください。</p>
+<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="./beginning.html#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早めにインストールを済ませておきます。<a href="http://git-scm.com/book/ja/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にしてください。</p>
 
 <div class="label" id="sec-install_ruby"></div>
 
@@ -823,7 +823,7 @@ to see where a bundled</span> <span class="go">gem is installed.</span>
 
 <p>新しく動作するRailsアプリが完成したところで、さっそくアプリケーションのソースコードを<em>バージョン管理</em>下に置きましょう。これを行わないとアプリケーションが動かないということではありませんが、ほとんどのRails開発者はバージョン管理は開発現場において必要不可欠であると考えています。バージョン管理システムを導入しておけば、プロジェクトのコードの履歴を追ったり、うっかり削除してしまったファイルを復旧 (ロールバック) したりという作業が行えるようになります。バージョン管理システムを熟知することは、今やあらゆるソフトウェア開発者にとって必須のスキルであると言ってよいでしょう。</p>
 
-<p>バージョン管理システムにもさまざまなものがありますが、RailsコミュニティではLinuxカーネル用にLinus Torvaldsにより開発された分散バージョン管理システムである<a href="http://git-scm.com/">Git</a>が主流になっています。Git (というよりバージョン管理) はそれだけで大きなテーマなので、すべてを説明しようとすると軽く一冊の本を超えてしまいます。本書では簡単に言及するにとどめますが、幸いネット上には無償で利用できるリソースがあふれています。その中でも特に「<a href="http://progit.org"><em>Pro Git</em></a>」Scott Chacon (Apress, 2009) をお勧めいたします (訳注: Pro Gitには素晴らしい日本語版があります: http://git-scm.com/book/ja/ )。ソースコードのバージョン管理は<em>何としても</em>導入してください。バージョン管理はRailsを使用するどんな場面でも必要になりますし、バージョン管理システムを応用して、自分の作成したコードを他の開発者と簡単に共有したり <a class="ref" href="./beginning.html#sec-github">1.3.4</a>)、最初の章で作成したアプリケーションを本番サーバーへデプロイしたりすることもできる (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) からです。</p>
+<p>バージョン管理システムにもさまざまなものがありますが、RailsコミュニティではLinuxカーネル用にLinus Torvaldsにより開発された分散バージョン管理システムである<a href="http://git-scm.com/">Git</a>が主流になっています。Git (というよりバージョン管理) はそれだけで大きなテーマなので、すべてを説明しようとすると軽く一冊の本を超えてしまいます。本書では簡単に言及するにとどめますが、幸いネット上には無償で利用できるリソースがあふれています。その中でも特に「<a href="http://progit.org"><em>Pro Git</em></a>」Scott Chacon (Apress, 2009) をお勧めいたします (訳注: Pro Gitには素晴らしい<a href="http://git-scm.com/book/ja/">日本語版</a>があります)。ソースコードのバージョン管理は<em>何としても</em>導入してください。バージョン管理はRailsを使用するどんな場面でも必要になりますし、バージョン管理システムを応用して、自分の作成したコードを他の開発者と簡単に共有したり <a class="ref" href="./beginning.html#sec-github">1.3.4</a>)、最初の章で作成したアプリケーションを本番サーバーへデプロイしたりすることもできる (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) からです。</p>
 
 <div class="label" id="sec-git_setup"></div>
 
@@ -831,7 +831,7 @@ to see where a bundled</span> <span class="go">gem is installed.</span>
 <h3><a id="sec-1_3_1" href="./beginning.html#sec-git_setup" class="heading"><span class="number">1.3.1</span>インストールとセットアップ</a></h3>
 
 
-<p>Gitがインストールされていない場合は、まず<a class="ref" href="./beginning.html#sec-install_git">1.2.2.2</a>に従ってGitをインストールしてください (リンク先の節でも述べているように、<a href="http://progit.org/book/ch1-4.html"><em>Pro Git</em>の「Gitのインストール</a>」の記載に従うことになります)。</p>
+<p>Gitがインストールされていない場合は、まず<a class="ref" href="./beginning.html#sec-install_git">1.2.2.2</a>に従ってGitをインストールしてください (リンク先の節でも述べているように、<a href="http://git-scm.com/book/ja/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><em>Pro Git</em>の「Gitのインストール</a>」の記載に従うことになります)。</p>
 
 <h4><a id="sec-1_3_1_1" href="./beginning.html#sec-1_3_1_1" class="heading">最初のシステムセットアップ</a></h4>
 
