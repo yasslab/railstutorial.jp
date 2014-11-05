@@ -2405,7 +2405,7 @@
 <ol>
 <li id="fn-11_1">モックアップツアーの写真は、それぞれ
 <a href="http://www.flickr.com/photos/john_lustig/2518452221/">http://www.flickr.com/photos/john_lustig/2518452221/</a>と
-<a href="http://www.flickr.com/photos/30775272@N05/2884963755/">http://www.flickr.com/photos/30775272@N05/2884963755/</a>より引用しました。<a class="arrow" href="./following-users.html#fnref-11_1">↑</a></li>
+<a href="http://www.flickr.com/photos/30775272@N05/2884963755/">http://www.flickr.com/photos/30775272@N05/2884963755/</a>より引用しました (訳注: 現在はリンク切れ)。<a class="arrow" href="./following-users.html#fnref-11_1">↑</a></li>
 <li id="fn-11_2">本書の最初の版では<code>user.following</code>としていましたが、結局これも混乱を招くことに気付きました。私にこの用語を変更する決心をさせてくれ、よりわかりやすいアドバイスを提供してくれた読者、Cosmo Leeに感謝いたします (なお、彼のアドバイスをそのまま採用したわけではありませんので、もし本書にまだわかりにくい部分があったとしても、彼には一切の責任がないことをここに申し伝えておきます) 。<a class="arrow" href="./following-users.html#fnref-11_2">↑</a></li>
 <li id="fn-11_3">簡単のため、<a class="ref" href="./following-users.html#fig-naive_user_has_many_following">図11.6</a>では <code>followed_users</code>テーブルの<code>id</code>カラムを省略してあります。<a class="arrow" href="./following-users.html#fnref-11_3">↑</a></li>
 <li id="fn-11_4">詳細については、Stack Overflowの「<a href="http://stackoverflow.com/questions/5359558/when-to-use-rspec-let">どんなときにletを使用すべきか</a> (英語)」を参照してください。<a class="arrow" href="./following-users.html#fnref-11_4">↑</a></li>
@@ -2413,7 +2413,7 @@
 <li id="fn-11_6"><code>followed_id</code>でもユーザーを特定できることに気付き、フォローしているユーザーとフォロワーの扱いが対称的でないことをよく考えてみれば、もうゲームに勝ったようなものです。これについては<a class="ref" href="./following-users.html#sec-followers">11.1.5</a>でも扱います。<a class="arrow" href="./following-users.html#fnref-11_6">↑</a></li>
 <li id="fn-11_7">特定の分野でモデリングの経験を多く積めば、このようなユーティリティメソッドが必要になることを事前に思い付けるようになるでしょう。たとえ思い付けないことがあったとしても、明確なテストを書こうとするときに、いつの間にかこういうメソッドを自分が作成していることに気付くことでしょう。だからというわけではありませんが、今はこのようなメソッドが必要であるということに気付けなくても問題ありません。ソフトウェアの開発は、繰りかえしに次ぐ繰り返しです。読みづらくなるまでコードを書き足し、そのコードをリファクタリングする、その繰り返しです。そして、より簡潔なコードを書くために、本書が少しでもお役に立てばと思います。<a class="arrow" href="./following-users.html#fnref-11_7">↑</a></li>
 <li id="fn-11_8"><code>unfollow!</code>は、失敗したときに例外を発生<em>しない</em>ことに注意してください。正直に書くと、削除に失敗したことをRailsがどうやって検出しているのか、著者にもわかりません。<code>follow!</code>に疑問符が付いているので、それに合わせてこのメソッドにも疑問符を追加しているに過ぎません。<a class="arrow" href="./following-users.html#fnref-11_8">↑</a></li>
-<li id="fn-11_9">Ajaxは、名目上<em>asynchronous JavaScript and XML</em>の略ということになっています。<a href="http://www.adaptivepath.com/ideas/essays/archives/000385.php">最も初期のAjaxに関する記事</a>でも &quot;Ajax&quot; で統一されていますが、ときどき “AJAX” と誤ったスペルが使用されていることがあります。<a class="arrow" href="./following-users.html#fnref-11_9">↑</a></li>
+<li id="fn-11_9">Ajaxは、名目上<em>asynchronous JavaScript and XML</em>の略ということになっています。<a href="http://www.adaptivepath.com/ideas/ajax-new-approach-web-applications/">最も初期のAjaxに関する記事</a>でも &quot;Ajax&quot; で統一されていますが、ときどき “AJAX” と誤ったスペルが使用されていることがあります。<a class="arrow" href="./following-users.html#fnref-11_9">↑</a></li>
 <li id="fn-11_10">Ajaxが動作するためには、ブラウザでJavaScriptが有効になっている必要がありますが、実際にはJavaScriptが無効になっている場合でも<a class="ref" href="./following-users.html#sec-a_working_follow_button_the_standard_way">11.2.4</a>のようにまったく同じ動作になるようにしてあります。<a class="arrow" href="./following-users.html#fnref-11_10">↑</a></li>
 <li id="fn-11_11">列挙可能 (enumerable) オブジェクトであることの主な条件は、<code>each</code>メソッドを実装していることです。このメソッドはコレクションを列挙します。<a class="arrow" href="./following-users.html#fnref-11_11">↑</a></li>
 <li id="fn-11_12">この記法は、実際にはRailsによるコアRuby言語の拡張として行われたのが始まりです。この記法があまりに便利なので、後にRuby自身にまで取り入れられたほどです。実にクールだと思いますが、いかがでしょうか。<a class="arrow" href="./following-users.html#fnref-11_12">↑</a></li>
