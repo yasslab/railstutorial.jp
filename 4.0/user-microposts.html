@@ -1,11 +1,11 @@
-﻿<html dir="ltr" dir="ltr">
+<html dir="ltr">
   <head>
-    <title>beginning</title>
-    
+    <title>Ruby on Rails チュートリアル</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="../stylesheets/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../stylesheets/polytexnic.css" type="text/css" />
   </head>
-  <body dir="ltr" dir="ltr">
+  <body dir="ltr">
     <div id="book">
 
 <div id="top"></div>
@@ -974,7 +974,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>その後、各ユーザーに50のマイクロポスト (ページネーションが切り替わる30を超える数) を作成し、Faker gemの便利な<a href="https://github.com/stympy/faker#fakerlorem">Lorem.sentence</a><tt></tt>メソッドを使って各マイクロポストのサンプルコンテンツを生成します (<code>Faker::Lorem.sentence</code>は、いわゆる<em>lorem ipsum</em>ダミーテキストを返します。<a class="ref" href="./modeling-users.html#top">第6章</a>で述べたように、<em>lorem ipsum</em>には面白い<a href="http://www.straightdope.com/columns/read/2290/what-does-the-filler-text-lorem-ipsum-mean">裏話</a>があります)。 変更の結果は、<a class="ref" href="./user-microposts.html#code-sample_microposts">リスト10.20</a>のようなサンプルデータ生成になります。</p>
+<p>その後、各ユーザーに50のマイクロポスト (ページネーションが切り替わる30を超える数) を作成し、Faker gemの便利な<a href="http://faker.rubyforge.org/rdoc/classes/Faker/Lorem.html">Lorem.sentence</a><tt></tt>メソッドを使って各マイクロポストのサンプルコンテンツを生成します (<code>Faker::Lorem.sentence</code>は、いわゆる<em>lorem ipsum</em>ダミーテキストを返します。<a class="ref" href="./modeling-users.html#top">第6章</a>で述べたように、<em>lorem ipsum</em>には面白い<a href="http://www.straightdope.com/columns/read/2290/what-does-the-filler-text-lorem-ipsum-mean">裏話</a>があります)。 変更の結果は、<a class="ref" href="./user-microposts.html#code-sample_microposts">リスト10.20</a>のようなサンプルデータ生成になります。</p>
 
 <div class="label" id="code-sample_microposts"></div>
 
@@ -2234,7 +2234,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <li id="fn-10_7">他の2つのリソースとは、<a class="ref" href="./sign-up.html#sec-signup_form">7.2</a>のUsersリソースと<a class="ref" href="./sign-in-sign-out.html#sec-signin_failure">8.1</a>のSessionsリソースです。<a class="arrow" href="./user-microposts.html#fnref-10_7">↑</a></li>
 <li id="fn-10_8"><a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>で、ヘルパーメソッドはデフォルトでは<em>ビュー</em>でのみ利用可能であると説明しましたが、<code>include SessionsHelper</code>をApplicationコントローラに追加してコントローラでも利用できるようにしました (<a class="ref" href="./sign-in-sign-out.html#code-sessions_helper_include">リスト8.14</a>)。<a class="arrow" href="./user-microposts.html#fnref-10_8">↑</a></li>
 <li id="fn-10_9"><a class="ref" href="./beginning.html#sec-comments_for_various_readers">1.1.1</a>で、本書を読み終わったら次に純粋なRubyの本を読む事を薦めましたが、これは、<code>include?</code>などのメソッドを学んでいただきたいからというのが理由の一つです。<a class="arrow" href="./user-microposts.html#fnref-10_9">↑</a></li>
-<li id="fn-10_10"><code>where</code>やlikeの詳細については、Rails Guideの「<a href="http://guides.rubyonrails.org/active_record_querying.html">Active Record Query Interface</a> (英語)」を参照してください。<a class="arrow" href="./user-microposts.html#fnref-10_10">↑</a></li>
+<li id="fn-10_10"><code>where</code>やlikeの詳細については、Railsガイドの「<a href="http://railsguides.jp/active_record_querying.html">Active Record クエリインターフェイス</a>」を参照してください。<a class="arrow" href="./user-microposts.html#fnref-10_10">↑</a></li>
 <li id="fn-10_11">残念ですが、この場合はページ分割されたフィードを返してもうまく動きません。動かない理由を確認したい方は、実際に実装してページネーションリンクをクリックしてみてください。<a class="arrow" href="./user-microposts.html#fnref-10_11">↑</a></li>
 </ol>
 </div>

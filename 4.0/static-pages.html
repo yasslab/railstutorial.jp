@@ -1,11 +1,11 @@
-﻿<html dir="ltr" dir="ltr">
+<html dir="ltr">
   <head>
-    <title>beginning</title>
-    
+    <title>Ruby on Rails チュートリアル</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="../stylesheets/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../stylesheets/polytexnic.css" type="text/css" />
   </head>
-  <body dir="ltr" dir="ltr">
+  <body dir="ltr">
     <div id="book">
 
 <div id="top"></div>
@@ -396,7 +396,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p><tt>GET</tt> は、最も頻繁に使用されるHTTP操作で、主にWeb上のデータを<em>読み取る</em>際に使われます。“ページを取得する” という意味のとおり、Webブラウザはgoogle.comやwikipedia.orgのようなWebサイトを開くたびに<tt>GET</tt>リクエストを送信しています。Railsアプリケーションでは、<tt>POST</tt>リクエストは何かを<em>作成する</em>ときによく使われます (なお本来のHTTPでは、<tt>POST</tt>を更新に使ってもよいとしています)。たとえば、ユーザー登録フォームで新しいユーザーを作成するときは、<tt>POST</tt>リクエストを送信します。他にも、<tt>PATCH</tt>と <tt>DELETE</tt>という2つの操作があり、それぞれサーバー上の何かを<em>更新</em>したり<em>削除</em>したりするときに使われます。これら2つの操作は、<tt>GET</tt>や<tt>POST</tt>ほどは使用されていません。これは、ブラウザがPATCHとDELETEをネイティブでは送信しないからです。しかし、Ruby on Railsなどの多くのWebフレームワークは、ブラウザがこれらの操作のリクエストを<em>送信しているかのように見せかける</em>技術 (偽装) を駆使して、PATCHとDELETEという操作を実現しています。</p>
 
-<p>なお、以前のバージョンのRailsでは<tt>PATCH</tt>ではなく<tt>PUT</tt>が使用されていました。PUTはRails 4.0でも依然サポートされてはいますが、<tt>PATCH</tt>の方が<a href="http://weblog.rubyonrails.org/2012/2/26/edge-rails-patch-is-the-new-primary-http-method-for-updates/">意図したHTTPの使用法により適している</a>ので、新しいアプリケーションではPATCHが推奨されています。</p>
+<p>なお、以前のバージョンのRailsでは<tt>PATCH</tt>ではなく<tt>PUT</tt>が使用されていました。PUTはRails 4.0でも依然サポートされてはいますが、<tt>PATCH</tt>の方が<a href="http://weblog.rubyonrails.org/2012/2/25/edge-rails-patch-is-the-new-primary-http-method-for-updates/">意図したHTTPの使用法により適している</a>ので、新しいアプリケーションではPATCHが推奨されています。</p>
 </div>
 
 

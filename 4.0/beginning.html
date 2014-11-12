@@ -1,11 +1,11 @@
-﻿<html dir="ltr" dir="ltr">
+<html dir="ltr">
   <head>
-    <title>beginning</title>
-    
+    <title>Ruby on Rails チュートリアル</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="../stylesheets/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../stylesheets/polytexnic.css" type="text/css" />
   </head>
-  <body dir="ltr" dir="ltr">
+  <body dir="ltr">
     <div id="book">
 
 <div id="top"></div>
@@ -80,7 +80,7 @@
 <h2><a id="sec-1_1" href="./beginning.html#sec-introduction" class="heading"><span class="number">1.1</span>はじめに</a></h2>
 
 
-<p>Ruby on Railsは2004年にデビューして以来、急速に成長していきました。現在では、動的なWebアプリケーションを開発するフレームワークとして、最も有力かつ人気のあるフレームワークの１つになっています。小さなスタートアップから巨大企業まで、多くの組織が Rails を使っています。例えば、<a href="http://37signals.com/">37signals</a> や <a href="http://github.com/">GitHub</a>、<a href="http://shopify.com/">Shopify</a>、<a href="http://scribd.com/">Scribd</a>、<a href="http://twitter.com/">Twitter</a>、<a href="http://disney.com/">Disney</a>、<a href="http://hulu.com/">Hulu</a>、<a href="http://yellowpages.com/">Yellow Pages</a> など、Ruby on Rails を使っているサイトは増える一方です。他にも、<a href="http://entp.com/">ENTP</a>や<a href="http://thoughtbot.com/">thoughtbot</a>、<a href="http://pivotallabs.com/">Pivotal Labs</a>、<a href="http://hashrocket.com/">Hashrocket</a>といった、Railsを専門的に扱う会社も数多くあります。また、Railsを専門にしたフリーランスのコンサルタントやインストラクター、開発者については数えきれません。</p>
+<p>Ruby on Railsは2004年にデビューして以来、急速に成長していきました。現在では、動的なWebアプリケーションを開発するフレームワークとして、最も有力かつ人気のあるフレームワークの１つになっています。小さなスタートアップから巨大企業まで、多くの組織が Rails を使っています。例えば、<a href="http://37signals.com/">37signals</a> や <a href="http://github.com/">GitHub</a>、<a href="http://shopify.com/">Shopify</a>、<a href="http://scribd.com/">Scribd</a>、<a href="http://twitter.com/">Twitter</a>、<a href="http://disney.com/">Disney</a>、<a href="http://hulu.com/">Hulu</a>、<a href="http://yellowpages.com/">Yellow Pages</a> など、<a href="http://rubyonrails.org/applications">Ruby on Rails を使っているサイトのリスト</a>は増える一方です。他にも、<a href="http://entp.com/">ENTP</a>や<a href="http://thoughtbot.com/">thoughtbot</a>、<a href="http://pivotallabs.com/">Pivotal Labs</a>、<a href="http://hashrocket.com/">Hashrocket</a>といった、Railsを専門的に扱う会社も数多くあります。また、Railsを専門にしたフリーランスのコンサルタントやインストラクター、開発者については数えきれません。</p>
 
 <p>Railsがこれだけ多くに人達に使われているのはなぜでしょうか。理由の１つは、Railsが100%オープンソースで、制限の緩い<a href="http://www.opensource.org/licenses/mit-license.php">MITライセンス</a>で公開されているからです。これにより、Railsをダウンロードしたり使ったりする際のコストが一切かかりません。また、Railsの設計が簡潔で美しいことも、Railsの成功を支えている秘訣の１つです。これを実現できたのは、Railsの背後で動いている<a href="http://ruby-lang.org/">Ruby</a>言語の驚異的な柔軟性のおかげです。具体的には、Webアプリケーションの作成に特化した<a href="http://en.wikipedia.org/wiki/Domain_Specific_Language">DSL (ドメイン固有言語)</a> を Ruby言語で実装していることにより、HTMLやデータモデルの生成、URL のルーティングなど、Webプログラミングで必要な多くの作業が簡単になります。その結果、Railsを使用してアプリケーションを開発すると、コードが簡潔になり、読みやすくなります。</p>
 
@@ -121,7 +121,7 @@
 <li><a href="http://railscasts.com/">RailsCasts</a> (Ryan Bates) : 極めて質の高い (ほぼ) 無料のスクリーンキャスト</li>
 <li><a href="http://peepcode.com/">PeepCode</a>: 質の高い商用のスクリーンキャスト</li>
 <li><a href="http://www.codeschool.com/">Code School</a>: プログラミングを対話的に学習できるコース</li>
-<li><a href="http://guides.rubyonrails.org/">Rails Guides</a>: トピック毎に分類された最新の Rails リファレンス (<a href="http://railsguides.jp">日本語版</a>)</li>
+<li><a href="http://guides.rubyonrails.org/">Rails Guides</a>: トピック毎に分類された最新の Rails リファレンス (日本語版: <a href="http://railsguides.jp">Railsガイド</a>)</li>
 <li><a href="http://railscasts.com/">RailsCasts</a> (Ryan Bates): さっきも <a href="http://railscasts.com/">RailsCasts</a> を紹介しましたっけ？そのぐらい <a href="http://railscasts.com/"><em>RailsCasts</em></a> はお勧めです。</li>
 
 
@@ -420,7 +420,7 @@ with gemset railstutorial_rails_4_0</span>
 </div>
 
 
-<p>RubyGemsがインストールされていない場合は、<a href="https://rubygems.org/pages/download">RubyGemsをダウンロード</a>して解凍し、作成された<code>rubygems</code>ディレクトリでセットアッププログラムを実行してください。</p>
+<p>RubyGemsがインストールされていない場合は、<a href="http://rubyforge.org/frs/?group_id=126">RubyGemsをダウンロード</a>して解凍し、作成された<code>rubygems</code>ディレクトリでセットアッププログラムを実行してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> ruby setup.rb
 </pre></div>
@@ -559,7 +559,7 @@ to see where a bundled</span> <span class="go">gem is installed.</span>
 
 
 <div class="table"><div class="center">
-<table class="tabular"><tr><th class="align_left"><strong>ファイル/ディレクトリ</strong></th><th class="align_left"><strong>目的</strong></th></tr><tr class="top_bar"><td class="align_left"><code>app/</code></td><td class="align_left">モデル、ビュー、コントローラ、ヘルパーなどを含む主要なアプリケーションコード</td></tr><tr><td class="align_left"><code>app/assets</code></td><td class="align_left">アプリケーションで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット</td></tr><tr><td class="align_left"><code>bin/</code></td><td class="align_left">バイナリ実行可能ファイル</td></tr><tr><td class="align_left"><code>config/</code></td><td class="align_left">アプリケーションの設定</td></tr><tr><td class="align_left"><code>db/</code></td><td class="align_left">データベース関連のファイル</td></tr><tr><td class="align_left"><code>doc/</code></td><td class="align_left">マニュアルなど、アプリケーションのドキュメント</td></tr><tr><td class="align_left"><code>lib/</code></td><td class="align_left">ライブラリモジュール</td></tr><tr><td class="align_left"><code>lib/assets</code></td><td class="align_left">ライブラリで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット</td></tr><tr><td class="align_left"><code>log/</code></td><td class="align_left">アプリケーションのログファイル</td></tr><tr><td class="align_left"><code>public/</code></td><td class="align_left">エラーページなど、一般(Webブラウザなど)に直接公開するデータ</td></tr><tr><td class="align_left"><code>bin/rails</code></td><td class="align_left">コード生成、コンソールの起動、ローカルのWebサーバーの立ち上げなどに使用するRailsスクリプト</td></tr><tr><td class="align_left"><code>test/</code></td><td class="align_left">アプリケーションのテスト (<a class="ref" href="./static-pages.html#sec-static_pages">3.1.2</a>で作成する<code>spec/</code>ディレクトリがあるため、現在は使用されていません)</td></tr><tr><td class="align_left"><code>tmp/</code></td><td class="align_left">一時ファイル</td></tr><tr><td class="align_left"><code>vendor/</code></td><td class="align_left">サードパーティのプラグインやgemなど</td></tr><tr><td class="align_left"><code>vendor/assets</code></td><td class="align_left">サードパーティのプラグインやgemで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット</td></tr><tr><td class="align_left"><code>README.rdoc</code></td><td class="align_left">アプリケーションの簡単な説明</td></tr><tr><td class="align_left"><code>Rakefile</code></td><td class="align_left"><code>rake</code>コマンドで使用可能なタスク</td></tr><tr><td class="align_left"><code>Gemfile</code></td><td class="align_left">このアプリケーションに必要なGemの定義ファイル</td></tr><tr><td class="align_left"><code>Gemfile.lock</code></td><td class="align_left">アプリケーションのすべてのコピーが同じgemのバージョンを使用していることを確認するために使用されるgemのリスト</td></tr><tr><td class="align_left"><code>config.ru</code></td><td class="align_left"><a href="http://rack.github.io/">Rackミドルウェア</a>用の設定ファイル</td></tr><tr><td class="align_left"><code>.gitignore</code></td><td class="align_left">Gitに無視させたいファイルを指定するためのパターン</td></tr></table></div><div class="caption"><span class="header">表1.1: </span> <span class="description">デフォルトのRailsフォルダ構造まとめ。</span></div></div>
+<table class="tabular"><tr><th class="align_left"><strong>ファイル/ディレクトリ</strong></th><th class="align_left"><strong>目的</strong></th></tr><tr class="top_bar"><td class="align_left"><code>app/</code></td><td class="align_left">モデル、ビュー、コントローラ、ヘルパーなどを含む主要なアプリケーションコード</td></tr><tr><td class="align_left"><code>app/assets</code></td><td class="align_left">アプリケーションで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット</td></tr><tr><td class="align_left"><code>bin/</code></td><td class="align_left">バイナリ実行可能ファイル</td></tr><tr><td class="align_left"><code>config/</code></td><td class="align_left">アプリケーションの設定</td></tr><tr><td class="align_left"><code>db/</code></td><td class="align_left">データベース関連のファイル</td></tr><tr><td class="align_left"><code>doc/</code></td><td class="align_left">マニュアルなど、アプリケーションのドキュメント</td></tr><tr><td class="align_left"><code>lib/</code></td><td class="align_left">ライブラリモジュール</td></tr><tr><td class="align_left"><code>lib/assets</code></td><td class="align_left">ライブラリで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット</td></tr><tr><td class="align_left"><code>log/</code></td><td class="align_left">アプリケーションのログファイル</td></tr><tr><td class="align_left"><code>public/</code></td><td class="align_left">エラーページなど、一般(Webブラウザなど)に直接公開するデータ</td></tr><tr><td class="align_left"><code>bin/rails</code></td><td class="align_left">コード生成、コンソールの起動、ローカルのWebサーバーの立ち上げなどに使用するRailsスクリプト</td></tr><tr><td class="align_left"><code>test/</code></td><td class="align_left">アプリケーションのテスト (<a class="ref" href="./static-pages.html#sec-static_pages">3.1.2</a>で作成する<code>spec/</code>ディレクトリがあるため、現在は使用されていません)</td></tr><tr><td class="align_left"><code>tmp/</code></td><td class="align_left">一時ファイル</td></tr><tr><td class="align_left"><code>vendor/</code></td><td class="align_left">サードパーティのプラグインやgemなど</td></tr><tr><td class="align_left"><code>vendor/assets</code></td><td class="align_left">サードパーティのプラグインやgemで使用するCSS (Cascading Style Sheet)、JavaScriptファイル、画像などのアセット</td></tr><tr><td class="align_left"><code>README.rdoc</code></td><td class="align_left">アプリケーションの簡単な説明</td></tr><tr><td class="align_left"><code>Rakefile</code></td><td class="align_left"><code>rake</code>コマンドで使用可能なタスク</td></tr><tr><td class="align_left"><code>Gemfile</code></td><td class="align_left">このアプリケーションに必要なGemの定義ファイル</td></tr><tr><td class="align_left"><code>Gemfile.lock</code></td><td class="align_left">アプリケーションのすべてのコピーが同じgemのバージョンを使用していることを確認するために使用されるgemのリスト</td></tr><tr><td class="align_left"><code>config.ru</code></td><td class="align_left"><a href="http://rack.rubyforge.org/doc/">Rackミドルウェア</a>用の設定ファイル</td></tr><tr><td class="align_left"><code>.gitignore</code></td><td class="align_left">Gitに無視させたいファイルを指定するためのパターン</td></tr></table></div><div class="caption"><span class="header">表1.1: </span> <span class="description">デフォルトのRailsフォルダ構造まとめ。</span></div></div>
 
 
 
@@ -1494,7 +1494,7 @@ jhyicevg.herokuapp.com</pre>
 <li id="fn-1_16">GUIエディタの起動後もターミナルを使用し続けることはできます。ただし、Gitはデタッチ時にコミットメッセージが空のままファイルを閉じたとみなすため、コミットは中断されます。Gitのエディタオプションで<code>subl</code>や<code>gvim</code>にフラグを付けないと、このあたりの動作で頭が混乱するかもしれません (訳注: gitのエディタ設定はGUIエディタとあまり相性がよくないらしく、vimやnanoのようなコマンドベースのエディタを選択するのが無難なようです)。この注釈の意味がよくわからない場合は、無視しても構いません。<a class="arrow" href="./beginning.html#fnref-1_16">↑</a></li>
 <li id="fn-1_17"><code>.gitignore</code>がディレクトリに見当たらない場合は、ファイルブラウザやエクスプローラで隠しファイルを表示するよう設定を変更する必要があるかもしれません。<a class="arrow" href="./beginning.html#fnref-1_17">↑</a></li>
 <li id="fn-1_18"><code>git status</code>を実行したときに表示して欲しくないファイルがあれば、それらのファイルを<a class="ref" href="./beginning.html#code-gitignore">1.7</a>の<code>.gitignore</code>ファイルに追加してください。<a class="arrow" href="./beginning.html#fnref-1_18">↑</a></li>
-<li id="fn-1_19">詳細については<a href="http://git-scm.com/book/ja/v1/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD"><em>Pro Git</em>の「Gitのブランチ機能」</a>を参照してください。<a class="arrow" href="./beginning.html#fnref-1_19">↑</a></li>
+<li id="fn-1_19">詳細については<a href="http://progit.org/book/ch3-0.html"><em>Pro Git</em>の「Gitのブランチ機能」</a>を参照してください。<a class="arrow" href="./beginning.html#fnref-1_19">↑</a></li>
 <li id="fn-1_20"><em>Railsチュートリアル</em>のサンプルアプリケーションでは気にする必要はありません。作りかけの恥ずかしいWebアプリケーションをネットにうっかり公開してしまわないだろうかと心配する方もいらっしゃるかと思いますが、それを防ぐための方法はいくつもありますのでご安心ください。<a class="ref" href="./beginning.html#sec-heroku_commands">1.4.4</a>はその方法の1つです。<a class="arrow" href="./beginning.html#fnref-1_20">↑</a></li>
 <li id="fn-1_21">“Engine X&quot; と発音します。<a class="arrow" href="./beginning.html#fnref-1_21">↑</a></li>
 <li id="fn-1_22">https://toolbelt.heroku.com/ <a class="arrow" href="./beginning.html#fnref-1_22">↑</a></li>

@@ -1,11 +1,11 @@
-﻿<html dir="ltr" dir="ltr">
+<html dir="ltr">
   <head>
-    <title>beginning</title>
-    
+    <title>Ruby on Rails チュートリアル</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="../stylesheets/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../stylesheets/polytexnic.css" type="text/css" />
   </head>
-  <body dir="ltr" dir="ltr">
+  <body dir="ltr">
     <div id="book">
 
 <div id="top"></div>
@@ -801,7 +801,7 @@
 
 <p>CSSの読み込みシーケンスの中で、<code>application.css</code>自身もインクルードすることを指定しています。</p>
 
-<p>Railsには実用的なデフォルトのマニフェストファイルが付属しているので、<em>Railsチュートリアル</em>では変更を加える必要がありませんが、もし必要な場合は、Rails Guideの「<a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipelineの解説</a> (英語)」で詳細な情報を参照できます。</p>
+<p>Railsには実用的なデフォルトのマニフェストファイルが付属しているので、<em>Railsチュートリアル</em>では変更を加える必要がありませんが、もし必要な場合は、Railsガイドの「<a href="http://railsguides.jp/asset_pipeline.html">アセットパイプライン</a>」で詳細な情報を参照できます。</p>
 
 <h4><a id="sec-5_2_1_3" href="./filling-in-the-layout.html#sec-5_2_1_3" class="heading">プリプロセッサエンジン</a></h4>
 
@@ -1377,7 +1377,7 @@
 <h3><a id="sec-5_3_2" href="./filling-in-the-layout.html#sec-rails_routes" class="heading"><span class="number">5.3.2</span> Railsのルート</a></h3>
 
 
-<p>URLに対するテストができあがったので、それらを実際に利用できるようにしましょう。<a class="ref" href="./static-pages.html#sec-static_pages">3.1.2</a>で説明したとおり、RailsがURLマッピングに使用するファイルは<code>config/routes.rb</code>です。デフォルトのルートファイルの内容を見てみると、かなり乱雑になっています。しかし、それらはすべてコメントアウトされたルートマッピングの例であり、必要な乱雑さです。時間のあるときにこのルートマッピングを読んでみることをお勧めします。また、より詳細なルーティングの扱いについてはRails Guidesの「<a href="http://guides.rubyonrails.org/routing.html">Railsにおける外部から内部へのルーティング</a> (英語)」を参照することをお勧めします。</p>
+<p>URLに対するテストができあがったので、それらを実際に利用できるようにしましょう。<a class="ref" href="./static-pages.html#sec-static_pages">3.1.2</a>で説明したとおり、RailsがURLマッピングに使用するファイルは<code>config/routes.rb</code>です。デフォルトのルートファイルの内容を見てみると、かなり乱雑になっています。しかし、それらはすべてコメントアウトされたルートマッピングの例であり、必要な乱雑さです。時間のあるときにこのルートマッピングを読んでみることをお勧めします。また、より詳細なルーティングの扱いについてはRailsガイドの「<a href="http://railsguides.jp/routing.html">Rails ルーティング</a>」を参照することをお勧めします。</p>
 
 <p>名前付きルートを定義するため、以下のようなルールを置き換えます。</p>
 
@@ -2223,7 +2223,7 @@
 <li id="fn-5_5">Asset PipelineでLESSを使うこともできます。詳細は<a href="http://rubygems.org/gems/less-rails-bootstrap"><tt>less-rails-bootstrap</tt> gem</a>を参照してください。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_5">↑</a></li>
 <li id="fn-5_6">多くのRails開発者は、異なるビューの間で共通に使用するパーシャルを保存するディレクトリとして、<code>shared</code>ディレクトリを使用します。著者は、複数のビューで共有するユーティリティパーシャルについては<code>shared</code>フォルダに保存し、文字どおり全ページ (サイトレイアウトの一部として) 共通のパーシャルについては<code>layouts</code>ディレクトリへ保存することを好んでいます (<code>shared</code>ディレクトリは<a class="ref" href="./sign-up.html#top">第7章</a>で作成します)。著者はこのように分割保存するのが論理的であると考えますが、<code>shared</code>フォルダにすべて保存しても問題なく動作します。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_6">↑</a></li>
 <li id="fn-5_7"><code>footer</code>タグと<code>.footer</code>クラスを両方使用していることについて疑問に思う方がいるかもしれません。その理由は、footerタグとする方が読み手にとって意味が明確であるのと、.footerクラスはBootstrapで使用するためです。<code>footer</code>を<code>div</code>に置き換えても動作は変わりません。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_7">↑</a></li>
-<li id="fn-5_8">このチュートリアル構成は、Michael Erasmusによる素晴らしいブログ記事「5分でわかるRails 3のAsset Pipeline (訳注: 現在は非公開)」をもとにしています。詳細についてはRails Guideの「<a href="http://guides.rubyonrails.org/asset_pipeline.html">Asset Pipeline</a> (英語)」の項を参照してください。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_8">↑</a></li>
+<li id="fn-5_8">このチュートリアル構成は、Michael Erasmusによる素晴らしいブログ記事「<a href="http://2beards.net/2011/11/the-rails-3-asset-pipeline-in-about-5-minutes/">5分でわかるRails 3のAsset Pipeline</a> (英語)」をもとにしています。詳細についてはRailsガイドの「<a href="http://railsguides.jp/asset_pipeline.html">アセットパイプライン</a>」の項を参照してください。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_8">↑</a></li>
 <li id="fn-5_9">Sassでもサポートされている古い<code>.sass</code>というフォーマットでは、冗長性の少ない (括弧の少ない)  新しい言語を定義しますが、既存のプロジェクトには若干不便であり、既にCSSに慣れ親しんだ人にとっては学習が面倒でもあります。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_9">↑</a></li>
 </ol>
 </div>
