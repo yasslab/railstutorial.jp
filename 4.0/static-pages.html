@@ -1191,7 +1191,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>上のコードに<tt class="verb">&lt;% ... %&gt;</tt>と書かれていることに注目してください。Railsはこの中で<code>provide</code>関数を呼び出し、<code>:title</code>というラベルに <code>’Home’</code> という文字列を関連付けます<sup class="footnote" id="fnref-3_10"><a href="./static-pages.html#fn-3_10">10</a></sup>。次に、以下のコードでRubyの<code>yield</code>関数を使用し、それを<tt class="verb">&lt;%= ... %&gt;</tt>表記 (上と微妙に異なることに注目してください) で囲むことにより、テンプレートにタイトルを挿入します<sup class="footnote" id="fnref-3_11"><a href="./static-pages.html#fn-3_11">15</a></sup>。</p>
+<p>上のコードに<tt class="verb">&lt;% ... %&gt;</tt>と書かれていることに注目してください。Railsはこの中で<code>provide</code>関数を呼び出し、<code>:title</code>というラベルに <code>’Home’</code> という文字列を関連付けます<sup class="footnote" id="fnref-3_10"><a href="./static-pages.html#fn-3_10">10</a></sup>。次に、以下のコードでRubyの<code>yield</code>関数を使用し、それを<tt class="verb">&lt;%= ... %&gt;</tt>表記 (上と微妙に異なることに注目してください) で囲むことにより、テンプレートにタイトルを挿入します<sup class="footnote" id="fnref-3_11"><a href="./static-pages.html#fn-3_11">11</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="nt">&lt;title&gt;</span>Ruby on Rails Tutorial Sample App | <span class="cp">&lt;%=</span> <span class="k">yield</span><span class="p">(</span><span class="ss">:title</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/title&gt;</span>
 </pre></div>
@@ -1634,7 +1634,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>バージョン1.11.x以降のRVMを使用していれば、インストールされたgemは自動的に適切なBundlerの環境で実行されますので、それ以上何もしなくても以下のようにbundle execを省略してで実行できます。</p>
+<p>バージョン1.11.x以降のRVMを使用していれば、インストールされたgemは自動的に適切なBundlerの環境で実行されますので、それ以上何もしなくても以下のようにbundle execを省略して実行できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rspec spec/
 </pre></div>
