@@ -494,7 +494,7 @@
 </div>
 
 
-<p>上のコマンドは、単に開発データベースのデータモデル<code>db/development.sqlite3</code>がテストデータベース<code>db/test.sqlite3</code>に反映されるようにするものです。マイグレーションの後でたまにRakeタスクが実行できなくなることがあり、多くの人がこれに戸惑います。さらに、テストデータベースはたまに壊れることがあるので、その場合はリセットが必要です。もしテストスイートが理由もなく壊れるようなことがあれば、<code>rake test:prepare</code>を実行して、この問題が解決するか確認してみてください。</p>
+<p>上のコマンドは、単に開発データベースのデータモデル<code>db/development.sqlite3</code>がテストデータベース<code>db/test.sqlite3</code>に反映されるようにするものです。マイグレーションの後でたまにRakeタスクが実行できなくなることがあり、多くの人がこれに戸惑います。さらに、テストデータベースはたまに壊れることがあるので、その場合はリセットが必要です。もしテストスイートが理由もなく壊れるようなことがあれば、<code>rake db:test:prepare</code>を実行して、この問題が解決するか確認してみてください。</p>
 
 <p>デフォルトのspecのアドバイスに従い、<a class="ref" href="./modeling-users.html#code-user_spec">リスト6.5</a>に示したいくつかのRSpecの例に置き換えてみましょう。</p>
 
@@ -574,7 +574,7 @@
 
 <p>このようなテストが行えるので、新しい属性やメソッドをUserモデルに一時的に追加してテスト駆動開発を行うことができます。さらに、すべての<code>User</code>オブジェクトがこれらのメソッドに応答する必要があるという仕様もここで明らかになりました。</p>
 
-<p><code>rake test:prepare</code>を実行してテスト環境用データベースを用意したので、テストはパスするはずです。</p>
+<p><code>rake db:test:prepare</code>を実行してテスト環境用データベースを用意したので、テストはパスするはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
