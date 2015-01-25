@@ -30,7 +30,10 @@ The HTML source of the Ruby on Rails Tutorial book is available under the [Creat
 
 Copyright &copy; 2015 by [Rails チュートリアル翻訳グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) (代表: [@yasulab](http://twitter.com/yasulab))
 
-#### 注意: 翻訳に関する著作権について
+#### 注意: 翻訳物(Railsチュートリアル)に関する著作権について
+
+二次著作権はちょっとややこしいのですが、一応の関連TIPSを書いておきます。
+ご利用する際は @yasulab までお気軽にお声かけください :)
 
 - [翻訳の著作権（コピーライト）について](http://www.di-max.jp/information/copyright.htm)
 
