@@ -32,8 +32,8 @@ Copyright &copy; 2015 by [Rails チュートリアル翻訳グループ](https:/
 
 #### 注意: 翻訳物(Railsチュートリアル)に関する著作権について
 
-二次著作権はちょっとややこしいのですが、一応の関連TIPSを書いておきます。
-ご利用する際は @yasulab までお気軽にお声かけください :)
+二次著作権はちょっとややこしいのですが、関連記事を下記に記しておきます。   
+ご利用する際は [@yasulab](https://twitter.com/yasulab) までお気軽にお声かけください :)
 
 - [翻訳の著作権（コピーライト）について](http://www.di-max.jp/information/copyright.htm)
 
