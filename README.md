@@ -30,4 +30,4 @@ The HTML source of the Ruby on Rails Tutorial book is available under the [Creat
 
 Copyright &copy; 2015 by [Rails チュートリアル翻訳グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) (代表: [@yasulab](http://twitter.com/yasulab))
 
-The HTML source of the Ruby on Rails Tutorial book is available under the [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/), which allows translation of the book as long as you give attribution to the original author ([Michael Hartl](http://michaelhartl.com/) and [Railsチュートリアル翻訳グループ](http://railstutorial.jp/#contributors), and distribute the translation under the same license.
+The HTML source of the Ruby on Rails Tutorial book is available under the [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/), which allows translation of the book as long as you give attribution to the original author ([Michael Hartl](http://michaelhartl.com/)) and [Railsチュートリアル翻訳グループ](http://railstutorial.jp/#contributors), and distribute the translation under the same license.
