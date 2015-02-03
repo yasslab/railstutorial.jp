@@ -36,8 +36,8 @@ Creative Commons の「[表示 - 継承 3.0 非移植](http://creativecommons.or
 日本語版のクレジットには、原著者である Michael Hartl だけでなく   
 [Railsチュートリアル翻訳グループ](http://railstutorial.jp/#contributors)もクレジットを有していることにご注意ください。
 
-何か気になる点がありましたら [@yasulab](https://twitter.com/yasulab)    
-または下記ウェブサイトからお気軽にご相談ください。
+何か気になる点がありましたら [@yasulab](https://twitter.com/yasulab) または   
+下記ウェブサイトからお気軽にご相談ください。
 
 YassLab - ヤスラボ    
 http://yasslab.jp/ja/
