@@ -12,7 +12,7 @@
 
 - [Ruby on Rails チュートリアル：実例を使ってRailsを学ぼう](http://railstutorial.jp/)
 
-## 参考文献
+## 参考リポジトリ
 
 - Ruby on Rails Tutorial 3.2: [mhartl/rails_tutorial_translation_2nd_ed](https://github.com/mhartl/rails_tutorial_translation_2nd_ed)
 - Ruby on Rails Tutorial 4.0: [mhartl/rails_tutorial_translation_4_0_version](https://github.com/mhartl/rails_tutorial_translation_4_0_version) 
@@ -30,12 +30,13 @@ The HTML source of the Ruby on Rails Tutorial book is available under the [Creat
 
 Copyright &copy; 2015 by [Rails チュートリアル翻訳グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) (代表: [@yasulab](http://twitter.com/yasulab))
 
-本リポジトリに含まれている[Railsチュートリアル](http://railstutorial.jp)のHTMLソースは、
+本リポジトリに含まれている[Railsチュートリアル](http://railstutorial.jp)のHTMLソースは   
 Creative Commons の「[表示 - 継承 3.0 非移植](http://creativecommons.org/licenses/by-sa/3.0/deed.ja)」の基で公開されています。
 
-日本語版のクレジットには、原著者である Michael Hartl だけでなく、 [Railsチュートリアル翻訳グループ](http://railstutorial.jp/#contributors)もクレジットを有していることにご注意ください。
+日本語版のクレジットには、原著者である Michael Hartl だけでなく    [Railsチュートリアル翻訳グループ](http://railstutorial.jp/#contributors)もクレジットを有していることにご注意ください。
 
-何か気になる点がありましたら [@yasulab](https://twitter.com/yasulab) または下記HPからお気軽にご相談ください。
+何か気になる点がありましたら [@yasulab](https://twitter.com/yasulab)    
+または下記ウェブサイトからお気軽にご相談ください。
 
 YassLab - ヤスラボ    
 http://yasslab.jp/ja/
