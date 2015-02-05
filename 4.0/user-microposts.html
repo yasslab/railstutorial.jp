@@ -759,7 +759,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/user_microposts_mockup_bootstrap.png" alt="user_microposts_mockup_bootstrap" /></span></div><div class="caption"><span class="header">図10.4</span><span class="description">マイクロポストが表示されたプロファイルページのモックアップ。<a href="../images/figures/user_microposts_mockup_bootstrap-full.png">(拡大)</a></span></div></div>
 
 
-<p><a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>でサインイン機能について説明したときと同様に、<a class="ref" href="./user-microposts.html#sec-augmenting_the_user_show_page">10.2.1</a>でも最初に実装をお目にかけ、次にそれらの要素を順に解説してきます (<a href="http://en.wikipedia.org/wiki/Stack_(data_structure)">スタック</a>に複数の要素を一括でプッシュした後、順にポップするような要領です)。しばらくの間盛り上がりに欠けるかもしれませんが、<a class="ref" href="./user-microposts.html#sec-sample_microposts">10.2.2</a>で一気に取り返しますので、それまでご辛抱願います。</p>
+<p><a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>でサインイン機能について説明したときと同様に、<a class="ref" href="./user-microposts.html#sec-augmenting_the_user_show_page">10.2.1</a>でも最初に実装をお目にかけ、次にそれらの要素を順に解説してきます (<a href="http://ja.wikipedia.org/wiki/%E3%82%B9%E3%82%BF%E3%83%83%E3%82%AF">スタック</a>に複数の要素を一括でプッシュした後、順にポップするような要領です)。しばらくの間盛り上がりに欠けるかもしれませんが、<a class="ref" href="./user-microposts.html#sec-sample_microposts">10.2.2</a>で一気に取り返しますので、それまでご辛抱願います。</p>
 
 <div class="label" id="sec-augmenting_the_user_show_page"></div>
 
@@ -1518,7 +1518,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>残念ながら、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="./user-microposts.html#code-signup_errors_updated">リスト10.33</a>および<a class="ref" href="./user-microposts.html#code-edit_errors_updated">リスト10.34</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>注</em>: もし<a class="ref" href="./updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>の演習で、<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_edit_partial">リスト9.49</a>および<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_user_with_partial">リスト9.50</a>のコードを「<a href="http://en.wikipedia.org/wiki/Mutatis_mutandis">必要に応じて流用 (<em>Mutatis mutandis</em>)</a>」して実装していた場合、異なるコードを使用する必要があります。)</p>
+<p>残念ながら、サインアップと編集フォームが古いバージョンのメッセージパーシャルを利用しているため、Userのrequest specが壊れてしまいました。これを修正するために、<a class="ref" href="./user-microposts.html#code-signup_errors_updated">リスト10.33</a>および<a class="ref" href="./user-microposts.html#code-edit_errors_updated">リスト10.34</a>で示すように、これらのフォームをより汎用的なバージョンに更新します。(<em>注</em>: もし<a class="ref" href="./updating-showing-and-deleting-users.html#sec-updating_deleting_exercises">9.6</a>の演習で、<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_edit_partial">リスト9.49</a>および<a class="ref" href="./updating-showing-and-deleting-users.html#code-new_user_with_partial">リスト9.50</a>のコードを「<a href="http://ja.wikipedia.org/wiki/%E6%BA%96%E7%94%A8%E3%83%BB%E9%A1%9E%E6%8E%A8%E9%81%A9%E7%94%A8">必要に応じて流用 (<em>Mutatis mutandis</em>)</a>」して実装していた場合、異なるコードを使用する必要があります。)</p>
 
 <div class="label" id="code-signup_errors_updated"></div>
 
@@ -1700,7 +1700,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 </div>
 
 
-<p>上の疑問符があることで、SQLクエリにインクルードされる前に<code>id</code>が適切に<em>エスケープ</em>されることを保証してくれるため、<a href="http://en.wikipedia.org/wiki/SQL_injection"><em>SQLインジェクション</em></a>と呼ばれる深刻なセキュリティホールを避けることができます。この場合の<code>id</code>属性は単なる整数であるため危険はありませんが、SQL文にインクルードされる変数を<em>常に</em>エスケープする習慣はぜひ身につけてください。</p>
+<p>上の疑問符があることで、SQLクエリにインクルードされる前に<code>id</code>が適切に<em>エスケープ</em>されることを保証してくれるため、<a href="http://ja.wikipedia.org/wiki/SQL%E3%82%A4%E3%83%B3%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3"><em>SQLインジェクション</em></a>と呼ばれる深刻なセキュリティホールを避けることができます。この場合の<code>id</code>属性は単なる整数であるため危険はありませんが、SQL文にインクルードされる変数を<em>常に</em>エスケープする習慣はぜひ身につけてください。</p>
 
 <p>注意深い読者は、<a class="ref" href="./user-microposts.html#code-proto_status_feed">リスト10.36</a>のコードは本質的に以下のコードと同等であることに気付くかもしれません。</p>
 

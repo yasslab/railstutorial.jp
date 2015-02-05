@@ -26,7 +26,7 @@
 <h2><a id="sec-12_1" href="./chapters/supplement.html#sec-upgrading_from_rails_3_2_to_4_0" class="heading"><span class="number">12.1</span>Rails 3.2からRails 4.0へのアップグレード</a></h2>
 
 
-<p>Railsとそれを取り囲むエコシステムは比較的成熟してきましたが、Railsは今でも急速に変化し続けています。今回のようなメジャーな更新が発生すると、多くの細かな機能が損なわれるのが普通です。実際、著者自身も既存のRailsプロジェクトを<a href="http://en.wikipedia.org/wiki/In_situ"><em>その場で</em></a>アップグレードしようとした際、しばしば苦い経験をしてきました。そしてそのたびに、最後には<code>rails new</code>を使ってアプリケーションを最初から作り直すはめになってしまいました。それというのも、<code>rails new</code>によって生成される大量の設定ファイルにはさまざまな数値やデフォルト値が設定されているのですが、これらの値はバージョンによって異なっているからです。そしてこれらの値を既存のプロジェクトに反映する作業は非常に困難です。そこで本節では、次のような方針でアップグレードの作業を進めることにします。最初に、空のRails 4.0のプロジェクトを作成し、プロジェクトを<em>とにかく動く</em>状態にします。その後、既存のプロジェクトから順次コードを移植していき、アプリケーションが正しく動作することを1つずつ確認しながら、作業を進めていきます。</p>
+<p>Railsとそれを取り囲むエコシステムは比較的成熟してきましたが、Railsは今でも急速に変化し続けています。今回のようなメジャーな更新が発生すると、多くの細かな機能が損なわれるのが普通です。実際、著者自身も既存のRailsプロジェクトを<a href="http://ja.wikipedia.org/wiki/In_situ"><em>その場で</em></a>アップグレードしようとした際、しばしば苦い経験をしてきました。そしてそのたびに、最後には<code>rails new</code>を使ってアプリケーションを最初から作り直すはめになってしまいました。それというのも、<code>rails new</code>によって生成される大量の設定ファイルにはさまざまな数値やデフォルト値が設定されているのですが、これらの値はバージョンによって異なっているからです。そしてこれらの値を既存のプロジェクトに反映する作業は非常に困難です。そこで本節では、次のような方針でアップグレードの作業を進めることにします。最初に、空のRails 4.0のプロジェクトを作成し、プロジェクトを<em>とにかく動く</em>状態にします。その後、既存のプロジェクトから順次コードを移植していき、アプリケーションが正しく動作することを1つずつ確認しながら、作業を進めていきます。</p>
 
 <p>Railsアプリケーションのアップグレードは<em>難易度の高い作業</em>です。したがって、本節の<em>難易度も高くなっています</em>。本節をお読みいただければわかるように、Railsのアプリケーションのアップグレードは、残念ながら「本に載っている手順に従うだけで完了するような作業」ではありません。実際、本節で行うのは演習の延長線上にある応用作業です。これまでの演習との違いは、多くの役に立つヒントとマニュアル (スクリーンキャスト) が用意されている点です。たとえば「<a href="./#supplement">アップグレードされたスクリーンキャスト</a> (英語)」では、著者が悪戦苦闘の末にアップグレードを成功させる様子を見ることができます。なお、「Railsアプリケーションのアップグレードの途中で行き詰まってしまったけど、スクリーンキャストは購入したくない」という場合は、<a href="https://github.com/mhartl/sample_app_4_0_upgrade">GitHub上のアップグレード済みサンプルアプリケーション</a>を参考にしてください。</p>
 
@@ -410,7 +410,7 @@ with a hash is deprecated.</span>
 
 <p>(テキストエディタを使用して置き換えを行うという部分の意味がよくわからない場合は、<a href="./screencasts#ch12">スクリーンキャスト</a>を購入いただければその中で実際の操作をお見せいたします)</p>
 
-<p>Capybaraの変更によって動かなくなった部分は他にもあります。<code>input</code>フィールドの<code>title</code>タグは画面に表示されないので、<code>have_selector</code>が効かなくなりました。これを解決するには、強力な<a href="http://en.wikipedia.org/wiki/XPath">XPath</a>メソッドを使用します。このメソッドはHTML5を含むXMLドキュメントの要素を自在にナビゲートできます。変更は以下のとおりです。</p>
+<p>Capybaraの変更によって動かなくなった部分は他にもあります。<code>input</code>フィールドの<code>title</code>タグは画面に表示されないので、<code>have_selector</code>が効かなくなりました。これを解決するには、強力な<a href="http://ja.wikipedia.org/wiki/XPath">XPath</a>メソッドを使用します。このメソッドはHTML5を含むXMLドキュメントの要素を自在にナビゲートできます。変更は以下のとおりです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">describe</span> <span class="s2">&quot;toggling the button&quot;</span> <span class="k">do</span>
   <span class="n">before</span> <span class="p">{</span> <span class="n">click_button</span> <span class="s2">&quot;Follow&quot;</span> <span class="p">}</span>
@@ -718,7 +718,7 @@ c1b783bae98e4e56db</span><span class="s1">aee787747e92a141565f7c61d0ab2c6f98f739
 
 <p>最後のセキュリティアップデートは、記憶トークン (<a class="ref" href="./chapters/sign-in-sign-out.html#sec-remember_me">8.2.1</a>) を<em>暗号化</em>することです。この暗号化のタイミングは、記憶トークンをユーザーのブラウザに保存した<em>後</em>、かつ記憶トークンをデータベースに保存する<em>前</em>でなくてはなりません。こうすることにより、万一データベースに対して不正アクセスが行われても、攻撃者は記憶トークンを使用して特定のユーザーとして不正にサインインすることはできなくなります。本章では必要なコードを示すだけにとどめます。詳細については、Rails 4.0用のチュートリアルの <a href="./sign-in-sign-out.html#sec-remember_me">[このアカウント設定を保存する]</a> を参照してください。</p>
 
-<p>最初に、新しいメソッドを2つ追加します (Userインスタンスは不要なので<code>User</code>クラスに追加します)。これにより、新しいユーザートークンを生成して<a href="https://en.wikipedia.org/wiki/SHA-1">SHA1</a>暗号化アルゴリズムで暗号化します (<a class="ref" href="./chapters/supplement.html#code-before_create_remember_token">リスト12.9</a>)。</p>
+<p>最初に、新しいメソッドを2つ追加します (Userインスタンスは不要なので<code>User</code>クラスに追加します)。これにより、新しいユーザートークンを生成して<a href="https://ja.wikipedia.org/wiki/SHA-1">SHA1</a>暗号化アルゴリズムで暗号化します (<a class="ref" href="./chapters/supplement.html#code-before_create_remember_token">リスト12.9</a>)。</p>
 
 <div class="label" id="code-before_create_remember_token"></div>
 
