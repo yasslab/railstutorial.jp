@@ -1332,7 +1332,7 @@
 
 <p>(Rubyで組み込みクラスにメソッドを追加できるということは実にクールですが、<code>&quot;deified&quot;</code> (=神格化された) という単語が回文になっていることも、それに劣らずクールではないでしょうか。)</p>
 
-<p>組み込みクラスの変更は極めて強力なテクニックですが、大いなる力には大いなる責任が伴います (訳注: 「スパイダーマン」の名台詞)。従って、<em>真に</em>正当な理由がない限り、組み込みクラスにメソッドを追加することは無作法であると考えられています。Railsの場合、組み込みクラスの変更を正当化できる理由がいくつもあります。たとえば、Web アプリケーションでは、変数が絶対に<em>空白</em>にならないようにしたくなることがよくあります (ユーザー名などはスペースや<a href="http://en.wikipedia.org/wiki/Whitespace_(computer_science)">その他の空白文字</a>になって欲しくないものです) ので、Railsは<code>blank?</code>メソッドをRuby に追加しています。Railsの拡張は自動的にRailsコンソールにも取り込まれるので、以下のようにコンソールで拡張の結果を確認できます (注意: 以下のコードは純粋な <code>irb</code> では動作しません)。</p>
+<p>組み込みクラスの変更は極めて強力なテクニックですが、大いなる力には大いなる責任が伴います (訳注: 「スパイダーマン」の名台詞)。従って、<em>真に</em>正当な理由がない限り、組み込みクラスにメソッドを追加することは無作法であると考えられています。Railsの場合、組み込みクラスの変更を正当化できる理由がいくつもあります。たとえば、Web アプリケーションでは、変数が絶対に<em>空白</em>にならないようにしたくなることがよくあります (ユーザー名などはスペースや<a href="http://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9#.E3.82.B3.E3.83.B3.E3.83.94.E3.83.A5.E3.83.BC.E3.82.BF.E3.81.AB.E3.81.8A.E3.81.91.E3.82.8B.E3.82.B9.E3.83.9A.E3.83.BC.E3.82.B9">その他の空白文字</a>になって欲しくないものです) ので、Railsは<code>blank?</code>メソッドをRuby に追加しています。Railsの拡張は自動的にRailsコンソールにも取り込まれるので、以下のようにコンソールで拡張の結果を確認できます (注意: 以下のコードは純粋な <code>irb</code> では動作しません)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">blank?</span>
 <span class="go">=&gt; true</span>
@@ -1411,7 +1411,7 @@
 
 <p>ここで重要な点があります。Railsのアクションには戻り値がありません。少なくとも、返される値は重要ではありません。<a class="ref" href="./static-pages.html#top">第3章</a>で示したとおり、<code>home</code>アクションはWebページを表示するためのものであり、値を返すためのものではありませんでした。しかも、第3章では一度も<code>StaticPagesController.new</code>を実行しませんでした。どうしてこれでうまくいっているのでしょうか。</p>
 
-<p>実は、Railsは確かにRubyで<em>書かれて</em>いますが、既にRubyとは別物なのです。Railsのクラスは、普通のRubyオブジェクトと同様に振る舞うものもありますが、多くのクラスにはRailsの<a href="http://www.answers.com/grist">魔法の粉</a>が振りかけられています。Railsは<a href="http://en.wikipedia.org/wiki/Sui_generis"><em>独特</em></a>であり、 Rubyとは切り離して学習する必要があります。このため、とにかくWebアプリケーションを書けるようになりたい方は、最初にRailsを学び、次にRubyを学んでから再びRailsに戻ってくることをお勧めします。</p>
+<p>実は、Railsは確かにRubyで<em>書かれて</em>いますが、既にRubyとは別物なのです。Railsのクラスは、普通のRubyオブジェクトと同様に振る舞うものもありますが、多くのクラスにはRailsの<a href="http://www.answers.com/grist">魔法の粉</a>が振りかけられています。Railsは<em>独特</em>であり、 Rubyとは切り離して学習する必要があります。このため、とにかくWebアプリケーションを書けるようになりたい方は、最初にRailsを学び、次にRubyを学んでから再びRailsに戻ってくることをお勧めします。</p>
 
 <div class="label" id="sec-a_user_class"></div>
 
