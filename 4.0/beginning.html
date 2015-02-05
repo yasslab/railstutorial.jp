@@ -50,7 +50,7 @@
 </div>
 
 
-<p>本書の目的は、単にRailsを学ぶことでは<em>ではなく</em>、Railsを例にとって広い意味での<em>Webアプリケーション開発</em>そのものを学ぶことにあります。つまり、Railsに限らず、World Wide Web上で動くソフトウェアを開発したり改良したりするための技術を習得することを目指します。したがって、Ruby on Railsの他に、HTML、CSS、データベース、バージョン管理、テスト、デプロイなどの多くの技術についても本書で学びます。この目的を達成するため、<em>Ruby on Rails チュートリアル</em>では、統合的なアプローチを採用しています。つまり、「実際に動くサンプルアプリケーションをゼロから開発する」という例題をこなすことによって、Railsについて総合的に学ぶのです。<a href="http://sivers.org">Derek Sivers</a>が前書きで述べているように、本書は一本道のストーリーで構成されていて、最初から最後まで飛ばさずに読むことを前提としています。技術書を飛ばし読みするのが習慣になっている方にとっては少々頭の切り替えが必要になるかもしれませんが、それだけの値打ちは十分にあります。ぜひトライしてみてください。<em>Ruby on Railsチュートリアル</em>をTVゲームにたとえると、あなたは主人公であり、各章をクリアするたびにRails開発者としてレベルアップしていくと考えてください (演習は<a href="http://en.wikipedia.org/wiki/Boss_(video_gaming)#Miniboss">中ボス</a>です)。</p>
+<p>本書の目的は、単にRailsを学ぶことでは<em>ではなく</em>、Railsを例にとって広い意味での<em>Webアプリケーション開発</em>そのものを学ぶことにあります。つまり、Railsに限らず、World Wide Web上で動くソフトウェアを開発したり改良したりするための技術を習得することを目指します。したがって、Ruby on Railsの他に、HTML、CSS、データベース、バージョン管理、テスト、デプロイなどの多くの技術についても本書で学びます。この目的を達成するため、<em>Ruby on Rails チュートリアル</em>では、統合的なアプローチを採用しています。つまり、「実際に動くサンプルアプリケーションをゼロから開発する」という例題をこなすことによって、Railsについて総合的に学ぶのです。<a href="http://sivers.org">Derek Sivers</a>が前書きで述べているように、本書は一本道のストーリーで構成されていて、最初から最後まで飛ばさずに読むことを前提としています。技術書を飛ばし読みするのが習慣になっている方にとっては少々頭の切り替えが必要になるかもしれませんが、それだけの値打ちは十分にあります。ぜひトライしてみてください。<em>Ruby on Railsチュートリアル</em>をTVゲームにたとえると、あなたは主人公であり、各章をクリアするたびにRails開発者としてレベルアップしていくと考えてください (演習は<a href="http://ja.wikipedia.org/wiki/%E3%83%9C%E3%82%B9%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%BC#.E4.B8.AD.E3.83.9C.E3.82.B9">中ボス</a>です)。</p>
 
 <p>第1章では、最初に必要なソフトウェアをインストールし、開発環境 (<a class="ref" href="./beginning.html#sec-up_and_running">1.2</a>) を整えて Ruby on Railsを動かす準備をします。次に<code>first_app</code>という最初の Rails アプリの作成に着手します。<em>Rails チュートリアル</em> では、実戦的なソフトウェア開発のベストプラクティスを重要視しているので、新しいRailsプロジェクトを作成した直後にGit(<a class="ref" href="./beginning.html#sec-version_control">1.3</a>) を使ったバージョン管理を行います。最後に、作成したアプリを本番 (production) 環境 (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) に<em>デプロイして一般公開する</em>ところまで実践します。</p>
 
@@ -82,9 +82,9 @@
 
 <p>Ruby on Railsは2004年にデビューして以来、急速に成長していきました。現在では、動的なWebアプリケーションを開発するフレームワークとして、最も有力かつ人気のあるフレームワークの１つになっています。小さなスタートアップから巨大企業まで、多くの組織が Rails を使っています。例えば、<a href="http://37signals.com/">37signals</a> や <a href="http://github.com/">GitHub</a>、<a href="http://shopify.com/">Shopify</a>、<a href="http://scribd.com/">Scribd</a>、<a href="http://twitter.com/">Twitter</a>、<a href="http://disney.com/">Disney</a>、<a href="http://hulu.com/">Hulu</a>、<a href="http://yellowpages.com/">Yellow Pages</a> など、<a href="http://rubyonrails.org/applications">Ruby on Rails を使っているサイトのリスト</a>は増える一方です。他にも、<a href="http://entp.com/">ENTP</a>や<a href="http://thoughtbot.com/">thoughtbot</a>、<a href="http://pivotallabs.com/">Pivotal Labs</a>、<a href="http://hashrocket.com/">Hashrocket</a>といった、Railsを専門的に扱う会社も数多くあります。また、Railsを専門にしたフリーランスのコンサルタントやインストラクター、開発者については数えきれません。</p>
 
-<p>Railsがこれだけ多くに人達に使われているのはなぜでしょうか。理由の１つは、Railsが100%オープンソースで、制限の緩い<a href="http://www.opensource.org/licenses/mit-license.php">MITライセンス</a>で公開されているからです。これにより、Railsをダウンロードしたり使ったりする際のコストが一切かかりません。また、Railsの設計が簡潔で美しいことも、Railsの成功を支えている秘訣の１つです。これを実現できたのは、Railsの背後で動いている<a href="http://ruby-lang.org/">Ruby</a>言語の驚異的な柔軟性のおかげです。具体的には、Webアプリケーションの作成に特化した<a href="http://en.wikipedia.org/wiki/Domain_Specific_Language">DSL (ドメイン固有言語)</a> を Ruby言語で実装していることにより、HTMLやデータモデルの生成、URL のルーティングなど、Webプログラミングで必要な多くの作業が簡単になります。その結果、Railsを使用してアプリケーションを開発すると、コードが簡潔になり、読みやすくなります。</p>
+<p>Railsがこれだけ多くに人達に使われているのはなぜでしょうか。理由の１つは、Railsが100%オープンソースで、制限の緩い<a href="http://www.opensource.org/licenses/mit-license.php">MITライセンス</a>で公開されているからです。これにより、Railsをダウンロードしたり使ったりする際のコストが一切かかりません。また、Railsの設計が簡潔で美しいことも、Railsの成功を支えている秘訣の１つです。これを実現できたのは、Railsの背後で動いている<a href="http://ruby-lang.org/">Ruby</a>言語の驚異的な柔軟性のおかげです。具体的には、Webアプリケーションの作成に特化した<a href="http://ja.wikipedia.org/wiki/%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%9B%BA%E6%9C%89%E8%A8%80%E8%AA%9E">DSL (ドメイン固有言語)</a> を Ruby言語で実装していることにより、HTMLやデータモデルの生成、URL のルーティングなど、Webプログラミングで必要な多くの作業が簡単になります。その結果、Railsを使用してアプリケーションを開発すると、コードが簡潔になり、読みやすくなります。</p>
 
-<p>さらに、Railsは最新のWebテクノロジーやフレームワーク設計に素早く適応しています。たとえば、Rails は「REST」という設計思想の重要性をいち早く理解し、対応したフレームワークの１つです (RESTについては後で解説します)。また、他のフレームワークで何か新しい技術が成功すれば、Railsの創始者である<a href="http://loudthinking.com/">David Heinemeier Hansson</a>や<a href="http://rubyonrails.org/core">Railsのコアチーム</a>は、そうしたアイデアを常に積極的に取り入れています。印象的な例として、かつて互いにライバルの関係にあったMerbとRailsとの統合が挙げられます。この統合の結果、RailsはMerbのモジュール設計や安定した<a href="http://en.wikipedia.org/wiki/Application_programming_interface">API</a>、そしてパフォーマンスの向上など多くの恩恵を受けることができました。</p>
+<p>さらに、Railsは最新のWebテクノロジーやフレームワーク設計に素早く適応しています。たとえば、Rails は「REST」という設計思想の重要性をいち早く理解し、対応したフレームワークの１つです (RESTについては後で解説します)。また、他のフレームワークで何か新しい技術が成功すれば、Railsの創始者である<a href="http://loudthinking.com/">David Heinemeier Hansson</a>や<a href="http://rubyonrails.org/core">Railsのコアチーム</a>は、そうしたアイデアを常に積極的に取り入れています。印象的な例として、かつて互いにライバルの関係にあったMerbとRailsとの統合が挙げられます。この統合の結果、RailsはMerbのモジュール設計や安定した<a href="http://ja.wikipedia.org/wiki/Application_programming_interface">API</a>、そしてパフォーマンスの向上など多くの恩恵を受けることができました。</p>
 
 <p>最後に、Railsには驚くほど熱心かつ多様なコミュニティという素晴らしい財産があります。Railsコミュニティには、何百人ものオープンソース<a href="http://contributors.rubyonrails.org/">コントリビュータ</a>達や、多くの参加者で賑わう<a href="http://railsconf.com/">カンファレンス</a>、膨大な数の<a href="https://rubygems.org/">gem</a> (ページネーションや画像アップロードといった特定の問題を解決するためのgemなど)、多くの情報を発信し続けるブログ、掲示板、IRCがあります。このような熱心で多様なコミュニティのおかげで、開発中に何らかのエラーに遭遇したとしても、エラーメッセージをそのままGoogleで検索するだけで、関連するブログ記事や掲示板のスレッドをたちどころに見つけることができます。</p>
 
@@ -94,7 +94,7 @@
 <h3><a id="sec-1_1_1" href="./beginning.html#sec-comments_for_various_readers" class="heading"><span class="number">1.1.1</span> 読者の皆さまへ</a></h3>
 
 
-<p><em>Railsチュートリアル</em>は、統合的な構成を採用しています。構成の中心となるのはもちろんRailsですが、他にもRuby言語やRSpecを使ったテスト、<a href="http://en.wikipedia.org/wiki/HTML">HTML</a>、<a href="http://en.wikipedia.org/wiki/CSS">CSS</a>、若干の<a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a>と<a href="http://en.wikipedia.org/wiki/SQL">SQL</a>のチュートリアルが含まれています。チュートリアルが統合的に構成されていることにより、本書を最後まで完了することができれば、現時点のWeb開発の知識量に関わらず、より高度な情報源を難なく読みこなす実力が身につき、上に挙げたJavaScriptなどのRails以外のトピックについても理解しやすくなります。言い換えると、本書で扱うトピックの範囲がそれだけ<em>広い</em>ということでもあります。プログラミング経験の浅い方にとっては、その情報量の多さに圧倒されるかもしれません。そこで、読者の経験や知識に応じた、<em>Railsチュートリアル</em>を読破するためのアドバイスを用意しました。ぜひ参考にしてください。<br /></p>
+<p><em>Railsチュートリアル</em>は、統合的な構成を採用しています。構成の中心となるのはもちろんRailsですが、他にもRuby言語やRSpecを使ったテスト、<a href="http://ja.wikipedia.org/wiki/HTML">HTML</a>、<a href="http://ja.wikipedia.org/wiki/CSS">CSS</a>、若干の<a href="http://ja.wikipedia.org/wiki/JavaScript">JavaScript</a>と<a href="http://ja.wikipedia.org/wiki/SQL">SQL</a>のチュートリアルが含まれています。チュートリアルが統合的に構成されていることにより、本書を最後まで完了することができれば、現時点のWeb開発の知識量に関わらず、より高度な情報源を難なく読みこなす実力が身につき、上に挙げたJavaScriptなどのRails以外のトピックについても理解しやすくなります。言い換えると、本書で扱うトピックの範囲がそれだけ<em>広い</em>ということでもあります。プログラミング経験の浅い方にとっては、その情報量の多さに圧倒されるかもしれません。そこで、読者の経験や知識に応じた、<em>Railsチュートリアル</em>を読破するためのアドバイスを用意しました。ぜひ参考にしてください。<br /></p>
 
 <p><strong>【すべての読者へ】</strong> 「Railsを学ぶ前にRubyを勉強した方がよいでしょうか？」は定番の質問です。この質問への回答は、読者の学習スタイルやプログラミング経験次第で異なるため、一口には言えません。Web開発を最初から体系的に学びたい場合や、プログラミングの経験が全くない場合は、Rubyを最初に学ぶのがよいでしょう。Rubyを学ぶのであれば、Peter Cooperの「<a href="http://amzn.to/1k4KqxP"><em>Beginning Ruby</em></a>」がお勧めです。これからRailsで開発を始めようとする人は「とにかく<em>Webアプリケーション</em>を作りたい！」と考えていることがほとんどなので、たった1つのWebページを作成するために500ページものRuby本を読み通す気にはなれないでしょう。Rubyを急いで学びたいのであれば、Rubyを対話的に学習できるWebサービス「<a href="http://tryruby.org/">Try Ruby</a><sup class="footnote" id="fnref-1_2"><a href="./beginning.html#fn-1_2">2</a></sup>」を使ってRubyをおおまかに理解しておくことをお勧めします。必要であれば、<a href="http://railsforzombies.org/">Rails for Zombies</a><sup class="footnote" id="fnref-1_3"><a href="./beginning.html#fn-1_3">3</a></sup>に目を通してRailsの全体像を把握しておくとよいかもしれません (訳注: いずれも英語版のみ)。</p>
 
@@ -213,7 +213,7 @@
 
 <p><em>Railsチュートリアル</em>では、様々なプログラムの出力結果 (シェルコマンド、バージョン管理ツール、Rubyプログラムの出力結果など) をこまめに記載するようにしています。出力結果は、コンピュータシステムによって微妙に異なるので、本書の出力結果と実際の出力が正確に一致するとは限りません。しかし、細かい出力結果の差異が問題になることはないので、あまり気にする必要はありません。</p>
 
-<p>コンピュータシステムによっては、コマンドを実行した時にエラーが発生するかもしれません。しかし本書では、あらゆる場面を想定してエラー対策をもれなく記載するような<a href="http://en.wikipedia.org/wiki/Sisyphus">不毛な作業</a>は行っていません。そのような場合は、即座にエラーメッセージをGoogleで検索してください。エラーメッセージをGoogleで検索することは、実際のソフトウェア開発でも使われている基本的なテクニックなので、よい練習にもなります。本書のチュートリアルを進めていくうちに何か問題が生じたら、<a href="./help">RailsチュートリアルのHelpページ</a>を読んでみてください。このページには問題を解決するためのリソースやヒントが記載されているので、問題を解決する手掛かりになるはずです<sup class="footnote" id="fnref-1_7"><a href="./beginning.html#fn-1_7">7</a></sup>。</p>
+<p>コンピュータシステムによっては、コマンドを実行した時にエラーが発生するかもしれません。しかし本書では、あらゆる場面を想定してエラー対策をもれなく記載するような<a href="http://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%BC%E3%82%B7%E3%83%A5%E3%83%9D%E3%82%B9">果てしない徒労</a>はしていません。そのような場合は、即座にエラーメッセージをGoogleで検索してください。エラーメッセージをGoogleで検索することは、実際のソフトウェア開発でも使われている基本的なテクニックなので、よい練習にもなります。本書のチュートリアルを進めていくうちに何か問題が生じたら、<a href="./help">RailsチュートリアルのHelpページ</a>を読んでみてください。このページには問題を解決するためのリソースやヒントが記載されているので、問題を解決する手掛かりになるはずです<sup class="footnote" id="fnref-1_7"><a href="./beginning.html#fn-1_7">7</a></sup>。</p>
 
 <div class="label" id="sec-up_and_running"></div>
 
@@ -306,7 +306,7 @@
 <h4><a id="sec-1_2_2_2" href="./beginning.html#sec-install_git" class="heading">Gitのインストール</a></h4>
 
 
-<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://en.wikipedia.org/wiki/Revision_control">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="./beginning.html#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早めにインストールを済ませておきます。<a href="http://git-scm.com/book/ja/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にしてください。</p>
+<p>Rails環境の多くの部分は、<a href="http://git-scm.com/">Git</a>という<a href="http://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0">バージョン管理システム</a>の機能に依存します (Gitの詳細については<a class="ref" href="./beginning.html#sec-version_control">1.3</a>で解説しています)。Gitは本書で多用されているので、早めにインストールを済ませておきます。<a href="http://git-scm.com/book/ja/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB"><em>Pro Git</em>の「Gitのインストール」</a>でプラットフォーム毎の解説を行っているので参考にしてください。</p>
 
 <div class="label" id="sec-install_ruby"></div>
 
@@ -363,7 +363,7 @@
 
 <p>Linuxの場合、<code>apt-get</code>または<code>yum</code>を使用して同様にインストールできます。</p>
 
-<p>著者の場合、<a href="https://en.wikipedia.org/wiki/YAML">YAML</a>ライブラリのインストールも必要でした。</p>
+<p>著者の場合、<a href="https://ja.wikipedia.org/wiki/YAML">YAML</a>ライブラリのインストールも必要でした。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">#</span> MacでHomebrewを使用している場合
 <span class="gp">$</span> brew install libyaml
@@ -783,7 +783,7 @@ to see where a bundled</span> <span class="go">gem is installed.</span>
 </div>
 
 
-<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムを確認してください。<a href="http://nodejs.org/">Node.js</a>が特にお勧めです)。表示されたメッセージは、RailsアプリケーションがIPアドレス<code>0.0.0.0</code>、<a href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">ポート番号</a>3000<sup class="footnote" id="fnref-1_15"><a href="./beginning.html#fn-1_15">15</a></sup>で動作していることを示しています。このIPアドレスは、このマシンに設定されているすべてのIPアドレスで受信待ち (listen) するように指定しています。これにより、<code>127.0.0.1</code>(<code>localhost</code>)という特別なアドレスでアプリケーションをブラウズできます。<a class="ref" href="./beginning.html#fig-riding_rails">図1.3</a>は、<a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示した時の結果です。</p>
+<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムを確認してください。<a href="http://nodejs.org/">Node.js</a>が特にお勧めです)。表示されたメッセージは、RailsアプリケーションがIPアドレス<code>0.0.0.0</code>、<a href="http://ja.wikipedia.org/wiki/%E3%83%9D%E3%83%BC%E3%83%88%E7%95%AA%E5%8F%B7">ポート番号</a>3000<sup class="footnote" id="fnref-1_15"><a href="./beginning.html#fn-1_15">15</a></sup>で動作していることを示しています。このIPアドレスは、このマシンに設定されているすべてのIPアドレスで受信待ち (listen) するように指定しています。これにより、<code>127.0.0.1</code>(<code>localhost</code>)という特別なアドレスでアプリケーションをブラウズできます。<a class="ref" href="./beginning.html#fig-riding_rails">図1.3</a>は、<a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示した時の結果です。</p>
 
 <div class="label" id="fig-riding_rails"></div>
 
@@ -807,7 +807,7 @@ to see where a bundled</span> <span class="go">gem is installed.</span>
 <h3><a id="sec-1_2_6" href="./beginning.html#sec-mvc" class="heading"><span class="number">1.2.6</span> Model-View-Controller (MVC)</a></h3>
 
 
-<p>まだ始まったばかりですが、今のうちにRailsアプリケーションの全体的な仕組みを知っておくことは後々役立ちます (<a class="ref" href="./beginning.html#fig-MVC">図1.5</a>)。デフォルトのRailsアプリ構造 (<a class="ref" href="./beginning.html#fig-directory_structure_rails">図1.2</a>) を眺めてみると、<code>app/</code>というディレクトリがあり、その中に「<code>models</code>」「<code>views</code>」「<code>controllers</code>」という3つのサブディレクトリがあることに気付いた方もいると思います。ここにはRailsが<a href="http://en.wikipedia.org/wiki/Model-view-controller">MVC (model-view-controller)</a> というアーキテクチャパターンを採用していることが暗に示されています。MVCでは、ドメインロジック (ビジネスロジックともいいます) と、グラフィカルユーザーインターフェイス (GUI) と密に関連する入力/表示ロジックを分離します。Webアプリケーションの場合、「ドメインロジック」はユーザーや記事、商品などのデータモデルに相当し、ユーザーインターフェイスはWebページを指します。</p>
+<p>まだ始まったばかりですが、今のうちにRailsアプリケーションの全体的な仕組みを知っておくことは後々役立ちます (<a class="ref" href="./beginning.html#fig-MVC">図1.5</a>)。デフォルトのRailsアプリ構造 (<a class="ref" href="./beginning.html#fig-directory_structure_rails">図1.2</a>) を眺めてみると、<code>app/</code>というディレクトリがあり、その中に「<code>models</code>」「<code>views</code>」「<code>controllers</code>」という3つのサブディレクトリがあることに気付いた方もいると思います。ここにはRailsが<a href="http://ja.wikipedia.org/wiki/Model_View_Controller">MVC (model-view-controller)</a> というアーキテクチャパターンを採用していることが暗に示されています。MVCでは、ドメインロジック (ビジネスロジックともいいます) と、グラフィカルユーザーインターフェイス (GUI) と密に関連する入力/表示ロジックを分離します。Webアプリケーションの場合、「ドメインロジック」はユーザーや記事、商品などのデータモデルに相当し、ユーザーインターフェイスはWebページを指します。</p>
 
 <p>Railsアプリと通信する際、ブラウザは一般的にWebサーバーに<em>request</em> (リクエスト) を送信し、これはリクエストを処理する役割を担っているRailsの<em>controller</em> (コントローラ) に渡されます。 コントローラは、場合によってはすぐに<em>view</em> (ビュー) を生成してHTMLをブラウザに送り返します。動的なサイトでは、一般にコントローラは (ユーザーなどの) サイトの要素を表しており、データベースとの通信を担当しているRubyのオブジェクトである<em>model</em> (モデル) と対話します。モデルを呼び出した後、コントローラは、ビューをレンダリングし、完成したWebページをHTMLとしてブラウザに返します。</p>
 
