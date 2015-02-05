@@ -239,7 +239,7 @@
 <h3><a id="sec-7_1_2" href="./sign-up.html#sec-a_users_resource" class="heading"><span class="number">7.1.2</span>ユーザーリソース</a></h3>
 
 
-<p><a class="ref" href="./modeling-users.html#top">第6章</a>の最後で、データベースに新しいユーザーを作成しました。<a class="ref" href="./modeling-users.html#sec-creating_a_user">6.3.5</a>でこのユーザーのidは<code>1</code>になっており、今の私たちの目標はこのユーザーの情報を表示するページを作成することです。ここでは、Railsアプリケーションで好まれているRESTアーキテクチャ (<a class="ref" href="./a-demo-app.html#sidebar-REST">コラム 2.2</a>) の習慣に従うことにしましょう。つまり、データを作成、表示、更新、削除可能な<em>リソース</em>として扱うということです。<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP標準</a>には、これらに対応する4つの基本操作 (<tt>POST</tt>、<tt>GET</tt>、<tt>PUT</tt>、<tt>DELETE</tt>)が定義されています (<a class="ref" href="./static-pages.html#sidebar-get_etc">コラム  3.2</a>)。</p>
+<p><a class="ref" href="./modeling-users.html#top">第6章</a>の最後で、データベースに新しいユーザーを作成しました。<a class="ref" href="./modeling-users.html#sec-creating_a_user">6.3.5</a>でこのユーザーのidは<code>1</code>になっており、今の私たちの目標はこのユーザーの情報を表示するページを作成することです。ここでは、Railsアプリケーションで好まれているRESTアーキテクチャ (<a class="ref" href="./a-demo-app.html#sidebar-REST">コラム 2.2</a>) の習慣に従うことにしましょう。つまり、データを作成、表示、更新、削除可能な<em>リソース</em>として扱うということです。<a href="http://ja.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP標準</a>には、これらに対応する4つの基本操作 (<tt>POST</tt>、<tt>GET</tt>、<tt>PUT</tt>、<tt>DELETE</tt>)が定義されています (<a class="ref" href="./static-pages.html#sidebar-get_etc">コラム  3.2</a>)。</p>
 
 <p>RESTの原則に従う場合、リソースへの参照はリソース名とユニークIDを使用するのが普通です。ユーザーを<em>リソース</em>とみなす場合、id=<code>1</code>のユーザーを参照するということは、/users/1というURIに対して<tt>GET</tt>リクエストを発行するということを意味します。ここで<code>show</code>というアクションの種類は、<em>暗黙</em>のリクエストになります。RailsのREST機能が有効になっていると、<tt>GET</tt>リクエストは自動的に<code>show</code>アクションとして扱われます。</p>
 
@@ -595,7 +595,7 @@
 
 <p><code>gravatar_for</code>メソッドが未定義のため、ユーザー表示ビューは現在動作していません。(このようなエラーを捉えることができるのが、ビューでSpecsを使用する大きなメリットです。だからこそ、どんなに小規模であってもよいのでビューで<em>何らかの</em>テストを行っておくことが重要なのです。)</p>
 
-<p>デフォルトでは、ヘルパーファイルで定義されているメソッドは自動的にすべてのビューで利用できます。ここでは、利便性を考えて<code>gravatar_for</code>をUsersコントローラに関連付けられているヘルパーファイルに置くことにしましょう。<a href="http://en.gravatar.com/site/implement/hash/">Gravatarのホームページ</a>にも書かれているように、GravatarのURIは<a href="http://en.wikipedia.org/wiki/MD5">MD5ハッシュ</a>を用いてユーザーのメールアドレスをハッシュ化しています。Rubyでは、<code>Digest</code>ライブラリの<code>hexdigest</code>メソッドを使用したMD5ハッシュアルゴリズムが実装されています。</p>
+<p>デフォルトでは、ヘルパーファイルで定義されているメソッドは自動的にすべてのビューで利用できます。ここでは、利便性を考えて<code>gravatar_for</code>をUsersコントローラに関連付けられているヘルパーファイルに置くことにしましょう。<a href="http://ja.gravatar.com/site/implement/hash/">Gravatarのホームページ</a>にも書かれているように、GravatarのURIは<a href="http://ja.wikipedia.org/wiki/MD5">MD5ハッシュ</a>を用いてユーザーのメールアドレスをハッシュ化しています。Rubyでは、<code>Digest</code>ライブラリの<code>hexdigest</code>メソッドを使用したMD5ハッシュアルゴリズムが実装されています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">email</span> <span class="o">=</span> <span class="s2">&quot;MHARTL@example.</span><span class="s2">COM&quot;</span><span class="o">.</span>
 <span class="gp">&gt;&gt; </span><span class="ss">Digest::MD5</span><span class="o">::</span><span class="n">hexdigest</span><span class="p">(</span><span class="n">email</span><span class="o">.</span><span class="n">downcase</span><span class="p">)</span>
@@ -1579,7 +1579,7 @@
 <h3><a id="sec-7_4_2" href="./sign-up.html#sec-the_flash" class="heading"><span class="number">7.4.2</span>flash</a></h3>
 
 
-<p>いよいよブラウザで正しいユーザー情報を登録できるようになりましたが、その前にWebアプリケーションに常識的に備わっている機能を追加してみましょう。登録完了後に表示されるページにメッセージを表示し (この場合は新規ユーザーへのウェルカムメッセージ)、2度目以降にはそのページにメッセージを表示しないようにするというものです。Railsでは、こういう場合に<em>flash</em>という特殊な変数を使用できます。この変数はちょうど<a href="http://en.wikipedia.org/wiki/Flash_memory">フラッシュメモリー</a>のようにデータを一時的にのみ保存することからこう呼ばれています。<code>flash</code>変数は事実上ハッシュです。<a class="ref" href="./rails-flavored-ruby.html#sec-hashes_and_symbols">4.3.3</a>でコンソール上で実行した例を思い出してみてください。そこではあえて<code>flash</code>と名付けたハッシュを使用してハッシュの値を列挙しました。</p>
+<p>いよいよブラウザで正しいユーザー情報を登録できるようになりましたが、その前にWebアプリケーションに常識的に備わっている機能を追加してみましょう。登録完了後に表示されるページにメッセージを表示し (この場合は新規ユーザーへのウェルカムメッセージ)、2度目以降にはそのページにメッセージを表示しないようにするというものです。Railsでは、こういう場合に<em>flash</em>という特殊な変数を使用できます。この変数はちょうど<a href="http://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5%E3%83%A1%E3%83%A2%E3%83%AA">フラッシュメモリー</a>のようにデータを一時的にのみ保存することからこう呼ばれています。<code>flash</code>変数は事実上ハッシュです。<a class="ref" href="./rails-flavored-ruby.html#sec-hashes_and_symbols">4.3.3</a>でコンソール上で実行した例を思い出してみてください。そこではあえて<code>flash</code>と名付けたハッシュを使用してハッシュの値を列挙しました。</p>
 
 <div class="code"><div class="highlight"><pre><span class="go">$ rails console</span>
 <span class="gp">&gt;&gt; </span><span class="n">flash</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">success:</span> <span class="s2">&quot;It worked!&quot;</span><span class="p">,</span> <span class="ss">error:</span> <span class="s2">&quot;It failed.&quot;</span> <span class="p">}</span>
@@ -1713,7 +1713,7 @@
 <h3><a id="sec-7_4_4" href="./sign-up.html#sec-deploying_to_production_with_ssl" class="heading"><span class="number">7.4.4</span> SSLを導入して本番環境をデプロイする</a></h3>
 
 
-<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境にデプロイしましょう (<a class="ref" href="./static-pages.html#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 デプロイの作業の1つとして、<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="./sign-up.html#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプリアプリケーションのユーザー登録 (<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>)。</p>
+<p>Userモデルとユーザー登録機能の開発が終わったので、今度はこのサンプルアプリケーションを本番 (production) 環境にデプロイしましょう (<a class="ref" href="./static-pages.html#top">第3章</a>の設定を行なっていない場合は、今のうちに設定を行なっておいてください)。 デプロイの作業の1つとして、<a href="http://ja.wikipedia.org/wiki/Transport_Layer_Security">Secure Sockets Layer (SSL)</a><sup class="footnote" id="fnref-7_11"><a href="./sign-up.html#fn-7_11">11</a></sup>を本番アプリケーションに追加し、ユーザー登録をセキュアにします。SSLはWebサイト全体で有効にするので、サンプリアプリケーションのユーザー登録 (<a class="ref" href="./sign-in-sign-out.html#top">第8章</a>) もセキュアになり、<em>セッションハイジャック</em>の脆弱性を防止できます (<a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>)。</p>
 
 <p>デプロイの下準備として、この時点で変更を<code>master</code>ブランチにマージしておきます。</p>
 
