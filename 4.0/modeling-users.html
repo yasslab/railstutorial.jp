@@ -1144,7 +1144,7 @@
 </div>
 
 
-<p>残念なことに、メールアドレスの一意性を保証するためには、もう1つやらなければならないことがあります。それは、メールアドレスをデータベースに保存する前にすべての文字を小文字に変換することです。その理由は、データベースのアダプタが常に大文字小文字を区別するインデックスを使っているとは限らないからです<sup class="footnote" id="fnref-6_16"><a href="./modeling-users.html#fn-6_16">16</a></sup>。これを行うには<a href="http://ja.wikipedia.org/wiki/%E3%82%B3%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF_(%E6%83%85%E5%A0%B1%E5%B7%A5%E5%AD%A6)"><em>コールバック</em></a>というテクニックを利用します。コールバックとは、Active Recordオブジェクトが持続している間のどこかの時点で、Active Recordオブジェクトに呼び出してもらうメソッドです (Rails APIの「<a href="http://api.rubyonrails.org/v4.0.0/classes/ActiveRecord/Callbacks.html">コールバックの登録ポイント</a> (英語)」を参照してください)。今回の場合は、<code>before_save</code>コールバックを使います。<a class="ref" href="./modeling-users.html#code-email_downcase">リスト6.20</a>に示したように、ユーザーをデータベースに保存する前にemail属性を強制的に小文字に変換します。</p>
+<p>残念なことに、メールアドレスの一意性を保証するためには、もう1つやらなければならないことがあります。それは、メールアドレスをデータベースに保存する前にすべての文字を小文字に変換することです。その理由は、データベースのアダプタが常に大文字小文字を区別するインデックスを使っているとは限らないからです<sup class="footnote" id="fnref-6_16"><a href="./modeling-users.html#fn-6_16">16</a></sup>。これを行うには<a href="http://ja.wikipedia.org/wiki/%E3%82%B3%E3%83%BC%E3%83%AB%E3%83%90%E3%83%83%E3%82%AF_(%E6%83%85%E5%A0%B1%E5%B7%A5%E5%AD%A6)"><em>コールバック</em></a>というテクニックを利用します。コールバックとは、Active Recordオブジェクトが持続している間のどこかの時点で、Active Recordオブジェクトに呼び出してもらうメソッドです (詳しくはRailsガイドの「<a href="http://railsguides.jp/active_record_callbacks.html">Active Recordコールバック</a>」を参照してください)。今回の場合は、<code>before_save</code>コールバックを使います。<a class="ref" href="./modeling-users.html#code-email_downcase">リスト6.20</a>に示したように、ユーザーをデータベースに保存する前にemail属性を強制的に小文字に変換します。</p>
 
 <div class="label" id="code-email_downcase"></div>
 
