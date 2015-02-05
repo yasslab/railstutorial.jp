@@ -226,7 +226,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h2><a id="sec-3_1" href="./static-pages.html#sec-static_pages" class="heading"><span class="number">3.1</span>静的ページ</a></h2>
 
 
-<p>この節では、後に動的なページを作成するための準備として、最初にRailsの<em>アクション</em>と<em>ビュー</em>に静的なHTMLだけを含めたものを作成します<sup class="footnote" id="fnref-3_5"><a href="./static-pages.html#fn-3_5">5</a></sup>。Railsのアクションは、<em>コントローラ</em> (<a class="ref" href="./beginning.html#sec-mvc">1.2.6</a>で紹介した MVCの Cに該当) の中に置かれる機能で、共通の目的を持つ一連のアクションをコントローラ内にまとめることができます。コントローラについては<a class="ref" href="./a-demo-app.html#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="./modeling-users.html#top">第6章</a>で説明する<a href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST アーキテクチャ</a>を読むと、より深く理解することができます。一言で言うと、コントローラとは (基本的に動的な) Webページの集合を束ねるコンテナのことです。</p>
+<p>この節では、後に動的なページを作成するための準備として、最初にRailsの<em>アクション</em>と<em>ビュー</em>に静的なHTMLだけを含めたものを作成します<sup class="footnote" id="fnref-3_5"><a href="./static-pages.html#fn-3_5">5</a></sup>。Railsのアクションは、<em>コントローラ</em> (<a class="ref" href="./beginning.html#sec-mvc">1.2.6</a>で紹介した MVCの Cに該当) の中に置かれる機能で、共通の目的を持つ一連のアクションをコントローラ内にまとめることができます。コントローラについては<a class="ref" href="./a-demo-app.html#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="./modeling-users.html#top">第6章</a>で説明する<a href="http://ja.wikipedia.org/wiki/REST">REST アーキテクチャ</a>を読むと、より深く理解することができます。一言で言うと、コントローラとは (基本的に動的な) Webページの集合を束ねるコンテナのことです。</p>
 
 <p>現在どのディレクトリで作業しているかがわからなくなった場合は、<a class="ref" href="./beginning.html#sec-the_first_application">1.2.3</a> (<a class="ref" href="./beginning.html#fig-directory_structure_rails">図 1.2</a>)を再度参照して、Rails のディレクトリ構造を確認してください。この節では、主に<code>app/controllers</code>ディレクトリや<code>app/views</code>ディレクトリ内で作業を進めます (なお <a class="ref" href="./static-pages.html#sec-first_tests">3.2</a> では、新しいディレクトリをさらに１つ追加します)。好みのテキストエディタまたはIDEを使用してサンプルアプリケーションを開いてください (<a class="ref" href="./static-pages.html#sidebar-opening_the_project">コラム 3.1</a>)。</p>
 
@@ -289,7 +289,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>今回はRSpecのテストを使わないため、<tt class="verb">--no-test-framework</tt>というオプションを付け加えることで、RSpecのテストを自動的に生成しないようにしています。代わりに、<a class="ref" href="./static-pages.html#sec-first_tests">3.2</a>からは手動でテストを作成します。また、<a class="ref" href="./static-pages.html#code-generating_pages">リスト 3.4</a>に示したように、今回は意図的に<code>about</code>アクションをコマンドライン引数から取り除きました。 これは、同じく<a class="ref" href="./static-pages.html#sec-first_tests">3.2</a> から、テスト駆動開発 (Test-Driven Development: TDD) という開発手法を学ぶためです。</p>
 
-<p><a class="ref" href="./static-pages.html#code-generating_pages">リスト 3.4</a>では、コントローラ名を<a href="https://en.wikipedia.org/wiki/CamelCase">キャメルケース</a> (訳注: 単語の頭文字を大文字にしてつなぎ合わせた名前) で渡していることに注目してください。こうすると、StaticPagesコントローラは、<a href="https://en.wikipedia.org/wiki/Snake_case">スネークケース</a> (訳注: 単語間にアンダースコアを加えて繋ぎ合わせた名前) のファイル <code>static_pages_controller.rb</code> を自動的に生成します。ただし、上のような命名は単なる慣習に過ぎません。実際、コマンドライン上で以下のようなスネークケースのコントローラ名を入力しても、</p>
+<p><a class="ref" href="./static-pages.html#code-generating_pages">リスト 3.4</a>では、コントローラ名を<a href="https://ja.wikipedia.org/wiki/%E3%82%AD%E3%83%A3%E3%83%A1%E3%83%AB%E3%82%B1%E3%83%BC%E3%82%B9">キャメルケース</a> (訳注: 単語の頭文字を大文字にしてつなぎ合わせた名前) で渡していることに注目してください。こうすると、StaticPagesコントローラは、<a href="https://ja.wikipedia.org/wiki/%E3%82%AD%E3%83%A3%E3%83%A1%E3%83%AB%E3%82%B1%E3%83%BC%E3%82%B9#.E3.81.9D.E3.81.AE.E4.BB.96.E3.81.AE.E7.B6.B4.E3.82.8A.E6.96.B9">スネークケース</a> (訳注: 単語間にアンダースコアを加えて繋ぎ合わせた名前) のファイル <code>static_pages_controller.rb</code> を自動的に生成します。ただし、上のような命名は単なる慣習に過ぎません。実際、コマンドライン上で以下のようなスネークケースのコントローラ名を入力しても、</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rails generate controller static_pages ...
 </pre></div>
@@ -341,7 +341,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>既にお気付きの方もいると思いますが、マイグレーションは逐次的に実行され、それぞれのマイグレーションに対してバージョン番号が付与されます。したがって、上記の <tt>0</tt>を別の数字に置き換えることによって、指定したバージョンの状態に戻すことができます。</p>
 
-<p>これらの方法に慣れることで、開発中に<a href="http://en.wikipedia.org/wiki/SNAFU">袋小路</a>に迷い込んでしまった場合でも、これらの機能を使って元の状態に復帰することができます。</p>
+<p>これらの方法に慣れることで、開発中に袋小路に迷い込んでしまった場合でも、これらの機能を使って元の状態に復帰することができます。</p>
 </div>
 
 
@@ -392,7 +392,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 
 <div class="sidebar"><span class="title"><span class="header">コラム 3.3</span><span class="description"><tt>GET</tt>やその他のHTTPメソッドについて</span></span>
-<p><a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP</a> (HyperText Transfer Protocol) には4つの基本的な操作があり、それぞれ<tt>GET</tt>、<tt>POST</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>という4つの動詞に対応づけられています。(ローカル環境でRailsアプリケーションを開発しているときは、クライアントとサーバーが同じコンピュータ上で動いていますが、一般的には、それぞれ別のコンピュータで動作しているという点を理解しておいてください)。Railsを含む多くのWebフレームワークは、HTTPの各操作を発展させた<em>REST アーキテクチャ</em>の影響を受けています。<a class="ref" href="./a-demo-app.html#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="./sign-up.html#top">第7章</a>では、より深い内容について学びます。</p>
+<p><a href="http://ja.wikipedia.org/wiki/Hypertext_Transfer_Protocol#.E3.83.A1.E3.82.BD.E3.83.83.E3.83.89">HTTP</a> (HyperText Transfer Protocol) には4つの基本的な操作があり、それぞれ<tt>GET</tt>、<tt>POST</tt>、<tt>PATCH</tt>、<tt>DELETE</tt>という4つの動詞に対応づけられています。(ローカル環境でRailsアプリケーションを開発しているときは、クライアントとサーバーが同じコンピュータ上で動いていますが、一般的には、それぞれ別のコンピュータで動作しているという点を理解しておいてください)。Railsを含む多くのWebフレームワークは、HTTPの各操作を発展させた<em>REST アーキテクチャ</em>の影響を受けています。<a class="ref" href="./a-demo-app.html#top">第2章</a>でも簡単に触れましたが、<a class="ref" href="./sign-up.html#top">第7章</a>では、より深い内容について学びます。</p>
 
 <p><tt>GET</tt> は、最も頻繁に使用されるHTTP操作で、主にWeb上のデータを<em>読み取る</em>際に使われます。“ページを取得する” という意味のとおり、Webブラウザはgoogle.comやwikipedia.orgのようなWebサイトを開くたびに<tt>GET</tt>リクエストを送信しています。Railsアプリケーションでは、<tt>POST</tt>リクエストは何かを<em>作成する</em>ときによく使われます (なお本来のHTTPでは、<tt>POST</tt>を更新に使ってもよいとしています)。たとえば、ユーザー登録フォームで新しいユーザーを作成するときは、<tt>POST</tt>リクエストを送信します。他にも、<tt>PATCH</tt>と <tt>DELETE</tt>という2つの操作があり、それぞれサーバー上の何かを<em>更新</em>したり<em>削除</em>したりするときに使われます。これら2つの操作は、<tt>GET</tt>や<tt>POST</tt>ほどは使用されていません。これは、ブラウザがPATCHとDELETEをネイティブでは送信しないからです。しかし、Ruby on Railsなどの多くのWebフレームワークは、ブラウザがこれらの操作のリクエストを<em>送信しているかのように見せかける</em>技術 (偽装) を駆使して、PATCHとDELETEという操作を実現しています。</p>
 
@@ -482,9 +482,9 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p><em>Railsチュートリアル</em> では、一字一句間違えることなく最初から正確に実装するのではなく、アプリケーションの振る舞いをテストしながら実装する直観的な手法を採用しています。この開発手法は、テスト駆動開発 (Test-Driven Develpment, TDD) から派生した振舞駆動開発 (Behavior-Driven Development, BDD) として知られています。本書でこれから頻繁に使うツールは、<em>結合テスト (integration test) </em>と<em>単体テスト (unit test) </em>の2つです。結合テストについてはこの節から、単体テストについては<a class="ref" href="./modeling-users.html#top">第6章</a>から解説していきます。結合テスト (RSpec では <em>リクエストspec</em> と呼んでいます) は、ユーザーがアプリケーションを使う際の一連のアクションをシミュレーションします。結合テストは、アプリケーションの各ページが正常に動作するかどうかをテストしてくれる強力なツールです。手動でブラウザを操作してテストする必要がなくなり、Capybaraを併用すれば自然言語 (英語) に近い文法でテストを記述する事もできます (Capybara以外にも、Cucumberという振舞駆動開発用ツールが有名です。詳細については<a class="ref" href="./sign-in-sign-out.html#sec-cucumber">8.3</a>で紹介します)。</p>
 
-<p>テスト駆動開発の定義とは、アプリケーションを開発するときに<em>最初に</em>テストを作成し、次にコードを作成することです。この開発手法に慣れるまでには多少時間がかかるかもしれませんが、一度慣れてしまえば大きなメリットを得られます。<em>失敗する</em>テストを最初に書き、テストにパスするコードを次に実装することで、しかるべき振る舞いがテストによって正しく検証されている、という自信が付きます。さらに、この「失敗-実装-成功」という開発サイクルは、「<a href="http://en.wikipedia.org/wiki/Flow_(psychology)">フロー体験</a>」を誘発します。フローに入ることで、コーディングが楽しくなり、開発の生産性も向上します。また、テストはアプリケーションのコードに対して<em>クライアント</em>として振る舞うので、ソフトウェア設計の改良につながることも多くなるでしょう。</p>
+<p>テスト駆動開発の定義とは、アプリケーションを開発するときに<em>最初に</em>テストを作成し、次にコードを作成することです。この開発手法に慣れるまでには多少時間がかかるかもしれませんが、一度慣れてしまえば大きなメリットを得られます。<em>失敗する</em>テストを最初に書き、テストにパスするコードを次に実装することで、しかるべき振る舞いがテストによって正しく検証されている、という自信が付きます。さらに、この「失敗-実装-成功」という開発サイクルは、「<a href="http://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AD%E3%83%BC_(%E5%BF%83%E7%90%86%E5%AD%A6)">フロー体験</a>」を誘発します。フローに入ることで、コーディングが楽しくなり、開発の生産性も向上します。また、テストはアプリケーションのコードに対して<em>クライアント</em>として振る舞うので、ソフトウェア設計の改良につながることも多くなるでしょう。</p>
 
-<p>ただし、テスト駆動開発がどんな仕事に対しても常に正しい手法であるとは限りません。このことは十分に理解しておいてください。「最初にテストを書くべきである」、「テストはひとつひとつの機能を完全にカバーするべきである」、「すべての箇所をテストすべきである」などのような教条的な主張を正当化できる理由はどこにもありません。たとえば、与えられた課題の解決法に今ひとつ確信が持てないときは、(テストを書かずに) まず試しにアプリケーションコードだけを書いてみて、どんな解決方法があるのか模索してみる方が良い結果を得られることもあります (<a href="http://en.wikipedia.org/wiki/Extreme_Programming">エクストリーム・プログラミング (Extreme Programming)</a> という開発手法では、この模索段階を<em>スパイク (spike) </em>と呼んでいます)。そして解決策が明確になった段階で、テスト駆動開発でコードを清書するという方法もありえます。</p>
+<p>ただし、テスト駆動開発がどんな仕事に対しても常に正しい手法であるとは限りません。このことは十分に理解しておいてください。「最初にテストを書くべきである」、「テストはひとつひとつの機能を完全にカバーするべきである」、「すべての箇所をテストすべきである」などのような教条的な主張を正当化できる理由はどこにもありません。たとえば、与えられた課題の解決法に今ひとつ確信が持てないときは、(テストを書かずに) まず試しにアプリケーションコードだけを書いてみて、どんな解決方法があるのか模索してみる方が良い結果を得られることもあります (<a href="http://ja.wikipedia.org/wiki/%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%BB%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0">エクストリーム・プログラミング (Extreme Programming)</a> という開発手法では、この模索段階を<em>スパイク (spike) </em>と呼んでいます)。そして解決策が明確になった段階で、テスト駆動開発でコードを清書するという方法もありえます。</p>
 
 <p>この節では、RSpec gemによって提供される<code>rspec</code>コマンドを使ってテストを実行します。この節は素直なつくりになっていますが、物足りないと思う方もいるかもしれません。上級開発者であれば、先に<a class="ref" href="./static-pages.html#sec-advanced_setup">3.6</a>を読んでシステム設定を完了しておくことをお勧めします。</p>
 
@@ -1345,7 +1345,7 @@ Capybara DSLをRSpecヘルパーファイルに追加する。<br />
 </div>
 
 
-<p>これらのコードは、スタイルシート、JavaScript、<code>csrf_meta_tags</code>メソッドをそれぞれページにインクルードするためのものです。スタイルシートとJavaScriptは、Asset Pipeline (<a class="ref" href="./filling-in-the-layout.html#sec-the_asset_pipeline">5.2.1</a>) の一部です。csrf_meta_tagsは、Web攻撃手法のひとつである<a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">クロスサイトリクエストフォージェリー</a> (cross-site request forgery: CSRF)を防ぐために使われるRailsのメソッドです。</p>
+<p>これらのコードは、スタイルシート、JavaScript、<code>csrf_meta_tags</code>メソッドをそれぞれページにインクルードするためのものです。スタイルシートとJavaScriptは、Asset Pipeline (<a class="ref" href="./filling-in-the-layout.html#sec-the_asset_pipeline">5.2.1</a>) の一部です。csrf_meta_tagsは、Web攻撃手法のひとつである<a href="http://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%B5%E3%82%A4%E3%83%88%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%AA">クロスサイトリクエストフォージェリー</a> (cross-site request forgery: CSRF)を防ぐために使われるRailsのメソッドです。</p>
 
 <p>もちろん、<a class="ref" href="./static-pages.html#code-home_view_erb_title">リスト3.23</a>、<a class="ref" href="./static-pages.html#code-help_view_erb_title">リスト3.24</a>、 <a class="ref" href="./static-pages.html#code-about_view_erb_title">リスト3.25</a>のビューには、レイアウトと重複するHTMLがまだ残っているので、それらを削除して、内部のコンテンツだけ残します。これにより、 <a class="ref" href="./static-pages.html#code-home_view_interior">リスト3.27</a>、<a class="ref" href="./static-pages.html#code-help_view_interior">リスト3.28</a>、<a class="ref" href="./static-pages.html#code-about_view_interior">リスト 3.29</a>にそれぞれ示したように、ビューのコードが美しく簡潔なものになります。</p>
 
@@ -2155,7 +2155,7 @@ bundler_stubs/
 </a><a class="next_page" href="./rails-flavored-ruby.html#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-3_1">Capybaraは<em>Webrat</em>の後続プロジェクトであり、世界<a href="http://en.wikipedia.org/wiki/Capybara">最大の齧歯類</a>が名前の由来です。<a class="arrow" href="./static-pages.html#fnref-3_1">↑</a></li>
+<li id="fn-3_1">Capybaraは<em>Webrat</em>の後続プロジェクトであり、世界<a href="http://ja.wikipedia.org/wiki/%E3%82%AB%E3%83%94%E3%83%90%E3%83%A9">最大の齧歯類</a>が名前の由来です。<a class="arrow" href="./static-pages.html#fnref-3_1">↑</a></li>
 <li id="fn-3_2">なお、<code>install</code>は省略可能です。実は、<code>bundle</code>コマンドは<code>bundle install</code>のエイリアスでもあります。<a class="arrow" href="./static-pages.html#fnref-3_2">↑</a></li>
 <li id="fn-3_3">システムによっては、<a class="ref" href="./beginning.html#code-gitignore">リスト1.7</a>の.gitignoreを参考にして、さらに便利な設定にすることもできます。<a class="arrow" href="./static-pages.html#fnref-3_3">↑</a></li>
 <li id="fn-3_4">https://github.com/railstutorial/sample_app_rails_4 <a class="arrow" href="./static-pages.html#fnref-3_4">↑</a></li>
@@ -2167,7 +2167,7 @@ bundler_stubs/
 <li id="fn-3_10">Railsでの開発経験者であれば、この時点で<code>content_for</code>の使用を検討すると思いますが、残念ながらAsset Pipelineと併用すると正常に動作しないことがあります。<code>provide</code>関数はcontent_forの代替です。<a class="arrow" href="./static-pages.html#fnref-3_10">↑</a></li>
 <li id="fn-3_11">Rubyを勉強したことのある方であれば、Railsはブロックの内容を<em>yield</em>していると推測することでしょう。そして、その推測はおそらく正しいでしょう。しかし、Rails開発のためにこれらの詳細を知る必要はありません。<a class="arrow" href="./static-pages.html#fnref-3_11">↑</a></li>
 <li id="fn-3_12">http://rvm.io/integration/bundler/ <a class="arrow" href="./static-pages.html#fnref-3_12">↑</a></li>
-<li id="fn-3_13"><em>spork</em>はspoon-forkを組み合わせた造語です。このプロジェクト名は、<a href="http://en.wikipedia.org/wiki/POSIX">POSIX</a>の<a href="http://en.wikipedia.org/wiki/Fork_(software_development)">fork</a>におけるSporkの用法をもじったものです。<a class="arrow" href="./static-pages.html#fnref-3_13">↑</a></li>
+<li id="fn-3_13"><em>spork</em>はspoon-forkを組み合わせた造語です。このプロジェクト名は、<a href="http://ja.wikipedia.org/wiki/POSIX">POSIX</a>の<a href="http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF_(%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E9%96%8B%E7%99%BA)">fork</a>におけるSporkの用法をもじったものです。<a class="arrow" href="./static-pages.html#fnref-3_13">↑</a></li>
 <li id="fn-3_14">http://railstutorial.jp/screencasts <a class="arrow" href="./static-pages.html#fnref-3_14">↑</a></li>
 <li id="fn-3_15">https://github.com/maltize/sublime-text-2-ruby-tests <a class="arrow" href="./static-pages.html#fnref-3_15">↑</a></li>
 <li id="fn-3_16">https://github.com/mhartl/rails_tutorial_sublime_text <a class="arrow" href="./static-pages.html#fnref-3_16">↑</a></li>
