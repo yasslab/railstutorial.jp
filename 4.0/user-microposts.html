@@ -114,7 +114,7 @@
 <p>Micropost マイグレーションを実行し、テストデータベースを準備することで、これらのテストをパスさせることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
-<span class="gp">$</span> bundle <span class="nb">exec </span>rake <span class="nb">test</span>:prepare
+<span class="gp">$</span> bundle <span class="nb">exec </span>rake db:test:prepare
 </pre></div>
 </div>
 
@@ -1002,7 +1002,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:reset
 <span class="gp">$</span> bundle <span class="nb">exec </span>rake db:populate
-<span class="gp">$</span> bundle <span class="nb">exec </span>rake <span class="nb">test</span>:prepare
+<span class="gp">$</span> bundle <span class="nb">exec </span>rake db:test:prepare
 </pre></div>
 </div>
 

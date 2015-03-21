@@ -469,7 +469,7 @@
 <p>上のコードでは<code>pending</code>メソッドだけが置かれており、何か意味のあるコードでspecを埋めるように促しています。このコードの効果は、空のテスト用データベースを用意してUserモデルのspecを実行することで確認できます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
-<span class="gp">$</span> bundle <span class="nb">exec </span>rake db:<span class="nb">test</span>:prepare
+<span class="gp">$</span> bundle <span class="nb">exec </span>rake db:test:prepare
 <span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/models/user_spec.rb
 <span class="go">*</span>
 
@@ -489,7 +489,7 @@
 
 <p>環境を整えるためにテスト環境用データベースを作成するコマンドを実行するのはこれが初めてです。</p>
 
-<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:<span class="nb">test</span>:prepare
+<div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:test:prepare
 </pre></div>
 </div>
 
@@ -1289,7 +1289,7 @@ add_password_digest_to_users password_digest:string
 <p>以下のように開発データベースをマイグレーションしてテストデータベースを準備することで、<a class="ref" href="./modeling-users.html#code-respond_to_password_digest">リスト6.22</a>の失敗するテストをパスすることができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
-<span class="gp">$</span> bundle <span class="nb">exec </span>rake db:<span class="nb">test</span>:prepare
+<span class="gp">$</span> bundle <span class="nb">exec </span>rake db:test:prepare
 <span class="gp">$</span> bundle <span class="nb">exec </span>rspec spec/
 </pre></div>
 </div>

@@ -634,7 +634,7 @@
 </div>
 
 
-<p>失敗するテストがパスするようになるために、<code>flash</code>の代わりに<code>flash.now</code>を使用します。これもページでフラッシュメッセージを表示するために特に設計されたメソッドですが、<code>flash</code>の場合とは異なり、他のリクエストが発生したらすぐにメッセージを消します。正しいアプリケーションコードを<a class="ref" href="./sign-in-sign-out.html#code-correct_signin_failure">リスト8.12</a>に示します。</p>
+<p>失敗するテストがパスするようになるために、<code>flash</code>の代わりに<code>flash.now</code>を使用します。これもフラッシュメッセージをページに表示するために設計されたメソッドですが、<code>flash</code>の場合とは異なり、他のリクエストが発生したらすぐにメッセージを消します。正しいアプリケーションコードを<a class="ref" href="./sign-in-sign-out.html#code-correct_signin_failure">リスト8.12</a>に示します。</p>
 
 <div class="label" id="code-correct_signin_failure"></div>
 
@@ -812,7 +812,7 @@
 <p>次に、いつものように開発データベースとテストデータベースを更新します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
-<span class="gp">$</span> bundle <span class="nb">exec </span>rake <span class="nb">test</span>:prepare
+<span class="gp">$</span> bundle <span class="nb">exec </span>rake db:test:prepare
 </pre></div>
 </div>
 
@@ -992,7 +992,7 @@
 </div></div>
 
 
-<p>ここでは以下の手順で進めます。1) トークンを新規作成する。2) 暗号化されていないトークンをブラウザのcookiesに保存する。3) 暗号化したトークンをデータベースに保存する。4) 与えられたユーザーを現在のユーザーに設定する (<a class="ref" href="./sign-in-sign-out.html#sec-current_user">8.2.3</a>)。上のコードで、<code>update_attribute</code>を使用してトークンを保存している点に注目してください。<a class="ref" href="./modeling-users.html#sec-updating_user_objects">6.1.5</a>でも簡単に説明しましたが、このメソッドを使用すれば検証をバイパスして単一の属性を更新することができます。ページの移動ではユーザーのパスワードやパスワード確認は与えられないので、このメソッドを使用する必要があります。</p>
+<p>ここでは以下の手順で進めます。1) トークンを新規作成する。2) 暗号化されていないトークンをブラウザのcookiesに保存する。3) 暗号化したトークンをデータベースに保存する。4) 与えられたユーザーを現在のユーザーに設定する (<a class="ref" href="./sign-in-sign-out.html#sec-current_user">8.2.3</a>)。上のコードで、<code>update_attribute</code>を使用してトークンを保存している点に注目してください。<a class="ref" href="./modeling-users.html#sec-updating_user_objects">6.1.5</a>でも簡単に説明しましたが、このメソッドを使用すれば検証をすり抜けて単一の属性を更新することができます。ページの移動ではユーザーのパスワードやパスワード確認は与えられないので、このメソッドを使用する必要があります。</p>
 
 <p><a class="ref" href="./sign-in-sign-out.html#code-sign_in_function">リスト8.19</a>ではRailsが提供する<code>cookies</code>ユーティリティも使用しています。これを使用することで、ブラウザのcookiesをハッシュのように扱うことができます。cookiesの各要素は、それ自体が2つの要素 (<code>value</code>とオプションの<code>expires</code>日時) のハッシュになっています。たとえば以下のように、cookiesに20年後に期限切れになる記憶トークンに等しい値を保存することで、ユーザーのサインインを実装できます。</p>
 

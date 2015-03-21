@@ -162,7 +162,7 @@
 <p><code>relationships</code>テーブルを作成するために、いつものようにデータベースのマイグレーションを行なってテストデータベースを準備しましょう。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:migrate
-<span class="gp">$</span> bundle <span class="nb">exec </span>rake <span class="nb">test</span>:prepare
+<span class="gp">$</span> bundle <span class="nb">exec </span>rake db:test:prepare
 </pre></div>
 </div>
 
@@ -802,7 +802,7 @@
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> bundle <span class="nb">exec </span>rake db:reset
 <span class="gp">$</span> bundle <span class="nb">exec </span>rake db:populate
-<span class="gp">$</span> bundle <span class="nb">exec </span>rake <span class="nb">test</span>:prepare
+<span class="gp">$</span> bundle <span class="nb">exec </span>rake db:test:prepare
 </pre></div>
 </div>
 
