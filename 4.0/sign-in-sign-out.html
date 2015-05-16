@@ -34,7 +34,7 @@
 <h2><a id="sec-8_1" href="./sign-in-sign-out.html#sec-signin_failure" class="heading"><span class="number">8.1</span>セッション、サインインの失敗</a></h2>
 
 
-<p><a href="http://e-words.jp/w/E382BBE38383E382B7E383A7E383B3.html"><em>セッション</em></a>とは、2つのコンピュータの間、たとえばクライアント側のブラウザとサーバーで動作しているRailsとの間の、半永続的な接続のことです。ここでは、”サインイン” の共通パターンを実装するためにセッションを使用します。ここで、Webの世界にはセッションの振る舞いを表現するためのいくつかの異なったモデルがあります。ブラウザを閉じるとセッションを終了する「忘却モデル」、[パスワードを保存する] チェックボックスを使用してセッションを継続する「継続モデル」、ユーザーが明示的にサインアウトするまでセッションを継続する「永続モデル」などです<sup class="footnote" id="fnref-8_1"><a href="./sign-in-sign-out.html#fn-8_1">1</a></sup>。ここでは、最後の永続モデルを採用することにします。ユーザーがサインインすると、ユーザーが明示的にサインアウトするまでサインインの状態を永続させます (<a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>では、“永続” が実際にはどのぐらいの時間であるかをお見せします)。</p>
+<p><a href="http://e-words.jp/w/%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3.html"><em>セッション</em></a>とは、2つのコンピュータの間、たとえばクライアント側のブラウザとサーバーで動作しているRailsとの間の、半永続的な接続のことです。ここでは、”サインイン” の共通パターンを実装するためにセッションを使用します。ここで、Webの世界にはセッションの振る舞いを表現するためのいくつかの異なったモデルがあります。ブラウザを閉じるとセッションを終了する「忘却モデル」、[パスワードを保存する] チェックボックスを使用してセッションを継続する「継続モデル」、ユーザーが明示的にサインアウトするまでセッションを継続する「永続モデル」などです<sup class="footnote" id="fnref-8_1"><a href="./sign-in-sign-out.html#fn-8_1">1</a></sup>。ここでは、最後の永続モデルを採用することにします。ユーザーがサインインすると、ユーザーが明示的にサインアウトするまでサインインの状態を永続させます (<a class="ref" href="./sign-in-sign-out.html#sec-remember_me">8.2.1</a>では、“永続” が実際にはどのぐらいの時間であるかをお見せします)。</p>
 
 <p>セッションは、RESTfulなリソースとして作成しておくと便利です。たとえばサインインページを<em>new</em>セッションで、サインインを<em>create</em>セッションで、サインアウトを<em>destroy</em>セッションでそれぞれ扱います。Usersリソースのように (Usersモデルを経由して) データベースをバックエンドに持つリソースとは異なり、このSessionsリソースでは<a href="http://ja.wikipedia.org/wiki/HTTP_cookie"><em>cookies</em></a>を使用します。cookiesとは、ブラウザに保存される小さなテキストデータです。サインイン関連の作業の大半は、このcookiesをベースにして認証システムを構築することになります。この節と次の節では、セッション機能を作成する準備として、Sessionコントローラ、サインイン用のフォーム、そしてこれらに関連するコントローラのアクションを作成します。次の<a class="ref" href="./sign-in-sign-out.html#sec-signin_success">8.2</a>では、cookies管理のために必要なコードを追加して、ユーザーがサインインするための仕組みを完成させます。 </p>
 
@@ -735,7 +735,7 @@
 
 <p>デフォルトでは、すべてのヘルパーはビューで使用できますが、コントローラでは使用可能になっていません。Sessionsヘルパーはビューとコントローラの両方でメソッドが必要となるので、コントローラでは上のように明示的にインクルードする必要があります。</p>
 
-<p>HTTPは<a href="http://e-words.jp/w/E382B9E38386E383BCE38388E383ACE382B9.html"><em>ステートレス</em></a>なプロトコルであり、そのままでは状態が保存されないので、Webアプリケーションのサインインは、ページからページの移動を追跡するという方法で実装する必要があります。ユーザーのサインイン状態を保持するひとつの方法は、伝統的なRailsセッション (特殊な<code>session</code>関数を使用) を使って、ユーザーIDに等しい「<em>記憶トークン (remember token)</em>」を保持することです。</p>
+<p>HTTPは<a href="http://e-words.jp/w/%E3%82%B9%E3%83%86%E3%83%BC%E3%83%88%E3%83%AC%E3%82%B9.html"><em>ステートレス</em></a>なプロトコルであり、そのままでは状態が保存されないので、Webアプリケーションのサインインは、ページからページの移動を追跡するという方法で実装する必要があります。ユーザーのサインイン状態を保持するひとつの方法は、伝統的なRailsセッション (特殊な<code>session</code>関数を使用) を使って、ユーザーIDに等しい「<em>記憶トークン (remember token)</em>」を保持することです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="n">session</span><span class="o">[</span><span class="ss">:remember_token</span><span class="o">]</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">id</span>
 </pre></div>
@@ -826,7 +826,7 @@
 
 <p>ここで、記憶トークンに何を使用するかを決める必要があります。有力な候補としてさまざまなものが考えられますが、基本的には一意性を確保できる、長くてランダムな文字列でさえあればどんなものでも良いでしょう。Ruby標準ライブラリの<code>SecureRandom</code>モジュールにある<code>urlsafe_base64</code>メソッドならこの用途にぴったりです<sup class="footnote" id="fnref-8_3"><a href="./sign-in-sign-out.html#fn-8_3">3</a></sup>。このメソッドは、A–Z、a–z、0–9、“-”、“_”のいずれかの文字 (64種類) からなる長さ16のランダムな文字列を返します (そのため<a href="http://ja.wikipedia.org/wiki/Base64">base64</a>と呼ばれています)。生成された2つの記憶トークンが偶然一致 (衝突) する確率は、64のマイナス16乗、2のマイナス96乗 (10のマイナス29乗) にほぼ等しく、トークンが衝突することはまずありません。</p>
 
-<p>ここでのねらいは、ブラウザにこのbase64トークンを保存しておき、データベースにはトークンを暗号化したものを保存することです。そして、cookiesからこのトークンを読みだして暗号化し、データベース上にある暗号化された記憶トークンと一致するものがあるかどうかを検索することにより、ユーザーを自動的にサインインさせることができます。暗号化したトークンだけをデータベースに保存する理由は、万が一データベースが不正アクセスを受けるようなことがあっても、攻撃者が記憶トークンを使用してサインインできないようにするためです。記憶トークンをさらにセキュアにするためには、新しいセッションを作成するたびにトークンを更新するのがよい方法です。この方法なら、攻撃者が盗んだcookiesを使用して本物のユーザーになりすましてサインインしようとする (<a href="http://ja.wikipedia.org/wiki/%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%8F%E3%82%A4%E3%82%B8%E3%83%A3%E3%83%83%E3%82%AF">セッションハイジャック</a>) ことがあっても、ユーザーが次回サインインするときにはトークンが期限切れになります。(セッションハイジャックは、セキュリティ上の注意を呼びかけるためにこれを実演する<a href="http://codebutler.com/firesheep">Firesheep</a>アプリケーションによって広く知られるようになりました。Firesheepを使用すると、公共Wi-Fiネットワーク経由で接続したときに多くの有名Webサイトの記憶トークンが丸見えになっていることがわかります。この問題を解決するには、<a class="ref" href="./sign-up.html#sec-deploying_to_production_with_ssl">7.4.4</a>で説明したようにWebサイト全体をSSLで暗号化することです。)</p>
+<p>ここでのねらいは、ブラウザにこのbase64トークンを保存しておき、データベースにはトークンを暗号化したものを保存することです。そして、cookiesからこのトークンを読みだして暗号化し、データベース上にある暗号化された記憶トークンと一致するものがあるかどうかを検索することにより、ユーザーを自動的にサインインさせることができます。暗号化したトークンだけをデータベースに保存する理由は、万が一データベースが不正アクセスを受けるようなことがあっても、攻撃者が記憶トークンを使用してサインインできないようにするためです。記憶トークンをさらにセキュアにするためには、新しいセッションを作成するたびにトークンを更新するのがよい方法です。この方法なら、攻撃者が盗んだcookiesを使用して本物のユーザーになりすましてサインインしようとする (<a href="http://ja.wikipedia.org/wiki/%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%8F%E3%82%A4%E3%82%B8%E3%83%A3%E3%83%83%E3%82%AF">セッションハイジャック</a>) ことがあっても、ユーザーが次回サインインするときにはトークンが期限切れになります。(セッションハイジャックは、セキュリティ上の注意を呼びかけるためにこれを実演する<a href="http://codebutler.com/firesheep/">Firesheep</a>アプリケーションによって広く知られるようになりました。Firesheepを使用すると、公共Wi-Fiネットワーク経由で接続したときに多くの有名Webサイトの記憶トークンが丸見えになっていることがわかります。この問題を解決するには、<a class="ref" href="./sign-up.html#sec-deploying_to_production_with_ssl">7.4.4</a>で説明したようにWebサイト全体をSSLで暗号化することです。)</p>
 
 <p>サンプルアプリケーションでは、新規作成されたユーザーをその場でサインインさせ、その副作用として記憶トークンがついでに作成されますが、この動作に依存すべきではありません。安全を確保するために、<em>すべての</em>ユーザーが必ず最初から有効な記憶トークンを持つようにする必要があります。これを確実に行うには、<em>コールバック</em>を使用して記憶トークンを生成します。このテクニックは、<a class="ref" href="./modeling-users.html#sec-uniqueness_validation">6.2.5</a>でemailの一意性の文脈で紹介しました。あのときは<code>before_save</code>というコールバックを使用しましたが、ここではそれによく似た<code>before_create</code>というコールバックを使用して、ユーザー新規作成時に記憶トークンを設定することにします<sup class="footnote" id="fnref-8_4"><a href="./sign-in-sign-out.html#fn-8_4">4</a></sup>。</p>
 
@@ -1333,7 +1333,7 @@
 
 <p>Railsでは、このユーザーへの直接リンクが許されるので、この場合<code>current_user</code>は<code>user_path(current_user)</code>に自動的に変換されます。</p>
 
-<p>新しいリンクをレイアウトに追加するときに、Bootstrapの機能を使用してドロップダウンメニューを実現しましょう。詳細については「<a href="http://twitter.github.com/bootstrap/components.html">Bootstrapコンポーネント</a> (英語)」を参照してください。完全なコードを<a class="ref" href="./sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>に示します。このコードでは、Bootstrapのドロップダウンメニューに関連するCSSのidとクラスが与えられていることに注目してください。</p>
+<p>新しいリンクをレイアウトに追加するときに、Bootstrapの機能を使用してドロップダウンメニューを実現しましょう。詳細については「<a href="http://getbootstrap.com/2.3.2/components.html">Bootstrapコンポーネント</a> (英語)」を参照してください。完全なコードを<a class="ref" href="./sign-in-sign-out.html#code-layout_signin_signout_links">リスト8.24</a>に示します。このコードでは、Bootstrapのドロップダウンメニューに関連するCSSのidとクラスが与えられていることに注目してください。</p>
 
 <div class="label" id="code-layout_signin_signout_links"></div>
 
@@ -1591,7 +1591,7 @@
 <h2><a id="sec-8_3" href="./sign-in-sign-out.html#sec-cucumber" class="heading"><span class="number">8.3</span>Cucumberの紹介 (オプション)</a></h2>
 
 
-<p>サンプルアプリケーションの認証システムの基礎部分が無事完成したので、この機会に<a href="http://cukes.info">Cucumber</a>を使用したサインインのテスト方法をご紹介します。Cucumberは振舞駆動開発用のツールとして有名で、Rubyコミュニティに多くの愛用者がいます。この節の内容は必須ではありませんので、スキップしても問題ありません。</p>
+<p>サンプルアプリケーションの認証システムの基礎部分が無事完成したので、この機会に<a href="https://cucumber.io">Cucumber</a>を使用したサインインのテスト方法をご紹介します。Cucumberは振舞駆動開発用のツールとして有名で、Rubyコミュニティに多くの愛用者がいます。この節の内容は必須ではありませんので、スキップしても問題ありません。</p>
 
 <p>Cucumberを使用すると、アプリケーションの振る舞いをテキストベースの「<em>ストーリー</em>」で定義することができます。多くのRailsプログラマーは、Cucumberは顧客と共同作業するときに便利であることを知っています。Cucumberのストーリーは、専門知識のない人でも読むことができ、ストーリーを顧客と共有したり、場合によっては顧客がストーリーを作成することすらできるためです。もちろん、テスティングのフレームワークが純粋なRubyでないという点は残念でもあり、著者にとってはテキストベースのストーリーはいささか冗長な面もあると思われます。それでもCucumberはRubyのテスティングツールキットとして確固たる地位を占めており、著者としては低レベルの実装を気にすることなく高度な振る舞いを記述できる点が特に気に入っています。</p>
 
@@ -2027,7 +2027,7 @@
 </div><div class="footnotes">
 <ol>
 <li id="fn-8_1">他に、一定時間が経過するとセッションを期限切れにするモデルもあります。このモデルは、インターネットバンキングや金融取引口座などの重要な情報を扱うWebサイトに向いています。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_1">↑</a></li>
-<li id="fn-8_2">画像は<a href="http://www.flickr.com/photos/hermanusbackpackers/3343254977/">http://www.flickr.com/photos/hermanusbackpackers/3343254977/</a>からの引用です。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_2">↑</a></li>
+<li id="fn-8_2">画像は<a href="https://www.flickr.com/photos/hermanusbackpackers/3343254977/">https://www.flickr.com/photos/hermanusbackpackers/3343254977/</a>からの引用です。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_2">↑</a></li>
 <li id="fn-8_3">このメソッドは、RailsCastの「<a href="http://railscasts.com/episodes/274-remember-me-reset-password">remember me</a>」の記事を元に選びました。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_3">↑</a></li>
 <li id="fn-8_4">Active Recordでサポートされるコールバックの種類の詳細については、Railsガイドの「<a href="http://railsguides.jp/active_record_callbacks.html">Active Record コールバック</a>」を参照してください。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_4">↑</a></li>
 <li id="fn-8_5">実は、この2つは完全に同等です。<code>attr_accessor</code>は、単にゲッターメソッドやセッターメソッドを自動的に作成する便利な方法でしかありません。<a class="arrow" href="./sign-in-sign-out.html#fnref-8_5">↑</a></li>

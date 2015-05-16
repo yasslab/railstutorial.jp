@@ -24,13 +24,13 @@
 
 <p>第3章以降では、１つの大きな<em>サンプルアプリケーション</em> (<code>sample_app</code>) を開発していきます。また、コードを自動生成するのではなく、ゼロからコードを書いていきます。加えて、サンプルアプリケーションからは、TDD (<em>テスト駆動開発</em>) という開発手法で開発を進めていきます。具体的には、<a class="ref" href="./static-pages.html#top">第3章</a>では、静的ページと若干の動的コンテンツを追加するところから始めます。その後、<a class="ref" href="./rails-flavored-ruby.html#top">第4章</a>では、少し回り道をし、Rails を動かしている Ruby 言語について簡単に学びます。<a class="ref" href="./filling-in-the-layout.html#top">第5章</a>から<a class="ref" href="./updating-showing-and-deleting-users.html#top">第9章</a>では、レイアウトやユーザーのデータモデル、そして、ユーザー登録・認証システムを作っていき、サンプルアプリケーションの基本的な部分を実装します。最後に、<a class="ref" href="./user-microposts.html#top">第10章</a>と<a class="ref" href="./following-users.html#top">第11章</a>では、マイクロブログ機能とソーシャル機能を実装し、実際に動作するサイトに仕上げます。</p>
 
-<p>最終的なサンプルアプリケーションは、(偶然にも、かつては Rails で実装されていた) <a href="http://twitter.com/">某ソーシャルマイクロブログサイト</a>にとてもよく似た仕上がりになります。なお、<em>Rails チュートリアル</em>では、サンプルアプリケーションの開発を中心にして話が進められていきますが、(サンプルアプリケーションに特化した技術ではなく) Web アプリケーションの開発で必要になる一般的な技術を重点的に解説していきます。このため、本書を読み終わる事には、あなたが今後どんな Web アプリケーションを開発したいのかに関わらず、どんな開発にも通用する基礎的な力を身につけることができます。</p>
+<p>最終的なサンプルアプリケーションは、(偶然にも、かつては Rails で実装されていた) <a href="https://twitter.com/">某ソーシャルマイクロブログサイト</a>にとてもよく似た仕上がりになります。なお、<em>Rails チュートリアル</em>では、サンプルアプリケーションの開発を中心にして話が進められていきますが、(サンプルアプリケーションに特化した技術ではなく) Web アプリケーションの開発で必要になる一般的な技術を重点的に解説していきます。このため、本書を読み終わる事には、あなたが今後どんな Web アプリケーションを開発したいのかに関わらず、どんな開発にも通用する基礎的な力を身につけることができます。</p>
 
 <div class="label" id="sidebar-scaffolding"></div>
 
 
 <div class="sidebar"><span class="title"><span class="header">コラム 1.1</span></span><span class="title"><span class="description">早くて簡単な Scaffold の甘い誘惑</span></span>
-<p>Rails の作者 David Heinemer Hansson 氏による有名な動画「<a href="http://www.youtube.com/watch?v=Gzj723LkRJY">15分で作るブログ</a>」を見て頂ければわかるように、Rails は初期の頃から、明快で刺激的なフレームワークです。この動画や、これに続く関連動画を見ることは、Rails のパワーを知る最適な方法の１つなので、ぜひ一度視聴する事をお勧めします。ただし、気をつけなくてはならない点が１つあります。それは、これらの動画では「15分でブログを作る」といった離れ業を、<em>scaffold</em> という機能を利用して成し遂げている点です。このため、15分で作られた機能は、Railsの<code>generate</code>コマンドによって (まるで魔法のように) <em>自動生成されたコード</em>に強く依存しています。</p>
+<p>Rails の作者 David Heinemer Hansson 氏による有名な動画「<a href="https://www.youtube.com/watch?v=Gzj723LkRJY">15分で作るブログ</a>」を見て頂ければわかるように、Rails は初期の頃から、明快で刺激的なフレームワークです。この動画や、これに続く関連動画を見ることは、Rails のパワーを知る最適な方法の１つなので、ぜひ一度視聴する事をお勧めします。ただし、気をつけなくてはならない点が１つあります。それは、これらの動画では「15分でブログを作る」といった離れ業を、<em>scaffold</em> という機能を利用して成し遂げている点です。このため、15分で作られた機能は、Railsの<code>generate</code>コマンドによって (まるで魔法のように) <em>自動生成されたコード</em>に強く依存しています。</p>
 
 <p>実際、Ruby on Rails のチュートリアルを書いているとき、<a href="http://en.wikipedia.org/wiki/Dark_side_(Star_Wars)">あまりにも素早く簡単にコードが生成できる</a> (訳注: 原文の「quicker, easier, more seductive」は、スターウォーズ エピソードV のヨーダの台詞の引用) scaffold の機能を、つい使ってしまいたくなりました。しかし、自動生成されたコードは初心者にとってはあまりに量が多く、複雑です。さらに、自動生成されたコードが運よく動いたとしても、そのコードが正常に動いている理由を理解するのはかなり困難です。scaffold を使ってコードを自動生成することばかりに頼っていると、コードを自動生成する達人にはなれるかもしれませんが、Rails に関する実践的な知識はほとんど身に付きません。</p>
 
@@ -46,11 +46,11 @@
 <h2><a id="sec-1_1" href="./beginning.html#sec-introduction" class="heading"><span class="number">1.1</span>はじめに</a></h2>
 
 
-<p>Ruby on Rails は2004年にデビューして以来、急速に成長していきました。現在では、動的な Web アプリケーションを開発するフレームワークとして、最も有力かつ人気のあるフレームワークの１つになっています。小さなスタートアップから巨大企業まで、多くの組織が Rails を使っています。例えば、<a href="http://37signals.com/">37signals</a> や <a href="http://github.com/">GitHub</a>、<a href="http://shopify.com/">Shopify</a>、<a href="http://scribd.com/">Scribd</a>、<a href="http://twitter.com/">Twitter</a>、<a href="http://livingsocial.com/">Disney</a>、<a href="http://groupon.com/">Hulu</a>、<a href="http://hulu.com/">Yellow Pages</a> など、<a href="http://yellowpages.com/">Ruby on Rails を使っているサイトのリスト</a>は増える一方です。他にも、<a href="http://entp.com/">ENTP</a> や <a href="http://thoughtbot.com/">thoughtbot</a>、<a href="http://pivotallabs.com/">Pivotal Labs</a>、<a href="http://hashrocket.com/">Hashrocket</a> といった、Rails を専門的に扱う会社も数多くあります。また、Rails を専門にしたフリーランスのコンサルタントやインストラクター、開発者については、数え切るのが難しいほどです。</p>
+<p>Ruby on Rails は2004年にデビューして以来、急速に成長していきました。現在では、動的な Web アプリケーションを開発するフレームワークとして、最も有力かつ人気のあるフレームワークの１つになっています。小さなスタートアップから巨大企業まで、多くの組織が Rails を使っています。例えば、<a href="http://37signals.com/">37signals</a> や <a href="https://github.com/">GitHub</a>、<a href="http://www.shopify.com/">Shopify</a>、<a href="https://www.scribd.com/">Scribd</a>、<a href="https://twitter.com/">Twitter</a>、<a href="https://www.livingsocial.com/">LivingSocial</a>、<a href="https://www.groupon.com/">Groupon</a>、<a href="http://www.hulu.com/">Hulu</a>、<a href="http://www.yellowpages.com/">Yellow Pages</a> など、Ruby on Rails を使っているサイトのリストは増える一方です。他にも、<a href="http://entp.com/">ENTP</a> や <a href="https://thoughtbot.com/">thoughtbot</a>、<a href="http://pivotal.io/labs/">Pivotal Labs</a>、<a href="http://hashrocket.com/">Hashrocket</a> といった、Rails を専門的に扱う会社も数多くあります。また、Rails を専門にしたフリーランスのコンサルタントやインストラクター、開発者については、数え切るのが難しいほどです。</p>
 
-<p>どうして Rails はこれだけ多くに人達に使われているのでしょうか？その理由の１つは、Rails が100%オープンソースで、制限の緩い <a href="http://www.opensource.org/licenses/mit-license.php">MIT ライセンス</a>で公開されているからです。これにより、Rails をダウンロードしたり使ったりしても、一切コストがかかりません。また、Rails が簡潔で美しく設計されていることも、Rails の成功を支えている秘訣の１つです。これは、Rails の背後で動いている <a href="http://ruby-lang.org/">Ruby</a> 言語の柔軟性によって実現されています。具体的には、Web アプリケーションの作成に特化した <a href="http://ja.wikipedia.org/wiki/%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%9B%BA%E6%9C%89%E8%A8%80%E8%AA%9E">DSL (ドメイン固有言語)</a> を Ruby 言語で実装しているため、HTML やデータモデルの生成、URL のルーティングなど、Web プログラミングで必要な多くの作業が簡単になります。結果として、Rails を使ってアプリケーションを開発すると、コードが簡潔になり、読みやすくなります。</p>
+<p>どうして Rails はこれだけ多くに人達に使われているのでしょうか？その理由の１つは、Rails が100%オープンソースで、制限の緩い <a href="http://opensource.org/licenses/mit-license.php">MIT ライセンス</a>で公開されているからです。これにより、Rails をダウンロードしたり使ったりしても、一切コストがかかりません。また、Rails が簡潔で美しく設計されていることも、Rails の成功を支えている秘訣の１つです。これは、Rails の背後で動いている <a href="https://www.ruby-lang.org/">Ruby</a> 言語の柔軟性によって実現されています。具体的には、Web アプリケーションの作成に特化した <a href="http://ja.wikipedia.org/wiki/%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E5%9B%BA%E6%9C%89%E8%A8%80%E8%AA%9E">DSL (ドメイン固有言語)</a> を Ruby 言語で実装しているため、HTML やデータモデルの生成、URL のルーティングなど、Web プログラミングで必要な多くの作業が簡単になります。結果として、Rails を使ってアプリケーションを開発すると、コードが簡潔になり、読みやすくなります。</p>
 
-<p>さらに、Rails は、最新の Web テクノロジーやフレームワーク設計に素早く適応しています。例えば、Rails は、REST という設計思想の重要性をいち早く理解し、対応したフレームワークの１つです (RESTについて後で解説します)。また、他のフレームワークで成功した新しい技術があれば、Railsの創始者である <a href="http://loudthinking.com/">David Heinemeier Hansson</a> や <a href="http://rubyonrails.org/core">Rails のコアチーム</a>は、そのアイデアをためらうことなく取り入れています。最も印象深い例の１つは、恐らく、当時ライバルの関係にあった Merb と Rails との統合です。この統合の結果、Rails は、Merb のモジュール設計や安定した <a href="http://ja.wikipedia.org/wiki/Application_programming_interface">API</a>、そして、パフォーマンスの向上といった恩恵を受けることができました。</p>
+<p>さらに、Rails は、最新の Web テクノロジーやフレームワーク設計に素早く適応しています。例えば、Rails は、REST という設計思想の重要性をいち早く理解し、対応したフレームワークの１つです (RESTについて後で解説します)。また、他のフレームワークで成功した新しい技術があれば、Railsの創始者である <a href="http://david.heinemeierhansson.com/">David Heinemeier Hansson</a> や <a href="http://rubyonrails.org/core/">Rails のコアチーム</a>は、そのアイデアをためらうことなく取り入れています。最も印象深い例の１つは、恐らく、当時ライバルの関係にあった Merb と Rails との統合です。この統合の結果、Rails は、Merb のモジュール設計や安定した <a href="http://ja.wikipedia.org/wiki/Application_programming_interface">API</a>、そして、パフォーマンスの向上といった恩恵を受けることができました。</p>
 
 <p>最後に、Rails には、非常に熱心で多様なコミュニティがあります。具体的には、何百人ものオープンソース<a href="http://contributors.rubyonrails.org/">コントリビュータ</a>達や、多くの参加者で賑わう<a href="http://railsconf.com/">カンファレンス</a>、膨大な数の <a href="http://agilewebdevelopment.com/plugins">gem</a> (例えば、ページネーションや画像アップロードといった特定の問題を解決するための gem など) 、情報豊かなブログの数々、そして、掲示板や IRC の宝庫が、Rails コミュニティの中に存在しています。このような熱心で多様なコミュニティのおかげで、例えば、開発中に何らかのエラーに遭遇したとしても、エラー内容を Google で検索するだけで、関連するブログ記事や掲示板のスレッドを見つけることができます。</p>
 
@@ -85,8 +85,8 @@
 <ul>
 
 <li><a href="http://railscasts.com/">RailsCasts (英語)</a> (Ryan Bates) : 質の高い (ほぼ) 無料のスクリーンキャスト</li>
-<li><a href="http://peepcode.com/">PeepCode (英語)</a>: 質の高い商用のスクリーンキャスト</li>
-<li><a href="http://www.codeschool.com/">Code School (英語)</a>: プログラミングを対話的に学習できるコース</li>
+<li><a href="http://www.pluralsight.com/">Pluralsight (英語)</a>: 質の高い商用のスクリーンキャスト</li>
+<li><a href="https://www.codeschool.com/">Code School (英語)</a>: プログラミングを対話的に学習できるコース</li>
 <li><a href="http://railsguides.jp/">Rails ガイド</a>: トピック毎に分類された最新の Rails リファレンス</li>
 <li><a href="http://railscasts.com/">RailsCasts (英語)</a> (Ryan Bates): さっきも <a href="http://railscasts.com/">RailsCasts</a> を紹介しましたっけ？そのぐらい <a href="http://railscasts.com/"><em>RailsCasts</em></a> はお勧めです。</li>
 
@@ -99,7 +99,7 @@
 <h3><a id="sec-1_1_2" href="./beginning.html#sec-1_1_2" class="heading"><span class="number">1.1.2</span> Railsと「スケール」について</a></h3>
 
 
-<p>本節を続ける前に、一旦ここで、初期の頃から Rails フレームワークに対して指摘されていた「Rails はスケールできない」という主張について触れたいと思います。すなわち、「Rails では大量のトラフィックを捌くことができない」という主張です。この主張の一部には、間違った認識があります。それは、<a href="http://idleprocess.wordpress.com/2009/11/24/presentation-summary-high-performance-at-massive-scale-lessons-learned-at-facebook/">あなたが<em>Webサイト</em>をスケールさせるのであって、フレームワークがWebサイトをスケールさせるのではない</a>、ということです。Rails は素晴らしいフレームワークではありますが、しかし、ただのフレームワークでしかありません。したがって、本来のあるべき問いは「Rails で構築されたWebサイトはスケールできるのか？」となります。そして、今となっては、この主張の答えは明白です。なぜなら、世界で最もトラフィックの大きいWebサイトのいくつかは、Rails で構築されているからです。ただし、Webサイトをスケール<em>させる</em>ことは、Rails だけで出来ることではありません。Rails 以外の知識も必要になります。といっても、Hulu や Yellow Pages といった大量のトラフィックを捌いているWebアプリケーションも Rails で構築されているので、そこまで心配する必要はありません。少なくとも、<em>あなたの</em>アプリケーションが Hulu や Yellow Pages 並みに成長するまでの間は、「Rails だからスケールできない」ということにはならないでしょう。</p>
+<p>本節を続ける前に、一旦ここで、初期の頃から Rails フレームワークに対して指摘されていた「Rails はスケールできない」という主張について触れたいと思います。すなわち、「Rails では大量のトラフィックを捌くことができない」という主張です。この主張の一部には、間違った認識があります。それは、<a href="https://idleprocess.wordpress.com/2009/11/24/presentation-summary-high-performance-at-massive-scale-lessons-learned-at-facebook/">あなたが<em>Webサイト</em>をスケールさせるのであって、フレームワークがWebサイトをスケールさせるのではない</a>、ということです。Rails は素晴らしいフレームワークではありますが、しかし、ただのフレームワークでしかありません。したがって、本来のあるべき問いは「Rails で構築されたWebサイトはスケールできるのか？」となります。そして、今となっては、この主張の答えは明白です。なぜなら、世界で最もトラフィックの大きいWebサイトのいくつかは、Rails で構築されているからです。ただし、Webサイトをスケール<em>させる</em>ことは、Rails だけで出来ることではありません。Rails 以外の知識も必要になります。といっても、Hulu や Yellow Pages といった大量のトラフィックを捌いているWebアプリケーションも Rails で構築されているので、そこまで心配する必要はありません。少なくとも、<em>あなたの</em>アプリケーションが Hulu や Yellow Pages 並みに成長するまでの間は、「Rails だからスケールできない」ということにはならないでしょう。</p>
 
 <div class="label" id="sec-conventions"></div>
 
@@ -109,7 +109,7 @@
 
 <p>本書では、できるだけ分かりやすい取り決めを使っています。本項では、その中でも、分かりにくいかもしれない一部の取り決めについて説明します。</p>
 
-<p><a href="./book">HTML 版</a>、<a href="http://tatsu-zine.com/books/railstutorial">PDF 版</a>ともに、文中には内部リンク (<a class="ref" href="./beginning.html#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download">Ruby on Railsダウンロードページ</a>など) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="./beginning.html#fn-1_5">5</a></sup>。</p>
+<p><a href="./book">HTML 版</a>、<a href="http://tatsu-zine.com/books/railstutorial">PDF 版</a>ともに、文中には内部リンク (<a class="ref" href="./beginning.html#sec-up_and_running">1.2</a>など) と外部リンク (<a href="http://rubyonrails.org/download/">Ruby on Railsダウンロードページ</a>など) が多数含まれています<sup class="footnote" id="fnref-1_5"><a href="./beginning.html#fn-1_5">5</a></sup>。</p>
 
 <p>本書の出てくる例の多くは、コマンドライン (ターミナル) のコマンドを使っています。簡素化のため、コマンドラインを使った例では、次のような Unix スタイルのプロンプト (行の頭に &#39;$&#39; を表示するスタイル) を使っています。</p>
 
@@ -206,7 +206,7 @@
 <h4><a id="sec-1_2_1_1" href="./beginning.html#sec-1_2_1_1" class="heading">IDE</a></h4>
 
 
-<p>最も有名な Rails 用 IDE として、<a href="http://www.aptana.com/rails/">RadRails</a> と <a href="http://www.jetbrains.com/ruby/index.html">RubyMine</a> が挙げられます。中でも、RubyMine が良いという評判をよく聞きます。本書の読者の一人 (David Loeffler) は、<a href="https://github.com/perfectionist/sample_project/wiki">Rails チュートリアルで RubyMine を使用する方法</a><sup class="footnote" id="fnref-1_8"><a href="./beginning.html#fn-1_8">8</a></sup> というドキュメントをまとめてくれました。IDE での開発が好みという方は、先ほど挙げたリンクをチェックしてみて、自分のスタイルに合うかどうか試しに使ってみるとよいでしょう。</p>
+<p>最も有名な Rails 用 IDE として、<a href="http://www.aptana.com/products/radrails.html">RadRails</a> と <a href="http://www.jetbrains.com/ruby/index.html">RubyMine</a> が挙げられます。中でも、RubyMine が良いという評判をよく聞きます。本書の読者の一人 (David Loeffler) は、<a href="https://github.com/perfectionist/sample_project/wiki">Rails チュートリアルで RubyMine を使用する方法</a><sup class="footnote" id="fnref-1_8"><a href="./beginning.html#fn-1_8">8</a></sup> というドキュメントをまとめてくれました。IDE での開発が好みという方は、先ほど挙げたリンクをチェックしてみて、自分のスタイルに合うかどうか試しに使ってみるとよいでしょう。</p>
 
 <h4><a id="sec-1_2_1_2" href="./beginning.html#sec-1_2_1_2" class="heading">テキストエディタとコマンドライン</a></h4>
 
@@ -262,7 +262,7 @@
 <h4><a id="sec-1_2_2_1" href="./beginning.html#sec-rails_installer_windows" class="heading">Railsインストーラ (Windows)</a></h4>
 
 
-<p>最近までWindows上でのRailsのインストールは困難だったのですが、<a href="http://engineyard.com/">Engine Yard</a>の方々(特にDr. Nic WilliamsとWayne E. Seguin)のおかげで非常に簡単になりました。Windowsユーザーの方は<a href="http://railsinstaller.org/">Railsインストーラ</a>からインストーラをダウンロードしてください。exeファイルをダブルクリックし、指示に従ってGit、Ruby、RubyGems、そしてRails自身をインストールします (<a class="ref" href="./beginning.html#sec-install_git">1.2.2.2</a>、<a class="ref" href="./beginning.html#sec-install_ruby">1.2.2.3</a>、<a class="ref" href="./beginning.html#sec-install_rubygems">1.2.2.4</a>、<a class="ref" href="./beginning.html#sec-install_rails">1.2.2.5</a>はスキップしてください)。インストール完了後、<a class="ref" href="./beginning.html#sec-the_first_application">1.2.3</a>までスキップして最初のアプリケーション作成に取りかかってください。</p>
+<p>最近までWindows上でのRailsのインストールは困難だったのですが、<a href="https://www.engineyard.com/">Engine Yard</a>の方々(特にDr. Nic WilliamsとWayne E. Seguin)のおかげで非常に簡単になりました。Windowsユーザーの方は<a href="http://railsinstaller.org/">Railsインストーラ</a>からインストーラをダウンロードしてください。exeファイルをダブルクリックし、指示に従ってGit、Ruby、RubyGems、そしてRails自身をインストールします (<a class="ref" href="./beginning.html#sec-install_git">1.2.2.2</a>、<a class="ref" href="./beginning.html#sec-install_ruby">1.2.2.3</a>、<a class="ref" href="./beginning.html#sec-install_rubygems">1.2.2.4</a>、<a class="ref" href="./beginning.html#sec-install_rails">1.2.2.5</a>はスキップしてください)。インストール完了後、<a class="ref" href="./beginning.html#sec-the_first_application">1.2.3</a>までスキップして最初のアプリケーション作成に取りかかってください。</p>
 
 <p>注意: このRailsインストーラによってインストールされるRailsのバージョンは<a class="ref" href="./beginning.html#sec-install_rails">1.2.2.5</a>に記載のものと異なることがあります。その場合、互換性の問題が生じることもありえます。この問題を解決するために、Railsのバージョン番号順に並んだRubyインストーラのリストを作成してもらうようNicとWayneに働きかけています。</p>
 
@@ -290,9 +290,9 @@ ruby &quot;1.9.3&quot;</span>
 
 <p>バージョン情報を確認してください。Rails 3はRuby 1.8.7以上で動作しますが、1.9.2が最適です。このチュートリアルはバージョン1.9.2または1.9.3を使用していることを前提で進めていきますが、1.8.7でも問題はないはずです (ただし1つだけ文法の違いがあり、<a class="ref" href="./rails-flavored-ruby.html#top">第4章</a>で補足しています。また、出力に若干の違いが生じます)。</p>
 
-<p>OS X、またはLinuxを使う場合、<a href="http://rvm.io/">Ruby Version Manager (RVM)</a>を使用してRubyをインストールすることを強くお勧めします(訳注: 最近ではrbenvも有力です。rbenvのセットアップ方法については、こちらをご参照ください: <a href='https://gist.github.com/axross/8429061'>rbenvを使ったRailsチュートリアルの進め方</a>)。RVMを使うと、複数のRubyバージョンを共存させられるのでとても便利です。(Windows上で動作する同様のソフトに<a href="http://github.com/vertiginous/pik">Pik</a>があります。)同じマシン上で異なるバージョンのRubyやRailsを実行したい場合、これは特に重要です。RVMで問題が生じたときは、作者のWayne E. SeguinとRVMのIRCチャットのチャンネル (<a href="http://webchat.freenode.net/?channels=rvm">#rvm on freenode.net</a>)で連絡を取れることがあります<sup class="footnote" id="fnref-1_11"><a href="./beginning.html#fn-1_11">11</a></sup>。Linuxを使用している方には、Sudobitsブログの「<a href="http://blog.sudobits.com/2012/05/02/how-to-install-ruby-on-rails-in-ubuntu-12-04-lts/">UbuntuにRuby on Railsをインストールする方法</a>」が特にお勧めです。</p>
+<p>OS X、またはLinuxを使う場合、<a href="https://rvm.io/">Ruby Version Manager (RVM)</a>を使用してRubyをインストールすることを強くお勧めします(訳注: 最近ではrbenvも有力です。rbenvのセットアップ方法については、こちらをご参照ください: <a href='https://gist.github.com/axross/8429061'>rbenvを使ったRailsチュートリアルの進め方</a>)。RVMを使うと、複数のRubyバージョンを共存させられるのでとても便利です。(Windows上で動作する同様のソフトに<a href="https://github.com/vertiginous/pik">Pik</a>があります。)同じマシン上で異なるバージョンのRubyやRailsを実行したい場合、これは特に重要です。RVMで問題が生じたときは、作者のWayne E. SeguinとRVMのIRCチャットのチャンネル (<a href="http://webchat.freenode.net/?channels=rvm">#rvm on freenode.net</a>)で連絡を取れることがあります<sup class="footnote" id="fnref-1_11"><a href="./beginning.html#fn-1_11">11</a></sup>。Linuxを使用している方には、Sudobitsブログの「<a href="http://blog.sudobits.com/2012/05/02/how-to-install-ruby-on-rails-in-ubuntu-12-04-lts/">UbuntuにRuby on Railsをインストールする方法</a>」が特にお勧めです。</p>
 
-<p><a href="http://rvm.io/rvm/install/">RVMをインストール</a>後、以下を実行してRubyをインストールします<sup class="footnote" id="fnref-1_12"><a href="./beginning.html#fn-1_12">12</a></sup>。</p>
+<p><a href="https://rvm.io/rvm/install">RVMをインストール</a>後、以下を実行してRubyをインストールします<sup class="footnote" id="fnref-1_12"><a href="./beginning.html#fn-1_12">12</a></sup>。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm get head <span class="o">&amp;&amp;</span> rvm reload
 <span class="gp">$</span> rvm install 1.9.3
@@ -303,7 +303,7 @@ ruby &quot;1.9.3&quot;</span>
 
 <p>最初のコマンドはRVMの更新とリロードを行います。RVMは頻繁に更新されているので、RVM操作の際にはこれを行うようにしてください。次のコマンドはRuby 1.9.3をインストールします。システムによってはダウンロードとコンパイルに多少時間がかかることがありますので、なかなか終わらなくても心配せずに待ってください。</p>
 
-<p>OS Xユーザーの場合、<code>autoconf</code>の実行ファイルがないと問題が生じることがあります。この場合は<a href="http://mxcl.github.com/homebrew/">Homebrew</a><sup class="footnote" id="fnref-1_13"><a href="./beginning.html#fn-1_13">13</a></sup>というOS X用のパッケージ管理システムをインストールしてから以下を実行してください。</p>
+<p>OS Xユーザーの場合、<code>autoconf</code>の実行ファイルがないと問題が生じることがあります。この場合は<a href="http://brew.sh/">Homebrew</a><sup class="footnote" id="fnref-1_13"><a href="./beginning.html#fn-1_13">13</a></sup>というOS X用のパッケージ管理システムをインストールしてから以下を実行してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> brew install automake
 <span class="gp">$</span> rvm install 1.9.3
@@ -335,7 +335,7 @@ ruby &quot;1.9.3&quot;</span>
 </div>
 
 
-<p>このコマンドを実行すると、Ruby 1.9.3に関連付けて<code>rails3tutorial2ndEd</code>というgemsetを作成し (<tt class="verb">--create</tt>オプション)、このgemsetをただちに使用可能にします (<tt class="verb">use</tt>)とデフォルト指定用の(<tt class="verb">--default</tt>)。以後、<code>1.9.3@rails3tutorial2ndEd</code>というRubyとgemsetの組み合わせがすべてのターミナルウィンドウで使用可能になります。RVMにはgemset管理のためのコマンドが多数用意されています。詳細については<a href="http://rvm.io/gemsets/">http://rvm.beginrescueend.com/gemsets/</a>を参照してください。RVMがうまく動かない場合は以下を実行してヘルプを表示してください。</p>
+<p>このコマンドを実行すると、Ruby 1.9.3に関連付けて<code>rails3tutorial2ndEd</code>というgemsetを作成し (<tt class="verb">--create</tt>オプション)、このgemsetをただちに使用可能にします (<tt class="verb">use</tt>)とデフォルト指定用の(<tt class="verb">--default</tt>)。以後、<code>1.9.3@rails3tutorial2ndEd</code>というRubyとgemsetの組み合わせがすべてのターミナルウィンドウで使用可能になります。RVMにはgemset管理のためのコマンドが多数用意されています。詳細については<a href="https://rvm.io/gemsets">https://rvm.io/gemsets</a>を参照してください。RVMがうまく動かない場合は以下を実行してヘルプを表示してください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm --help
 <span class="gp">$</span> rvm gemset --help
@@ -349,7 +349,7 @@ ruby &quot;1.9.3&quot;</span>
 <h4><a id="sec-1_2_2_4" href="./beginning.html#sec-install_rubygems" class="heading">RubyGemsのインストール</a></h4>
 
 
-<p>RubyGemsはRubyのプロジェクトのためのパッケージマネージャであり、Rubyのパッケージ (<em>gem</em>) として利用できる多くの有用なライブラリがあります。Railsもgemとしてインストールします。Rubyがインストールされていれば、RubyGemsは簡単にインストールできます。<a href="http://rvm.io/rvm/install/">RVMをインストール</a>してあれば、既にRubyGemsも同時にインストールされているはずです。</p>
+<p>RubyGemsはRubyのプロジェクトのためのパッケージマネージャであり、Rubyのパッケージ (<em>gem</em>) として利用できる多くの有用なライブラリがあります。Railsもgemとしてインストールします。Rubyがインストールされていれば、RubyGemsは簡単にインストールできます。<a href="https://rvm.io/rvm/install">RVMをインストール</a>してあれば、既にRubyGemsも同時にインストールされているはずです。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> which gem
 <span class="go">/Users/mhartl/.rvm/rubies/ruby-1.9.3-p0/bin/gem</span>
@@ -681,7 +681,7 @@ to see where a bundled gem is installed.</span>
 </div>
 
 
-<p>OS Xユーザーの場合、このときに<code>ruby.h</code>などのRubyヘッダファイルがないというエラーが表示されることがあります。その場合はXcodeをインストールしてください。この開発ツールはOS Xのインストーラディスクに含まれていますが、フルインストールするのは大げさなので、サイズの小さい<a href="https://developer.apple.com/downloads/">Command Line Tools for Xcode</a><sup class="footnote" id="fnref-1_15"><a href="./beginning.html#fn-1_15">15</a></sup>だけをインストールすることをお勧めします。Nokogiri gemのインストール中にlibxsltエラーが発生した場合は、以下のようにRubyを再インストールしてください。</p>
+<p>OS Xユーザーの場合、このときに<code>ruby.h</code>などのRubyヘッダファイルがないというエラーが表示されることがあります。その場合はXcodeをインストールしてください。この開発ツールはOS Xのインストーラディスクに含まれていますが、フルインストールするのは大げさなので、サイズの小さい<a href="https://developer.apple.com/downloads/index.action">Command Line Tools for Xcode</a><sup class="footnote" id="fnref-1_15"><a href="./beginning.html#fn-1_15">15</a></sup>だけをインストールすることをお勧めします。Nokogiri gemのインストール中にlibxsltエラーが発生した場合は、以下のようにRubyを再インストールしてください。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm reinstall 1.9.3
 <span class="gp">$</span> bundle install
@@ -708,7 +708,7 @@ to see where a bundled gem is installed.</span>
 </div>
 
 
-<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムを確認してください。<a href="http://nodejs.org/">Node.js</a>が特にお勧めです。) 表示されたメッセージは、RailsアプリケーションがIPaddress<code>0.0.0.0</code>、<a href="http://ja.wikipedia.org/wiki/%E3%83%9D%E3%83%BC%E3%83%88%E7%95%AA%E5%8F%B7">ポート番号</a> 3000<sup class="footnote" id="fnref-1_17"><a href="./beginning.html#fn-1_17">17</a></sup>で動作していることを示しています。このIPアドレスは、このマシンに設定されているすべてのIPアドレスで受信待ち (listen) するように指定しています。これにより、<code>127.0.0.1</code>(<code>localhost</code>)という特別なアドレスでアプリケーションをブラウズできます。<a class="ref" href="./beginning.html#fig-riding_rails_31">図1.3</a>は、<a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示した時の結果です。</p>
+<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムを確認してください。<a href="https://nodejs.org/">Node.js</a>が特にお勧めです。) 表示されたメッセージは、RailsアプリケーションがIPaddress<code>0.0.0.0</code>、<a href="http://ja.wikipedia.org/wiki/%E3%83%9D%E3%83%BC%E3%83%88%E7%95%AA%E5%8F%B7">ポート番号</a> 3000<sup class="footnote" id="fnref-1_17"><a href="./beginning.html#fn-1_17">17</a></sup>で動作していることを示しています。このIPアドレスは、このマシンに設定されているすべてのIPアドレスで受信待ち (listen) するように指定しています。これにより、<code>127.0.0.1</code>(<code>localhost</code>)という特別なアドレスでアプリケーションをブラウズできます。<a class="ref" href="./beginning.html#fig-riding_rails_31">図1.3</a>は、<a href="http://localhost:3000/">http://localhost:3000/</a>をブラウザで表示した時の結果です。</p>
 
 <div class="label" id="fig-riding_rails_31"></div>
 
@@ -752,7 +752,7 @@ to see where a bundled gem is installed.</span>
 
 <p>新しく動作するRailsアプリが完成したところで、さっそくアプリケーションのソースコードを<em>バージョン管理</em>下に置きましょう。これを行わないとアプリケーションが動かないということではありませんが、ほとんどのRails開発者はバージョン管理は開発現場において必要不可欠であると考えています。バージョン管理システムを導入しておけば、プロジェクトのコードの履歴を追ったり、うっかり削除してしまったファイルを復旧 (ロールバック) したりという作業が行えるようになります。バージョン管理システムを熟知することは、今やあらゆるソフトウェア開発者にとって必須のスキルであると言ってよいでしょう。</p>
 
-<p>バージョン管理システムにもさまざまなものがありますが、RailsコミュニティではLinuxカーネル用にLinus Torvaldsにより開発された分散バージョン管理システムである<a href="http://git-scm.com/">Git</a>が主流になっています。Git (というよりバージョン管理) はそれだけで大きなテーマなので、すべてを説明しようとすると軽く一冊の本を超えてしまいます。本書では簡単に言及するにとどめますが、幸いネット上には無償で利用できるリソースがあふれています。その中でも特に「<a href="http://progit.org"><em>Pro Git</em></a>」Scott Chacon (Apress, 2009) をお勧めいたします (訳注: Pro Gitには素晴らしい<a href="http://git-scm.com/book/ja/">日本語版</a>があります)。ソースコードのバージョン管理は<em>何としても</em>導入してください。バージョン管理はRailsを使用するどんな場面でも必要になりますし、バージョン管理システムを応用して、自分の作成したコードを他の開発者と簡単に共有したり <a class="ref" href="./beginning.html#sec-github">1.3.4</a>)、最初の章で作成したアプリケーションを本番サーバーへデプロイしたりすることもできる (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) からです。</p>
+<p>バージョン管理システムにもさまざまなものがありますが、RailsコミュニティではLinuxカーネル用にLinus Torvaldsにより開発された分散バージョン管理システムである<a href="http://git-scm.com/">Git</a>が主流になっています。Git (というよりバージョン管理) はそれだけで大きなテーマなので、すべてを説明しようとすると軽く一冊の本を超えてしまいます。本書では簡単に言及するにとどめますが、幸いネット上には無償で利用できるリソースがあふれています。その中でも特に「<a href="https://progit.org"><em>Pro Git</em></a>」Scott Chacon (Apress, 2009) をお勧めいたします (訳注: Pro Gitには素晴らしい<a href="http://git-scm.com/book/ja/">日本語版</a>があります)。ソースコードのバージョン管理は<em>何としても</em>導入してください。バージョン管理はRailsを使用するどんな場面でも必要になりますし、バージョン管理システムを応用して、自分の作成したコードを他の開発者と簡単に共有したり <a class="ref" href="./beginning.html#sec-github">1.3.4</a>)、最初の章で作成したアプリケーションを本番サーバーへデプロイしたりすることもできる (<a class="ref" href="./beginning.html#sec-deploying">1.4</a>) からです。</p>
 
 <div class="label" id="sec-git_setup"></div>
 
@@ -979,7 +979,7 @@ doc/
 <h3><a id="sec-1_3_4" href="./beginning.html#sec-github" class="heading"><span class="number">1.3.4</span>GitHub</a></h3>
 
 
-<p>Gitを使用してプロジェクトをバージョン管理下に置くことができたので、今度は<a href="http://github.com">GitHub</a>にソースコードをアップロードしてみましょう。GitHubは、Gitリポジトリの置き場所を提供したり (ホスティング)、リポジトリを開発者同士で共有するサービスを提供するWebサービスとして有名です。GitHubにわざわざリポジトリをプッシュするのには2つの理由があります。１つ目は、ソースコード (とそのすべての変更履歴) の完全なバックアップを作成することです。２つ目は、他の開発者との共同作業をより簡単に行うことです。GitHubへのプッシュは必須ではありませんが、GitHubのメンバーになっておくと、多くのオープンソースプロジェクトに参加できるようになります。</p>
+<p>Gitを使用してプロジェクトをバージョン管理下に置くことができたので、今度は<a href="https://github.com/">GitHub</a>にソースコードをアップロードしてみましょう。GitHubは、Gitリポジトリの置き場所を提供したり (ホスティング)、リポジトリを開発者同士で共有するサービスを提供するWebサービスとして有名です。GitHubにわざわざリポジトリをプッシュするのには2つの理由があります。１つ目は、ソースコード (とそのすべての変更履歴) の完全なバックアップを作成することです。２つ目は、他の開発者との共同作業をより簡単に行うことです。GitHubへのプッシュは必須ではありませんが、GitHubのメンバーになっておくと、多くのオープンソースプロジェクトに参加できるようになります。</p>
 
 <div class="label" id="fig-create_first_repository"></div>
 
@@ -987,7 +987,7 @@ doc/
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/create_first_repository_new.png" alt="create_first_repository_new" /></span></div><div class="caption"><span class="header">図1.6: </span><span class="description">アカウント作成直後のGitHubページ。<a href="../images/figures/create_first_repository_new-full.png">(拡大)</a></span></div></div>
 
 
-<p>GitHubにはさまざまな有料プランがありますが、オープンソースのコードなら無料で利用できるので、初めて利用するのであれば<a href="https://github.com/signup/free">無料のGitHubアカウント</a>を作成しましょう (念のため、<a href="http://help.github.com/key-setup-redirect">GitHubのSSHキー作成方法のチュートリアル</a>を先に読んでおいてください)。 アカウント作成後、[<a href="http://github.com/new">Create repository</a>]をクリックし、<a class="ref" href="./beginning.html#fig-create_first_repository">図1.6</a>に従ってフォームに記入します。(注意: このときに<code>README</code>ファイルを使用してリポジトリを初期化<em>しないでください</em> 。<code>rails new</code>コマンドを実行するときにこれらのファイルが作成されるからです。) リポジトリを作成したら、以下を実行してアプリケーションをプッシュします。</p>
+<p>GitHubにはさまざまな有料プランがありますが、オープンソースのコードなら無料で利用できるので、初めて利用するのであれば<a href="https://github.com/join">無料のGitHubアカウント</a>を作成しましょう (念のため、<a href="https://help.github.com/articles/generating-ssh-keys/">GitHubのSSHキー作成方法のチュートリアル</a>を先に読んでおいてください)。 アカウント作成後、[<a href="https://github.com/new">Create repository</a>]をクリックし、<a class="ref" href="./beginning.html#fig-create_first_repository">図1.6</a>に従ってフォームに記入します。(注意: このときに<code>README</code>ファイルを使用してリポジトリを初期化<em>しないでください</em> 。<code>rails new</code>コマンドを実行するときにこれらのファイルが作成されるからです。) リポジトリを作成したら、以下を実行してアプリケーションをプッシュします。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> git remote add origin git@github.com:&lt;username&gt;/first_app.git
 <span class="gp">$</span> git push -u origin master
@@ -1010,7 +1010,7 @@ doc/
 <div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/github_repository_page.png" alt="github_repository_page" /></span></div><div class="caption"><span class="header">図1.7: </span><span class="description">GitHubのリポジトリページ。<a href="../images/figures/github_repository_page-full.png">(拡大)</a></span></div></div>
 
 
-<p>なお、GitHubにはコマンドラインインターフェイスを拡張したGUIアプリケーションもあります。 GUIアプリケーションの方が好みであれば、<a href="http://windows.github.com/">GitHub for Windows</a>や<a href="http://mac.github.com/">GitHub for Mac</a>をチェックしてみてください  (Linux用のGitHubは今のところGitしかないようです)。</p>
+<p>なお、GitHubにはコマンドラインインターフェイスを拡張したGUIアプリケーションもあります。 GUIアプリケーションの方が好みであれば、<a href="https://windows.github.com/">GitHub for Windows</a>や<a href="https://mac.github.com/">GitHub for Mac</a>をチェックしてみてください  (Linux用のGitHubは今のところGitしかないようです)。</p>
 
 <div class="label" id="sec-git_commands"></div>
 
@@ -1074,7 +1074,7 @@ doc/
 
 これは以下で使用する最初のアプリケーションです。
 [*Ruby on Rails Tutorial: Learn Rails by Example*](http://railstutorial.jp/)
-by [Michael Hartl](http://michaelhartl.com/).
+by [Michael Hartl](http://www.michaelhartl.com/).
 </pre></div>
 </div></div>
 
@@ -1200,7 +1200,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p>この段階では空っぽのRailsアプリケーションしかありませんが、本番環境にデプロイしてしまいましょう。アプリケーションのデプロイは必須ではありませんが、頻繁にデプロイすることによって、開発サイクルでの問題を早い段階で見つけることができます。開発環境のテストを繰り返すばかりで、いつまでも本番環境にデプロイしないままだと、アプリケーションを公開する時に思わぬ事態に遭遇する可能性が高まります<sup class="footnote" id="fnref-1_22"><a href="./beginning.html#fn-1_22">22</a></sup>。</p>
 
-<p>かつてはRailsアプリのデプロイは大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="http://www.modrails.com/">Phusion Passenger</a> (ApacheやNginx<sup class="footnote" id="fnref-1_23"><a href="./beginning.html#fn-1_23">23</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスホスティングを提供する<a href="http://engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="http://cloud.engineyard.com">Engine Yard Cloud</a>や<a href="http://heroku.com/">Heroku</a>などがあります。</p>
+<p>かつてはRailsアプリのデプロイは大変な作業でしたが、ここ数年急速に簡単になってきており、さまざまな本番環境を選択できるようになりました。<a href="https://www.phusionpassenger.com/">Phusion Passenger</a> (ApacheやNginx<sup class="footnote" id="fnref-1_23"><a href="./beginning.html#fn-1_23">23</a></sup>Webサーバ用のモジュール) を実行できるさまざまな共有ホストや仮想プライベートサーバ (VPS) の他に、フルサービスホスティングを提供する<a href="https://www.engineyard.com/">Engine Yard</a>や<a href="http://railsmachine.com/">Rails Machine</a>、クラウドサービスを提供する<a href="https://cloud.engineyard.com/">Engine Yard Cloud</a>や<a href="https://www.heroku.com/">Heroku</a>などがあります。</p>
 
 <p>私のお気に入りはHerokuで、Railsを含むRuby Webアプリ用のホスティングプラットフォームです<sup class="footnote" id="fnref-1_24"><a href="./beginning.html#fn-1_24">24</a></sup>。Herokuは、ソースコードのバージョン管理にGitを使用していれば、Railsアプリケーションを簡単に本番環境にデプロイできます (Gitを導入したのは、まさにこのHerokuで使うためでもあります。まだGitをインストールしていなければ、<a class="ref" href="./beginning.html#sec-version_control">1.3</a>を参照してください)。この章では、私たちの最初のアプリケーションをHerokuにデプロイします。</p>
 
@@ -1262,7 +1262,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p><tt class="verb">--without production</tt>オプションを追加すると、 production用のgem (この場合は<tt>pg</tt>のみ) はローカルの環境にはインストールされません。(今回追加したgemは本番環境でしか使用できないように制限されているので、このコマンドを実行しても、ローカルgemはローカルの環境にインストールされません。ただし<code>Gemfile.lock</code>については、Herokuがこれを使用して本番環境のRailsアプリケーションで必要なgemを推測するため、更新しておく必要があります。)</p>
 
-<p>次にHerokuのアカウントを新規作成して設定します。最初に<a href="http://api.heroku.com/signup">Herokuのユーザー登録</a>を行います。アカウント作成後に完了通知メールが届いたら、<a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>を使用して必要なHerokuソフトウェアをインストールします<sup class="footnote" id="fnref-1_25"><a href="./beginning.html#fn-1_25">25</a></sup>。次にターミナルで以下の<code>heroku</code>コマンドを実行します (実行前にターミナルの終了と再起動が必要なことがあります)。</p>
+<p>次にHerokuのアカウントを新規作成して設定します。最初に<a href="https://signup.heroku.com/identity">Herokuのユーザー登録</a>を行います。アカウント作成後に完了通知メールが届いたら、<a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>を使用して必要なHerokuソフトウェアをインストールします<sup class="footnote" id="fnref-1_25"><a href="./beginning.html#fn-1_25">25</a></sup>。次にターミナルで以下の<code>heroku</code>コマンドを実行します (実行前にターミナルの終了と再起動が必要なことがあります)。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku login
 </pre></div>
@@ -1337,7 +1337,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 <h3><a id="sec-1_4_4" href="./beginning.html#sec-heroku_commands" class="heading"><span class="number">1.4.4</span>Herokuコマンド</a></h3>
 
 
-<p><a href="http://devcenter.heroku.com/heroku-command">Herokuのコマンド</a>はたくさんあるので、ここでは簡単に触れる程度にとどめますが、少しだけ使ってみましょう。アプリケーションの名前を変更してみます。</p>
+<p><a href="https://devcenter.heroku.com/articles/heroku-command">Herokuのコマンド</a>はたくさんあるので、ここでは簡単に触れる程度にとどめますが、少しだけ使ってみましょう。アプリケーションの名前を変更してみます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> heroku rename railstutorial
 </pre></div>
@@ -1360,7 +1360,7 @@ jhyicevg.heroku.com</pre>
 
 <p>最高ですね。)</p>
 
-<p>Herokuでは、サブドメインの他に独自ドメインも使用できます。(実は、この<a href="http://railstutorial.jp">Ruby on RailsチュートリアルWebサイト</a>もHeroku上にあるのです。あなたが本書をオンラインで読んでいるということは、まさにHerokuにホスティングされたWebサイトを見ているということになります。) カスタムドメインや他のHeroku関連の情報については、<a href="http://devcenter.heroku.com/">Herokuドキュメント</a>を参照してください。</p>
+<p>Herokuでは、サブドメインの他に独自ドメインも使用できます。(実は、この<a href="http://railstutorial.jp">Ruby on RailsチュートリアルWebサイト</a>もHeroku上にあるのです。あなたが本書をオンラインで読んでいるということは、まさにHerokuにホスティングされたWebサイトを見ているということになります。) カスタムドメインや他のHeroku関連の情報については、<a href="https://devcenter.heroku.com/">Herokuドキュメント</a>を参照してください。</p>
 
 <div class="label" id="sec-beginning_conclusion"></div>
 
@@ -1370,7 +1370,7 @@ jhyicevg.heroku.com</pre>
 
 <p>この章ではインストール、開発環境の設定、バージョン管理、本番環境へのデプロイなど、多くの課題を達成しました。ここまでの進捗をTwitterに投稿したりFacebookで通知するには以下のリンクからどうぞ。</p>
 
-<div class="center"><a href="http://twitter.com/?status=RailsチュートリアルでRuby on Railsを学習中!%20http://railstutorial.jp/%20via%20@railstutorialjp">RailsチュートリアルでRuby on Railsを学習中! http://railstutorial.jp/</a></div>
+<div class="center"><a href="https://twitter.com/?status=RailsチュートリアルでRuby on Railsを学習中!%20http://railstutorial.jp/%20via%20@railstutorialjp">RailsチュートリアルでRuby on Railsを学習中! http://railstutorial.jp/</a></div>
 
 
 <p> </p>
@@ -1399,9 +1399,9 @@ jhyicevg.heroku.com</pre>
 <li id="fn-1_10">https://github.com/mhartl/rails_tutorial_sublime_text <a class="arrow" href="./beginning.html#fnref-1_10">↑</a></li>
 <li id="fn-1_11">IRCが初めてであれば、まず “irc client &lt;あなたのプラットフォーム&gt;”で検索することをお勧めします。 OS X用のネイティブクライアントとしては<a href="http://colloquy.info/">Colloquy</a>と<a href="http://limechat.net/mac/">LimeChat</a>がお勧めです。もちろんWeb版のインターフェイスもあります。<a href="http://webchat.freenode.net/?channels=rvm">http://webchat.freenode.net/?channels=rvm</a> <a class="arrow" href="./beginning.html#fnref-1_11">↑</a></li>
 <li id="fn-1_12">場合によっては、動作させるために<a href="http://subversion.tigris.org/">Subversion</a>というバージョン管理システムをインストールしておく必要があるかもしれません。<a class="arrow" href="./beginning.html#fnref-1_12">↑</a></li>
-<li id="fn-1_13">http://mxcl.github.com/homebrew/ <a class="arrow" href="./beginning.html#fnref-1_13">↑</a></li>
+<li id="fn-1_13">http://brew.sh/ <a class="arrow" href="./beginning.html#fnref-1_13">↑</a></li>
 <li id="fn-1_14">この手順が必要となるのは、Rails gemのバージョンを変更した場合に限られます。おそらくRailsインストーラを使用している場合にしかこういうことは起こらないでしょう。他の場合にこの手順を実行しても大丈夫です。<a class="arrow" href="./beginning.html#fnref-1_14">↑</a></li>
-<li id="fn-1_15">https://developer.apple.com/downloads/ <a class="arrow" href="./beginning.html#fnref-1_15">↑</a></li>
+<li id="fn-1_15">https://developer.apple.com/downloads/index.action <a class="arrow" href="./beginning.html#fnref-1_15">↑</a></li>
 <li id="fn-1_16">Windowsユーザーの場合は代わりに<code>ruby rails server</code>と入力する必要がある場合があると<a class="ref" href="./beginning.html#sec-conventions">1.1.3</a>に書いてあったことを思い出してください。<a class="arrow" href="./beginning.html#fnref-1_16">↑</a></li>
 <li id="fn-1_17">通常、Webサイトは80番ポートで受信待ちしますが、このポートを使用するには特別な権限が必要になることが多いので、Railsの開発用サーバーでは制限の少ない、番号の大きいポート (いわゆるハイナンバーポート) を使用します。<a class="arrow" href="./beginning.html#fnref-1_17">↑</a></li>
 <li id="fn-1_18">GUIエディタの起動後もターミナルを使用し続けることはできます。ただし、Gitはデタッチ時にコミットメッセージが空のままファイルを閉じたとみなすため、コミットは中断されます。Gitのエディタオプションで<code>subl</code>や<code>gvim</code>にフラグを付けないと、このあたりの動作で頭が混乱するかもしれません (訳注: gitのエディタ設定はGUIエディタとあまり相性がよくないらしく、vimやnanoのようなコマンドベースのエディタを選択するのが無難なようです)。この注釈の意味がよくわからない場合は、無視してくださってよいです。<a class="arrow" href="./beginning.html#fnref-1_18">↑</a></li>
@@ -1410,7 +1410,7 @@ jhyicevg.heroku.com</pre>
 <li id="fn-1_21">詳細については<a href="http://git-scm.com/book/ja/v1/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD"><em>Pro Git</em>の「Gitのブランチ機能」</a>を参照してください。<a class="arrow" href="./beginning.html#fnref-1_21">↑</a></li>
 <li id="fn-1_22"><em>Railsチュートリアル</em>のサンプル・アプリケーションでは気にする必要はありません。作りかけの恥ずかしいWebアプリケーションをネットにうっかり公開してしまわないだろうかと心配する方もいらっしゃるかと思いますが、それを防ぐための方法はいくつもありますのでご安心ください。<a class="ref" href="./beginning.html#sec-heroku_commands">1.4.4</a>はその方法の1つです。<a class="arrow" href="./beginning.html#fnref-1_22">↑</a></li>
 <li id="fn-1_23">“Engine X&quot; と発音します。<a class="arrow" href="./beginning.html#fnref-1_23">↑</a></li>
-<li id="fn-1_24">Herokuは、Ruby Webプラットフォームに<a href="http://rack.rubyforge.org/">Rackミドルウェア</a>が導入されていれば動作します。このミドルウェアは、WebフレームワークとWebサーバーの標準インターフェイスを提供します。Rackインターフェイスを導入したことで、Rubyコミュニティは大きな力を得ることができました。Rackはさまざまなフレームワークに導入されており、<a href="http://www.sinatrarb.com/">Sinatra</a>、<a href="http://ramaze.net/">Ramaze</a>、<a href="http://camping.rubyforge.org/files/README.html">Camping</a>、そしてRubyがRackを採用しています。つまり、RubyのWebアプリケーションは基本的にHerokuでサポートされているということです。<a class="arrow" href="./beginning.html#fnref-1_24">↑</a></li>
+<li id="fn-1_24">Herokuは、Ruby Webプラットフォームに<a href="http://rack.rubyforge.org/">Rackミドルウェア</a>が導入されていれば動作します。このミドルウェアは、WebフレームワークとWebサーバーの標準インターフェイスを提供します。Rackインターフェイスを導入したことで、Rubyコミュニティは大きな力を得ることができました。Rackはさまざまなフレームワークに導入されており、<a href="http://www.sinatrarb.com/">Sinatra</a>、<a href="http://ramaze.net/">Ramaze</a>、<a href="http://camping.io/">Camping</a>、そしてRubyがRackを採用しています。つまり、RubyのWebアプリケーションは基本的にHerokuでサポートされているということです。<a class="arrow" href="./beginning.html#fnref-1_24">↑</a></li>
 <li id="fn-1_25">https://toolbelt.heroku.com/ <a class="arrow" href="./beginning.html#fnref-1_25">↑</a></li>
 </ol>
 </div>

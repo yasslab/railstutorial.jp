@@ -1666,7 +1666,7 @@
 
 <p>ここでは、formタグの内部で<code>data-remote=&quot;true&quot;</code>変数を設定しています。これは、JavaScriptによるフォーム操作を許可することをRailsに知らせるためのものです。以前のRailsでは完全なJavaScriptコードを挿入していましたが、Rails 3からは、このようにHTMLプロパティを使用して簡単にJavaScriptを使用できます。これは、<a href="http://railscasts.com/episodes/205-unobtrusive-javascript"><em>JavaScriptを前面に出すべからず</em></a>という哲学に従っています。</p>
 
-<p>フォームの更新が終わったので、今度はこれに対応するRelationshipsコントローラを改造して、Ajaxリクエストに応答できるようにしましょう。実は、Ajaxを使用するとテスティングがかなりトリッキーになってしまいます。Ajaxのテストはそれだけで大きなテーマなので、本格的に説明しようとすると本書の範囲を超えてしまいます。ここでは<a class="ref" href="./following-users.html#code-relationships_controller_spec_ajax">リスト11.37</a>のテストを使用しましょう。ここでは<code>xhr</code>メソッド (“XmlHttpRequest” の略です) を使用してAjaxリクエストを発行しています。以前の、<code>get</code>、<code>post</code>、<code>patch</code>、<code>delete</code>メソッドを使用したテストと比べてみてください。それから、Ajaxリクエストを受信したときに<code>create</code>アクションと<code>destroy</code>アクションが正常に動作することを確認します (Ajaxを多用するアプリケーションを徹底的にテストしたい方は、<a href="http://seleniumhq.org/">Selenium</a>と<a href="http://watir.com/">Watir</a>を参照してみてください)。</p>
+<p>フォームの更新が終わったので、今度はこれに対応するRelationshipsコントローラを改造して、Ajaxリクエストに応答できるようにしましょう。実は、Ajaxを使用するとテスティングがかなりトリッキーになってしまいます。Ajaxのテストはそれだけで大きなテーマなので、本格的に説明しようとすると本書の範囲を超えてしまいます。ここでは<a class="ref" href="./following-users.html#code-relationships_controller_spec_ajax">リスト11.37</a>のテストを使用しましょう。ここでは<code>xhr</code>メソッド (“XmlHttpRequest” の略です) を使用してAjaxリクエストを発行しています。以前の、<code>get</code>、<code>post</code>、<code>patch</code>、<code>delete</code>メソッドを使用したテストと比べてみてください。それから、Ajaxリクエストを受信したときに<code>create</code>アクションと<code>destroy</code>アクションが正常に動作することを確認します (Ajaxを多用するアプリケーションを徹底的にテストしたい方は、<a href="http://docs.seleniumhq.org/">Selenium</a>と<a href="http://watir.com/">Watir</a>を参照してみてください)。</p>
 
 <div class="label" id="code-relationships_controller_spec_ajax"></div>
 
@@ -2261,7 +2261,7 @@
 
 <p>この節で提案するさまざまな拡張 (パスワードリマインダ、メールによる確認、サンプルアプリケーション向けには検索、返信、メッセージングなど) は、ほとんどがWebアプリケーションで一般的な機能です。これらの拡張を1つか2つでも実装してみることで、本書から巣立って自分のアプリケーションを書くときにきっと役に立つことでしょう。</p>
 
-<p>いざ実装し始めてみると思ったよりずっと難しく感じるかもしれませんが、それも当然です。新しい機能という真っ白なキャンバスを目の前にすれば、気後れしてしまうのも無理はありません。皆さんが拡張を始めるにあたり、ささやかながら私から2つほど一般的なアドバイスをしてみたいと思います。1) Railsアプリケーションに何らかの機能を追加するときには、ぜひ<a href="http://railscasts.com/episodes/archive">RailsCastsアーカイブ</a>をチェックしてみてください。今自分がやろうとしていることは、既にRyan Batesが取り上げたトピックにあるかもしれません<sup class="footnote" id="fnref-11_15"><a href="./following-users.html#fn-11_15">15</a></sup>。もし手頃なトピックがあれば、関連するRailsCastをウォッチすることで、時間を大幅に節約できることでしょう。2) できるだけ念入りにGoogleで検索し、自分が調べようとしているトピックに言及しているブログやチュートリアルがないかどうか、よく探すことです。Webアプリケーションの開発には常に困難がつきまといます。他人の経験と失敗から学ぶことも重要です。</p>
+<p>いざ実装し始めてみると思ったよりずっと難しく感じるかもしれませんが、それも当然です。新しい機能という真っ白なキャンバスを目の前にすれば、気後れしてしまうのも無理はありません。皆さんが拡張を始めるにあたり、ささやかながら私から2つほど一般的なアドバイスをしてみたいと思います。1) Railsアプリケーションに何らかの機能を追加するときには、ぜひ<a href="http://railscasts.com/?view=list">RailsCastsアーカイブ</a>をチェックしてみてください。今自分がやろうとしていることは、既にRyan Batesが取り上げたトピックにあるかもしれません<sup class="footnote" id="fnref-11_15"><a href="./following-users.html#fn-11_15">15</a></sup>。もし手頃なトピックがあれば、関連するRailsCastをウォッチすることで、時間を大幅に節約できることでしょう。2) できるだけ念入りにGoogleで検索し、自分が調べようとしているトピックに言及しているブログやチュートリアルがないかどうか、よく探すことです。Webアプリケーションの開発には常に困難がつきまといます。他人の経験と失敗から学ぶことも重要です。</p>
 
 <p>以下の機能はどれも難易度がそれなりに高いので、実装に必要となるかもしれないツールについてのヒントも書いておきました。たとえヒントがあったとしても、以下の機能が本書の最終章の演習よりも<em>ずっと</em>難易度が高いことは変わりません。相当頑張ったにもかかわらず挫折することも当然あると思いますので、どうかそんなときには落ち込まないでください。私の時間にも限りがありますので、皆さんに個別のお手伝いをすることはできそうにありません。しかし、これらの拡張のいくつかについてなら、今後単発の記事やスクリーンキャストバンドルを公開することがあると思います。「Railsチュートリアル」<a href="http://railstutorial.jp">http://railstutorial.jp/</a>のメインページを参照し、ニュースフィードを購読して最新情報をチェックしてみてください。</p>
 
@@ -2329,7 +2329,7 @@
 <h4><a id="sec-11_4_1_8" href="./following-users.html#sec-search" class="heading">検索機能</a></h4>
 
 
-<p>現在のサンプルアプリケーションには、ユーザーインデックスページを端から探すか、他のユーザーのフィードを表示する以外に、他のユーザーを検索する手段がありません。この点を強化するために、検索機能を実装してください。続いて、マイクロポストを検索する機能も追加してください。あらかじめRailsCast「<a href="http://railscasts.com/episodes/37-simple-search-form">簡単な検索フォーム</a> (英語)」を参照しておくとよいでしょう。このアプリケーションを共有ホストか専用のサーバーにデプロイするのであれば、<a href="http://freelancing-god.github.com/ts/en/">Thinking Sphinx</a>の導入をお勧めします (RailsCast「<a href="http://railscasts.com/episodes/120-thinking-sphinx">Thinking Sphinx</a> (英語)」も参照してください)。Herokuでデプロイするのであれば、「<a href="http://devcenter.heroku.com/articles/full-text-search">Heroku全文検索機能</a>」マニュアル (英語) に従う必要があります。(訳注: @budougumi0617 さんがRails 4.0版における<a href='http://qiita.com/budougumi0617/items/d98fc15adea4dab438e7'>簡単な検索フォームの実装例</a>を公開してくれました。Thx!)</p>
+<p>現在のサンプルアプリケーションには、ユーザーインデックスページを端から探すか、他のユーザーのフィードを表示する以外に、他のユーザーを検索する手段がありません。この点を強化するために、検索機能を実装してください。続いて、マイクロポストを検索する機能も追加してください。あらかじめRailsCast「<a href="http://railscasts.com/episodes/37-simple-search-form">簡単な検索フォーム</a> (英語)」を参照しておくとよいでしょう。このアプリケーションを共有ホストか専用のサーバーにデプロイするのであれば、<a href="http://pat.github.io/thinking-sphinx/">Thinking Sphinx</a>の導入をお勧めします (RailsCast「<a href="http://railscasts.com/episodes/120-thinking-sphinx">Thinking Sphinx</a> (英語)」も参照してください)。Herokuでデプロイするのであれば、「<a href="https://devcenter.heroku.com/articles/full-text-search">Heroku全文検索機能</a>」マニュアル (英語) に従う必要があります。(訳注: @budougumi0617 さんがRails 4.0版における<a href='http://qiita.com/budougumi0617/items/d98fc15adea4dab438e7'>簡単な検索フォームの実装例</a>を公開してくれました。Thx!)</p>
 
 <div class="label" id="sec-guide_to_further_resources"></div>
 
@@ -2341,9 +2341,9 @@
 
 <ul>
   <li><a href="https://www.railstutorial.org">Ruby><em>Ruby on Railsチュートリアル</em> スクリーンキャスト</a>。本書に合わせて、完全版のスクリーンキャストを用意してあります。このスクリーンキャストでは、本書の話題をすべてカバーしているだけでなく、さまざまなコツや秘訣も満載されており、スクリーンショットだけでは捉えにくい実際の動作を動画で視聴することもできます。スクリーンキャストは<a href="https://www.railstutorial.org">Ruby>Ruby on RailsチュートリアルWebサイト</a>から購入できます。</li>
-  <li><a href="http://railscasts.com/">RailsCasts (英語)</a>。強く推奨します。このRailsCastsの素晴らしさについては、どれほど言葉を尽くしても足りません。最初に<a href="http://railscasts.com/episodes/archive">RailsCastsエピソードアーカイブ</a>を開いて、目についたトピックを適当に開くところから始めてみるとよいでしょう。</li>
+  <li><a href="http://railscasts.com/">RailsCasts (英語)</a>。強く推奨します。このRailsCastsの素晴らしさについては、どれほど言葉を尽くしても足りません。最初に<a href="http://railscasts.com/?view=list">RailsCastsエピソードアーカイブ</a>を開いて、目についたトピックを適当に開くところから始めてみるとよいでしょう。</li>
   <li>RubyとRailsのお勧め書籍 (英語)。「<a href="http://amzn.to/1k4KqxP"><em>Beginning Ruby</em></a>」(Peter Cooper 著)、「<a href="http://amzn.to/1sRt1LK"><em>The Well-Grounded Rubyist</em></a>」(David A. Black著)、「<a href="http://amzn.to/1sRyT7D"><em>Eloquent Ruby</em></a>」(Russ Olsen著)、Rubyをさらに深く学ぶのであれば 「<a href="http://amzn.to/1g8yQCl"><em>The Ruby Way</em></a>」(Hal Fulton著) がお勧めです。Railsをさらに深く学ぶのであれば、「<a href="http://amzn.to/1ljfOH0"><em>The Rails 3 Way</em></a>」(Obie Fernandez著)と「<em>Rails 3 in Action</em> (第2版待ち)」(Ryan Bigg、Yehuda Katz著) がお勧めです。</li>
-  <li><a href="http://peepcode.com/">PeepCode</a>と<a href="http://codeschool.com/">Code School</a> (どちらも英語)。PeepCodeのスクリーンキャストとCode Schoolのインタラクティブコースは品質が高いことで知られており、強くお勧めいたします。</li>
+  <li><a href="http://www.pluralsight.com/">Pluralsight</a>と<a href="https://www.codeschool.com/">Code School</a> (どちらも英語)。PluralsightのスクリーンキャストとCode Schoolのインタラクティブコースは品質が高いことで知られており、強くお勧めいたします。</li>
   <li>(訳注) <a href="http://railsguides.jp/">Rails ガイド</a>: トピック毎に分類された最新のRailsリファレンスで、Railsチュートリアルの完走者や、Railsエンジニアを対象にして書かれています。本書で紹介しきれなかったActive ModelやAction View/Controllerの機能を解説する記事や、アセットパイプラインの仕組みやデバッグ手法を解説する記事などがあり、Railsについてより深く、体系的に学びたいときに便利です。合計 1,400 ページを超える大型書籍で (参考: 本書は合計700ページです)、本書と同様に<a href="http://railsguides.jp/">Web版は全て無料</a>で読めます。</li>
 </ul>
 
@@ -2401,7 +2401,7 @@
 </div><div class="footnotes">
 <ol>
 <li id="fn-11_1">モックアップツアーの写真は、それぞれ
-<a href="http://www.flickr.com/photos/john_lustig/2518452221/">http://www.flickr.com/photos/john_lustig/2518452221/</a>と
+<a href="https://www.flickr.com/photos/john_lustig/2518452221/">https://www.flickr.com/photos/john_lustig/2518452221/</a>と
 <a href="http://www.flickr.com/photos/30775272@N05/2884963755/">http://www.flickr.com/photos/30775272@N05/2884963755/</a>より引用しました。<a class="arrow" href="./following-users.html#fnref-11_1">↑</a></li>
 <li id="fn-11_2">本書の最初の版では<code>user.following</code>としていましたが、結局これも混乱を招くことに気付きました。私にこの用語を変更する決心をさせてくれ、よりわかりやすいアドバイスを提供してくれた読者、Cosmo Leeに感謝いたします (なお、彼のアドバイスをそのまま採用したわけではありませんので、もし本書にまだわかりにくい部分があったとしても、彼には一切の責任がないことをここに申し伝えておきます) 。<a class="arrow" href="./following-users.html#fnref-11_2">↑</a></li>
 <li id="fn-11_3">簡単のため、<a class="ref" href="./following-users.html#fig-naive_user_has_many_following">図11.6</a>では <code>followed_users</code>テーブルの<code>id</code>カラムを省略してあります。<a class="arrow" href="./following-users.html#fnref-11_3">↑</a></li>
@@ -2410,11 +2410,11 @@
 <li id="fn-11_6"><code>followed_id</code>でもユーザーを特定できることに気付き、フォローしているユーザーとフォロワーの扱いが対称的でないことをよく考えてみれば、もうゲームに勝ったようなものです。これについては<a class="ref" href="./following-users.html#sec-followers">11.1.5</a>でも扱います。<a class="arrow" href="./following-users.html#fnref-11_6">↑</a></li>
 <li id="fn-11_7">特定の分野でモデリングの経験を多く積めば、このようなユーティリティメソッドが必要になることを事前に思い付けるようになるでしょう。たとえ思い付けないことがあったとしても、明確なテストを書こうとするときに、いつの間にかこういうメソッドを自分が作成していることに気付くことでしょう。だからというわけではありませんが、今はこのようなメソッドが必要であるということに気付けなくても問題ありません。ソフトウェアの開発は、繰りかえしに次ぐ繰り返しです。読みづらくなるまでコードを書き足し、そのコードをリファクタリングする、その繰り返しです。そして、より簡潔なコードを書くために、本書が少しでもお役に立てばと思います。<a class="arrow" href="./following-users.html#fnref-11_7">↑</a></li>
 <li id="fn-11_8"><code>unfollow!</code>は、失敗したときに例外を発生<em>しない</em>ことに注意してください。正直に書くと、削除に失敗したことをRailsがどうやって検出しているのか、著者にもわかりません。<code>follow!</code>に感嘆符が付いているので、それに合わせてこのメソッドにも感嘆符を追加しているに過ぎません。<a class="arrow" href="./following-users.html#fnref-11_8">↑</a></li>
-<li id="fn-11_9">Ajaxは、名目上<em>asynchronous JavaScript and XML</em>の略ということになっています。<a href="http://www.adaptivepath.com/ideas/essays/archives/000385.php">最も初期のAjaxに関する記事</a>でも &quot;Ajax&quot; で統一されていますが、ときどき “AJAX” と誤ったスペルが使用されていることがあります。<a class="arrow" href="./following-users.html#fnref-11_9">↑</a></li>
+<li id="fn-11_9">Ajaxは、名目上<em>asynchronous JavaScript and XML</em>の略ということになっています。<a href="http://www.adaptivepath.com/ideas/ajax-new-approach-web-applications/">最も初期のAjaxに関する記事</a>でも &quot;Ajax&quot; で統一されていますが、ときどき “AJAX” と誤ったスペルが使用されていることがあります。<a class="arrow" href="./following-users.html#fnref-11_9">↑</a></li>
 <li id="fn-11_10">Ajaxが動作するためには、ブラウザでJavaScriptが有効になっている必要がありますが、実際にはJavaScriptが無効になっている場合でも<a class="ref" href="./following-users.html#sec-a_working_follow_button_the_standard_way">11.2.4</a>のようにまったく同じ動作になるようにしてあります。<a class="arrow" href="./following-users.html#fnref-11_10">↑</a></li>
 <li id="fn-11_11">列挙可能 (enumerable) オブジェクトであることの主な条件は、<code>each</code>メソッドを実装していることです。このメソッドはコレクションを列挙します。<a class="arrow" href="./following-users.html#fnref-11_11">↑</a></li>
 <li id="fn-11_12">この記法は、実際にはRailsによるコアRuby言語の拡張として行われたのが始まりです。この記法があまりに便利なので、後にRuby自身にまで取り入れられたほどです。実にクールだと思いますが、いかがでしょうか。<a class="arrow" href="./following-users.html#fnref-11_12">↑</a></li>
-<li id="fn-11_13">必要なサブセレクトを作成するための、より高度な方法については、「<a href="http://pivotallabs.com/users/jsusser/blog/articles/567-hacking-a-subselect-in-activerecord">ActiveRecordのサブセレクトをハックする</a> (英語)」というブログ記事を参照してください。 <a class="arrow" href="./following-users.html#fnref-11_13">↑</a></li>
+<li id="fn-11_13">必要なサブセレクトを作成するための、より高度な方法については、「<a href="http://blog.pivotal.io/pivotal-labs/labs/hacking-a-subselect-in-activerecord">ActiveRecordのサブセレクトをハックする</a> (英語)」というブログ記事を参照してください。 <a class="arrow" href="./following-users.html#fnref-11_13">↑</a></li>
 <li id="fn-11_14">実際は、<a class="ref" href="./following-users.html#fig-home_page_with_feed">図11.20</a>の見栄えを良くするために、Railsコンソールを使用してマイクロポストをいくつか手動で投稿しています。<a class="arrow" href="./following-users.html#fnref-11_14">↑</a></li>
 <li id="fn-11_15">RailsCastsではテストを省略していることが多いので、その点には注意してください。1回のエピソードを短くまとめるためにテストを省略しているのですが、それに釣られてテスティングの重要性を軽く考えることのないようにしてください。RailsCastでアイディアやヒントを得たら、新機能の実装はぜひともテスト駆動開発で進めることをお勧めいたします。(その意味でも、RailsCast「<a href="http://railscasts.com/episodes/275-how-i-test">テスティングの方法</a> (英語)」をぜひ一度参照してください。Ryan Bates自身も、現実にはテスト駆動開発を採用していることが多くありますし、彼のテスティングスタイルは本書のものと基本的に同じです。)<a class="arrow" href="./following-users.html#fnref-11_15">↑</a></li>
 </ol>

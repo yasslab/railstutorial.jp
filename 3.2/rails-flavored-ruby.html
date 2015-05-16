@@ -339,7 +339,7 @@
 </div>
 
 
-<p><code>puts</code> メソッドは<em>副作用</em>が重要な役割を果たします。どういうことかと言うと、<code>puts &quot;foo&quot;</code>は文字列 <code>foo</code> を副作用としてスクリーンに表示しますが、返り値には「無」を返します (正確には<a href="http://www.answers.com/nil">nilというリテラル</a>を返します。<code>nil</code> は &quot;まったく無い&quot;ことを表すRubyの特別な値です)。(<code>=&gt; nil</code> という結果は、今後簡素化のために省略することがあります。)</p>
+<p><code>puts</code> メソッドは<em>副作用</em>が重要な役割を果たします。どういうことかと言うと、<code>puts &quot;foo&quot;</code>は文字列 <code>foo</code> を副作用としてスクリーンに表示しますが、返り値には「無」を返します (正確には<a href="http://www.answers.com/topic/nil">nilというリテラル</a>を返します。<code>nil</code> は &quot;まったく無い&quot;ことを表すRubyの特別な値です)。(<code>=&gt; nil</code> という結果は、今後簡素化のために省略することがあります。)</p>
 
 <p><code>puts</code>を使用して出力すると、改行文字である<tt class="verb">\n</tt>が自動的に出力の末尾に追加されます。<code>print</code>メソッドも同様の出力を行いますが、以下のように、改行文字を追加しない点が異なります。</p>
 
@@ -1365,7 +1365,7 @@ end
 
 <p>ここで重要な点があります。Railsのアクションには戻り値がありません。少なくとも、返される値は重要ではありません。<a class="ref" href="./static-pages.html#top">第3章</a>で示したとおり、<code>home</code>アクションはWebページを表示するためのものであり、値を返すためのものではありませんでした。しかも、第3章では一度も<code>StaticPagesController.new</code>を実行しませんでした。どうしてこれでうまくいっているのでしょうか。</p>
 
-<p>実は、Railsは確かにRubyで<em>書かれて</em>いますが、既にRubyとは別物なのです。Railsのクラスは、普通のRubyオブジェクトと同様に振る舞うものもありますが、多くのクラスにはRailsの<a href="http://www.answers.com/grist">魔法の粉</a>が振りかけられています。Railsは<em>独特</em>であり、 Rubyとは切り離して学習する必要があります。このため、とにかくWebアプリケーションを書けるようになりたい方は、最初にRailsを学び、次にRubyを学んでから再びRailsに戻ってくることをお勧めします。</p>
+<p>実は、Railsは確かにRubyで<em>書かれて</em>いますが、既にRubyとは別物なのです。Railsのクラスは、普通のRubyオブジェクトと同様に振る舞うものもありますが、多くのクラスにはRailsの<a href="http://www.answers.com/topic/grist">魔法の粉</a>が振りかけられています。Railsは<em>独特</em>であり、 Rubyとは切り離して学習する必要があります。このため、とにかくWebアプリケーションを書けるようになりたい方は、最初にRailsを学び、次にRubyを学んでから再びRailsに戻ってくることをお勧めします。</p>
 
 <div class="label" id="sec-a_user_class"></div>
 
@@ -1568,7 +1568,7 @@ end
 <li id="fn-4_8">実はRuby 1.9では、ハッシュの要素の順序が入力順と同じであることを保証していますが、ハッシュを特定の順序に依存してカウントするのは得策ではありません。<a class="arrow" href="./rails-flavored-ruby.html#fnref-4_8">↑</a></li>
 <li id="fn-4_9">余計なものを削ぎ落した結果、シンボル同士の比較を容易に行えます。文字列は1文字ずつ比較する必要がありますが、シンボルは一度に全体を比較できます。これはハッシュのキーとして理想的な性質です。<a class="arrow" href="./rails-flavored-ruby.html#fnref-4_9">↑</a></li>
 <li id="fn-4_10">このメソッドの動作は、使用しているRubyのバージョンによって異なる可能性があります。この例ではRuby 1.9.3を前提としています。<a class="arrow" href="./rails-flavored-ruby.html#fnref-4_10">↑</a></li>
-<li id="fn-4_11">Rubyのクラスや<code>self</code>キーワードについての詳細は、<a href="http://railstips.org/">RailsTips</a>の “<a href="http://railstips.org/blog/archives/2006/11/18/class-and-instance-variables-in-ruby/">Ruby におけるクラスとインスタンス変数</a>” を参照してください。<a class="arrow" href="./rails-flavored-ruby.html#fnref-4_11">↑</a></li>
+<li id="fn-4_11">Rubyのクラスや<code>self</code>キーワードについての詳細は、<a href="http://www.railstips.org/">RailsTips</a>の “<a href="http://www.railstips.org/blog/archives/2006/11/18/class-and-instance-variables-in-ruby/">Ruby におけるクラスとインスタンス変数</a>” を参照してください。<a class="arrow" href="./rails-flavored-ruby.html#fnref-4_11">↑</a></li>
 <li id="fn-4_12">JavaScriptに精通している方のために補足すると、この機能は組み込みクラスのプロトタイプオブジェクトを使用してクラスを拡張することと似ています (読者の<a href="http://getsatisfaction.com/railstutorial/topics/adding_methods_to_built_in_classes_comparable_to_using_javascripts_prototype_object">Erik Eldridge</a>による指摘に感謝します)。 <a class="arrow" href="./rails-flavored-ruby.html#fnref-4_12">↑</a></li>
 <li id="fn-4_13">これらの階層にあるクラスの詳細を知る必要はないと思います。<em>私ですら</em>それらのクラスの詳細について知らないことがたくさんありますし、それでも私は2005年からRuby on Railsで問題なくプログラミングできています。これは (a) 私がよほど無能であるか、(b) Railsの内部を知りつくさなくても熟練したRails開発者になれる、ということのどちらかでしょう。私のためにも読者の皆様のためにも、後者であることを祈ります。<a class="arrow" href="./rails-flavored-ruby.html#fnref-4_13">↑</a></li>
 <li id="fn-4_14">http://rubykoans.com/ <a class="arrow" href="./rails-flavored-ruby.html#fnref-4_14">↑</a></li>

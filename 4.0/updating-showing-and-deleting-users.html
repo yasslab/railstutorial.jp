@@ -372,7 +372,7 @@
 <div class="label" id="fig-gravatar_cropper"></div>
 
 
-<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/gravatar_cropper.png" alt="gravatar_cropper" /></span></div><div class="caption"><span class="header">図9.4</span><span class="description"><a href="http://gravatar.com/">Gravatar</a>の画像調整インターフェイス (写真は<a href="http://michaelhartl.com/">誰かさん</a>)</span>。</div></div>
+<div class="figure"><div class="center"><span class="graphic"><img src="../images/figures/gravatar_cropper.png" alt="gravatar_cropper" /></span></div><div class="caption"><span class="header">図9.4</span><span class="description"><a href="http://gravatar.com/">Gravatar</a>の画像調整インターフェイス (写真は<a href="http://www.michaelhartl.com/">誰かさん</a>)</span>。</div></div>
 
 
 <p><code>update</code>アクションのテストも、<code>create</code>アクション用のテストとだいたい同じです。Capybaraを使用してフォームのフィールドに有効な情報を入力し、その場合の動作が正しいことを確認するテストを<a class="ref" href="./updating-showing-and-deleting-users.html#code-user_update_specs">リスト9.9</a>に示します。コードの量がだいぶ増えてきました。<a class="ref" href="./sign-up.html#top">第7章</a>のテストを見返して、十分に理解するようにしてください。</p>
@@ -985,7 +985,7 @@
 <h2><a id="sec-9_3" href="./updating-showing-and-deleting-users.html#sec-showing_all_users" class="heading"><span class="number">9.3</span>すべてのユーザーを表示する</a></h2>
 
 
-<p>この節では、いよいよ<a href="http://www.answers.com/penultimate">最後から2番目の</a>ユーザーアクションである<code>index</code>アクションを追加しましょう。このアクションは、<em>すべての</em>ユーザーを一覧表示します。その際、データベースにサンプルデータを追加する方法や、将来ユーザー数が膨大になってもindexページを問題なく表示できるようにするためのユーザー出力の<em>ページネーション (pagination=ページ分割)</em> の方法を学びます。ユーザーの一覧、ページネーション用リンク、移動用の [Users]リンクのモックアップを<a class="ref" href="./updating-showing-and-deleting-users.html#fig-user_index_mockup">図9.7</a>に示します<sup class="footnote" id="fnref-9_5"><a href="./updating-showing-and-deleting-users.html#fn-9_5">5</a></sup>。<a class="ref" href="./updating-showing-and-deleting-users.html#sec-destroying_users">9.4</a>では、ユーザーのインデックスページに管理用のインターフェイスを追加し、トラブルを起こしているユーザーなどをそこで削除できるようにします。</p>
+<p>この節では、いよいよ<a href="http://www.answers.com/topic/penultimate">最後から2番目の</a>ユーザーアクションである<code>index</code>アクションを追加しましょう。このアクションは、<em>すべての</em>ユーザーを一覧表示します。その際、データベースにサンプルデータを追加する方法や、将来ユーザー数が膨大になってもindexページを問題なく表示できるようにするためのユーザー出力の<em>ページネーション (pagination=ページ分割)</em> の方法を学びます。ユーザーの一覧、ページネーション用リンク、移動用の [Users]リンクのモックアップを<a class="ref" href="./updating-showing-and-deleting-users.html#fig-user_index_mockup">図9.7</a>に示します<sup class="footnote" id="fnref-9_5"><a href="./updating-showing-and-deleting-users.html#fn-9_5">5</a></sup>。<a class="ref" href="./updating-showing-and-deleting-users.html#sec-destroying_users">9.4</a>では、ユーザーのインデックスページに管理用のインターフェイスを追加し、トラブルを起こしているユーザーなどをそこで削除できるようにします。</p>
 
 <div class="label" id="fig-user_index_mockup"></div>
 
@@ -1371,7 +1371,7 @@
 
 <p>これで、最初のユーザーにも仲間ができました。しかし今度は逆に、1つのページに<em>大量の</em>ユーザーが表示されてしまっています。100人でもかなり大きい数であると思いますし、今後は数千ユーザーに増える可能性もあります。これを解決するのが<em>ページネーション (pagination) </em>というもので、この場合は、たとえば1つのページに一度に30人だけユーザーを表示するというものです。</p>
 
-<p>Railsには豊富なページネーションメソッドがあります。今回はその中で最もシンプルかつ堅牢な<a href="http://wiki.github.com/mislav/will_paginate/">will_paginate</a>メソッドを使用してみましょう。これを使用するには、Gemfileに<tt>will_paginate</tt> gem と<tt>bootstrap-will_paginate</tt> gemを両方インクルードし、Bootstrapのページネーションスタイルを使用してwill_paginateを構成します。更新した<code>Gemfile</code>を<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_gem">リスト9.30</a>に示します。</p>
+<p>Railsには豊富なページネーションメソッドがあります。今回はその中で最もシンプルかつ堅牢な<a href="https://github.com/mislav/will_paginate/wiki">will_paginate</a>メソッドを使用してみましょう。これを使用するには、Gemfileに<tt>will_paginate</tt> gem と<tt>bootstrap-will_paginate</tt> gemを両方インクルードし、Bootstrapのページネーションスタイルを使用してwill_paginateを構成します。更新した<code>Gemfile</code>を<a class="ref" href="./updating-showing-and-deleting-users.html#code-will_paginate_gem">リスト9.30</a>に示します。</p>
 
 <div class="label" id="code-will_paginate_gem"></div>
 
@@ -2396,11 +2396,11 @@
 </a><a class="next_page" href="./user-microposts.html#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-9_1">画像は<a href="http://www.flickr.com/photos/sashawolff/4598355045/">http://www.flickr.com/photos/sashawolff/4598355045/</a>より引用しました。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_1">↑</a></li>
+<li id="fn-9_1">画像は<a href="https://www.flickr.com/photos/sashawolff/4598355045/">https://www.flickr.com/photos/sashawolff/4598355045/</a>より引用しました。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_1">↑</a></li>
 <li id="fn-9_2">Gravatarサイトにアクセスすると、実際には<a href="http://ja.gravatar.com/emails">http://ja.gravatar.com/emails</a>にリダイレクトされます。ここは英語ユーザー向けですが、他の言語を考慮し、<tt>en</tt>をURLに含めませんでした。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_2">↑</a></li>
 <li id="fn-9_3">この動作の詳細を気にする必要はありません (悪いことをしているわけでもありません)。この詳細に関心を抱くのはRailsフレームワークそのものの開発者ぐらいであり、Railsでアプリケーションを開発する人にとっては重要ではありません。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_3">↑</a></li>
-<li id="fn-9_4">この節のコードは、<a href="http://github.com/thoughtbot/clearance">thoughtbot</a>が作成した<a href="http://thoughtbot.com/">Clearance</a> gemに合わせたものです。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_4">↑</a></li>
-<li id="fn-9_5">赤ちゃんの写真は<a href="http://www.flickr.com/photos/glasgows/338937124/">http://www.flickr.com/photos/glasgows/338937124/</a>より引用しました。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_5">↑</a></li>
+<li id="fn-9_4">この節のコードは、<a href="https://github.com/thoughtbot/clearance">thoughtbot</a>が作成した<a href="https://thoughtbot.com/">Clearance</a> gemに合わせたものです。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_4">↑</a></li>
+<li id="fn-9_5">赤ちゃんの写真は<a href="https://www.flickr.com/photos/glasgows/338937124/">https://www.flickr.com/photos/glasgows/338937124/</a>より引用しました。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_5">↑</a></li>
 <li id="fn-9_6">この<code>user</code>という名前そのものはまったく重要ではないことに注意してください。たとえばuserをfoobarに置き換え、<code>@users.each do |foobar|</code>と書いてから<code>render foobar</code>と呼び出しても問題なく動作します。重要なのは、そのオブジェクトそのものではなく、そのオブジェクトが属している<em>クラス</em> (この場合は<code>User</code>クラス) の方です。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_6">↑</a></li>
 <li id="fn-9_7"><tt>curl</tt>などのコマンドラインツールを使用すると、<tt>PATCH</tt>リクエストをこの形式で送信することができます。<a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_7">↑</a></li>
 <li id="fn-9_8">http://api.rubyonrails.org/v4.0.0/classes/ActionDispatch/Request.html <a class="arrow" href="./updating-showing-and-deleting-users.html#fnref-9_8">↑</a></li>

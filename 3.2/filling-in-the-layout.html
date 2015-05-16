@@ -22,7 +22,7 @@
 <h2><a id="sec-5_1" href="./filling-in-the-layout.html#sec-structure" class="heading"><span class="number">5.1</span>構造を追加する</a></h2>
 
 
-<p><em>Railsチュートリアル</em>はWeb開発のための本であり、Webデザインの本ではありませんが、だからといって<em>何のスタイルもない</em>寒々しい外観のアプリケーションでいつまでも作業を続けていると憂鬱になってしまいます。そこで、この章ではレイアウトにいくつかの構造とCSSを与えて最小限のスタイルを追加します。カスタムCSSルールの他に、Twitter社によるオープンソースのWebデザインフレームワークである<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>を利用します。また、<em>コード</em>そのものにもスタイルを与えます。つまり、散らかりはじめたコードレイアウトを<em>パーシャル</em>を使用して整えるということです。</p>
+<p><em>Railsチュートリアル</em>はWeb開発のための本であり、Webデザインの本ではありませんが、だからといって<em>何のスタイルもない</em>寒々しい外観のアプリケーションでいつまでも作業を続けていると憂鬱になってしまいます。そこで、この章ではレイアウトにいくつかの構造とCSSを与えて最小限のスタイルを追加します。カスタムCSSルールの他に、Twitter社によるオープンソースのWebデザインフレームワークである<a href="http://getbootstrap.com/2.3.2/">Bootstrap</a>を利用します。また、<em>コード</em>そのものにもスタイルを与えます。つまり、散らかりはじめたコードレイアウトを<em>パーシャル</em>を使用して整えるということです。</p>
 
 <p>Webアプリケーションを作成するときに、ユーザーインターフェイスの概要をできるだけ早いうちに把握しておくことがしばしば有用です。本書ではこれより、<em>モックアップ</em> (Webの文脈ではよく <em>ワイヤーフレーム</em>と呼ばれます) という、最終的なアプリケーションの外観を示す一種のラフスケッチを使用することにします<sup class="footnote" id="fnref-5_2"><a href="./filling-in-the-layout.html#fn-5_2">2</a></sup>。この章では、 主に<a class="ref" href="./static-pages.html#sec-static_pages">3.1</a>で紹介したサイトロゴ、ナビゲーションヘッダー、サイトフッタを含む静的ページを開発します。これらのページの中で最も重要な、Homeページのモックアップを<a class="ref" href="./filling-in-the-layout.html#fig-home_page_mockup">図5.1</a>に示します。モックアップに基いて作成した最終結果は<a class="ref" href="./filling-in-the-layout.html#fig-site_with_footer">図5.7</a>で確認することができます。両者を見比べると、細部が若干異なることに気が付くでしょう (たとえば、実際には最後にRailsのロゴをページに追加します)。しかしモックアップは正確である必要はありませんので、これで十分です。</p>
 
@@ -103,7 +103,7 @@
 
 <p>旧式のハッシュ構文は、特に古いアプリケーションでは未だに一般的なので、両方を理解できることが重要です。</p>
 
-<p>それでは、<a class="ref" href="./filling-in-the-layout.html#code-layout_new_structure">リスト5.1</a>のその他の新しい要素を上から順に見ていきましょう。<a class="ref" href="./static-pages.html#sec-static_pages">3.1</a>で簡単に説明したように、Rails 3はデフォルトで HTML5を使用します (doctype <code>&lt;!DOCTYPE html&gt;</code>で示されています)。HTML5標準は比較的新しいため、ブラウザ (特に、古いバージョンのIE) によってはサポートが不十分なことがあります。この問題を回避するため、(“<a href="http://code.google.com/p/html5shim/">HTML5 shim</a>”として知られる) JavaScriptコードをインクルードしてあります。</p>
+<p>それでは、<a class="ref" href="./filling-in-the-layout.html#code-layout_new_structure">リスト5.1</a>のその他の新しい要素を上から順に見ていきましょう。<a class="ref" href="./static-pages.html#sec-static_pages">3.1</a>で簡単に説明したように、Rails 3はデフォルトで HTML5を使用します (doctype <code>&lt;!DOCTYPE html&gt;</code>で示されています)。HTML5標準は比較的新しいため、ブラウザ (特に、古いバージョンのIE) によってはサポートが不十分なことがあります。この問題を回避するため、(“<a href="https://github.com/afarkas/html5shiv/">HTML5 shim</a>”として知られる) JavaScriptコードをインクルードしてあります。</p>
 
 <div class="code"><div class="highlight"><pre><span class="c">&lt;!--[if lt IE 9]&gt;</span>
 <span class="c">&lt;script src=&quot;http://html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;</span>
@@ -273,7 +273,7 @@
 <h3><a id="sec-5_1_2" href="./filling-in-the-layout.html#sec-custom_css" class="heading"><span class="number">5.1.2</span>BootstrapとカスタムCSS</a></h3>
 
 
-<p><a class="ref" href="./filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>では、多くのHTML要素にCSSクラスを関連付けました。こうしておくことで、CSSベースでレイアウトを構成する際に高い柔軟性を与えてくれます。<a class="ref" href="./filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>で述べたように、これらのクラスの多くは、Twitterが作成したフレームワークである<a href="http://twitter.github.com/bootstrap/">Bootstrap</a>特有のものです。Bootstrapを使用すると、洗練されたWebデザインとユーザーインターフェイス要素を簡単にHTML5アプリケーションに追加することができます。この節では、サンプルアプリケーションにスタイルを追加するために、カスタムCSSルールとBootstrapを組み合わせて使用します。</p>
+<p><a class="ref" href="./filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>では、多くのHTML要素にCSSクラスを関連付けました。こうしておくことで、CSSベースでレイアウトを構成する際に高い柔軟性を与えてくれます。<a class="ref" href="./filling-in-the-layout.html#sec-adding_to_the_layout">5.1.1</a>で述べたように、これらのクラスの多くは、Twitterが作成したフレームワークである<a href="http://getbootstrap.com/2.3.2/">Bootstrap</a>特有のものです。Bootstrapを使用すると、洗練されたWebデザインとユーザーインターフェイス要素を簡単にHTML5アプリケーションに追加することができます。この節では、サンプルアプリケーションにスタイルを追加するために、カスタムCSSルールとBootstrapを組み合わせて使用します。</p>
 
 <p>最初に、<a class="ref" href="./filling-in-the-layout.html#code-bootstrap_sass">リスト5.3</a>で示しているようにBootstrapを追加しましょう。これは、<tt>bootstrap-sass</tt> gemを使用してRailsアプリケーションに導入できます。Bootstrapフレームワークでは、動的なスタイルシートを生成するために<a href="http://lesscss.org/">LESS CSS</a>言語を使用していますが、Railsのアセットパイプラインはデフォルトでは (LESSと非常によく似た) Sass言語をサポートします (<a class="ref" href="./filling-in-the-layout.html#sec-sass_and_the_asset_pipeline">5.2</a>)。そのため、<tt>bootstrap-sass</tt>は、LESSをSassへ変換し、必要なBootstrapファイルが現在のアプリケーションですべて利用できるようにします<sup class="footnote" id="fnref-5_5"><a href="./filling-in-the-layout.html#fn-5_5">5</a></sup>。</p>
 
@@ -2222,7 +2222,7 @@
 </div><div class="footnotes">
 <ol>
 <li id="fn-5_1">サンプルアプリケーションでBootstrapを使用するための変換作業で、目覚ましい働きで助けてくれた読者の<a href="https://twitter.com/colmtuite">Colm Tuite</a>に感謝します。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_1">↑</a></li>
-<li id="fn-5_2"><em>Ruby on Railsチュートリアル</em>のモックアップは、<a href="http://gomockingbird.com">Mockingbird</a>というオンラインモックアップアプリケーションで作成しています。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_2">↑</a></li>
+<li id="fn-5_2"><em>Ruby on Railsチュートリアル</em>のモックアップは、<a href="https://gomockingbird.com/">Mockingbird</a>というオンラインモックアップアプリケーションで作成しています。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_2">↑</a></li>
 <li id="fn-5_3">CSSクラスは、Rubyのクラスとはまったく関係がありません。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_3">↑</a></li>
 <li id="fn-5_4">既にお気付きだと思いますが、<code>img</code>タグは<tt class="verb">&lt;img&gt;...&lt;/img&gt;</tt>ではなく<tt class="verb">&lt;img ... </tt><tt class="verb">/&gt;</tt>と書きます。この書式に従うタグは <em>単独タグ</em>として知られています。 <a class="arrow" href="./filling-in-the-layout.html#fnref-5_4">↑</a></li>
 <li id="fn-5_5">アセットパイプラインでLESSを使うこともできます。詳細は<a href="http://rubygems.org/gems/less-rails-bootstrap"><tt>less-rails-bootstrap</tt> gem</a>を参照してください。<a class="arrow" href="./filling-in-the-layout.html#fnref-5_5">↑</a></li>

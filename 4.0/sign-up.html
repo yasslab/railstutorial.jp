@@ -417,7 +417,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>これからコメントの部分に適切なコードを追加します。ここでは<code>user_path</code>という名前付きルート (<a class="ref" href="./sign-up.html#table-RESTful_users">表7.1</a>) を使用して、指定されたユーザーのページを表示するためのパスを生成します。これにより、ページのコンテンツとタイトルの両方にユーザーの名前が含まれているかどうかをテストできます。</p>
 
-<p>必要なUserモデルオブジェクトを作成するために、Active Recordを使用して<code>User.create</code>という形式でユーザーを作成することもできますが、経験上、ユーザーのオブジェクトを定義してそれをデータベースに挿入するには、ユーザーの<em>ファクトリー (factory)</em> を使用する方がはるかに便利です。ここでは、<a href="http://github.com/thoughtbot/factory_girl">Factory Girl</a>を使用して生成したファクトリーを使用します。Factory Girlは、<a href="http://thoughtbot.com/">thoughtbot</a>のメンバーが作成したRuby gemです。Factory Girlは、RSpecを使用してRubyで「ドメイン特化言語 (domain-specific language)」を定義します。ここでは、Active Recordのオブジェクトの定義に特化しています。このドメイン特化言語の文法はシンプルで、必要なオブジェクトの属性を定義するためにRubyのブロックとカスタムメソッドを使用しています。この章のサンプルアプリケーションでは、Active Recordのメリットはまだはっきりとはわからないかもしれませんが、この後の章ではファクトリーの機能をさらに活用する予定です。たとえば<a class="ref" href="./updating-showing-and-deleting-users.html#sec-pagination">9.3.3</a>では、複数のユーザーを作成し、それぞれに独自のメールアドレスを持たせる作業が重要となりますが、ファクトリーを使用することで簡単になります。</p>
+<p>必要なUserモデルオブジェクトを作成するために、Active Recordを使用して<code>User.create</code>という形式でユーザーを作成することもできますが、経験上、ユーザーのオブジェクトを定義してそれをデータベースに挿入するには、ユーザーの<em>ファクトリー (factory)</em> を使用する方がはるかに便利です。ここでは、<a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a>を使用して生成したファクトリーを使用します。Factory Girlは、<a href="https://thoughtbot.com/">thoughtbot</a>のメンバーが作成したRuby gemです。Factory Girlは、RSpecを使用してRubyで「ドメイン特化言語 (domain-specific language)」を定義します。ここでは、Active Recordのオブジェクトの定義に特化しています。このドメイン特化言語の文法はシンプルで、必要なオブジェクトの属性を定義するためにRubyのブロックとカスタムメソッドを使用しています。この章のサンプルアプリケーションでは、Active Recordのメリットはまだはっきりとはわからないかもしれませんが、この後の章ではファクトリーの機能をさらに活用する予定です。たとえば<a class="ref" href="./updating-showing-and-deleting-users.html#sec-pagination">9.3.3</a>では、複数のユーザーを作成し、それぞれに独自のメールアドレスを持たせる作業が重要となりますが、ファクトリーを使用することで簡単になります。</p>
 
 <p>他のRuby gemと同様、Bundlerで使用する<code>Gemfile</code>に以下のように1行追加することでFactory Girlをインストールできます (<a class="ref" href="./sign-up.html#code-gemfile_factory_girl">リスト7.7</a>) (Factory Girlはテスト環境でしか使用しないので、以下のように<code>:test</code>グループに追加します)。</p>
 
@@ -565,7 +565,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>前節で基本的なユーザーページの定義は終わりましたので、今度は各ユーザーのプロファイル写真のあたりをもう少し肉付けし、サイドバーも作り始めましょう。ビューを作成するときは、ページの構造が正確であるかどうかよりもページの外観の方を重要視するのが普通なので、少なくとも今はビューをテストする必要はありません。ページネーション (<a class="ref" href="./updating-showing-and-deleting-users.html#sec-pagination">9.3.3</a>) のような、エラーの起きやすい要素をビューで使用するようになったら、ビューでもテスト駆動開発を行います。</p>
 
-<p>ここでは<a href="http://gravatar.com/">Gravatar (globally recognized avatar) </a>をユーザープロファイルに導入してみましょう<sup class="footnote" id="fnref-7_6"><a href="./sign-up.html#fn-7_6">6</a></sup>。Gravatarは<a href="http://github.com/">GitHub</a>の共同設立者であるTom Preston-Wernerによって開発され、後に<a href="http://automattic.com/">Automattic</a> (<a href="http://wordpress.com/">WordPress</a>の作者) に買い取られました。Gravatarは無料のサービスで、プロファイル写真をアップロードして、指定したメールアドレスと関連付けることができます。Gravatarは、プロファイル写真をアップロードするときの面倒な作業や、写真が欠けたりなどのトラブル、置き場所の悩みを解決します。ユーザーのメールアドレスを組み込んだGravatar専用の画像パスを構成するだけで、対応するGravatarの画像が自動的に表示されます<sup class="footnote" id="fnref-7_7"><a href="./sign-up.html#fn-7_7">7</a></sup>。</p>
+<p>ここでは<a href="http://gravatar.com/">Gravatar (globally recognized avatar) </a>をユーザープロファイルに導入してみましょう<sup class="footnote" id="fnref-7_6"><a href="./sign-up.html#fn-7_6">6</a></sup>。Gravatarは<a href="https://github.com/">GitHub</a>の共同設立者であるTom Preston-Wernerによって開発され、後に<a href="http://automattic.com/">Automattic</a> (<a href="https://wordpress.com/">WordPress</a>の作者) に買い取られました。Gravatarは無料のサービスで、プロファイル写真をアップロードして、指定したメールアドレスと関連付けることができます。Gravatarは、プロファイル写真をアップロードするときの面倒な作業や、写真が欠けたりなどのトラブル、置き場所の悩みを解決します。ユーザーのメールアドレスを組み込んだGravatar専用の画像パスを構成するだけで、対応するGravatarの画像が自動的に表示されます<sup class="footnote" id="fnref-7_7"><a href="./sign-up.html#fn-7_7">7</a></sup>。</p>
 
 <p>ここでは、<a class="ref" href="./sign-up.html#code-user_show_view_with_gravatar">リスト7.12</a>のように<code>gravatar_for</code>ヘルパーメソッドを使用してGravatarの画像を利用できるようにします。</p>
 
@@ -1812,7 +1812,7 @@ Loading development environment  &gt;&gt; Rails.env
 
 <p>(ここでいくつか警告メッセージが表示されることがありますが、無視しても構いません。)</p>
 
-<p>最後に、リモートサーバーでSSLを設定します。本番WebサイトでSSLを使用するように設定を行うのはかなり面倒で、間違いも起きやすくなっています。また、使用する独自ドメイン向けの<em>SSL証明書</em>も購入しなければなりません。幸い、このサンプルアプリケーションのようにHerokuドメインのまま使用してもよいのであれば、HerokuのSSL証明書を流用することができます。これはHerokuプラットフォームの一部として自動的に利用できる機能です。SSLを<code>example.com</code>のような独自ドメインで実行したいのであれば、SSL証明書を購入するしかありません。詳細は<a href="http://devcenter.heroku.com/articles/ssl">HerokuのSSL関連ページ</a>を参照してください。</p>
+<p>最後に、リモートサーバーでSSLを設定します。本番WebサイトでSSLを使用するように設定を行うのはかなり面倒で、間違いも起きやすくなっています。また、使用する独自ドメイン向けの<em>SSL証明書</em>も購入しなければなりません。幸い、このサンプルアプリケーションのようにHerokuドメインのまま使用してもよいのであれば、HerokuのSSL証明書を流用することができます。これはHerokuプラットフォームの一部として自動的に利用できる機能です。SSLを<code>example.com</code>のような独自ドメインで実行したいのであれば、SSL証明書を購入するしかありません。詳細は<a href="https://devcenter.heroku.com/articles/ssl-endpoint">HerokuのSSL関連ページ</a>を参照してください。</p>
 
 <p>これでいよいよ、以下を実行して本番サーバーでユーザー登録フォームが動作するところをブラウザで見ることができます (<a class="ref" href="./sign-up.html#fig-signup_in_production">図7.22</a>)。</p>
 
@@ -1980,13 +1980,13 @@ Loading development environment  &gt;&gt; Rails.env
 </a><a class="next_page" href="./sign-in-sign-out.html#top">  </a>
 </div><div class="footnotes">
 <ol>
-<li id="fn-7_1"><a href="http://gomockingbird.com/">Mockingbird</a>では<a class="ref" href="./sign-up.html#fig-profile_mockup_profile_name">図7.1</a>のプロファイル写真のようなカスタム画像はサポートされていません。ここでは<a href="http://www.adobe.com/products/fireworks/">Adobe Fireworks</a>を使用して手動で画像を置きました。<a class="arrow" href="./sign-up.html#fnref-7_1">↑</a></li>
-<li id="fn-7_2">このカバの写真は<a href="http://www.flickr.com/photos/43803060@N00/24308857/">http://www.flickr.com/photos/43803060@N00/24308857/</a>から引用しました。<a class="arrow" href="./sign-up.html#fnref-7_2">↑</a></li>
+<li id="fn-7_1"><a href="https://gomockingbird.com/">Mockingbird</a>では<a class="ref" href="./sign-up.html#fig-profile_mockup_profile_name">図7.1</a>のプロファイル写真のようなカスタム画像はサポートされていません。ここでは<a href="https://creative.adobe.com/products/fireworks">Adobe Fireworks</a>を使用して手動で画像を置きました。<a class="arrow" href="./sign-up.html#fnref-7_1">↑</a></li>
+<li id="fn-7_2">このカバの写真は<a href="https://www.flickr.com/photos/43803060@N00/24308857/">https://www.flickr.com/photos/43803060@N00/24308857/</a>から引用しました。<a class="arrow" href="./sign-up.html#fnref-7_2">↑</a></li>
 <li id="fn-7_3">Railsの<code>debug</code>情報は <a href="http://www.yaml.org/">YAML</a> (一種の<a href="http://catb.org/jargon/html/R/recursive-acronym.html">再帰的略語</a>であり、“YAML Ain’t Markup Language” の略とされています) 形式で表示されます。YAMLは人間<em>だけでなく</em>コンピュータにとっても読みやすい形式です。<a class="arrow" href="./sign-up.html#fnref-7_3">↑</a></li>
 <li id="fn-7_4">実は、この3つ以外にもカスタムの環境を作成することができます。詳細については「<a href="http://railscasts.com/episodes/72-adding-an-environment">環境を追加した場合のRailsCast</a> (英語)」を参照してください。<a class="arrow" href="./sign-up.html#fnref-7_4">↑</a></li>
 <li id="fn-7_5">この時点では、<em>ルーティング</em>は動作していますが、対応するページが動作しているとは限りません。たとえば、/users/1/edit がUsersコントローラの<code>edit</code>アクションに正常にルーティングされているとしても、<code>edit</code>アクションが存在しなければ、このURLにアクセスしたときにエラーになります。<a class="arrow" href="./sign-up.html#fnref-7_5">↑</a></li>
 <li id="fn-7_6">ヒンズー教では、アバターは人間や動物の形をとって神が顕現したものと考えられています。これを拡大解釈して、<em>アバター</em>という用語は、特にネット界隈で、その人物を表現するもの (かつその人そのものの一部でもある) という意味で使われます。もちろん、映画「<a href="http://www.imdb.com/title/tt0499549/">アバター</a>」を見た人にはこんな解説は不要でしょう。<a class="arrow" href="./sign-up.html#fnref-7_6">↑</a></li>
-<li id="fn-7_7">アプリケーションでカスタム画像を扱ったりその他のファイルをアップロードする必要があれば、代わりに<a href="https://github.com/thoughtbot/paperclip">Paperclip</a> gemか<a href="https://github.com/jnicklas/carrierwave">CarrierWave</a> gemをお勧めします。<a class="arrow" href="./sign-up.html#fnref-7_7">↑</a></li>
+<li id="fn-7_7">アプリケーションでカスタム画像を扱ったりその他のファイルをアップロードする必要があれば、代わりに<a href="https://github.com/thoughtbot/paperclip">Paperclip</a> gemか<a href="https://github.com/carrierwaveuploader/carrierwave">CarrierWave</a> gemをお勧めします。<a class="arrow" href="./sign-up.html#fnref-7_7">↑</a></li>
 <li id="fn-7_8">どうにも気持ちの悪い動作だと思いませんか。私にも何故必要なのか分かりません。<a class="arrow" href="./sign-up.html#fnref-7_8">↑</a></li>
 <li id="fn-7_9">私は<code>Rails API</code>で<a href="http://api.rubyonrails.org/v4.0.0/classes/ActionView/Helpers/TextHelper.html#method-i-pluralize">pluralize</a>を調べていてたまたま気付きました。<a class="arrow" href="./sign-up.html#fnref-7_9">↑</a></li>
 <li id="fn-7_10">実際には、これに非常に近い<code>flash.now</code>を使いますが、本当に必要になるまでは使わないようにしようかと思います。<a class="arrow" href="./sign-up.html#fnref-7_10">↑</a></li>

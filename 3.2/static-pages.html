@@ -96,7 +96,7 @@
 </div>
 
 
-<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムの一覧から入手してください。個人的には<a href="http://nodejs.org/">Node.js</a>をお勧めします。) </p>
+<p>(JavaScriptランタイムがインストールされていないというエラーが表示された場合は、<a href="https://github.com/sstephenson/execjs">GitHubのexecjsページ</a>にあるインストール可能なランタイムの一覧から入手してください。個人的には<a href="https://nodejs.org/">Node.js</a>をお勧めします。) </p>
 
 <p>ここまで進めたら、後はGitリポジトリを初期化するだけです<sup class="footnote" id="fnref-3_3"><a href="./static-pages.html#fn-3_3">3</a></sup>。</p>
 
@@ -118,7 +118,7 @@
 
 これは、以下のためのサンプルアプリケーションです。
 [*Ruby on Rails Tutorial: Learn Rails by Example*](http://railstutorial.jp/)
-by [Michael Hartl](http://michaelhartl.com/).
+by [Michael Hartl](http://www.michaelhartl.com/).
 </pre></div>
 </div></div>
 
@@ -1464,7 +1464,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <li>お気付きの方もいると思いますが、<a class="ref" href="./static-pages.html#code-pages_controller_spec_title">リスト3.18</a>に示されている、StaticPagesコントローラのspecテストには若干の重複があります。特に、“Ruby on Rails Tutorial Sample App”というタイトルはそれぞれのタイトルのテストで繰り返し記述されています。引数として渡されたシンボルと同名の変数にブロックの評価値を格納する、RSpecの<code>let</code>関数を使い、<a class="ref" href="./static-pages.html#code-pages_controller_spec_exercise">リスト 3.30</a>のようにテストを変更し、テストにパスするようにしましょう。<a class="ref" href="./static-pages.html#code-pages_controller_spec_exercise">リスト3.30</a>では文字列の式展開 (<em>string interpolation</em>) が行われていますが、これについては<a class="ref" href="./rails-flavored-ruby.html#sec-strings">4.2.2</a>で紹介します。</li>
 
-<li><strong>(上級者向け)</strong>「<a href="http://devcenter.heroku.com/articles/how-do-i-use-sqlite3-for-development">Heroku page on using <tt>sqlite3</tt> for development</a>」のページでも説明されているように、互換性の問題によるエラーを最小限にとどめるために、開発/テスト/本番環境で共通のデータベースを使うことは良いことです。「<a href="http://devcenter.heroku.com/articles/local-postgresql">Heroku instructions for local PostgreSQL installation</a>」には、PostgreSQLをローカル環境にインストールする手順が紹介されてます。PostgreSQLを使う場合は、 <a class="ref" href="./static-pages.html#code-Gemfile_pg_gem">リスト3.31</a>にあるように、<code>Gemfile</code>から<tt>sqlite3</tt> gemを削除し、<tt>pg</tt> gemのみを使うようにしてください。さらに、<code>config/database.yml</code>ファイルと、PostgreSQLをローカル環境で動作させる方法を学ぶ必要があります。以上の情報を元に、PostgreSQLを使用して開発データベースとテストデータベースを作成し、設定を行うことが、この課題のゴールです。<strong>警告: </strong>この演習はかなり難易度が高いので、上級者にのみお勧めします。もし行き詰まってしまったら、すぐにこの演習を飛ばして次の作業に進んでください。なお、既に説明したとおり、このチュートリアルで開発しているサンプルアプリケーションは、SQLiteとPostgreSQLのどちらについても完全に互換性があります。</li>
+<li><strong>(上級者向け)</strong>「<a href="http://12factor.net/dev-prod-parity">The Twelve-Factor App</a>」のページでも説明されているように、互換性の問題によるエラーを最小限にとどめるために、開発/テスト/本番環境で共通のデータベースを使うことは良いことです。「<a href="https://devcenter.heroku.com/articles/heroku-postgresql#local-setup">Heroku instructions for local PostgreSQL installation</a>」には、PostgreSQLをローカル環境にインストールする手順が紹介されてます。PostgreSQLを使う場合は、 <a class="ref" href="./static-pages.html#code-Gemfile_pg_gem">リスト3.31</a>にあるように、<code>Gemfile</code>から<tt>sqlite3</tt> gemを削除し、<tt>pg</tt> gemのみを使うようにしてください。さらに、<code>config/database.yml</code>ファイルと、PostgreSQLをローカル環境で動作させる方法を学ぶ必要があります。以上の情報を元に、PostgreSQLを使用して開発データベースとテストデータベースを作成し、設定を行うことが、この課題のゴールです。<strong>警告: </strong>この演習はかなり難易度が高いので、上級者にのみお勧めします。もし行き詰まってしまったら、すぐにこの演習を飛ばして次の作業に進んでください。なお、既に説明したとおり、このチュートリアルで開発しているサンプルアプリケーションは、SQLiteとPostgreSQLのどちらについても完全に互換性があります。</li>
 
 </ol>
 
@@ -1633,7 +1633,7 @@ by [Michael Hartl](http://michaelhartl.com/).
 
 <p><code>bundle exec</code>を省略することができました。 このとおりにできた場合は、この節の残りはスキップしてください。</p>
 
-<p>新しいバージョンのRVMを使うことができない場合は、Ruby Version Managerがローカル環境で自動的に設定する適切な実行ファイルがあれば、<a href="http://rvm.io/integration/bundler/">RVM Bundler integration</a><sup class="footnote" id="fnref-3_16"><a href="./static-pages.html#fn-3_16">16</a></sup>で<code>bundle exec</code>を省略することができます。一見奇妙ですが、実行方法は簡単です。最初に以下の2つのコマンドを実行します。</p>
+<p>新しいバージョンのRVMを使うことができない場合は、Ruby Version Managerがローカル環境で自動的に設定する適切な実行ファイルがあれば、<a href="https://rvm.io/integration/bundler">RVM Bundler integration</a><sup class="footnote" id="fnref-3_16"><a href="./static-pages.html#fn-3_16">16</a></sup>で<code>bundle exec</code>を省略することができます。一見奇妙ですが、実行方法は簡単です。最初に以下の2つのコマンドを実行します。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> rvm get head <span class="o">&amp;&amp;</span> rvm reload
 <span class="gp">$</span> chmod +x <span class="nv">$rvm_path</span>/hooks/after_cd_bundler
@@ -1692,7 +1692,7 @@ bundler_stubs/
 <h4><a id="sec-3_6_1_2" href="./static-pages.html#sec-binstubs" class="heading">binstubsオプション</a></h4>
 
 
-<p>RVMを使用していない場合でも、 <a href='https://github.com/mpapis/rubygems-bundler'>rubygems-bundler</a>というgemを使うことで、<code>bundle exec</code>を省略することができます。</p>
+<p>RVMを使用していない場合でも、 <a href='https://github.com/rvm/rubygems-bundler'>rubygems-bundler</a>というgemを使うことで、<code>bundle exec</code>を省略することができます。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">$</span> gem install rubygems-bundler
 <span class="gp">$</span> gem regenerate_binstubs</pre></div>
@@ -1879,7 +1879,7 @@ bundler_stubs/
 <h3><a id="sec-3_6_3" href="./static-pages.html#sec-spork" class="heading"><span class="number">3.6.3</span>Spork を使ったテストの高速化</a></h3>
 
 
-<p><code>bundle exec rspec</code>を実行すると、テストが開始されるまでしばらく時間がかかることにお気付きかもしれません。テストがいったん開始されればすぐに終了します。これは、RSpecを実行するたびにRailsの環境全体を読み込み直す必要があるためです。<a href="http://github.com/sporkrb/spork">Sporkテストサーバー</a><sup class="footnote" id="fnref-3_17"><a href="./static-pages.html#fn-3_17">17</a></sup>はこの問題を解決するためのものです。Sporkは環境を<em>1回だけ</em>読み込み、今後実行するテストのためのプロセスを管理します。Sporkは<a class="ref" href="./static-pages.html#sec-guard">3.6.2</a>のGuardと組み合わせるとさらに便利です。</p>
+<p><code>bundle exec rspec</code>を実行すると、テストが開始されるまでしばらく時間がかかることにお気付きかもしれません。テストがいったん開始されればすぐに終了します。これは、RSpecを実行するたびにRailsの環境全体を読み込み直す必要があるためです。<a href="https://github.com/sporkrb/spork">Sporkテストサーバー</a><sup class="footnote" id="fnref-3_17"><a href="./static-pages.html#fn-3_17">17</a></sup>はこの問題を解決するためのものです。Sporkは環境を<em>1回だけ</em>読み込み、今後実行するテストのためのプロセスを管理します。Sporkは<a class="ref" href="./static-pages.html#sec-guard">3.6.2</a>のGuardと組み合わせるとさらに便利です。</p>
 
 <p>最初に、<code>spork</code>に依存するgemを<code>Gemfile</code>に追加します (<a class="ref" href="./static-pages.html#code-gemfile_spork">リスト3.35</a>)。</p>
 
@@ -2158,10 +2158,10 @@ bundler_stubs/
 <li id="fn-3_10">筆者は普段、ターミナルやテキストエディタの背景は黒色にしていますが、明るい色の背景の方がスクリーンショットの見栄えが良いので、(一時的に) 明るい背景を使用しています。<a class="arrow" href="./static-pages.html#fnref-3_10">↑</a></li>
 <li id="fn-3_11">改行は、行の末尾と次の行の始まりを示します。コードの中では、<tt class="verb">\n</tt>の文字列で表します。<a class="arrow" href="./static-pages.html#fnref-3_11">↑</a></li>
 <li id="fn-3_12">もちろん、人間がいちいち文字数を<em>数えて</em>いたら頭がどうにかなってしまいます。だからこそ、多くのテキストエディタにはこれらを支援する機能が備わっています。たとえば、<a class="ref" href="./beginning.html#fig-editor_shell">図1.1</a>をもう一度見てみると、コードを80文字以下に抑えるための小さな縦線が右側に見えます (実際には少し余裕を持たせて78列にしてあります) 。TextMateを使用していれば、<tt>View &gt; Wrap Column &gt; 78</tt>で設定できます。Sublime Textを使用していれば、<tt>View &gt; Ruler &gt; 78</tt>、または<tt>View &gt; Ruler &gt; 80</tt>で設定できます。<a class="arrow" href="./static-pages.html#fnref-3_12">↑</a></li>
-<li id="fn-3_13">2番目によく使われている<a href="http://haml-lang.com/">Haml</a>というテンプレートシステムもあります。Hamlは個人的に非常に気に入っているのですが、初心者向けのチュートリアルで使うには<em>やや</em>標準から外れています。<a class="arrow" href="./static-pages.html#fnref-3_13">↑</a></li>
+<li id="fn-3_13">2番目によく使われている<a href="http://haml.info/">Haml</a>というテンプレートシステムもあります。Hamlは個人的に非常に気に入っているのですが、初心者向けのチュートリアルで使うには<em>やや</em>標準から外れています。<a class="arrow" href="./static-pages.html#fnref-3_13">↑</a></li>
 <li id="fn-3_14">Railsでの開発経験者であれば、この時点で<code>content_for</code>の使用を検討すると思いますが、残念ながらAsset Pipelineと併用すると正常に動作しないことがあります。<code>provide</code>関数はcontent_forの代替です。<a class="arrow" href="./static-pages.html#fnref-3_14">↑</a></li>
 <li id="fn-3_15">Rubyを勉強したことのある方であれば、Railsはブロックの内容を<em>yield</em>していると推測することでしょう。そして、その推測はおそらく正しいでしょう。しかし、Rails開発のためにこれらの詳細を知る必要はありません。<a class="arrow" href="./static-pages.html#fnref-3_15">↑</a></li>
-<li id="fn-3_16">http://rvm.io/integration/bundler/ <a class="arrow" href="./static-pages.html#fnref-3_16">↑</a></li>
+<li id="fn-3_16">https://rvm.io/integration/bundler <a class="arrow" href="./static-pages.html#fnref-3_16">↑</a></li>
 <li id="fn-3_17"><em>spork</em>はspoon-forkを組み合わせた造語です。このプロジェクト名は、<a href="http://ja.wikipedia.org/wiki/POSIX">POSIX</a>の<a href="http://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AF_(%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E9%96%8B%E7%99%BA)">fork</a>におけるSporkの用法をもじったものです。<a class="arrow" href="./static-pages.html#fnref-3_17">↑</a></li>
 <li id="fn-3_18">http://railstutorial.jp/screencasts <a class="arrow" href="./static-pages.html#fnref-3_18">↑</a></li>
 <li id="fn-3_19">https://github.com/maltize/sublime-text-2-ruby-tests <a class="arrow" href="./static-pages.html#fnref-3_19">↑</a></li>
