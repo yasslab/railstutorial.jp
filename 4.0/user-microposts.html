@@ -767,7 +767,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
 <h3><a id="sec-10_2_1" href="./user-microposts.html#sec-augmenting_the_user_show_page" class="heading"><span class="number">10.2.1</span>ユーザー表示ページの拡張</a></h3>
 
 
-<p>ユーザーのマイクロポスト表示に対するテスト、すなわちユーザーに対するrequest specを作成するところから始めましょう。ユーザーに関連付けられているマイクロポストのファクトリーを作成し、それから表示ページが各ポストの内容を含んでいるか検証する戦略で進めます。また、<a class="ref" href="./user-microposts.html#fig-user_microposts_mockup">図 10.4</a>で示されているように, マイクロポストの総数が表示されているかどうかも検証します。</p>
+<p>ユーザーのマイクロポスト表示に対するテスト、すなわちユーザーに対するrequest specを作成するところから始めましょう。ユーザーに関連付けられているマイクロポストのファクトリーを作成し、それから表示ページが各ポストの内容を含んでいるか検証する戦略で進めます。また、<a class="ref" href="./user-microposts.html#fig-user_microposts_mockup">図 10.4</a>で示されているように、マイクロポストの総数が表示されているかどうかも検証します。</p>
 
 <p>ポストは<code>let</code>メソッドで作成できますが、ユーザー表示ページでポストがすぐに表示されるように、<a class="ref" href="./user-microposts.html#code-micropost_ordering_test">リスト10.10</a>と同様に即座に関連付けを作成できるようにしたいと思います。そこで、今回も<code>let!</code>を使います。</p>
 
