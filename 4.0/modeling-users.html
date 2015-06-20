@@ -1762,7 +1762,7 @@ add_password_digest_to_users password_digest:string
 
 <li><a class="ref" href="./modeling-users.html#code-email_downcase">リスト6.20</a>の、メールアドレスを小文字に変換するコードに対するテストを、<a class="ref" href="./modeling-users.html#code-email_downcase_test">リスト6.30</a>に示されているように作成してください。このテストでは、<code>reload</code>メソッドを使用してデータベースから値を再度読み込み、<code>eq</code>メソッドを使用して同値であるかどうかをテストしてください。<code>before_save</code>の行をコメントアウトすることで、<a class="ref" href="./modeling-users.html#code-email_downcase_test">リスト6.30</a>が正しい対象をテストしていることを確認してください。</li>
 
-<li><code>before_save</code>コールバックを<a class="ref" href="./modeling-users.html#code-downcase_bang">リスト6.31</a>のように書いてもよいことを、テストスイートを実行して確認してください。</li>
+<li><code>before_save</code>コールバックを<a class="ref" href="./modeling-users.html#code-downcase_bang">リスト6.31</a>のように書いてもよいことを、テストスイートを実行して確認してください (訳注: この実装案を採用すると、前問で追加したテストが意味のないものになります。その理由についても考えてみてください)。</li>
 
 <li><a class="ref" href="./modeling-users.html#sec-format_validation">6.2.4</a>で説明したように、 <a class="ref" href="./modeling-users.html#code-validates_format_of_email">リスト6.14</a>のメールアドレスチェック用正規表現は、“foo@bar..com”のようにドットが連続した無効なメールアドレスを許容してしまいます。このメールアドレスを<a class="ref" href="./modeling-users.html#code-email_format_validation_tests">リスト6.13</a>の無効なメールアドレスリストに追加し、これによってテストが失敗することを確認してください。次に、<a class="ref" href="./modeling-users.html#code-better_email_regex">リスト6.32</a>に示したもう少し複雑な正規表現を使用して、このテストがパスするようにしてください。</li>
 
