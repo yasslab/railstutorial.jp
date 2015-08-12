@@ -318,7 +318,7 @@
 
 <p>コンソールでは上のように、ユーザーオブジェクトはデフォルトの表現として、<a class="ref" href="./modeling-users.html#fig-user_model_initial">図6.2</a>と<a class="ref" href="./modeling-users.html#code-annotated_user_model">リスト6.5</a>と同じ属性を出力していることがわかります。</p>
 
-<p><code>User.new</code>を引数なしで呼んだ場合は、すべての属性が<code>nil</code>のオブジェクトを返します。<a class="ref" href="./rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>では、オブジェクトの属性を設定するための<em>初期化ハッシュ (hash) </em>を引数に取るように、Userクラスの例 (user_example.rb) を設計しました。この設計は、同様の方法でオブジェクトを初期化するActive Recordの設計に基づいています。</p>
+<p><code>User.new</code>を引数なしで呼んだ場合は、すべての属性が<code>nil</code>のオブジェクトを返します。<a class="ref" href="./rails-flavored-ruby.html#sec-a_user_class">4.4.5</a>では、オブジェクトの属性を設定するための<em>初期化ハッシュ (hash) </em>を引数に取るように、Userクラスの例 (example_user.rb) を設計しました。この設計は、同様の方法でオブジェクトを初期化するActive Recordの設計に基づいています。</p>
 
 <div class="code"><div class="highlight"><pre><span class="gp">&gt;&gt; </span><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Michael Hartl&quot;</span><span class="p">,</span> <span class="ss">email:</span> <span class="s2">&quot;mhartl@example.com&quot;</span><span class="p">)</span>
 <span class="go">=&gt; #&lt;User id: nil, name: &quot;Michael Hartl&quot;, email: &quot;mhartl@example.com&quot;,</span>
