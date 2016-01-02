@@ -2,13 +2,11 @@
 
 ## はじめに
 
-[本家サイトのリポジトリ](https://github.com/mhartl/rails_tutorial_translation_2nd_ed) と同様に、[Ruby on Rails チュートリアル](http://railstutorial.jp/) で使われている HTML や CSS、画像ファイル等を公開しています。
+[本家サイトのリポジトリ](https://github.com/mhartl/rails_tutorial_translation_2nd_ed)と同様に、[Ruby on Rails チュートリアル (第2版)](http://railstutorial.jp/?version=4.0) で使われている HTML や CSS、画像ファイル等を本リポジトリから公開しています。
 
-なお、現在 (2013/08/25) は [Google Translator Toolkit](http://translate.google.com/toolkit/) と
-[Facebook グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) を用いて、
-同書の日本語版がより読みやすくなるように編集しています。
+なお、第3版より原著のリポジトリがPrivateとなったため、原著の意向に従い日本語訳もPrivateリポジトリとなっております。ご理解して頂けると幸いです。
 
-もし誤字・誤訳などがあれば、お気軽に [@railstutorialjp](http://twitter.com/railstutorialjp) までお声かけください :D
+とはいえ、もし誤字・誤訳などの報告は引き続き受け付けておりますので、[@railstutorialjp](http://twitter.com/railstutorialjp) または[お問い合わせフォーム](http://railstutorial.jp/contact)からお気軽にご連絡ください :D
 
 - [Ruby on Rails チュートリアル：実例を使ってRailsを学ぼう](http://railstutorial.jp/)
 
