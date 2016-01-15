@@ -22,13 +22,13 @@
 
 Copyright &copy; 2012 by Michael Hartl.
 
-[![YassLab Logo](https://dl.dropboxusercontent.com/u/2819285/yasslab_logo_copy.png)](http://yasslab.jp)
-
 The HTML source of the Ruby on Rails Tutorial book is available under the [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/), which allows translation of the book as long as you give attribution to the original author ([Michael Hartl](http://michaelhartl.com/)) and distribute the translation under the same license.
 
 ### [Ruby on Rails チュートリアル (二次著作物)](http://railstutorial.jp/) について
 
 Copyright &copy; 2015 by [Rails チュートリアル翻訳グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) (代表: [@yasulab](http://twitter.com/yasulab))
+
+[![YassLab Logo](https://dl.dropboxusercontent.com/u/2819285/yasslab_logo_copy.png)](http://yasslab.jp)
 
 本リポジトリに含まれている[Railsチュートリアル](http://railstutorial.jp)のHTMLソースは   
 Creative Commons の「[表示 - 継承 3.0 非移植](http://creativecommons.org/licenses/by-sa/3.0/deed.ja)」に基づいて公開されています。
