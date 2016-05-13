@@ -18,13 +18,13 @@
 
 ## ライセンス
 
-### [Ruby on Rails Tutorial, 2nd Edition (一次著作物)](http://ruby.railstutorial.org/) について
+### [Ruby on Rails Tutorial, 2nd Edition](http://ruby.railstutorial.org/) について
 
 Copyright &copy; 2012 by Michael Hartl.
 
 The HTML source of the Ruby on Rails Tutorial book is available under the [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/), which allows translation of the book as long as you give attribution to the original author ([Michael Hartl](http://michaelhartl.com/)) and distribute the translation under the same license.
 
-### [Ruby on Rails チュートリアル (二次著作物)](http://railstutorial.jp/) について
+### [Ruby on Rails チュートリアル 第2版](http://railstutorial.jp/?version=4.0) について
 
 Copyright &copy; 2015 by [Rails チュートリアル翻訳グループ](https://www.facebook.com/groups/japanese.railstutorial.org/) (代表: [@yasulab](http://twitter.com/yasulab))
 
@@ -40,4 +40,16 @@ Creative Commons の「[表示 - 継承 3.0 非移植](http://creativecommons.or
 下記ウェブサイトからお気軽にご相談ください。
 
 YassLab - ヤスラボ    
-http://yasslab.jp/ja/
+http://yasslab.jp/
+
+### [Ruby on Rails Tutorial, 3rd Edition](http://ruby.railstutorial.org/)
+
+Copyright &copy; 2016 Michael Hartl
+
+### [Ruby on Rails チュートリアル 第3版](http://railstutorial.jp/?version=4.2) 
+
+Copyright &copy; 2016 [YassLab & Co.](http://yasslab.jp/)
+
+※ 原著者の意向により、第3版から原著者および協力者間で共有された Private リポジトリに移りました。
+
+
