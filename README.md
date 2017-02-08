@@ -1,3 +1,5 @@
+**NOTE: 原著者の意向により、第3版から Private リポジトリに移りました。**
+
 # Ruby on Rails チュートリアル
 
 ## はじめに
@@ -48,8 +50,6 @@ Copyright &copy; 2016 Michael Hartl
 
 ### [Ruby on Rails チュートリアル 第3版](http://railstutorial.jp/?version=4.2) 
 
-Copyright &copy; 2016 [YassLab & Co.](http://yasslab.jp/)
-
-※ 原著者の意向により、第3版から原著者および協力者間で共有された Private リポジトリに移りました。
+Copyright &copy; 2016 [YassLab](http://yasslab.jp/)
 
 
